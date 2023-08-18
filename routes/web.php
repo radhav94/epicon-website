@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.homepage');
 });
+
+Route::get('test', [TestController::class, 'index']);
+
+Route::get('/', [PageController::class, 'index'])->name('homepage');
