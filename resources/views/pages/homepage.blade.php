@@ -14,7 +14,7 @@
            @endphp
            
             @if(View::exists($template))
-                @include($template)
+                @include($template,['value' => $value])
             @endif
 
         @endif

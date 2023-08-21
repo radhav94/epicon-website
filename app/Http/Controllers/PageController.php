@@ -12,16 +12,20 @@ class PageController extends Controller
         $params = [
             'slug' => 'home-v2',
             'list_language' => 'ALL',
-            'display_language' => 'TAMIL',
+            'display_language' => 'ENGLISH',
             'page' => 1,
             'tray_limit' => 5,
         ];
 
         $result = CurlAPI("pages/homepage", "GET", $params);
-
+        // dd($result['data']['list']['0']);
+        // dd($result);
         if($result && @$result['success'] ==  true){
+
+            $displayLanguageParam = setLanguageParameter();
+
             // dd($result);
-            return view('pages.homepage', compact('result'));
+            return view('pages.homepage', compact('result','displayLanguageParam'));
 
         }
         
