@@ -12,7 +12,7 @@
      <div class="chart-trigger align-items-center d-flex position-relative">
          <div class="main-chart-spinner d-flex align-items-center">
              <div id="chart"></div>
-             <div class="spin-trigger"><img src="{{ asset('assets/images/spin-trigger.svg') }}" alt=""></div>
+             <div class="spin-trigger"><img src="{{ asset('assets/img/spin-trigger.svg') }}" alt=""></div>
          </div>
          <div id="question">
              <!-- for img data -->
