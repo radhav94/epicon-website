@@ -1,6 +1,3 @@
- <?php
-    $title = getDispLangContent($value, $displayLanguageParam, 'title');
-    ?>
  <section class="carousel-main mt-0">
      <div class="gaming-galore-main">
          <div class="galore-title">

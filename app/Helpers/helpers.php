@@ -233,7 +233,7 @@ function getItemCardData($val, $language)
     if (isset($val['release_date'])) {
         $sub_text[] = date('Y', strtotime($val['release_date']));
     }
-    $sub_text[] = '3 Language';
+    // $sub_text[] = '3 Language';
 
     if ($generes) {
         $sub_text[] = implode(", ", $generes);

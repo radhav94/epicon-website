@@ -1,8 +1,3 @@
- <?php
-    $title = getDispLangContent($value, $displayLanguageParam, 'title');
-    $shortdescription = getDispLangContent($value, $displayLanguageParam, 'shortdesc');
-    ?>
-
  <div class="carousel-main spinner d-flex flex-wrap align-items-center justify-content-between">
      <div class="cant-decide">
          <h1 class="text-white">{{ $title }}</h1>

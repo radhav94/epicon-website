@@ -1,6 +1,3 @@
- <?php
-    $title = getDispLangContent($value, $displayLanguageParam, 'title');
-    ?>
  <div class="carousel-main">
      <div class="carousel-title-n-arrow px-2">
          <h1 class="text-white small">{{ $title }}</h1>

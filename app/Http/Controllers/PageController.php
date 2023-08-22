@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\File;
 
 class PageController extends Controller
 {
@@ -10,7 +12,8 @@ class PageController extends Controller
     {
 
         $params = [
-            'slug' => 'home-v2',
+            // 'slug' => 'home-v2',
+            'slug' => 'movies',
             'list_language' => 'ALL',
             'display_language' => 'ENGLISH',
             // 'page' => 1,
@@ -19,6 +22,11 @@ class PageController extends Controller
 
         $result = CurlAPI("pages/homepage", "GET", $params);
         // dd($result['data']['list']['0']);
+        // $temp = [];
+        // foreach ($result['data']['list'] as $key => $value) {
+        //    $temp[] = $value['display_type'];
+        // }
+        // dd(array_unique(array_column($result['data']['list'], "display_type")));
         // dd($result);
         if ($result && @$result['success'] ==  true) {
 

@@ -18,7 +18,15 @@ $template = 'display.'.$value['display_type'];
 $title = getDispLangContent($value, $displayLanguageParam, 'title');
 $shortdescription = getDispLangContent($value, $displayLanguageParam, 'shortdesc');
 ?>
+
+
 @include($template,['value' => $value,'title' => $title,'shortdescription' => $shortdescription])
+
+@else
+<h1>
+    Template not found - {{ $value['display_type'] }}
+</h1>
+
 @endif
 
 @endif
