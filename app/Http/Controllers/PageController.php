@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\File;
 
 class PageController extends Controller
 {
-    public function index()
+    public function index($slug = 'home-v2')
     {
         // dd(testA());
         $params = [
-            'slug' => 'home-v2',
+            'slug' => $slug,
+            // 'slug' => 'home-v2',
             // 'slug' => 'movies',
             'list_language' => 'ALL',
             'display_language' => 'ENGLISH',
@@ -34,6 +35,26 @@ class PageController extends Controller
 
             // dd($result);
             return view('pages.homepage', compact('result', 'displayLanguageParam'));
+        }
+    }
+
+    public function getSpinnerContent(Request $request)
+    {
+
+        $result = CurlAPI("pages/spinnerContent", "POST", ['genre' => $request->genre]);
+        // die($result['success']);
+        // dd($result);
+        if ($result && @$result['success'] ==  true) {
+            return JSONResponse(
+                200,
+                'Success.',
+                [
+                    'image' => $result['data']['vertical_cover_image']['large'],
+                    'url' => url($result['data']['url'])
+                ]
+            );
+        } else {
+            return JSONResponse(400, 'Error.');
         }
     }
 }

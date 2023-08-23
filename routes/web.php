@@ -15,10 +15,10 @@ use App\Http\Controllers\PageController;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.homepage');
-});
-
 Route::get('test', [TestController::class, 'index']);
 
 Route::get('/', [PageController::class, 'index'])->name('homepage');
+
+Route::get('/{slug}', [PageController::class, 'index']);
+
+Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');

@@ -61,6 +61,8 @@ $shortdescription = getDispLangContent($value, $displayLanguageParam, 'shortdesc
                 prevEl: '.swiper-button-prev',
             }
         });
+
+        activateSpinner();
     });
 </script>
 @stop

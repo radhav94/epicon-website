@@ -733,6 +733,7 @@ $(document).ready(function () {
     $(this).toggleClass("like-icon-toggle");
   })
 
+  /*
   // SPINER JS START
   var padding = { top: 0, right: 0, bottom: 0, left: 0 },
     w = 360 - padding.left - padding.right,
@@ -832,10 +833,8 @@ $(document).ready(function () {
           .text(data[picked].question);
         oldrotation = rotation;
 
-        /* Get the result value from object "data" */
         console.log(data[picked].value)
 
-        /* Comment the below line for restrict spin to sngle time */
         container.on("click", spin);
       });
   }
@@ -882,6 +881,7 @@ $(document).ready(function () {
     }
     return array;
   };
+  */
 
 });
 // top menu
