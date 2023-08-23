@@ -15,10 +15,10 @@ use App\Http\Controllers\PageController;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('pages.homepage');
 });
-
+*/
 Route::get('test', [TestController::class, 'index']);
 
 Route::get('/', [PageController::class, 'index'])->name('homepage');

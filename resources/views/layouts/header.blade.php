@@ -75,7 +75,7 @@
         </div>
 
         <ul class="menu-item list-unstyled d-flex mb-0">
-            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="{{route('homepage')}}" class="active">Home</a></li>
             <li><a href="movies.html">Movies</a></li>
             <li><a href="">Shows</a></li>
             <li><a href="">Podcasts</a></li>
@@ -208,7 +208,7 @@
                             </div>
                             <span class="pro-name">Ajay</span>
                         </a>
-                        <a href="#/">
+                        <a href="{{route('addprofile')}}">
                             <div class="profile-pik pro-add">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="49" height="48" viewBox="0 0 49 48" fill="none">
                                     <path d="M24.3906 9C24.7884 9 25.17 9.15804 25.4513 9.43934C25.7326 9.72064 25.8906 10.1022 25.8906 10.5V22H37.3906C37.7885 22 38.17 22.158 38.4513 22.4393C38.7326 22.7206 38.8906 23.1022 38.8906 23.5C38.8906 23.8978 38.7326 24.2794 38.4513 24.5607C38.17 24.842 37.7885 25 37.3906 25H25.8906V36.5C25.8906 36.8978 25.7326 37.2794 25.4513 37.5607C25.17 37.842 24.7884 38 24.3906 38C23.9928 38 23.6113 37.842 23.33 37.5607C23.0487 37.2794 22.8906 36.8978 22.8906 36.5V25H11.3906C10.9928 25 10.6113 24.842 10.33 24.5607C10.0487 24.2794 9.89062 23.8978 9.89062 23.5C9.89062 23.1022 10.0487 22.7206 10.33 22.4393C10.6113 22.158 10.9928 22 11.3906 22H22.8906V10.5C22.8906 10.1022 23.0487 9.72064 23.33 9.43934C23.6113 9.15804 23.9928 9 24.3906 9Z" fill="white"/>
@@ -221,12 +221,13 @@
                         <p class="m-0 small">Get access to exclusive content, with no ad breaks.</p>
                         <button> <img class="me-1" width="18" src="{{ asset('assets/images/crown.svg') }}" alt=""> Subscribe</button>
                     </li>
-                    <li class="subc-text"><a href="#/">Manage Profiles</a></li>
+                    <li class="subc-text"><a href="{{route('manageprofile')}}">Manage Profiles</a></li>
                     <li class="subc-text"><a href="#/">Library</a></li>
                     <li class="subc-text"><a href="#/">My Account</a></li>
                     <li class="subc-text"><a href="#/">My Rewards</a></li>
                     <li class="subc-text"><a href="#/">Settings</a></li>
                     <li class="subc-text"><a href="#/">Help & Feedback</a></li>
+                    <li class="subc-text"><a href="#/" data-bs-toggle="modal" data-bs-target="#login-modal">Log in</a></li>
                     <li class="subc-text logout"><a href="#/">Log out</a></li>
                     <li class="subc-text atp">
                         <a href="#/">About Us</a>

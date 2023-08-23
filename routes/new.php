@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    echo 'ABC';
-});
+
+//Profile routes
+Route::get('/profile/add', '\App\Http\Controllers\UserAccountController@addprofile')->name('addprofile');
+
+Route::get('/profile/edit', '\App\Http\Controllers\UserAccountController@editprofile')->name('editprofile');
+
+Route::get('/profile/manage', '\App\Http\Controllers\UserAccountController@manageprofile')->name('manageprofile');
+
+// Mobile Number Update Route
+Route::post('/sendotp', '\App\Http\Controllers\Auth\LoginController@setSendOTP');

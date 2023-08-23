@@ -281,6 +281,8 @@ if($environment=='PRODUCTION'){
         ],
 		'EPICAPI'=>[
 			'API_DOMAIN'=>'http://contentapi-njsapi.epicon.in/index/',
+			// 'API_DOMAIN'=>'http://userapi-njsapi.epicon.in/',
+
 			 // 'API_DOMAIN'=>'https://dev-njsapi.epicchannel.com/',
 			//'API_DOMAIN'=>'https://stg-njsapi.epicchannel.com/',
 			'API_AUTH_TOKEN'=>'szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH',
