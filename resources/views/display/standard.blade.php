@@ -16,12 +16,7 @@
              <div class="play-card">
                  <div class="top-card-img">
                      {!! freePremiumDiv($val) !!}
-                     <span class="top-ten position-absolute">
-                         <ul class="list-unstyled text-white">
-                             <li>Top</li>
-                             <li>10</li>
-                         </ul>
-                     </span>
+                     {!! topTenDiv($val) !!}
                      <a href="#/" class="mute-btn">
                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                              <path d="M15 11.3333L16.6667 9.66667M16.6667 9.66667L18.3333 8M16.6667 9.66667L15 8M16.6667 9.66667L18.3333 11.3333" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -57,12 +52,7 @@
              </div>
              <a href="javascript:void(0);" class="main-card">
                  {!! freePremiumDiv($val) !!}
-                 <span class="top-ten position-absolute">
-                     <ul class="list-unstyled text-white">
-                         <li>Top</li>
-                         <li>10</li>
-                     </ul>
-                 </span>
+                 {!! topTenDiv($val) !!}
                  <div class="main-img">
                      <img src="{{ $card['banner_img'] }}" alt="">
                  </div>

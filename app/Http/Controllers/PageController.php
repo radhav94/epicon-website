@@ -10,17 +10,17 @@ class PageController extends Controller
 {
     public function index()
     {
-
+        // dd(testA());
         $params = [
-            // 'slug' => 'home-v2',
-            'slug' => 'movies',
+            'slug' => 'home-v2',
+            // 'slug' => 'movies',
             'list_language' => 'ALL',
             'display_language' => 'ENGLISH',
             // 'page' => 1,
             // 'tray_limit' => 5,
         ];
 
-        $result = CurlAPI("pages/homepage", "GET", $params);
+        $result = CurlAPI("pages/homepage", "GET", $params, 1);
         // dd($result['data']['list']['0']);
         // $temp = [];
         // foreach ($result['data']['list'] as $key => $value) {

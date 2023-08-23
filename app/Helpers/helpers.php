@@ -33,11 +33,17 @@ if (!function_exists('d')) {
     }
 }
 
-function CurlAPI($context, $method = 'GET', $data = null)
+function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1)
 {
     if (empty($context)) return;
 
-    return ApiHelper::api($context, $method, $data);
+    if ($apiDomain == 2) {
+        $url = config('epicconfig.EPICAPI.API_DOMAIN_2') . $context;
+    } else {
+        $url = config('epicconfig.EPICAPI.API_DOMAIN_1') . $context;
+    }
+
+    return ApiHelper::api($url, $method, $data);
 }
 
 
@@ -211,6 +217,18 @@ function getImage($image, $size = 'original')
 function freePremiumDiv($val)
 {
     echo (@$val['free_premium'] == true) ? '<span class="crown position-absolute"><img src="' . asset('assets/images/crown.svg') . '" alt=""></span>' : '';
+}
+
+function topTenDiv($val)
+{
+    if (@$val['is_top10'] == true) {
+        echo '<span class="top-ten position-absolute">
+                <ul class="list-unstyled text-white">
+                    <li>Top</li>
+                    <li>10</li>
+                </ul>
+            </span>';
+    }
 }
 
 
