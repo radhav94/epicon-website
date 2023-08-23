@@ -7,7 +7,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 use MongoDB\BSON\UTCDateTime;
 
 
-if (! function_exists('JSONResponse')) {
+if (!function_exists('JSONResponse')) {
     function JSONResponse(int $statusCode, string $message, array $data = []): JsonResponse
     {
         return response()->json(
@@ -20,7 +20,7 @@ if (! function_exists('JSONResponse')) {
     }
 }
 
-if (! function_exists('d')) {
+if (!function_exists('d')) {
 
     function d($data, $die = false)
     {
@@ -33,11 +33,17 @@ if (! function_exists('d')) {
     }
 }
 
-function CurlAPI($context, $method = 'GET', $data = null)
+function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1)
 {
     if (empty($context)) return;
 
-    return ApiHelper::api($context, $method, $data);
+    if ($apiDomain == 2) {
+        $url = config('epicconfig.EPICAPI.API_DOMAIN_2') . $context;
+    } else {
+        $url = config('epicconfig.EPICAPI.API_DOMAIN_1') . $context;
+    }
+
+    return ApiHelper::api($url, $method, $data);
 }
 
 
@@ -206,4 +212,67 @@ function getImage($image, $size = 'original')
     } else {
         return null;
     }
+}
+
+function freePremiumDiv($val)
+{
+    echo (@$val['free_premium'] == true) ? '<span class="crown position-absolute"><img src="' . asset('assets/images/crown.svg') . '" alt=""></span>' : '';
+}
+
+function topTenDiv($val)
+{
+    if (@$val['is_top10'] == true) {
+        echo '<span class="top-ten position-absolute">
+                <ul class="list-unstyled text-white">
+                    <li>Top</li>
+                    <li>10</li>
+                </ul>
+            </span>';
+    }
+}
+
+
+function getItemCardData($val, $language)
+{
+    $title = getDispLangContent($val, $language, 'title');
+    $shortdescription = getDispLangContent($val, $language, 'shortdesc');
+
+    $bannerimagcond = getDispLangContent($val, $language, 'bannerimg');
+
+    if (empty($bannerimagcond)) {
+        $bannerimagcond = getDispLangContent($val, $language, 'coverimage');
+    }
+    $bannerimage = getImage($bannerimagcond, "original");
+
+    $generes = array_column($val['genres_assign'] ?? [], 'name');
+
+    $sub_text = [];
+
+    if (isset($val['release_date'])) {
+        $sub_text[] = date('Y', strtotime($val['release_date']));
+    }
+    // $sub_text[] = '3 Language';
+
+    if ($generes) {
+        $sub_text[] = implode(", ", $generes);
+    }
+    if (isset($val['age_limit'])) {
+        $sub_text[] = $val['age_limit'];
+    }
+
+    $sub_points = '<li class="ps-1">' . @$val['age_limit'] . '</li>';
+
+    if ($generes) {
+        foreach ($generes as $key => $genre) {
+            $sub_points .= '<li>' . $genre . '</li>';
+        }
+    }
+
+    return [
+        'title' => $title,
+        'short_desc' => $shortdescription,
+        'banner_img' => $bannerimage,
+        'sub_text' => implode(". ", $sub_text),
+        'sub_points' => $sub_points
+    ];
 }

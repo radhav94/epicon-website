@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 //Profile routes
 Route::get('/profile/add', '\App\Http\Controllers\UserAccountController@addprofile')->name('addprofile');
 

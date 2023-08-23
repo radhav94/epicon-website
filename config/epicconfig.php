@@ -280,11 +280,9 @@ if($environment=='PRODUCTION'){
             'ASSET_URL'=>env('APP_URL')
         ],
 		'EPICAPI'=>[
-			'API_DOMAIN'=>'http://contentapi-njsapi.epicon.in/index/',
-			// 'API_DOMAIN'=>'http://userapi-njsapi.epicon.in/',
+			'API_DOMAIN_1'=>'http://contentapi-njsapi.epicon.in/index/',
+			'API_DOMAIN_2' => 'http://userapi-njsapi.epicon.in/',
 
-			 // 'API_DOMAIN'=>'https://dev-njsapi.epicchannel.com/',
-			//'API_DOMAIN'=>'https://stg-njsapi.epicchannel.com/',
 			'API_AUTH_TOKEN'=>'szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH',
 			'CONSCENT_API_URL' => 'https://sandbox-api.conscent.in',
 			'CONSCENT_SDK_URL' => 'https://sandbox-sdk.conscent.in',
@@ -572,4 +570,3 @@ if($environment=='PRODUCTION'){
 		]
 	];
 }
-?>

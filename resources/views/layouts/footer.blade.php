@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <a href="#/"><img width="150" src="{{ asset('assets/images/epicon-logo.png') }}" alt=""></a>
+                <a href="#/"><img width="150" src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
             </div>
         </div>
         <div class="row middle-footer">
@@ -57,8 +57,8 @@
                 <div class="download-store">
                     <h1>Download App</h1>
                     <div class="w-100 download-store-logo">
-                        <a href="#/"><img class="me-3" src="{{asset('assets/images/google-logo.png')}}" alt=""></a>
-                        <a href="#/"><img src="{{asset('assets/images/apple-logo.png')}}" alt=""></a>
+                        <a href="#/"><img class="me-3" src="{{asset('assets/img/google-logo.png')}}" alt=""></a>
+                        <a href="#/"><img src="{{asset('assets/img/apple-logo.png')}}" alt=""></a>
                     </div>
                 </div>
             </div>

@@ -21,7 +21,7 @@ class LoginController extends Controller
                 'user_signup_method' => $signup_method,
             );
 
-            $SendotpResponseData = CurlAPI("users/sendOTP", 'POST', $SendotpRequestData);
+            $SendotpResponseData = CurlAPI("users/sendOTP", 'POST', $SendotpRequestData,2);
             if ($SendotpResponseData['success'] == 'true') {
                 $response['meassage'] = $SendotpResponseData['message'];
                 $request->session()->put('mobile_number', $mobile_number);

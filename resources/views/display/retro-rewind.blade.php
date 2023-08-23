@@ -1,0 +1,1 @@
+<h1>no content added - {{$value['display_type']}}</h1>
