@@ -33,6 +33,11 @@
     ?>
 
  <script>
+     function onSpinnerError(response) {
+
+         alert('Api error');
+     }
+
      function onSpinnerSuccess(response) {
          $html = '<a href="' + response['payload']['url'] + '"><img src="' + response['payload']['image'] + '"></a>';
          $('.trigger-data-img').html($html);
@@ -43,7 +48,7 @@
          var requestData = {
              genre: $genre
          };
-         sendAjaxRequest('{{ route("spinner") }}', 'POST', requestData, onSpinnerSuccess, onError);
+         sendAjaxRequest('{{ route("spinner") }}', 'POST', requestData, onSpinnerSuccess, onSpinnerError);
      }
 
      function activateSpinner() {

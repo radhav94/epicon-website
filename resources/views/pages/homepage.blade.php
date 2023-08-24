@@ -19,6 +19,7 @@ $title = getDispLangContent($value, $displayLanguageParam, 'title');
 $shortdescription = getDispLangContent($value, $displayLanguageParam, 'shortdesc');
 ?>
 
+<!-- <h1>{{ $value['display_type'] }}</h1> -->
 
 @include($template,['value' => $value,'title' => $title,'shortdescription' => $shortdescription])
 

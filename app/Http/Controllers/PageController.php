@@ -44,13 +44,14 @@ class PageController extends Controller
         $result = CurlAPI("pages/spinnerContent", "POST", ['genre' => $request->genre]);
         // die($result['success']);
         // dd($result);
+
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(
                 200,
                 'Success.',
                 [
-                    'image' => $result['data']['vertical_cover_image']['large'],
-                    'url' => url($result['data']['url'])
+                    'image' => @$result['data']['vertical_cover_image']['large'],
+                    'url' => url(@$result['data']['url'])
                 ]
             );
         } else {

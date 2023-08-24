@@ -242,7 +242,7 @@ function getItemCardData($val, $language)
     if (empty($bannerimagcond)) {
         $bannerimagcond = getDispLangContent($val, $language, 'coverimage');
     }
-    $bannerimage = getImage($bannerimagcond, "original");
+    $bannerimage = getImage($bannerimagcond, "large");
 
     $generes = array_column($val['genres_assign'] ?? [], 'name');
 
@@ -273,6 +273,6 @@ function getItemCardData($val, $language)
         'short_desc' => $shortdescription,
         'banner_img' => $bannerimage,
         'sub_text' => implode(". ", $sub_text),
-        'sub_points' => $sub_points
+        'sub_points' => $sub_points,
     ];
 }
