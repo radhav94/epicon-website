@@ -49,6 +49,39 @@
     @yield('script')
     {{-- End page specific scripts --}}
 
+
+    <script>
+        $(document).ready(function() {
+
+            // start add to wishlist
+            $(document).on('click', '.addToList', function() {
+                let action = $(this).data('action');
+                let id = $(this).data('id');
+                let element = $(this);
+
+                let requestData = {
+                    content_id: id,
+                    action: action,
+                };
+
+                sendAjaxRequest('{{ route("wishlist") }}', 'POST', JSON.stringify(requestData), onWishlistSuccess, onWishlistError, 'application/json');
+
+                function onWishlistSuccess(response) {
+                    if (element.data('action') == 'add') {
+                        element.data('action', 'delete');
+                    } else {
+                        element.data('action', 'add');
+                    }
+                }
+
+                function onWishlistError(response) {
+                    console.log('error rrr', response);
+                }
+            });
+            // end start add to wishlist
+
+        });
+    </script>
 </body>
 
 </html>

@@ -11,11 +11,13 @@
         @foreach($value['content'] as $key => $val)
         <?php
         $card = getItemCardData($val, $displayLanguageParam);
+        $cover_img =  isset($val['epic_shorts_image']) ? $val['epic_shorts_image']['small'] : $card['banner_img'];
+
         ?>
         <li>
             <a href="{{ $val['url'] }}" class="main-card">
                 <div class="main-img eod-darlings pb-0">
-                    <img src="{{ $card['banner_img'] }}" alt="">
+                    <img src="{{ $cover_img }}" alt="">
                 </div>
             </a>
         </li>

@@ -10,7 +10,10 @@ class PageController extends Controller
 {
     public function index($slug = 'home-v2')
     {
-        // dd(testA());
+        // $res = getWishlist();
+        // dd($res);
+        // dd(getWishlist());
+
         $params = [
             'slug' => $slug,
             // 'slug' => 'home-v2',
@@ -40,7 +43,6 @@ class PageController extends Controller
 
     public function getSpinnerContent(Request $request)
     {
-
         $result = CurlAPI("pages/spinnerContent", "POST", ['genre' => $request->genre]);
         // die($result['success']);
         // dd($result);
@@ -54,6 +56,23 @@ class PageController extends Controller
                     'url' => url(@$result['data']['url'])
                 ]
             );
+        } else {
+            return JSONResponse(400, 'Error.');
+        }
+    }
+
+
+    public function wishlist(Request $request)
+    {
+        // dd($request->all());
+        $params = [
+            'content_id' => $request->content_id,
+            'action' => $request->action
+        ];
+        $result = CurlAPI("pages/wishlist", "POST", $params);
+
+        if ($result && @$result['success'] ==  true) {
+            return JSONResponse(200,  'Success.');
         } else {
             return JSONResponse(400, 'Error.');
         }

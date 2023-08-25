@@ -10,6 +10,8 @@ class ApiHandler
 	public $header;
 	private $ch;
 	private $pch;
+	private $api_url;
+
 	public function __construct()
 	{
 		$this->header = $this->getHeader();
@@ -25,6 +27,10 @@ class ApiHandler
 	{
 		$headerArr[] = "x-access-auth-token: " . config('epicconfig.EPICAPI.API_AUTH_TOKEN');
 
+		if (env('logintoken')) {
+			$headerArr[] = "Authorization: " . env('logintoken');
+		}
+
 		$headerArr[] = "Content-Type: application/x-www-form-urlencoded";
 		$headerArr[] = "cache-control: no-cache";
 		if (env('APP_ENV') != 'local' || env('APP_ENV') != 'LOCAL') {
@@ -39,15 +45,15 @@ class ApiHandler
 	{
 
 		$querystring = $fields_string = '';
-		if (!empty($_SERVER['HTTP_X_REGION'])) {
-			$data['x_country'] = $_SERVER['HTTP_X_REGION'];
-		}
-		if (!empty($_SERVER['HTTP_X_CONTINENT'])) {
-			$data['x_continent'] = $_SERVER['HTTP_X_CONTINENT'];
-		}
-		if (strtoupper(@$data['x_country']) == 'ROW') {
-			$data['x_country'] = $_SERVER['HTTP_X_CONTINENT'];
-		}
+		// if (!empty($_SERVER['HTTP_X_REGION'])) {
+		// 	$data['x_country'] = $_SERVER['HTTP_X_REGION'];
+		// }
+		// if (!empty($_SERVER['HTTP_X_CONTINENT'])) {
+		// 	$data['x_continent'] = $_SERVER['HTTP_X_CONTINENT'];
+		// }
+		// if (strtoupper(@$data['x_country']) == 'ROW') {
+		// 	$data['x_country'] = $_SERVER['HTTP_X_CONTINENT'];
+		// }
 		if ($method == 'POST') {
 			if ($data != null && !empty($data)) {
 				$fields_string = http_build_query($data);
@@ -118,6 +124,7 @@ class ApiHandler
 
 	public function PostCurlToApi($fields_string)
 	{
+
 		Log::info("-----Method:POST-----URL:" . $this->api_url . "-----Data:" . $fields_string);
 		curl_setopt($this->pch, CURLOPT_CUSTOMREQUEST, "POST");
 		curl_setopt($this->pch, CURLOPT_POST, true);
@@ -127,16 +134,13 @@ class ApiHandler
 		curl_setopt($this->pch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($this->pch, CURLOPT_URL, $this->api_url);
 		curl_setopt($this->pch, CURLOPT_AUTOREFERER, 1);
-		//curl_setopt($this->pch, CURLOPT_FRESH_CONNECT, 1);
 		curl_setopt($this->pch, CURLOPT_CONNECTTIMEOUT, 5);
 		curl_setopt($this->pch, CURLOPT_HTTPHEADER, $this->header);
-		//curl_setopt($this->pch, CURLINFO_HEADER_OUT, true);	
 		$postresult = curl_exec($this->pch);
 		$curlhttpcode = curl_getinfo($this->pch, CURLINFO_HTTP_CODE);
-		//$headerout = curl_getinfo($this->pch,CURLINFO_HEADER_OUT);		
 		$curl_error = curl_error($this->pch);
 		$curl_errno = curl_errno($this->pch);
-		//Log::info("-----Curl Header:".$headerout."------");
+
 		if ($curl_errno > 0) {
 			Log::info("-----curl errorno:" . $curl_errno);
 			return false;

@@ -45,10 +45,10 @@
      }
 
      function getSpinnerContent($genre) {
-         var requestData = {
+         let requestData = {
              genre: $genre
          };
-         sendAjaxRequest('{{ route("spinner") }}', 'POST', requestData, onSpinnerSuccess, onSpinnerError);
+         sendAjaxRequest('{{ route("spinner") }}', 'POST', JSON.stringify(requestData), onSpinnerSuccess, onSpinnerError, 'application/json');
      }
 
      function activateSpinner() {

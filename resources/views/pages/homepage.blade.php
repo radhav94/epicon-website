@@ -7,6 +7,11 @@
 
 @section('content')
 
+
+<?php
+$wishlist = getWishlist();
+?>
+
 @foreach($result['data']['list'] as $key => $value)
 @if( isset($value['display_type']) && isset($value['content']) && !empty($value['content']))
 @php
@@ -17,9 +22,12 @@ $template = 'display.'.$value['display_type'];
 <?php
 $title = getDispLangContent($value, $displayLanguageParam, 'title');
 $shortdescription = getDispLangContent($value, $displayLanguageParam, 'shortdesc');
+
 ?>
 
-<!-- <h1>{{ $value['display_type'] }}</h1> -->
+@if(request()->get('v'))
+<h1>{{ $value['display_type'] }}</h1>
+@endif
 
 @include($template,['value' => $value,'title' => $title,'shortdescription' => $shortdescription])
 

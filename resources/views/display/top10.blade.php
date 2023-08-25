@@ -19,7 +19,7 @@
          <li>
              <div class="play-card">
                  <div class="top-card-img">
-                     <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                     {!! freePremiumDiv($val) !!}
                      <a href="#/" class="mute-btn">
                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                              <path d="M15 11.3333L16.6667 9.66667M16.6667 9.66667L18.3333 8M16.6667 9.66667L15 8M16.6667 9.66667L18.3333 11.3333" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -55,7 +55,7 @@
                  </div>
              </div>
              <a href="javascript:void(0);" class="main-card">
-                 {{ freePremiumDiv($val) }}
+                 {!! freePremiumDiv($val) !!}
                  <div class="main-img mt-0">
                      <img src="{{ $cover_img }}" alt="">
                      <div class="top-10-number"><img src="public/img/{{$key+1}}.svg" alt="1"></div>
