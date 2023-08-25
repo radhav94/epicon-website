@@ -774,6 +774,18 @@ progress {
     color: var(--bs-secondary-color)
 }
 
+.password-container {
+        position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
 .container,
 .container-fluid,
 .container-xxl,
@@ -17690,16 +17702,16 @@ input {
 }
 
 .input-field select {
-    width: auto;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0);
     color: rgba(255, 255, 255, .7);
-    border: none;
+    border: 1.249px solid #545454;
     font-size: 14px;
     height: 50px;
     padding: 0 40px 0 0px;
-    background-image: url("../img/drop-down-arrow.svg");
+    background-image: url("../../img/drop-down-arrow.svg");
     background-size: 12px;
-    text-align: right
+    text-align: left;
 }
 
 .input-field select:focus {

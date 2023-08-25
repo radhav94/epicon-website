@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,8 @@ use App\Http\Controllers\PageController;
 Route::get('test', [TestController::class, 'index']);
 
 Route::get('/', [PageController::class, 'index'])->name('homepage');
+
+
+// Mobile Number Update Route
+// Route::post('/sendotp', [LoginController::class, 'setSendOTP'])->name('sendotp');
+// Route::post('/sendotp', '\App\Http\Controllers\Auth\LoginController@setSendOTP')->name('sendotp');
