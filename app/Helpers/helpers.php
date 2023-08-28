@@ -292,19 +292,19 @@ function getItemCardData($val, $language)
 
     $sub_text = [];
 
-    if (isset($val['release_date'])) {
-        $sub_text[] = date('Y', strtotime($val['release_date']));
+    if (isset($val['publish_start_date'])) {
+        $sub_text[] = date('Y', strtotime($val['publish_start_date']));
     }
     // $sub_text[] = '3 Language';
 
     if ($generes) {
-        $sub_text[] = implode(", ", $generes);
+        $sub_text[] = implode(" . ", $generes);
     }
     if (isset($val['age_limit'])) {
         $sub_text[] = $val['age_limit'];
     }
 
-    $sub_points = '<li class="ps-1">' . @$val['age_limit'] . '</li>';
+    $sub_points = (@$val['age_limit']) ? '<li class="ps-1">' . @$val['age_limit'] . '</li>' : '';
 
     if ($generes) {
         foreach ($generes as $key => $genre) {
@@ -316,7 +316,7 @@ function getItemCardData($val, $language)
         'title' => $title,
         'short_desc' => $shortdescription,
         'banner_img' => $bannerimage,
-        'sub_text' => implode(". ", $sub_text),
+        'sub_text' => implode(" . ", $sub_text),
         'sub_points' => $sub_points,
     ];
 }
