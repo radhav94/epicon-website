@@ -30,6 +30,11 @@
 
     @include('layouts.footer')
 
+    <style>
+        .delete-icon {
+            background-image: url("../img/subs-icon.svg") !important;
+        }
+    </style>
 
     {{-- Start footer common scripts --}}
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
@@ -37,6 +42,7 @@
     <script src="{{ asset('assets/js/swiper.js') }}"></script>
     <script src="{{ asset('assets/js/slick.min.js') }}"></script>
     <script src="{{ asset('assets/js/spiner.js') }}"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
@@ -72,13 +78,15 @@
 
                 function onWishlistSuccess(response) {
                     element.data('action', element.data('action') === 'add' ? 'delete' : 'add');
+                    element.toggleClass('add-icon delete-icon');
 
-                    if (type == 1) {
-                        element.text(element.data('action'));
-                    }
-                    if (type == 2) {
-                        element.toggleClass('add-icon delete-icon');
-                    }
+                    // if (type == 1) {
+                    //     element.text(element.data('action'));
+
+                    // }
+                    // if (type == 2) {
+                    //     element.toggleClass('add-icon delete-icon');
+                    // }
 
 
                     // if (element.data('action') == 'add') {

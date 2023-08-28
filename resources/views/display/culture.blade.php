@@ -5,7 +5,11 @@
                    <img src="{{ asset('assets/img/gudi-img.png') }}" alt="">
                    <div class="text">
                        <h1>{{ $title }}</h1>
-                       <button>Explore More</button>
+                       @if (@$value['show_more'])
+                           <a href="{{ url($value['slug']) }}">
+                               <button>Explore More</button>
+                           </a>
+                       @endif
                    </div>
                </div>
            </div>

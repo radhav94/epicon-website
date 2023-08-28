@@ -30,3 +30,4 @@ yarn-error.log
 /html_files
 /v3-cms
 /public/uploads
+.DS_Store

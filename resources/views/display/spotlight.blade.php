@@ -8,7 +8,7 @@
                 ?>
                 <div class="carousel-card">
                     {{ freePremiumDiv($val) }}
-                    <a href="{{ $val['url'] }}" class="carousel-items position-relative w-100">
+                    <a href="javascript:void(0);" class="carousel-items position-relative w-100">
                         <img src="{{ $card['banner_img'] }}" alt="">
                         <div class="carousel-items-content position-absolute">
                             <h2>{{ $card['sub_text'] }}</h2>
