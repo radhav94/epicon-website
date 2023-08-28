@@ -8,10 +8,14 @@ use Illuminate\Support\Facades\File;
 
 class PageController extends Controller
 {
-    public function index()
+    public function index($slug = 'home-v2')
     {
-        // dd(testA());
+        // $res = getWishlist();
+        // dd($res);
+        // dd(getWishlist());
+
         $params = [
+            // 'slug' => $slug,
             'slug' => 'home-v2',
             // 'slug' => 'movies',
             'list_language' => 'ALL',
@@ -32,8 +36,45 @@ class PageController extends Controller
 
             $displayLanguageParam = setLanguageParameter();
 
-            // dd($result);
+            // dd($result['data']['list'][18]);
             return view('pages.homepage', compact('result', 'displayLanguageParam'));
+        }
+    }
+
+    public function getSpinnerContent(Request $request)
+    {
+        $result = CurlAPI("pages/spinnerContent", "POST", ['genre' => $request->genre]);
+        // die($result['success']);
+        // dd($result);
+
+        if ($result && @$result['success'] ==  true) {
+            return JSONResponse(
+                200,
+                'Success.',
+                [
+                    'image' => @$result['data']['vertical_cover_image']['large'],
+                    'url' => url(@$result['data']['url'])
+                ]
+            );
+        } else {
+            return JSONResponse(400, 'Error.');
+        }
+    }
+
+
+    public function wishlist(Request $request)
+    {
+        // dd($request->all());
+        $params = [
+            'content_id' => $request->content_id,
+            'action' => $request->action
+        ];
+        $result = CurlAPI("pages/wishlist", "POST", $params);
+        // dd($result);
+        if ($result && @$result['success'] ==  true) {
+            return JSONResponse(200,  'Success.');
+        } else {
+            return JSONResponse(400, 'Error.');
         }
     }
 }

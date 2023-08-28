@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use Illuminate\Http\JsonResponse;
-use Jenssegers\Mongodb\Eloquent\Model;
-use MongoDB\BSON\UTCDateTime;
-
+use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
 
 if (!function_exists('JSONResponse')) {
     function JSONResponse(int $statusCode, string $message, array $data = []): JsonResponse
@@ -216,7 +216,7 @@ function getImage($image, $size = 'original')
 
 function freePremiumDiv($val)
 {
-    echo (@$val['free_premium'] == true) ? '<span class="crown position-absolute"><img src="' . asset('assets/images/crown.svg') . '" alt=""></span>' : '';
+    echo (@$val['free_premium'] == true) ? '<span class="crown position-absolute"><img src="' . asset('assets/img/crown.svg') . '" alt=""></span>' : '';
 }
 
 function topTenDiv($val)
@@ -231,6 +231,50 @@ function topTenDiv($val)
     }
 }
 
+function getWishListAction($val, $wishlist, $type = 1)
+{
+    $wishlist_ids = $wishlist['ids'] ?? [];
+
+    $wishAction = (in_array(@$val['ID'], $wishlist_ids)) ? 'delete' : 'add';
+
+    if ($type == 1) {
+        return '<button class="big-add-list addToList" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="1">
+                                ' . $wishAction . '
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                    <path d="M21.0026 15.1678H15.1693V21.0011C15.1693 21.6428 14.6443 22.1678 14.0026 22.1678C13.3609 22.1678 12.8359 21.6428 12.8359 21.0011V15.1678H7.0026C6.36094 15.1678 5.83594 14.6428 5.83594 14.0011C5.83594 13.3595 6.36094 12.8345 7.0026 12.8345H12.8359V7.00114C12.8359 6.35947 13.3609 5.83447 14.0026 5.83447C14.6443 5.83447 15.1693 6.35947 15.1693 7.00114V12.8345H21.0026C21.6443 12.8345 22.1693 13.3595 22.1693 14.0011C22.1693 14.6428 21.6443 15.1678 21.0026 15.1678Z" fill="white" />
+                                </svg>
+                            </button>';
+    } else {
+        return '<button class="small-btn ' . $wishAction . '-icon mx-2 addToList" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="2"></button>';
+    }
+}
+
+function getWishlist()
+{
+    Cache::forget('getWishlist');
+
+    return Cache::remember('getWishlist', 300, function () {
+        $params = [
+            'action' => 'view'
+        ];
+        $result = CurlAPI("pages/wishlist", "POST", $params);
+
+        if ($result && @$result['success'] ==  true) {
+            return ['data' => $result['contents'], 'ids' => array_column($result['contents'], 'ID')];
+        } else {
+            return [];
+        }
+    });
+
+    // $params = [
+    //     'action' => 'view'
+    // ];
+    // $result = CurlAPI("pages/wishlist", "POST", $params);
+    // dd($result);
+    // if ($result && @$result['success'] ==  true) {
+    //     return JSONResponse(200,  'Success.');
+    // }
+}
 
 function getItemCardData($val, $language)
 {
@@ -242,7 +286,7 @@ function getItemCardData($val, $language)
     if (empty($bannerimagcond)) {
         $bannerimagcond = getDispLangContent($val, $language, 'coverimage');
     }
-    $bannerimage = getImage($bannerimagcond, "original");
+    $bannerimage = getImage($bannerimagcond, "large");
 
     $generes = array_column($val['genres_assign'] ?? [], 'name');
 
@@ -273,6 +317,71 @@ function getItemCardData($val, $language)
         'short_desc' => $shortdescription,
         'banner_img' => $bannerimage,
         'sub_text' => implode(". ", $sub_text),
-        'sub_points' => $sub_points
+        'sub_points' => $sub_points,
     ];
+}
+
+if (!function_exists('uploadFile')) {
+
+    function uploadFile(string $key, string $folder, $subkey = '', array $size = []): string
+    {
+        $file = (gettype($subkey) === 'integer') ? request()->file($key)[$subkey] : request()->file($key);
+
+        if (!is_dir($folder)) {
+            mkdir($folder, 0755, true);
+        }
+
+        if ($size) {
+            $name = time() . '-' . mt_rand() . '-' . $size[2] . '.' . $file->getClientOriginalExtension();
+
+            // $image_resize = Image::make($file->getRealPath());
+            // $image_resize->resize($size[0], $size[1]);
+            // $image_resize->save(public_path($folder . '/' . $name));
+        } else {
+            $name = time() . '-' . mt_rand() . '.' . $file->getClientOriginalExtension();
+
+            $file->move(public_path('uploads/' . $folder), $name);
+        }
+
+        return url('/') . '/uploads/' . $folder . '/' . $name;
+    }
+}
+
+
+if (!function_exists('timestamp_to_date_format')) {
+
+    function timestampToDate(object|string $time = null, ?string $format = 'Y-m-d')
+    {
+        if (is_null($time)) {
+            return null;
+        }
+        if (is_object($time)) {
+            $temp = $time->toDateTime()->setTimezone(new \DateTimeZone('Asia/Kolkata'));
+
+            return $temp->format($format);
+        } else {
+            return date($format, strtotime($time));
+        }
+    }
+}
+
+
+
+
+
+
+function convertSecondsToReadable($seconds)
+{
+    $day = floor($seconds / 86400);
+    $hours = floor(($seconds - ($day * 86400)) / 3600);
+    $minutes = floor(($seconds / 60) % 60);
+    $seconds = $seconds % 60;
+
+    if ($hours) {
+        return $hours . ' hour ' . $minutes . ' min ';
+    } elseif ($minutes) {
+        return $minutes . ' min ';
+    }
+    // return Carbon::now()->addSeconds($seconds)->diffForHumans(null, true, true, 2);
+    // return  CarbonInterval::seconds($seconds)->cascade()->forHumans();
 }

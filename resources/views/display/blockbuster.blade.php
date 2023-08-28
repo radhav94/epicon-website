@@ -9,11 +9,13 @@
              @foreach($value['content'] as $key => $val)
              <?php
                 $card = getItemCardData($val, $displayLanguageParam);
+                $cover_img =  isset($val['vertical_cover_image']) ? $val['vertical_cover_image']['large'] : $card['banner_img'];
+
                 ?>
 
              <div>
                  <a href="{{ url($val['url']) }}">
-                     <img src="{{ $card['banner_img'] }}" alt="game">
+                     <img src="{{ $cover_img }}" alt="{{ $val['title'] }}">
                  </a>
              </div>
              @endforeach
