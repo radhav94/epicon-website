@@ -15,8 +15,8 @@ class PageController extends Controller
         // dd(getWishlist());
 
         $params = [
-            'slug' => $slug,
-            // 'slug' => 'home-v2',
+            // 'slug' => $slug,
+            'slug' => 'home-v2',
             // 'slug' => 'movies',
             'list_language' => 'ALL',
             'display_language' => 'ENGLISH',
@@ -36,7 +36,7 @@ class PageController extends Controller
 
             $displayLanguageParam = setLanguageParameter();
 
-            // dd($result);
+            // dd($result['data']['list'][18]);
             return view('pages.homepage', compact('result', 'displayLanguageParam'));
         }
     }
@@ -70,7 +70,7 @@ class PageController extends Controller
             'action' => $request->action
         ];
         $result = CurlAPI("pages/wishlist", "POST", $params);
-
+        // dd($result);
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(200,  'Success.');
         } else {
