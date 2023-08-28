@@ -22,19 +22,18 @@
  </div>
 
  <?php
-    $temp = [];
-    foreach ($value['content'] as $key => $val) {
-        $temp[] = [
-            'label' => $val['name'],
-            'value' => $val['slug'],
-            'question' => '',
-        ];
-    }
-    ?>
+ $temp = [];
+ foreach ($value['content'] as $key => $val) {
+     $temp[] = [
+         'label' => $val['name'],
+         'value' => $val['slug'],
+         'question' => '',
+     ];
+ }
+ ?>
 
  <script>
      function onSpinnerError(response) {
-
          alert('Api error');
      }
 
@@ -48,7 +47,8 @@
          let requestData = {
              genre: $genre
          };
-         sendAjaxRequest('{{ route("spinner") }}', 'POST', JSON.stringify(requestData), onSpinnerSuccess, onSpinnerError, 'application/json');
+         sendAjaxRequest('{{ route('spinner') }}', 'POST', JSON.stringify(requestData), onSpinnerSuccess, onSpinnerError,
+             'application/json');
      }
 
      function activateSpinner() {
