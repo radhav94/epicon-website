@@ -263,9 +263,102 @@
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
                                         </svg>
                                      </button>
+                                      <div id="forgot-otp-result" style="color: red;">
+                                        <!-- Display validation result here -->
+                                    </div>
                                  </form>
                                 </div>
                                 <!-- forgot password end -->
+
+                                <div class="screen44">
+                                    <form method="POST" name="verify-forgot-number-form" id="verify-forgot-number-form-id" >
+                                        @csrf
+                                     <h5 class="mb-2 text-white">Enter the OTP sent to</h5>
+                                     <h5 class="mb-4 text-white small mobile_no">+91 823****641</h5>
+                                    <input type="hidden" name="userid_no" id="userid_no" value="">
+                                    <input type="hidden" name="usersignupmethod" id="usersignupmethod" value="">
+                                    <!-- <input type="hidden" name="user_agent" id="user_agent" value="WEB"> -->
+                                    <input type="hidden" name="otppin" id="otppin" value="">
+                                     <div class="childpin1">
+                                        <div class="childpin-input">
+                                            <input class="mx-1 child-box1" type="number" min="0" max="9" maxlength="1" id="childpin11" name="childpin11">
+                                            <input class="mx-1 child-box1" type="number" min="1" max="9" maxlength="1" id="childpin22" name="childpin22">
+                                            <input class="mx-1 child-box1" type="number" min="1" max="9" maxlength="1" id="childpin33" name="childpin33">
+                                            <input class="mx-1 child-box1" type="number" min="1" max="9" maxlength="1" id="childpin44" name="childpin44">
+                                            <input class="mx-1 child-box1" type="number" min="1" max="9" maxlength="1" id="childpin55" name="childpin55">
+                                            <input class="mx-1 child-box1" type="number" min="1" max="9" maxlength="1" id="childpin66" name="childpin66">
+                                        </div>
+                                    </div>
+                                    <div id="validation-forgot-result" style="color: red;">
+                                       <!-- Child Pin Input Validation -->
+                                    </div>
+                                    <div class="resend-otp text-start text-white mt-4" style="font-size: 12px;">
+                                        Resend OTP in:0.30
+                                    </div>
+                                    <div id="verifyotp-forgot-result" style="color: red;">
+                                        <!-- Display validation result here -->
+                                    </div>
+                                    <button class="login-btn verify-forgot-btn mt-4" style="width: 280px;">
+                                        Verify Email/Number
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"/>
+                                        </svg>
+                                     </button>
+                                     <!-- <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;">Login with password</button> -->
+                                 </form>
+                                </div>
+
+                                <!-- Screen 55 Start -->
+                                <div class="screen55">
+                                    <form method="POST" name="set-password-form" id="set-password-form-id">
+                                    <h5 class="mb-4 text-white"> Set New Password</h5>
+                                    <input type="hidden" id="userid_detail" name="userid_detail" value="">
+                                    <input type="hidden" id="user_sign_method" name="user_sign_method" value="">
+                                   
+                                    <div class="input-field w-100 mb-3">
+                                        <input class="form-control" type="password" id="set-password" name="set-password" placeholder="Enter New Password">
+                                        <a class="eye eye-open-set-pwd" style="display:none;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
+                                                <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
+                                            </svg>
+                                        </a>
+                                        <a class="eye eye-close-set-pwd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
+                                                <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
+                                            </svg>
+                                        </a>
+                                        <span class="text-danger text-start d-flex mt-1 error" id="password-error" style="font-size: 12px;"></span>
+                                    </div>
+                                    <div class="input-field w-100 mb-3">
+                                        <input class="form-control" type="password" id="reenter-password" name="reenter-password" placeholder="Re-enter New Password">
+                                        <a class="eye eye-open-set" style="display:none;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
+                                                <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
+                                            </svg>
+                                        </a>
+                                        <a class="eye eye-close-set">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
+                                                <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
+                                            </svg>
+                                        </a>
+                                        <span class="text-danger text-start d-flex mt-1 error" id="reset-password-error" style="font-size: 12px;"></span>
+                                    </div>
+                                    
+                                    <div id="reset-result" style="color: red;">
+                                        <!-- Display validation result here -->
+                                    </div>
+                                    <button class="login-btn reset-pwd-btn w-100 mt-5">
+                                        Reset Password
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
+                                        </svg>
+                                     </button>
+
+                                    </form>
+                                </div>
+                                <!-- Screen55 end -->
                                 </div>
 
                                  <!-- successfully and interest  start-->
@@ -550,6 +643,8 @@
         $('.screen11').hide();
         $('.screen22').hide();
         $('.screen33').hide();
+        $('.screen44').hide();
+        $('.screen55').hide();
         $('#login-modal').show();
         $('#login-modal').addClass("show");
         
@@ -583,15 +678,37 @@
             $('.eye-close-pwd').css('display','block');
         });
 
+        $(".eye-close-set-pwd").click(function(){
+            $("#set-password").attr('type', 'text');
+            $(this).css('display','none');
+            $('.eye-open-set-pwd').css('display','block');
+        });
+
+        $(".eye-open-set-pwd").click(function(){
+            $("#set-password").attr('type', 'password');
+            $(this).css('display','none');
+            $('.eye-close-set-pwd').css('display','block');
+        });
+
+        $(".eye-close-set").click(function(){
+            $("#reenter-password").attr('type', 'text');
+            $(this).css('display','none');
+            $('.eye-open-set').css('display','block');
+        });
+
+        $(".eye-open-set").click(function(){
+            $("#reenter-password").attr('type', 'password');
+            $(this).css('display','none');
+            $('.eye-close-set').css('display','block');
+        });
+
         $(".eye-close").click(function(){
-            $("#password").attr('type', 'text');
             $("#confirm-password").attr('type', 'text');
             $(this).css('display','none');
             $('.eye-open').css('display','block');
         });
 
         $(".eye-open").click(function(){
-            $("#password").attr('type', 'password');
             $("#confirm-password").attr('type', 'password');
             $(this).css('display','none');
             $('.eye-close').css('display','block');
@@ -608,6 +725,8 @@
             $('.screen11').hide();
             $('.screen22').hide();
             $('.screen33').hide();
+            $('.screen44').hide();
+            $('.screen55').hide();
         });
 
         $(".login-get-otp").click(function(e){
@@ -645,6 +764,8 @@
                         $('.screen11').hide();
                         $('.screen22').hide();
                         $('.screen33').hide();
+                        $('.screen44').hide();
+                        $('.screen55').hide();
                         // var response = JSON.parse(response);
         
                         // $('#dynamic-content').html(response.content);
@@ -685,16 +806,23 @@
                     success: function(response) {
                         // console.log(response.payload.user_id+'success me aaya');
                         var mobile = response.payload.user_id;
-                        $('.mobileno').html(mobile);
-                        $("#user_id").val(response.payload.user_id);
-                        $("#signupmethod").val(response.payload.user_signup_method);
+                        $('.mobile_no').html(mobile);
+                        $("#userid_no").val(response.payload.user_id);
+                        $("#usersignupmethod").val(response.payload.user_signup_method);
                         $('.screen1').hide();
-                        $('.screen2').show();
+                        $('.screen2').hide();
                         $('.screen3').hide();
                         $('.screen4').hide();
                         $('.screen11').hide();
                         $('.screen22').hide();
                         $('.screen33').hide();
+                        // $('.screen44').show();
+                        $('.screen55').hide();
+                        if(response.payload.success == true){
+                            $('.screen44').show();
+                        }else{
+                            $('#forgot-otp-result').html(response.payload.response.meassage);
+                        }
                         // var response = JSON.parse(response);
         
                         // $('#dynamic-content').html(response.content);
@@ -710,7 +838,7 @@
         });
 
 
-        $('.child-box').on('input', function() {
+        $('.child-box,.child-box1').on('input', function() {
             var inputValue = $(this).val();
             var sanitizedValue = inputValue.replace(/\D/g, ''); // Remove non-digit characters
 
@@ -729,10 +857,15 @@
             // console.log(combinedValue+"combinedValue");
             $("#otp_pin").val(combinedValue);
             // $('#validation-result').text('Combined value: ' + combinedValue);
+             var combinedallValue = $('.child-box1').map(function() {
+                return $(this).val();
+            }).get().join('');
+
+             $("#otppin").val(combinedallValue);
         }
 
         $('.verify-btn').click(function(e){
-            alert("true");
+            // alert("true");
             e.preventDefault();
             var mobile = $("#user_id").val();
             var signup_method = $("#signupmethod").val();
@@ -775,6 +908,8 @@
                             $('.screen4').hide();
                             $('.screen22').hide();
                             $('.screen33').hide();
+                            $('.screen44').hide();
+                            $('.screen55').hide();
                             // $('.screen11').hide();
                             if(response.payload.response.is_verified == false){
                                 $('.screen3').show();
@@ -847,6 +982,8 @@
                             $('.screen11').hide();
                             $('.screen22').hide();
                             $('.screen33').hide();
+                            $('.screen44').hide();
+                            $('.screen55').hide();
                             // alert("true resp");
                         }else{
                             $('#register-result').html(response.payload.response.message);
@@ -874,6 +1011,8 @@
             $('.screen11').show();
             $('.screen22').hide();
             $('.screen33').hide();
+            $('.screen44').hide();
+            $('.screen55').hide();
         });
 
         $('.forgot-pwd-btn').click(function(e){
@@ -888,6 +1027,8 @@
             $('.screen11').hide();
             $('.screen22').hide();
             $('.screen33').show();
+            $('.screen44').hide();
+            $('.screen55').hide();
         })
 
         $('.continue-login-btn').click(function(e){
@@ -938,6 +1079,8 @@
                             $('.screen11').hide();
                             $('.screen22').show();
                             $('.screen33').hide();
+                            $('.screen44').hide();
+                            $('.screen55').hide();
                             // alert("true resp");
                         }else{
                             $('#login-result').html(response.payload.response.message);
@@ -953,6 +1096,143 @@
             }
         });
 
+        $('.verify-forgot-btn').click(function(e){
+            // alert("true");
+            e.preventDefault();
+            var mobile = $("#userid_no").val();
+            var signup_method = $("#usersignupmethod").val();
+            // var user_agent = $("#user_agent").val();
+            var otp_pin = $("#otppin").val();
+            var valid = true;
+            $('.child-box1').each(function() {
+                if ($(this).val() === '') {
+                    valid = false;
+                    return false; // Exit the loop early if an invalid input is found
+                }
+            });
+            if (valid) {
+                $('#validation-forgot-result').text('');
+            } else {
+                $('#validation-forgot-result').text('Please fill in all input boxes.');
+            }
+        
+            if(otp_pin != ''){
+              
+                var formData = $('#verify-forgot-number-form-id').serialize();
+                alert(formData);
+                $.ajax({
+                    url: '{{route('verifyforgototp')}}',
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        // alert(response);
+                        if(response.payload.success == true){
+                            $('#verifyotp-result').html('');
+                            $("#userid_no").val(response.payload.user_id);
+                            $("#usersignupmethod").val(response.payload.user_signup_method);
+                            $('.screen1').hide();
+                            $('.screen2').hide();
+                            $('.screen3').hide();
+                            $('.screen4').hide();
+                            $('.screen11').hide();
+                            $('.screen22').hide();
+                            $('.screen33').hide();
+                            $('.screen44').hide();
+                            $('.screen55').show();
+                            // $('.screen11').hide();
+                            // if(response.payload.response.is_verified == false){
+                            //     $('.screen3').show();
+                            //     $('.screen11').hide();
+                            // }else{
+                            //     location.reload(true);
+                            // }
+                            // alert("true resp");
+                        }else{
+                            $('#verifyotp-forgot-result').html('Incorrect code entered. Please try again.');
+                            // return false;
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('error me aaya');
+                    }
+                });
+            }else{
+                return false;
+            }
+        });
+
+        $('.reset-pwd-btn').click(function(e){
+            // alert("true");
+            e.preventDefault();
+            var mobile = $("#userid_no").val();
+            var signup_method = $("#usersignupmethod").val();
+            // var user_agent = $("#user_agent").val();
+            var otp_pin = $("#otppin").val();
+            var valid = true;
+            $('.child-box1').each(function() {
+                if ($(this).val() === '') {
+                    valid = false;
+                    return false; // Exit the loop early if an invalid input is found
+                }
+            });
+            if (valid) {
+                $('#validation-forgot-result').text('');
+            } else {
+                $('#validation-forgot-result').text('Please fill in all input boxes.');
+            }
+        
+            if(otp_pin != ''){
+              
+                var formData = $('#verify-forgot-number-form-id').serialize();
+                alert(formData);
+                $.ajax({
+                    url: '{{route('verifyforgototp')}}',
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        // alert(response);
+                        if(response.payload.success == true){
+                            $('#verifyotp-result').html('');
+                            $("#userid_no").val(response.payload.user_id);
+                            $("#usersignupmethod").val(response.payload.user_signup_method);
+                            $('.screen1').hide();
+                            $('.screen2').hide();
+                            $('.screen3').hide();
+                            $('.screen4').hide();
+                            $('.screen11').hide();
+                            $('.screen22').hide();
+                            $('.screen33').hide();
+                            $('.screen44').hide();
+                            $('.screen55').show();
+                            // $('.screen11').hide();
+                            // if(response.payload.response.is_verified == false){
+                            //     $('.screen3').show();
+                            //     $('.screen11').hide();
+                            // }else{
+                            //     location.reload(true);
+                            // }
+                            // alert("true resp");
+                        }else{
+                            $('#verifyotp-forgot-result').html('Incorrect code entered. Please try again.');
+                            // return false;
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('error me aaya');
+                    }
+                });
+            }else{
+                return false;
+            }
+        });
 
     });
 </script>
