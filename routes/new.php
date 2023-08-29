@@ -34,6 +34,8 @@ Route::post('sendforgototp', [LoginController::class, 'SendForgotOtp'])->name('s
 
 Route::post('verifyforgototp', [LoginController::class, 'setForgotOTPVerification'])->name('verifyforgototp');
 
+Route::post('resetpwdapi', [LoginController::class, 'ResetPasswordVerification'])->name('resetpwdapi');
+
 Route::get('login-popup', function () {
     return view('epicon.login-popup');
 });

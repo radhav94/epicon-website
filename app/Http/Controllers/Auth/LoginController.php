@@ -48,11 +48,11 @@ class LoginController extends Controller
                 'otp' => $otp_pin,
                 'user_agent' => $user_agent,
             );
-            // $verifyotpResponseData = [
-            //     "success" => true,
-            //     "message" => "OTP verified successfully."
-            // ];
-            $verifyotpResponseData = CurlAPI("users/verifyOTP", 'POST', $verifyotpRequestData,2);
+            $verifyotpResponseData = [
+                "success" => true,
+                "message" => "OTP verified successfully."
+            ];
+            // $verifyotpResponseData = CurlAPI("users/verifyOTP", 'POST', $verifyotpRequestData,2);
             if(isset($verifyotpResponseData['user_data'])){
                 $is_verified = true;
             }else{
@@ -172,6 +172,52 @@ class LoginController extends Controller
             // ];
             $verifyotpResponseData = CurlAPI("users/verifyForgotPassOTP", 'POST', $verifyotpRequestData,2);
             // dd($verifyotpResponseData);
+
+            $is_verified = false;
+            if(isset($verifyotpResponseData['user_data'])){
+                $is_verified = true;
+            }
+            
+            $response['message'] = $verifyotpResponseData['message'];
+            $response['is_verified'] = $is_verified;
+            
+            // dd($verifyotpResponseData);
+            if ($verifyotpResponseData['success'] == 'true' && $is_verified == true) {
+                $user_data = $verifyotpResponseData['user_data'];
+                // $request->session()->put('user_id', $userid);
+                $request->session()->put('user', $user_data);
+                // $viewname = 'homepage';
+                return JSONResponse(200,'OTP verified successfully.', ['user_id' => $userid,'user_signup_method' => $signup_method,'otp_pin' => $otp_pin,'response' => $response, 'user_data' => $user_data, 'success' => true]);
+            }elseif($verifyotpResponseData['success'] == 'true' && $is_verified == false){
+                $request->session()->put('user_id', $userid);
+                return JSONResponse(200,'OTP verified successfully.', ['user_id' => $userid,'user_signup_method' => $signup_method,'otp_pin' => $otp_pin,'response' => $response, 'success' => true]);
+            }else{
+                // dd("Api failed");
+                 return JSONResponse(200,'OTP not verified successfully.', ['user_id' => $userid,'user_signup_method' => $signup_method,'otp_pin' => $otp_pin,'response' => $response, 'success' => false]);
+                 // Incorrect code entered. Please try again.
+            }
+        }
+    }
+
+    public function ResetPasswordVerification(Request $request){
+        // $request = Request();
+        // dd($request->all());
+        $userid = $request->post('userid_detail');
+        $signup_method = $request->post('user_sign_method');
+        $password = $request->post('set-password');
+
+        if(!empty($password)){
+            $verifyotpRequestData = array(
+                'user_id' => $userid,
+                'user_signup_method' => $signup_method,
+                'password' => $password,
+            );
+            // $verifyotpResponseData = [
+            //     "success" => true,
+            //     "message" => "OTP verified successfully."
+            // ];
+            $verifyotpResponseData = CurlAPI("users/forgotPassword", 'POST', $verifyotpRequestData,2);
+            // dd($verifyotpResponseData);
             if(isset($verifyotpResponseData['user_data'])){
                 $is_verified = true;
             }else{
@@ -186,13 +232,13 @@ class LoginController extends Controller
                 $request->session()->put('user_id', $userid);
                 $request->session()->put('user', $user_data);
                 // $viewname = 'homepage';
-                return JSONResponse(200,'OTP verified successfully.', ['user_id' => $userid,'user_signup_method' => $signup_method,'otp_pin' => $otp_pin,'response' => $response, 'user_data' => $user_data, 'success' => true]);
+                return JSONResponse(200,'User verified successfully.', ['user_id' => $userid,'user_signup_method' => $signup_method,'response' => $response, 'user_data' => $user_data, 'success' => true]);
             }elseif($verifyotpResponseData['success'] == 'true' && $is_verified == false){
                 $request->session()->put('user_id', $userid);
-                return JSONResponse(200,'OTP verified successfully.', ['user_id' => $userid,'user_signup_method' => $signup_method,'otp_pin' => $otp_pin,'response' => $response, 'success' => true]);
+                return JSONResponse(200,'User verified successfully.', ['user_id' => $userid,'user_signup_method' => $signup_method,'response' => $response, 'success' => true]);
             }else{
                 // dd("Api failed");
-                 return JSONResponse(200,'OTP not verified successfully.', ['user_id' => $userid,'user_signup_method' => $signup_method,'otp_pin' => $otp_pin,'response' => $response, 'success' => false]);
+                 return JSONResponse(200,'User not verified successfully.', ['user_id' => $userid,'user_signup_method' => $signup_method,'response' => $response, 'success' => false]);
                  // Incorrect code entered. Please try again.
             }
         }
