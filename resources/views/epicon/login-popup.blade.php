@@ -21,7 +21,7 @@
                     <div class="login-register text-center py-4">
                                 <div class="left-side">
                                     <div class="w-100">
-                                        <img class="w-100" src="<?php echo config('epicconfig.ASSET.ASSET_URL').'/img/login-register-bg.png';?>" alt="">
+                                        <img class="w-100" src="{{ asset('/img/login-register-bg.png') }}" alt="">
                                     </div>
                                     <div class="login-carousel px-2">
                                         <div>
@@ -60,10 +60,10 @@
                                      </button>
                                      <h6 class="mb-4 text-white text-start mt-4">or Continue with</h6>
                                      <div class="lg-social">
-                                        <a href=""><img src="{{ asset('/img/lg-fb-icon.svg') }}" alt=""></a>
-                                        <a href=""><img src="<?php echo config('epicconfig.ASSET.ASSET_URL').'/img/lg-twitter-icon.svg';?>" alt=""></a>
-                                        <a href=""><img src="<?php echo config('epicconfig.ASSET.ASSET_URL').'/img/lg-google-icon.svg';?>" alt=""></a>
-                                        <a href=""><img src="<?php echo config('epicconfig.ASSET.ASSET_URL').'/img/lg-whatsapp-icon.svg';?>" alt=""></a>
+                                        <a href="{{url('/login/facebook')}}"><img src="{{ asset('/img/lg-fb-icon.svg') }}" alt=""></a>
+                                        <a href=""><img src="{{ asset('/img/lg-twitter-icon.svg') }}" alt=""></a>
+                                        <a href=""><img src="{{ asset('/img/lg-google-icon.svg') }}" alt=""></a>
+                                        <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}" alt=""></a>
                                      </div>
                                      <p class="get-help mt-5 small">Having trouble signing in? <a href="">Get Help</a></p>
                                 </form>
@@ -96,6 +96,7 @@
                                     <div id="verifyotp-result" style="color: red;">
                                         <!-- Display validation result here -->
                                     </div>
+                                    <button id="resendBtn" onclick="resendOTP()">Resend OTP</button>
                                     <button class="login-btn verify-btn mt-4" style="width: 280px;">
                                         Verify Number
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -117,34 +118,40 @@
                                     </div>
                                     <div class="input-field w-100 mb-3">
                                         <input class="form-control" type="password" id="password" name="password" placeholder="Create Password">
-                                        <a class="eye eye-open-pwd" style="display:none;">
+                                        <div class="eye-toggle" data-target="password">
+                                        <a class="eye eye-open-password" style="display:none;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
                                                 <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
                                             </svg>
                                         </a>
-                                        <a class="eye eye-close-pwd">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
-                                                <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
-                                            </svg>
+                                        <a class="eye eye-close-password">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                          <rect x="19.4551" y="1.52148" width="2.08057" height="24.5396" transform="rotate(43.7003 19.4551 1.52148)" fill="white"/>
+                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.9555 6.11126C16.2071 5.08712 14.1725 4.5 12 4.5C7 4.5 2.73 7.61 1 12C2.03885 14.6362 3.99362 16.8108 6.47236 18.1276L8.72091 15.7746C8.63295 15.6982 8.5474 15.6185 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C15.5648 8.49369 15.5936 8.52324 15.622 8.5531L17.9555 6.11126ZM14.2376 10.0017C14.2001 9.95975 14.1613 9.91871 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C9.95102 14.1937 10.0267 14.2619 10.1053 14.326L14.2376 10.0017ZM12.2365 14.9907L14.9983 12.1006C14.9729 12.8597 14.6602 13.5825 14.1213 14.1213C13.6147 14.6279 12.9456 14.9346 12.2365 14.9907ZM10.528 16.7784C11.0006 16.924 11.4964 17 12 17C13.3261 17 14.5979 16.4732 15.5355 15.5355C16.4732 14.5979 17 13.3261 17 12C17 11.4194 16.899 10.8491 16.7067 10.3128L19.6065 7.27847C21.0968 8.53554 22.2728 10.1547 23 12C21.27 16.39 17 19.5 12 19.5C10.7619 19.5 9.5685 19.3093 8.44738 18.9557L10.528 16.7784Z" fill="white"/>
+                                        </svg>
                                         </a>
+                                        </div>
                                         <span class="text-danger text-start d-flex mt-1 error" id="password-error" style="font-size: 12px;"></span>
                                     </div>
                                     <div class="input-field w-100 mb-3">
                                         <input class="form-control" type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password">
-                                        <a class="eye eye-open" style="display:none;">
+                                        <div class="eye-toggle" data-target="confirm-password">
+                                        <a class="eye eye-open-confirm-password" style="display:none;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
                                                 <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
                                             </svg>
                                         </a>
-                                        <a class="eye eye-close">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
-                                                <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
-                                            </svg>
+                                        <a class="eye eye-close-confirm-password">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                          <rect x="19.4551" y="1.52148" width="2.08057" height="24.5396" transform="rotate(43.7003 19.4551 1.52148)" fill="white"/>
+                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.9555 6.11126C16.2071 5.08712 14.1725 4.5 12 4.5C7 4.5 2.73 7.61 1 12C2.03885 14.6362 3.99362 16.8108 6.47236 18.1276L8.72091 15.7746C8.63295 15.6982 8.5474 15.6185 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C15.5648 8.49369 15.5936 8.52324 15.622 8.5531L17.9555 6.11126ZM14.2376 10.0017C14.2001 9.95975 14.1613 9.91871 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C9.95102 14.1937 10.0267 14.2619 10.1053 14.326L14.2376 10.0017ZM12.2365 14.9907L14.9983 12.1006C14.9729 12.8597 14.6602 13.5825 14.1213 14.1213C13.6147 14.6279 12.9456 14.9346 12.2365 14.9907ZM10.528 16.7784C11.0006 16.924 11.4964 17 12 17C13.3261 17 14.5979 16.4732 15.5355 15.5355C16.4732 14.5979 17 13.3261 17 12C17 11.4194 16.899 10.8491 16.7067 10.3128L19.6065 7.27847C21.0968 8.53554 22.2728 10.1547 23 12C21.27 16.39 17 19.5 12 19.5C10.7619 19.5 9.5685 19.3093 8.44738 18.9557L10.528 16.7784Z" fill="white"/>
+                                        </svg>
                                         </a>
+                                        </div>
                                         <span class="text-danger text-start d-flex mt-1 error" id="confirm-password-error" style="font-size: 12px;"></span>
                                     </div>
                                     <div class="input-field w-100 mb-3">
-                                        <input class="form-control" type="date" id="dob" name="dob">
+                                        <input class="form-control" type="date" id="dob" name="dob" required>
                                     </div>
                                     <div class="input-field w-100 mb-3">
                                         <select id="gender" name="gender">
@@ -178,17 +185,19 @@
                                     </div>
                                     <div class="input-field w-100 mb-3">
                                         <input class="form-control" id="login_pwd" name="login_pwd" type="password" placeholder="Enter Password">
-                                        
-                                        <a class="eye eye-open-login" style="display: none;">
+                                        <div class="eye-toggle" data-target="login_pwd">
+                                        <a class="eye eye-open-login_pwd" style="display: none;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
                                                 <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
                                             </svg>
                                         </a>
-                                        <a class="eye eye-close-login">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
-                                                <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
-                                            </svg>
+                                        <a class="eye eye-close-login_pwd">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                          <rect x="19.4551" y="1.52148" width="2.08057" height="24.5396" transform="rotate(43.7003 19.4551 1.52148)" fill="white"/>
+                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.9555 6.11126C16.2071 5.08712 14.1725 4.5 12 4.5C7 4.5 2.73 7.61 1 12C2.03885 14.6362 3.99362 16.8108 6.47236 18.1276L8.72091 15.7746C8.63295 15.6982 8.5474 15.6185 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C15.5648 8.49369 15.5936 8.52324 15.622 8.5531L17.9555 6.11126ZM14.2376 10.0017C14.2001 9.95975 14.1613 9.91871 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C9.95102 14.1937 10.0267 14.2619 10.1053 14.326L14.2376 10.0017ZM12.2365 14.9907L14.9983 12.1006C14.9729 12.8597 14.6602 13.5825 14.1213 14.1213C13.6147 14.6279 12.9456 14.9346 12.2365 14.9907ZM10.528 16.7784C11.0006 16.924 11.4964 17 12 17C13.3261 17 14.5979 16.4732 15.5355 15.5355C16.4732 14.5979 17 13.3261 17 12C17 11.4194 16.899 10.8491 16.7067 10.3128L19.6065 7.27847C21.0968 8.53554 22.2728 10.1547 23 12C21.27 16.39 17 19.5 12 19.5C10.7619 19.5 9.5685 19.3093 8.44738 18.9557L10.528 16.7784Z" fill="white"/>
+                                        </svg>
                                         </a>
+                                        </div>
                                         <span class="text-danger text-start d-flex mt-1 error" id="login-pwd-error" style="font-size: 12px;"></span>
                                     </div>
                                     <div id="login-result" style="color: red;">
@@ -241,6 +250,7 @@
                                 <div class="screen-forgot-otp">
                                     <form method="POST" name="verify-forgot-number-form" id="verify-forgot-number-form-id" >
                                         @csrf
+                                    <h5 class="mb-2 text-white">Forgot Password</h5>
                                      <h5 class="mb-2 text-white">Enter the OTP sent to</h5>
                                      <h5 class="mb-4 text-white small mobile_no">+91 823****641</h5>
                                     <input type="hidden" name="userid_no" id="userid_no" value="">
@@ -260,12 +270,13 @@
                                     <div id="validation-forgot-result" style="color: red;">
                                        <!-- Child Pin Input Validation -->
                                     </div>
-                                    <div class="resend-otp text-start text-white mt-4" style="font-size: 12px;">
+                                    <div class="resend-forgot-otp text-start text-white mt-4" style="font-size: 12px;">
                                         Resend OTP in:0.30
                                     </div>
                                     <div id="verifyotp-forgot-result" style="color: red;">
                                         <!-- Display validation result here -->
                                     </div>
+                                    <button id="resendForgotBtn" onclick="resendForgotOTP()">Resend OTP</button>
                                     <button class="login-btn verify-forgot-btn mt-4" style="width: 280px;">
                                         Verify Email/Number
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -286,30 +297,36 @@
                                    
                                     <div class="input-field w-100 mb-3">
                                         <input class="form-control" type="password" id="set-password" name="set-password" placeholder="Enter New Password">
-                                        <a class="eye eye-open-set-pwd" style="display:none;">
+                                        <div class="eye-toggle" data-target="set-password">
+                                        <a class="eye eye-open-set-password" style="display:none;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
                                                 <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
                                             </svg>
                                         </a>
-                                        <a class="eye eye-close-set-pwd">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
-                                                <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
-                                            </svg>
+                                        <a class="eye eye-close-set-password">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                          <rect x="19.4551" y="1.52148" width="2.08057" height="24.5396" transform="rotate(43.7003 19.4551 1.52148)" fill="white"/>
+                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.9555 6.11126C16.2071 5.08712 14.1725 4.5 12 4.5C7 4.5 2.73 7.61 1 12C2.03885 14.6362 3.99362 16.8108 6.47236 18.1276L8.72091 15.7746C8.63295 15.6982 8.5474 15.6185 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C15.5648 8.49369 15.5936 8.52324 15.622 8.5531L17.9555 6.11126ZM14.2376 10.0017C14.2001 9.95975 14.1613 9.91871 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C9.95102 14.1937 10.0267 14.2619 10.1053 14.326L14.2376 10.0017ZM12.2365 14.9907L14.9983 12.1006C14.9729 12.8597 14.6602 13.5825 14.1213 14.1213C13.6147 14.6279 12.9456 14.9346 12.2365 14.9907ZM10.528 16.7784C11.0006 16.924 11.4964 17 12 17C13.3261 17 14.5979 16.4732 15.5355 15.5355C16.4732 14.5979 17 13.3261 17 12C17 11.4194 16.899 10.8491 16.7067 10.3128L19.6065 7.27847C21.0968 8.53554 22.2728 10.1547 23 12C21.27 16.39 17 19.5 12 19.5C10.7619 19.5 9.5685 19.3093 8.44738 18.9557L10.528 16.7784Z" fill="white"/>
+                                        </svg>
                                         </a>
+                                        </div>
                                         <span class="text-danger text-start d-flex mt-1 error" id="setpassword-error" style="font-size: 12px;"></span>
                                     </div>
                                     <div class="input-field w-100 mb-3">
                                         <input class="form-control" type="password" id="reenter-password" name="reenter-password" placeholder="Re-enter New Password">
-                                        <a class="eye eye-open-set" style="display:none;">
+                                        <div class="eye-toggle" data-target="reenter-password">
+                                        <a class="eye eye-open-reenter-password" style="display:none;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
                                                 <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
                                             </svg>
                                         </a>
-                                        <a class="eye eye-close-set">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
-                                                <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
-                                            </svg>
+                                        <a class="eye eye-close-reenter-password">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                          <rect x="19.4551" y="1.52148" width="2.08057" height="24.5396" transform="rotate(43.7003 19.4551 1.52148)" fill="white"/>
+                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.9555 6.11126C16.2071 5.08712 14.1725 4.5 12 4.5C7 4.5 2.73 7.61 1 12C2.03885 14.6362 3.99362 16.8108 6.47236 18.1276L8.72091 15.7746C8.63295 15.6982 8.5474 15.6185 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C15.5648 8.49369 15.5936 8.52324 15.622 8.5531L17.9555 6.11126ZM14.2376 10.0017C14.2001 9.95975 14.1613 9.91871 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C9.95102 14.1937 10.0267 14.2619 10.1053 14.326L14.2376 10.0017ZM12.2365 14.9907L14.9983 12.1006C14.9729 12.8597 14.6602 13.5825 14.1213 14.1213C13.6147 14.6279 12.9456 14.9346 12.2365 14.9907ZM10.528 16.7784C11.0006 16.924 11.4964 17 12 17C13.3261 17 14.5979 16.4732 15.5355 15.5355C16.4732 14.5979 17 13.3261 17 12C17 11.4194 16.899 10.8491 16.7067 10.3128L19.6065 7.27847C21.0968 8.53554 22.2728 10.1547 23 12C21.27 16.39 17 19.5 12 19.5C10.7619 19.5 9.5685 19.3093 8.44738 18.9557L10.528 16.7784Z" fill="white"/>
+                                        </svg>
                                         </a>
+                                        </div>
                                         <span class="text-danger text-start d-flex mt-1 error" id="reenter-password-error" style="font-size: 12px;"></span>
                                     </div>
                                     
@@ -331,7 +348,7 @@
 
                                  <!-- successfully and interest  start-->
                                 <div class="successfully-loged w-100 screen-sucess-register">
-                                    <img width="100" src="<?php echo config('epicconfig.ASSET.ASSET_URL').'/img/success-tick.png';?>" alt="">
+                                    <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="">
                                     <h4 class="text-center text-white mt-3">Hey <span id="username"></span>, you have successfully registered with Epic On!</h4>
                                     <p class="small text-white">Tell us what you’re interested in and we’ll do our best to give you better recommendations </p>
                                     <button class="login-btn interest-btn mt-4" style="width: 280px;">
@@ -345,7 +362,7 @@
 
                                  <!-- successfully logged  start-->
                                 <div class="successfully-loged w-100 screen-sucess-logged">
-                                    <img width="100" src="<?php echo config('epicconfig.ASSET.ASSET_URL').'/img/success-tick.png';?>" alt="">
+                                    <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="">
                                     <h4 class="text-center text-white mt-3">Awesome! You have successfully logged in to Epic ON</h4>
                                     <button class="no-active-subscription mt-4 mb-4">No Active Subscription</button>
                                     <button class="login-btn subscription-btn mt-4" style="width: 280px;">
@@ -614,64 +631,20 @@
           $('#login-modal').removeClass("show");
         });
 
-        $(".eye-close-login").click(function(){
-            $("#login_pwd").attr('type', 'text');
-            $(this).css('display','none');
-            $('.eye-open-login').css('display','block');
-        });
-
-        $(".eye-open-login").click(function(){
-            $("#login_pwd").attr('type', 'password');
-            $(this).css('display','none');
-            $('.eye-close-login').css('display','block');
-        });
-
-        $(".eye-close-pwd").click(function(){
-            $("#password").attr('type', 'text');
-            $(this).css('display','none');
-            $('.eye-open-pwd').css('display','block');
-        });
-
-        $(".eye-open-pwd").click(function(){
-            $("#password").attr('type', 'password');
-            $(this).css('display','none');
-            $('.eye-close-pwd').css('display','block');
-        });
-
-        $(".eye-close-set-pwd").click(function(){
-            $("#set-password").attr('type', 'text');
-            $(this).css('display','none');
-            $('.eye-open-set-pwd').css('display','block');
-        });
-
-        $(".eye-open-set-pwd").click(function(){
-            $("#set-password").attr('type', 'password');
-            $(this).css('display','none');
-            $('.eye-close-set-pwd').css('display','block');
-        });
-
-        $(".eye-close-set").click(function(){
-            $("#reenter-password").attr('type', 'text');
-            $(this).css('display','none');
-            $('.eye-open-set').css('display','block');
-        });
-
-        $(".eye-open-set").click(function(){
-            $("#reenter-password").attr('type', 'password');
-            $(this).css('display','none');
-            $('.eye-close-set').css('display','block');
-        });
-
-        $(".eye-close").click(function(){
-            $("#confirm-password").attr('type', 'text');
-            $(this).css('display','none');
-            $('.eye-open').css('display','block');
-        });
-
-        $(".eye-open").click(function(){
-            $("#confirm-password").attr('type', 'password');
-            $(this).css('display','none');
-            $('.eye-close').css('display','block');
+        $(".eye-toggle").click(function() {
+            var targetId = $(this).data("target");
+            var inputField = $("#" + targetId);
+            var isPasswordType = inputField.attr('type') === 'password';
+            
+            if (isPasswordType) {
+                inputField.attr('type', 'text');
+                $(this).find('.eye-close-' + targetId).css('display', 'none');
+                $(this).find('.eye-open-' + targetId).css('display', 'block');
+            } else {
+                inputField.attr('type', 'password');
+                $(this).find('.eye-open-' + targetId).css('display', 'none');
+                $(this).find('.eye-close-' + targetId).css('display', 'block');
+            }
         });
 
         $(".login-btn-otp").click(function(e){
@@ -695,6 +668,40 @@
                 var formData = $('#mobile-number-form-id').serialize();
 
                 $.ajax({
+                    // url: APP_URL+'/sendotp',
+                    url: '{{route('sendotp')}}',
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        // console.log(response.payload.user_id+'success me aaya');
+                        var mobile = response.payload.user_id;
+                        $('.mobileno').html(mobile);
+                        $("#user_id").val(response.payload.user_id);
+                        $("#signupmethod").val(response.payload.user_signup_method);
+                        $('.screen-login,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd').hide();
+                        $('.screen-verify').show();
+                        resendOTP();
+                        // var response = JSON.parse(response);
+                        // $('#dynamic-content').html(response.content);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('error me aaya');
+                    }
+                });
+            }else{
+                return isValidContact(isInput);
+            }
+        });
+
+        $("#resendBtn").click(function(e){
+            e.preventDefault();
+            var formData = $('#mobile-number-form-id').serialize();
+            $.ajax({
+                    // url: APP_URL+'/sendotp',
                     url: '{{route('sendotp')}}',
                     type: 'POST',
                     data: formData,
@@ -717,10 +724,31 @@
                         console.log('error me aaya');
                     }
                 });
-            }else{
-                return isValidContact(isInput);
-            }
+            resendOTP();
         });
+
+        function resendOTP() {
+            // alert("resend btn");
+            // Disable the resend button
+            $('#resendBtn').prop('disabled', true);
+
+            // Set a countdown of 30 seconds
+            var countdown = 30;
+            var countdownDiv = $('.resend-otp');
+
+            var interval = setInterval(function () {
+                countdownDiv.text('Resend OTP in ' + countdown + ' seconds');
+                countdown--;
+
+                if (countdown < 0) {
+                    clearInterval(interval);
+                    countdownDiv.text('');
+                    // $('.child-box').val('');
+                    $('#resendBtn').prop('disabled', false);
+                }
+            }, 1000);
+        }
+
 
         $(".forgot-otp-btn").click(function(e){
             e.preventDefault();
@@ -736,8 +764,42 @@
             if(isValidContact(isInput) == true){
               
                 var formData = $('#forgot-pwd-form-id').serialize();
-                alert(formData);
+                // alert(formData);
                 $.ajax({
+                    url: '{{route('sendforgototp')}}',
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        // console.log(response.payload.user_id+'success me aaya');
+                        var mobile = response.payload.user_id;
+                        $('.mobile_no').html(mobile);
+                        $("#userid_no").val(response.payload.user_id);
+                        $("#usersignupmethod").val(response.payload.user_signup_method);
+                        $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-set-pwd').hide();
+                        $('.left-side,.right-side').show();
+                        if(response.payload.success == true){
+                            $('.screen-forgot-otp').show();
+                            resendForgotOTP();
+                        }else{
+                            $('#forgot-otp-result').html(response.payload.response.meassage);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                    }
+                });
+            }else{
+                return isValidContact(isInput);
+            }
+        });
+
+        $("#resendForgotBtn").click(function(e){
+            e.preventDefault();
+            var formData = $('#forgot-pwd-form-id').serialize();
+            $.ajax({
                     url: '{{route('sendforgototp')}}',
                     type: 'POST',
                     data: formData,
@@ -762,11 +824,30 @@
                     error: function(xhr, status, error) {
                     }
                 });
-            }else{
-                return isValidContact(isInput);
-            }
+            resendForgotOTP();
         });
 
+        function resendForgotOTP() {
+            // alert("resend btn");
+            // Disable the resend button
+            $('#resendForgotBtn').prop('disabled', true);
+
+            // Set a countdown of 30 seconds
+            var countdown = 30;
+            var countdownDiv = $('.resend-forgot-otp');
+
+            var interval = setInterval(function () {
+                countdownDiv.text('Resend OTP in ' + countdown + ' seconds');
+                countdown--;
+
+                if (countdown < 0) {
+                    clearInterval(interval);
+                    countdownDiv.text('');
+                    // $('.child-box').val('');
+                    $('#resendForgotBtn').prop('disabled', false);
+                }
+            }, 1000);
+        }
 
         $('.child-box,.child-box1').on('input', function() {
             var inputValue = $(this).val();
@@ -840,7 +921,7 @@
                                 $('.modal-content').hide();
                                 // location.reload(true);
                             }
-                            alert("true resp");
+                            // alert("true resp");
                         }else{
                             $('#verifyotp-result').html(response.payload.response.message);
                             // $('#verifyotp-result').html('Incorrect code entered. Please try again.');
