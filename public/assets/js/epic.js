@@ -63,7 +63,48 @@ function onError(statusCode) {
     console.log('Error:', statusCode);
 }
 
+const showToaster = (message, type = 1, timeout = 5000) => {
+    if (type == 1) {
+        toastr.success(message, "Success", {
+            timeOut: timeout
+        });
+    } else {
+        toastr.error(message, "Error", {
+            timeOut: timeout
+        });
+    }
+};
+
 $(document).on('click', '.emptyText', function () {
     $(this).parents('.input-field').find('input.form-control').val('');
 });
 
+
+
+// start add to wishlist
+$(document).on('click', '.addToList', function () {
+    let action = $(this).data('action');
+    let id = $(this).data('id');
+
+    let element = $(this);
+
+    let requestData = {
+        content_id: id,
+        action: action,
+    };
+
+    sendAjaxRequest(APP_URL + '/wishlist', 'POST', JSON.stringify(requestData),
+        onWishlistSuccess, onWishlistError, 'application/json');
+
+    function onWishlistSuccess(response) {
+        element.data('action', element.data('action') === 'add' ? 'delete' : 'add');
+        element.toggleClass('add-icon delete-icon');
+
+        showToaster(response?.message, 1);
+    }
+
+    function onWishlistError(response) {
+        showToaster('Some error occured', 2);
+    }
+});
+// end start add to wishlist

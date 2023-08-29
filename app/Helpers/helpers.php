@@ -238,12 +238,12 @@ function getWishListAction($val, $wishlist, $type = 1)
     $wishAction = (in_array(@$val['ID'], $wishlist_ids)) ? 'delete' : 'add';
 
     if ($type == 1) {
-        return '<button class="big-add-list addToList" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="1">
-                                ' . $wishAction . '
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                                    <path d="M21.0026 15.1678H15.1693V21.0011C15.1693 21.6428 14.6443 22.1678 14.0026 22.1678C13.3609 22.1678 12.8359 21.6428 12.8359 21.0011V15.1678H7.0026C6.36094 15.1678 5.83594 14.6428 5.83594 14.0011C5.83594 13.3595 6.36094 12.8345 7.0026 12.8345H12.8359V7.00114C12.8359 6.35947 13.3609 5.83447 14.0026 5.83447C14.6443 5.83447 15.1693 6.35947 15.1693 7.00114V12.8345H21.0026C21.6443 12.8345 22.1693 13.3595 22.1693 14.0011C22.1693 14.6428 21.6443 15.1678 21.0026 15.1678Z" fill="white" />
-                                </svg>
-                            </button>';
+        if ($wishAction == 'add') {
+            $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M21.0026 15.1678H15.1693V21.0011C15.1693 21.6428 14.6443 22.1678 14.0026 22.1678C13.3609 22.1678 12.8359 21.6428 12.8359 21.0011V15.1678H7.0026C6.36094 15.1678 5.83594 14.6428 5.83594 14.0011C5.83594 13.3595 6.36094 12.8345 7.0026 12.8345H12.8359V7.00114C12.8359 6.35947 13.3609 5.83447 14.0026 5.83447C14.6443 5.83447 15.1693 6.35947 15.1693 7.00114V12.8345H21.0026C21.6443 12.8345 22.1693 13.3595 22.1693 14.0011C22.1693 14.6428 21.6443 15.1678 21.0026 15.1678Z" fill="white" /></svg>';
+        } else {
+            $icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.1422 11.1919H11.1898C11.1898 11.1919 10.6541 11.1919 9.99934 11.1919C9.34458 11.1919 8.80887 11.1919 8.80887 11.1919H2.85649C2.20173 11.1919 1.66602 10.6562 1.66602 10.0014C1.66602 9.34665 2.20173 8.81094 2.85649 8.81094H8.80887C8.80887 8.81094 9.34458 8.81096 9.99934 8.81096C10.6541 8.81096 11.1898 8.81094 11.1898 8.81094H17.1422C17.797 8.81094 18.3327 9.34665 18.3327 10.0014C18.3327 10.6562 17.797 11.1919 17.1422 11.1919Z" fill="white"/></svg>';
+        }
+        return '<button class="big-add-list addToList ' . $wishAction . '-icon" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="1"> </button>';
     } else {
         return '<button class="small-btn ' . $wishAction . '-icon mx-2 addToList" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="2"></button>';
     }
@@ -292,19 +292,19 @@ function getItemCardData($val, $language)
 
     $sub_text = [];
 
-    if (isset($val['release_date'])) {
-        $sub_text[] = date('Y', strtotime($val['release_date']));
+    if (isset($val['publish_start_date'])) {
+        $sub_text[] = date('Y', strtotime($val['publish_start_date']));
     }
     // $sub_text[] = '3 Language';
 
     if ($generes) {
-        $sub_text[] = implode(", ", $generes);
+        $sub_text[] = implode(" . ", $generes);
     }
     if (isset($val['age_limit'])) {
         $sub_text[] = $val['age_limit'];
     }
 
-    $sub_points = '<li class="ps-1">' . @$val['age_limit'] . '</li>';
+    $sub_points = (@$val['age_limit']) ? '<li class="ps-1">' . @$val['age_limit'] . '</li>' : '';
 
     if ($generes) {
         foreach ($generes as $key => $genre) {
@@ -316,7 +316,7 @@ function getItemCardData($val, $language)
         'title' => $title,
         'short_desc' => $shortdescription,
         'banner_img' => $bannerimage,
-        'sub_text' => implode(". ", $sub_text),
+        'sub_text' => implode(" . ", $sub_text),
         'sub_points' => $sub_points,
     ];
 }

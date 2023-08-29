@@ -72,7 +72,7 @@ class PageController extends Controller
         $result = CurlAPI("pages/wishlist", "POST", $params);
         // dd($result);
         if ($result && @$result['success'] ==  true) {
-            return JSONResponse(200,  'Success.');
+            return JSONResponse(200, ($request->action == 'add') ? 'Added to wishlist' : 'Removed from wishlist');
         } else {
             return JSONResponse(400, 'Error.');
         }

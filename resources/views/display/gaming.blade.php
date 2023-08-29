@@ -2,7 +2,9 @@
      <div class="gaming-galore-main">
          <div class="galore-title">
              <h1>{{ $title }}</h1>
-             <button>Explore More</button>
+             @if (@$value['show_more'])
+                 <button>Explore More</button>
+             @endif
          </div>
          <div class="gaming-galore">
 
