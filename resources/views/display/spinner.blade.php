@@ -13,7 +13,7 @@
              <!-- <h1>Result is shown here</h1> -->
              <div class="spin-img d-flex">
                  <div class="trigger-data-img d-flex">
-                     <img src="public/img/dhamal.jpeg" alt="">
+                     <img src="{{ asset('assets/img/dhamal.jpeg') }}" alt="">
                  </div>
              </div>
 
@@ -34,7 +34,7 @@
 
  <script>
      function onSpinnerError(response) {
-         alert('Api error');
+         console.log('Api error');
      }
 
      function onSpinnerSuccess(response) {

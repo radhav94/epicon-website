@@ -26,7 +26,35 @@
                             d="M22.5 12.0006C22.5006 12.2552 22.4353 12.5057 22.3105 12.7276C22.1856 12.9496 22.0055 13.1354 21.7875 13.2671L8.28 21.5303C8.05227 21.6697 7.79144 21.7458 7.52445 21.7508C7.25746 21.7557 6.99399 21.6893 6.76125 21.5584C6.53073 21.4295 6.3387 21.2415 6.2049 21.0138C6.07111 20.7861 6.00039 20.5269 6 20.2628V3.73839C6.00039 3.47428 6.07111 3.21504 6.2049 2.98733C6.3387 2.75962 6.53073 2.57165 6.76125 2.44276C6.99399 2.31184 7.25746 2.24542 7.52445 2.25036C7.79144 2.25531 8.05227 2.33144 8.28 2.47089L21.7875 10.734C22.0055 10.8657 22.1856 11.0516 22.3105 11.2735C22.4353 11.4954 22.5006 11.7459 22.5 12.0006Z"
                             fill="#272727" />
                     </svg>
-                    <span class="ms-1">Watch S1 E1</span>
+
+                    <?php
+                    $watch_text = 'Watch';
+                    if ($val['content_type'] == 'EPISODE') {
+                        if (isset($val['parent_name'])) {
+                            $parent_name = trim($val['parent_name']);
+                            $wordToFind = 'season';
+                    
+                            $lastPosition = strrpos($parent_name, $wordToFind);
+                    
+                            if ($lastPosition !== false) {
+                                // $wordLength = strlen($wordToFind);
+                                // $lastWord = substr($parent_name, $lastPosition, $wordLength);
+                    
+                                $lastSpacePosition = strrpos($parent_name, ' ');
+                    
+                                if ($lastSpacePosition !== false) {
+                                    $valueAfterLastSpace = substr($parent_name, $lastSpacePosition + 1);
+                    
+                                    $watch_text .= 'S' . $valueAfterLastSpace;
+                                }
+                            }
+                        }
+                        $watch_text .= 'E' . @$val['content_order'];
+                    }
+                    
+                    ?>
+                    <span class="ms-1">{{ $watch_text }}</span>
+
                 </button>
 
                 {!! getWishListAction($val, $wishlist, 2) !!}

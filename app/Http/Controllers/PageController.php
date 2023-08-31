@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Cache;
 
 class PageController extends Controller
 {
@@ -15,17 +14,25 @@ class PageController extends Controller
         // dd(getWishlist());
 
         $params = [
-            // 'slug' => $slug,
-            'slug' => 'home-v2',
+            'slug' => $slug,
+            // 'slug' => 'home-v2',
             // 'slug' => 'movies',
             'list_language' => 'ALL',
             'display_language' => 'ENGLISH',
-            // 'page' => 1,
-            // 'tray_limit' => 5,
+            'page' => 1,
+            'limit' => 50,
         ];
 
         $result = CurlAPI("pages/homepage", "GET", $params, 1);
-        // dd($result['data']['list']['0']);
+
+        if (request()->v == 2) {
+            foreach ($result['data']['list'] as $key => $value) {
+                d($value);
+            }
+            dd($result);
+        }
+
+        // dd($result['data']['list']['20']);
         // $temp = [];
         // foreach ($result['data']['list'] as $key => $value) {
         //    $temp[] = $value['display_type'];
@@ -72,6 +79,9 @@ class PageController extends Controller
         $result = CurlAPI("pages/wishlist", "POST", $params);
         // dd($result);
         if ($result && @$result['success'] ==  true) {
+            Cache::forget('getWishlist');
+            // session()->forget('user_wishlist');
+
             return JSONResponse(200, ($request->action == 'add') ? 'Added to wishlist' : 'Removed from wishlist');
         } else {
             return JSONResponse(400, 'Error.');

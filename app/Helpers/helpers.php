@@ -6,6 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
+use Illuminate\Support\Facades\Session;
 
 if (!function_exists('JSONResponse')) {
     function JSONResponse(int $statusCode, string $message, array $data = []): JsonResponse
@@ -251,8 +252,24 @@ function getWishListAction($val, $wishlist, $type = 1)
 
 function getWishlist()
 {
-    Cache::forget('getWishlist');
+    /*
+    if (Session::has('user_wishlist')) {
+        return  session()->get('user_wishlist');
+    } else {
+        $params = [
+            'action' => 'view'
+        ];
+        $result = CurlAPI("pages/wishlist", "POST", $params);
 
+        if ($result && @$result['success'] ==  true) {
+            $data =  ['data' => $result['contents'], 'ids' => array_column($result['contents'], 'ID')];
+        } else {
+            $data =  [];
+        }
+        Session::put('user_wishlist', $data);
+        return $data
+    }
+    */
     return Cache::remember('getWishlist', 300, function () {
         $params = [
             'action' => 'view'
@@ -384,4 +401,31 @@ function convertSecondsToReadable($seconds)
     }
     // return Carbon::now()->addSeconds($seconds)->diffForHumans(null, true, true, 2);
     // return  CarbonInterval::seconds($seconds)->cascade()->forHumans();
+}
+
+function getSeasonEpisodeNum($val)
+{
+
+    if ($val['content_type'] == 'EPISODE') {
+        if (isset($val['parent_name'])) {
+            $parent_name = trim($val['parent_name']);
+            $wordToFind = 'season';
+
+            $lastPosition = strrpos($parent_name, $wordToFind);
+
+            if ($lastPosition !== false) {
+                // $wordLength = strlen($wordToFind);
+                // $lastWord = substr($parent_name, $lastPosition, $wordLength);
+
+                $lastSpacePosition = strrpos($parent_name, ' ');
+
+                if ($lastSpacePosition !== false) {
+                    $valueAfterLastSpace = substr($parent_name, $lastSpacePosition + 1);
+
+                    $watch_text .= 'S' . $valueAfterLastSpace;
+                }
+            }
+        }
+        $watch_text .= 'E' . @$val['content_order'];
+    }
 }
