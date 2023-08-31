@@ -405,7 +405,10 @@ function convertSecondsToReadable($seconds)
 
 function getSeasonEpisodeNum($val)
 {
-
+    $result = [
+        // 'season' => '',
+        // 'episode' => ''
+    ];
     if ($val['content_type'] == 'EPISODE') {
         if (isset($val['parent_name'])) {
             $parent_name = trim($val['parent_name']);
@@ -422,10 +425,13 @@ function getSeasonEpisodeNum($val)
                 if ($lastSpacePosition !== false) {
                     $valueAfterLastSpace = substr($parent_name, $lastSpacePosition + 1);
 
-                    $watch_text .= 'S' . $valueAfterLastSpace;
+                    $result['season'] = 'S' . $valueAfterLastSpace;
                 }
             }
         }
-        $watch_text .= 'E' . @$val['content_order'];
+        if (isset($val['content_order'])) {
+            $result['episode'] = 'E' . $val['content_order'];
+        }
     }
+    return $result;
 }

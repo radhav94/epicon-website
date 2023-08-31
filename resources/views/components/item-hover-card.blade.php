@@ -29,6 +29,17 @@
 
                     <?php
                     $watch_text = 'Watch';
+                    
+                    $se_epi_text = getSeasonEpisodeNum($val);
+                    if (@$se_epi_text['season']) {
+                        $watch_text .= 'S' . $se_epi_text['season'];
+                    }
+                    
+                    if (@$se_epi_text['episode']) {
+                        $watch_text .= 'E' . $se_epi_text['episode'];
+                    }
+                    
+                    /*
                     if ($val['content_type'] == 'EPISODE') {
                         if (isset($val['parent_name'])) {
                             $parent_name = trim($val['parent_name']);
@@ -51,6 +62,7 @@
                         }
                         $watch_text .= 'E' . @$val['content_order'];
                     }
+                    */
                     
                     ?>
                     <span class="ms-1">{{ $watch_text }}</span>

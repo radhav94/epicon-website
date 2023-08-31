@@ -16,7 +16,6 @@
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
             $cover_img = isset($val['cover_image']) ? $val['cover_image']['medium'] : $card['banner_img'];
-            
             ?>
             <li>
                 @include('components.item-hover-card')
@@ -26,8 +25,10 @@
                     <div class="main-img oval-shape avilable-audio">
                         <img src="{{ $cover_img }}" alt="">
                         <ul class="">
-                            <li>Available in 4 audios</li>
-                            <li>New Movie</li>
+                            {{-- <li>Available in 4 audios</li> --}}
+                            @if (@$val['is_new'])
+                                <li>New Movie</li>
+                            @endif
                         </ul>
                     </div>
                 </a>
