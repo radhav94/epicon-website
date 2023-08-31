@@ -1,40 +1,40 @@
-$(document).ready(function(){
+$(document).ready(function () {
   $('.banner-carousel').slick({
     centerMode: true,
     centerPadding: '130px',
     slidesToShow: 1,
     arrows: true,
-    dots:true,
-    autoplay:false,
+    dots: true,
+    autoplay: false,
     appendDots: $(".slide-m-dots"),
     prevArrow: $(".slide-m-prev"),
     nextArrow: $(".slide-m-next"),
-        responsive: [
-            {
-            breakpoint: 960,
-            settings: {
-              centerMode: true,
-              centerPadding: '120px',
-              slidesToShow: 1
-            }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              centerMode: true,
-              centerPadding: '60px',
-              slidesToShow: 1
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              centerMode: true,
-              centerPadding: '30px',
-              slidesToShow: 1
-            }
-          }
-        ]
+    responsive: [
+      {
+        breakpoint: 960,
+        settings: {
+          centerMode: true,
+          centerPadding: '120px',
+          slidesToShow: 1
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          centerMode: true,
+          centerPadding: '60px',
+          slidesToShow: 1
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          centerMode: true,
+          centerPadding: '30px',
+          slidesToShow: 1
+        }
+      }
+    ]
   });
 
   $('.carousel-initilize').slick({
@@ -362,7 +362,7 @@ $(document).ready(function(){
     dots: false,
     infinite: false,
     speed: 300,
-    slidesToShow:7.5,
+    slidesToShow: 7.5,
     slidesToScroll: 1,
     responsive: [
       {
@@ -452,7 +452,7 @@ $(document).ready(function(){
     dots: false,
     infinite: false,
     speed: 300,
-    slidesToShow:7.5,
+    slidesToShow: 7.5,
     slidesToScroll: 1,
     adaptiveHeight: true,
     responsive: [
@@ -498,7 +498,7 @@ $(document).ready(function(){
     dots: false,
     infinite: false,
     speed: 300,
-    slidesToShow:4.5,
+    slidesToShow: 4.5,
     slidesToScroll: 1,
     adaptiveHeight: true,
     responsive: [
@@ -547,8 +547,8 @@ $(document).ready(function(){
     centerPadding: '350px',
     slidesToShow: 1,
     arrows: true,
-    dots:true,
-    autoplay:false,
+    dots: true,
+    autoplay: false,
     asNavFor: '.new-release-bottom',
     appendDots: $(".slide-m-dots-new-release"),
     prevArrow: $(".slide-m-prev-new-release"),
@@ -563,30 +563,30 @@ $(document).ready(function(){
         }
       },
       {
-      breakpoint: 960,
-      settings: {
-        centerMode: true,
-        centerPadding: '120px',
-        slidesToShow: 1
+        breakpoint: 960,
+        settings: {
+          centerMode: true,
+          centerPadding: '120px',
+          slidesToShow: 1
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          centerMode: true,
+          centerPadding: '60px',
+          slidesToShow: 1
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          centerMode: true,
+          centerPadding: '30px',
+          slidesToShow: 1
+        }
       }
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        centerMode: true,
-        centerPadding: '60px',
-        slidesToShow: 1
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        centerMode: true,
-        centerPadding: '30px',
-        slidesToShow: 1
-      }
-    }
-  ]
+    ]
   });
   $('.new-release-bottom').slick({
     centerMode: true,
@@ -594,7 +594,7 @@ $(document).ready(function(){
     slidesToScroll: 1,
     focusOnSelect: true,
     arrows: true,
-    dots:false,
+    dots: false,
     asNavFor: '.banner-carousel-new-release',
     responsive: [
       {
@@ -823,52 +823,52 @@ $(document).ready(function(){
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows:false,
-    dots:true,
+    arrows: false,
+    dots: true,
   });
 
 
 
-// on hamburger click
-document.querySelector(".hamburger").addEventListener("click",function(){
+  // on hamburger click
+  document.querySelector(".hamburger").addEventListener("click", function () {
     $("#side-menu").toggleClass("active");
-});
-
-$(".menu-close").on("click",function(){
-  $("#side-menu").toggleClass("active");
-});
-
-
-// on profile hover and click effect 
- if ($(window).width() < 1025) {
-  $(".profile").on('click',function(){
-    $(".profile-drop-down").toggleClass("prof-open");
   });
+
+  $(".menu-close").on("click", function () {
+    $("#side-menu").toggleClass("active");
+  });
+
+
+  // on profile hover and click effect 
+  if ($(window).width() < 1025) {
+    $(".profile").on('click', function () {
+      $(".profile-drop-down").toggleClass("prof-open");
+    });
   }
   else {
-    $(".profile").hover(function(){
-        var e = document.querySelector(".profile-drop-down");
-          if(e.style.display == 'block')
-             e.style.display = 'none';
-          else
-             e.style.display = 'block';
+    $(".profile").hover(function () {
+      var e = document.querySelector(".profile-drop-down");
+      if (e.style.display == 'block')
+        e.style.display = 'none';
+      else
+        e.style.display = 'block';
     });
   }
   if ($(window).width() < 1025) {
-    $(".notification").on('click',function(){
+    $(".notification").on('click', function () {
       $(".notification-drop-down").toggleClass("prof-open");
     });
-    }
-    else {
-      $(".notification").hover(function(){
-          var e = document.querySelector(".notification-drop-down");
-            if(e.style.display == 'block')
-               e.style.display = 'none';
-            else
-               e.style.display = 'block';
-      });
-    }
-  
+  }
+  else {
+    $(".notification").hover(function () {
+      var e = document.querySelector(".notification-drop-down");
+      if (e.style.display == 'block')
+        e.style.display = 'none';
+      else
+        e.style.display = 'block';
+    });
+  }
+  /*
 // SPINER JS START
 var padding = {top:0, right:0, bottom:0, left:0},
         w = 360 - padding.left - padding.right,
@@ -968,10 +968,8 @@ var padding = {top:0, right:0, bottom:0, left:0},
                     .text(data[picked].question);
                 oldrotation = rotation;
           
-                /* Get the result value from object "data" */
                 console.log(data[picked].value)
           
-                /* Comment the below line for restrict spin to sngle time */
                 container.on("click", spin);
             });
     }
@@ -1018,13 +1016,14 @@ var padding = {top:0, right:0, bottom:0, left:0},
         }
         return array;
     };
-
+*/
 });
-  // top menu
-  document.addEventListener("DOMContentLoaded", function(){
 
-  window.addEventListener('scroll', function() {
-      
+// top menu
+document.addEventListener("DOMContentLoaded", function () {
+
+  window.addEventListener('scroll', function () {
+
     if (window.scrollY > 40) {
       document.getElementById('navbar_top').classList.add('fixed-top');
       // add padding top to show content behind navbar
@@ -1034,7 +1033,7 @@ var padding = {top:0, right:0, bottom:0, left:0},
       document.getElementById('navbar_top').classList.remove('fixed-top');
       // remove padding top from body
       document.body.style.paddingTop = '0';
-    } 
+    }
   });
-  
+
 }); 
