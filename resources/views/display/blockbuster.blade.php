@@ -3,7 +3,7 @@
          <div class="galore-title">
              <h1>{{ $title }}</h1>
              @if (@$value['show_more'])
-                 <a href="{{ url($value['slug']) }}">
+                 <a href="{{ url($value['slug'] ?? '/') }}">
                      <button>Explore More</button>
                  </a>
              @endif
