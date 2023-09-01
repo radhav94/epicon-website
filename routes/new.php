@@ -40,3 +40,7 @@ Route::get('login-popup', function () {
     return view('epicon.login-popup');
 });
 
+// Route::get('login/facebook', '\App\Http\Controllers\Auth\AuthSocialController@redirectToProvider')->name('facebook');
+
+// Route::get('login/facebook/callback', '\App\Http\Controllers\Auth\AuthSocialController@handleProviderCallback')->name('facebook');
+
