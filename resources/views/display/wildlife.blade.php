@@ -15,18 +15,19 @@
         ?>
         @foreach ($chunks as $key => $val)
             <div class="wildlife-wrapper d-flex">
-                <div>
-                    @foreach ($val as $k => $v)
-                        <?php
-                        $card = getItemCardData($v, $displayLanguageParam);
-                        $cover_img = isset($v['vertical_cover_image']) ? $v['vertical_cover_image']['large'] : $card['banner_img'];
-                        ?>
 
+                @foreach ($val as $k => $v)
+                    <?php
+                    $card = getItemCardData($v, $displayLanguageParam);
+                    $cover_img = isset($v['vertical_cover_image']) ? @$v['vertical_cover_image']['small'] : $card['banner_img'];
+                    ?>
+                    <div>
                         <a href="#/" class="{{ $k == 0 ? 'left' : 'right' }}">
                             <img src="{{ $cover_img }}" alt="">
                         </a>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
+
             </div>
         @endforeach
 

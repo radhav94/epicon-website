@@ -11,7 +11,7 @@
              @foreach ($value['content'] as $key => $val)
                  <?php
                  $card = getItemCardData($val, $displayLanguageParam);
-                 $cover_img = isset($val['vertical_cover_image']) ? $val['vertical_cover_image']['large'] : $card['banner_img'];
+                 $cover_img = isset($val['vertical_cover_image']) ? $val['vertical_cover_image']['large'] : @$val['image'];
                  
                  ?>
                  <li>
@@ -19,6 +19,7 @@
                          <div class="main-img mt-0">
                              <img src="{{ $cover_img }}" alt="">
                          </div>
+                         {{--
                          <div class="position-absolute">
                              <svg xmlns="http://www.w3.org/2000/svg" width="118" height="66" viewBox="0 0 118 66"
                                  fill="none">
@@ -61,6 +62,8 @@
                                  </defs>
                              </svg>
                          </div>
+
+                         --}}
                      </a>
                  </li>
              @endforeach

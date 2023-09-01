@@ -22,7 +22,17 @@
                      $li .= '<li>' . convertSecondsToReadable($val['duration']) . '</li>';
                  }
                  
-                 $sub_slider_html .= '<div class="new-release-card"><img src="' . $cover_img . '" alt=""><div class="new-episode-time"> <ul><li>S1<b>.</b>E1</li>' . $li . '</ul></div></div>';
+                 $se_epi_text = getSeasonEpisodeNum($val);
+                 $s_txt = '';
+                 
+                 $s_txt .= isset($se_epi_text['season']) ? 'S' . $se_epi_text['season'] : '';
+                 $s_txt .= isset($se_epi_text['episode']) ? '<b>E' . $se_epi_text['episode'] . '</b>' : '';
+                 
+                 if ($s_txt) {
+                     $s_txt = '<li>' . $s_txt . '</li>';
+                 }
+                 
+                 $sub_slider_html .= '<div class="new-release-card"><img src="' . $cover_img . '" alt=""><div class="new-episode-time"> <ul>' . $s_txt . ' ' . $li . '</ul></div></div>';
                  ?>
                  <div class="carousel-card">
                      <button class="mute-btn">
