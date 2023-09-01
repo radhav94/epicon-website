@@ -15,15 +15,15 @@
         @foreach ($value['content'] as $key => $val)
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
-            $cover_img = isset($val['vertical_cover_image']) ? $val['vertical_cover_image']['large'] : $card['banner_img'];
+            $cover_img = isset($val['vertical_cover_image']) ? $val['vertical_cover_image'] : $card['banner_img'];
             
             ?>
             <div class="plang">
                 <a href="#/">
-                    <img src="public/img/language-bg-1.svg" alt="shots">
+                    <img src="{{ $cover_img }}">
                     <div class="language">
-                        <h1>मराठी</h1>
-                        <span>Marathi</span>
+                        <h1>{{ @$val['name'] }}</h1>
+                        <span>{{ @$val['name'] }}</span>
                     </div>
                 </a>
             </div>
