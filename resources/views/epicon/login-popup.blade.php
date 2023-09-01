@@ -91,7 +91,7 @@
                                         <!-- Display validation result here -->
                                     </div>
                                     <div class="resend-otp text-start text-white mt-4" style="font-size: 12px;">
-                                        Resend OTP in:0.30
+                                        <!-- Resend OTP in:0.30 -->
                                     </div>
                                     <div id="verifyotp-result" style="color: red;">
                                         <!-- Display validation result here -->
@@ -271,7 +271,7 @@
                                        <!-- Child Pin Input Validation -->
                                     </div>
                                     <div class="resend-forgot-otp text-start text-white mt-4" style="font-size: 12px;">
-                                        Resend OTP in:0.30
+                                        <!-- Resend OTP in:0.30 -->
                                     </div>
                                     <div id="verifyotp-forgot-result" style="color: red;">
                                         <!-- Display validation result here -->
