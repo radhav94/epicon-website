@@ -3,6 +3,7 @@
 namespace App\Library;
 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class ApiHandler
 {
@@ -14,7 +15,7 @@ class ApiHandler
 
 	public function __construct()
 	{
-		$this->header = $this->getHeader();
+		// $this->header = $this->getHeader();
 		if ((!$this->ch) || empty($this->ch)) {
 			$this->ch = curl_init();
 		}
@@ -23,13 +24,20 @@ class ApiHandler
 		}
 	}
 
-	public function getHeader()
+	public function getHeader($token)
 	{
+		// dd(session()->all());
+		// dd(Session::get('user_token'));
 		$headerArr[] = "x-access-auth-token: " . config('epicconfig.EPICAPI.API_AUTH_TOKEN');
 
-		if (env('logintoken')) {
-			$headerArr[] = "Authorization: " . env('logintoken');
+		if (Session::get('user_token')) {
+			// $headerArr[] = "Authorization: " . Session::get('user_token');
 		}
+		if ($token) {
+			$headerArr[] = "Authorization: " . $token;
+		}
+
+		Log::info("Token - " . $token);
 
 		$headerArr[] = "Content-Type: application/x-www-form-urlencoded";
 		$headerArr[] = "cache-control: no-cache";
@@ -41,19 +49,11 @@ class ApiHandler
 		return $headerArr;
 	}
 
-	public function api_query($url, $method = 'GET', $data = null)
+	public function api_query($url, $method = 'GET', $data = null, $user_token)
 	{
-
 		$querystring = $fields_string = '';
-		// if (!empty($_SERVER['HTTP_X_REGION'])) {
-		// 	$data['x_country'] = $_SERVER['HTTP_X_REGION'];
-		// }
-		// if (!empty($_SERVER['HTTP_X_CONTINENT'])) {
-		// 	$data['x_continent'] = $_SERVER['HTTP_X_CONTINENT'];
-		// }
-		// if (strtoupper(@$data['x_country']) == 'ROW') {
-		// 	$data['x_country'] = $_SERVER['HTTP_X_CONTINENT'];
-		// }
+
+		$this->header = $this->getHeader($user_token);
 		if ($method == 'POST') {
 			if ($data != null && !empty($data)) {
 				$fields_string = http_build_query($data);
@@ -67,8 +67,9 @@ class ApiHandler
 	}
 
 
-	public function api_query_without_v2($url, $method = 'GET', $data = null)
+	public function api_query_without_v2($url, $method = 'GET', $data = null, $user_token)
 	{
+		$this->header = $this->getHeader($user_token);
 
 		$querystring = $fields_string = '';
 		if (!empty($_SERVER['HTTP_X_REGION'])) {

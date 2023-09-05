@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Providers\HelperServiceProvider::class,
+        App\Providers\BladeServiceProvider::class,
     ])->toArray(),
 
     /*

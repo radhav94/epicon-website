@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\Session;
 
+
 if (!function_exists('JSONResponse')) {
     function JSONResponse(int $statusCode, string $message, array $data = []): JsonResponse
     {
@@ -43,8 +44,8 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1)
     } else {
         $url = config('epicconfig.EPICAPI.API_DOMAIN_1') . $context;
     }
-
-    return ApiHelper::api($url, $method, $data);
+    $token = Session::get('user_token') ?? '';
+    return ApiHelper::api($url, $method, $data, $token);
 }
 
 
@@ -434,4 +435,10 @@ function getSeasonEpisodeNum($val)
         }
     }
     return $result;
+}
+
+
+function isUserLoggedIn()
+{
+    return Session::get('user_id') ? true : false;
 }

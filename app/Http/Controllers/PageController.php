@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
 
 class PageController extends Controller
 {
     public function index($slug = 'home-v2')
     {
+        // dd(session()->all());
+        // Session::flush();
+        // dd(Session::all());
         // $res = getWishlist();
         // dd($res);
         // dd(getWishlist());
@@ -48,6 +52,15 @@ class PageController extends Controller
         }
     }
 
+    public function explore()
+    {
+        $result = CurlAPI("pages/explorepage", "GET", [], 1);
+        // dd($result);
+        if ($result && @$result['success'] ==  true) {
+
+            return view('pages.explore', compact('result'));
+        }
+    }
     public function getSpinnerContent(Request $request)
     {
         $result = CurlAPI("pages/spinnerContent", "POST", ['genre' => $request->genre]);

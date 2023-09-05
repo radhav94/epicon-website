@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 class HelperServiceProvider extends ServiceProvider
 {
-    
+
 
     /**
      * Bootstrap services.
@@ -29,21 +29,25 @@ class HelperServiceProvider extends ServiceProvider
         require_once app_path() . '/Library/SMTP.php';
     }
 
-    public static function api($context,$method='GET',$data=null){
+    public static function api($context, $method = 'GET', $data = null, $token = null)
+    {
         global $api_client;
-        return $api_client->api_query($context,$method,$data);
+        return $api_client->api_query($context, $method, $data, $token);
     }
-    public static function api_without_v2($context,$method='GET',$data=null){
+    public static function api_without_v2($context, $method = 'GET', $data = null)
+    {
         global $api_client;
-        return $api_client->api_query_without_v2($context,$method,$data);
+        return $api_client->api_query_without_v2($context, $method, $data);
     }
-    public static function minifyHTML($context=""){
+    public static function minifyHTML($context = "")
+    {
         global $html_client;
-        $options = ['compression_mode'=>env('HTML_COMPRESSION_MODE','none')];
-        return $html_client->process($context,$options);
+        $options = ['compression_mode' => env('HTML_COMPRESSION_MODE', 'none')];
+        return $html_client->process($context, $options);
     }
 
-    public static function sendCustomEmail($to,$subject,$body){
+    public static function sendCustomEmail($to, $subject, $body)
+    {
         //global $mail_client;
         $smtp_client = new \App\SMTP(true);;
         try {
@@ -80,8 +84,8 @@ class HelperServiceProvider extends ServiceProvider
             $mail_client->send();
             echo 'Message has been sent';
             $mail_client->__destruct();
-        } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        } catch (\Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail_client->ErrorInfo}";
         }
     }
 }

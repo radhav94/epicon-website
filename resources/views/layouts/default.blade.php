@@ -64,8 +64,9 @@
     @yield('script')
     {{-- End page specific scripts --}}
 
-
-
+    @notloggedin
+        @include('components.login-reg-js')
+    @endnotloggedin
 </body>
 
 </html>

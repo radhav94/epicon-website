@@ -20,11 +20,11 @@ Route::get('test', [TestController::class, 'index']);
 
 Route::get('/', [PageController::class, 'index'])->name('homepage');
 
-
+Route::get('explore', [PageController::class, 'explore'])->name('explore');
 Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
 Route::post('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
 
-Route::group(['middleware' => 'web', 'as' => 'profile.', 'prefix' => 'profile'], function () {
+Route::group(['middleware' => 'loggedin', 'as' => 'profile.', 'prefix' => 'profile'], function () {
 
     Route::get('/manage', [ProfileController::class, 'index'])->name('index');
     Route::get('/add-profile', [ProfileController::class, 'add'])->name('add');

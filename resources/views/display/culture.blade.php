@@ -2,7 +2,9 @@
        <div class="punjab">
            <div class="punjab-da-swaad">
                <div class="punjab-title">
-                   <img src="{{ asset('assets/img/gudi-img.png') }}" alt="">
+                   @if (@$value['background_image'])
+                       <img src="{{ $value['background_image'] }}" alt="">
+                   @endif
                    <div class="text">
                        <h1>{{ $title }}</h1>
                        @if (@$value['show_more'])
