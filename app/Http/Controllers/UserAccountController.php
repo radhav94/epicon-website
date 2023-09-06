@@ -39,4 +39,12 @@ class UserAccountController extends Controller
     public function editprofile(){
         return view('epicon.edit-profile');
     }
+
+    public function myaccount(){
+        return view('my-account.my-account');
+    }
+
+    public function TransactionHistory(){
+        return view('my-account.transaction-history');
+    }
 }

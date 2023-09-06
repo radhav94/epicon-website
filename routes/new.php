@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\LibraryController;
+use App\Http\Controllers\UserAccountController;
+use App\Http\Controllers\RewardsController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\FeedbackController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +45,18 @@ Route::post('resetpwdapi', [LoginController::class, 'ResetPasswordVerification']
 Route::get('login-popup', function () {
     return view('epicon.login-popup');
 });
+
+Route::get('library', [LibraryController::class, 'index'])->name('library');
+
+Route::get('my-account', [UserAccountController::class, 'myaccount'])->name('my-account');
+
+Route::get('transaction-history', [UserAccountController::class, 'TransactionHistory'])->name('trans-history');
+
+Route::get('my-rewards', [RewardsController::class, 'MyRewards'])->name('my-rewards');
+
+Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
+
+Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback');
 
 // Route::get('login/facebook', '\App\Http\Controllers\Auth\AuthSocialController@redirectToProvider')->name('facebook');
 

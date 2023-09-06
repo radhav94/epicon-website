@@ -276,11 +276,11 @@
                                     alt=""> Subscribe</button>
                         </li>
                         <li class="subc-text"><a href="#/">Manage Profiles</a></li>
-                        <li class="subc-text"><a href="#/">Library</a></li>
-                        <li class="subc-text"><a href="#/">My Account</a></li>
-                        <li class="subc-text"><a href="#/">My Rewards</a></li>
-                        <li class="subc-text"><a href="#/">Settings</a></li>
-                        <li class="subc-text"><a href="#/">Help & Feedback</a></li>
+                        <li class="subc-text"><a href="{{route('library')}}">Library</a></li>
+                        <li class="subc-text"><a href="{{route('my-account')}}">My Account</a></li>
+                        <li class="subc-text"><a href="{{route('my-rewards')}}">My Rewards</a></li>
+                        <li class="subc-text"><a href="{{route('settings')}}">Settings</a></li>
+                        <li class="subc-text"><a href="{{route('feedback')}}">Help & Feedback</a></li>
                         <li class="subc-text logout"><a href="#/">Log out</a></li>
                         <li class="subc-text atp">
                             <a href="#/">About Us</a>
