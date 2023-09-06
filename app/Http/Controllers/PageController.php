@@ -47,8 +47,42 @@ class PageController extends Controller
 
             $displayLanguageParam = setLanguageParameter();
 
+            $meta_title = strtoupper($slug);
+
             // dd($result['data']['list'][18]);
-            return view('pages.homepage', compact('result', 'displayLanguageParam'));
+            return view('pages.homepage', compact('result', 'displayLanguageParam', 'meta_title'));
+        }
+    }
+
+    public function loadMore(Request $request)
+    {
+        // dd($request->all());
+        $params = [
+            'slug' => ($request->route == '/') ? 'home-v2' : $request->route,
+            'list_language' => 'ALL',
+            'display_language' => 'ENGLISH',
+            'page' => $request->page,
+            'limit' => 5,
+        ];
+
+        $result = CurlAPI("pages/homepage", "GET", $params, 1);
+
+        // dd($result);
+
+
+        if ($result && @$result['success'] ==  true) {
+
+            $displayLanguageParam = setLanguageParameter();
+
+            $view = view('display.display-default', compact('result', 'displayLanguageParam'))->render();
+
+            return JSONResponse(
+                200,
+                'Success.',
+                [
+                    'html' => $view,
+                ]
+            );
         }
     }
 
