@@ -15,7 +15,7 @@
         </div>
         <ul class="ps-3">
             <li>
-                <a href="">
+                <a href="{{ url('games') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
@@ -109,16 +109,27 @@
             <a class="subscribe-btn" href="#">Subscribe</a>
         </div>
 
+        <?php
+        $links = [
+            '/' => 'Home',
+            'movies' => 'Movies',
+            'tv-shows' => 'Shows',
+            'podcast' => 'Podcasts',
+            'explore' => 'Explore',
+            'premium' => 'Premium',
+        ];
+        
+        $current_route = request()->path();
+        ?>
         <ul class="menu-item list-unstyled d-flex mb-0">
-            <li><a href="{{ url('/') }}" class="active">Home</a></li>
-            <li><a href="{{ url('movies') }}">Movies</a></li>
-            <li><a href="{{ url('movies') }}">Shows</a></li>
-            <li><a href="{{ url('movies') }}">Podcasts</a></li>
-            <li><a href="{{ url('movies') }}">Explore</a></li>
-            <li><a href="{{ url('movies') }}">Premium</a></li>
+            @foreach ($links as $key => $value)
+                <li><a href="{{ url($key) }}"
+                        @if ($current_route == $key) class="active" @endif>{{ $value }}</a></li>
+            @endforeach
+
         </ul>
         <div class="main-header-right d-flex align-items-center">
-            <a href="javascript:void(0)" class="p-2 me-2"><img src="{{ asset('assets/img/kidz-icon.svg') }}"
+            <a href="{{ url('kids-movies') }}" class="p-2 me-2"><img src="{{ asset('assets/img/kidz-icon.svg') }}"
                     alt=""></a>
             <a href="#/" class="p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -275,7 +286,7 @@
                             <button> <img class="me-1" width="18" src="{{ asset('assets/img/crown.svg') }}"
                                     alt=""> Subscribe</button>
                         </li>
-                        <li class="subc-text"><a href="#/">Manage Profiles</a></li>
+                        <li class="subc-text"><a href="{{ route('profile.index') }}">Manage Profiles</a></li>
                         <li class="subc-text"><a href="{{route('library')}}">Library</a></li>
                         <li class="subc-text"><a href="{{route('my-account')}}">My Account</a></li>
                         <li class="subc-text"><a href="{{route('my-rewards')}}">My Rewards</a></li>

@@ -19,6 +19,7 @@ use App\Http\Controllers\ProfileController;
 Route::get('test', [TestController::class, 'index']);
 
 Route::get('/', [PageController::class, 'index'])->name('homepage');
+Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.loadmore');
 
 Route::get('explore', [PageController::class, 'explore'])->name('explore');
 Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
