@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ route('upcoming-epicon') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path d="M10.6665 2.6665V6.6665" stroke="white" stroke-width="1.5" stroke-miterlimit="10"
@@ -80,7 +80,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ route('new-popular') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path

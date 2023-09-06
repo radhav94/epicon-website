@@ -7,7 +7,8 @@ use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\RewardsController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\FeedbackController;
-
+use App\Http\Controllers\UpcomingController;
+use App\Http\Controllers\PopularController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,10 @@ Route::get('my-rewards', [RewardsController::class, 'MyRewards'])->name('my-rewa
 Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
 
 Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback');
+
+Route::get('upcoming-epicon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
+
+Route::get('new-popular', [PopularController::class, 'Popular'])->name('new-popular');
 
 // Route::get('login/facebook', '\App\Http\Controllers\Auth\AuthSocialController@redirectToProvider')->name('facebook');
 
