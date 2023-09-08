@@ -55,12 +55,28 @@ function sendAjaxRequest(url, method, data, successCallback, errorCallback, cont
 }
 
 // Example usage
-function onSuccess(responseData) {
-    console.log('Success:', responseData);
+function onSuccess(response) {
+    showToaster(response?.message, 1);
+
+    if (response.payload?.redirect != undefined) {
+        setTimeout(() => {
+            window.location.href = response.payload?.redirect;
+        }, 1000);
+    }
+    console.log('Success:', response);
 }
 
-function onError(statusCode) {
-    console.log('Error:', statusCode);
+function onError(xhr) {
+    $msg = 'Some Error occured';
+    try {
+        $res = JSON.parse(xhr.responseText);
+        if ($res.message != undefined) {
+            $msg = $res.message;
+        }
+    } catch (err) { }
+    showToaster($msg, 2);
+
+    console.log('Error:', xhr);
 }
 
 const showToaster = (message, type = 1, timeout = 5000) => {

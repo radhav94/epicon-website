@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
 use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
+    private $profile_limit;
+
+    public function __construct()
+    {
+        $this->profile_limit = 3;
+    }
     public function index()
     {
         // dd(session()->all());
@@ -18,7 +26,9 @@ class ProfileController extends Controller
 
             $profiles = $result['user_data']['profiles'];
 
-            return view('pages.profile.manage-profile', compact('result', 'profiles'));
+            $profile_limit = $this->profile_limit;
+
+            return view('pages.profile.manage-profile', compact('result', 'profiles', 'profile_limit'));
         } else {
             return view('pages.404');
         }
@@ -28,26 +38,24 @@ class ProfileController extends Controller
         return view('pages.profile.add-profile');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        // dd($request->all());
-
         $param = [
             'name' => $request->name,
             'date_of_birth' => $request->dob,
             'profile_img' => null
         ];
-        if ($request->hasFile('profile_picture')) {
-            $url = uploadFile('profile_picture', 'profile');
+        if ($request->hasFile('profile_img')) {
+            $url = uploadFile('profile_img', 'profile');
             $param['profile_img'] = $url;
         }
 
         $result = CurlAPI("users/createProfile", "POST", $param, 2);
 
         if ($result && @$result['success'] ==  true) {
-            return JSONResponse(200, 'Success.');
+            return JSONResponse(200, 'Profile created successfully.', ['redirect' => route('profile.index')]);
         } else {
-            return JSONResponse(400, 'Error.');
+            return JSONResponse(400, 'Failed to create profile');
         }
     }
     public function edit($id)
@@ -74,7 +82,7 @@ class ProfileController extends Controller
         }
     }
 
-    public function update(Request $request)
+    public function update(Request $request): JsonResponse
     {
         $param = [
             'profile_id' => $request->profile_id,
@@ -82,17 +90,33 @@ class ProfileController extends Controller
             'date_of_birth' => $request->dob,
         ];
 
-        if ($request->hasFile('profile_picture')) {
-            $url = uploadFile('profile_picture', 'profile');
+        if ($request->hasFile('profile_img')) {
+            $url = uploadFile('profile_img', 'profile');
             $param['profile_img'] = $url;
-        }
-        // d($param);
-        $result = CurlAPI("users/editProfile", "POST", $param, 2);
-        // dd($result);
-        if ($result && @$result['success'] ==  true) {
-            return JSONResponse(200, 'Success.');
         } else {
-            return JSONResponse(400, 'Error.');
+            $param['profile_img'] = $request->old_profile_img ? $request->old_profile_img : '';
+        }
+
+        $result = CurlAPI("users/editProfile", "POST", $param, 2);
+
+        if ($result && @$result['success'] ==  true) {
+            return JSONResponse(200, 'Profile updated successfully.', ['redirect' => route('profile.index')]);
+        } else {
+            return JSONResponse(400, 'Failed to update profile');
+        }
+    }
+
+    public function destroy($profile_id): JsonResponse
+    {
+        $params = [
+            'profile_id' => $profile_id
+        ];
+        $result = CurlAPI("users/deleteProfile", "POST", $params, 2);
+
+        if ($result && @$result['success'] ==  true) {
+            return JSONResponse(200, 'Profile deleted successfully.', ['redirect' => route('profile.index')]);
+        } else {
+            return JSONResponse(400, 'Failed to delete profile');
         }
     }
 }

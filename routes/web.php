@@ -25,13 +25,17 @@ Route::get('explore', [PageController::class, 'explore'])->name('explore');
 Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
 Route::post('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
 
-Route::group(['middleware' => 'loggedin', 'as' => 'profile.', 'prefix' => 'profile'], function () {
 
+
+// Route::middleware(['loggedin'])->resource('profile', ProfileController::class);
+
+Route::group(['middleware' => 'loggedin', 'as' => 'profile.', 'prefix' => 'profile'], function () {
     Route::get('/manage', [ProfileController::class, 'index'])->name('index');
     Route::get('/add-profile', [ProfileController::class, 'add'])->name('add');
     Route::post('/add-profile', [ProfileController::class, 'store'])->name('store');
     Route::get('/edit-Profile/{id}', [ProfileController::class, 'edit'])->name('edit');
     Route::post('/edit-Profile', [ProfileController::class, 'update'])->name('update');
+    Route::post('/delete-Profile/{id}', [ProfileController::class, 'destroy'])->name('destroy');
 });
 
 
