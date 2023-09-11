@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PageDetailController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -41,3 +42,4 @@ Route::group(['middleware' => 'loggedin', 'as' => 'profile.', 'prefix' => 'profi
 
 //dynamic pages route
 Route::get('/{slug}', [PageController::class, 'index']);
+Route::get('/{pageslug}/{contentslug}', [PageDetailController::class, 'detail']);

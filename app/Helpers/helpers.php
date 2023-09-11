@@ -442,3 +442,10 @@ function isUserLoggedIn()
 {
     return Session::get('user_id') ? true : false;
 }
+
+
+function getContentUrl($value)
+{
+
+    return $value['url'];
+}
