@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ route('upcoming-epicon') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path d="M10.6665 2.6665V6.6665" stroke="white" stroke-width="1.5" stroke-miterlimit="10"
@@ -80,7 +80,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ route('new-popular') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
@@ -287,19 +287,19 @@
                                     alt=""> Subscribe</button>
                         </li>
                         <li class="subc-text"><a href="{{ route('profile.index') }}">Manage Profiles</a></li>
-                        <li class="subc-text"><a href="#/">Library</a></li>
-                        <li class="subc-text"><a href="#/">My Account</a></li>
-                        <li class="subc-text"><a href="#/">My Rewards</a></li>
-                        <li class="subc-text"><a href="#/">Settings</a></li>
-                        <li class="subc-text"><a href="#/">Help & Feedback</a></li>
-                        <li class="subc-text logout"><a href="#/">Log out</a></li>
+                        <li class="subc-text"><a href="{{route('library')}}">Library</a></li>
+                        <li class="subc-text"><a href="{{route('my-account')}}">My Account</a></li>
+                        <li class="subc-text"><a href="{{route('my-rewards')}}">My Rewards</a></li>
+                        <li class="subc-text"><a href="{{route('settings')}}">Settings</a></li>
+                        <li class="subc-text"><a href="{{route('feedback')}}">Help & Feedback</a></li>
+                        <li class="subc-text logout"><a href="javascript:void(0);">Log out</a></li>
                         <li class="subc-text atp">
-                            <a href="#/">About Us</a>
-                            <a href="#/">Terms of Use</a>
-                            <a href="#/">Privacy Policy</a>
+                            <a href="{{route('about')}}">About Us</a>
+                            <a href="{{route('terms-of-use')}}">Terms of Use</a>
+                            <a href="{{route('privacy')}}">Privacy Policy</a>
                         </li>
                     @elseloggedin
-                        <li class="subc-text login"><a href="#/">Login</a></li>
+                        <li class="subc-text login"><a href="javascript:void(0);">Login</a></li>
                     @endloggedin
 
                 </ul>

@@ -66,9 +66,9 @@
             <div class="col-lg-6 link-pos">
                 <div class="f-link">
                     <ul class="d-flex mb-0">
-                        <li><a href="">About Us</a></li>
-                        <li><a href="">Terms of Use</a></li>
-                        <li><a href="">Privacy Policy</a></li>
+                        <li><a href="{{route('about')}}">About Us</a></li>
+                        <li><a href="{{route('terms-of-use')}}">Terms of Use</a></li>
+                        <li><a href="{{route('privacy')}}">Privacy Policy</a></li>
                         <li><a href="">Help Centre</a></li>
                     </ul>
                 </div>
