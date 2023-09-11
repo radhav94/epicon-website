@@ -74,7 +74,7 @@
                         // $('#dynamic-content').html(response.content);
                     },
                     error: function(xhr, status, error) {
-                        console.log('error me aaya');
+                        console.log('in error');
                     }
                 });
             } else {
@@ -393,7 +393,7 @@
 
         $('.forgot-pwd-btn').click(function(e) {
             e.preventDefault();
-            alert("btn clicked");
+            // alert("btn clicked");
             $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-otp,.screen-set-pwd')
                 .hide();
             $('.left-side,.right-side,.screen-forgot-pwd').show();
@@ -441,6 +441,7 @@
                             $('.screen-login,.screen-verify,.screen-register,.left-side,.right-side,.screen-sucess-register,.screen-login-with-pwd,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
                                 .hide();
                             $('.screen-sucess-logged').show();
+                            window.location.href = 'http://local.epicon-revampv2-site.com/';
                         } else {
                             $('#login-result').html(response.payload.response.message);
                             // return false;
@@ -478,7 +479,7 @@
             if (otp_pin != '') {
 
                 var formData = $('#verify-forgot-number-form-id').serialize();
-                alert(formData);
+                // alert(formData);
                 $.ajax({
                     url: '{{ route('verifyforgototp') }}',
                     type: 'POST',
@@ -534,7 +535,7 @@
             if (set_password != '' && reenter_password != '' && set_password == reenter_password) {
 
                 var formData = $('#set-password-form-id').serialize();
-                alert("login sucess");
+                // alert("login sucess");
                 $.ajax({
                     url: '{{ route('resetpwdapi') }}',
                     type: 'POST',

@@ -292,14 +292,14 @@
                         <li class="subc-text"><a href="{{route('my-rewards')}}">My Rewards</a></li>
                         <li class="subc-text"><a href="{{route('settings')}}">Settings</a></li>
                         <li class="subc-text"><a href="{{route('feedback')}}">Help & Feedback</a></li>
-                        <li class="subc-text logout"><a href="#/">Log out</a></li>
+                        <li class="subc-text logout"><a href="javascript:void(0);">Log out</a></li>
                         <li class="subc-text atp">
-                            <a href="#/">About Us</a>
-                            <a href="#/">Terms of Use</a>
-                            <a href="#/">Privacy Policy</a>
+                            <a href="{{route('about')}}">About Us</a>
+                            <a href="{{route('terms-of-use')}}">Terms of Use</a>
+                            <a href="{{route('privacy')}}">Privacy Policy</a>
                         </li>
                     @elseloggedin
-                        <li class="subc-text login"><a href="#/">Login</a></li>
+                        <li class="subc-text login"><a href="javascript:void(0);">Login</a></li>
                     @endloggedin
 
                 </ul>

@@ -115,18 +115,22 @@ class LoginController extends Controller
         // dd($request->all());
         $userid = $request->post('mobilenumber');
         $password = $request->post('login_pwd');
+        // $userAgent = $request->post('userAgent');
         $postedData = [
             'user_id' => $userid,
-            'password' => $password
+            'password' => $password,
+            'user_agent' => 'WEB'
         ];
 
         $loginResponseData = CurlAPI("users/loginWithPassword", 'POST', $postedData, 2);
+        // dd($loginResponseData);
         $response['message'] = $loginResponseData['message'];
         if ($loginResponseData['success'] == true && !empty($loginResponseData['user_data'])) {
             $userdata = $loginResponseData['user_data'];
             $request->session()->put('user', $userdata);
+            $request->session()->put('user_id', $userid);
             $request->session()->put('user_token', $loginResponseData['token']);
-            return JSONResponse(200, 'User Logged In Successfully.', ['success' => true]);
+            return JSONResponse(200, 'User Logged In Successfully.', ['redirect' => url('/') , 'success' => true]);
         } else {
             return redirect('/');
         }
@@ -141,10 +145,10 @@ class LoginController extends Controller
                 'user_id' => $mobile_number,
                 'user_signup_method' => $signup_method,
             );
-            // $SendotpResponseData = [
-            //     "success" => true,
-            //     "message" => "OTP sent successfully."
-            // ];
+            $SendotpResponseData = [
+                "success" => true,
+                "message" => "OTP sent successfully."
+            ];
             $SendotpResponseData = CurlAPI("users/sendForgotPassOTP", 'POST', $SendotpRequestData, 2);
             $response['meassage'] = $SendotpResponseData['message'];
             // dd($SendotpResponseData);
@@ -172,10 +176,10 @@ class LoginController extends Controller
                 'user_signup_method' => $signup_method,
                 'otp' => $otp_pin,
             );
-            // $verifyotpResponseData = [
-            //     "success" => true,
-            //     "message" => "OTP verified successfully."
-            // ];
+            $verifyotpResponseData = [
+                "success" => true,
+                "message" => "OTP verified successfully."
+            ];
             $verifyotpResponseData = CurlAPI("users/verifyForgotPassOTP", 'POST', $verifyotpRequestData, 2);
             // dd($verifyotpResponseData);
 
@@ -219,10 +223,10 @@ class LoginController extends Controller
                 'user_signup_method' => $signup_method,
                 'password' => $password,
             );
-            // $verifyotpResponseData = [
-            //     "success" => true,
-            //     "message" => "OTP verified successfully."
-            // ];
+            $verifyotpResponseData = [
+                "success" => true,
+                "message" => "OTP verified successfully."
+            ];
             $verifyotpResponseData = CurlAPI("users/forgotPassword", 'POST', $verifyotpRequestData, 2);
             // dd($verifyotpResponseData);
             if (isset($verifyotpResponseData['user_data'])) {

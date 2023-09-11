@@ -43,9 +43,9 @@ Route::post('verifyforgototp', [LoginController::class, 'setForgotOTPVerificatio
 
 Route::post('resetpwdapi', [LoginController::class, 'ResetPasswordVerification'])->name('resetpwdapi');
 
-Route::get('login-popup', function () {
-    return view('epicon.login-popup');
-});
+// Route::get('login-popup', function () {
+//     return view('epicon.login-popup');
+// });
 
 Route::get('library', [LibraryController::class, 'index'])->name('library');
 
@@ -62,6 +62,18 @@ Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback'
 Route::get('upcoming-epicon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
 
 Route::get('new-popular', [PopularController::class, 'Popular'])->name('new-popular');
+
+Route::get('about', function () {
+    return view('static.about');
+})->name('about');
+
+Route::get('terms-of-use', function () {
+    return view('static.terms-of-use');
+})->name('terms-of-use');
+
+Route::get('privacy', function () {
+    return view('static.privacy');
+})->name('privacy');
 
 // Route::get('login/facebook', '\App\Http\Controllers\Auth\AuthSocialController@redirectToProvider')->name('facebook');
 

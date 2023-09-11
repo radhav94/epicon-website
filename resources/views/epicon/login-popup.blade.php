@@ -181,10 +181,12 @@
                                     <div class="input-field w-100 mb-3">
                                         <input class="form-control" id="mobilenumber" name="mobilenumber" placeholder="Email or Mobile Number">
                                         <input type="hidden" name="signup_method" id="signup_method" value="">
+                                        <input id="userAgent" name="userAgent" type="hidden" value="WEB">
                                         <span class="text-danger text-start d-flex mt-1 error" id="mobile-error" style="font-size: 12px;"></span>
                                     </div>
                                     <div class="input-field w-100 mb-3">
                                         <input class="form-control" id="login_pwd" name="login_pwd" type="password" placeholder="Enter Password">
+                                        
                                         <div class="eye-toggle" data-target="login_pwd">
                                         <a class="eye eye-open-login_pwd" style="display: none;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
@@ -1023,6 +1025,7 @@
             if (password.trim() === '') {
                 $('#login-pwd-error').text('Password is required');
             }
+            
 
             if($('input[id="customCheck"]').is(':checked')==true){
                 $("#customCheck").val(true);
