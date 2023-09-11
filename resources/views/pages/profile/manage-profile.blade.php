@@ -22,7 +22,7 @@
                         </li>
                     @endforeach
 
-                    @if (count($profiles) < 5)
+                    @if (count($profiles) < $profile_limit)
                         <li>
                             <a href="{{ route('profile.add') }}">
                                 <img src="{{ asset('assets/img/mn-add.png') }}" alt="img">
