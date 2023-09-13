@@ -55,6 +55,8 @@ Route::get('transaction-history', [UserAccountController::class, 'TransactionHis
 
 Route::get('my-rewards', [RewardsController::class, 'MyRewards'])->name('my-rewards');
 
+Route::post('redeemcoupon', [RewardsController::class, 'RedeemCouponCode'])->name('redeemcoupon');
+
 Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
 
 Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback');

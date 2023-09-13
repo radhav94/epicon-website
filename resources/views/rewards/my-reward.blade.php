@@ -7,7 +7,28 @@
 
 @section('content')
 
+    <!-- coupon modal start -->
+
+    <div class="modal fade coupon-model" id="redeem-popup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity: 1;">
+        <div class="modal-dialog modal-lg modal-dialog-centered px-3">
+            <div class="modal-content">
+                <div class="modal-body coupon-model-body text-center py-5">
+                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h4 class="text-white mt-4">Congratulations!</h4>
+                    <p class="w-75 text-white medium m-auto mb-4">You've successfully redeemed offer</p>
+                    <div class="coupon-code">
+                        <h6 class="code small">Coupon Code</h6>
+                        <p class="redeem-code">F E M C L K 10</p>
+                    </div>
+                    <p class="w-50 text-white small m-auto mb-4 mt-4">Your coupon is saved in your summary</p>
     
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- coupon modal end -->
+
     <section class="container w-100 my-4">
         <div class="row justify-content-center">
             <div class="col-sm-12">
@@ -114,7 +135,8 @@
                                $expiry_days = $interval->days;
                                  ?>
                                 <li>
-                                    <div class="redeem-top" id="Redeembtn">
+                                    <div class="redeem-top Redeembtn">
+                                        <input type="hidden" name="redeem_coupon" id="redeem_coupon" value="{{$offercontent['coupon_code']}}">
                                         <div class="logo-coin">
                                             <img src="{{ $offer_image }}" alt="logo">
                                             <h4><img src="{{ asset('/img/coin.svg') }}" alt="">{{$offercontent['epicoins']}}</h4>
@@ -126,7 +148,7 @@
                                     </div>
                                 </li>
                                 <?php } ?>
-                                <li>
+                               <!--  <li>
                                     <div class="redeem-top">
                                         <div class="logo-coin">
                                             <img src="{{ asset('/img/McD.svg') }}" alt="logo">
@@ -137,8 +159,8 @@
                                     <div class="redeem-bottom">
                                         Expires in<span>1 Day</span>
                                     </div>
-                                </li>
-                                <li>
+                                </li> -->
+                                <!-- <li>
                                     <div class="redeem-top">
                                         <div class="logo-coin">
                                             <img src="{{ asset('/img/McD.svg') }}" alt="logo">
@@ -149,7 +171,7 @@
                                     <div class="redeem-bottom">
                                         Expires in<span>1 Day</span>
                                     </div>
-                                </li>
+                                </li> -->
                                 <li>
                                     <div class="redeem-top">
                                         <div class="logo-coin">
@@ -229,21 +251,7 @@
 
         </div>
     </section>
-<!-- Congratulations Modal Popup -->
-    <section class="modal-popup" id="redeem-popup">
 
-    <div class="modal-wrapper enter_email">
-        <a class="close-btn-black" href="javascript:;"></a>
-        <h3 class="Congratulations">Congratulations!</h3>
-        <p class="your-redeemed-offer">You’ve successfully redeemed offer</p>
-        <div class="coupon_code">
-            <span>Coupon Code</span>
-            <p class="web-code-replace">Flat 300</p>
-        </div>
-        <p class="your-success">Your coupon is saved in your summary </p>
-
-    </div>
-    </section>
 
 @stop
 
@@ -251,38 +259,44 @@
   <script>
     $(document).ready(function() {
        $("#redeem-popup").hide();
-      $("#Redeembtn").click(function(e) {
+      $(".Redeembtn").click(function(e) {
             e.preventDefault();
-            alert("clicked on redeem");
-            $("#redeem-popup").show();
-            // var formData = $('#forgot-pwd-form-id').serialize();
-            // $.ajax({
-            //     url: '{{ route('sendforgototp') }}',
-            //     type: 'POST',
-            //     data: formData,
-            //     dataType: 'json',
-            //     headers: {
-            //         'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            //     },
-            //     success: function(response) {
-            //         // console.log(response.payload.user_id+'success me aaya');
-            //         var mobile = response.payload.user_id;
-            //         $('.mobile_no').html(mobile);
-            //         $("#userid_no").val(response.payload.user_id);
-            //         $("#usersignupmethod").val(response.payload.user_signup_method);
-            //         $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-set-pwd')
-            //             .hide();
-            //         $('.left-side,.right-side').show();
-            //         if (response.payload.success == true) {
-            //             $('.screen-forgot-otp').show();
-            //         } else {
-            //             $('#forgot-otp-result').html(response.payload.response.meassage);
-            //         }
-            //     },
-            //     error: function(xhr, status, error) {}
-            // });
-            // resendForgotOTP();
+            // alert("clicked on redeem");
+            
+            var formData = $('#redeem_coupon').val();
+            $('.redeem-code').html(formData);
+            var requestData = {
+                coupon_code: formData
+            };
+            $.ajax({
+                url: '{{ route('redeemcoupon') }}',
+                type: 'POST',
+                data: requestData,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    // console.log("on success");
+                    if(response.payload.success == true){
+                        $("#redeem-popup").show();
+                        setTimeout(function() {
+                            location.reload();
+                        }, 5000); // Refresh every 5000 milliseconds (5 seconds)
+                    }else{
+                        showToaster(response.payload.response.message, 2);
+                      // console.log("on fail");  
+                    }
+                    
+                },
+                error: function(xhr, status, error) {}
+            });
         });
+
+      $(".btn-close").click(function() {
+            $('#redeem-popup').hide();
+        });
+
   });
   </script>
 @stop

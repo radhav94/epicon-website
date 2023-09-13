@@ -19,4 +19,19 @@ class RewardsController extends Controller
             }
             // dd($walletArr);
     }
+
+    public function RedeemCouponCode(Request $request){
+       $coupon_code = $request->post('coupon_code'); 
+       // dd($coupon_code);
+       $SendCouponRequestData = array(
+                'offer_coupon_code' => $coupon_code,
+            );
+       $redeemApi = CurlAPI("rewards/epicoinsOffersRedeem",'POST',$SendCouponRequestData,2);
+       $response['message'] = $redeemApi['message'];
+       if ($redeemApi['success'] == true) {
+                return JSONResponse(200, 'Offer redeemed successfully.', ['response' => $response, 'success' => true]);
+            } else {
+                return JSONResponse(200, 'Coupon Redeem Failed', ['response' => $response, 'success' => false]);
+            }
+    }
 }
