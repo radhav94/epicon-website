@@ -5,6 +5,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PageDetailController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +38,15 @@ Route::group(['middleware' => 'loggedin', 'as' => 'profile.', 'prefix' => 'profi
     Route::get('/edit-Profile/{id}', [ProfileController::class, 'edit'])->name('edit');
     Route::post('/edit-Profile', [ProfileController::class, 'update'])->name('update');
     Route::post('/delete-Profile/{id}', [ProfileController::class, 'destroy'])->name('destroy');
+
+    Route::post('/setChildPin', [ProfileController::class, 'setChildPin'])->name('setChildPin');
 });
+
+Route::group(['middleware' => 'loggedin'], function () {
+    Route::any('logout', LogoutController::class)->name('logout');
+});
+
+
 
 
 //dynamic pages route

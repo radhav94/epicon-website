@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-
 use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
@@ -13,26 +12,46 @@ class ProfileController extends Controller
 
     public function __construct()
     {
-        $this->profile_limit = 3;
+        $this->profile_limit = config('global.max_profile_limit');
     }
-    public function index()
+
+    public function getProfileData()
     {
-        // dd(session()->all());
-        // dd(Session::get('user_token'));
         $result = CurlAPI("users/viewProfile", "POST", null, 2);
 
-        // dd($result);
         if ($result && @$result['success'] ==  true) {
 
             $profiles = $result['user_data']['profiles'];
 
             $profile_limit = $this->profile_limit;
 
-            return view('pages.profile.manage-profile', compact('result', 'profiles', 'profile_limit'));
+            $data = [
+                'result' => $result,
+                'profiles' => $profiles,
+                'profile_limit' => $profile_limit,
+            ];
+
+            session()->put('profile_data', $data);
+
+            return $data;
+        } else {
+            return false;
+        }
+    }
+
+    public function index()
+    {
+        // $res = getProfileData();
+        // dd($res);
+        $res = $this->getProfileData();
+        // dd($res);
+        if ($res) {
+            return view('pages.profile.manage-profile')->with('data', $res);
         } else {
             return view('pages.404');
         }
     }
+
     public function add()
     {
         return view('pages.profile.add-profile');
@@ -60,6 +79,8 @@ class ProfileController extends Controller
     }
     public function edit($id)
     {
+        // $all = request()->session()->all();
+        // dd($all);
         $result = CurlAPI("users/viewProfile", "POST", null, 2);
 
         $profile = '';
@@ -91,7 +112,7 @@ class ProfileController extends Controller
         ];
 
         if ($request->hasFile('profile_img')) {
-            $url = uploadFile('profile_img', 'profile');
+            $url = uploadFile('profile_img', 'profile', null, [100, 100]);
             $param['profile_img'] = $url;
         } else {
             $param['profile_img'] = $request->old_profile_img ? $request->old_profile_img : '';
@@ -117,6 +138,20 @@ class ProfileController extends Controller
             return JSONResponse(200, 'Profile deleted successfully.', ['redirect' => route('profile.index')]);
         } else {
             return JSONResponse(400, 'Failed to delete profile');
+        }
+    }
+
+    public function setChildPin(Request $request): JsonResponse
+    {
+        $param = ['pin' => $request->pin];
+
+        dd($param);
+        $result = CurlAPI("users/setChildPin", "POST", $param, 2);
+
+        if ($result && @$result['success'] ==  true) {
+            return JSONResponse(200, 'Profile updated successfully.', ['redirect' => route('profile.index')]);
+        } else {
+            return JSONResponse(400, 'Failed to update profile');
         }
     }
 }

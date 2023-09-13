@@ -67,6 +67,15 @@
     @notloggedin
         @include('components.login-reg-js')
     @endnotloggedin
+
+    <script>
+        $(document).ready(function() {
+            $('.logout').click(function() {
+                sendAjaxRequest('{{ route('logout') }}', 'POST', [],
+                    onSuccess, onError);
+            });
+        });
+    </script>
 </body>
 
 </html>

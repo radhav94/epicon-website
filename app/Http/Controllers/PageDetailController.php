@@ -11,7 +11,7 @@ class PageDetailController extends Controller
     public function detail($pageslug, $contentslug)
     {
         $result = CurlAPI("pages/episode/{$pageslug}/{$contentslug}", "GET", [], 1);
-        // dd($result);
+        dd($result);
         if ($result && @$result['success'] ==  true) {
 
             $displayLanguageParam = setLanguageParameter();
