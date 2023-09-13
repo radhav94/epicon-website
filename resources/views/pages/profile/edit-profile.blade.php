@@ -29,19 +29,25 @@
                             </a>
                             <h5 class="w-100 text-white text-center mb-0" style="margin-left: -32px;">Edit Profile</h5>
                         </div>
-                        <div class="add-propik">
-                            <a href=""><img src="{{ asset('assets/img/mn-edit-icon.png') }}" alt=""></a>
+
+                        <?php
+                        $profile_img = @$profile['profile_img'] != '' ? @$profile['profile_img'] : asset('assets/img/edit-profile-pik.png');
+                        ?>
+
+                        <div class="add-propik" style="background-image: url({{ $profile_img }});" id="add-propik">
+
+                            <a for='imgupload' href="#" onclick="$('#imgupload').trigger('click'); return false;">
+                                <img src="{{ asset('assets/img/mn-edit-icon.png') }}" alt="">
+                            </a>
+
+                            <input class="form-control" type="file" name="profile_img" accept="image/*" id="imgupload"
+                                style="display: none">
+
                         </div>
 
-                        <div class="input-field w-100 mb-3">
-                            <label for="exampleDataList" class="form-label text-white">Profile</label>
-                            <input class="form-control" type="file" name="profile_img" accept="image/*">
-
-                            @if (@$profile['profile_img'])
-                                <img src="{{ $profile['profile_img'] }}">
-                                <input type="text" value="{{ $profile['profile_img'] }}" name="old_profile_img">
-                            @endif
-                        </div>
+                        @if (@$profile['profile_img'])
+                            <input type="hidden" value="{{ $profile['profile_img'] }}" name="old_profile_img">
+                        @endif
 
                         <div class="input-field w-100 mb-3">
                             <label for="exampleDataList" class="form-label text-white">Your Name</label>
@@ -63,6 +69,22 @@
                                 value="{{ $profile['date_of_birth'] ?? '' }}">
                         </div>
 
+                        @if (@$profile['is_default'] == true && @$profile['kids'] == false)
+                            <div class="input-field sel-bor d-flex justify-content-between align-items-center w-100 mb-3">
+                                <label for="exampleDataList" class="form-label text-white mb-0" style="font-size: 14px;">
+                                    Set Child PIN</label>
+                                <button class="setchildpin" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                    type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12"
+                                        fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M0.7196 0.493211C0.999494 0.187872 1.47392 0.167245 1.77926 0.447139L7.2338 5.44714C7.38878 5.5892 7.47701 5.78977 7.47701 6C7.47701 6.21023 7.38878 6.41081 7.2338 6.55287L1.77926 11.5529C1.47392 11.8328 0.999494 11.8121 0.7196 11.5068C0.439705 11.2015 0.460333 10.727 0.765672 10.4471L5.61709 6L0.765672 1.55287C0.460333 1.27298 0.439705 0.79855 0.7196 0.493211Z"
+                                            fill="white" />
+                                    </svg>
+                                </button>
+                            </div>
+                        @endif
+
                         <button class="login-btn" type="submit">
                             Update
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -75,8 +97,12 @@
                                     fill="#070707" />
                             </svg>
                         </button>
-                        <button class="login-btn bg-transparent mt-0 text-white" type="button" id="delete_profile">Delete
-                            Profile</button>
+
+                        @if (@$profile['is_default'] == false)
+                            <button class="login-btn bg-transparent mt-0 text-white" type="button"
+                                id="delete_profile">Delete
+                                Profile</button>
+                        @endif
 
                     </div>
                 </form>
@@ -126,6 +152,28 @@
                 if (confirm("Are you sure you want to proceed with the action?")) {
                     sendAjaxRequest('{{ route('profile.destroy', $profile['id']) }}', 'POST', [],
                         onSuccess, onError);
+                }
+            });
+
+
+            $('#imgupload').on('change', function(event) {
+                const imageInput = event.target;
+                const imagePreview = $('#add-propik');
+
+                // Check if a file was selected
+                if (imageInput.files && imageInput.files[0]) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        var element = document.getElementById('add-propik');
+                        element.style.backgroundImage = "url(" + e.target.result + ")";
+
+                    };
+
+                    reader.readAsDataURL(imageInput.files[0]);
+                } else {
+                    // Hide the image preview if no file was selected
+                    // imagePreview.attr('src', '').hide();
                 }
             });
         });

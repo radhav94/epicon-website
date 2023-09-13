@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\Session;
-
+use Intervention\Image\ImageManagerStatic as Image;
 
 if (!function_exists('JSONResponse')) {
     function JSONResponse(int $statusCode, string $message, array $data = []): JsonResponse
@@ -350,11 +351,11 @@ if (!function_exists('uploadFile')) {
         }
 
         if ($size) {
-            $name = time() . '-' . mt_rand() . '-' . $size[2] . '.' . $file->getClientOriginalExtension();
+            $name = time() . '-' . mt_rand() . '-' . $size[0] . 'x' . $size[1] . '.' . $file->getClientOriginalExtension();
 
-            // $image_resize = Image::make($file->getRealPath());
-            // $image_resize->resize($size[0], $size[1]);
-            // $image_resize->save(public_path($folder . '/' . $name));
+            $image_resize = Image::make($file->getRealPath());
+            $image_resize->resize($size[0], $size[1]);
+            $image_resize->save(public_path('uploads/' . $folder . '/' . $name));
         } else {
             $name = time() . '-' . mt_rand() . '.' . $file->getClientOriginalExtension();
 
@@ -448,4 +449,15 @@ function getContentUrl($value)
 {
 
     return $value['url'];
+}
+
+
+function getProfileData()
+{
+    if (session()->get('profile_data')) {
+        return session()->get('profile_data');
+    }
+    $controller = new ProfileController();
+    $result = $controller->getProfileData();
+    return $result;
 }

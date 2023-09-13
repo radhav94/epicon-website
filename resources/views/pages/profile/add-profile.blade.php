@@ -29,13 +29,17 @@
                             </a>
                             <h5 class="w-100 text-white text-center mb-0" style="margin-left: -32px;">Add Profile</h5>
                         </div>
-                        <div class="add-propik">
-                            <a href=""><img src="{{ asset('assets/img/mn-edit-icon.png') }}" alt=""></a>
-                        </div>
+                        <?php
+                        $profile_img = asset('assets/img/edit-profile-pik.png');
+                        ?>
 
-                        <div class="input-field w-100 mb-3">
-                            <label for="exampleDataList" class="form-label text-white">Profile</label>
-                            <input class="form-control" type="file" name="profile_img" accept="image/*">
+                        <div class="add-propik" style="background-image: url({{ $profile_img }});" id="add-propik">
+                            <a for='imgupload' href="#" onclick="$('#imgupload').trigger('click'); return false;">
+                                <img src="{{ asset('assets/img/mn-edit-icon.png') }}" alt="">
+                            </a>
+
+                            <input class="form-control" type="file" name="profile_img" accept="image/*" id="imgupload"
+                                style="display: none">
                         </div>
 
                         <div class="input-field w-100 mb-3">
@@ -56,7 +60,7 @@
                             <input class="form-control" type="date" id="exampleDataList" name="dob">
                         </div>
 
-                        <div class="input-field sel-bor d-flex justify-content-between align-items-center w-100 mb-3">
+                        {{-- <div class="input-field sel-bor d-flex justify-content-between align-items-center w-100 mb-3">
                             <label for="exampleDataList" class="form-label text-white mb-0" style="font-size: 14px;">Set
                                 Child PIN</label>
                             <button class="setchildpin" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -67,7 +71,7 @@
                                         fill="white" />
                                 </svg>
                             </button>
-                        </div>
+                        </div> --}}
 
                         <button class="login-btn">
                             Create Profile
@@ -121,6 +125,27 @@
                 submitHandler: function(form) {
                     sendAjaxRequest($(form).attr('action'), 'POST', new FormData(form),
                         onSuccess, onError);
+                }
+            });
+
+            $('#imgupload').on('change', function(event) {
+                const imageInput = event.target;
+                const imagePreview = $('#add-propik');
+
+                // Check if a file was selected
+                if (imageInput.files && imageInput.files[0]) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        var element = document.getElementById('add-propik');
+                        element.style.backgroundImage = "url(" + e.target.result + ")";
+
+                    };
+
+                    reader.readAsDataURL(imageInput.files[0]);
+                } else {
+                    // Hide the image preview if no file was selected
+                    // imagePreview.attr('src', '').hide();
                 }
             });
 

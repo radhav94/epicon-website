@@ -238,48 +238,39 @@
                 </svg>
                 <ul class="profile-drop-down list-unstyled">
                     @loggedin
+                        <?php
+                        $profile = getProfileData();
+                        ?>
                         <li class="profile-main p-3">
-                            <a href="#/">
-                                <div class="profile-pik girl-bg active">
-                                    <img src="{{ asset('assets/img/profile-girl.png') }}" alt="">
-                                </div>
-                                <span class="pro-name">Abhishek</span>
-                            </a>
-                            <a href="#/">
-                                <div class="profile-pik boy-bg">
-                                    <img src="{{ asset('assets/img/profile-boy.png') }}" alt="">
-                                </div>
-                                <span class="pro-name">Ajay</span>
-                            </a>
-                            <a href="#/">
-                                <div class="profile-pik girl-bg">
-                                    <img src="{{ asset('assets/img/profile-girl.png') }}" alt="">
-                                </div>
-                                <span class="pro-name">Ajay</span>
-                            </a>
-                            <a href="#/">
-                                <div class="profile-pik girl-bg">
-                                    <img src="{{ asset('assets/img/profile-girl.png') }}" alt="">
-                                </div>
-                                <span class="pro-name">Ajay</span>
-                            </a>
-                            <a href="#/">
-                                <div class="profile-pik boy-bg">
-                                    <img src="{{ asset('assets/img/profile-boy.png') }}" alt="">
-                                </div>
-                                <span class="pro-name">Ajay</span>
-                            </a>
-                            <a href="#/">
-                                <div class="profile-pik pro-add">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="49" height="48"
-                                        viewBox="0 0 49 48" fill="none">
-                                        <path
-                                            d="M24.3906 9C24.7884 9 25.17 9.15804 25.4513 9.43934C25.7326 9.72064 25.8906 10.1022 25.8906 10.5V22H37.3906C37.7885 22 38.17 22.158 38.4513 22.4393C38.7326 22.7206 38.8906 23.1022 38.8906 23.5C38.8906 23.8978 38.7326 24.2794 38.4513 24.5607C38.17 24.842 37.7885 25 37.3906 25H25.8906V36.5C25.8906 36.8978 25.7326 37.2794 25.4513 37.5607C25.17 37.842 24.7884 38 24.3906 38C23.9928 38 23.6113 37.842 23.33 37.5607C23.0487 37.2794 22.8906 36.8978 22.8906 36.5V25H11.3906C10.9928 25 10.6113 24.842 10.33 24.5607C10.0487 24.2794 9.89062 23.8978 9.89062 23.5C9.89062 23.1022 10.0487 22.7206 10.33 22.4393C10.6113 22.158 10.9928 22 11.3906 22H22.8906V10.5C22.8906 10.1022 23.0487 9.72064 23.33 9.43934C23.6113 9.15804 23.9928 9 24.3906 9Z"
-                                            fill="white" />
-                                    </svg>
-                                </div>
-                                <span class="pro-name">ADD</span>
-                            </a>
+                            @if ($profile)
+                                @foreach ($profile['profiles'] as $key => $value)
+                                    <?php
+                                    $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : asset('assets/img/edit-profile-pik.png');
+                                    ?>
+
+                                    <a href="#/">
+                                        <div class="profile-pik girl-bg active">
+                                            <img src="{{ $profile_img }}" alt="">
+                                        </div>
+                                        <span class="pro-name">{{ ucfirst(@$value['name']) }}</span>
+                                    </a>
+                                @endforeach
+
+                                @if (count($profile['profiles']) < config('global.max_profile_limit'))
+                                    <a href="{{ route('profile.add') }}">
+                                        <div class="profile-pik pro-add">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="49" height="48"
+                                                viewBox="0 0 49 48" fill="none">
+                                                <path
+                                                    d="M24.3906 9C24.7884 9 25.17 9.15804 25.4513 9.43934C25.7326 9.72064 25.8906 10.1022 25.8906 10.5V22H37.3906C37.7885 22 38.17 22.158 38.4513 22.4393C38.7326 22.7206 38.8906 23.1022 38.8906 23.5C38.8906 23.8978 38.7326 24.2794 38.4513 24.5607C38.17 24.842 37.7885 25 37.3906 25H25.8906V36.5C25.8906 36.8978 25.7326 37.2794 25.4513 37.5607C25.17 37.842 24.7884 38 24.3906 38C23.9928 38 23.6113 37.842 23.33 37.5607C23.0487 37.2794 22.8906 36.8978 22.8906 36.5V25H11.3906C10.9928 25 10.6113 24.842 10.33 24.5607C10.0487 24.2794 9.89062 23.8978 9.89062 23.5C9.89062 23.1022 10.0487 22.7206 10.33 22.4393C10.6113 22.158 10.9928 22 11.3906 22H22.8906V10.5C22.8906 10.1022 23.0487 9.72064 23.33 9.43934C23.6113 9.15804 23.9928 9 24.3906 9Z"
+                                                    fill="white" />
+                                            </svg>
+                                        </div>
+                                        <span class="pro-name">ADD</span>
+                                    </a>
+                                @endif
+                            @endif
+
                         </li>
                         <li class="exclusive-subc w-100">
                             <p class="m-0 small">Get access to exclusive content, with no ad breaks.</p>
@@ -287,16 +278,16 @@
                                     alt=""> Subscribe</button>
                         </li>
                         <li class="subc-text"><a href="{{ route('profile.index') }}">Manage Profiles</a></li>
-                        <li class="subc-text"><a href="{{route('library')}}">Library</a></li>
-                        <li class="subc-text"><a href="{{route('my-account')}}">My Account</a></li>
-                        <li class="subc-text"><a href="{{route('my-rewards')}}">My Rewards</a></li>
-                        <li class="subc-text"><a href="{{route('settings')}}">Settings</a></li>
-                        <li class="subc-text"><a href="{{route('feedback')}}">Help & Feedback</a></li>
+                        <li class="subc-text"><a href="{{ route('library') }}">Library</a></li>
+                        <li class="subc-text"><a href="{{ route('my-account') }}">My Account</a></li>
+                        <li class="subc-text"><a href="{{ route('my-rewards') }}">My Rewards</a></li>
+                        <li class="subc-text"><a href="{{ route('settings') }}">Settings</a></li>
+                        <li class="subc-text"><a href="{{ route('feedback') }}">Help & Feedback</a></li>
                         <li class="subc-text logout"><a href="javascript:void(0);">Log out</a></li>
                         <li class="subc-text atp">
-                            <a href="{{route('about')}}">About Us</a>
-                            <a href="{{route('terms-of-use')}}">Terms of Use</a>
-                            <a href="{{route('privacy')}}">Privacy Policy</a>
+                            <a href="{{ route('about') }}">About Us</a>
+                            <a href="{{ route('terms-of-use') }}">Terms of Use</a>
+                            <a href="{{ route('privacy') }}">Privacy Policy</a>
                         </li>
                     @elseloggedin
                         <li class="subc-text login"><a href="javascript:void(0);">Login</a></li>

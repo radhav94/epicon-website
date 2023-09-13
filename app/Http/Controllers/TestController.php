@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+        $res = getProfileData();
+        dd($res);
+    }
+    public function index1()
+    {
 
-       /* $routenamed = 'home-v2';
+        /* $routenamed = 'home-v2';
         $epicwebArr = CurlAPI("pages/" . $routenamed, "GET", ['displayLanguage' => 'ENGLISH', 'listLanguage' => 'all', 'page' => 1, 'tray_limit' => 5]);
 
         dd($epicwebArr);*/
