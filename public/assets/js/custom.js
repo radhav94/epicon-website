@@ -46,13 +46,6 @@ $(document).ready(function () {
     ]
   });
 
-  $('.login-carousel').not('.slick-initialized').slick({
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    dots: true,
-  });
 
   // on hamburger click
   document.querySelector(".hamburger").addEventListener("click", function () {

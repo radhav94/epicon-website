@@ -19,7 +19,7 @@ class LoggedIn
             return $next($request);
         }
 
-        return route('homepage');
+        return redirect(route('homepage'));
         // abort(403, 'Unauthorized action.');
     }
 }
