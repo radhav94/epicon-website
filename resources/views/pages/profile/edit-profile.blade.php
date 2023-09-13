@@ -12,7 +12,7 @@
         <div class="row justify-content-center">
             <div class="col-sm-4 col-md-6 col-lg-4">
 
-                <form method="POST" action="{{ route('profile.update') }}" id="profileUpdate" autocomplete="off">
+                <form method="POST" action="{{ route('profile.update') }}" id="profileAdd" autocomplete="off">
                     <input type="hidden" name="profile_id" value="{{ $profile['id'] }}" id="profile_id">
                     <div class="add-profile">
                         <div class="login-title">
@@ -99,8 +99,8 @@
                         </button>
 
                         @if (@$profile['is_default'] == false)
-                            <button class="login-btn bg-transparent mt-0 text-white" type="button"
-                                id="delete_profile">Delete
+                            <button class="login-btn bg-transparent mt-0 text-white" type="button" id="delete_profile"
+                                data-url="{{ route('profile.destroy', $profile['id']) }}">Delete
                                 Profile</button>
                         @endif
 
@@ -120,62 +120,5 @@
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('.emptyText').click(function() {
-                $(this).parents('.input-field').find('input').val('');
-            });
-
-            $("#profileUpdate").validate({
-                rules: {
-                    name: {
-                        required: true,
-                        minlength: 3
-                    },
-                    dob: {
-                        required: true,
-                        date: true
-                    },
-                },
-                errorPlacement: function(error, element) {
-                    error.appendTo(element.parent(".input-field"));
-                },
-                submitHandler: function(form) {
-
-                    sendAjaxRequest($(form).attr('action'), 'POST', new FormData(form),
-                        onSuccess, onError);
-
-                }
-            });
-
-            $('#delete_profile').click(function() {
-                if (confirm("Are you sure you want to proceed with the action?")) {
-                    sendAjaxRequest('{{ route('profile.destroy', $profile['id']) }}', 'POST', [],
-                        onSuccess, onError);
-                }
-            });
-
-
-            $('#imgupload').on('change', function(event) {
-                const imageInput = event.target;
-                const imagePreview = $('#add-propik');
-
-                // Check if a file was selected
-                if (imageInput.files && imageInput.files[0]) {
-                    const reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        var element = document.getElementById('add-propik');
-                        element.style.backgroundImage = "url(" + e.target.result + ")";
-
-                    };
-
-                    reader.readAsDataURL(imageInput.files[0]);
-                } else {
-                    // Hide the image preview if no file was selected
-                    // imagePreview.attr('src', '').hide();
-                }
-            });
-        });
-    </script>
+    <script src="{{ asset('assets/js/profile.js') }}"></script>
 @stop

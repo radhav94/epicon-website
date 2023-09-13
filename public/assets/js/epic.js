@@ -101,20 +101,29 @@ $(document).on('click', '.emptyText', function () {
 $(document).on('click', '.addToList', function () {
     let action = $(this).data('action');
     let id = $(this).data('id');
+    let type = $(this).data('type');
 
     let element = $(this);
 
     let requestData = {
         content_id: id,
         action: action,
+        type: type,
     };
 
     sendAjaxRequest(APP_URL + '/wishlist', 'POST', JSON.stringify(requestData),
         onWishlistSuccess, onWishlistError, 'application/json');
 
     function onWishlistSuccess(response) {
-        element.data('action', element.data('action') === 'add' ? 'delete' : 'add');
-        element.toggleClass('add-icon delete-icon');
+        console.log('type : ' + type);
+        if (type == 1) {
+            console.log(response.payload?.icon);
+            element.replaceWith(response.payload?.icon);
+        } else {
+            element.data('action', element.data('action') === 'add' ? 'delete' : 'add');
+            element.toggleClass('add-icon delete-icon');
+        }
+
 
         showToaster(response?.message, 1);
     }
@@ -124,3 +133,10 @@ $(document).on('click', '.addToList', function () {
     }
 });
 // end start add to wishlist
+
+$(document).on('keydown', '.onlydigit', function (e) {
+    if (e.key.match(/[^0-9]/) && e.key !== 'Backspace' && e.key !== 'Delete' && e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') {
+        e.preventDefault();
+    }
+});
+

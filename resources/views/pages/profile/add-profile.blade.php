@@ -101,54 +101,6 @@
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
+    <script src="{{ asset('assets/js/profile.js') }}"></script>
 
-            $('.emptyText').click(function() {
-                $(this).parents('.input-field').find('input').val('');
-            });
-
-            $("#profileAdd").validate({
-                rules: {
-                    name: {
-                        required: true,
-                        minlength: 3
-                    },
-                    dob: {
-                        required: true,
-                        date: true
-                    },
-                },
-                errorPlacement: function(error, element) {
-                    error.appendTo(element.parent(".input-field"));
-                },
-                submitHandler: function(form) {
-                    sendAjaxRequest($(form).attr('action'), 'POST', new FormData(form),
-                        onSuccess, onError);
-                }
-            });
-
-            $('#imgupload').on('change', function(event) {
-                const imageInput = event.target;
-                const imagePreview = $('#add-propik');
-
-                // Check if a file was selected
-                if (imageInput.files && imageInput.files[0]) {
-                    const reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        var element = document.getElementById('add-propik');
-                        element.style.backgroundImage = "url(" + e.target.result + ")";
-
-                    };
-
-                    reader.readAsDataURL(imageInput.files[0]);
-                } else {
-                    // Hide the image preview if no file was selected
-                    // imagePreview.attr('src', '').hide();
-                }
-            });
-
-        });
-    </script>
 @stop
