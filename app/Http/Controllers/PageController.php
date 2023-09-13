@@ -10,12 +10,8 @@ class PageController extends Controller
 {
     public function index($slug = 'home-v2')
     {
-        // dd(session()->all());
-        // Session::flush();
-        // dd(Session::all());
         // $res = getWishlist();
         // dd($res);
-        // dd(getWishlist());
 
         $params = [
             'slug' => $slug,

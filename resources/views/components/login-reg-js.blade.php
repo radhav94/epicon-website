@@ -7,6 +7,14 @@
                 .hide();
             $('#login-modal').show();
             $('#login-modal').addClass("show");
+
+            $('.login-carousel').not('.slick-initialized').slick({
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                dots: true,
+            });
         });
 
         $(".closebtn").click(function() {
@@ -306,8 +314,9 @@
                                 $('.screen-register').show();
                                 $('.screen-login-with-pwd').hide();
                             } else {
-                                $('.modal-content').hide();
-                                // location.reload(true);
+                                // $('.modal-content').hide();
+                                location.reload();
+                                return false;
                             }
                             // alert("true resp");
                         } else {
@@ -441,7 +450,11 @@
                             $('.screen-login,.screen-verify,.screen-register,.left-side,.right-side,.screen-sucess-register,.screen-login-with-pwd,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
                                 .hide();
                             $('.screen-sucess-logged').show();
-                            window.location.href = 'http://local.epicon-revampv2-site.com/';
+                            setTimeout(function() {
+                                window.location.href = response.payload.redirect;
+                            }, 3000);
+                            return false;
+
                         } else {
                             $('#login-result').html(response.payload.response.message);
                             // return false;
@@ -568,5 +581,16 @@
             }
         });
 
+        //focus otp input
+        $(".childpin-input .mx-1").on("input", function() {
+            const maxLength = parseInt($(this).attr("maxlength"));
+            const currentLength = $(this).val().length;
+
+            // If the current input field is filled, move to the next field
+            if (currentLength === maxLength) {
+                $(this).next(".mx-1").val('');
+                $(this).next(".mx-1").focus();
+            }
+        });
     });
 </script>
