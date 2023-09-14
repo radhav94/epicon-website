@@ -375,7 +375,7 @@
                             // $('#register-result').html('');
                             $("#username").text(response.payload.name);
                             // $("#sign_method").val(response.payload.user_signup_method);
-                            $('.screen-login,.screen-verify,.screen-register,.left-side,.right-side,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
+                            $('.screen-login,.screen-verify,.screen-register,.left-side,.right-side,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd,.better-solution')
                                 .hide();
                             $('.screen-sucess-register').show();
                         } else {
@@ -397,6 +397,7 @@
             e.preventDefault();
             $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd.screen-sucess-register').hide();
             $('.choose-interests').show();
+            $('.better-solution').show();
         });
 
         $('.login-btn-pwd').click(function(e) {

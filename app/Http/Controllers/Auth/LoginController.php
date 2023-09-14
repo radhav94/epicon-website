@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -261,10 +262,14 @@ class LoginController extends Controller
     }
 
     public function choose_interests() {
+        $request = Request();
+        $request->session()->put('test', 'test');
         return view('components.choose-interests');            
     }
 
     public function getGenreList() {
+        $request = Request();
+        echo $request->session()->get('test');
         $genrelist = CurlAPI("v2profilecontent/genrelist", 'GET', [], 1);
         return JSONResponse(200, '', ['response' => $genrelist, 'message' => $genrelist['message'], 'success' => $genrelist['success']]);
     }
@@ -272,9 +277,37 @@ class LoginController extends Controller
     public function saveGenreForUser() {
         $request = Request();
         $genre = $request->post('chooseGenre') ? $request->post('chooseGenre') : [];
+        $curlData = json_encode(["genre" => $genre]);
+        //print_r($curlData);
+        $user_token = $request->session()->get('user_token');
+        $curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'http://contentapi-njsapi.epicon.in/index/v2profilecontent/savegenrelist?auth_token=szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS =>$curlData,
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json',
+    "Authorization: $user_token"
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+//echo $response;
+$genrelist = json_decode($response);
+//print_r($genrelist);
+
         if ($genre) {
-            $genrelist = CurlAPI("v2profilecontent/savegenrelist", 'POST', $genre, 1);
-            return JSONResponse(200, '', ['message' => $genrelist['message'], 'success' => $genrelist['success']]);
+            //$genrelist = CurlAPI("v2profilecontent/savegenrelist", 'POST', $curlData, 1);
+            return JSONResponse(200, '', ['message' => $genrelist->message, 'success' => $genrelist->success]);
         }
         
     }
