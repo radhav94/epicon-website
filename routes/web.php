@@ -26,6 +26,7 @@ Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.lo
 Route::get('explore', [PageController::class, 'explore'])->name('explore');
 Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
 Route::post('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
+Route::post('clap', [PageDetailController::class, 'clap'])->name('clap');
 
 
 
@@ -51,4 +52,4 @@ Route::group(['middleware' => 'loggedin'], function () {
 
 //dynamic pages route
 Route::get('/{slug}', [PageController::class, 'index']);
-Route::get('/{pageslug}/{contentslug}', [PageDetailController::class, 'detail']);
+Route::get('/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);

@@ -455,7 +455,7 @@ function isUserLoggedIn()
 function getContentUrl($value)
 {
 
-    return $value['url'];
+    return url($value['url']);
 }
 
 
@@ -467,4 +467,9 @@ function getProfileData()
     $controller = new ProfileController();
     $result = $controller->getProfileData();
     return $result;
+}
+
+function formatDate($date, $format = 'd F Y')
+{
+    return date($format, strtotime($date));
 }
