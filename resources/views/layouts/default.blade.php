@@ -34,6 +34,9 @@
     @include('layouts.footer')
 
     <style>
+        .add-icon {
+            background-image: url("../img/add-icon.svg") !important;
+        }
         .delete-icon {
             background-image: url("../img/subs-icon.svg") !important;
         }

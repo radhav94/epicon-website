@@ -83,13 +83,13 @@
                                     <?php } ?>
                                 </ul>
 
-                                <div class="delete-history mt-5">
+                                <!-- <div class="delete-history mt-5">
                                     <p>All your history will be auto-deleted after 30 days. You can choose to turn it off or delete now.</p>
                                     <div class="d-flex">
                                         <button class="border-btn">Turn Off</button>
                                         <button class="fill-btn">Delete Now</button>
                                     </div>
-                                </div>
+                                </div> -->
 
                             </div>
                             <?php } ?>

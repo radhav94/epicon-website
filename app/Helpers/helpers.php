@@ -222,6 +222,12 @@ function freePremiumDiv($val)
     echo (@$val['free_premium'] == true) ? '<span class="crown position-absolute"><img src="' . asset('assets/img/crown.svg') . '" alt=""></span>' : '';
 }
 
+// function isPopularDiv($val)
+// {
+//     echo (@$val['is_popular'] == true) ? '<span><img src="' . asset('assets/img/fire-emoji.png') . '" alt=""></span>' : '';
+// }
+
+
 function topTenDiv($val)
 {
     if (@$val['is_top10'] == true) {

@@ -3,8 +3,8 @@
     $(document).ready(function() {
 
         $('.login').click(function() {
-            $('.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                .hide();
+            $('.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd').hide();
+            $('.left-side,.right-side').show();
             $('#login-modal').show();
             $('#login-modal').addClass("show");
 

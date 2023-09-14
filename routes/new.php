@@ -63,7 +63,7 @@ Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback'
 
 Route::get('upcoming-epicon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
 
-Route::get('new-popular', [PopularController::class, 'Popular'])->name('new-popular');
+Route::get('new-popular', [PopularController::class, 'NewsPopular'])->name('new-popular');
 
 Route::get('about', function () {
     return view('static.about');
