@@ -22,12 +22,12 @@
                         <li class="nav-item" role="presentation">
                           <button class="nav-link" id="history" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">History</button>
                         </li>
-                        <div class="filter-library">
+                        <!-- <div class="filter-library">
                             <select name="" id="">
                                 <option value="">Sort By</option>
                                 <option value="">2</option>
                             </select>
-                        </div>
+                        </div> -->
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="my-list">
