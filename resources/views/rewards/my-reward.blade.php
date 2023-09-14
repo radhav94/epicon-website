@@ -282,7 +282,7 @@
                         $("#redeem-popup").show();
                         setTimeout(function() {
                             location.reload();
-                        }, 5000); // Refresh every 5000 milliseconds (5 seconds)
+                        }, 2000); // Refresh every 5000 milliseconds (5 seconds)
                     }else{
                         showToaster(response.payload.response.message, 2);
                       // console.log("on fail");  
