@@ -6,259 +6,71 @@
 @stop
 
 @section('content')
-
+<?php //dd($popular[0]); ?>
     <section class="container">
         <div class="new-popular-main">
             <h4 class="new-popularheading text-white mb-3">New & Popular</h4>
             <div class="card-details">
+                <?php foreach($popular as $val){
+                $cover_img = isset($val['cover_image']) ? @$val['cover_image']['medium'] : '';
+                $generes = array_column($val['genres_assign'] ?? [], 'name');
+
+    $sub_text = [];
+
+    if (isset($val['publish_start_date'])) {
+        $date_text = date('Y', strtotime($val['publish_start_date']));
+    }
+    if (isset($val['publish_start_date'])) {
+        $sub_text[] = date('Y', strtotime($val['publish_start_date']));
+    }
+    // $sub_text[] = '3 Language';
+
+    if ($generes) {
+        $sub_text[] = implode(" . ", $generes);
+    }
+    if (isset($val['age_limit'])) {
+        $sub_text[] = $val['age_limit'];
+    }
+
+
+    $sub_points = (@$val['age_limit']) ? '<li class="ps-1">' . @$val['age_limit'] . '</li>' : '';
+
+    if ($generes) {
+        foreach ($generes as $key => $genre) {
+            $sub_points .= '<li>' . $genre . '</li>';
+        }
+    }
+     $wishlist = getWishlist();
+     // dd($wishlist);
+    //dd($sub_points); ?>
                 <div class="card-body">
-                    <span class="crown position-absolute"><img src="{{ asset('/img/crown.svg') }}" alt=""></span>
+                    {!! freePremiumDiv($val) !!}
+                    <?php if($val['is_popular'] == true){ ?>
                     <h6 class="popular-head text-white">
                         <span><img src="{{ asset('/img/fire-emoji.png') }}" alt=""></span>Most Popular
                     </h6>
-                    <div class="upper-img">
-                        <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                    </div>
+                    <?php } ?>
+                    <a class="upper-img" href="{{ url($val['url'] ?? '/new-popular') }}">
+                        <img src="{{ $cover_img }}" alt="">
+                    </a>
                     <div class="bottom-text d-flex mt-2">
                         <div class="left-text">
-                            <h4 class="text-heading text-white">Inside Edge 3</h4>
+                            <h4 class="text-heading text-white">{{$val['title']}}</h4>
                             <ul class="text-white">
-                                <li>U/A 13+</li>
+                                <?php echo $sub_points ?>
+                                <!-- <li>{{$val['age_limit']}}</li>
                                 <li>Drama</li>
-                                <li>Comedy</li>
-                                <li>2023</li>
+                                <li>Comedy</li> -->
+                                <li>{{$date_text}}</li>
                             </ul>
                         </div>
-                        <button class="addbutton">
-                            <img src="{{ asset('/img/round-add.png') }}" alt="">
-                        </button>
+                        <!-- <button class="addbutton"> -->
+                            <!-- <img src="{{ asset('/img/round-add.png') }}" alt=""> -->
+                            {!! getWishListAction($val, $wishlist, 2) !!}
+                        <!-- </button> -->
                     </div>
                 </div>
-
-                <div class="card-body">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
-                    <h6 class="popular-head-star text-white">
-                        <span><img src="{{ asset('/img/star.png') }}" alt=""></span>New
-                    </h6>
-                    <div class="upper-img">
-                        <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                    </div>
-                    <div class="bottom-text d-flex mt-2">
-                        <div class="left-text">
-                            <h4 class="text-heading text-white">Inside Edge 3</h4>
-                            <ul class="text-white">
-                                <li>U/A 13+</li>
-                                <li>Drama</li>
-                                <li>Comedy</li>
-                                <li>2023</li>
-                            </ul>
-                        </div>
-                        <button class="addbutton">
-                            <img src="{{ asset('/img/round-add.png') }}" alt="">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="upper-img">
-                        <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                    </div>
-                    <div class="bottom-text d-flex mt-2">
-                        <div class="left-text">
-                            <h4 class="text-heading text-white">Inside Edge 3</h4>
-                            <ul class="text-white">
-                                <li>U/A 13+</li>
-                                <li>Drama</li>
-                                <li>Comedy</li>
-                                <li>2023</li>
-                            </ul>
-                        </div>
-                        <button class="addbutton">
-                            <img src="{{ asset('/img/round-add.png') }}" alt="">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="upper-img">
-                        <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                    </div>
-                    <div class="bottom-text d-flex mt-2">
-                        <div class="left-text">
-                            <h4 class="text-heading text-white">Inside Edge 3</h4>
-                            <ul class="text-white">
-                                <li>U/A 13+</li>
-                                <li>Drama</li>
-                                <li>Comedy</li>
-                                <li>2023</li>
-                            </ul>
-                        </div>
-                        <button class="addbutton">
-                            <img src="{{ asset('/img/round-add.png') }}" alt="">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="upper-img">
-                        <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                    </div>
-                    <div class="bottom-text d-flex mt-2">
-                        <div class="left-text">
-                            <h4 class="text-heading text-white">Inside Edge 3</h4>
-                            <ul class="text-white">
-                                <li>U/A 13+</li>
-                                <li>Drama</li>
-                                <li>Comedy</li>
-                                <li>2023</li>
-                            </ul>
-                        </div>
-                        <button class="addbutton">
-                            <img src="{{ asset('/img/round-add.png') }}" alt="">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="upper-img">
-                        <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                    </div>
-                    <div class="bottom-text d-flex mt-2">
-                        <div class="left-text">
-                            <h4 class="text-heading text-white">Inside Edge 3</h4>
-                            <ul class="text-white">
-                                <li>U/A 13+</li>
-                                <li>Drama</li>
-                                <li>Comedy</li>
-                                <li>2023</li>
-                            </ul>
-                        </div>
-                        <button class="addbutton">
-                            <img src="{{ asset('/img/round-add.png') }}" alt="">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="upper-img">
-                        <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                    </div>
-                    <div class="bottom-text d-flex mt-2">
-                        <div class="left-text">
-                            <h4 class="text-heading text-white">Inside Edge 3</h4>
-                            <ul class="text-white">
-                                <li>U/A 13+</li>
-                                <li>Drama</li>
-                                <li>Comedy</li>
-                                <li>2023</li>
-                            </ul>
-                        </div>
-                        <button class="addbutton">
-                            <img src="{{ asset('/img/round-add.png') }}" alt="">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="upper-img">
-                        <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                    </div>
-                    <div class="bottom-text d-flex mt-2">
-                        <div class="left-text">
-                            <h4 class="text-heading text-white">Inside Edge 3</h4>
-                            <ul class="text-white">
-                                <li>U/A 13+</li>
-                                <li>Drama</li>
-                                <li>Comedy</li>
-                                <li>2023</li>
-                            </ul>
-                        </div>
-                        <button class="addbutton">
-                            <img src="{{ asset('/img/round-add.png') }}" alt="">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="upper-img">
-                        <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                    </div>
-                    <div class="bottom-text d-flex mt-2">
-                        <div class="left-text">
-                            <h4 class="text-heading text-white">Inside Edge 3</h4>
-                            <ul class="text-white">
-                                <li>U/A 13+</li>
-                                <li>Drama</li>
-                                <li>Comedy</li>
-                                <li>2023</li>
-                            </ul>
-                        </div>
-                        <button class="addbutton">
-                            <img src="{{ asset('/img/round-add.png') }}" alt="">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="upper-img">
-                        <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                    </div>
-                    <div class="bottom-text d-flex mt-2">
-                        <div class="left-text">
-                            <h4 class="text-heading text-white">Inside Edge 3</h4>
-                            <ul class="text-white">
-                                <li>U/A 13+</li>
-                                <li>Drama</li>
-                                <li>Comedy</li>
-                                <li>2023</li>
-                            </ul>
-                        </div>
-                        <button class="addbutton">
-                            <img src="{{ asset('/img/round-add.png') }}" alt="">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="upper-img">
-                        <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                    </div>
-                    <div class="bottom-text d-flex mt-2">
-                        <div class="left-text">
-                            <h4 class="text-heading text-white">Inside Edge 3</h4>
-                            <ul class="text-white">
-                                <li>U/A 13+</li>
-                                <li>Drama</li>
-                                <li>Comedy</li>
-                                <li>2023</li>
-                            </ul>
-                        </div>
-                        <button class="addbutton">
-                            <img src="{{ asset('/img/round-add.png') }}" alt="">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="upper-img">
-                        <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                    </div>
-                    <div class="bottom-text d-flex mt-2">
-                        <div class="left-text">
-                            <h4 class="text-heading text-white">Inside Edge 3</h4>
-                            <ul class="text-white">
-                                <li>U/A 13+</li>
-                                <li>Drama</li>
-                                <li>Comedy</li>
-                                <li>2023</li>
-                            </ul>
-                        </div>
-                        <button class="addbutton">
-                            <img src="{{ asset('/img/round-add.png') }}" alt="">
-                        </button>
-                    </div>
-                </div>
-
+            <?php } ?>
             </div>
         </div>
     </section>

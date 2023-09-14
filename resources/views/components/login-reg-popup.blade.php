@@ -90,7 +90,7 @@
                                 <input type="hidden" name="user_agent" id="user_agent" value="WEB">
                                 <input type="hidden" name="otp_pin" id="otp_pin" value="">
                                 <div class="childpin">
-                                    <div class="childpin-input">
+                                    <div class="childpin-input no-number-arrows">
                                         <input class="mx-1 child-box" type="number" min="0" max="9"
                                             maxlength="1" id="childpin1" name="childpin1">
                                         <input class="mx-1 child-box" type="number" min="1" max="9"

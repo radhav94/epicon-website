@@ -21,7 +21,7 @@ class LoginController extends Controller
                 "success" => true,
                 "message" => "OTP sent successfully."
             ];
-            $SendotpResponseData = CurlAPI("users/sendOTP", 'POST', $SendotpRequestData, 2);
+            // $SendotpResponseData = CurlAPI("users/sendOTP", 'POST', $SendotpRequestData, 2);
             $response['meassage'] = $SendotpResponseData['message'];
             // dd($SendotpResponseData);
             if ($SendotpResponseData['success'] == 'true') {
@@ -101,8 +101,13 @@ class LoginController extends Controller
 
         );
         $registerResponseData = CurlAPI("users/register", 'POST', $postData, 2);
+        // dd($registerResponseData);
         $response['message'] = $registerResponseData['message'];
+        $userdata = $registerResponseData['user_data'];
         if ($registerResponseData['success'] == 'true') {
+            $request->session()->put('user', $userdata);
+            $request->session()->put('user_id', $userid);
+            $request->session()->put('user_token', $registerResponseData['token']);
             return JSONResponse(200, 'User Registered Successfully.', ['user_id' => $userid, 'user_signup_method' => $signup_method, 'name' => $username, 'password' => $password, 'date_of_birth' => $date_of_birth, 'gender' => $gender, 'response' => $response, 'success' => true]);
         } else {
             return JSONResponse(200, 'User Registeration Failed.', ['response' => $response, 'success' => false]);

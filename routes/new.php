@@ -55,13 +55,15 @@ Route::get('transaction-history', [UserAccountController::class, 'TransactionHis
 
 Route::get('my-rewards', [RewardsController::class, 'MyRewards'])->name('my-rewards');
 
+Route::post('redeemcoupon', [RewardsController::class, 'RedeemCouponCode'])->name('redeemcoupon');
+
 Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
 
 Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback');
 
 Route::get('upcoming-epicon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
 
-Route::get('new-popular', [PopularController::class, 'Popular'])->name('new-popular');
+Route::get('new-popular', [PopularController::class, 'NewsPopular'])->name('new-popular');
 
 Route::get('about', function () {
     return view('static.about');

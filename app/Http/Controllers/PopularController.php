@@ -7,7 +7,15 @@ use Illuminate\Http\Request;
 
 class PopularController extends Controller
 {
-    public function Popular(){
-        return view('pages.new-popular');
+    public function NewsPopular(){
+        $PopularResponse = CurlAPI("pages/getPopularContent", 'GET', '' , 1);
+        // dd($PopularResponse);
+        if($PopularResponse['success'] == true){
+            $Populardata = $PopularResponse['data'];
+            return view('pages.new-popular')->with('popular',$Populardata);
+        }else{
+            return view('pages.404');
+        }
+        
     }
 }
