@@ -19,14 +19,6 @@
 
 @section('script')
     <script src="{{ asset('assets/js/homepage.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-
-
-
-        });
-    </script>
-
 
     <script>
         var processing;

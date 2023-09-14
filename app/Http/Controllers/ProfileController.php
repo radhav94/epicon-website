@@ -82,6 +82,7 @@ class ProfileController extends Controller
         // $all = request()->session()->all();
         // dd($all);
         $result = CurlAPI("users/viewProfile", "POST", null, 2);
+        // dd($result);
 
         $profile = '';
 
@@ -143,15 +144,14 @@ class ProfileController extends Controller
 
     public function setChildPin(Request $request): JsonResponse
     {
-        $param = ['pin' => $request->pin];
+        $param = ['pin' => $request->cpin_1 . $request->cpin_2 . $request->cpin_3 . $request->cpin_4];
 
-        dd($param);
         $result = CurlAPI("users/setChildPin", "POST", $param, 2);
 
         if ($result && @$result['success'] ==  true) {
-            return JSONResponse(200, 'Profile updated successfully.', ['redirect' => route('profile.index')]);
+            return JSONResponse(200, 'Pin added successfully.', ['redirect' => route('profile.index')]);
         } else {
-            return JSONResponse(400, 'Failed to update profile');
+            return JSONResponse(400, 'Failed to set pin');
         }
     }
 }
