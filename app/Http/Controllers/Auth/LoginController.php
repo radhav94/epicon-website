@@ -261,9 +261,7 @@ class LoginController extends Controller
     }
 
     public function choose_interests() {
-        $genrelist = CurlAPI("v2profilecontent/genrelist", 'GET', [], 1);
-        $genrelist = $genrelist['success'] && $genrelist['message'] ? $genrelist['data'] : [];
-        return view('components.choose-interests', compact('genrelist'));            
+        return view('components.choose-interests');            
     }
 
     public function getGenreList() {

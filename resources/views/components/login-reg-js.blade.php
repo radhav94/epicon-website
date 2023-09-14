@@ -628,7 +628,7 @@
                             $('#login-modal').hide();
                             $('#login-modal').removeClass("show");
                         } else {
-                            $("#error-meg-for-genre-select").html(response.payload.success.message);
+                            $("#error-meg-for-genre-select").html(response.payload.message);
                         }
                     },
                     error: function(xhr, status, error) {
@@ -640,26 +640,8 @@
                 $('#login-modal').removeClass("show");
             }
         })
-
-        //change selected genre number
-        $("input[name='chooseGenre[]']").change(function(event) {
-            var genreCount = 0;                
-            $("input[name='chooseGenre[]']").each(function() {
-                if (this.checked) {
-                    genreCount++;
-                }
-            });
-            if (genreCount > 5) {
-                console.log(this.checked);
-                if (this.checked) {
-                    this.checked = false;
-                    event.preventDefault();                        
-                }
-            } else {
-                $("#genre-select-count").text(genreCount+" of 5");
-            }
-        })
     });
+
     function getGenreList() {
         $('#interest-suggetion').html("")
         $.ajax({
@@ -677,7 +659,7 @@
                     for (var i = 0; i < lists.length; i++) {
                         content = '<div class="interest-suggetion">'
                                 +'<label class="is-checkbox">'
-                                    +'<input type="checkbox" name="chooseGenre[]" value="'+lists[i]['genre']+'">'
+                                    +'<input type="checkbox" name="chooseGenre[]" onclick="genreSelect(this)" value="'+lists[i]['genre']+'">'
                                     +'<span class="checkmark"></span>'
                                 +'</label>'
                                 +'<img src="'+lists[i]['banner_image']['medium']+'" alt="img">'
@@ -695,4 +677,24 @@
             }
         });
     }
+
+    function genreSelect(thiss) {
+        console.log('scsadcs')
+            var genreCount = 0;
+            
+            $("input[name='chooseGenre[]']").each(function() {
+                if (this.checked) {
+                    genreCount++;
+                }
+            });
+            if (genreCount > 5) {
+                console.log(thiss);
+                if (thiss.checked) {
+                    thiss.checked = false;                        
+                }
+            } else {
+                $("#genre-select-count").text(genreCount+" of 5");
+            }
+        }
+   
 </script>
