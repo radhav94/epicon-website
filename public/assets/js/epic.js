@@ -75,7 +75,6 @@ function onError(xhr) {
         }
     } catch (err) { }
     showToaster($msg, 2);
-
     console.log('Error:', xhr);
 }
 
@@ -112,7 +111,7 @@ $(document).on('click', '.addToList', function () {
     };
 
     sendAjaxRequest(APP_URL + '/wishlist', 'POST', JSON.stringify(requestData),
-        onWishlistSuccess, onWishlistError, 'application/json');
+        onWishlistSuccess, onError, 'application/json');
 
     function onWishlistSuccess(response) {
         console.log('type : ' + type);
@@ -137,10 +136,6 @@ $(document).on('click', '.addToList', function () {
 
 
         showToaster(response?.message, 1);
-    }
-
-    function onWishlistError(response) {
-        showToaster('Some error occured', 2);
     }
 });
 // end start add to wishlist

@@ -36,13 +36,18 @@
                                 </button>
                                 <?php
                                 $wishlist = getWishlist();
+                                
+                                $wishlist_ids = $wishlist['ids'] ?? [];
+                                
+                                $wishAction = in_array($content['ID'], $wishlist_ids) ? 'delete' : 'add';
                                 ?>
 
                                 <button class="rounded-transparent-btn me-3 addToList" data-id="{{ $content['ID'] }}"
-                                    data-action="add" data-type="3">
-                                    <img class="wl_add" src="{{ asset('assets/img/add-icon.svg') }}" alt="icon">
+                                    data-action="{{ $wishAction }}" data-type="3">
+                                    <img class="wl_add" src="{{ asset('assets/img/add-icon.svg') }}" alt="icon"
+                                        @if ($wishAction == 'delete') style="display: none" @endif>
                                     <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon"
-                                        style="display: none">
+                                        @if ($wishAction == 'add') style="display: none" @endif>
                                 </button>
 
                                 <button class="rounded-transparent-btn me-3 clapButton">
@@ -278,7 +283,54 @@
                 }
 
             });
+            //end clap
 
+            $('#trailors').click(function() {
+                $('.carousel-initilize').not('.slick-initialized').slick({
+                    dots: false,
+                    infinite: false,
+                    speed: 300,
+                    slidesToShow: 4.2,
+                    slidesToScroll: 1,
+                    accessibility: true,
+                    responsive: [{
+                            breakpoint: 1367,
+                            settings: {
+                                slidesToShow: 4.5,
+                                slidesToScroll: 1,
+                            }
+                        },
+                        {
+                            breakpoint: 1025,
+                            settings: {
+                                slidesToShow: 3.9,
+                                slidesToScroll: 1,
+                            }
+                        },
+                        {
+                            breakpoint: 769,
+                            settings: {
+                                slidesToShow: 3.2,
+                                slidesToScroll: 1,
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1.5,
+                                slidesToScroll: 1
+                            }
+                        }
+                    ]
+                });
+            });
 
         });
     </script>

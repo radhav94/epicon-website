@@ -15,21 +15,22 @@ class LogoutController extends Controller
      */
     public function __invoke(Request $request)
     {
+
+        $request->session()->forget('user_id');
+        $request->session()->forget('user');
+        $request->session()->forget('user_token');
+        $request->session()->forget('profile_data');
+        $request->session()->flush();
+        session_unset();
+        $request->session()->regenerate();
+
         $result = CurlAPI("users/logout", "POST", [], 2);
 
         if ($result && @$result['success'] ==  true) {
-            $request->session()->forget('user_id');
-            $request->session()->forget('user');
-            $request->session()->forget('user_token');
-            $request->session()->forget('profile_data');
-            $request->session()->flush();
-            session_unset();
-            $request->session()->regenerate();
-
-
             return JSONResponse(200, 'Logged out successfully', ['redirect' => route('homepage')]);
         } else {
-            return JSONResponse(400, 'Some error occured');
+            return JSONResponse(200, 'Logged out successfully', ['redirect' => route('homepage')]);
+            // return JSONResponse(400, 'Some error occured');
         }
     }
 }
