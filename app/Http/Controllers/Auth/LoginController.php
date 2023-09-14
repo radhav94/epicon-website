@@ -21,7 +21,7 @@ class LoginController extends Controller
                 "success" => true,
                 "message" => "OTP sent successfully."
             ];
-            // $SendotpResponseData = CurlAPI("users/sendOTP", 'POST', $SendotpRequestData, 2);
+            $SendotpResponseData = CurlAPI("users/sendOTP", 'POST', $SendotpRequestData, 2);
             $response['meassage'] = $SendotpResponseData['message'];
             // dd($SendotpResponseData);
             if ($SendotpResponseData['success'] == 'true') {
@@ -258,5 +258,26 @@ class LoginController extends Controller
                 // Incorrect code entered. Please try again.
             }
         }
+    }
+
+    public function choose_interests() {
+        $genrelist = CurlAPI("v2profilecontent/genrelist", 'GET', [], 1);
+        $genrelist = $genrelist['success'] && $genrelist['message'] ? $genrelist['data'] : [];
+        return view('components.choose-interests', compact('genrelist'));            
+    }
+
+    public function getGenreList() {
+        $genrelist = CurlAPI("v2profilecontent/genrelist", 'GET', [], 1);
+        return JSONResponse(200, '', ['response' => $genrelist, 'message' => $genrelist['message'], 'success' => $genrelist['success']]);
+    }
+
+    public function saveGenreForUser() {
+        $request = Request();
+        $genre = $request->post('chooseGenre') ? $request->post('chooseGenre') : [];
+        if ($genre) {
+            $genrelist = CurlAPI("v2profilecontent/savegenrelist", 'POST', $genre, 1);
+            return JSONResponse(200, '', ['message' => $genrelist['message'], 'success' => $genrelist['success']]);
+        }
+        
     }
 }

@@ -3,8 +3,8 @@
     $(document).ready(function() {
 
         $('.login').click(function() {
-            $('.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd').hide();
-            $('.left-side,.right-side').show();
+            $('.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd,.choose-interests').hide();
+            $('.left-side,.right-side,.screen-login').show();
             $('#login-modal').show();
             $('#login-modal').addClass("show");
 
@@ -392,6 +392,13 @@
             }
         });
 
+        $('.interest-btn').click(function(e) {
+            getGenreList();
+            e.preventDefault();
+            $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd.screen-sucess-register').hide();
+            $('.choose-interests').show();
+        });
+
         $('.login-btn-pwd').click(function(e) {
             e.preventDefault();
             // alert("btn clicked");
@@ -592,5 +599,100 @@
                 $(this).next(".mx-1").focus();
             }
         });
+
+        //choose genre section
+        $('.better-suggestion-nxtBtn').click(function() {
+            var genreCount = 0;                
+            $("input[name='chooseGenre[]']").each(function() {
+                if (this.checked) {
+                    genreCount++;
+                }
+            });
+            if (genreCount > 0 && genreCount != 5) {
+                $("#error-meg-for-genre-select").html("Selected genre list should be 5");
+            }
+
+            var formData = $('#interestsSuggestions').serialize();
+            if (formData != '') {
+                $.ajax({
+                    url: "{{ route('saveGenre') }}",
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response.payload.success == true) {
+                            $('#login-modal').hide();
+                            $('#login-modal').removeClass("show");
+                        } else {
+                            $("#error-meg-for-genre-select").html(response.payload.success.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('error me aaya');
+                    }
+                });
+            } else {
+                $('#login-modal').hide();
+                $('#login-modal').removeClass("show");
+            }
+        })
+
+        //change selected genre number
+        $("input[name='chooseGenre[]']").change(function(event) {
+            var genreCount = 0;                
+            $("input[name='chooseGenre[]']").each(function() {
+                if (this.checked) {
+                    genreCount++;
+                }
+            });
+            if (genreCount > 5) {
+                console.log(this.checked);
+                if (this.checked) {
+                    this.checked = false;
+                    event.preventDefault();                        
+                }
+            } else {
+                $("#genre-select-count").text(genreCount+" of 5");
+            }
+        })
     });
+    function getGenreList() {
+        $('#interest-suggetion').html("")
+        $.ajax({
+            url: "{{ route('getGenre') }}",
+            type: 'POST',
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                console.log(response);
+                if (response.payload.success) {
+                    var lists = response.payload.response.data;
+                    var content = '';
+                    for (var i = 0; i < lists.length; i++) {
+                        content = '<div class="interest-suggetion">'
+                                +'<label class="is-checkbox">'
+                                    +'<input type="checkbox" name="chooseGenre[]" value="'+lists[i]['genre']+'">'
+                                    +'<span class="checkmark"></span>'
+                                +'</label>'
+                                +'<img src="'+lists[i]['banner_image']['medium']+'" alt="img">'
+                                +'<div class="is-overlay">'
+                                    +'<h1>'+lists[i]['genre']+'</h1>'
+                                    +'<p>Like NH10, Talaash, Airlift, Mirzapur, Breathe</p>'
+                                +'</div>'
+                            +'</div>';
+                        $('#interest-suggetion').append(content);
+                    }
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log('error me aaya');
+            }
+        });
+    }
 </script>

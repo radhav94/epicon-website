@@ -43,6 +43,9 @@ Route::post('verifyforgototp', [LoginController::class, 'setForgotOTPVerificatio
 
 Route::post('resetpwdapi', [LoginController::class, 'ResetPasswordVerification'])->name('resetpwdapi');
 
+Route::post('saveGenre', [LoginController::class, 'saveGenreForUser'])->name('saveGenre');
+
+Route::post('getGenre', [LoginController::class, 'getGenreList'])->name('getGenre');
 // Route::get('login-popup', function () {
 //     return view('epicon.login-popup');
 // });
