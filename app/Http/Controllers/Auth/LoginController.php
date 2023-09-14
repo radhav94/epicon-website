@@ -21,7 +21,7 @@ class LoginController extends Controller
                 "success" => true,
                 "message" => "OTP sent successfully."
             ];
-            // $SendotpResponseData = CurlAPI("users/sendOTP", 'POST', $SendotpRequestData, 2);
+            $SendotpResponseData = CurlAPI("users/sendOTP", 'POST', $SendotpRequestData, 2);
             $response['meassage'] = $SendotpResponseData['message'];
             // dd($SendotpResponseData);
             if ($SendotpResponseData['success'] == 'true') {
