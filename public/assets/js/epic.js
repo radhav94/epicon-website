@@ -119,6 +119,17 @@ $(document).on('click', '.addToList', function () {
         if (type == 1) {
             console.log(response.payload?.icon);
             element.replaceWith(response.payload?.icon);
+        } else if (type == 3) {
+            element.data('action', element.data('action') === 'add' ? 'delete' : 'add');
+
+            if (action == 'add') {
+                element.find('.wl_add').hide();
+                element.find('.wl_remove').show();
+            } else {
+                element.find('.wl_add').show();
+                element.find('.wl_remove').hide();
+            }
+
         } else {
             element.data('action', element.data('action') === 'add' ? 'delete' : 'add');
             element.toggleClass('add-icon delete-icon');
