@@ -12,7 +12,6 @@ class PageController extends Controller
     {
         // $res = getWishlist();
         // dd($res);
-
         $params = [
             'slug' => $slug,
             // 'slug' => 'home-v2',
@@ -143,5 +142,18 @@ class PageController extends Controller
         } else {
             return JSONResponse(400, 'Error.');
         }
+    }
+
+    public function showmidpagedetail($pageslug, $catalog){
+        // dd($catalog);
+        // if (($user = getLoggedInUser()) != false) {
+        //     $epicwebArr = CurlAPI("pages/midpage", "POST", ['user_id' => $user->user_id, 'session_id' => $user->api_session_id, 'catalogId' => $catalogid]);
+        // } else {
+            $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog,'limit' => 50, 'page' => 1], 1);
+            return view('display.midpage',compact('epicwebArr'));
+            // dd($epicwebArr);
+
+        // }
+        // return view('epicon.' . $video_player_blade, compact('epicwebArr', 'routenamed', 'playerData', 'meta', 'menuArray', 'menu_array_new', 'isCurrentContentFavourite', 'isCurrentContentwatch', 'activeSeasonSlug', 'userProperties', 'mylistArr', 'commonMenuUserData', 'user', 'displayLanguageParam', 'watchactive', 'spotlight_key', 'payperuse'));
     }
 }

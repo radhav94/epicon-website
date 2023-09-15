@@ -43,6 +43,9 @@ Route::post('verifyforgototp', [LoginController::class, 'setForgotOTPVerificatio
 
 Route::post('resetpwdapi', [LoginController::class, 'ResetPasswordVerification'])->name('resetpwdapi');
 
+Route::post('saveGenre', [LoginController::class, 'saveGenreForUser'])->name('saveGenre');
+
+Route::post('getGenre', [LoginController::class, 'getGenreList'])->name('getGenre');
 // Route::get('login-popup', function () {
 //     return view('epicon.login-popup');
 // });
@@ -59,7 +62,11 @@ Route::post('redeemcoupon', [RewardsController::class, 'RedeemCouponCode'])->nam
 
 Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
 
+Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
+
 Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback');
+
+Route::post('save-feedback', [FeedbackController::class, 'saveFeedback'])->name('save-feedback');
 
 Route::get('upcoming-epicon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
 
@@ -77,6 +84,24 @@ Route::get('privacy', function () {
     return view('static.privacy');
 })->name('privacy');
 
+Route::get('midpage/{contentslug}', function ($pageslug,$catalog) {
+// dd($contentslug);
+    if($pageslug != 'live-tv'){
+        return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug'=>$pageslug,'catalog'=>$catalog]);
+    }
+    // if($pageslug=='tv-shows' || $pageslug=='epic-shorts' || $pageslug=='documentaries' || $pageslug=='live-tv' || $pageslug=='video-books' || $pageslug=='movies' || $pageslug=='amar-chitra-katha'){
+    //     return App::call('\App\Http\Controllers\indexController@showdetail', [$displayLanguage,$pageslug,$contentslug,'','']);
+    // } else if($pageslug=='podcast'){
+    //     return App::call('\App\Http\Controllers\indexController@podcastdetails', [$displayLanguage,$pageslug,$contentslug,'','']);
+    // } else if($pageslug=='ebooks'){
+    //     $booktitle = $contentslug;
+    //     return App::call('\App\Http\Controllers\indexController@showreaddetails', [$displayLanguage,$pageslug,$booktitle,'','']);
+    // }
+});
+
+// Route::get('{pageslug}/{listcatalog}', function () {
+//     return view('static.privacy');
+// })->name('privacy');
 // Route::get('login/facebook', '\App\Http\Controllers\Auth\AuthSocialController@redirectToProvider')->name('facebook');
 
 // Route::get('login/facebook/callback', '\App\Http\Controllers\Auth\AuthSocialController@handleProviderCallback')->name('facebook');
