@@ -18,7 +18,7 @@
             
             ?>
             <li>
-                <a href="{{ $val['url'] }}" class="main-card">
+                <a href="{{ getContentUrl($val) }}" class="main-card">
                     <div class="main-img eod-darlings pb-0">
                         <img src="{{ $cover_img }}" alt="">
                     </div>

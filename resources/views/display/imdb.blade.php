@@ -16,7 +16,6 @@
 
         <?php
         $chunks = array_chunk($value['content'], 2);
-        
         ?>
 
         @foreach ($chunks as $key => $val)
@@ -29,10 +28,10 @@
                     ?>
 
                     <div class="{{ $k == 0 ? 'imdb-top' : 'imdb-bottom' }}">
-                        <a href="/">
+                        <a href="{{ getContentUrl($v) }}">
                             <img src="{{ $card['banner_img'] }}" alt="img">
                             <div class="content">
-                                @if (@$val['free_premium'] == true)
+                                @if (@$v['free_premium'] == true)
                                     <img class="crown" src="{{ asset('assets/img/crown.svg') }}" alt="">
                                 @endif
                                 <div class="content-overlay">

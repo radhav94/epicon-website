@@ -242,6 +242,9 @@ function topTenDiv($val)
 
 function getWishListAction($val, $wishlist, $type = 1)
 {
+    if (!in_array(@$val['asset_type'], ['WATCH', 'LISTEN'])) {
+        return '';
+    }
     $wishlist_ids = $wishlist['ids'] ?? [];
 
     $wishAction = (in_array(@$val['ID'], $wishlist_ids)) ? 'delete' : 'add';

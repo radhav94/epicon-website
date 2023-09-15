@@ -48,15 +48,29 @@ class PageDetailController extends Controller
                 $about = $about_curl['data'];
             }
 
-            // d($trailers);
-            // d($morelike);
 
-            // d($about);
-            // echo 'About';
-            // d($result);
-            // die;
+            if (request()->get('v') != '') {
+                dd($about);
+                echo '--------Trailers --------';
+                d($trailers);
+                echo '--------morelike --------';
 
-            return view('pages.detail.page-detail', compact('content', 'displayLanguageParam', 'trailers', 'morelike', 'about'));
+                d($morelike);
+                echo '--------about --------';
+
+                d($about);
+                echo '--------result --------';
+
+                d($result);
+                die;
+            }
+
+            $template = 'pages.detail.page-detail';
+            if ($content['asset_type'] == 'LISTEN') {
+                $template = 'pages.detail.podcast';
+            }
+
+            return view($template, compact('content', 'displayLanguageParam', 'trailers', 'morelike', 'about'));
         }
     }
 

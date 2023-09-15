@@ -18,7 +18,7 @@
             
             ?>
             <li>
-                <a href="javascript:void(0);" class="main-card">
+                <a href="{{ getContentUrl($val) }}" class="main-card">
                     <div class="main-img eod-darlings">
                         <img src="{{ $cover_img }}" alt="">
                         <div class="new-show-title"><img src="{{ asset('img/sound-equalizer.svg') }}" alt="">
