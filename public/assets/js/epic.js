@@ -75,7 +75,6 @@ function onError(xhr) {
         }
     } catch (err) { }
     showToaster($msg, 2);
-
     console.log('Error:', xhr);
 }
 
@@ -112,13 +111,24 @@ $(document).on('click', '.addToList', function () {
     };
 
     sendAjaxRequest(APP_URL + '/wishlist', 'POST', JSON.stringify(requestData),
-        onWishlistSuccess, onWishlistError, 'application/json');
+        onWishlistSuccess, onError, 'application/json');
 
     function onWishlistSuccess(response) {
         console.log('type : ' + type);
         if (type == 1) {
             console.log(response.payload?.icon);
             element.replaceWith(response.payload?.icon);
+        } else if (type == 3) {
+            element.data('action', element.data('action') === 'add' ? 'delete' : 'add');
+
+            if (action == 'add') {
+                element.find('.wl_add').hide();
+                element.find('.wl_remove').show();
+            } else {
+                element.find('.wl_add').show();
+                element.find('.wl_remove').hide();
+            }
+
         } else {
             element.data('action', element.data('action') === 'add' ? 'delete' : 'add');
             element.toggleClass('add-icon delete-icon');
@@ -126,10 +136,6 @@ $(document).on('click', '.addToList', function () {
 
 
         showToaster(response?.message, 1);
-    }
-
-    function onWishlistError(response) {
-        showToaster('Some error occured', 2);
     }
 });
 // end start add to wishlist
