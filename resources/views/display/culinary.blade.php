@@ -18,7 +18,8 @@
             $cover_img = isset($val['epic_shorts_image']) ? $val['epic_shorts_image']['small'] : $card['banner_img'];
             ?>
             <div>
-                <a href="{{ @$val['url'] }}" class="content">
+
+                <a href="{{ getContentUrl($val) }}" class="content">
                     <div class="top">
                         <img src="{{ $cover_img }}" alt="img">
                     </div>

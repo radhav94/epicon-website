@@ -18,7 +18,7 @@
             $cover_img = isset($val['epic_shorts_image']) ? $val['epic_shorts_image']['small'] : $card['banner_img'];
             ?>
             <li>
-                <a href="{{ url($value['url'] ?? '/') }}" class="main-card">
+                <a href="{{ getContentUrl($val) }}" class="main-card">
                     <img src="{{ $cover_img }}" alt="">
                 </a>
             </li>

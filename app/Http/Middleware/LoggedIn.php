@@ -22,6 +22,5 @@ class LoggedIn
             return JSONResponse(400, 'Please Login.');
         }
         return redirect(route('homepage'));
-        // abort(403, 'Unauthorized action.');
     }
 }

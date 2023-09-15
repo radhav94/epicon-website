@@ -22,7 +22,7 @@
                     $cover_img = isset($v['vertical_cover_image']) ? @$v['vertical_cover_image']['small'] : $card['banner_img'];
                     ?>
                     <div>
-                        <a href="#/" class="{{ $k == 0 ? 'left' : 'right' }}">
+                        <a href="{{ getContentUrl($v) }}" class="{{ $k == 0 ? 'left' : 'right' }}">
                             <img src="{{ $cover_img }}" alt="">
                         </a>
                     </div>

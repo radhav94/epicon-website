@@ -15,7 +15,7 @@
                  ?>
 
                  <div>
-                     <a href="{{ url($val['url']) }}">
+                     <a href="{{ getContentUrl($val) }}">
                          <img src="{{ $cover_img }}" alt="game">
                          <h1>{{ $card['title'] }}</h1>
                          <span>{{ @$val['content_type'] }}</span>

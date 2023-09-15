@@ -18,7 +18,7 @@
                  ?>
 
                  <div>
-                     <a href="{{ url($val['url']) }}">
+                     <a href="{{ getContentUrl($val) }}">
                          <img src="{{ $cover_img }}" alt="{{ $val['title'] }}">
                      </a>
                  </div>
