@@ -34,9 +34,22 @@
                                 <button class="subcription-btn me-3">
                                     <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> Subscribe Now
                                 </button>
-                                <button class="rounded-transparent-btn me-3">
-                                    <img src="{{ asset('assets/img/add-icon.svg') }}" alt="icon">
+                                <?php
+                                $wishlist = getWishlist();
+                                
+                                $wishlist_ids = $wishlist['ids'] ?? [];
+                                
+                                $wishAction = in_array($content['ID'], $wishlist_ids) ? 'delete' : 'add';
+                                ?>
+
+                                <button class="rounded-transparent-btn me-3 addToList" data-id="{{ $content['ID'] }}"
+                                    data-action="{{ $wishAction }}" data-type="3">
+                                    <img class="wl_add" src="{{ asset('assets/img/add-icon.svg') }}" alt="icon"
+                                        @if ($wishAction == 'delete') style="display: none" @endif>
+                                    <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon"
+                                        @if ($wishAction == 'add') style="display: none" @endif>
                                 </button>
+
                                 <button class="rounded-transparent-btn me-3 clapButton">
                                     <img src="{{ asset('assets/img/clap-icon.svg') }}" alt="icon">
                                 </button>
@@ -132,7 +145,7 @@
                                         d="M20.3305 10.7228C20.1092 9.82094 19.888 8.83469 19.8167 8.16719C19.7605 7.64031 19.7248 6.78531 19.6742 6.59781C19.4961 5.92281 19.1042 5.80469 19.1042 5.80469C19.1042 5.80469 19.3517 6.06531 19.3573 6.78719C19.363 7.55219 19.3855 9.05031 19.8242 10.7078C20.113 11.7991 20.5817 13.3703 20.7955 14.6266C21.2473 17.2722 20.8348 19.1341 19.2542 21.0953C18.3373 22.2316 16.3555 23.0697 16.3555 23.0697C16.3555 23.0697 17.9848 22.9666 19.408 21.5978C21.298 19.7791 21.9823 17.4203 21.3748 14.5928C21.1686 13.6347 20.4017 11.0153 20.3305 10.7228Z"
                                         fill="#D69513" />
                                 </svg> &nbsp;
-                                {{ @$content['claps'] }}
+                                <span class="claps_num">{{ @$content['claps'] }}</span>
                             </button>
                             @if (@$content['is_popular'])
                                 <button class="border-btn">
@@ -260,11 +273,64 @@
                     content_id: "{{ $content['ID'] }}",
                 };
                 console.log(requestData);
-                sendAjaxRequest(APP_URL + '/clap', 'POST', JSON.stringify(requestData), onSuccess,
+                sendAjaxRequest(APP_URL + '/clap', 'POST', JSON.stringify(requestData), onClapSuccess,
                     onError, 'application/json');
 
-            });
+                function onClapSuccess(response) {
+                    showToaster(response?.message, 1);
 
+                    $('.claps_num').text(parseInt($('.claps_num').text()) + 1);
+                }
+
+            });
+            //end clap
+
+            $('#trailors').click(function() {
+                $('.carousel-initilize').not('.slick-initialized').slick({
+                    dots: false,
+                    infinite: false,
+                    speed: 300,
+                    slidesToShow: 4.2,
+                    slidesToScroll: 1,
+                    accessibility: true,
+                    responsive: [{
+                            breakpoint: 1367,
+                            settings: {
+                                slidesToShow: 4.5,
+                                slidesToScroll: 1,
+                            }
+                        },
+                        {
+                            breakpoint: 1025,
+                            settings: {
+                                slidesToShow: 3.9,
+                                slidesToScroll: 1,
+                            }
+                        },
+                        {
+                            breakpoint: 769,
+                            settings: {
+                                slidesToShow: 3.2,
+                                slidesToScroll: 1,
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1.5,
+                                slidesToScroll: 1
+                            }
+                        }
+                    ]
+                });
+            });
 
         });
     </script>

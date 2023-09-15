@@ -255,6 +255,8 @@ function getWishListAction($val, $wishlist, $type = 1)
         // return '<button class="big-add-list addToList ' . $wishAction . '-icon" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="1"> </button>';
         return '<button class="big-add-list addToList" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="1">  ' . $icon . '</button>';
     } else {
+        // $icon = ($wishAction == 'add') ? 'delete-icon' : 'add-icon';
+
         return '<button class="small-btn ' . $wishAction . '-icon mx-2 addToList" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="2"></button>';
     }
 }
@@ -279,6 +281,10 @@ function getWishlist()
         return $data
     }
     */
+    if (!isUserLoggedIn()) {
+        return [];
+    }
+
     return Cache::remember('getWishlist', 300, function () {
         $params = [
             'action' => 'view'
@@ -286,7 +292,12 @@ function getWishlist()
         $result = CurlAPI("pages/wishlist", "POST", $params);
 
         if ($result && @$result['success'] ==  true) {
-            return ['data' => $result['contents'], 'ids' => array_column($result['contents'], 'ID')];
+
+            $watch = array_column($result['contents']['WATCH'] ?? [], 'ID');
+            $listen = array_column($result['contents']['LISTEN'] ?? [], 'ID');
+
+            $new = array_merge($watch, $listen);
+            return ['data' => $result['contents'], 'ids' => $new];
         } else {
             return [];
         }

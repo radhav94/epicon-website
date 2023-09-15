@@ -7,7 +7,19 @@ use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
-    public function feedback(){
+    public function feedback() {
         return view('feedback.feedback');
     }
+
+    public function saveFeedback() {
+        $request = Request();
+        $feedback = $request->post('feedback') ? $request->post('feedback') : "";
+        $curlData = [
+            "type" => "feedback",
+            "feedback" => $feedback
+        ];
+        $response = CurlAPI("users/deleteAccount", "POST", $curlData, 2);
+        return JSONResponse(200, '', ['message' => $response['message'], 'success' => $response['success']]);
+    }
+
 }

@@ -66,7 +66,7 @@ class PageDetailController extends Controller
             'content_id' => $request->content_id,
         ];
         $result = CurlAPI("pages/clap", "POST", $params);
-        dd($params);
+
         if ($result && @$result['success'] ==  true) {
 
             return JSONResponse(200, 'Success');

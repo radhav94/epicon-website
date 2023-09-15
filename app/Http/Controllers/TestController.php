@@ -9,7 +9,8 @@ class TestController extends Controller
 {
     public function index()
     {
-        $res = getProfileData();
+        dd(session()->all());
+        $res = getWishlist();
         dd($res);
     }
     public function index1()

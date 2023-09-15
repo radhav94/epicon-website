@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -101,7 +102,8 @@ class LoginController extends Controller
 
         );
         $registerResponseData = CurlAPI("users/register", 'POST', $postData, 2);
-        // dd($registerResponseData);
+        $request->session()->put('registerResponseData', $registerResponseData);
+        //dd($registerResponseData);
         $response['message'] = $registerResponseData['message'];
         
         if ($registerResponseData['success'] == 'true') {
@@ -109,7 +111,7 @@ class LoginController extends Controller
             $request->session()->put('user', $userdata);
             $request->session()->put('user_id', $userid);
             $request->session()->put('user_token', $registerResponseData['token']);
-            return JSONResponse(200, 'User Registered Successfully.', ['user_id' => $userid, 'user_signup_method' => $signup_method, 'name' => $username, 'password' => $password, 'date_of_birth' => $date_of_birth, 'gender' => $gender, 'response' => $response, 'success' => true]);
+            return JSONResponse(200, 'User Registered Successfully.', ['user_id' => $userid, 'user_signup_method' => $signup_method, 'name' => $username, 'password' => $password, 'date_of_birth' => $date_of_birth, 'gender' => $gender, 'response' => $response, 'success' => true, 'user_token' => $registerResponseData['token']]);
         } else {
             return JSONResponse(200, 'User Registeration Failed.', ['response' => $response, 'success' => false]);
         }
@@ -259,5 +261,29 @@ class LoginController extends Controller
                 // Incorrect code entered. Please try again.
             }
         }
+    }
+
+    public function choose_interests() {
+        $request = Request();
+        $request->session()->put('test', 'test');
+        return view('components.choose-interests');            
+    }
+
+    public function getGenreList() {
+        $request = Request();
+        $genrelist = CurlAPI("v2profilecontent/genrelist", 'GET', [], 1);
+        return JSONResponse(200, '', ['response' => $genrelist, 'message' => $genrelist['message'], 'success' => $genrelist['success']]);
+    }
+
+    public function saveGenreForUser() {
+        $request = Request();
+        //echo $request->session()->get('user_token');
+        //dd($request->session()->all());
+        $genre = $request->post('chooseGenre') ? $request->post('chooseGenre') : [];
+        $user_token = $request->post('user_token') ? $request->post('user_token') : '';
+        $request->session()->put('user_token', $user_token);
+        $curlData = ["genre" => $genre];
+        $genrelist = postCurlApicall("v2profilecontent/savegenrelist", $curlData, 1, $user_token);
+        return JSONResponse(200, '', ['message' => $genrelist['message'], 'success' => $genrelist['success']]);
     }
 }

@@ -43,6 +43,9 @@ Route::post('verifyforgototp', [LoginController::class, 'setForgotOTPVerificatio
 
 Route::post('resetpwdapi', [LoginController::class, 'ResetPasswordVerification'])->name('resetpwdapi');
 
+Route::post('saveGenre', [LoginController::class, 'saveGenreForUser'])->name('saveGenre');
+
+Route::post('getGenre', [LoginController::class, 'getGenreList'])->name('getGenre');
 // Route::get('login-popup', function () {
 //     return view('epicon.login-popup');
 // });
@@ -59,7 +62,11 @@ Route::post('redeemcoupon', [RewardsController::class, 'RedeemCouponCode'])->nam
 
 Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
 
+Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
+
 Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback');
+
+Route::post('save-feedback', [FeedbackController::class, 'saveFeedback'])->name('save-feedback');
 
 Route::get('upcoming-epicon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
 
