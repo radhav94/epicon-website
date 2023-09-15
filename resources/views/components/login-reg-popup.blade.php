@@ -482,8 +482,8 @@
                     </div>
 
                     <!-- better suggetion start -->
-                    <div class="better-solution">
-                        <form id="interestsSuggestions" class="better-solution">
+                    <div class="better-solution choose-interests">
+                        <form id="interestsSuggestions" class="better-solution">                            <
                             <div class="bs-left">
                                 <h4>
                                     Choose 5 interests for better suggestions
@@ -503,7 +503,8 @@
                                             <path d="M12 5L19 12L12 19" stroke="#161616" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
-                                    </button>                                    
+                                    </button> 
+                                    <input type="hidden" name="user_token">                                   
                                 </div>
                                 <div id="error-meg-for-genre-select" style="color: red;"></div>
                             </div>

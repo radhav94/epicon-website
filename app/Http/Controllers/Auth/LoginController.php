@@ -102,14 +102,16 @@ class LoginController extends Controller
 
         );
         $registerResponseData = CurlAPI("users/register", 'POST', $postData, 2);
-        // dd($registerResponseData);
+        $request->session()->put('registerResponseData', $registerResponseData);
+        //dd($registerResponseData);
         $response['message'] = $registerResponseData['message'];
-        $userdata = $registerResponseData['user_data'];
+        
         if ($registerResponseData['success'] == 'true') {
+            $userdata = $registerResponseData['user_data'];
             $request->session()->put('user', $userdata);
             $request->session()->put('user_id', $userid);
             $request->session()->put('user_token', $registerResponseData['token']);
-            return JSONResponse(200, 'User Registered Successfully.', ['user_id' => $userid, 'user_signup_method' => $signup_method, 'name' => $username, 'password' => $password, 'date_of_birth' => $date_of_birth, 'gender' => $gender, 'response' => $response, 'success' => true]);
+            return JSONResponse(200, 'User Registered Successfully.', ['user_id' => $userid, 'user_signup_method' => $signup_method, 'name' => $username, 'password' => $password, 'date_of_birth' => $date_of_birth, 'gender' => $gender, 'response' => $response, 'success' => true, 'user_token' => $registerResponseData['token']]);
         } else {
             return JSONResponse(200, 'User Registeration Failed.', ['response' => $response, 'success' => false]);
         }
@@ -269,46 +271,19 @@ class LoginController extends Controller
 
     public function getGenreList() {
         $request = Request();
-        echo $request->session()->get('test');
         $genrelist = CurlAPI("v2profilecontent/genrelist", 'GET', [], 1);
         return JSONResponse(200, '', ['response' => $genrelist, 'message' => $genrelist['message'], 'success' => $genrelist['success']]);
     }
 
     public function saveGenreForUser() {
         $request = Request();
+        //echo $request->session()->get('user_token');
+        //dd($request->session()->all());
         $genre = $request->post('chooseGenre') ? $request->post('chooseGenre') : [];
-        $curlData = json_encode(["genre" => $genre]);
-        //print_r($curlData);
-        $user_token = $request->session()->get('user_token');
-        $curl = curl_init();
-
-curl_setopt_array($curl, array(
-  CURLOPT_URL => 'http://contentapi-njsapi.epicon.in/index/v2profilecontent/savegenrelist?auth_token=szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_POSTFIELDS =>$curlData,
-  CURLOPT_HTTPHEADER => array(
-    'Content-Type: application/json',
-    "Authorization: $user_token"
-  ),
-));
-
-$response = curl_exec($curl);
-
-curl_close($curl);
-//echo $response;
-$genrelist = json_decode($response);
-//print_r($genrelist);
-
-        if ($genre) {
-            //$genrelist = CurlAPI("v2profilecontent/savegenrelist", 'POST', $curlData, 1);
-            return JSONResponse(200, '', ['message' => $genrelist->message, 'success' => $genrelist->success]);
-        }
-        
+        $user_token = $request->post('user_token') ? $request->post('user_token') : '';
+        $request->session()->put('user_token', $user_token);
+        $curlData = ["genre" => $genre];
+        $genrelist = postCurlApicall("v2profilecontent/savegenrelist", $curlData, 1, $user_token);
+        return JSONResponse(200, '', ['message' => $genrelist['message'], 'success' => $genrelist['success']]);
     }
 }

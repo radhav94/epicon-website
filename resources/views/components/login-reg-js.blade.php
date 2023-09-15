@@ -336,6 +336,7 @@
 
         $('.register-btn').click(function(e) {
             e.preventDefault();
+            getGenreList();
             // Clear previous errors
             $('.error').text('');
             // Validate Name
@@ -378,6 +379,7 @@
                             $('.screen-login,.screen-verify,.screen-register,.left-side,.right-side,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd,.better-solution')
                                 .hide();
                             $('.screen-sucess-register').show();
+                            $("#interestsSuggestions input[name='user_token']").val(response.payload.user_token);
                         } else {
                             $('#register-result').html(response.payload.response.message);
                             // return false;
@@ -393,7 +395,6 @@
         });
 
         $('.interest-btn').click(function(e) {
-            getGenreList();
             e.preventDefault();
             $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd.screen-sucess-register').hide();
             $('.choose-interests').show();
@@ -628,6 +629,9 @@
                         if (response.payload.success == true) {
                             $('#login-modal').hide();
                             $('#login-modal').removeClass("show");
+                            setTimeout(function() {
+                                location.reload();
+                            }, 3000);
                         } else {
                             $("#error-meg-for-genre-select").html(response.payload.message);
                         }
