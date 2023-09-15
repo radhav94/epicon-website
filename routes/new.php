@@ -62,7 +62,11 @@ Route::post('redeemcoupon', [RewardsController::class, 'RedeemCouponCode'])->nam
 
 Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
 
+Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
+
 Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback');
+
+Route::post('save-feedback', [FeedbackController::class, 'saveFeedback'])->name('save-feedback');
 
 Route::get('upcoming-epicon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
 
