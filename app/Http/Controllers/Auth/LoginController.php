@@ -103,8 +103,9 @@ class LoginController extends Controller
         $registerResponseData = CurlAPI("users/register", 'POST', $postData, 2);
         // dd($registerResponseData);
         $response['message'] = $registerResponseData['message'];
-        $userdata = $registerResponseData['user_data'];
+        
         if ($registerResponseData['success'] == 'true') {
+            $userdata = $registerResponseData['user_data'];
             $request->session()->put('user', $userdata);
             $request->session()->put('user_id', $userid);
             $request->session()->put('user_token', $registerResponseData['token']);

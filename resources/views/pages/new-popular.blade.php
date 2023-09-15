@@ -55,7 +55,7 @@
                     </a>
                     <div class="bottom-text d-flex mt-2">
                         <div class="left-text">
-                            <h4 class="text-heading text-white">{{$val['title']}}</h4>
+                            <h4 class="text-heading text-white">{{$val['title'] ?? ''}}</h4>
                             <ul class="text-white">
                                 <?php echo $sub_points ?>
                                 <!-- <li>{{$val['age_limit']}}</li>

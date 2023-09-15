@@ -77,6 +77,24 @@ Route::get('privacy', function () {
     return view('static.privacy');
 })->name('privacy');
 
+Route::get('{pageslug}/{contentslug}', function ($pageslug,$catalog) {
+// dd($contentslug);
+    if($pageslug != 'live-tv'){
+        return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug'=>$pageslug,'catalog'=>$catalog]);
+    }
+    // if($pageslug=='tv-shows' || $pageslug=='epic-shorts' || $pageslug=='documentaries' || $pageslug=='live-tv' || $pageslug=='video-books' || $pageslug=='movies' || $pageslug=='amar-chitra-katha'){
+    //     return App::call('\App\Http\Controllers\indexController@showdetail', [$displayLanguage,$pageslug,$contentslug,'','']);
+    // } else if($pageslug=='podcast'){
+    //     return App::call('\App\Http\Controllers\indexController@podcastdetails', [$displayLanguage,$pageslug,$contentslug,'','']);
+    // } else if($pageslug=='ebooks'){
+    //     $booktitle = $contentslug;
+    //     return App::call('\App\Http\Controllers\indexController@showreaddetails', [$displayLanguage,$pageslug,$booktitle,'','']);
+    // }
+});
+
+// Route::get('{pageslug}/{listcatalog}', function () {
+//     return view('static.privacy');
+// })->name('privacy');
 // Route::get('login/facebook', '\App\Http\Controllers\Auth\AuthSocialController@redirectToProvider')->name('facebook');
 
 // Route::get('login/facebook/callback', '\App\Http\Controllers\Auth\AuthSocialController@handleProviderCallback')->name('facebook');

@@ -4,7 +4,7 @@
 
         $('.login').click(function() {
             $('.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd').hide();
-            $('.left-side,.right-side').show();
+            $('.left-side,.right-side,.screen-login').show();
             $('#login-modal').show();
             $('#login-modal').addClass("show");
 

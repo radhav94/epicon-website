@@ -7,32 +7,22 @@
 
 @section('content')
 <?php //dd($upcoming);
-$uniqueReleaseDates = [];
 
-foreach ($upcoming as $item) {
-    $releaseDate = $item['release_date'];
+$input = $upcoming;
+
+$output = [];
+
+foreach ($input as $item) {
+    $releaseDate = substr($item['release_date'], 0, 10); // Extract the date part (e.g., "2023-09-15")
     
-    // Check if the release date is not already in the uniqueReleaseDates array
-    if (!in_array($releaseDate, $uniqueReleaseDates)) {
-        $uniqueReleaseDates[] = $releaseDate;
+    if (!isset($output[$releaseDate])) {
+        $output[$releaseDate] = []; // Initialize the array for this date if it doesn't exist
     }
+    
+    $output[$releaseDate][] = $item; // Add the item to the corresponding date in the output array
 }
 
-// Now $uniqueReleaseDates contains unique release dates
-// dd($uniqueReleaseDates);
-// Remove null and "1970" year entries
-$filteredDates = array_filter($uniqueReleaseDates, function ($date) {
-    return $date !== null && !strstr($date, '1970');
-});
-
-// Sort the array by date
-usort($filteredDates, function ($a, $b) {
-    return strtotime($a) <=> strtotime($b);
-});
-
-// Print the sorted array
-// dd($filteredDates);
-
+krsort($output);
 
 ?>
     <section class="container">
@@ -42,40 +32,72 @@ usort($filteredDates, function ($a, $b) {
                 <h4 class="new-popularheading text-white my-4">Upcoming on Epic On</h4>
             </div>
             
-            <?php foreach($filteredDates as $key => $val){ ?>
+            <?php foreach($output as $key => $releaseDate){ ?>
+            <?php if($key !== "" && !strstr($key, '1970')){ ?>
             <div class="card-details">
                 <div class="date-upperline">.</div>
                 <div class="internal-card d-flex">
                    
                     <div class="date-card text-white">
-                        <h6>{{date("M", strtotime($val))}}</h6>
-                        <h5>{{date("y", strtotime($val))}}</h5>
+                        <h6>{{date("d", strtotime($key))}}</h6>
+                        <h6>{{date("M", strtotime($key))}}</h6>
+                        <h5>{{date("y", strtotime($key))}}</h5>
                     </div>
-                    <?php //foreach($upcoming as $content){ ?>
-                    <?php //if(in_array( $val, $content['release_date'])){ ?>
+                    
+                    <?php foreach($releaseDate as $val){ 
+                            $cover_img = isset($val['cover_image']) ? @$val['cover_image']['medium'] : '';
+                            $generes = array_column($val['genres_assign'] ?? [], 'name');
+
+    $sub_text = [];
+
+    if (isset($val['release_date'])) {
+        $date_text = date('Y', strtotime($val['release_date']));
+    }
+    if (isset($val['release_date'])) {
+        $sub_text[] = date('Y', strtotime($val['release_date']));
+    }
+    // $sub_text[] = '3 Language';
+
+    if ($generes) {
+        $sub_text[] = implode(" . ", $generes);
+    }
+    // if (isset($val['age_limit'])) {
+    //     $sub_text[] = $val['age_limit'];
+    // }
+
+
+    // $sub_points = (@$val['age_limit']) ? '<li class="ps-1">' . @$val['age_limit'] . '</li>' : '';
+    $sub_points = '';
+    if ($generes) {
+        foreach ($generes as $key => $genre) {
+            $sub_points .= '<li>' . $genre . '</li>';
+        }
+    }
+                         ?>
                     <div class="card-main-body d-flex">
                         <div class="card-body">
-                            <span class="crown position-absolute"><img src="{{ asset('/img/crown.svg') }}" alt=""></span>
-                            <div class="upper-img">
-                                <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                            </div>
+                            {!! freePremiumDiv($val) !!}
+                            
+                            <a class="upper-img" href="{{ url($val['url'] ?? '//upcoming-epicon') }}">
+                                <img src="{{ $cover_img }}" alt="">
+                            </a>
                             <div class="bottom-text d-flex mt-2">
                                 <div class="left-text">
-                                    <h4 class="text-heading text-white">Inside Edge 3</h4>
+                                    <h4 class="text-heading text-white">{{$val['title'] ?? ''}}</h4>
                                     <ul class="text-white">
-                                        <li>U/A 13+</li>
-                                        <li>Drama</li>
-                                        <li>Comedy</li>
-                                        <li>2023</li>
+                                        <?php echo $sub_points ?>
+                                       <!--  <li>Drama</li>
+                                        <li>Comedy</li>  -->
+                                        <li>{{$date_text}}</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <?php //} ?>
-                    <?php //} ?>
+                    <?php } ?>
                 </div>
             </div>
+            <?php } ?>
             <?php } ?>
 
            <!--  <div class="card-details">

@@ -7,7 +7,7 @@
 
 @section('content')
 
-    <?php //dd($historydata); ?>
+    <?php dd($data); ?>
     <section class="container w-100 my-4">
         <div class="row justify-content-center">
             <div class="col-sm-12">
