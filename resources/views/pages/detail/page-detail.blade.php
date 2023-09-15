@@ -64,7 +64,9 @@
 
 
                         <p class="ua small mb-2 b7-color">
-                            @include('components.sub-bullets', ['v_content' => $content])
+                            @include('pages.detail.detail-components.sub-bullets', [
+                                'v_content' => $content,
+                            ])
                         </p>
                         <div class="seemore">
                             <p class="text-white mb-0">{{ @$content['description'] }}</p>
