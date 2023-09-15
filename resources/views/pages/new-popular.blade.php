@@ -50,7 +50,7 @@
                         <span><img src="{{ asset('/img/fire-emoji.png') }}" alt=""></span>Most Popular
                     </h6>
                     <?php } ?>
-                    <a class="upper-img" href="{{ url($val['url'] ?? '/new-popular') }}">
+                    <a class="upper-img" href="{{ getContentUrl($val) }}">
                         <img src="{{ $cover_img }}" alt="">
                     </a>
                     <div class="bottom-text d-flex mt-2">

@@ -78,7 +78,7 @@ krsort($output);
                         <div class="card-body">
                             {!! freePremiumDiv($val) !!}
                             
-                            <a class="upper-img" href="{{ url($val['url'] ?? '//upcoming-epicon') }}">
+                            <a class="upper-img" href="{{ getContentUrl($val) }}">
                                 <img src="{{ $cover_img }}" alt="">
                             </a>
                             <div class="bottom-text d-flex mt-2">

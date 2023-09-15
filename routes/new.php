@@ -84,7 +84,7 @@ Route::get('privacy', function () {
     return view('static.privacy');
 })->name('privacy');
 
-Route::get('{pageslug}/{contentslug}', function ($pageslug,$catalog) {
+Route::get('midpage/{contentslug}', function ($pageslug,$catalog) {
 // dd($contentslug);
     if($pageslug != 'live-tv'){
         return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug'=>$pageslug,'catalog'=>$catalog]);
