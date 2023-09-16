@@ -19,9 +19,3 @@
         </div>
     </div>
 </div>
-<style>
-    .socialJS a {
-        padding: 10px;
-        font-size: 31px;
-    }
-</style>

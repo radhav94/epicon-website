@@ -37,8 +37,18 @@
         .add-icon {
             background-image: url("../img/add-icon.svg") !important;
         }
+
         .delete-icon {
             background-image: url("../img/subs-icon.svg") !important;
+        }
+
+        .socialJS a {
+            padding: 10px;
+            font-size: 31px;
+        }
+
+        .genresexplore .card-body img {
+            width: 100%;
         }
     </style>
 
@@ -56,7 +66,7 @@
         integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    
+
 
     <script src="{{ asset('assets/js/epic.js') }}"></script>
     {{-- End footer common scripts --}}
