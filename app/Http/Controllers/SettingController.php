@@ -36,7 +36,7 @@ class SettingController extends Controller
     }
 
     public function removeDevice() {
-        $request = Request();
+        $request = Request(); 
         $deviceId = $request->post('deviceId') ? $request->post('deviceId') : '';
         $curlData = ["id" => $deviceId];
         $response = CurlAPI("users/deleteDevice", "POST", $curlData, 2);
