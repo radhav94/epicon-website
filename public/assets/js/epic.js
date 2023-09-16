@@ -146,3 +146,18 @@ $(document).on('keydown', '.onlydigit', function (e) {
     }
 });
 
+//social share
+$(document).on('click', '.shareThis', function () {
+    let url = $(this).data('url');
+
+    $('#shareDiv').empty();
+    $('#shareDiv').socialSharingPlugin({
+        url: url,
+        // title: $('meta[property="og:title"]').attr('content'),
+        // description: $('meta[property="og:description"]').attr('content'),
+        // img: $('meta[property="og:image"]').attr('content'),
+        enable: ['copy', 'facebook', 'twitter']
+    });
+    $('#shareModal').modal('show')
+});
+//end social share

@@ -2,8 +2,10 @@ $(document).ready(function () {
 
     $(document).on('click', '.clapButton', function () {
 
+        let cardType = $(this).data('cardtype');
+        let cont_id = $(this).data('id');
         let requestData = {
-            content_id: $('#cont_id').val(),
+            content_id: cont_id
         };
         console.log(requestData);
         sendAjaxRequest(APP_URL + '/clap', 'POST', JSON.stringify(requestData), onClapSuccess,
@@ -12,7 +14,9 @@ $(document).ready(function () {
         function onClapSuccess(response) {
             showToaster(response?.message, 1);
 
-            $('.claps_num').text(parseInt($('.claps_num').text()) + 1);
+            if (cardType != 'list') {
+                $('.claps_num').text(parseInt($('.claps_num').text()) + 1);
+            }
         }
 
     });

@@ -12,11 +12,11 @@ class PageDetailController extends Controller
     {
         $url = "pages/episode/{$pageslug}/{$contentslug}";
         if ($season && $episode) {
-            $url .= "/{$contentslug}/{$season}/{$episode}";
+            $url .= "/{$season}/{$episode}";
         } else if ($season) {
-            $url .= "/{$contentslug}/{$season}";
+            $url .= "/{$season}";
         }
-        // echo $url;
+
         $result = CurlAPI($url, "GET", [], 1);
         // dd($result);
         if ($result && @$result['success'] ==  true) {
@@ -50,7 +50,7 @@ class PageDetailController extends Controller
 
 
             if (request()->get('v') != '') {
-                dd($about);
+                // dd($about);
                 echo '--------Trailers --------';
                 d($trailers);
                 echo '--------morelike --------';
@@ -72,6 +72,8 @@ class PageDetailController extends Controller
 
             return view($template, compact('content', 'displayLanguageParam', 'trailers', 'morelike', 'about'));
         }
+
+        return view('pages.error.404');
     }
 
     public function clap(Request $request)
