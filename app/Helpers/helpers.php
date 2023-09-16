@@ -473,6 +473,11 @@ function getContentUrl($value)
 }
 
 
+function getMidPageUrl($value)
+{
+    return url('/midpage/' . ($value['slug'] ?? 'slug') . '/' . @$value['catalog']);
+}
+
 function getProfileData()
 {
     if (session()->get('profile_data')) {
@@ -486,4 +491,12 @@ function getProfileData()
 function formatDate($date, $format = 'd F Y')
 {
     return date($format, strtotime($date));
+}
+
+
+function getCardImage($content, $key, $size = 'medium', $fallback = [])
+{
+    if (empty($fallback)) {
+        $fallback = ['banner_image', 'cover_image', 'cover_image_special', 'spotlight_epic_shorts_image', 'epic_shorts_image', 'vertical_cover_image'];
+    }
 }

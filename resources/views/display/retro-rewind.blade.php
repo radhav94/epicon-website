@@ -3,7 +3,11 @@
          <div class="punjab-da-swaad align-items-center" style="background: none;">
              <div class="punjab-title">
                  <img class="w-100 mb-4" src="{{ asset('assets/img/retro-rewind.svg') }}" alt="">
-                 <button>Explore More</button>
+                 @if (@$value['show_more'])
+                     <a href="{{ getMidPageUrl($value) }}">
+                         <button>Explore More</button>
+                     </a>
+                 @endif
              </div>
          </div>
          <ul class="punjab-carousel p-0 mb-0">
