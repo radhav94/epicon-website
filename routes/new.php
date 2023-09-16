@@ -88,3 +88,8 @@ Route::get('privacy', function () {
 
 // Route::get('login/facebook/callback', '\App\Http\Controllers\Auth\AuthSocialController@handleProviderCallback')->name('facebook');
 
+//setting controller routes
+Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
+Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
+
+
