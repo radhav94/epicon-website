@@ -468,8 +468,10 @@ function isUserLoggedIn()
 
 function getContentUrl($value)
 {
-
-    return url($value['url']);
+    if(isset($value['url'])){
+        return url($value['url']);
+    }
+    
 }
 
 
@@ -487,3 +489,26 @@ function formatDate($date, $format = 'd F Y')
 {
     return date($format, strtotime($date));
 }
+
+
+function generateCategoryResponse($result)
+    {
+        if (empty($result) || !isset($result['topResult'])) {
+            return '';
+        }
+
+        $topResult = $result['topResult'];
+
+        $premium = ($topResult['free_premium'] == true) ? '<img class="crown" src="' . asset('assets/img/crown.svg') . '" alt="icon">' : '';
+        $dateText = isset($topResult['release_date']) ? date('Y-m-d', strtotime($topResult['release_date'])) : '';
+        $wishlist = getWishlist();
+        $wishlistAction = getWishListAction($topResult, $wishlist, 2);
+        $url = getContentUrl($topResult);
+
+        return '<div class="pik"><img src="' . $topResult['cover_image']['medium'] . '" alt="img">' . $premium . '</div>'
+            . '<div class="episode-text-details">'
+            . '<h6>' . $topResult['title'] . '</h6>'
+            . '<span>' . @$dateText . ' | ' . @$topResult['duration'] . '</span>'
+            . '<p class="search-top mt-2">' . $topResult['description'] . '</p>'
+            . '<div class="d-flex align-items-center"><a href="' . $url . '"><button class="fill-btn em ms-0">Watch</button></a>' . $wishlistAction . '</div></div>';
+    }

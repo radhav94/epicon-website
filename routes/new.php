@@ -9,7 +9,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\UpcomingController;
 use App\Http\Controllers\PopularController;
-
+use App\Http\Controllers\SearchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -99,6 +99,8 @@ Route::get('midpage/{contentslug}', function ($pageslug,$catalog) {
     // }
 });
 
+Route::get('trendingsearch', [SearchController::class, 'trendingsearch'])->name('trendingsearch');
+Route::post('search', [SearchController::class, 'search'])->name('search');
 // Route::get('{pageslug}/{listcatalog}', function () {
 //     return view('static.privacy');
 // })->name('privacy');
