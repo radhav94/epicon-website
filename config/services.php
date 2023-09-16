@@ -30,5 +30,23 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    
+    'google' => [
+        'client_id' => config('epicconfig.SERVICES.google.GOOGLE_CLIENT_ID'),         // Your Google Client ID
+        'client_secret' => config('epicconfig.SERVICES.google.GOOGLE_CLIENT_SECRET'), // Your Google Client Secret
+        'redirect' => config('epicconfig.SERVICES.google.redirect'),
+    ],
+    
+    'facebook' => [
+        'client_id' => config('epicconfig.SERVICES.facebook.FACEBOOK_CLIENT_ID'),         // Your Facebook Client ID
+        'client_secret' => config('epicconfig.SERVICES.facebook.FACEBOOK_CLIENT_SECRET'), // Your Facebook Client Secret
+        'redirect' => config('epicconfig.SERVICES.facebook.redirect'),
+    ],
+    
+    'twitter' => [
+        'client_id' => config('epicconfig.SERVICES.twitter.TWITTER_CLIENT_ID'),         // Your twitter Client ID
+        'client_secret' => config('epicconfig.SERVICES.twitter.TWITTER_CLIENT_SECRET'), // Your twitter Client Secret
+        'redirect' => config('epicconfig.SERVICES.twitter.redirect'),
+    ],
 
 ];
