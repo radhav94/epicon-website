@@ -2,7 +2,10 @@
 @section('title', @$content['title'])
 
 @section('style')
-
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/socialSharing.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+        integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 @stop
 
 @section('content')
@@ -14,16 +17,17 @@
                 <div class="col-sm-12">
                     <div class="podcast-top w-100">
                         <div class="thumb">
-                            <h6 class="pod-title">EPIC ON ORIGINAL</h6>
-                            <h5 class="pod-series">CASO.63</h5>
+                            {{-- <h6 class="pod-title">EPIC ON ORIGINAL</h6> --}}
+                            {{-- <h5 class="pod-series">CASO.63</h5> --}}
                             <img src="{{ @$content['cover_image']['large'] }}" alt="thumb">
                             <img class="podcast-top-icon" src="{{ asset('assets/img/podcast-top-icon.svg') }}"
                                 alt="podcast icon">
                         </div>
 
                         <div class="thumb-detail text-white">
-                            <h1>@$content['title']</h1>
-                            <p class="with-whom">with Shailja Saraswati</p>
+                            <h1>{{ @$content['title'] }}</h1>
+
+                            {{-- <p class="with-whom">with Shailja Saraswati</p> --}}
                             <div class="drama">
                                 <span>
                                     @include('pages.detail.detail-components.sub-bullets', [
@@ -131,10 +135,10 @@
                                         @if ($wishAction == 'add') style="display: none" @endif>
                                 </button>
 
-                                <button class="rounded-grey-btn me-3 clapButton">
+                                <button class="rounded-grey-btn me-3 clapButton" data-id="{{ @$content['ID'] }}">
                                     <img src="{{ asset('assets/img/clap-icon.svg') }}" alt="icon">
                                 </button>
-                                <button class="rounded-grey-btn">
+                                <button class="rounded-grey-btn shareThis" data-url="{{ getContentUrl($content) }}">
                                     <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
                                 </button>
                             </div>
@@ -150,6 +154,7 @@
 
     </div>
 
+    @include('components.share-modal')
 
 
 @stop
@@ -157,4 +162,14 @@
 @section('script')
     <script src="{{ asset('assets/js/homepage.js') }}"></script>
     <script src="{{ asset('assets/js/detail.js') }}"></script>
+
+    <script src="{{ asset('assets/js/socialSharing.js') }}"></script>
+
+    <script>
+        $(".pod-main").hover(function() {
+            $(this).addClass("active"); //Add the active class to the area is hovered
+        }, function() {
+            $(this).removeClass("active");
+        });
+    </script>
 @stop
