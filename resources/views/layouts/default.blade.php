@@ -50,6 +50,10 @@
         .genresexplore .card-body img {
             width: 100%;
         }
+
+        .genere-fiesta-content img {
+            height: 30px;
+        }
     </style>
 
     {{-- Start footer common scripts --}}
