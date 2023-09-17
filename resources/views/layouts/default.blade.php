@@ -46,6 +46,21 @@
         .delete-icon {
             background-image: url("../img/subs-icon.svg") !important;
         }
+        .search-main .add-icon{
+            background: center no-repeat #272727;
+            border: 0.5px solid #545454;
+            border-radius: 50%;
+            padding: 20px;
+            margin: 12px 0 auto;
+        }
+
+        .search-main .delete-icon{
+            background: center no-repeat #272727;
+            border: 0.5px solid #545454;
+            border-radius: 50%;
+            padding: 20px;
+            margin: 12px 0 auto;
+        }
 
         .socialJS a {
             padding: 10px;
