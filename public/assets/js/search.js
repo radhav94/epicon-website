@@ -16,21 +16,9 @@ $("#searchname").on("keyup", function () {
         },
         success: function(response) {
             console.log(response);
-            if(response.AlltopResult != ''){
-                $('#Alltopresult').html(response.AlltopResult);
-            }else{
-                $('#Alltopresult').html('No Results Found');
-            }
-            if(response.Moviestopresult != ''){
-                $('#Moviestopresult').html(response.MoviestopResult);
-            }else{
-                $('#Moviestopresult').html('No Results Found');
-            }
-            if(response.Showtopresult != ''){
-                $('#Showtopresult').html(response.ShowstopResult);
-            }else{
-                $('#Showtopresult').html('No Results Found');
-            }
+            $('#Alltopresult').html(response.AlltopResult);
+            $('#Moviestopresult').html(response.MoviestopResult);
+            $('#Showtopresult').html(response.ShowstopResult);
             $('#Podcasttopresult').html(response.PodcaststopResult);
             $('#Kidstopresult').html(response.KidstopResult);
             $('#Gamestopresult').html(response.GamestopResult);

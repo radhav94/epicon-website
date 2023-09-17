@@ -53,6 +53,7 @@ class SearchController extends Controller
             return json_encode($data);
         } else {
             // Handle the case when the search is not successful
+            return JSONResponse(400, 'Error.');
         }
     }
 
