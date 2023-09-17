@@ -3,7 +3,7 @@
         <h1 class="text-white small">{{ $title }}</h1>
 
         @if (@$value['show_more'])
-            <a href="{{ url($value['slug'] ?? '/') }}">
+            <a href="{{ getMidPageUrl($value) }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                     <path d="M14.0533 11.2933L18.7466 16L14.0533 20.7067" stroke="white" stroke-width="1.5"
                         stroke-linecap="round" stroke-linejoin="round"></path>
@@ -16,7 +16,6 @@
 
         <?php
         $chunks = array_chunk($value['content'], 2);
-        
         ?>
 
         @foreach ($chunks as $key => $val)
@@ -29,10 +28,10 @@
                     ?>
 
                     <div class="{{ $k == 0 ? 'imdb-top' : 'imdb-bottom' }}">
-                        <a href="/">
+                        <a href="{{ getContentUrl($v) }}">
                             <img src="{{ $card['banner_img'] }}" alt="img">
                             <div class="content">
-                                @if (@$val['free_premium'] == true)
+                                @if (@$v['free_premium'] == true)
                                     <img class="crown" src="{{ asset('assets/img/crown.svg') }}" alt="">
                                 @endif
                                 <div class="content-overlay">

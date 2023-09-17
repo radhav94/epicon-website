@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthSocialController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\LibraryController;
@@ -84,6 +85,24 @@ Route::get('privacy', function () {
     return view('static.privacy');
 })->name('privacy');
 
+Route::get('midpage/{contentslug}', function ($pageslug,$catalog) {
+// dd($contentslug);
+    if($pageslug != 'live-tv'){
+        return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug'=>$pageslug,'catalog'=>$catalog]);
+    }
+    // if($pageslug=='tv-shows' || $pageslug=='epic-shorts' || $pageslug=='documentaries' || $pageslug=='live-tv' || $pageslug=='video-books' || $pageslug=='movies' || $pageslug=='amar-chitra-katha'){
+    //     return App::call('\App\Http\Controllers\indexController@showdetail', [$displayLanguage,$pageslug,$contentslug,'','']);
+    // } else if($pageslug=='podcast'){
+    //     return App::call('\App\Http\Controllers\indexController@podcastdetails', [$displayLanguage,$pageslug,$contentslug,'','']);
+    // } else if($pageslug=='ebooks'){
+    //     $booktitle = $contentslug;
+    //     return App::call('\App\Http\Controllers\indexController@showreaddetails', [$displayLanguage,$pageslug,$booktitle,'','']);
+    // }
+});
+
+// Route::get('{pageslug}/{listcatalog}', function () {
+//     return view('static.privacy');
+// })->name('privacy');
 // Route::get('login/facebook', '\App\Http\Controllers\Auth\AuthSocialController@redirectToProvider')->name('facebook');
 
 // Route::get('login/facebook/callback', '\App\Http\Controllers\Auth\AuthSocialController@handleProviderCallback')->name('facebook');
@@ -95,3 +114,69 @@ Route::post('change-password', [SettingController::class, 'changePassword'])->na
 Route::post('delete-account', [SettingController::class, 'deleteAccount'])->name('delete-account');
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('login/google', [AuthSocialController::class, 'redirectToProvider'])->name('login.google');
+Route::get('login/google/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.google.callback');
+
+Route::get('login/facebook', [AuthSocialController::class, 'redirectToProvider'])->name('login.facebook');
+Route::get('login/facebook/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.facebook.callback');
+
+Route::get('login/twitter', [AuthSocialController::class, 'redirectToProvider'])->name('login.twitter');
+Route::get('login/twitter/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.twitter.callback');

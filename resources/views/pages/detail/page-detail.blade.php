@@ -1,12 +1,16 @@
 @extends('layouts.default')
-@section('title', 'movies')
+@section('title', @$content['title'])
 
 @section('style')
-
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/socialSharing.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+        integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 @stop
 
 @section('content')
 
+    <input type="hidden" id="cont_id" value="{{ $content['ID'] }}">
 
     <section class="content-detail-banner position-relative">
         <div class="banner-main position-relative">
@@ -50,45 +54,30 @@
                                         @if ($wishAction == 'add') style="display: none" @endif>
                                 </button>
 
-                                <button class="rounded-transparent-btn me-3 clapButton">
+                                <button class="rounded-transparent-btn me-3 clapButton" data-id="{{ @$content['ID'] }}">
                                     <img src="{{ asset('assets/img/clap-icon.svg') }}" alt="icon">
                                 </button>
-                                <button class="rounded-transparent-btn">
+                                <button class="rounded-transparent-btn shareThis" data-url="{{ getContentUrl($content) }}">
                                     <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-lg-6 col-md-12 mt-3">
-                        <?php
-                        
-                        $subtext = [];
-                        if (@$content['age_limit']) {
-                            $subtext[] = $content['age_limit'];
-                        }
-                        
-                        $genres = array_column($content['genres_assign'] ?? [], 'name');
-                        
-                        if ($genres) {
-                            foreach ($genres as $key => $genre) {
-                                $subtext[] = $genre;
-                            }
-                        }
-                        
-                        if (isset($content['publish_start_date'])) {
-                            $sub_text[] = date('Y', strtotime($content['publish_start_date']));
-                        }
-                        
-                        ?>
 
-                        <p class="ua small mb-2 b7-color">{{ implode(' • ', $subtext) }}</p>
+
+                        <p class="ua small mb-2 b7-color">
+                            @include('pages.detail.detail-components.sub-bullets', [
+                                'v_content' => $content,
+                            ])
+                        </p>
                         <div class="seemore">
                             <p class="text-white mb-0">{{ @$content['description'] }}</p>
                         </div>
                     </div>
                     <div class="col-sm-6 col-lg-6 col-md-12 mt-3">
                         <div class="seemore">
-                            <h6 class="text-white">Season 3 coming on 18 August</h6>
+                            {{-- <h6 class="text-white">Season 3 coming on 18 August</h6> --}}
                             @if (@$content['cast'])
                                 <p class="text-white mb-3">Cast:
                                     @foreach ($content['cast'] as $key => $value)
@@ -168,171 +157,16 @@
         </div>
     </section>
 
-    <?php
-    $ep_season_data = [];
-    $tab1_title = '';
-    if ($content['content_type'] == 'SHOW') {
-        $ep_season_data = $content['season'] ?? [];
-        $tab1_title = 'Seasons';
-    } elseif ($content['content_type'] == 'SEASON') {
-        $ep_season_data = $content['episodes'] ?? [];
-        $tab1_title = 'Episodes';
-    }
-    
-    $active_tab = '';
-    $tabs = [];
-    
-    if ($ep_season_data) {
-        $tabs[] = ['key' => 'episode', 'title' => $tab1_title];
-    }
-    if ($morelike) {
-        $tabs[] = ['key' => 'morelike', 'title' => 'More like this'];
-    }
-    if ($trailers && isset($trailers['list']) && !empty($trailers['list'])) {
-        $tabs[] = ['key' => 'trailors', 'title' => 'Trailers & More'];
-    }
-    if ($about) {
-        $tabs[] = ['key' => 'about', 'title' => 'About'];
-    }
-    ?>
-    <section class="container w-100 mt-2 mb-4">
-        <div class="row justify-content-center">
-            <div class="col-sm-12">
-                <div class="w-100 library">
-                    <ul class="nav nav-pills border-bot pb-3 ps-2" id="pills-tab" role="tablist">
+    @include('pages.detail.detail-components.tabs')
 
-                        @foreach ($tabs as $key => $value)
-                            <?php
-                            if ($key == 0) {
-                                $active_tab = $value['key'];
-                            }
-                            ?>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link {{ $key == 0 ? 'ep active' : '' }}" id="{{ $value['key'] }}"
-                                    data-bs-toggle="pill" data-bs-target="#pills-{{ $value['key'] }}" type="button"
-                                    role="tab" aria-controls="pills-{{ $value['key'] }}"
-                                    aria-selected="{{ $key == 0 ? 'true' : 'false' }}">{{ $value['title'] }}</button>
-                            </li>
-                        @endforeach
-
-
-                        <!-- filter -->
-                        <div class="episode-season">
-                            <div class="all-episode">
-                                <select>
-                                    <option value="0">All Episodes</option>
-                                    <option value="1">1 to 50</option>
-                                    <option value="2">51 - 100</option>
-                                    <option value="3">101 - 150</option>
-                                    <option value="4">151 - 200</option>
-                                </select>
-                            </div>
-                            <div class="season">
-                                <select>
-                                    <option value="0">Season 1</option>
-                                    <option value="1">Season 2</option>
-                                    <option value="2">Season 3</option>
-                                    <option value="3">Season 4</option>
-                                    <option value="4">Season 5</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- filter end-->
-                    </ul>
-
-
-                    <div class="tab-content" id="pills-tabContent">
-
-                        @include('pages.detail.episodes')
-
-                        @include('pages.detail.morelike')
-
-                        @include('pages.detail.trailers')
-
-                        @include('pages.detail.about')
-
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-
+    @include('components.share-modal')
 @stop
 
 @section('script')
     <script src="{{ asset('assets/js/homepage.js') }}"></script>
-    <script>
-        $(document).ready(function() {
+    <script src="{{ asset('assets/js/socialSharing.js') }}"></script>
 
-            $(document).on('click', '.clapButton', function() {
+    <script src="{{ asset('assets/js/detail.js') }}"></script>
 
-                let requestData = {
-                    content_id: "{{ $content['ID'] }}",
-                };
-                console.log(requestData);
-                sendAjaxRequest(APP_URL + '/clap', 'POST', JSON.stringify(requestData), onClapSuccess,
-                    onError, 'application/json');
-
-                function onClapSuccess(response) {
-                    showToaster(response?.message, 1);
-
-                    $('.claps_num').text(parseInt($('.claps_num').text()) + 1);
-                }
-
-            });
-            //end clap
-
-            $('#trailors').click(function() {
-                $('.carousel-initilize').not('.slick-initialized').slick({
-                    dots: false,
-                    infinite: false,
-                    speed: 300,
-                    slidesToShow: 4.2,
-                    slidesToScroll: 1,
-                    accessibility: true,
-                    responsive: [{
-                            breakpoint: 1367,
-                            settings: {
-                                slidesToShow: 4.5,
-                                slidesToScroll: 1,
-                            }
-                        },
-                        {
-                            breakpoint: 1025,
-                            settings: {
-                                slidesToShow: 3.9,
-                                slidesToScroll: 1,
-                            }
-                        },
-                        {
-                            breakpoint: 769,
-                            settings: {
-                                slidesToShow: 3.2,
-                                slidesToScroll: 1,
-                            }
-                        },
-                        {
-                            breakpoint: 600,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 2
-                            }
-                        },
-                        {
-                            breakpoint: 480,
-                            settings: {
-                                slidesToShow: 1.5,
-                                slidesToScroll: 1
-                            }
-                        }
-                    ]
-                });
-            });
-
-        });
-    </script>
 
 @stop

@@ -807,6 +807,41 @@ function initSliders() {
         ]
     });
 
+    //start supermix
+    const getSupermixData = function () {
+        sendAjaxRequest(APP_URL + '/supermix', 'POST', null,
+            onSupermixSuccess, onError, 'application/json');
 
+        function onSupermixSuccess(response) {
+
+            $('#supermixData').html(response.payload?.html);
+
+            $("#sortable").sortable({
+                handle: '.handle',
+                cancel: ''
+            });
+        }
+    }
+
+    $(document).on('click', '.shuffleContent', getSupermixData);
+
+    $(document).on('click', '.superMixButton', function () {
+        let img = $(this).parents('.super-mix').find('.supImg').attr('src');
+
+        $('#supermixModal .supermix-banner img').attr('src', img);
+        $('#supermixModal').modal('show');
+
+        getSupermixData();
+    });
+
+    $(document).on('click', '.popupVideo', function () {
+        // let video = $(this).data('video');
+
+        // $('#videoPlayer source').attr('src', video);
+        // $('#videoModal').modal('show');
+
+    });
+
+    //end supermix
 
 }

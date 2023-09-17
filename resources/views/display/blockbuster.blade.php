@@ -3,7 +3,7 @@
          <div class="galore-title">
              <h1>{{ $title }}</h1>
              @if (@$value['show_more'])
-                 <a href="{{ url($value['slug'] ?? '/') }}">
+                 <a href="{{ getMidPageUrl($value) }}">
                      <button>Explore More</button>
                  </a>
              @endif
@@ -18,7 +18,7 @@
                  ?>
 
                  <div>
-                     <a href="{{ url($val['url']) }}">
+                     <a href="{{ getContentUrl($val) }}">
                          <img src="{{ $cover_img }}" alt="{{ $val['title'] }}">
                      </a>
                  </div>

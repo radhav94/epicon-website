@@ -12,11 +12,11 @@ class PageDetailController extends Controller
     {
         $url = "pages/episode/{$pageslug}/{$contentslug}";
         if ($season && $episode) {
-            $url .= "/{$contentslug}/{$season}/{$episode}";
+            $url .= "/{$season}/{$episode}";
         } else if ($season) {
-            $url .= "/{$contentslug}/{$season}";
+            $url .= "/{$season}";
         }
-        // echo $url;
+
         $result = CurlAPI($url, "GET", [], 1);
         // dd($result);
         if ($result && @$result['success'] ==  true) {
@@ -48,16 +48,32 @@ class PageDetailController extends Controller
                 $about = $about_curl['data'];
             }
 
-            // d($trailers);
-            // d($morelike);
 
-            // d($about);
-            // echo 'About';
-            // d($result);
-            // die;
+            if (request()->get('v') != '') {
+                // dd($about);
+                echo '--------Trailers --------';
+                d($trailers);
+                echo '--------morelike --------';
 
-            return view('pages.detail.page-detail', compact('content', 'displayLanguageParam', 'trailers', 'morelike', 'about'));
+                d($morelike);
+                echo '--------about --------';
+
+                d($about);
+                echo '--------result --------';
+
+                d($result);
+                die;
+            }
+
+            $template = 'pages.detail.page-detail';
+            if ($content['asset_type'] == 'LISTEN') {
+                $template = 'pages.detail.podcast';
+            }
+
+            return view($template, compact('content', 'displayLanguageParam', 'trailers', 'morelike', 'about'));
         }
+
+        return view('pages.error.404');
     }
 
     public function clap(Request $request)

@@ -4,7 +4,7 @@
             <h1>{{ $title }}</h1>
 
             @if (@$value['show_more'])
-                <a href="{{ url($value['slug'] ?? '/') }}">
+                <a href="{{ getMidPageUrl($value) }}">
                     <button>Explore More
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
                             fill="none">
