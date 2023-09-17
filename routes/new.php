@@ -91,5 +91,7 @@ Route::get('privacy', function () {
 //setting controller routes
 Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
 Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
+Route::post('change-password', [SettingController::class, 'changePassword'])->name('change-password');
+Route::post('delete-account', [SettingController::class, 'deleteAccount'])->name('delete-account');
 
 
