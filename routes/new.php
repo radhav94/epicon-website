@@ -11,6 +11,8 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\UpcomingController;
 use App\Http\Controllers\PopularController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\PageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -85,8 +87,8 @@ Route::get('privacy', function () {
     return view('static.privacy');
 })->name('privacy');
 
-Route::get('midpage/{contentslug}', function ($pageslug,$catalog) {
-// dd($contentslug);
+Route::get('midpage/{pageslug}/{catalog}', function ($pageslug,$catalog) {
+// dd($catalog);
     if($pageslug != 'live-tv'){
         return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug'=>$pageslug,'catalog'=>$catalog]);
     }
@@ -99,6 +101,8 @@ Route::get('midpage/{contentslug}', function ($pageslug,$catalog) {
     //     return App::call('\App\Http\Controllers\indexController@showreaddetails', [$displayLanguage,$pageslug,$booktitle,'','']);
     // }
 });
+
+Route::post('paginatecontent', [PageController::class, 'paginatecontent'])->name('paginatecontent');
 
 Route::get('trendingsearch', [SearchController::class, 'trendingsearch'])->name('trendingsearch');
 Route::post('search', [SearchController::class, 'search'])->name('search');

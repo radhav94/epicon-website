@@ -149,11 +149,32 @@ class PageController extends Controller
         // if (($user = getLoggedInUser()) != false) {
         //     $epicwebArr = CurlAPI("pages/midpage", "POST", ['user_id' => $user->user_id, 'session_id' => $user->api_session_id, 'catalogId' => $catalogid]);
         // } else {
+        $page = 1;
             $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog,'limit' => 50, 'page' => 1], 1);
-            return view('display.midpage',compact('epicwebArr'));
-            // dd($epicwebArr);
-
-        // }
-        // return view('epicon.' . $video_player_blade, compact('epicwebArr', 'routenamed', 'playerData', 'meta', 'menuArray', 'menu_array_new', 'isCurrentContentFavourite', 'isCurrentContentwatch', 'activeSeasonSlug', 'userProperties', 'mylistArr', 'commonMenuUserData', 'user', 'displayLanguageParam', 'watchactive', 'spotlight_key', 'payperuse'));
+            if(isset($epicwebArr) && $epicwebArr['success'] == true){
+                $epicwebArr = $epicwebArr['data'];
+                return view('display.midpage',compact('epicwebArr','pageslug','catalog','page'));
+            }else{
+                return view('pages.404');
+            }
     }
+
+     public function paginatecontent(){
+        $request = Request();
+        // dd($request->all());
+        $page = $request->page;
+        $catalog = $request->catalogid;
+        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog,'limit' => 50, 'page' => $page], 1);
+        // dd($epicwebArr);
+        $catalogue_blade = "paginatecontent";
+        if ($epicwebArr['success'] == true) {
+            $epicwebArr = $epicwebArr['data'];
+            $paginateHTML = (string) view('display.' . $catalogue_blade, compact('epicwebArr', 'page', 'catalog'));
+            
+        } else {
+            $paginateHTML = "false";
+        }
+        // dd($paginateHTML);
+        return $paginateHTML;
+     }
 }
