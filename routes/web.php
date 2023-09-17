@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PageDetailController;
+use App\Http\Controllers\SupermixController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LogoutController;
 
@@ -51,5 +52,6 @@ Route::group(['middleware' => 'loggedin'], function () {
 
 
 //dynamic pages route
+Route::any('/supermix', [SupermixController::class, 'superMix']);
 Route::get('/{slug}', [PageController::class, 'index']);
 Route::get('/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);

@@ -2,6 +2,7 @@
 @section('title', $meta_title)
 
 @section('style')
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
 @stop
 
@@ -15,9 +16,14 @@
         @include('display.display-default')
     </div>
 
+
+    @include('components.supermix-content-modal')
+    @include('components.video-player-modal')
+
 @stop
 
 @section('script')
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="{{ asset('assets/js/homepage.js') }}"></script>
 
     <script>
