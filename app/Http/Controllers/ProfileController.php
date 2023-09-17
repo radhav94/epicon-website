@@ -21,7 +21,7 @@ class ProfileController extends Controller
 
         if ($result && @$result['success'] ==  true) {
 
-            $profiles = $result['user_data']['profiles'];
+            $profiles = $result['user_data']['profiles'] ?? [];
 
             $profile_limit = $this->profile_limit;
 
