@@ -1,14 +1,29 @@
 <?php
-//echo '<pre>';
-//print_r($genrelist);
 $genreList = $genrelist['success'] && array_key_exists('data', $genrelist) ? $genrelist['data'] : [];
+$interests = array_key_exists("interests", $user_data) ? $user_data['interests'] : [];
 $interestsCount = count($interests) ?? 0;
+$kidSection = array_key_exists("kidSection", $user_data) ? $user_data['kidSection'] : false;
+$activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDevice) ? $activeDevice['data'] : [];
+//echo $_SESSION['profile_data']['result']['user_data']['kidSection'];
 ?>
 
 @extends('layouts.default')
 @section('title','New homepage')
 
 @section('style')
+<style>
+    /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+</style>
 
 @stop
 
@@ -111,12 +126,12 @@ $interestsCount = count($interests) ?? 0;
                         <label class="text-white text-start w-100 mb-1" for="">Enter the  4-digit code sent to +9186******41</label>
                         <div class="childpin">
                             <div class="childpin-input d-flex justify-content-between pt-3">
-                                <input type="text" maxlength="1">
-                                <input type="text" maxlength="1">
-                                <input type="text" maxlength="1">
-                                <input type="text" maxlength="1">
-                                <input type="text" maxlength="1">
-                                <input type="text" maxlength="1">
+                                <input class="mx-1 child-box" type="number" min="0" max="9" maxlength="1">
+                                <input class="mx-1 child-box" type="number" min="0" max="9" maxlength="1">
+                                <input class="mx-1 child-box" type="number" min="0" max="9" maxlength="1">
+                                <input class="mx-1 child-box" type="number" min="0" max="9" maxlength="1">
+                                <input class="mx-1 child-box" type="number" min="0" max="9" maxlength="1">
+                                <input class="mx-1 child-box" type="number" min="0" max="9" maxlength="1">
                             </div>
                         </div>
                         <p class="text-start w-100 text-white small mt-2">Resend OTP in 0:30</p>
@@ -402,73 +417,33 @@ $interestsCount = count($interests) ?? 0;
                                         <h4 class="pb-4 border-bot">Manage the active devices</h4>
 
                                         <div class="container-fluid pt-4">
-                                            <div class="row border-bot">
-                                                <div class="col-sm-4 col-md-3"><p>This Device</p></div>
+                                            <?php if (count($activeDevices) > 0) {
+                                                    foreach ($activeDevices as $device) {
+                                                        $deviceId = $device['id'];
+                                            ?>
+                                            <div class="row border-bot" data-id="{{ $deviceId }}">
+                                                <div class="col-sm-4 col-md-3"><p>Device</p></div>
                                                 <div class="col-sm-4 col-md-5">
                                                     <div class="form-check d-flex align-items-center ps-0 mb-4">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                             <path d="M3.9375 2.25C3.29103 2.25 2.67105 2.50681 2.21393 2.96393C1.75681 3.42105 1.5 4.04103 1.5 4.6875V16.3125C1.5 16.959 1.75681 17.579 2.21393 18.0361C2.67105 18.4932 3.29103 18.75 3.9375 18.75H9.0075V20.2507H6.759C6.65856 20.2476 6.55851 20.2646 6.46479 20.3009C6.37106 20.3371 6.28558 20.3918 6.21341 20.4617C6.14124 20.5316 6.08385 20.6154 6.04467 20.7079C6.00548 20.8004 5.98529 20.8999 5.98529 21.0004C5.98529 21.1009 6.00548 21.2003 6.04467 21.2929C6.08385 21.3854 6.14124 21.4691 6.21341 21.539C6.28558 21.6089 6.37106 21.6637 6.46479 21.6999C6.55851 21.7361 6.65856 21.7532 6.759 21.75H17.253C17.3534 21.7532 17.4535 21.7361 17.5472 21.6999C17.6409 21.6637 17.7264 21.6089 17.7986 21.539C17.8708 21.4691 17.9281 21.3854 17.9673 21.2929C18.0065 21.2003 18.0267 21.1009 18.0267 21.0004C18.0267 20.8999 18.0065 20.8004 17.9673 20.7079C17.9281 20.6154 17.8708 20.5316 17.7986 20.4617C17.7264 20.3918 17.6409 20.3371 17.5472 20.3009C17.4535 20.2646 17.3534 20.2476 17.253 20.2507H15.0045V18.75H20.0625C20.709 18.75 21.329 18.4932 21.7861 18.0361C22.2432 17.579 22.5 16.959 22.5 16.3125V4.6875C22.5 4.04103 22.2432 3.42105 21.7861 2.96393C21.329 2.50681 20.709 2.25 20.0625 2.25H3.9375ZM13.5045 18.75V20.2507H10.5075V18.75H13.5045ZM3 4.6875C3 4.17 3.42 3.75 3.9375 3.75H20.0625C20.58 3.75 21 4.17 21 4.6875V16.3125C21 16.83 20.58 17.25 20.0625 17.25H3.9375C3.42 17.25 3 16.83 3 16.3125V4.6875Z" fill="white"/>
                                                           </svg>
                                                         <div class="ms-3">
-                                                            <p class="mb-0 w-auto">Web Browser</p>
-                                                            <span class="small text-opacity">Last Active: Today</span>
+                                                            <p class="mb-0 w-auto">{{ $device['device'] }}</p>
+                                                            <span class="small text-opacity">Last Active: <?php echo date('Y-m-d h:i:s A', strtotime($device['date'])); ?></span>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 col-md-4">
-                                                    <button class="border-btn mb-4">Log Out</button>
+                                                    <button class="border-btn mb-4" onclick="logoutDevice('{{ $deviceId }}')">Log Out</button>
                                                 </div>
                                             </div>
+                                            <?php } 
+                                            } else { ?>
                                             <div class="row pt-4">
-                                                <div class="col-sm-4 col-md-3"><p>Other Devices</p></div>
-                                                <div class="col-sm-4 col-md-5">
-                                                    <div class="form-check d-flex align-items-center ps-0 mb-4">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                            <g clip-path="url(#clip0_91_19558)">
-                                                              <path d="M16.5 1.5C16.8978 1.5 17.2794 1.65804 17.5607 1.93934C17.842 2.22064 18 2.60218 18 3V21C18 21.3978 17.842 21.7794 17.5607 22.0607C17.2794 22.342 16.8978 22.5 16.5 22.5H7.5C7.10218 22.5 6.72064 22.342 6.43934 22.0607C6.15804 21.7794 6 21.3978 6 21V3C6 2.60218 6.15804 2.22064 6.43934 1.93934C6.72064 1.65804 7.10218 1.5 7.5 1.5H16.5ZM7.5 0C6.70435 0 5.94129 0.316071 5.37868 0.87868C4.81607 1.44129 4.5 2.20435 4.5 3V21C4.5 21.7956 4.81607 22.5587 5.37868 23.1213C5.94129 23.6839 6.70435 24 7.5 24H16.5C17.2956 24 18.0587 23.6839 18.6213 23.1213C19.1839 22.5587 19.5 21.7956 19.5 21V3C19.5 2.20435 19.1839 1.44129 18.6213 0.87868C18.0587 0.316071 17.2956 0 16.5 0L7.5 0Z" fill="white"/>
-                                                              <path d="M12 21C12.3978 21 12.7794 20.842 13.0607 20.5607C13.342 20.2794 13.5 19.8978 13.5 19.5C13.5 19.1022 13.342 18.7206 13.0607 18.4393C12.7794 18.158 12.3978 18 12 18C11.6022 18 11.2206 18.158 10.9393 18.4393C10.658 18.7206 10.5 19.1022 10.5 19.5C10.5 19.8978 10.658 20.2794 10.9393 20.5607C11.2206 20.842 11.6022 21 12 21Z" fill="white"/>
-                                                            </g>
-                                                            <defs>
-                                                              <clipPath id="clip0_91_19558">
-                                                                <rect width="24" height="24" fill="white"/>
-                                                              </clipPath>
-                                                            </defs>
-                                                          </svg>
-                                                        <div class="ms-3">
-                                                            <p class="mb-0 w-auto">iPhone</p>
-                                                            <span class="small text-opacity">Last Active: 5 May, 2023 </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4 col-md-4">
-                                                    <button class="border-btn mb-4">Log Out</button>
-                                                </div>
+                                                <div class="col-sm-4 col-md-3"><p>No device found</p></div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-sm-4 col-md-3"></div>
-                                                <div class="col-sm-4 col-md-5">
-                                                    <div class="form-check d-flex align-items-center ps-0 mb-4">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                            <g clip-path="url(#clip0_91_19558)">
-                                                              <path d="M16.5 1.5C16.8978 1.5 17.2794 1.65804 17.5607 1.93934C17.842 2.22064 18 2.60218 18 3V21C18 21.3978 17.842 21.7794 17.5607 22.0607C17.2794 22.342 16.8978 22.5 16.5 22.5H7.5C7.10218 22.5 6.72064 22.342 6.43934 22.0607C6.15804 21.7794 6 21.3978 6 21V3C6 2.60218 6.15804 2.22064 6.43934 1.93934C6.72064 1.65804 7.10218 1.5 7.5 1.5H16.5ZM7.5 0C6.70435 0 5.94129 0.316071 5.37868 0.87868C4.81607 1.44129 4.5 2.20435 4.5 3V21C4.5 21.7956 4.81607 22.5587 5.37868 23.1213C5.94129 23.6839 6.70435 24 7.5 24H16.5C17.2956 24 18.0587 23.6839 18.6213 23.1213C19.1839 22.5587 19.5 21.7956 19.5 21V3C19.5 2.20435 19.1839 1.44129 18.6213 0.87868C18.0587 0.316071 17.2956 0 16.5 0L7.5 0Z" fill="white"/>
-                                                              <path d="M12 21C12.3978 21 12.7794 20.842 13.0607 20.5607C13.342 20.2794 13.5 19.8978 13.5 19.5C13.5 19.1022 13.342 18.7206 13.0607 18.4393C12.7794 18.158 12.3978 18 12 18C11.6022 18 11.2206 18.158 10.9393 18.4393C10.658 18.7206 10.5 19.1022 10.5 19.5C10.5 19.8978 10.658 20.2794 10.9393 20.5607C11.2206 20.842 11.6022 21 12 21Z" fill="white"/>
-                                                            </g>
-                                                            <defs>
-                                                              <clipPath id="clip0_91_19558">
-                                                                <rect width="24" height="24" fill="white"/>
-                                                              </clipPath>
-                                                            </defs>
-                                                          </svg>
-                                                        <div class="ms-3">
-                                                            <p class="mb-0 w-auto">iPhone</p>
-                                                            <span class="small text-opacity">Last Active: 5 May, 2023 </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4 col-md-4">
-                                                    <button class="border-btn mb-4">Log Out</button>
-                                                </div>
-                                            </div>
+                                            <?php } ?>
                                         </div>
                                    
                                 </div>
@@ -478,53 +453,60 @@ $interestsCount = count($interests) ?? 0;
                                     <h4 class="pb-4 border-bot">Control kids’ access</h4>
 
                                     <div class="childpin text-start py-4">
-                                        <div>
-                                            <h6 class="mb-3">Create a 4-digit Child PIN</h6>
-                                            <p class="small mb-4">This PIN will be used to switch from kids profile to all adult profiles</p>
-                                            <div class="childpin-input pt-3">
-                                                <input type="text" maxlength="1">
-                                                <input type="text" maxlength="1">
-                                                <input type="text" maxlength="1">
-                                                <input type="text" maxlength="1">
-                                            </div>
-                                            <button class="login-btn mt-5 ms-0" style="width: 280px;" data-bs-toggle="modal" data-bs-target="#childpin">
-                                                Done
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-
-                                        <div>
-                                            <h6 class="mb-3">Change Child PIN</h6>
-                                            <div class="d-flex align-items-center mb-4">
-                                                <p class="small" style="width: 150px;">Current PIN</p>
-                                                <div class="childpin-input">
-                                                    <input type="text" maxlength="1">
-                                                    <input type="text" maxlength="1">
-                                                    <input type="text" maxlength="1">
-                                                    <input type="text" maxlength="1">
+                                        <form id="childPinForm">
+                                            <?php if (!$kidSection) { ?>
+                                            <div>
+                                                <input type="hidden" name="command" value="createKidsPin"> 
+                                                <h6 class="mb-3">Create a 4-digit Child PIN</h6>
+                                                <p class="small mb-4">This PIN will be used to switch from kids profile to all adult profiles</p>
+                                                <div class="childpin-input pt-3">
+                                                    <input class="mx-1 child-box" type="number" min="0" max="9" name="kidsPin[]" maxlength="1">
+                                                    <input class="mx-1 child-box" type="number" min="0" max="9" name="kidsPin[]" maxlength="1">
+                                                    <input class="mx-1 child-box" type="number" min="0" max="9" name="kidsPin[]" maxlength="1">
+                                                    <input class="mx-1 child-box" type="number" min="0" max="9" name="kidsPin[]" maxlength="1">
                                                 </div>
+                                                <button type="button"class="login-btn mt-5 ms-0" id="setChildPin" style="width: 280px;">
+                                                    Done
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
-                                            <div class="d-flex align-items-center">
-                                                <p class="small" style="width: 150px;">New PIN</p>
-                                                <div class="childpin-input">
-                                                    <input type="text" maxlength="1">
-                                                    <input type="text" maxlength="1">
-                                                    <input type="text" maxlength="1">
-                                                    <input type="text" maxlength="1">
+                                            <?php } else { ?>
+                                            <div>
+                                               <input type="hidden" name="command" value="changeKidsPin"> 
+                                                <h6 class="mb-3">Change Child PIN</h6>
+                                                <div class="d-flex align-items-center mb-4">
+                                                    <p class="small" style="width: 150px;">Current PIN</p>
+                                                    <div class="childpin-input">
+                                                        <input class="mx-1 child-box" type="number" min="0" max="9" name="oldKidsPin[]" maxlength="1">
+                                                        <input class="mx-1 child-box" type="number" min="0" max="9" name="oldKidsPin[]" maxlength="1">
+                                                        <input class="mx-1 child-box" type="number" min="0" max="9" name="oldKidsPin[]" maxlength="1">
+                                                        <input class="mx-1 child-box" type="number" min="0" max="9" name="oldKidsPin[]" maxlength="1">
+                                                    </div>
                                                 </div>
+                                                <div class="d-flex align-items-center">
+                                                    <p class="small" style="width: 150px;">New PIN</p>
+                                                    <div class="childpin-input">
+                                                        <input class="mx-1 child-box" type="number" min="0" max="9" name="newKidsPin[]" maxlength="1">
+                                                        <input class="mx-1 child-box" type="number" min="0" max="9" name="newKidsPin[]" maxlength="1">
+                                                        <input class="mx-1 child-box" type="number" min="0" max="9" name="newKidsPin[]" maxlength="1">
+                                                        <input class="mx-1 child-box" type="number" min="0" max="9" name="newKidsPin[]" maxlength="1">
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="login-btn mt-5 ms-0" id="setChildPin" style="width: 280px;" data-bs-toggle="modal" data-bs-target="#changed-childpin">
+                                                    Done
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
-                                            <button class="login-btn mt-5 ms-0" style="width: 280px;" data-bs-toggle="modal" data-bs-target="#changed-childpin">
-                                                Done
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-
+                                            <?php } ?>
+                                            <div id="error-msg" style="color: red;"></div>
+                                            <div id="success-msg" style="color: green;"></div>
+                                        </form>
                                     </div>
 
                                 </div>
@@ -542,7 +524,7 @@ $interestsCount = count($interests) ?? 0;
                                                     <div class="col-sm-3 col-md-4 col-lg-3 col-xl-3 d-flex align-items-center"><p>Current Password</p></div>
                                                     <div class="col-sm-4 col-md-7 col-lg-6 col-xl-5">
                                                         <div class="input-field w-100 mb-3">
-                                                            <input class="form-control" id="exampleDataList" placeholder="Create Password">
+                                                            <input type="password" class="form-control" id="exampleDataList" placeholder="Create Password">
                                                             <button class="eye">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
                                                                     <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
@@ -556,7 +538,7 @@ $interestsCount = count($interests) ?? 0;
                                                     <div class="col-sm-3 col-md-4 col-lg-3 col-xl-3 d-flex align-items-center"><p>New Password</p></div>
                                                     <div class="col-sm-4 col-md-7 col-lg-6 col-xl-5">
                                                         <div class="input-field w-100 mb-3">
-                                                            <input class="form-control" id="exampleDataList" placeholder="Create Password">
+                                                            <input type="password" class="form-control" id="exampleDataList" placeholder="Create Password">
                                                             <button class="eye">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
                                                                     <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
@@ -570,7 +552,7 @@ $interestsCount = count($interests) ?? 0;
                                                     <div class="col-sm-3 col-md-4 col-lg-3 col-xl-3 d-flex align-items-center"><p>Confirm Password</p></div>
                                                     <div class="col-sm-4 col-md-7 col-lg-6 col-xl-5">
                                                         <div class="input-field w-100 mb-3">
-                                                            <input class="form-control" id="exampleDataList" placeholder="Create Password">
+                                                            <input type="password" class="form-control" id="exampleDataList" placeholder="Create Password">
                                                             <button class="eye">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
                                                                     <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white"/>
@@ -664,6 +646,18 @@ $interestsCount = count($interests) ?? 0;
 @section('script')
 <script>
     $(document).ready(function() {
+        //focus otp input
+        $(".mx-1").on("input", function() {
+            const maxLength = parseInt($(this).attr("maxlength"));
+            const currentLength = $(this).val().length;
+
+            // If the current input field is filled, move to the next field
+            if (currentLength === maxLength) {
+                $(this).next(".mx-1").val('');
+                $(this).next(".mx-1").focus();
+            }
+        });
+
         $("input[name='genreInterest[]']").change(function() {
             var genreCount = 0;
             
@@ -720,6 +714,65 @@ $interestsCount = count($interests) ?? 0;
                 $("#updateInterestForm #error-meg-for-genre-select").html("Please select your preferences");
             }
         })
+
+        $("#childPinForm #setChildPin").click(function() {
+            $("#childPinForm #error-msg").html("");  
+            var formData = $('#childPinForm').serialize();
+            var command = $('#childPinForm input[name="command"]').val();
+            $.ajax({
+                url: "{{ route('set-kidsPin') }}",
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.payload.success == true) {
+                        $("#childPinForm input").val("");
+                        if (command == "createKidsPin") {
+                            $("#childpin").modal('show');
+                            setTimeout(function() {
+                                location.reload();
+                            }, 3000);
+                        } else {
+                            $("#changed-childpin").modal('show');
+                        }
+                    } else {
+                        $("#childPinForm #error-msg").html(response.payload.message);                            
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log('error me aaya');
+                }
+            });
+        })
     })
+
+    function logoutDevice(params) {
+        if (params == "") return;
+        var formData = {deviceId: params}
+        $.ajax({
+            url: "{{ route('remove-device') }}",
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                console.log(response);
+                if (response.payload.success == true) {
+                    $("div[data-id='"+params+"']").remove();
+                } else {
+                    $("#updateInterestForm #error-meg-for-genre-select").html(response.payload.message);                            
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log('error me aaya');
+            }
+        });
+    }
 </script>
 @stop

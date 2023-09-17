@@ -10,6 +10,8 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\UpcomingController;
 use App\Http\Controllers\PopularController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,8 +87,8 @@ Route::get('privacy', function () {
     return view('static.privacy');
 })->name('privacy');
 
-Route::get('midpage/{contentslug}', function ($pageslug,$catalog) {
-// dd($contentslug);
+Route::get('midpage/{pageslug}/{catalog}', function ($pageslug,$catalog) {
+// dd($catalog);
     if($pageslug != 'live-tv'){
         return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug'=>$pageslug,'catalog'=>$catalog]);
     }
@@ -100,70 +102,16 @@ Route::get('midpage/{contentslug}', function ($pageslug,$catalog) {
     // }
 });
 
+Route::post('paginatecontent', [PageController::class, 'paginatecontent'])->name('paginatecontent');
+
+Route::get('trendingsearch', [SearchController::class, 'trendingsearch'])->name('trendingsearch');
+Route::post('search', [SearchController::class, 'search'])->name('search');
 // Route::get('{pageslug}/{listcatalog}', function () {
 //     return view('static.privacy');
 // })->name('privacy');
 // Route::get('login/facebook', '\App\Http\Controllers\Auth\AuthSocialController@redirectToProvider')->name('facebook');
 
 // Route::get('login/facebook/callback', '\App\Http\Controllers\Auth\AuthSocialController@handleProviderCallback')->name('facebook');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Route::get('login/google', [AuthSocialController::class, 'redirectToProvider'])->name('login.google');
 Route::get('login/google/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.google.callback');
@@ -173,3 +121,8 @@ Route::get('login/facebook/callback', [AuthSocialController::class, 'handleProvi
 
 Route::get('login/twitter', [AuthSocialController::class, 'redirectToProvider'])->name('login.twitter');
 Route::get('login/twitter/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.twitter.callback');
+
+//setting controller routes
+Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
+Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
+
