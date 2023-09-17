@@ -109,64 +109,6 @@ Route::post('search', [SearchController::class, 'search'])->name('search');
 
 // Route::get('login/facebook/callback', '\App\Http\Controllers\Auth\AuthSocialController@handleProviderCallback')->name('facebook');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::get('login/google', [AuthSocialController::class, 'redirectToProvider'])->name('login.google');
 Route::get('login/google/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.google.callback');
 
@@ -175,3 +117,8 @@ Route::get('login/facebook/callback', [AuthSocialController::class, 'handleProvi
 
 Route::get('login/twitter', [AuthSocialController::class, 'redirectToProvider'])->name('login.twitter');
 Route::get('login/twitter/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.twitter.callback');
+
+//setting controller routes
+Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
+Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
+
