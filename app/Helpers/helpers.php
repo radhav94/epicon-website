@@ -523,4 +523,4 @@ function getCardImage($content, $key, $size = 'medium', $fallback = [])
         $fallback = ['banner_image', 'cover_image', 'cover_image_special', 'spotlight_epic_shorts_image', 'epic_shorts_image', 'vertical_cover_image'];
     }
 }
->>>>>>> 5b4ea947f33978eac40d895d04072e053ed0a1ea
+
