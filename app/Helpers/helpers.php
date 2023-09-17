@@ -475,6 +475,11 @@ function getContentUrl($value)
 }
 
 
+function getMidPageUrl($value)
+{
+    return url('/midpage/' . ($value['slug'] ?? 'slug') . '/' . @$value['catalog']);
+}
+
 function getProfileData()
 {
     if (session()->get('profile_data')) {
@@ -489,7 +494,6 @@ function formatDate($date, $format = 'd F Y')
 {
     return date($format, strtotime($date));
 }
-
 
 function generateCategoryResponse($result)
     {
@@ -512,3 +516,11 @@ function generateCategoryResponse($result)
             . '<p class="search-top mt-2">' . $topResult['description'] . '</p>'
             . '<div class="d-flex align-items-center"><a href="' . $url . '"><button class="fill-btn em ms-0">Watch</button></a>' . $wishlistAction . '</div></div>';
     }
+
+function getCardImage($content, $key, $size = 'medium', $fallback = [])
+{
+    if (empty($fallback)) {
+        $fallback = ['banner_image', 'cover_image', 'cover_image_special', 'spotlight_epic_shorts_image', 'epic_shorts_image', 'vertical_cover_image'];
+    }
+}
+>>>>>>> 5b4ea947f33978eac40d895d04072e053ed0a1ea

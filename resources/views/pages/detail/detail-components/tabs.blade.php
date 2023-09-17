@@ -79,8 +79,13 @@
                            @include('pages.detail.detail-components.episodes')
                        @endif
 
+                       @if (@$content['asset_type'] == 'LISTEN')
+                           @include('pages.detail.detail-components.podcast-morelike')
+                       @else
+                           @include('pages.detail.detail-components.morelike')
+                       @endif
 
-                       @include('pages.detail.detail-components.morelike')
+
 
                        @include('pages.detail.detail-components.trailers')
 

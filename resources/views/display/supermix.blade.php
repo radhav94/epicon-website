@@ -8,7 +8,7 @@
 
         <div class="col-12">
             <div class="super-mix w-100 text-white">
-                <img src="{{ @$value['cover_image'] }}" alt="">
+                <img src="{{ @$value['tray_image'] }}" alt="">
                 <div class="d-flex align-items-baseline aie">
                     <h1 class="me-3">{{ $card['title'] }} </h1><span> {{ @$value['description'] ?? '' }} </span>
                 </div>

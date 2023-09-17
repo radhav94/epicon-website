@@ -69,9 +69,9 @@
                                 <div class="lg-social">
                                     <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
                                             alt=""></a>
-                                    <a href=""><img src="{{ asset('/img/lg-twitter-icon.svg') }}"
+                                    <a href="{{route('login.twitter')}}"><img src="{{ asset('/img/lg-twitter-icon.svg') }}"
                                             alt=""></a>
-                                    <a href=""><img src="{{ asset('/img/lg-google-icon.svg') }}"
+                                    <a href="{{route('login.google')}}"><img src="{{ asset('/img/lg-google-icon.svg') }}"
                                             alt=""></a>
                                     <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
                                             alt=""></a>

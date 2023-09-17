@@ -3,7 +3,9 @@
          <div class="galore-title">
              <h1>{{ $title }}</h1>
              @if (@$value['show_more'])
-                 <button>Explore More</button>
+                 <a href="{{ getMidPageUrl($value) }}">
+                     <button>Explore More</button>
+                 </a>
              @endif
          </div>
          <div class="gaming-galore">

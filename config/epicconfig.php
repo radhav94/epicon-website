@@ -367,7 +367,7 @@ if($environment=='PRODUCTION'){
 				'FACEBOOK_CLIENT_SECRET'=>'72fc40fffd7c00b412d143e6e0a7b3e7'
 			],
 			'twitter' => [
-				'redirect'=>'https://dev.epicon.epicchannel.com/login/twitter/callback',
+				'redirect'=>'https://dev.epicon.in/login/twitter/callback',
 				'TWITTER_CLIENT_ID'=>'nwKbID9Lq9Pzbkg5YCE3Dd8Z7',
 				'TWITTER_CLIENT_SECRET'=>'h3hZYGKk8qEbAns5q6YnfRZYMR2vIGDxjEQZffRT9hyIanF9Lx'
 			],

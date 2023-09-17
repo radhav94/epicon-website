@@ -2,7 +2,10 @@
 @section('title', @$content['title'])
 
 @section('style')
-
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/socialSharing.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+        integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 @stop
 
 @section('content')
@@ -51,10 +54,10 @@
                                         @if ($wishAction == 'add') style="display: none" @endif>
                                 </button>
 
-                                <button class="rounded-transparent-btn me-3 clapButton">
+                                <button class="rounded-transparent-btn me-3 clapButton" data-id="{{ @$content['ID'] }}">
                                     <img src="{{ asset('assets/img/clap-icon.svg') }}" alt="icon">
                                 </button>
-                                <button class="rounded-transparent-btn">
+                                <button class="rounded-transparent-btn shareThis" data-url="{{ getContentUrl($content) }}">
                                     <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
                                 </button>
                             </div>
@@ -156,10 +159,14 @@
 
     @include('pages.detail.detail-components.tabs')
 
-
+    @include('components.share-modal')
 @stop
 
 @section('script')
     <script src="{{ asset('assets/js/homepage.js') }}"></script>
+    <script src="{{ asset('assets/js/socialSharing.js') }}"></script>
+
     <script src="{{ asset('assets/js/detail.js') }}"></script>
+
+
 @stop

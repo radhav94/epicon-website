@@ -8,7 +8,7 @@
                    <div class="text">
                        <h1>{{ $title }}</h1>
                        @if (@$value['show_more'])
-                           <a href="{{ url($value['slug'] ?? '/') }}">
+                           <a href="{{ getMidPageUrl($value) }}">
                                <button>Explore More</button>
                            </a>
                        @endif
