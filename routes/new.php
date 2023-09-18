@@ -63,10 +63,6 @@ Route::get('my-rewards', [RewardsController::class, 'MyRewards'])->name('my-rewa
 
 Route::post('redeemcoupon', [RewardsController::class, 'RedeemCouponCode'])->name('redeemcoupon');
 
-Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
-
-Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
-
 Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback');
 
 Route::post('save-feedback', [FeedbackController::class, 'saveFeedback'])->name('save-feedback');
@@ -87,10 +83,10 @@ Route::get('privacy', function () {
     return view('static.privacy');
 })->name('privacy');
 
-Route::get('midpage/{pageslug}/{catalog}', function ($pageslug,$catalog) {
-// dd($catalog);
-    if($pageslug != 'live-tv'){
-        return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug'=>$pageslug,'catalog'=>$catalog]);
+Route::get('midpage/{pageslug}/{catalog}', function ($pageslug, $catalog) {
+    // dd($catalog);
+    if ($pageslug != 'live-tv') {
+        return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog]);
     }
     // if($pageslug=='tv-shows' || $pageslug=='epic-shorts' || $pageslug=='documentaries' || $pageslug=='live-tv' || $pageslug=='video-books' || $pageslug=='movies' || $pageslug=='amar-chitra-katha'){
     //     return App::call('\App\Http\Controllers\indexController@showdetail', [$displayLanguage,$pageslug,$contentslug,'','']);
@@ -113,6 +109,16 @@ Route::post('search', [SearchController::class, 'search'])->name('search');
 
 // Route::get('login/facebook/callback', '\App\Http\Controllers\Auth\AuthSocialController@handleProviderCallback')->name('facebook');
 
+//setting controller routes start
+Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
+Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
+Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
+Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
+Route::post('change-password', [SettingController::class, 'changePassword'])->name('change-password');
+Route::post('delete-account', [SettingController::class, 'deleteAccount'])->name('delete-account');
+//setting controller routes end
+
+
 Route::get('login/google', [AuthSocialController::class, 'redirectToProvider'])->name('login.google');
 Route::get('login/google/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.google.callback');
 
@@ -121,8 +127,3 @@ Route::get('login/facebook/callback', [AuthSocialController::class, 'handleProvi
 
 Route::get('login/twitter', [AuthSocialController::class, 'redirectToProvider'])->name('login.twitter');
 Route::get('login/twitter/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.twitter.callback');
-
-//setting controller routes
-Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
-Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
-
