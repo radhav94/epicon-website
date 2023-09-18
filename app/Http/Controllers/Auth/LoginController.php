@@ -138,6 +138,12 @@ class LoginController extends Controller
             $request->session()->put('user', $userdata);
             $request->session()->put('user_id', $userid);
             $request->session()->put('user_token', $loginResponseData['token']);
+
+            if (!empty($request->post('rememberme'))) {
+                setcookie("user_id", strtolower($userid), time() + 60 * 60 * 24 * 30);
+                setcookie("user_password", $password, time() + 60 * 60 * 24 * 30);
+            }
+
             return JSONResponse(200, 'User Logged In Successfully.', ['redirect' => url('/') , 'success' => true]);
         } else {
             return redirect('/');
