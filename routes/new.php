@@ -126,3 +126,6 @@ Route::get('login/twitter/callback', [AuthSocialController::class, 'handleProvid
 Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
 Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
 
+Route::get('explore/{slug}/', function ($slug) {
+    return App::call('\App\Http\Controllers\PageController@explore_details', ['slug'=>$slug]);
+});

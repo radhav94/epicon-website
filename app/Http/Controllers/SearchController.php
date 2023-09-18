@@ -11,12 +11,13 @@ class SearchController extends Controller
         // dd($request);
        $trending = CurlAPI("pages/trendingsearch", 'POST', '' , 1);
        // dd($trending);
-       if($trending['success'] == 'true' && $trending['contents'] != ''){
-         $trendingData = $trending['contents'];
+       if($trending && (@$trending['success'] == 'true' || @$trending['success'] == true) ){
+         $trendingData = $trending['contents'] ?? [];
+         return view('pages.search.search')->with('trendingData',$trendingData);
        }else{
-         $trendingData = '';
+         return view('pages.404');
        }
-       return view('pages.search.search')->with('trendingData',$trendingData);
+       
     }
 
     public function search(Request $request)
@@ -28,7 +29,7 @@ class SearchController extends Controller
 
         $searchResult = CurlAPI("pages/search", 'POST', $postData, 1);
 
-        if ($searchResult['success'] == true) {
+        if ($searchResult && @$searchResult['success'] == true) {
             $data = [];
 
             // Define a mapping of category titles to response keys

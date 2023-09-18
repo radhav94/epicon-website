@@ -34,7 +34,7 @@ krsort($output);
             
             <?php foreach($output as $key => $releaseDate){ ?>
             <?php if($key !== "" && !strstr($key, '1970')){ ?>
-            <div class="card-details">
+            <div class="card-details mb-4">
                 <div class="date-upperline">.</div>
                 <div class="internal-card d-flex">
                    
@@ -74,7 +74,7 @@ krsort($output);
         }
     }
                          ?>
-                    <div class="card-main-body d-flex">
+                    <div class="card-main-body d-flex mt-4 pt-2 ms-3">
                         <div class="card-body">
                             {!! freePremiumDiv($val) !!}
                             
