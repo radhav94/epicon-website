@@ -1,4 +1,16 @@
-@foreach ($epicwebArr as $key => $val)
+@extends('layouts.default')
+@section('title', 'Midpage')
+
+@section('style')
+@stop
+<?php //dd($epicwebArr); ?>
+@section('content')
+    <div class="container mt-5">
+        <div class="row">
+            <h1 class="text-white fs-5">{{ucwords(str_replace('-', ' ', $pageslug))}}</h1>
+            <div class="seeall-main-page">
+            <ul class="p-0" id="showmore_load">
+            @foreach ($epicwebArr as $key => $val)
 
              <?php
              $cover_img = isset($val['cover_image']) ? $val['cover_image']['medium'] : $val['banner_img'];
@@ -116,3 +128,56 @@
                     </a>
                 </li>
             @endforeach
+                
+            </ul>
+            </div>
+            <!-- Load More Btn Start -->
+            <input type="hidden" name="page" id="pageid" value="<?php echo $page+1; ?>">
+            <div class="text-center">
+                <?php
+            $baseUrl = env("APP_URL");
+                 ?>
+            <a href="javascript:;" class="autowidth catalog-showmore"
+                data-currenturl="<?= $baseUrl . "/paginatecontent"; ?>"
+                catalog-id="<?= $catalog; ?>"
+                pageslug="<?= $pageslug; ?>">Show More</a>
+            </div>
+            <!-- Load More Btn End -->
+
+        </div>
+    </div>
+
+@stop
+@section('script')
+<script>
+    $(document).on("click", ".catalog-showmore", function () {
+        // var page = $("#pageid").val(parseInt($("#pageid").val()) + 1);
+            $.ajax({
+            url: '/paginatecontent',
+            type: 'POST',
+            data: {
+                    page: $("#pageid").val(),
+                    catalogid: $(this).attr("catalog-id"),
+                  },
+            contentType: "application/x-www-form-urlencoded",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                // console.log(response);
+                var page = parseInt($("#pageid").val())+1;
+                // console.log(page+"page Number");
+                $("#pageid").val(page);
+                $("#showmore_load").append(response);
+                if(response == false || response == 'false'){
+                    // console.log("on false condition");
+                    $('.catalog-showmore').hide();
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log("in error function");
+            }
+        });
+    });
+</script>
+@stop

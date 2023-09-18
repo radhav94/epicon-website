@@ -23,7 +23,7 @@ class LibraryController extends Controller
         }else{
             $historydata = '';
         }
-        if($listResponseData['success'] == true){
+        if($listResponseData && @$listResponseData['success'] == true){
             $data = $listResponseData['contents'];
             // dd($listResponseData);
             // return view('library.library')->with('data', $listResponseData);

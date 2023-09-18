@@ -11,7 +11,7 @@ class RewardsController extends Controller
         // dd($request);
         $walletArr = CurlAPI("rewards/rewardsInfo", 'POST', '' , 2);
             // dd($walletArr);
-            if($walletArr['success'] == true){
+            if($walletArr && @$walletArr['success'] == true){
                 $walletArr = $walletArr['data'];
                 return view('rewards.my-reward',compact('walletArr'));
             }else{
@@ -28,7 +28,7 @@ class RewardsController extends Controller
             );
        $redeemApi = CurlAPI("rewards/epicoinsOffersRedeem",'POST',$SendCouponRequestData,2);
        $response['message'] = $redeemApi['message'];
-       if ($redeemApi['success'] == true) {
+       if ($redeemApi && @$redeemApi['success'] == true) {
                 return JSONResponse(200, 'Offer redeemed successfully.', ['response' => $response, 'success' => true]);
             } else {
                 return JSONResponse(200, 'Coupon Redeem Failed', ['response' => $response, 'success' => false]);

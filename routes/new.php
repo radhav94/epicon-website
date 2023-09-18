@@ -127,3 +127,8 @@ Route::get('login/facebook/callback', [AuthSocialController::class, 'handleProvi
 
 Route::get('login/twitter', [AuthSocialController::class, 'redirectToProvider'])->name('login.twitter');
 Route::get('login/twitter/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.twitter.callback');
+
+Route::get('explore/{slug}/', function ($slug) {
+    return App::call('\App\Http\Controllers\PageController@explore_details', ['slug'=>$slug]);
+});
+
