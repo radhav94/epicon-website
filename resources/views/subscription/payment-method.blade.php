@@ -24,7 +24,6 @@ if(isset($result) && !empty($result)){
     $save = $result['save'];
 }
 ?>
-
 <section class="container-fluid mt-4">
         <div class="row">
             <div class="col-12">
