@@ -149,11 +149,15 @@ $(document).on('keydown', '.onlydigit', function (e) {
 //social share
 $(document).on('click', '.shareThis', function () {
     let url = $(this).data('url');
+    let title = $(this).data('title') || 'Epic On';
+
+    console.log(title);
 
     $('#shareDiv').empty();
     $('#shareDiv').socialSharingPlugin({
         url: url,
-        // title: $('meta[property="og:title"]').attr('content'),
+        title: title,
+        description: title,
         // description: $('meta[property="og:description"]').attr('content'),
         // img: $('meta[property="og:image"]').attr('content'),
         enable: ['copy', 'facebook', 'twitter']

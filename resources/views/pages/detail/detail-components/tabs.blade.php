@@ -1,12 +1,22 @@
    <?php
    $ep_season_data = [];
+   $temp = [];
+   
    $tab1_title = '';
    if ($content['content_type'] == 'SHOW') {
-       $ep_season_data = $content['season'] ?? [];
+       $temp = $content['season'] ?? [];
        $tab1_title = 'Seasons';
    } elseif ($content['content_type'] == 'SEASON') {
-       $ep_season_data = $content['episodes'] ?? [];
+       $temp = $content['episodes'] ?? [];
        $tab1_title = 'Episodes';
+   }
+   
+   if ($temp) {
+       foreach ($temp as $k => $v) {
+           if (isset($v['ID'])) {
+               $ep_season_data[] = $v;
+           }
+       }
    }
    
    $active_tab = '';
@@ -24,6 +34,7 @@
    if ($about) {
        $tabs[] = ['key' => 'about', 'title' => 'About'];
    }
+   
    ?>
    <section class="container w-100 mt-2 mb-4">
        <div class="row justify-content-center">

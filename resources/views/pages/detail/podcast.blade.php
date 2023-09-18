@@ -125,6 +125,11 @@
                                 $wishlist_ids = $wishlist['ids'] ?? [];
                                 
                                 $wishAction = in_array($content['ID'], $wishlist_ids) ? 'delete' : 'add';
+                                
+                                $share_title = @$content['title'];
+                                if ($content['content_type'] == 'SEASON') {
+                                    $share_title = @$content['parent_name'] . ' - ' . @$content['title'];
+                                }
                                 ?>
 
                                 <button class="rounded-grey-btn me-3 addToList" data-id="{{ $content['ID'] }}"
@@ -138,7 +143,8 @@
                                 <button class="rounded-grey-btn me-3 clapButton" data-id="{{ @$content['ID'] }}">
                                     <img src="{{ asset('assets/img/clap-icon.svg') }}" alt="icon">
                                 </button>
-                                <button class="rounded-grey-btn shareThis" data-url="{{ getContentUrl($content) }}">
+                                <button class="rounded-grey-btn shareThis" data-url="{{ getContentUrl($content) }}"
+                                    data-title="{{ $share_title }}">
                                     <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
                                 </button>
                             </div>

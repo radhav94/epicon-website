@@ -17,7 +17,17 @@
             <button class="rounded-transparent-btn pos-btn">
                 <img src="{{ asset('assets/img/mute-icon.svg') }}" alt="icon">
             </button>
-            <img src="{{ @$content['banner_image']['large'] }}" alt="img">
+
+            <?php
+            $cover_img = '';
+            if (isset($content['banner_image'])) {
+                $cover_img = @$content['banner_image']['large'];
+            } elseif (isset($content['cover_image'])) {
+                $cover_img = @$content['cover_image']['large'];
+            }
+            
+            ?>
+            <img src="{{ $cover_img }}" alt="img">
         </div>
 
         <div class="overlay">
@@ -44,6 +54,11 @@
                                 $wishlist_ids = $wishlist['ids'] ?? [];
                                 
                                 $wishAction = in_array($content['ID'], $wishlist_ids) ? 'delete' : 'add';
+                                
+                                $share_title = @$content['title'];
+                                if ($content['content_type'] == 'SEASON') {
+                                    $share_title = @$content['parent_name'] . ' - ' . @$content['title'];
+                                }
                                 ?>
 
                                 <button class="rounded-transparent-btn me-3 addToList" data-id="{{ $content['ID'] }}"
@@ -57,7 +72,8 @@
                                 <button class="rounded-transparent-btn me-3 clapButton" data-id="{{ @$content['ID'] }}">
                                     <img src="{{ asset('assets/img/clap-icon.svg') }}" alt="icon">
                                 </button>
-                                <button class="rounded-transparent-btn shareThis" data-url="{{ getContentUrl($content) }}">
+                                <button class="rounded-transparent-btn shareThis" data-url="{{ getContentUrl($content) }}"
+                                    data-title="{{ $share_title }}">
                                     <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
                                 </button>
                             </div>
