@@ -5,6 +5,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PageDetailController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Auth\LogoutController;
 
 /*
@@ -40,10 +41,21 @@ Route::group(['middleware' => 'loggedin', 'as' => 'profile.', 'prefix' => 'profi
     Route::post('/delete-Profile/{id}', [ProfileController::class, 'destroy'])->name('destroy');
 
     Route::post('/setChildPin', [ProfileController::class, 'setChildPin'])->name('setChildPin');
+
+    //Route::get('getSubscription',[SubscriptionController::class,'subscription'])->name('subscription');
 });
 
 Route::group(['middleware' => 'loggedin'], function () {
     Route::any('logout', LogoutController::class)->name('logout');
+    //Subscription routes created by Ram
+    Route::get('getSubscription',[SubscriptionController::class,'subscription'])->name('subscription');
+    Route::post('paymentMethod',[SubscriptionController::class,'setSubscription'])->name('paymentMethod');
+    Route::post('planBenefit',[SubscriptionController::class,'planBenefit']);
+    Route::post('getCouponAjax',[SubscriptionController::class,'getCoupon'])->name('getCoupon');
+    Route::post('saveSubscription',[SubscriptionController::class,'saveSubscription'])->name('saveSubscription');
+    //end
+
+
 });
 
 
@@ -52,3 +64,4 @@ Route::group(['middleware' => 'loggedin'], function () {
 //dynamic pages route
 Route::get('/{slug}', [PageController::class, 'index']);
 Route::get('/{pageslug}/{contentslug}', [PageDetailController::class, 'detail']);
+

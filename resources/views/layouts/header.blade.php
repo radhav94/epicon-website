@@ -11,7 +11,7 @@
             </a>
             <a class="navbar-brand me-3" href="#"><img height="28"
                     src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
-            <a class="subscribe-btn" href="#">Subscribe</a>
+            <a class="subscribe-btn" href="{{ route('subscription') }}">Subscribe RAM</a>
         </div>
         <ul class="ps-3">
             <li>
@@ -106,7 +106,7 @@
             </a>
             <a class="navbar-brand" href="#"><img src="{{ asset('assets/img/epicon-logo.png') }}"
                     alt=""></a>
-            <a class="subscribe-btn" href="#">Subscribe</a>
+            <a class="subscribe-btn" href="{{ route('subscription') }}">Subscribe</a>
         </div>
 
         <?php
