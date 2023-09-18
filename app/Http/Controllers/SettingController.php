@@ -11,11 +11,10 @@ class SettingController extends Controller
     {
         $request = Request();
         /*genre section*/
-        $profile_data = $request->session()->get('profile_data');
-        $user_data = array_key_exists("result", $profile_data) &&
-            $profile_data['result']['success'] &&
-            array_key_exists("user_data", $profile_data['result'])
-            ? $profile_data['result']['user_data']
+        $profile_data = CurlAPI("users/viewProfile", 'POST', [], 2);
+        $user_data = $profile_data['success'] &&
+            array_key_exists("user_data", $profile_data)
+            ? $profile_data['user_data']
             : [];
         $genrelist = CurlAPI("v2profilecontent/genrelist", 'GET', [], 1);
 
