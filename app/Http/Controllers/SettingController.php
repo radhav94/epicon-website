@@ -7,15 +7,15 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
-    public function Setting() {
+    public function Setting()
+    {
         $request = Request();
         /*genre section*/
-        $profile_data = $request->session()->get('profile_data');
-        $user_data = array_key_exists("result", $profile_data) &&
-                        $profile_data['result']['success'] && 
-                        array_key_exists("user_data", $profile_data['result'])
-                        ? $profile_data['result']['user_data']
-                        : [];
+        $profile_data = CurlAPI("users/viewProfile", 'POST', [], 2);
+        $user_data = $profile_data['success'] &&
+            array_key_exists("user_data", $profile_data)
+            ? $profile_data['user_data']
+            : [];
         $genrelist = CurlAPI("v2profilecontent/genrelist", 'GET', [], 1);
 
         /* active devices */
@@ -24,7 +24,8 @@ class SettingController extends Controller
         return view('settings.settings', compact('genrelist', 'user_data', 'activeDevice'));
     }
 
-    public function updateUserGenre() {
+    public function updateUserGenre()
+    {
         $request = Request();
         $genre = $request->post('genreInterest') ? $request->post('genreInterest') : [];
         $profile_data = $request->session()->get('profile_data');
@@ -35,15 +36,17 @@ class SettingController extends Controller
         return JSONResponse(200, '', ['message' => $genrelist['message'], 'success' => $genrelist['success']]);
     }
 
-    public function removeDevice() {
-        $request = Request(); 
+    public function removeDevice()
+    {
+        $request = Request();
         $deviceId = $request->post('deviceId') ? $request->post('deviceId') : '';
         $curlData = ["id" => $deviceId];
         $response = CurlAPI("users/deleteDevice", "POST", $curlData, 2);
         return JSONResponse(200, '', ['message' => $response['message'], 'success' => $response['success']]);
     }
 
-    public function setKidsPin() {
+    public function setKidsPin()
+    {
         $request = Request();
         $command = $request->post('command') ? $request->post('command') : '';
         $kidsPin = $request->post('kidsPin') ? implode("", $request->post('kidsPin')) : '';
@@ -62,5 +65,24 @@ class SettingController extends Controller
             $response = CurlAPI("users/changeChildPin", "POST", $curlData, 2);
         }
         return JSONResponse(200, '', ['message' => $response['message'], 'success' => $response['success']]);
+    }
+
+    public function changePassword()
+    {
+        $request = Request();
+        $old_password = $request->post('old_password') ? $request->post('old_password') : '';
+        $new_password = $request->post('new_password') ? $request->post('new_password') : '';
+        $curlData = ["new_password" => $new_password, "current_password" => $old_password];
+        $response = CurlAPI("users/changePassword", "POST", $curlData, 2);
+        $error_code = array_key_exists("errorcode", $response) ? $response['errorcode'] : '';
+        return JSONResponse(200, '', ['message' => $response['message'], 'success' => $response['success'], 'errorcode' => $error_code]);
+    }
+    
+    public function deleteAccount()
+    {
+        $request = Request();
+        $response = CurlAPI("users/deleteAccount", "POST", "", 2);
+        $error_code = array_key_exists("errorcode", $response) ? $response['errorcode'] : '';
+        return JSONResponse(200, '', ['message' => $response['message'], 'success' => $response['success'], 'errorcode' => $error_code]);
     }
 }

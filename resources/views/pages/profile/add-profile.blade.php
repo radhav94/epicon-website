@@ -30,7 +30,9 @@
                             <h5 class="w-100 text-white text-center mb-0" style="margin-left: -32px;">Add Profile</h5>
                         </div>
                         <?php
-                        $profile_img = asset('assets/img/edit-profile-pik.png');
+                        
+                        $gender = @$data['result']['user_data']['gender'] ?? 'Male';
+                        $profile_img = $gender == 'Female' ? asset('assets/img/edit-profile-pik.png') : asset('assets/img/profile-boy.png');
                         ?>
 
                         <div class="add-propik" style="background-image: url({{ $profile_img }});" id="add-propik">
