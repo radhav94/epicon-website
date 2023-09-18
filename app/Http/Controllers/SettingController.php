@@ -13,7 +13,7 @@ class SettingController extends Controller
         /*genre section*/
         $profile_data = CurlAPI("users/viewProfile", 'POST', [], 2);
         if (!$profile_data) {
-            return view('error.404');
+            return view('pages.404');
         }
         $user_data = @$profile_data['success'] &&
             array_key_exists("user_data", $profile_data)
@@ -22,13 +22,13 @@ class SettingController extends Controller
 
         $genrelist = CurlAPI("v2profilecontent/genrelist", 'GET', [], 1);
         if (!$genrelist) {
-            return view('error.404');
+            return view('pages.404');
         }
 
         /* active devices */
         $activeDevice = CurlAPI("users/getDevice", 'POST', [], 2);
         if (!$activeDevice) {
-            return view('error.404');
+            return view('pages.404');
         }
 
         return view('settings.settings', compact('genrelist', 'user_data', 'activeDevice'));
