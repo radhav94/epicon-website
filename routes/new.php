@@ -10,6 +10,8 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\UpcomingController;
 use App\Http\Controllers\PopularController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,10 +63,6 @@ Route::get('my-rewards', [RewardsController::class, 'MyRewards'])->name('my-rewa
 
 Route::post('redeemcoupon', [RewardsController::class, 'RedeemCouponCode'])->name('redeemcoupon');
 
-Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
-
-Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
-
 Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback');
 
 Route::post('save-feedback', [FeedbackController::class, 'saveFeedback'])->name('save-feedback');
@@ -85,10 +83,10 @@ Route::get('privacy', function () {
     return view('static.privacy');
 })->name('privacy');
 
-Route::get('midpage/{contentslug}', function ($pageslug,$catalog) {
-// dd($contentslug);
-    if($pageslug != 'live-tv'){
-        return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug'=>$pageslug,'catalog'=>$catalog]);
+Route::get('midpage/{pageslug}/{catalog}', function ($pageslug, $catalog) {
+    // dd($catalog);
+    if ($pageslug != 'live-tv') {
+        return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog]);
     }
     // if($pageslug=='tv-shows' || $pageslug=='epic-shorts' || $pageslug=='documentaries' || $pageslug=='live-tv' || $pageslug=='video-books' || $pageslug=='movies' || $pageslug=='amar-chitra-katha'){
     //     return App::call('\App\Http\Controllers\indexController@showdetail', [$displayLanguage,$pageslug,$contentslug,'','']);
@@ -100,6 +98,10 @@ Route::get('midpage/{contentslug}', function ($pageslug,$catalog) {
     // }
 });
 
+Route::post('paginatecontent', [PageController::class, 'paginatecontent'])->name('paginatecontent');
+
+Route::get('trendingsearch', [SearchController::class, 'trendingsearch'])->name('trendingsearch');
+Route::post('search', [SearchController::class, 'search'])->name('search');
 // Route::get('{pageslug}/{listcatalog}', function () {
 //     return view('static.privacy');
 // })->name('privacy');
@@ -107,69 +109,14 @@ Route::get('midpage/{contentslug}', function ($pageslug,$catalog) {
 
 // Route::get('login/facebook/callback', '\App\Http\Controllers\Auth\AuthSocialController@handleProviderCallback')->name('facebook');
 
-//setting controller routes
+//setting controller routes start
+Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
+Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
 Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
 Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
 Route::post('change-password', [SettingController::class, 'changePassword'])->name('change-password');
 Route::post('delete-account', [SettingController::class, 'deleteAccount'])->name('delete-account');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//setting controller routes end
 
 
 Route::get('login/google', [AuthSocialController::class, 'redirectToProvider'])->name('login.google');
