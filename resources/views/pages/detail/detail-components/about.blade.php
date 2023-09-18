@@ -15,7 +15,11 @@
          $temp[] = '<h6>Genre</h6> <p>' . implode(', ', $about['genre']) . '</p>';
      }
      if (@$about['child_count']) {
-         $temp[] = '<h6>Episodes</h6> <p>' . $about['child_count'] . '</p>';
+         if (@$content['content_type'] == 'SHOW' && !empty(@$content['season'])) {
+             $temp[] = '<h6>Seasons</h6> <p>' . count(@$content['season']) . '</p>';
+         } else {
+             $temp[] = '<h6>Episodes</h6> <p>' . $about['child_count'] . '</p>';
+         }
      }
      if (@$about['origin_region']) {
          $temp[] = '<h6>Region of Origin</h6> <p>' . $about['origin_region'] . '</p>';

@@ -9,6 +9,9 @@
  
  if ($genres) {
      foreach ($genres as $key => $genre) {
+         if ($key > 2) {
+             break;
+         }
          $subtext[] = $genre;
      }
  }

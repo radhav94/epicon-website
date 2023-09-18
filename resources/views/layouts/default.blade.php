@@ -35,8 +35,8 @@
 
     <style>
         .add-icon {
-            background-image: url("../img/add-icon.svg") !important;
-       /*     background: center no-repeat #272727;
+            background-image: url("{{ asset('assets/img/add-icon.svg') }}") !important;
+            /*     background: center no-repeat #272727;
             border: 0.5px solid #545454;
             border-radius: 50%;
             padding: 20px;
@@ -44,9 +44,10 @@
         }
 
         .delete-icon {
-            background-image: url("../img/subs-icon.svg") !important;
+            background-image: url("{{ asset('assets/img/subs-icon.svg') }}") !important;
         }
-        .search-main .add-icon{
+
+        .search-main .add-icon {
             background: center no-repeat #272727;
             border: 0.5px solid #545454;
             border-radius: 50%;
@@ -54,7 +55,7 @@
             margin: 12px 0 auto;
         }
 
-        .search-main .delete-icon{
+        .search-main .delete-icon {
             background: center no-repeat #272727;
             border: 0.5px solid #545454;
             border-radius: 50%;
@@ -62,7 +63,7 @@
             margin: 12px 0 auto;
         }
 
-        .seeall-main-page .add-icon{
+        .seeall-main-page .add-icon {
             background: center no-repeat #272727;
             border: 0.5px solid #545454;
             border-radius: 50%;
@@ -82,25 +83,26 @@
         .genere-fiesta-content img {
             height: 30px;
         }
+
         a.autowidth.catalog-showmore {
-    font-size: 17px;
-    font-weight: 500;
-    color: #fff;
-    width: 200px;
-    height: 55px;
-    line-height: 52px;
-    border-radius: 32px;
-    border: solid 2px transparent;
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to top, #c15a2d, #c8265d);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    box-shadow: 2px 1000px 1px rgba(0, 0, 0, 0.6) inset;
-    text-transform: uppercase;
-    display: inline-block;
-    padding: 0 25px;
-    margin-top: 35px;
-    transition: all linear 0.4s;
-  }
+            font-size: 17px;
+            font-weight: 500;
+            color: #fff;
+            width: 200px;
+            height: 55px;
+            line-height: 52px;
+            border-radius: 32px;
+            border: solid 2px transparent;
+            background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to top, #c15a2d, #c8265d);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            box-shadow: 2px 1000px 1px rgba(0, 0, 0, 0.6) inset;
+            text-transform: uppercase;
+            display: inline-block;
+            padding: 0 25px;
+            margin-top: 35px;
+            transition: all linear 0.4s;
+        }
     </style>
 
     {{-- Start footer common scripts --}}
