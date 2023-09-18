@@ -36,7 +36,18 @@ if (!function_exists('d')) {
     }
 }
 
-function CurlAPI_old($context, $method = 'GET', $data = null, $apiDomain = 1)
+function preparePostFieldsNew($array)
+{
+    return http_build_query($array);
+    $params = array();
+    foreach ($array as $key => $value) {
+        // echo $value;
+        $params[] = $key . '=' . urlencode($value);
+    }
+    return implode('&', $params);
+}
+
+function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1)
 {
 
     if ($apiDomain == 2) {
@@ -48,8 +59,9 @@ function CurlAPI_old($context, $method = 'GET', $data = null, $apiDomain = 1)
     return ApiHelper::api($url, $method, $data, $token);
 }
 
-function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1)
+function CurlAPI_mod($context, $method = 'GET', $data = null, $apiDomain = 1)
 {
+
     $request = Request();
     $token = $request->session()->get('user_token') ?? '';
     $curlData = $data && !empty($data) ? json_encode($data) : '';
@@ -65,10 +77,13 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1)
     $curl = curl_init();
 
     if (strtoupper($method) == 'GET') {
+
+        echo $api_url = ($data != null && !empty($data)) ? $url . "?" . preparePostFieldsNew($data) : $url;
+
         curl_setopt_array(
             $curl,
             array(
-                CURLOPT_URL => $url,
+                CURLOPT_URL => $api_url,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
