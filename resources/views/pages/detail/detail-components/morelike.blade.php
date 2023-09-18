@@ -9,8 +9,8 @@
                     continue;
                 }
                 $card = getItemCardData($value, $displayLanguageParam);
-                $cover_img = isset($value['vertical_cover_image']) ? @$value['vertical_cover_image']['medium'] : $card['banner_img'];
                 
+                $cover_img = getCardImage($value, 'vertical_cover_image', 'medium');
                 ?>
                 <li>
                     <a href="{{ getContentUrl($value) }}" class="main-card">

@@ -9,8 +9,8 @@
                     continue;
                 }
                 $card = getItemCardData($value, $displayLanguageParam);
-                $cover_img = isset($value['cover_image']) ? @$value['cover_image']['medium'] : $card['banner_img'];
                 
+                $cover_img = getCardImage($value, 'cover_image', 'medium');
                 ?>
                 <li class="episode-main mb-4">
                     <a href="{{ getContentUrl($value) }}" class="pik">

@@ -19,14 +19,9 @@
             </button>
 
             <?php
-            $cover_img = '';
-            if (isset($content['banner_image'])) {
-                $cover_img = @$content['banner_image']['large'];
-            } elseif (isset($content['cover_image'])) {
-                $cover_img = @$content['cover_image']['large'];
-            }
-            
+            $cover_img = getCardImage($content, 'banner_image', 'large');
             ?>
+
             <img src="{{ $cover_img }}" alt="img">
         </div>
 

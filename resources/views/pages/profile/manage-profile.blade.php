@@ -14,7 +14,11 @@
                 <ul class="list-unstyled m-0 p-0">
                     @foreach ($data['profiles'] as $key => $value)
                         <?php
-                        $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : asset('assets/img/edit-profile-pik.png');
+                        
+                        $gender = @$data['result']['user_data']['gender'] ?? 'Male';
+                        $default_img = $gender == 'Female' ? asset('assets/img/edit-profile-pik.png') : asset('assets/img/profile-boy.png');
+                        
+                        $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : $default_img;
                         ?>
                         <li>
                             <a href="{{ route('profile.edit', $value['id']) }}">
