@@ -51,6 +51,11 @@
 
                              <?php
                              $ep_wishAction = in_array($value['ID'], $wishlist_ids) ? 'delete' : 'add';
+                             
+                             $share_title = @$value['title'];
+                             if ($content['content_type'] == 'SEASON') {
+                                 $share_title = @$content['parent_name'] . ' - ' . @$value['title'];
+                             }
                              ?>
 
                              <button class="rounded-grey-btn me-2 addToList" data-id="{{ @$value['ID'] }}"
@@ -65,7 +70,8 @@
                                  data-id="{{ @$value['ID'] }}">
                                  <img src="{{ asset('assets/img/clap-icon.svg') }}" alt="icon">
                              </button>
-                             <button class="rounded-grey-btn shareThis" data-url="{{ getContentUrl($value) }}">
+                             <button class="rounded-grey-btn shareThis" data-url="{{ getContentUrl($value) }}"
+                                 data-title="{{ $share_title }}">
                                  <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
                              </button>
                          </div>
