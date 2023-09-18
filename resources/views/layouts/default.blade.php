@@ -36,11 +36,6 @@
     <style>
         .add-icon {
             background-image: url("../img/add-icon.svg") !important;
-       /*     background: center no-repeat #272727;
-            border: 0.5px solid #545454;
-            border-radius: 50%;
-            padding: 20px;
-            margin: 12px 0 auto;*/
         }
 
         .delete-icon {
