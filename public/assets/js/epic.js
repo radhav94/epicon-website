@@ -165,3 +165,7 @@ $(document).on('click', '.shareThis', function () {
     $('#shareModal').modal('show')
 });
 //end social share
+
+$('.menu-close').click(function (e) {
+    e.preventDefault();
+});

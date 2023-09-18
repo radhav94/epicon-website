@@ -523,4 +523,22 @@ function getCardImage($content, $key, $size = 'medium', $fallback = [])
     if (empty($fallback)) {
         $fallback = ['banner_image', 'cover_image', 'cover_image_special', 'spotlight_epic_shorts_image', 'epic_shorts_image', 'vertical_cover_image'];
     }
+    $img_url = '';
+    if ($content) {
+        if (isset($content[$key]) && !empty($content[$key])) {
+            $img_url = $content[$key][$size] ?? '';
+        }
+
+        if (empty($img_url)) {
+            foreach ($fallback as $k => $img_key) {
+                if (isset($content[$img_key]) && !empty($content[$img_key])) {
+                    $img_url = $content[$img_key][$size] ?? '';
+                }
+                if (!empty($img_url)) {
+                    break;
+                }
+            }
+        }
+    }
+    return $img_url;
 }

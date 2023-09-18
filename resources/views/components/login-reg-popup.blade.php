@@ -1,3 +1,16 @@
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
 <!-- login model -->
 <div class="modal fade" id="login-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -230,14 +243,14 @@
                                 <h5 class="mb-4 text-white">Login with Password</h5>
                                 <div class="input-field w-100 mb-3">
                                     <input class="form-control" id="mobilenumber" name="mobilenumber"
-                                        placeholder="Email or Mobile Number">
+                                        placeholder="Email or Mobile Number" value="<?php if(isset($_COOKIE["user_id"])) { echo $_COOKIE["user_id"]; } ?>">
                                     <input type="hidden" name="signup_method" id="signup_method" value="">
                                     <span class="text-danger text-start d-flex mt-1 error" id="mobile-error"
                                         style="font-size: 12px;"></span>
                                 </div>
                                 <div class="input-field w-100 mb-3">
                                     <input class="form-control" id="login_pwd" name="login_pwd" type="password"
-                                        placeholder="Enter Password">
+                                        placeholder="Enter Password" value="<?php if(isset($_COOKIE["user_password"])) { echo $_COOKIE["user_password"]; } ?>">
                                     <div class="eye-toggle" data-target="login_pwd">
                                         <a class="eye eye-open-login_pwd" style="display: none;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16"

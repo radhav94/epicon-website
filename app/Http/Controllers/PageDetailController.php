@@ -52,11 +52,11 @@ class PageDetailController extends Controller
             if (request()->get('v') != '') {
                 // dd($about);
                 echo '--------Trailers --------';
-                d($trailers);
-                echo '--------morelike --------';
+                // d($trailers);
+                // echo '--------morelike --------';
 
-                d($morelike);
-                echo '--------about --------';
+                // d($morelike);
+                // echo '--------about --------';
 
                 d($about);
                 echo '--------result --------';

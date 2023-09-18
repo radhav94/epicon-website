@@ -31,7 +31,7 @@
                         </div>
 
                         <?php
-                        $profile_img = @$profile['profile_img'] != '' ? @$profile['profile_img'] : asset('assets/img/edit-profile-pik.png');
+                        $profile_img = @$profile['profile_img'] != '' ? @$profile['profile_img'] : (@$data['gender'] == 'Female' ? asset('assets/img/edit-profile-pik.png') : asset('assets/img/profile-boy.png'));
                         ?>
 
                         <div class="add-propik" style="background-image: url({{ $profile_img }});" id="add-propik">
@@ -69,8 +69,9 @@
                                 value="{{ $profile['date_of_birth'] ?? '' }}">
                         </div>
 
-                        @if (@$profile['is_default'] == true && @$profile['kids'] == false)
-                            <div class="input-field sel-bor d-flex justify-content-between align-items-center w-100 mb-3">
+                        @if (@$profile['is_default'] == true && @$profile['kids'] == false && @$profile['kidSection'] == false)
+                            <div
+                                class="input-field sel-bor justify-content-between align-items-center w-100 mb-3 setpinWrapper">
                                 <label for="exampleDataList" class="form-label text-white mb-0" style="font-size: 14px;">
                                     Set Child PIN</label>
                                 <button class="setchildpin" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
@@ -111,8 +112,9 @@
 
     </section>
 
-    @include('components.setpin-modal')
-
+    @if (@$profile['is_default'] == true && @$profile['kids'] == false && @$profile['kidSection'] == false)
+        @include('components.setpin-modal')
+    @endif
 
 
 @stop

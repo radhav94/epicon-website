@@ -42,7 +42,7 @@ class ProfileController extends Controller
     public function index()
     {
         // $res = getProfileData();
-        // dd($res);
+
         $res = $this->getProfileData();
         // dd($res);
         if ($res) {
@@ -54,7 +54,9 @@ class ProfileController extends Controller
 
     public function add()
     {
-        return view('pages.profile.add-profile');
+        $data = session()->get('profile_data');
+
+        return view('pages.profile.add-profile', compact('data'));
     }
 
     public function store(Request $request): JsonResponse
@@ -87,10 +89,12 @@ class ProfileController extends Controller
         $profile = '';
 
         if ($result && @$result['success'] ==  true) {
+            $data = $result['user_data'] ?? [];
 
             foreach ($result['user_data']['profiles'] as $key => $value) {
                 if ($id == $value['id']) {
                     $value['date_of_birth'] = (isset($value['date_of_birth'])) ? timestampToDate($value['date_of_birth'], 'Y-m-d') : '';
+                    $value['kidSection'] = $data['kidSection'] ?? false;
                     $profile = $value;
                     break;
                 }
@@ -98,7 +102,7 @@ class ProfileController extends Controller
         }
 
         if ($profile) {
-            return view('pages.profile.edit-profile', compact('profile'));
+            return view('pages.profile.edit-profile', compact('profile', 'data'));
         } else {
             return view('pages.404');
         }

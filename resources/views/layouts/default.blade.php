@@ -7,7 +7,7 @@
 
 
     {{-- Start header common styles --}}
-    <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/style.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick.min.css') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"
@@ -36,11 +36,6 @@
     <style>
         .add-icon {
             background-image: url("{{ asset('assets/img/add-icon.svg') }}") !important;
-            /*     background: center no-repeat #272727;
-            border: 0.5px solid #545454;
-            border-radius: 50%;
-            padding: 20px;
-            margin: 12px 0 auto;*/
         }
 
         .delete-icon {

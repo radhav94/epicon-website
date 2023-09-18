@@ -8,9 +8,10 @@
                 if ($value['ID'] == $content['ID']) {
                     continue;
                 }
-                $card = getItemCardData($value, $displayLanguageParam);
-                $cover_img = isset($value['vertical_cover_image']) ? @$value['vertical_cover_image']['medium'] : $card['banner_img'];
                 
+                $card = getItemCardData($value, $displayLanguageParam);
+                
+                $cover_img = getCardImage($value, 'vertical_cover_image', 'small');
                 ?>
 
                 <li>

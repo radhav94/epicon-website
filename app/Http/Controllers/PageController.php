@@ -90,6 +90,24 @@ class PageController extends Controller
             return view('pages.explore', compact('result'));
         }
     }
+
+    public function explore_details($slug)
+    {
+        $params = [
+            // 'page' => $request->page,
+            'page' => 1,
+            'limit' => 18,
+        ];
+        $result = CurlAPI("pages/midpage/".$slug, "GET", $params, 1);
+        // dd($result);
+        if ($result && @$result['success'] ==  true) {
+            $result = $result['data'];
+            return view('pages.explore_details', compact('result','slug'));
+        }else{
+            return view('pages.404');
+        }
+    }
+
     public function getSpinnerContent(Request $request)
     {
         $result = CurlAPI("pages/spinnerContent", "POST", ['genre' => $request->genre]);
@@ -153,7 +171,7 @@ class PageController extends Controller
             $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog,'limit' => 50, 'page' => 1], 1);
             if(isset($epicwebArr) && $epicwebArr['success'] == true){
                 $epicwebArr = $epicwebArr['data'];
-                return view('display.midpage',compact('epicwebArr','pageslug','catalog','page'));
+                return view('pages.midpage',compact('epicwebArr','pageslug','catalog','page'));
             }else{
                 return view('pages.404');
             }
@@ -169,7 +187,7 @@ class PageController extends Controller
         $catalogue_blade = "paginatecontent";
         if ($epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
-            $paginateHTML = (string) view('display.' . $catalogue_blade, compact('epicwebArr', 'page', 'catalog'));
+            $paginateHTML = (string) view('pages.' . $catalogue_blade, compact('epicwebArr', 'page', 'catalog'));
             
         } else {
             $paginateHTML = "false";

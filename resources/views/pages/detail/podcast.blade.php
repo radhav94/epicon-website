@@ -11,6 +11,9 @@
 @section('content')
     <input type="hidden" id="cont_id" value="{{ $content['ID'] }}">
 
+    <?php
+    $cover_img = getCardImage($content, 'cover_image', 'large');
+    ?>
     <div class="podcast-background w-100">
         <section class="container w-100 mt-2">
             <div class="row justify-content-center">
@@ -19,7 +22,8 @@
                         <div class="thumb">
                             {{-- <h6 class="pod-title">EPIC ON ORIGINAL</h6> --}}
                             {{-- <h5 class="pod-series">CASO.63</h5> --}}
-                            <img src="{{ @$content['cover_image']['large'] }}" alt="thumb">
+                            {{-- <img src="{{ @$content['cover_image']['large'] }}" alt="thumb"> --}}
+                            <img src="{{ $cover_img }}" alt="thumb">
                             <img class="podcast-top-icon" src="{{ asset('assets/img/podcast-top-icon.svg') }}"
                                 alt="podcast icon">
                         </div>
