@@ -2,6 +2,41 @@
 @section('title', 'Explore Details')
 
 @section('style')
+<style>
+    .explore-main .add-icon {
+            background: center no-repeat #272727;
+            border: 0.5px solid #545454;
+            border-radius: 50%;
+            padding: 20px;
+            margin: 12px 0 auto;
+        }
+    .explore-main .delete-icon {
+            background: center no-repeat #272727;
+            border: 0.5px solid #545454;
+            border-radius: 50%;
+            padding: 20px;
+            margin: 12px 0 auto;
+        }
+    a.autowidth.explore-showmore {
+            font-size: 17px;
+            font-weight: 500;
+            color: #fff;
+            width: 200px;
+            height: 55px;
+            line-height: 52px;
+            border-radius: 32px;
+            border: solid 2px transparent;
+            background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to top, #c15a2d, #c8265d);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            box-shadow: 2px 1000px 1px rgba(0, 0, 0, 0.6) inset;
+            text-transform: uppercase;
+            display: inline-block;
+            padding: 0 25px;
+            margin-top: 35px;
+            transition: all linear 0.4s;
+        }
+</style>
 @stop
 
 @section('content')
@@ -11,7 +46,37 @@
             <h4 class="new-popularheading text-white mb-3">{{ucfirst($slug)}}</h4>
 
                 <?php $count = $count_card_detail = 1;
-                foreach($result as $key => $val){ 
+                foreach($result as $key => $val){
+                 $banner_img = isset($val['banner_image']) ? @$val['banner_image']['medium'] : '';
+                 $cover_img = isset($val['cover_image']) ? @$val['cover_image']['medium'] : '';
+                $generes = array_column($val['genres_assign'] ?? [], 'name');
+
+    $sub_text = [];
+
+    if (isset($val['publish_start_date'])) {
+        $date_text = date('Y', strtotime($val['publish_start_date']));
+    }
+    if (isset($val['publish_start_date'])) {
+        $sub_text[] = date('Y', strtotime($val['publish_start_date']));
+    }
+    // $sub_text[] = '3 Language';
+
+    if ($generes) {
+        $sub_text[] = implode(" . ", $generes);
+    }
+    if (isset($val['age_limit'])) {
+        $sub_text[] = $val['age_limit'];
+    }
+
+
+    $sub_points = (@$val['age_limit']) ? '<li class="ps-1">' . @$val['age_limit'] . '</li>' : '';
+
+    if ($generes) {
+        foreach ($generes as $key => $genre) {
+            $sub_points .= ' . ' . $genre ;
+        }
+    }
+     $wishlist = getWishlist(); 
                     if ($count % 9 === 0) {
                         $count_card_detail = 1;
                     ?>
@@ -27,49 +92,54 @@
                             stroke="white" stroke-width="1.5"></path>
                     </svg>
                 </button>
-                <span class="crown position-absolute"><img src="{{asset('/img/crown.svg')}}" alt=""></span>
-                <a href="#/" class="carousel-items position-relative w-100">
-                    <img src="{{asset('/img/welcom.jpeg')}}" alt="">
+                {!! freePremiumDiv($val) !!}
+                <div class="carousel-items position-relative w-100">
+                    <img src="{{ $banner_img }}" alt="">
                     <div class="carousel-items-content position-absolute">
-                        <h2>2023 . 3 Language . Mystery . U/A 13+</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dictum nisi eu diam.</p>
-                        <ul class="w-100 d-flex justify-content-between align-items-center list-unstyled mb-0">
+                        <h2>{{ $date_text }} <?php echo $sub_points ?> </h2>
+                        <p>{{ $val['description'] ?? '' }}</p>
+                        <ul class="w-100 d-flex justify-content-between align-items-center list-unstyled mb-0 explore-main">
                             <li class="d-flex">
 
-                                <button class="big-play d-flex align-items-center">
+                                <a href="{{ getContentUrl($val) }}" class="big-play d-flex align-items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
                                         fill="none">
                                         <path
                                             d="M26.25 14.0005C26.2507 14.2976 26.1745 14.5899 26.0289 14.8488C25.8832 15.1077 25.673 15.3246 25.4188 15.4782L9.66 25.1185C9.39431 25.2812 9.09001 25.37 8.77852 25.3758C8.46703 25.3816 8.15965 25.3041 7.88813 25.1513C7.61918 25.001 7.39515 24.7817 7.23905 24.516C7.08296 24.2503 7.00045 23.9479 7 23.6398V4.36133C7.00045 4.0532 7.08296 3.75076 7.23905 3.48509C7.39515 3.21943 7.61918 3.00014 7.88813 2.84976C8.15965 2.69702 8.46703 2.61953 8.77852 2.6253C9.09001 2.63107 9.39431 2.71989 9.66 2.88258L25.4188 12.5229C25.673 12.6765 25.8832 12.8934 26.0289 13.1523C26.1745 13.4112 26.2507 13.7035 26.25 14.0005Z"
                                             fill="#272727" />
-                                    </svg>&nbsp; Play</button>
+                                    </svg>&nbsp; Play</a>
 
-                                <button class="big-add-list">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
-                                        fill="none">
-                                        <path
-                                            d="M21.0026 15.1678H15.1693V21.0011C15.1693 21.6428 14.6443 22.1678 14.0026 22.1678C13.3609 22.1678 12.8359 21.6428 12.8359 21.0011V15.1678H7.0026C6.36094 15.1678 5.83594 14.6428 5.83594 14.0011C5.83594 13.3595 6.36094 12.8345 7.0026 12.8345H12.8359V7.00114C12.8359 6.35947 13.3609 5.83447 14.0026 5.83447C14.6443 5.83447 15.1693 6.35947 15.1693 7.00114V12.8345H21.0026C21.6443 12.8345 22.1693 13.3595 22.1693 14.0011C22.1693 14.6428 21.6443 15.1678 21.0026 15.1678Z"
-                                            fill="white" />
-                                    </svg></button>
+                                {!! getWishListAction($val, $wishlist, 2) !!}
                             </li>
                         </ul>
                     </div>
-                </a>
+                </div>
             </div>
             <?php } else { ?>
                 <?php if (($count_card_detail == 1) || ($count_card_detail % 5 === 0)) { ?> <div class="card-details"> <?php } ?>
 <div class="card-body">
-                    <span class="crown position-absolute"><img src="{{asset('/img/crown.svg')}}" alt=""></span>
+                    {!! freePremiumDiv($val) !!}
                     <h6 class="popular-head text-white">
                         Most Popular
                     </h6>
-                    <div class="upper-img">
-                        <img src="{{asset('/img/new-popular-img-1.png')}}" alt="">
-                    </div>
+                    <a class="upper-img" href="{{ getContentUrl($val) }}">
+                        <img src="{{ $cover_img }}" alt="">
+                    </a>
                 </div>
                 <?php if (($count_card_detail == 4) || ($count_card_detail % 4 === 0)) { ?></div><?php } ?>
                 <?php $count_card_detail++;}$count++; } ?>
         </div>
+         <!-- Load More Btn Start -->
+            <input type="hidden" name="page" id="pageid" value="<?php echo $page+1; ?>">
+            <div class="text-center">
+                <?php
+            $baseUrl = env("APP_URL");
+                 ?>
+            <a href="javascript:;" class="autowidth explore-showmore"
+                data-currenturl="<?= $baseUrl . "/explorecontent"; ?>"
+                slug="<?= $slug; ?>">Show More</a>
+            </div>
+            <!-- Load More Btn End -->
     </section>
 
 

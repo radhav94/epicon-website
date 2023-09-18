@@ -5948,5 +5948,19 @@ input {
         display: block;
     }
 }
+.explore-main{
+    position: relative;
+    z-index: 9;
+    .add-icon{
+        margin: 0!important;
+        width: 47px;
+        height: 47px;
+        @media (max-width:767px) {
+            padding: 15px!important;
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
 
 
