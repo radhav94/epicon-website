@@ -1,14 +1,14 @@
 <?php
-$genreList = $genrelist['success'] && array_key_exists('data', $genrelist) ? $genrelist['data'] : [];
+$genreList = @$genrelist['success'] && array_key_exists('data', $genrelist) ? $genrelist['data'] : [];
 $interests = array_key_exists("interests", $user_data) ? $user_data['interests'] : [];
 $interestsCount = count($interests) ?? 0;
 $kidSection = array_key_exists("kidSection", $user_data) ? $user_data['kidSection'] : false;
-$activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDevice) ? $activeDevice['data'] : [];
-//echo $_SESSION['profile_data']['result']['user_data']['kidSection'];
+$activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDevice) ? $activeDevice['data'] : [];
+
 ?>
 
 @extends('layouts.default')
-@section('title','New homepage')
+@section('title','Setting')
 
 @section('style')
 <style>
@@ -92,14 +92,14 @@ $activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDev
 <div class="modal fade" id="delete-account" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">
         <div class="modal-content">
-            <div class="modal-body text-center py-5">
+            <div class="modal-body text-center py-5" id="sendOTP">
                 <h4 class="text-white mt-2 mb-4">Deleting Your Account</h4>
                 <div class="col-sm-8 m-auto">
                     <div class="text-start mb-5">
                         <label class="text-white mb-1" for="">Please enter your current password</label>
                         <div class="input-field w-100 mb-3">
-                            <input class="form-control" id="exampleDataList" placeholder="Create Password">
-                            <button class="eye">
+                            <input class="form-control" type="password" id="passwordForDelete" placeholder="Current Password">
+                            <button class="eye" data-target="passwordForDelete">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
                                     <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white" />
                                 </svg>
@@ -109,32 +109,53 @@ $activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDev
                         </div>
                     </div>
                 </div>
-                <button class="login-btn mt-4" style="width: 280px;">
+                <button class="login-btn mt-4" id="getDeleteAccountOTP" style="width: 280px;">
                     Get OTP Now
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
                     </svg>
                 </button>
+                <span class="text-danger text-start d-flex mt-1 error" id="password-error" style="font-size: 12px;"></span>
                 <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">Go Back</button>
             </div>
 
-            <div class="modal-body text-center py-5">
+
+            <div class="modal-body text-center py-5" id="verifyOTP">
+                <h4 class="text-white mt-2 mb-4">Deleting Your Account</h4>
+                <form id="verifyOTPDeleteAccountForm">
+                    <div class="col-sm-12 col-md-12 col-lg-7 m-auto">
+                        <div class="mb-5">
+                            <label class="text-white text-start w-100 mb-1" for="">Enter the 4-digit code sent to +9186******41</label>
+                            <div class="childpin">
+                                <div class="childpin-input d-flex justify-content-between pt-3">
+                                    <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
+                                    <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
+                                    <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
+                                    <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
+                                    <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
+                                    <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
+                                </div>
+                            </div>
+                            <p class="text-start w-100 text-white small mt-2 resend-otp">Resend OTP in 0:30</p>
+                            <button id="resendOTPBtn" onclick="resendVerifyOTP()" style="display:none">Resend OTP</button>
+                        </div>
+                    </div>
+                    <a id="verifyDeleteAccountOTPBtn" class="login-btn mt-4" style="width: 280px;">
+                        Delete Account
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
+                        </svg>
+                    </a>
+                    <button type="button" class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                </form>
+            </div>
+
+            <div class="modal-body text-center py-5" id="reasonFordelete">
                 <h4 class="text-white mt-2 mb-4">Deleting Your Account</h4>
                 <div class="col-sm-12 col-md-12 col-lg-7 m-auto">
                     <div class="mb-5">
-                        <label class="text-white text-start w-100 mb-1" for="">Enter the 4-digit code sent to +9186******41</label>
-                        <div class="childpin">
-                            <div class="childpin-input d-flex justify-content-between pt-3">
-                                <input class="mx-1 child-box" type="number" min="0" max="9" maxlength="1">
-                                <input class="mx-1 child-box" type="number" min="0" max="9" maxlength="1">
-                                <input class="mx-1 child-box" type="number" min="0" max="9" maxlength="1">
-                                <input class="mx-1 child-box" type="number" min="0" max="9" maxlength="1">
-                                <input class="mx-1 child-box" type="number" min="0" max="9" maxlength="1">
-                                <input class="mx-1 child-box" type="number" min="0" max="9" maxlength="1">
-                            </div>
-                        </div>
-                        <p class="text-start w-100 text-white small mt-2">Resend OTP in 0:30</p>
                         <div class="input-field w-100 mb-3">
                             <p class="text-start w-100 text-white mt-2">Tell us why you’re leaving us so soon?</p>
                             <select>
@@ -171,7 +192,7 @@ $activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDev
                         <button class="nav-link bg-transparent">
                             <h4>Settings</h4>
                         </button>
-                        <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Account</button>
+                        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Account</button>
                         <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Language</button>
 
                         <button class="nav-link bg-transparent d-flex justify-content-between">
@@ -186,7 +207,7 @@ $activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDev
                         <button class="nav-link" id="v-pills-childpin-tab" data-bs-toggle="pill" data-bs-target="#v-pills-childpin" type="button" role="tab" aria-controls="v-pills-childpin" aria-selected="true">Set/Change Child PIN</button>
                         <button class="nav-link" id="v-pills-changed-password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-changed-password" type="button" role="tab" aria-controls="v-pills-changed-password" aria-selected="true">Change Password</button>
                         <button class="nav-link" id="v-pills-clear-search-history-tab" data-bs-toggle="pill" data-bs-target="#v-pills-clear-search-history" type="button" role="tab" aria-controls="v-pills-clear-search-history" aria-selected="true">Clear Search History</button>
-                        <button class="nav-link active" id="v-pills-delete-account-tab" data-bs-toggle="pill" data-bs-target="#v-pills-delete-account" type="button" role="tab" aria-controls="v-pills-delete-account" aria-selected="true">Delete Account</button>
+                        <button class="nav-link" id="v-pills-delete-account-tab" data-bs-toggle="pill" data-bs-target="#v-pills-delete-account" type="button" role="tab" aria-controls="v-pills-delete-account" aria-selected="true">Delete Account</button>
 
                     </div>
                 </div>
@@ -194,7 +215,7 @@ $activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDev
             <div class="col-sm-9 pb-4">
                 <div class="setting-right">
                     <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane text-white fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <div class="tab-pane text-white fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                             <!-- choose 5 suggetion start -->
                             <div class="better-solution">
                                 <form id="updateInterestForm" class="better-solution">
@@ -420,12 +441,12 @@ $activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDev
                             <div class="language-setting">
                                 <h4 class="pb-4 border-bot">Manage the active devices</h4>
 
-                                <div class="container-fluid pt-4">
+                                <div class="container-fluid">
                                     <?php if (count($activeDevices) > 0) {
                                         foreach ($activeDevices as $device) {
                                             $deviceId = $device['id'];
                                     ?>
-                                            <div class="row border-bot" data-id="{{ $deviceId }}">
+                                            <div class="row border-bot pt-4" data-id="{{ $deviceId }}">
                                                 <div class="col-sm-4 col-md-3">
                                                     <p>Device</p>
                                                 </div>
@@ -503,7 +524,7 @@ $activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDev
                                                         <input class="mx-1 child-box" type="number" min="0" max="9" name="newKidsPin[]" maxlength="1">
                                                     </div>
                                                 </div>
-                                                <button type="button" class="login-btn mt-5 ms-0" id="setChildPin" style="width: 280px;" data-bs-toggle="modal" data-bs-target="#changed-childpin">
+                                                <button type="button" class="login-btn mt-5 ms-0" id="setChildPin" style="width: 280px;">
                                                     Done
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
@@ -620,7 +641,7 @@ $activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDev
 
                             </div>
                         </div>
-                        <div class="tab-pane text-white fade show active" id="v-pills-delete-account" role="tabpanel" aria-labelledby="v-pills-delete-account-tab">
+                        <div class="tab-pane text-white fade" id="v-pills-delete-account" role="tabpanel" aria-labelledby="v-pills-delete-account-tab">
                             <div class="language-setting">
                                 <h4 class="pb-4 border-bot">Permanently delete your account</h4>
 
@@ -728,6 +749,7 @@ $activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDev
                     },
                     error: function(xhr, status, error) {
                         console.log('error me aaya');
+                        onError(xhr);
                     }
                 });
             } else {
@@ -753,9 +775,6 @@ $activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDev
                         $("#childPinForm input").val("");
                         if (command == "createKidsPin") {
                             $("#childpin").modal('show');
-                            setTimeout(function() {
-                                location.reload();
-                            }, 3000);
                         } else {
                             $("#changed-childpin").modal('show');
                         }
@@ -765,6 +784,7 @@ $activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDev
                 },
                 error: function(xhr, status, error) {
                     console.log('error me aaya');
+                    onError(xhr);
                 }
             });
         })
@@ -815,13 +835,19 @@ $activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDev
                     }
                 },
                 error: function(xhr, status, error) {
+                    onError(xhr);
                     console.log('error me aaya');
                 }
             });
         })
 
         $("#delete_user_account").click(function() {
-            $.ajax({
+            $("#delete-account input").val("");
+            $("#delete-account .modal-body, #resendOTPBtn").hide();
+            $("#sendOTP").show();
+            $("#delete-account").modal('show');
+
+            /*$.ajax({
                 url: "{{ route('delete-account') }}",
                 type: 'POST',
                 data: formData,
@@ -833,11 +859,80 @@ $activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDev
                     console.log(response);
                     if (response.payload.success == true) {
                         $("#delete-account").modal('show');
-                    } else {
-                    }
+                    } else {}
                 },
                 error: function(xhr, status, error) {
                     console.log('error me aaya');
+                }
+            });*/
+        })
+
+        $("#getDeleteAccountOTP").click(function() {
+            $(".error").html("");
+            var password = $("#passwordForDelete").val();
+            if (password.trim() == "") {
+                $("#password-error").text("Current Password is required");
+                return;
+            }
+            var formData = {
+                password: password
+            }
+
+            $.ajax({
+                url: "{{ route('sendOTP-delete-account') }}",
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.payload.success == true) {
+                        $("#delete-account .modal-body").hide();
+                        $("#verifyOTP").show();
+                    } else {
+                        $("#password-error").html(response.payload.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    onError(xhr);
+                }
+            });
+        })
+
+        $("#verifyDeleteAccountOTPBtn").click(function() {
+            $(".error").html("");
+            
+            var password = $('input[name="verifyOTP[]"]').val();
+            console.log(password);
+            if (password.trim() == "") {
+                $("#password-error").text("Current Password is required");
+                return;
+            }
+            var formData = {
+                password: password
+            }
+
+            $.ajax({
+                url: "{{ route('sendOTP-delete-account') }}",
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.payload.success == true) {
+                        $("#delete-account .modal-body").hide();
+                        $("#verifyOTP").show();
+                    } else {
+                        $("#password-error").html(response.payload.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    onError(xhr);
                 }
             });
         })
@@ -866,8 +961,32 @@ $activeDevices = $activeDevice['success'] && array_key_exists('data', $activeDev
             },
             error: function(xhr, status, error) {
                 console.log('error me aaya');
+                onError(xhr);
             }
         });
+    }
+
+    function resendVerifyOTP() {
+        // alert("resend btn");
+        // Disable the resend button
+        $('#resendOTPBtn').show();
+        $('#resendOTPBtn').prop('disabled', true);
+
+        // Set a countdown of 30 seconds
+        var countdown = 30;
+        var countdownDiv = $('.resend-otp');
+
+        var interval = setInterval(function() {
+            countdownDiv.text('Resend OTP in ' + countdown + ' seconds');
+            countdown--;
+
+            if (countdown < 0) {
+                clearInterval(interval);
+                countdownDiv.text('');
+                // $('.child-box').val('');
+                $('#resendOTPBtn').prop('disabled', false);
+            }
+        }, 1000);
     }
 </script>
 @stop
