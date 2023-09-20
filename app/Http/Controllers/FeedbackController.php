@@ -18,7 +18,7 @@ class FeedbackController extends Controller
             "type" => "feedback",
             "feedback" => $feedback
         ];
-        $response = CurlAPI("users/deleteAccount", "POST", $curlData, 2);
+        $response = CurlAPI("users/deleteAccount", "POST", $curlData, 2, true);
         if ($response) {
             $error_code = array_key_exists("errorcode", $response) ? $response['errorcode'] : '';
             return JSONResponse(200, '', ['message' => @$response['message'], 'success' => @$response['success'], 'errorcode' => $error_code]);

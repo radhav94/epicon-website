@@ -109,15 +109,19 @@ Route::post('search', [SearchController::class, 'search'])->name('search');
 
 // Route::get('login/facebook/callback', '\App\Http\Controllers\Auth\AuthSocialController@handleProviderCallback')->name('facebook');
 
-//setting controller routes start
-Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
-Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
-Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
-Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
-Route::post('change-password', [SettingController::class, 'changePassword'])->name('change-password');
-Route::post('delete-account', [SettingController::class, 'deleteAccount'])->name('delete-account');
-Route::post('sendOTP-delete-account', [SettingController::class, 'sendOTPForDeleteAccount'])->name('sendOTP-delete-account');
-//setting controller routes end
+Route::group(['middleware' => 'loggedin'], function () {
+    //setting controller routes start
+    Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
+    Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
+    Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
+    Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
+    Route::post('change-password', [SettingController::class, 'changePassword'])->name('change-password');
+    Route::post('delete-account', [SettingController::class, 'deleteAccount'])->name('delete-account');
+    Route::post('sendOTP-delete-account', [SettingController::class, 'sendOTPForDeleteAccount'])->name('sendOTP-delete-account');
+    Route::post('verifyOTP-delete-account', [SettingController::class, 'verifyOTPForDeleteAccount'])->name('verifyOTP-delete-account');
+    Route::post('syncDevice-pin', [SettingController::class, 'syncDevicePin'])->name('syncDevice-pin');
+    //setting controller routes end
+});
 
 
 Route::get('login/google', [AuthSocialController::class, 'redirectToProvider'])->name('login.google');
@@ -130,6 +134,5 @@ Route::get('login/twitter', [AuthSocialController::class, 'redirectToProvider'])
 Route::get('login/twitter/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.twitter.callback');
 
 Route::get('explore/{slug}/', function ($slug) {
-    return App::call('\App\Http\Controllers\PageController@explore_details', ['slug'=>$slug]);
+    return App::call('\App\Http\Controllers\PageController@explore_details', ['slug' => $slug]);
 });
-

@@ -93,17 +93,18 @@ class PageController extends Controller
 
     public function explore_details($slug)
     {
+        $page = 1;
         $params = [
             // 'page' => $request->page,
-            'page' => 1,
+            'page' => $page,
             'limit' => 18,
         ];
         $result = CurlAPI("pages/midpage/" . $slug, "GET", $params, 1);
         // dd($result);
         if ($result && @$result['success'] ==  true) {
             $result = $result['data'];
-            return view('pages.explore_details', compact('result', 'slug'));
-        } else {
+            return view('pages.explore_details', compact('result','slug','page'));
+        }else{
             return view('pages.404');
         }
     }
