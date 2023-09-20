@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Session;
 
 class PageController extends Controller
 {
+    private  $limit;
+    public function  __construct()
+    {
+        $this->limit = 50;
+    }
+
     public function index($slug = 'home-v2')
     {
         $params = [
@@ -15,7 +21,7 @@ class PageController extends Controller
             'list_language' => 'ALL',
             'display_language' => 'ENGLISH',
             'page' => 1,
-            'limit' => 50,
+            'limit' => $this->limit,
         ];
 
         $result = CurlAPI("pages/homepage", "GET", $params, 1);
@@ -46,7 +52,7 @@ class PageController extends Controller
             'list_language' => 'ALL',
             'display_language' => 'ENGLISH',
             'page' => 1,
-            'limit' => 50,
+            'limit' => $this->limit,
         ];
 
         $result = CurlAPI("pages/homepage", "GET", $params, 1);
@@ -78,7 +84,7 @@ class PageController extends Controller
             'list_language' => 'ALL',
             'display_language' => 'ENGLISH',
             'page' => $request->page,
-            'limit' => 5,
+            'limit' => $this->limit,
         ];
 
         $result = CurlAPI("pages/homepage", "GET", $params, 1);

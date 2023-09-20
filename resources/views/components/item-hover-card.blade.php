@@ -1,3 +1,6 @@
+<?php
+$banner_img = getCardImage($val, 'banner_image', 'small');
+?>
 <div class="play-card">
     <div class="top-card-img">
         {!! freePremiumDiv($val) !!}
@@ -14,7 +17,7 @@
                     stroke="white" stroke-width="1.5" />
             </svg>
         </a>
-        <img src="{{ $cover_img }}" alt="">
+        <img src="{{ $banner_img }}" alt="">
     </div>
     <div class="bottom-card-content">
         <div class="d-flex justify-content-between align-items-center mb-3">

@@ -16,10 +16,9 @@
      }
  }
  
- if (isset($v_content['publish_start_date'])) {
-     $sub_text[] = date('Y', strtotime($v_content['publish_start_date']));
+ if (isset($v_content['release_date'])) {
+     $subtext[] = date('Y', strtotime($v_content['release_date']));
  }
- 
  ?>
 
  {{ implode(' • ', $subtext) }}

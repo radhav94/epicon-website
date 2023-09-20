@@ -8,11 +8,16 @@ use Illuminate\Support\Facades\Session;
 
 class RetroRewindController extends Controller
 {
+    private  $limit;
+    public function  __construct()
+    {
+        $this->limit = 9;
+    }
 
     public function retroRewindList($slug)
     {
         $page = 1;
-        $limit = 9;
+        $limit = $this->limit;
         $params = [
             'slug' => $slug,
             'page' => $page,
@@ -37,7 +42,7 @@ class RetroRewindController extends Controller
     {
         $page = $request->page;
         $slug = $request->slug;
-        $limit = 9;
+        $limit = $this->limit;
 
         $params = [
             'slug' => $slug,
