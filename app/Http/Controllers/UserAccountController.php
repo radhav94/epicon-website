@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 class UserAccountController extends Controller
 {
@@ -41,7 +42,18 @@ class UserAccountController extends Controller
     }
 
     public function myaccount(){
-        return view('my-account.my-account');
+        // $user_token = Session::get('user_token');
+        $request = Request();
+        // dd($request->session()->get('user_token'));
+        $subscriptionPurchases = CurlAPI("users/purchases", 'POST', [] , 2, true);
+        // dd($subscriptionPurchases);
+        if(isset($subscriptionPurchases) && @$subscriptionPurchases['success'] == true){
+            $subscriptionPurchases = $subscriptionPurchases['data'];
+        }else{
+            return view('pages.error.404');
+        }
+        // dd($subscriptionPurchases);
+        return view('my-account.my-account', compact('subscriptionPurchases'));
     }
 
     public function TransactionHistory(){

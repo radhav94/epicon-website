@@ -29,7 +29,7 @@ $kids_page = $segment == 'kids' ? true : false;
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ route('live-tv') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
