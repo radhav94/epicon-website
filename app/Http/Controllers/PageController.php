@@ -95,12 +95,12 @@ class PageController extends Controller
     {
         $page = 1;
         $params = [
-            // 'page' => $request->page,
-            'page' => $page,
             'limit' => 18,
+            'page' => $page,
         ];
-        $result = CurlAPI("pages/midpage/" . $slug, "GET", $params, 1);
-        // dd($result);
+
+        $result = CurlAPI("pages/midpage/".$slug, "GET", $params, 1);
+
         if ($result && @$result['success'] ==  true) {
             $result = $result['data'];
             return view('pages.explore_details', compact('result','slug','page'));
@@ -184,17 +184,46 @@ class PageController extends Controller
         $request = Request();
         // dd($request->all());
         $page = $request->page;
+        $limit = 50;
         $catalog = $request->catalogid;
         $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 50, 'page' => $page], 1);
         // dd($epicwebArr);
         $catalogue_blade = "paginatecontent";
-        if ($epicwebArr['success'] == true) {
+        if ($epicwebArr && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
+            $dataCount = count($epicwebArr);
             $paginateHTML = (string) view('pages.' . $catalogue_blade, compact('epicwebArr', 'page', 'catalog'));
         } else {
             $paginateHTML = "false";
         }
         // dd($paginateHTML);
-        return $paginateHTML;
+        return json_encode(['paginateHTML'=>$paginateHTML,'dataCount'=>$dataCount,'limit'=>$limit]);
     }
+
+    public function explorecontent(){
+        $request = Request();
+        // dd($request->all());
+        $page = $request->page;
+        $slug = $request->slug;
+        $limit = 18;
+        $params = [
+            'page' => $page,
+            'limit' => 18,
+        ];
+        $dataCount = 0;
+        $result = CurlAPI("pages/midpage/".$slug, "GET", $params, 1);
+        $explore_blade = "explorecontent";
+        if ($result && @$result['success'] == true) {
+            $result = $result['data'];
+            $dataCount = count($result);
+            $paginateHTML = (string) view('pages.' . $explore_blade, compact('result', 'page'));
+            
+        } else {
+            $paginateHTML = "false";
+        }
+        // dd($result);
+        // dd($paginateHTML);
+        return json_encode(['paginateHTML'=>$paginateHTML,'dataCount'=>$dataCount,'limit'=>$limit]);
+    }
+
 }
