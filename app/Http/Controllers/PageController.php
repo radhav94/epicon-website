@@ -10,12 +10,8 @@ class PageController extends Controller
 {
     public function index($slug = 'home-v2')
     {
-        // $res = getWishlist();
-        // dd($res);
         $params = [
             'slug' => $slug,
-            // 'slug' => 'home-v2',
-            // 'slug' => 'movies',
             'list_language' => 'ALL',
             'display_language' => 'ENGLISH',
             'page' => 1,
@@ -31,13 +27,36 @@ class PageController extends Controller
             dd($result);
         }
 
-        // dd($result['data']['list']['20']);
-        // $temp = [];
-        // foreach ($result['data']['list'] as $key => $value) {
-        //    $temp[] = $value['display_type'];
-        // }
-        // dd(array_unique(array_column($result['data']['list'], "display_type")));
-        // dd($result);
+        if ($result && @$result['success'] ==  true) {
+
+            $displayLanguageParam = setLanguageParameter();
+
+            $meta_title = strtoupper($slug);
+
+            // dd($result['data']['list'][18]);
+            return view('pages.homepage', compact('result', 'displayLanguageParam', 'meta_title'));
+        }
+    }
+
+    public function kidsIndex($slug = 'home')
+    {
+        $params = [
+            'slug' => 'kids-' . $slug,
+            'list_language' => 'ALL',
+            'display_language' => 'ENGLISH',
+            'page' => 1,
+            'limit' => 50,
+        ];
+
+        $result = CurlAPI("pages/homepage", "GET", $params, 1);
+
+        if (request()->v == 2) {
+            foreach ($result['data']['list'] as $key => $value) {
+                d($value);
+            }
+            dd($result);
+        }
+
         if ($result && @$result['success'] ==  true) {
 
             $displayLanguageParam = setLanguageParameter();
@@ -99,12 +118,12 @@ class PageController extends Controller
             'page' => $page,
         ];
 
-        $result = CurlAPI("pages/midpage/".$slug, "GET", $params, 1);
+        $result = CurlAPI("pages/midpage/" . $slug, "GET", $params, 1);
 
         if ($result && @$result['success'] ==  true) {
             $result = $result['data'];
-            return view('pages.explore_details', compact('result','slug','page'));
-        }else{
+            return view('pages.explore_details', compact('result', 'slug', 'page'));
+        } else {
             return view('pages.404');
         }
     }
@@ -163,6 +182,28 @@ class PageController extends Controller
         }
     }
 
+    public function retroRewindList($slug)
+    {
+        $params = [
+            'slug' => $slug,
+            'page' => 1,
+            'limit' => 7,
+        ];
+
+        $result = CurlAPI("pages/retroContent", "POST", $params, 1);
+        dd($result);
+        if ($result && @$result['success'] ==  true) {
+
+            $displayLanguageParam = setLanguageParameter();
+
+            $meta_title = strtoupper($slug);
+
+            // dd($result['data']['list'][18]);
+            return view('pages.homepage', compact('result', 'displayLanguageParam', 'meta_title'));
+        } else {
+        }
+    }
+
     public function showmidpagedetail($pageslug, $catalog)
     {
         // dd($catalog);
@@ -197,10 +238,11 @@ class PageController extends Controller
             $paginateHTML = "false";
         }
         // dd($paginateHTML);
-        return json_encode(['paginateHTML'=>$paginateHTML,'dataCount'=>$dataCount,'limit'=>$limit]);
+        return json_encode(['paginateHTML' => $paginateHTML, 'dataCount' => $dataCount, 'limit' => $limit]);
     }
 
-    public function explorecontent(){
+    public function explorecontent()
+    {
         $request = Request();
         // dd($request->all());
         $page = $request->page;
@@ -211,19 +253,17 @@ class PageController extends Controller
             'limit' => 18,
         ];
         $dataCount = 0;
-        $result = CurlAPI("pages/midpage/".$slug, "GET", $params, 1);
+        $result = CurlAPI("pages/midpage/" . $slug, "GET", $params, 1);
         $explore_blade = "explorecontent";
         if ($result && @$result['success'] == true) {
             $result = $result['data'];
             $dataCount = count($result);
             $paginateHTML = (string) view('pages.' . $explore_blade, compact('result', 'page'));
-            
         } else {
             $paginateHTML = "false";
         }
         // dd($result);
         // dd($paginateHTML);
-        return json_encode(['paginateHTML'=>$paginateHTML,'dataCount'=>$dataCount,'limit'=>$limit]);
+        return json_encode(['paginateHTML' => $paginateHTML, 'dataCount' => $dataCount, 'limit' => $limit]);
     }
-
 }
