@@ -36,6 +36,7 @@ class PageController extends Controller
             // dd($result['data']['list'][18]);
             return view('pages.homepage', compact('result', 'displayLanguageParam', 'meta_title'));
         }
+        return view('pages.error.404');
     }
 
     public function kidsIndex($slug = 'home')
@@ -66,6 +67,7 @@ class PageController extends Controller
             // dd($result['data']['list'][18]);
             return view('pages.homepage', compact('result', 'displayLanguageParam', 'meta_title'));
         }
+        return view('pages.error.404');
     }
 
     public function loadMore(Request $request)
@@ -103,11 +105,13 @@ class PageController extends Controller
     public function explore()
     {
         $result = CurlAPI("pages/explorepage", "GET", [], 1);
-        // dd($result);
+
         if ($result && @$result['success'] ==  true) {
 
             return view('pages.explore', compact('result'));
         }
+
+        return view('pages.error.404');
     }
 
     public function explore_details($slug)
@@ -179,28 +183,6 @@ class PageController extends Controller
             return JSONResponse(200, ($request->action == 'add') ? 'Added to wishlist' : 'Removed from wishlist', ['icon' => $html]);
         } else {
             return JSONResponse(400, 'Something went wrong. Please try again!');
-        }
-    }
-
-    public function retroRewindList($slug)
-    {
-        $params = [
-            'slug' => $slug,
-            'page' => 1,
-            'limit' => 7,
-        ];
-
-        $result = CurlAPI("pages/retroContent", "POST", $params, 1);
-        dd($result);
-        if ($result && @$result['success'] ==  true) {
-
-            $displayLanguageParam = setLanguageParameter();
-
-            $meta_title = strtoupper($slug);
-
-            // dd($result['data']['list'][18]);
-            return view('pages.homepage', compact('result', 'displayLanguageParam', 'meta_title'));
-        } else {
         }
     }
 
