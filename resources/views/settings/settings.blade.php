@@ -23,6 +23,14 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
     input[type=number] {
         -moz-appearance: textfield;
     }
+
+    .setting-right .tab-content .tab-pane {
+        padding: 0;
+    }
+
+    .setting-right .tab-content .tab-pane.show.active  {
+        padding: 20px 15px;
+    }
 </style>
 
 @stop
@@ -1043,7 +1051,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
         console.time('time1');
         var temp = $("<input>");
         $("body").append(temp);
-        temp.val($('#'+tagId).text()).select();
+        temp.val($('#' + tagId).text()).select();
         document.execCommand("copy");
         temp.remove();
         console.timeEnd('time1');
@@ -1052,7 +1060,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
         setTimeout(function() {
             $(".copiedBtn").hide();
             $(".copyBtn").show();
-        },2000);
+        }, 2000);
     }
 </script>
 @stop
