@@ -36,20 +36,6 @@ if (!function_exists('d')) {
     }
 }
 
-function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1)
-{
-    if (empty($context)) return;
-
-    if ($apiDomain == 2) {
-        $url = config('epicconfig.EPICAPI.API_DOMAIN_2') . $context;
-    } else {
-        $url = config('epicconfig.EPICAPI.API_DOMAIN_1') . $context;
-    }
-    $token = Session::get('user_token') ?? '';
-    return ApiHelper::api($url, $method, $data, $token);
-}
-
-
 function setLanguageParameter()
 {
     $displaylangParameter = app()->getLocale();
