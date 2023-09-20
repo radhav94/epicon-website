@@ -118,6 +118,7 @@ Route::post('change-password', [SettingController::class, 'changePassword'])->na
 Route::post('delete-account', [SettingController::class, 'deleteAccount'])->name('delete-account');
 Route::post('sendOTP-delete-account', [SettingController::class, 'sendOTPForDeleteAccount'])->name('sendOTP-delete-account');
 Route::post('verifyOTP-delete-account', [SettingController::class, 'verifyOTPForDeleteAccount'])->name('verifyOTP-delete-account');
+Route::post('syncDevice-pin', [SettingController::class, 'syncDevicePin'])->name('syncDevice-pin');
 
 //setting controller routes end
 
@@ -132,6 +133,5 @@ Route::get('login/twitter', [AuthSocialController::class, 'redirectToProvider'])
 Route::get('login/twitter/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.twitter.callback');
 
 Route::get('explore/{slug}/', function ($slug) {
-    return App::call('\App\Http\Controllers\PageController@explore_details', ['slug'=>$slug]);
+    return App::call('\App\Http\Controllers\PageController@explore_details', ['slug' => $slug]);
 });
-

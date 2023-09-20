@@ -15,6 +15,7 @@ class SettingController extends Controller
         if (!$profile_data) {
             return view('pages.404');
         }
+
         $user_data = @$profile_data['success'] &&
             array_key_exists("user_data", $profile_data)
             ? $profile_data['user_data']
@@ -32,7 +33,7 @@ class SettingController extends Controller
         }
 
         /* sync devices */
-        $syncDevice = CurlAPI("users/getPin", 'POST', [], 2, true);
+        $syncDevice = CurlAPI("users/getPin", 'GET', [], 2, true);
         if (!$syncDevice) {
             return view('pages.404');
         }
@@ -154,5 +155,15 @@ class SettingController extends Controller
         }
         $error_code = array_key_exists("errorcode", $response) ? $response['errorcode'] : '';
         return JSONResponse(200, '', ['message' => @$response['message'], 'success' => @$response['success'], 'errorcode' => $error_code]);
+    }
+
+    function syncDevicePin()
+    {
+        $response = CurlAPI("users/getPin", 'GET', [], 2, true);
+        if (!$response) {
+            return JSONResponse(400, "Something went wrong. Please try again!");
+        }
+        $syncPin = array_key_exists("pin", $response) ? $response['pin'] : "";
+        return JSONResponse(200, '', ['message' => @$response['message'], 'success' => @$response['success'], 'syncPin' => $syncPin]);
     }
 }

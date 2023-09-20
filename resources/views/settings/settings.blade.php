@@ -410,15 +410,16 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                     <div class="pt-3">
                                         <p>Use the generated pin to Sign-in on your smart tv</p>
                                         <div class="sync-device">
-                                            <h1>{{ $syncPin }}</h1> <a href="" class="">Regenerate PIN</a>
+                                            <h1 id="syncDevicePin">{{ $syncPin }}</h1> <a href="javascript:regenerateSyncPin()" class="">Regenerate PIN</a>
                                         </div>
                                         <div class="d-flex mt-5">
-                                            <button class="border-btn">
+                                            <button class="border-btn copyBtn" onclick="copyText('syncDevicePin')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M1.33594 12.6654C1.33594 13.1958 1.54665 13.7045 1.92172 14.0796C2.2968 14.4547 2.8055 14.6654 3.33594 14.6654H5.33594V13.332H3.33594C3.15913 13.332 2.98956 13.2618 2.86453 13.1368C2.73951 13.0117 2.66927 12.8422 2.66927 12.6654V3.33203C2.66927 3.15522 2.73951 2.98565 2.86453 2.86063C2.98956 2.7356 3.15913 2.66536 3.33594 2.66536H12.6693C12.8461 2.66536 13.0157 2.7356 13.1407 2.86063C13.2657 2.98565 13.3359 3.15522 13.3359 3.33203V5.33203H7.33594C6.8055 5.33203 6.2968 5.54274 5.92172 5.91782C5.54665 6.29289 5.33594 6.8016 5.33594 7.33203V16.6654C5.33594 17.1958 5.54665 17.7045 5.92172 18.0796C6.2968 18.4547 6.8055 18.6654 7.33594 18.6654H16.6693C17.1997 18.6654 17.7084 18.4547 18.0835 18.0796C18.4586 17.7045 18.6693 17.1958 18.6693 16.6654V7.33203C18.6693 6.8016 18.4586 6.29289 18.0835 5.91782C17.7084 5.54274 17.1997 5.33203 16.6693 5.33203H14.6693V3.33203C14.6693 2.8016 14.4586 2.29289 14.0835 1.91782C13.7084 1.54274 13.1997 1.33203 12.6693 1.33203H3.33594C2.8055 1.33203 2.2968 1.54274 1.92172 1.91782C1.54665 2.29289 1.33594 2.8016 1.33594 3.33203V12.6654ZM6.66927 7.33203C6.66927 7.15522 6.73951 6.98565 6.86453 6.86063C6.98956 6.7356 7.15913 6.66536 7.33594 6.66536H16.6693C16.8461 6.66536 17.0157 6.7356 17.1407 6.86063C17.2657 6.98565 17.3359 7.15522 17.3359 7.33203V16.6654C17.3359 16.8422 17.2657 17.0117 17.1407 17.1368C17.0157 17.2618 16.8461 17.332 16.6693 17.332H7.33594C7.15913 17.332 6.98956 17.2618 6.86453 17.1368C6.73951 17.0117 6.66927 16.8422 6.66927 16.6654V7.33203Z" fill="white" />
                                                 </svg>&nbsp;
                                                 Copy PIN
                                             </button>
+                                            <button class="border-btn copiedBtn" style="display:none">Copied</button>
                                             <button class="fill-btn">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                                     <g clip-path="url(#clip0_91_19405)">
@@ -899,15 +900,15 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
 
         $("#verifyDeleteAccountOTPBtn").click(function() {
             $(".error").html("");
-            
-            
+
+
             var verifyOTP = $('input[name="verifyOTP[]"]').val();
             console.log(verifyOTP);
             if (verifyOTP.trim() == "") {
                 $("#password-error").text("OTP is required");
                 return;
             }
-            
+
             var formData = $('#verifyOTPDeleteAccountForm').serialize();
 
             $.ajax({
@@ -935,10 +936,12 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
 
         $("#deleteAcctReasonBtn").click(function() {
             $(".error").html("");
-            
+
             var reason = $('#deleteAcctReason').val();
-            
-            var formData = {reason : reason};
+
+            var formData = {
+                reason: reason
+            };
 
             $.ajax({
                 url: "{{ route('delete-account') }}",
@@ -990,7 +993,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             }
         });
     }
-  
+
     function resendVerifyOTP() {
         // Disable the resend button
         $('#resendOTPBtn').show();
@@ -1010,6 +1013,46 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                 $('#resendOTPBtn').prop('disabled', false);
             }
         }, 1000);
+    }
+
+    function regenerateSyncPin() {
+        $.ajax({
+            url: "{{ route('syncDevice-pin') }}",
+            type: 'POST',
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                console.log(response);
+                if (response.payload.success == true) {
+                    var pin = response.payload.syncPin;
+                    $("#syncDevicePin").html(pin)
+                } else {
+                    var message = response.payload.message;
+                    showToaster(message, 2);
+                }
+            },
+            error: function(xhr, status, error) {
+                onError(xhr);
+            }
+        });
+    }
+
+    function copyText(tagId) {
+        console.time('time1');
+        var temp = $("<input>");
+        $("body").append(temp);
+        temp.val($('#'+tagId).text()).select();
+        document.execCommand("copy");
+        temp.remove();
+        console.timeEnd('time1');
+        $(".copiedBtn").show();
+        $(".copyBtn").hide();
+        setTimeout(function() {
+            $(".copiedBtn").hide();
+            $(".copyBtn").show();
+        },2000);
     }
 </script>
 @stop
