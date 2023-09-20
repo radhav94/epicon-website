@@ -117,6 +117,8 @@ Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-
 Route::post('change-password', [SettingController::class, 'changePassword'])->name('change-password');
 Route::post('delete-account', [SettingController::class, 'deleteAccount'])->name('delete-account');
 Route::post('sendOTP-delete-account', [SettingController::class, 'sendOTPForDeleteAccount'])->name('sendOTP-delete-account');
+Route::post('verifyOTP-delete-account', [SettingController::class, 'verifyOTPForDeleteAccount'])->name('verifyOTP-delete-account');
+
 //setting controller routes end
 
 
