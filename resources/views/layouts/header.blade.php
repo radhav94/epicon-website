@@ -1,3 +1,7 @@
+<?php
+$segment = Request::segment(1);
+$kids_page = $segment == 'kids' ? true : false;
+?>
 <!-- Side Menu Start-->
 <div class="side-menu-main" id="side-menu">
     <div class="side-menu">
@@ -15,7 +19,7 @@
         </div>
         <ul class="ps-3">
             <li>
-                <a href="{{ url('games') }}">
+                <a href="{{ url($kids_page ? '/kids/games' : 'games') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
@@ -110,14 +114,24 @@
         </div>
 
         <?php
-        $links = [
-            '/' => 'Home',
-            'movies' => 'Movies',
-            'tv-shows' => 'Shows',
-            'podcast' => 'Podcasts',
-            'explore' => 'Explore',
-            'premium' => 'Premium',
-        ];
+        
+        if ($kids_page) {
+            $links = [
+                'kids' => 'Home',
+                'kids/movies' => 'Movies',
+                'kids/shows' => 'Shows',
+                'kids/podcast' => 'Podcasts',
+            ];
+        } else {
+            $links = [
+                '/' => 'Home',
+                'movies' => 'Movies',
+                'tv-shows' => 'Shows',
+                'podcast' => 'Podcasts',
+                'explore' => 'Explore',
+                'premium' => 'Premium',
+            ];
+        }
         
         $current_route = request()->path();
         ?>
@@ -129,8 +143,8 @@
 
         </ul>
         <div class="main-header-right d-flex align-items-center">
-            <a href="{{ url('kids-movies') }}" class="p-2 me-2"><img src="{{ asset('assets/img/kidz-icon.svg') }}"
-                    alt=""></a>
+            <a href="{{ $kids_page ? route('homepage') : route('kidsIndex') }}" class="p-2 me-2">
+                <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt=""></a>
             <a href="{{ route('trendingsearch') }}" class="p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">

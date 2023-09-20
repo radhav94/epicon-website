@@ -58,7 +58,7 @@
 
 
                        <!-- filter -->
-                       <div class="episode-season">
+                       <div class="episode-season" style="display:block">
                            <div class="all-episode">
                                <select>
                                    <option value="0">All Episodes</option>
