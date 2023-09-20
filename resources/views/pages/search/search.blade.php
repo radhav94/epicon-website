@@ -85,6 +85,7 @@
                                     
                                 </li>
                             </ul>
+                            <div class="Alltopresult-error" style="color:white;">No Results Found</div>
 <!-- 'pages.detail.detail-components.tabs' -->
                             @include('pages.search.trending_searchlist')
                             <div class="w-100">
@@ -246,7 +247,7 @@
                                     
                                 </li>
                             </ul>
-
+                            <div class="Moviestopresult-error" style="color:white;">No Results Found</div>
                             @include('pages.search.trending_searchlist')
 
                             <div class="w-100">
@@ -407,7 +408,7 @@
                                     
                                 </li>
                             </ul>
-
+                            <div class="Showtopresult-error" style="color:white;">No Results Found</div>
                             @include('pages.search.trending_searchlist')
 
                             <div class="w-100">
@@ -568,7 +569,7 @@
                                     
                                 </li>
                             </ul>
-
+                            <div class="Podcasttopresult-error" style="color:white;">No Results Found</div>
                             @include('pages.search.trending_searchlist')
 
                             <div class="w-100">
@@ -730,7 +731,7 @@
                                     
                                 </li>
                             </ul>
-
+                            <div class="Kidstopresult-error" style="color:white;">No Results Found</div>
                             @include('pages.search.trending_searchlist')
 
                             <div class="w-100">
@@ -891,7 +892,7 @@
                                     
                                 </li>
                             </ul>
-
+                            <div class="Gamestopresult-error" style="color:white;">No Results Found</div>
                             @include('pages.search.trending_searchlist')
 
                             <div class="w-100">

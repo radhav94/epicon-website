@@ -133,3 +133,5 @@ Route::get('explore/{slug}/', function ($slug) {
     return App::call('\App\Http\Controllers\PageController@explore_details', ['slug'=>$slug]);
 });
 
+Route::post('explorecontent', [PageController::class, 'explorecontent'])->name('explorecontent');
+

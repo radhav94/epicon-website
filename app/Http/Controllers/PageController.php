@@ -95,12 +95,11 @@ class PageController extends Controller
     {
         $page = 1;
         $params = [
-            // 'page' => $request->page,
-            'page' => $page,
             'limit' => 18,
+            'page' => $page,
         ];
+        // dd($slug);
         $result = CurlAPI("pages/midpage/".$slug, "GET", $params, 1);
-        // dd($result);
         if ($result && @$result['success'] ==  true) {
             $result = $result['data'];
             return view('pages.explore_details', compact('result','slug','page'));
@@ -186,13 +185,37 @@ class PageController extends Controller
         $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog,'limit' => 50, 'page' => $page], 1);
         // dd($epicwebArr);
         $catalogue_blade = "paginatecontent";
-        if ($epicwebArr['success'] == true) {
+        if ($epicwebArr && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
             $paginateHTML = (string) view('pages.' . $catalogue_blade, compact('epicwebArr', 'page', 'catalog'));
             
         } else {
             $paginateHTML = "false";
         }
+        // dd($paginateHTML);
+        return $paginateHTML;
+     }
+
+     public function explorecontent(){
+        $request = Request();
+        // dd($request->all());
+        $page = $request->page;
+        $slug = $request->slug;
+        $params = [
+            'page' => $page,
+            'limit' => 18,
+        ];
+        $result = CurlAPI("pages/midpage/".$slug, "GET", $params, 1);
+        // dd($result);
+        $explore_blade = "explorecontent";
+        if ($result && @$result['success'] == true) {
+            $result = $result['data'];
+            $paginateHTML = (string) view('pages.' . $explore_blade, compact('result', 'page'));
+            
+        } else {
+            $paginateHTML = "false";
+        }
+        // dd($result);
         // dd($paginateHTML);
         return $paginateHTML;
      }
