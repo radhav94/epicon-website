@@ -11,10 +11,11 @@ class SettingController extends Controller
     {
         $request = Request();
         /*genre section*/
-        $profile_data = CurlAPI("users/viewProfile", 'POST', [], 2);
+        $profile_data = CurlAPI("users/viewProfile", 'POST', [], 2, true);
         if (!$profile_data) {
             return view('pages.404');
         }
+
         $user_data = @$profile_data['success'] &&
             array_key_exists("user_data", $profile_data)
             ? $profile_data['user_data']
@@ -26,12 +27,19 @@ class SettingController extends Controller
         }
 
         /* active devices */
-        $activeDevice = CurlAPI("users/getDevice", 'POST', [], 2);
+        $activeDevice = CurlAPI("users/getDevice", 'POST', [], 2, true);
         if (!$activeDevice) {
             return view('pages.404');
         }
 
-        return view('settings.settings', compact('genrelist', 'user_data', 'activeDevice'));
+        /* sync devices */
+        $syncDevice = CurlAPI("users/getPin", 'GET', [], 2, true);
+        if (!$syncDevice) {
+            return view('pages.404');
+        }
+        $syncPin = array_key_exists("pin", $syncDevice) ? $syncDevice['pin'] : "";
+
+        return view('settings.settings', compact('genrelist', 'user_data', 'activeDevice', 'syncPin'));
     }
 
     public function updateUserGenre()
@@ -54,7 +62,7 @@ class SettingController extends Controller
         $request = Request();
         $deviceId = $request->post('deviceId') ? $request->post('deviceId') : '';
         $curlData = ["id" => $deviceId];
-        $response = CurlAPI("users/deleteDevice", "POST", $curlData, 2);
+        $response = CurlAPI("users/deleteDevice", "POST", $curlData, 2, true);
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
         }
@@ -70,7 +78,7 @@ class SettingController extends Controller
         $newKidsPin = $request->post('newKidsPin') ? implode("", $request->post('newKidsPin')) : '';
         if ($command == "createKidsPin") {
             $curlData = ["pin" => $kidsPin];
-            $response = CurlAPI("users/setChildPin", "POST", $curlData, 2);
+            $response = CurlAPI("users/setChildPin", "POST", $curlData, 2, true);
             if ($response && @$response['success']) {
                 $profile_data = $request->session()->get('profile_data');
                 $profile_data['result']['user_data']['kidSection'] = true;
@@ -78,7 +86,7 @@ class SettingController extends Controller
             }
         } else {
             $curlData = ["pin" => $newKidsPin, "old_pin" => $oldKidsPin];
-            $response = CurlAPI("users/changeChildPin", "POST", $curlData, 2);
+            $response = CurlAPI("users/changeChildPin", "POST", $curlData, 2, true);
         }
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
@@ -92,7 +100,7 @@ class SettingController extends Controller
         $old_password = $request->post('old_password') ? $request->post('old_password') : '';
         $new_password = $request->post('new_password') ? $request->post('new_password') : '';
         $curlData = ["new_password" => $new_password, "current_password" => $old_password];
-        $response = CurlAPI("users/changePassword", "POST", $curlData, 2);
+        $response = CurlAPI("users/changePassword", "POST", $curlData, 2, true);
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
         }
@@ -103,7 +111,13 @@ class SettingController extends Controller
     public function deleteAccount()
     {
         $request = Request();
-        $response = CurlAPI("users/deleteAccount", "POST", "", 2);
+        $reason = $request->post('reason') && !empty($request->post('reason')) ?? '';
+
+        $curlData = [
+            "account_delete_reason" => $reason,
+            "type" => ""
+        ];
+        $response = CurlAPI("users/deleteAccount", "POST", $curlData, 2, true);
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
         }
@@ -116,11 +130,40 @@ class SettingController extends Controller
         $request = Request();
         $password = $request->post('password') ?? '';
         $curlData = ["password" => $password];
-        $response = CurlAPI("users/sendDeleteAccountOTP", "POST", $curlData, 2);
+        $response = CurlAPI("users/sendDeleteAccountOTP", "POST", $curlData, 2, true);
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
         }
         $error_code = array_key_exists("errorcode", $response) ? $response['errorcode'] : '';
         return JSONResponse(200, '', ['message' => @$response['message'], 'success' => @$response['success'], 'errorcode' => $error_code]);
+    }
+
+    public function verifyOTPForDeleteAccount()
+    {
+        $request = Request();
+        $otp = $request->post('verifyOTP') && !empty($request->post('verifyOTP'))
+            && is_array($request->post('verifyOTP'))
+            ? implode("", $request->post('verifyOTP'))
+            : '';
+        if (empty($otp)) {
+            return JSONResponse(200, '', ['message' => "OTP is required", 'success' => 0, 'errorcode' => ""]);
+        }
+        $curlData = ["otp" => $otp];
+        $response = CurlAPI("users/verifyDeleteAccountOTP", "POST", $curlData, 2, true);
+        if (!$response) {
+            return JSONResponse(400, "Something went wrong. Please try again!");
+        }
+        $error_code = array_key_exists("errorcode", $response) ? $response['errorcode'] : '';
+        return JSONResponse(200, '', ['message' => @$response['message'], 'success' => @$response['success'], 'errorcode' => $error_code]);
+    }
+
+    function syncDevicePin()
+    {
+        $response = CurlAPI("users/getPin", 'GET', [], 2, true);
+        if (!$response) {
+            return JSONResponse(400, "Something went wrong. Please try again!");
+        }
+        $syncPin = array_key_exists("pin", $response) ? $response['pin'] : "";
+        return JSONResponse(200, '', ['message' => @$response['message'], 'success' => @$response['success'], 'syncPin' => $syncPin]);
     }
 }

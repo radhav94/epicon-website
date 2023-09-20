@@ -19,8 +19,8 @@ class SupermixController extends Controller
             ];
         }
 
-        $result = CurlAPI("pages/superMix", "POST", $params);
-        // dd($result);
+        $result = CurlAPI("pages/superMix", "POST", $params, 1);
+
         if ($result && @$result['success'] ==  true) {
 
             $content = $result['data'];

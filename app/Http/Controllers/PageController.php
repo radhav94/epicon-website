@@ -98,8 +98,9 @@ class PageController extends Controller
             'limit' => 18,
             'page' => $page,
         ];
-        // dd($slug);
+
         $result = CurlAPI("pages/midpage/".$slug, "GET", $params, 1);
+
         if ($result && @$result['success'] ==  true) {
             $result = $result['data'];
             return view('pages.explore_details', compact('result','slug','page'));
@@ -136,8 +137,8 @@ class PageController extends Controller
             'content_id' => $request->content_id,
             'action' => $request->action
         ];
-        $result = CurlAPI("pages/wishlist", "POST", $params);
-        // dd($result);
+        $result = CurlAPI("pages/wishlist", "POST", $params, 1, true);
+
         if ($result && @$result['success'] ==  true) {
             Cache::forget('getWishlist');
             // session()->forget('user_wishlist');
@@ -158,45 +159,46 @@ class PageController extends Controller
 
             return JSONResponse(200, ($request->action == 'add') ? 'Added to wishlist' : 'Removed from wishlist', ['icon' => $html]);
         } else {
-            return JSONResponse(400, 'Error.');
+            return JSONResponse(400, 'Something went wrong. Please try again!');
         }
     }
 
-    public function showmidpagedetail($pageslug, $catalog){
+    public function showmidpagedetail($pageslug, $catalog)
+    {
         // dd($catalog);
         // if (($user = getLoggedInUser()) != false) {
         //     $epicwebArr = CurlAPI("pages/midpage", "POST", ['user_id' => $user->user_id, 'session_id' => $user->api_session_id, 'catalogId' => $catalogid]);
         // } else {
         $page = 1;
-            $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog,'limit' => 50, 'page' => 1], 1);
-            if(isset($epicwebArr) && $epicwebArr['success'] == true){
-                $epicwebArr = $epicwebArr['data'];
-                return view('pages.midpage',compact('epicwebArr','pageslug','catalog','page'));
-            }else{
-                return view('pages.404');
-            }
+        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 50, 'page' => 1], 1);
+        if (isset($epicwebArr) && $epicwebArr['success'] == true) {
+            $epicwebArr = $epicwebArr['data'];
+            return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page'));
+        } else {
+            return view('pages.404');
+        }
     }
 
-     public function paginatecontent(){
+    public function paginatecontent()
+    {
         $request = Request();
         // dd($request->all());
         $page = $request->page;
         $catalog = $request->catalogid;
-        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog,'limit' => 50, 'page' => $page], 1);
+        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 50, 'page' => $page], 1);
         // dd($epicwebArr);
         $catalogue_blade = "paginatecontent";
         if ($epicwebArr && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
             $paginateHTML = (string) view('pages.' . $catalogue_blade, compact('epicwebArr', 'page', 'catalog'));
-            
         } else {
             $paginateHTML = "false";
         }
         // dd($paginateHTML);
         return $paginateHTML;
-     }
+    }
 
-     public function explorecontent(){
+    public function explorecontent(){
         $request = Request();
         // dd($request->all());
         $page = $request->page;
@@ -218,5 +220,6 @@ class PageController extends Controller
         // dd($result);
         // dd($paginateHTML);
         return $paginateHTML;
-     }
+    }
+
 }

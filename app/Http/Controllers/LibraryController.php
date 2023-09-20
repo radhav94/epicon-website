@@ -8,29 +8,29 @@ use Illuminate\Http\JsonResponse;
 
 class LibraryController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         // dd($request->session()->get('user_token'));
-         $action = array(
-                'action' => 'view',
-            );
-        $listResponseData = CurlAPI("pages/wishlist", 'POST', $action , 1);
+        $action = array(
+            'action' => 'view',
+        );
+        $listResponseData = CurlAPI("pages/wishlist", 'POST', $action, 1, true);
         // dd($listResponseData);
 
-        $historyResponse = CurlAPI("pages/user/watch_history", 'GET', '' , 1);
+        $historyResponse = CurlAPI("pages/user/watch_history", 'GET', '', 1, true);
         // dd($historyResponse);
-        if($historyResponse['success'] == true){
+        if ($historyResponse['success'] == true) {
             $historydata = $historyResponse['data'];
-        }else{
+        } else {
             $historydata = '';
         }
-        if($listResponseData && @$listResponseData['success'] == true){
+        if ($listResponseData && @$listResponseData['success'] == true) {
             $data = $listResponseData['contents'];
             // dd($listResponseData);
             // return view('library.library')->with('data', $listResponseData);
-            return view('library.library',compact('data','historydata'));
-        }else{
+            return view('library.library', compact('data', 'historydata'));
+        } else {
             return view('pages.404');
         }
-        
     }
 }

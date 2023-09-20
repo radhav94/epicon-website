@@ -90,4 +90,26 @@ class PageDetailController extends Controller
             return JSONResponse(400, 'Some error occured');
         }
     }
+
+    public function retroRewindList($slug)
+    {
+        $params = [
+            'slug' => $slug,
+            'page' => 1,
+            'limit' => 7,
+        ];
+
+        $result = CurlAPI("pages/retroContent", "POST", $params, 1);
+        dd($result);
+        if ($result && @$result['success'] ==  true) {
+
+            $displayLanguageParam = setLanguageParameter();
+
+            $meta_title = strtoupper($slug);
+
+            // dd($result['data']['list'][18]);
+            return view('pages.homepage', compact('result', 'displayLanguageParam', 'meta_title'));
+        } else {
+        }
+    }
 }
