@@ -410,7 +410,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                     <div class="pt-3">
                                         <p>Use the generated pin to Sign-in on your smart tv</p>
                                         <div class="sync-device">
-                                            <h1>123456</h1> <a href="" class="">Regenerate PIN</a>
+                                            <h1>{{ $syncPin }}</h1> <a href="" class="">Regenerate PIN</a>
                                         </div>
                                         <div class="d-flex mt-5">
                                             <button class="border-btn">
@@ -852,6 +852,11 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             $("#delete-account").modal('show');
         })
 
+        $("#resendOTPBtn").click(function() {
+            resendOtp = true;
+            $('#getDeleteAccountOTP').trigger('click');
+        })
+
         $("#getDeleteAccountOTP").click(function() {
             $(".error").html("");
             var password = $("#passwordForDelete").val();
@@ -877,9 +882,12 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                         if (!resendOtp) {
                             $("#delete-account .modal-body").hide();
                             $("#verifyOTP").show();
-                            resendVerifyOTP();
                         }
+                        resendVerifyOTP();
                     } else {
+                        if (resendOtp) {
+                            $("#verify-otp-error").html(response.payload.message);
+                        }
                         $("#password-error").html(response.payload.message);
                     }
                 },
@@ -987,8 +995,6 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
         // Disable the resend button
         $('#resendOTPBtn').show();
         $('#resendOTPBtn').prop('disabled', true);
-        $('#getDeleteAccountOTP').trigger('click');
-        resendOtp = true;
 
         // Set a countdown of 30 seconds
         var countdown = 30;
