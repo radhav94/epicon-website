@@ -12,6 +12,7 @@ use App\Http\Controllers\UpcomingController;
 use App\Http\Controllers\PopularController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\LiveTvController;
 
 /*
 |--------------------------------------------------------------------------
@@ -138,3 +139,5 @@ Route::get('explore/{slug}/', function ($slug) {
 });
 
 Route::post('explorecontent', [PageController::class, 'explorecontent'])->name('explorecontent');
+
+Route::get('live-tv', [LiveTvController::class, 'livetv'])->name('live-tv');

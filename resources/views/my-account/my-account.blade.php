@@ -7,7 +7,32 @@
 
 @section('content')
 
+<?php
+if(isset($subscriptionPurchases[0]['subscription_start_date'])){
+    $subscription_start_date = date('Y-m-d', strtotime($subscriptionPurchases[0]['subscription_start_date']));
 
+    $substartdate=date("jS F, Y", strtotime($subscriptionPurchases[0]['subscription_start_date']));  
+}
+if(isset($subscriptionPurchases[0]['subscription_end_date'])){
+    $subscription_end_date = date('Y-m-d', strtotime($subscriptionPurchases[0]['subscription_end_date']));
+
+    $subenddate=date("jS F, Y", strtotime($subscriptionPurchases[0]['subscription_end_date']));  
+}
+
+if($subscriptionPurchases[0]['validity_days'] == 30){
+    $plan_name = 'month';
+}else if($subscriptionPurchases[0]['validity_days'] == 90){
+    $plan_name = 'quarter';
+}else if($subscriptionPurchases[0]['validity_days'] == 180){
+    $plan_name = 'half-yearly';
+}else{
+    $plan_name = 'year';
+}
+
+$today = date_create(date('Y-m-d'));
+$enddate = date_create(date('Y-m-d', strtotime($subscriptionPurchases[0]['subscription_end_date'])));
+
+?>
 
 <!-- login model -->
 <div class="modal fade" id="cancelMembership" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -49,13 +74,21 @@
             </div>
             <div class="col-sm-6 col-md-7">
                 <div class="my-account-main plan-expired position-relative mt-2">
+                    @if($today < $enddate)
+                    <div class="plan-ex">Plan Active</div>
+                    @else
                     <div class="plan-ex">Plan Expired</div>
+                    @endif
                     <img class="corner-bg" src="{{ asset('/img/corner-bg.svg') }}" alt="">
-                    <p class="current-subs d-flex">Current Subscription</p>
-                    <h1>Premium HD</h1>
+                   <!--  <p class="current-subs d-flex">Current Subscription</p>
+                    <h1>Premium HD</h1> -->
                     <div class="premium-plan">
+                        @if(isset($subscriptionPurchases[0]['plan_status']) == 'current')
+                        <div class="past-sub w-100">CURRENT SUBSCRIPTION</div>
+                        @else
                         <div class="past-sub w-100">PAST SUBSCRIPTION</div>
-                        <h2>Premium HD</h2>
+                        @endif
+                        <h2>{{ $subscriptionPurchases[0]['plan_name'] }}</h2>
                         <div class="progress blue">
                             <span class="progress-left">
                                               <span class="progress-bar"></span>
@@ -69,8 +102,8 @@
                             </div>
                         </div>
                         <div class="pp-right">
-                            <h3>₹499 <span>/ year</span></h3>
-                            <p>20th May, 23 - 20th May, 24</p>
+                            <h3>₹ {{$subscriptionPurchases[0]['plan_amount']}} <span>/ {{$plan_name}}</span></h3>
+                            <p>{{$substartdate}} - {{$subenddate}}</p>
                         </div>
                     </div>
 

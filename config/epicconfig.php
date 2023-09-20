@@ -282,6 +282,8 @@ if($environment=='PRODUCTION'){
 		'EPICAPI'=>[
 			'API_DOMAIN_1'=>'http://contentapi-njsapi.epicon.in/index/',
 			'API_DOMAIN_2' => 'http://userapi-njsapi.epicon.in/',
+			'API_DOMAIN_3' => 'https://njsapi.epicon.in/v2/',
+
 
 			'API_AUTH_TOKEN'=>'szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH',
 			'CONSCENT_API_URL' => 'https://sandbox-api.conscent.in',

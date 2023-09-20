@@ -30,7 +30,7 @@ class LibraryController extends Controller
             // return view('library.library')->with('data', $listResponseData);
             return view('library.library', compact('data', 'historydata'));
         } else {
-            return view('pages.404');
+            return view('pages.error.404');
         }
     }
 }

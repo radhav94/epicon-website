@@ -124,7 +124,7 @@ class PageController extends Controller
             $result = $result['data'];
             return view('pages.explore_details', compact('result', 'slug', 'page'));
         } else {
-            return view('pages.404');
+            return view('pages.error.404');
         }
     }
 
@@ -216,7 +216,7 @@ class PageController extends Controller
             $epicwebArr = $epicwebArr['data'];
             return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page'));
         } else {
-            return view('pages.404');
+            return view('pages.error.404');
         }
     }
 

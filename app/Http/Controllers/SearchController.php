@@ -15,7 +15,7 @@ class SearchController extends Controller
          $trendingData = $trending['contents'] ?? [];
          return view('pages.search.search')->with('trendingData',$trendingData);
        }else{
-         return view('pages.404');
+         return view('pages.error.404');
        }
        
     }
