@@ -10,12 +10,8 @@ class PageController extends Controller
 {
     public function index($slug = 'home-v2')
     {
-        // $res = getWishlist();
-        // dd($res);
         $params = [
             'slug' => $slug,
-            // 'slug' => 'home-v2',
-            // 'slug' => 'movies',
             'list_language' => 'ALL',
             'display_language' => 'ENGLISH',
             'page' => 1,
@@ -31,13 +27,6 @@ class PageController extends Controller
             dd($result);
         }
 
-        // dd($result['data']['list']['20']);
-        // $temp = [];
-        // foreach ($result['data']['list'] as $key => $value) {
-        //    $temp[] = $value['display_type'];
-        // }
-        // dd(array_unique(array_column($result['data']['list'], "display_type")));
-        // dd($result);
         if ($result && @$result['success'] ==  true) {
 
             $displayLanguageParam = setLanguageParameter();
@@ -190,6 +179,28 @@ class PageController extends Controller
             return JSONResponse(200, ($request->action == 'add') ? 'Added to wishlist' : 'Removed from wishlist', ['icon' => $html]);
         } else {
             return JSONResponse(400, 'Something went wrong. Please try again!');
+        }
+    }
+
+    public function retroRewindList($slug)
+    {
+        $params = [
+            'slug' => $slug,
+            'page' => 1,
+            'limit' => 7,
+        ];
+
+        $result = CurlAPI("pages/retroContent", "POST", $params, 1);
+        dd($result);
+        if ($result && @$result['success'] ==  true) {
+
+            $displayLanguageParam = setLanguageParameter();
+
+            $meta_title = strtoupper($slug);
+
+            // dd($result['data']['list'][18]);
+            return view('pages.homepage', compact('result', 'displayLanguageParam', 'meta_title'));
+        } else {
         }
     }
 

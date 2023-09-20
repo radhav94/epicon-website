@@ -23,10 +23,12 @@
                     <?php
                     $card = getItemCardData($val, $displayLanguageParam);
                     ?>
-                    <button>
-                        <img src="{{ $val['fiesta_image'] ?? '' }}">
-                        {{ $val['name'] }}
-                    </button>
+                    <a href="{{ url('explore/' . @$val['slug']) }}">
+                        <button>
+                            <img src="{{ $val['fiesta_image'] ?? '' }}">
+                            {{ $val['name'] }}
+                        </button>
+                    </a>
                 @endforeach
 
             </div>

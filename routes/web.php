@@ -52,7 +52,7 @@ Route::group(['middleware' => 'loggedin'], function () {
 
 
 //dynamic / other pages route
-Route::any('/retro-rewind/{slug}', [PageDetailController::class, 'retroRewindList'])->name('retro-list');
+Route::any('/retro-rewind/{slug}', [PageController::class, 'retroRewindList'])->name('retro-list');
 Route::any('/supermix', [SupermixController::class, 'superMix']);
 Route::get('/kids/{slug?}', [PageController::class, 'kidsIndex'])->name('kidsIndex');
 Route::get('/{slug}', [PageController::class, 'index']);
