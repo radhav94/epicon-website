@@ -15,7 +15,9 @@
              @foreach ($value['content'] as $key => $val)
                  <?php
                  $card = getItemCardData($val, $displayLanguageParam);
-                 $cover_img = isset($val['vertical_cover_image']) ? $val['vertical_cover_image']['small'] : $card['banner_img'];
+                 
+                 $banner_img = getCardImage($val, 'banner_image', 'large', ['cover_image']);
+                 $cover_img = getCardImage($val, 'vertical_cover_image', 'small', ['cover_image', 'banner_image']);
                  
                  $li = '';
                  if (@$val['duration']) {
@@ -50,7 +52,7 @@
                      {!! freePremiumDiv($val) !!}
 
                      <div class="carousel-items position-relative w-100">
-                         <img src="{{ $card['banner_img'] }}" alt="">
+                         <img src="{{ $banner_img }}" alt="">
                          <div class="carousel-items-content position-absolute">
                              <h1 class="banner-movie-tittle">{{ $card['title'] }}</h1>
                              <h2 class="mb-3">{{ $card['sub_text'] }}</h2>

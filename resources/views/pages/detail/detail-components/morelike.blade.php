@@ -10,7 +10,7 @@
                 }
                 $card = getItemCardData($value, $displayLanguageParam);
                 
-                $cover_img = getCardImage($value, 'vertical_cover_image', 'medium');
+                $cover_img = getCardImage($value, 'vertical_cover_image', 'small', ['cover_image', 'banner_image']);
                 ?>
                 <li>
                     <a href="{{ getContentUrl($value) }}" class="main-card">

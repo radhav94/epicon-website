@@ -14,7 +14,10 @@
          @foreach ($value['content'] as $key => $val)
              <?php
              $card = getItemCardData($val, $displayLanguageParam);
-             $cover_img = isset($val['vertical_cover_image']) ? $val['vertical_cover_image']['small'] : $card['banner_img'];
+             
+             $banner_img = getCardImage($val, 'banner_image', 'small', ['cover_image']);
+             $cover_img = getCardImage($val, 'vertical_cover_image', 'small', ['cover_image', 'banner_image']);
+             
              ?>
              <li>
 
@@ -24,7 +27,7 @@
                          @if (@$extra['hide_top10'] != 1)
                              {!! topTenDiv($val) !!}
                          @endif
-                         <img src="{{ $cover_img }}" alt="">
+                         <img src="{{ $banner_img }}" alt="">
                      </a>
                      <div class="bottom-card-content">
                          <div class="d-flex justify-content-between align-items-center mb-3">

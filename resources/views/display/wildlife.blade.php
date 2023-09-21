@@ -21,7 +21,8 @@
                 @foreach ($val as $k => $v)
                     <?php
                     $card = getItemCardData($v, $displayLanguageParam);
-                    $cover_img = isset($v['vertical_cover_image']) ? @$v['vertical_cover_image']['small'] : $card['banner_img'];
+                    
+                    $cover_img = getCardImage($v, 'vertical_cover_image', 'small', ['cover_image', 'banner_image']);
                     ?>
                     <div>
                         <a href="{{ getContentUrl($v) }}" class="{{ $k == 0 ? 'left' : 'right' }}">
