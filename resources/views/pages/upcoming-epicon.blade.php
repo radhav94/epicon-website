@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','New homepage')
+@section('title','Upcoming on Epicon')
 
 @section('style')
 
@@ -88,7 +88,7 @@ krsort($output);
                                         <?php echo $sub_points ?>
                                        <!--  <li>Drama</li>
                                         <li>Comedy</li>  -->
-                                        <li>{{$date_text}}</li>
+                                        <li>{{isset($date_text) ? $date_text : '' }}</li>
                                     </ul>
                                 </div>
                             </div>

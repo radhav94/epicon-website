@@ -50,13 +50,35 @@ class UserAccountController extends Controller
         if(isset($subscriptionPurchases) && @$subscriptionPurchases['success'] == true){
             $subscriptionPurchases = $subscriptionPurchases['data'];
         }else{
-            return view('pages.error.404');
+            $subscriptionPurchases = [];
+            // return view('pages.error.404');
         }
         // dd($subscriptionPurchases);
-        return view('my-account.my-account', compact('subscriptionPurchases'));
+
+        $viewprofile = CurlAPI("users/viewProfile", 'POST', [] , 2, true);  
+        
+        if(isset($viewprofile) && @$viewprofile['success'] == true){
+            $viewprofile = $viewprofile['user_data'];
+        }else{
+            $viewprofile = [];
+            // return view('pages.error.404');
+        }
+        // dd($viewprofile);
+        return view('my-account.my-account', compact('subscriptionPurchases','viewprofile'));
     }
 
     public function TransactionHistory(){
-        return view('my-account.transaction-history');
+        $request = Request();
+        // dd($request->session()->get('user_token'));
+        $subscriptionPurchases = CurlAPI("users/purchases", 'POST', [] , 2, true);
+        // dd($subscriptionPurchases);
+        if(isset($subscriptionPurchases) && @$subscriptionPurchases['success'] == true){
+            $subscriptionPurchases = $subscriptionPurchases['data'];
+        }else{
+            $subscriptionPurchases = [];
+            // return view('pages.error.404');
+        }
+        // dd($subscriptionPurchases);
+        return view('my-account.transaction-history', compact('subscriptionPurchases'));
     }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','New homepage')
+@section('title','Terms & Conditions')
 
 @section('style')
 
