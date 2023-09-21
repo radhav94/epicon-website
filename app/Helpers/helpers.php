@@ -526,6 +526,9 @@ function getCardImage($content, $key, $size = 'medium', $fallback = [])
             }
         }
     }
+    $match = 'st2.epicon.epicchannel.com';
+    $replaceWith = 'st2.epicon.in';
+    $img_url = str_replace($match, $replaceWith, $img_url);
     return $img_url;
 }
 

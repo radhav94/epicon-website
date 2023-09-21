@@ -78,7 +78,8 @@ function onError(xhr) {
     console.log('Error:', xhr);
 }
 
-const showToaster = (message, type = 1, timeout = 5000) => {
+const showToaster = (message, type = 1, timeout = 4000) => {
+    toastr.clear();
     if (type == 1) {
         toastr.success(message, "Success", {
             timeOut: timeout
@@ -168,4 +169,11 @@ $(document).on('click', '.shareThis', function () {
 
 $('.menu-close').click(function (e) {
     e.preventDefault();
+});
+
+$('#side-menu').on('click', function (e) {
+    // Check if the click was not inside the .abc class
+    if (!$(e.target).hasClass('ps-3')) {
+        $('.menu-close').trigger('click');
+    }
 });

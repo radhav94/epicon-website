@@ -42,7 +42,7 @@
 @section('content')
 
     <section class="container">
-        <div class="new-popular-main explore-details">
+        <div class="new-popular-main explore-details" id="showmore_load">
             <h4 class="new-popularheading text-white mb-3">{{ucfirst($slug)}}</h4>
 
                 <?php $count = $count_card_detail = 1;
@@ -141,10 +141,38 @@
             </div>
             <!-- Load More Btn End -->
     </section>
-
-
 @stop
 
 @section('script')
-
+<script>
+    $(document).on("click", ".explore-showmore", function () {
+        // var page = $("#pageid").val(parseInt($("#pageid").val()) + 1);
+            $.ajax({
+            url: '/explorecontent',
+            type: 'POST',
+            data: {
+                    page: $("#pageid").val(),
+                    slug: $(this).attr("slug"),
+                  },
+            contentType: "application/x-www-form-urlencoded",
+            dataType: "json",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                var page = parseInt($("#pageid").val())+1;
+                // console.log(page+"page Number");
+                $("#pageid").val(page);
+                $("#showmore_load").append(response.paginateHTML);
+                if(response.dataCount < response.limit){
+                    // console.log("on false condition");
+                    $('.explore-showmore').hide();
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log("in error function");
+            }
+        });
+    });
+</script>
 @stop

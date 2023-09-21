@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PageDetailController;
+use App\Http\Controllers\RetroRewindController;
 use App\Http\Controllers\SupermixController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -68,3 +69,11 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 
 
 
+//dynamic / other pages route
+Route::get('/retro-rewind/{slug}', [RetroRewindController::class, 'retroRewindList'])->name('retro-list');
+Route::post('/retro-content', [RetroRewindController::class, 'retroRewindContent']);
+
+Route::any('/supermix', [SupermixController::class, 'superMix']);
+Route::get('/kids/{slug?}', [PageController::class, 'kidsIndex'])->name('kidsIndex');
+Route::get('/{slug}', [PageController::class, 'index']);
+Route::get('/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);

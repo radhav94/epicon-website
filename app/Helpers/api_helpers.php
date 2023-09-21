@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Session;
 function CurlAPI_old($context, $method = 'GET', $data = null, $apiDomain = 1)
 {
 
-    if ($apiDomain == 2) {
+    if ($apiDomain == 3) {
+        $url = config('epicconfig.EPICAPI.API_DOMAIN_3') . $context;
+    }else if ($apiDomain == 2) {
         $url = config('epicconfig.EPICAPI.API_DOMAIN_2') . $context;
     } else {
         $url = config('epicconfig.EPICAPI.API_DOMAIN_1') . $context;
@@ -24,7 +26,9 @@ function CurlAPI_old($context, $method = 'GET', $data = null, $apiDomain = 1)
 function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendUserToken = false)
 {
 
-    if ($apiDomain == 2) {
+    if ($apiDomain == 3) {
+        $url = config('epicconfig.EPICAPI.API_DOMAIN_3') . $context;
+    }else if ($apiDomain == 2) {
         $url = config('epicconfig.EPICAPI.API_DOMAIN_2') . $context;
     } else {
         $url = config('epicconfig.EPICAPI.API_DOMAIN_1') . $context;

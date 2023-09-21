@@ -1,3 +1,7 @@
+<?php
+$segment = Request::segment(1);
+$kids_page = $segment == 'kids' ? true : false;
+?>
 <!-- Side Menu Start-->
 <div class="side-menu-main" id="side-menu">
     <div class="side-menu">
@@ -9,13 +13,13 @@
                         fill="white" />
                 </svg>
             </a>
-            <a class="navbar-brand me-3" href="#"><img height="28"
+            <a class="navbar-brand me-3" href="{{ route('homepage') }}"><img height="28"
                     src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
             <a class="subscribe-btn" href="#">{{__('Subscribe')}}</a>
         </div>
         <ul class="ps-3">
             <li>
-                <a href="{{ getUrl('games') }}">
+                <a href="{{ getUrl($kids_page ? '/kids/games' : 'games') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
@@ -25,7 +29,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ route('live-tv') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
@@ -104,20 +108,30 @@
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </a>
-            <a class="navbar-brand" href="#"><img src="{{ asset('assets/img/epicon-logo.png') }}"
-                    alt=""></a>
+            <a class="navbar-brand" href="{{ getUrl('homepage') }}"><img
+                    src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
             <a class="subscribe-btn" href="#">{{__('Subscribe')}}</a>
         </div>
 
         <?php
-        $links = [
-            '/' => 'Home',
-            'movies' => 'Movies',
-            'tv-shows' => 'Shows',
-            'podcast' => 'Podcasts',
-            'explore' => 'Explore',
-            'premium' => 'Premium',
-        ];
+        
+        if ($kids_page) {
+            $links = [
+                'kids' => 'Home',
+                'kids/movies' => 'Movies',
+                'kids/shows' => 'Shows',
+                'kids/podcast' => 'Podcasts',
+            ];
+        } else {
+            $links = [
+                '/' => 'Home',
+                'movies' => 'Movies',
+                'tv-shows' => 'Shows',
+                'podcast' => 'Podcasts',
+                'explore' => 'Explore',
+                'premium' => 'Premium',
+            ];
+        }
         
         $current_route = request()->path();
         ?>
@@ -129,8 +143,8 @@
 
         </ul>
         <div class="main-header-right d-flex align-items-center">
-            <a href="{{ getUrl('kids-movies') }}" class="p-2 me-2"><img src="{{ asset('assets/img/kidz-icon.svg') }}"
-                    alt=""></a>
+            <a href="{{ $kids_page ? getUrl('homepage') : getUrl('kidsIndex') }}" class="p-2 me-2">
+                <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt=""></a>
             <a href="{{ getUrl('trendingsearch') }}" class="p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">

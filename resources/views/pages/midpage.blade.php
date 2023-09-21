@@ -160,6 +160,7 @@
                     catalogid: $(this).attr("catalog-id"),
                   },
             contentType: "application/x-www-form-urlencoded",
+            dataType: "json",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -168,8 +169,8 @@
                 var page = parseInt($("#pageid").val())+1;
                 // console.log(page+"page Number");
                 $("#pageid").val(page);
-                $("#showmore_load").append(response);
-                if(response == false || response == 'false'){
+                $("#showmore_load").append(response.paginateHTML);
+                if(response.dataCount < response.limit){
                     // console.log("on false condition");
                     $('.catalog-showmore').hide();
                 }

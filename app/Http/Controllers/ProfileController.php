@@ -48,7 +48,7 @@ class ProfileController extends Controller
         if ($res) {
             return view('pages.profile.manage-profile')->with('data', $res);
         } else {
-            return view('pages.404');
+            return view('pages.error.404');
         }
     }
 
@@ -104,7 +104,7 @@ class ProfileController extends Controller
         if ($profile) {
             return view('pages.profile.edit-profile', compact('profile', 'data'));
         } else {
-            return view('pages.404');
+            return view('pages.error.404');
         }
     }
 

@@ -14,7 +14,7 @@ class PopularController extends Controller
             $Populardata = $PopularResponse['data'];
             return view('pages.new-popular')->with('popular',$Populardata);
         }else{
-            return view('pages.404');
+            return view('pages.error.404');
         }
         
     }
