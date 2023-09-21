@@ -13,7 +13,7 @@ $kids_page = $segment == 'kids' ? true : false;
                         fill="white" />
                 </svg>
             </a>
-            <a class="navbar-brand me-3" href="#"><img height="28"
+            <a class="navbar-brand me-3" href="{{ route('homepage') }}"><img height="28"
                     src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
             <a class="subscribe-btn" href="#">Subscribe</a>
         </div>
@@ -108,8 +108,8 @@ $kids_page = $segment == 'kids' ? true : false;
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </a>
-            <a class="navbar-brand" href="#"><img src="{{ asset('assets/img/epicon-logo.png') }}"
-                    alt=""></a>
+            <a class="navbar-brand" href="{{ route('homepage') }}"><img
+                    src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
             <a class="subscribe-btn" href="#">Subscribe</a>
         </div>
 

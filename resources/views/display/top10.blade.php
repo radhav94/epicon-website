@@ -16,7 +16,8 @@
              <?php
              $card = getItemCardData($val, $displayLanguageParam);
              
-             $cover_img = isset($val['vertical_cover_image']) ? $val['vertical_cover_image']['small'] : $card['banner_img'];
+             $cover_img = getCardImage($val, 'vertical_cover_image', 'small', ['cover_image', 'banner_image']);
+             
              $extra = ['hide_top10' => 1];
              ?>
 

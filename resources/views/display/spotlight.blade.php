@@ -5,11 +5,13 @@
             @foreach ($value['content'] as $key => $val)
                 <?php
                 $card = getItemCardData($val, $displayLanguageParam);
+                
+                $banner_img = getCardImage($val, 'banner_img', 'large', ['cover_image']);
                 ?>
                 <div class="carousel-card">
                     {{ freePremiumDiv($val) }}
                     <div href="javascript:void(0);" class="carousel-items position-relative w-100">
-                        <img src="{{ $card['banner_img'] }}" alt="">
+                        <img src="{{ $banner_img }}" alt="">
                         <div class="carousel-items-content position-absolute">
                             <h2>{{ $card['sub_text'] }}</h2>
                             <p>{{ $card['short_desc'] }}</p>

@@ -24,7 +24,9 @@
                     <?php
                     // d($v);
                     $card = getItemCardData($v, $displayLanguageParam);
-                    $cover_img = isset($v['vertical_cover_image']) ? $v['vertical_cover_image']['large'] : $card['banner_img'];
+                    
+                    $cover_img = getCardImage($v, 'banner_image', 'medium', ['cover_image', 'banner_image']);
+                    
                     ?>
 
                     <div class="{{ $k == 0 ? 'imdb-top' : 'imdb-bottom' }}">

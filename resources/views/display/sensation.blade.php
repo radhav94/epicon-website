@@ -18,12 +18,14 @@
                 @foreach ($value['content'] as $key => $val)
                     <?php
                     $card = getItemCardData($val, $displayLanguageParam);
-                    $cover_img = isset($val['cover_image']) ? $val['cover_image']['medium'] : $card['banner_img'];
+                    
+                    $cover_img = getCardImage($val, 'banner_image', 'large', ['cover_image']);
+                    
                     ?>
                     <div class="swiper-slide tranding-slide">
                         <div class="tranding-slide-img position-relative">
                             <a href="#/">
-                                <img src="{{ $card['banner_img'] }}" />
+                                <img src="{{ $cover_img }}" />
                             </a>
                             <div class="carousel-items-content position-absolute">
                                 <h1>{{ $title }}</h1>

@@ -16,7 +16,9 @@
          @foreach ($value['content'] as $key => $val)
              <?php
              $card = getItemCardData($val, $displayLanguageParam);
-             $cover_img = isset($val['cover_image']) ? $val['cover_image']['small'] : $card['banner_img'];
+             
+             $cover_img = getCardImage($val, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
+             
              ?>
              <li>
                  <a href="{{ @$val['game_url'] }}" class="main-card">

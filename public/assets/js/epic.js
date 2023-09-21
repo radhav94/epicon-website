@@ -170,3 +170,10 @@ $(document).on('click', '.shareThis', function () {
 $('.menu-close').click(function (e) {
     e.preventDefault();
 });
+
+$('#side-menu').on('click', function (e) {
+    // Check if the click was not inside the .abc class
+    if (!$(e.target).hasClass('ps-3')) {
+        $('.menu-close').trigger('click');
+    }
+});

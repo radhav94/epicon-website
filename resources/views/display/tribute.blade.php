@@ -14,10 +14,12 @@
         @foreach ($value['content'] as $key => $val)
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
+            $banner_img = getCardImage($val, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
+            
             ?>
             <li>
                 <a href="javascript:void(0);" class="main-card">
-                    <img src="{{ $card['banner_img'] }}" alt="">
+                    <img src="{{ $banner_img }}" alt="">
                     {{ $val['name'] }}
                 </a>
             </li>
