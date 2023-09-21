@@ -28,7 +28,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
         padding: 0;
     }
 
-    .setting-right .tab-content .tab-pane.show.active  {
+    .setting-right .tab-content .tab-pane.show.active {
         padding: 20px 15px;
     }
 </style>
@@ -42,10 +42,10 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
         <div class="modal-content">
             <div class="modal-body text-center py-5">
                 <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="img">
-                <h4 class="text-white mt-4">Child PIN has been created successfully!</h4>
-                <p class="w-75 text-white small m-auto mb-4">You can change it again any time from the settings tab.</p>
+                <h4 class="text-white mt-4">{{__('Child PIN has been created successfully!')}}</h4>
+                <p class="w-75 text-white small m-auto mb-4">{{__('You can change it again any time from the settings tab.')}}</p>
 
-                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">Done</button>
+                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
             </div>
         </div>
     </div>
@@ -57,10 +57,10 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
         <div class="modal-content">
             <div class="modal-body text-center py-5">
                 <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="img">
-                <h4 class="text-white mt-4">Child PIN has been created successfully!</h4>
-                <p class="w-75 text-white small m-auto mb-4">You can change it again any time from the settings tab.</p>
+                <h4 class="text-white mt-4">{{__('Child PIN has been created successfully!')}}</h4>
+                <p class="w-75 text-white small m-auto mb-4">{{__('You can change it again any time from the settings tab.')}}</p>
 
-                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">Done</button>
+                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
             </div>
         </div>
     </div>
@@ -72,10 +72,10 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
         <div class="modal-content">
             <div class="modal-body text-center py-5">
                 <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="img">
-                <h4 class="text-white mt-4">Your password has been changed successfully!</h4>
-                <p class="w-75 text-white small m-auto mb-4">You can change it again any time from the settings tab.</p>
+                <h4 class="text-white mt-4">{{__('Your password has been changed successfully!')}}</h4>
+                <p class="w-75 text-white small m-auto mb-4">{{__('You can change it again any time from the settings tab.')}}</p>
 
-                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">Done</button>
+                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
             </div>
         </div>
     </div>
@@ -87,10 +87,10 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
         <div class="modal-content">
             <div class="modal-body text-center py-5">
                 <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="img">
-                <h4 class="text-white mt-4">Your search history has been cleared successfully!</h4>
-                <p class="w-75 text-white small m-auto mb-4">Get ready for a fresh browsing experience.</p>
+                <h4 class="text-white mt-4">{{__('Your search history has been cleared successfully!')}}</h4>
+                <p class="w-75 text-white small m-auto mb-4">{{__('Get ready for a fresh browsing experience.')}}</p>
 
-                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">Done</button>
+                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
             </div>
         </div>
     </div>
@@ -101,10 +101,10 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">
         <div class="modal-content">
             <div class="modal-body text-center py-5" id="sendOTP">
-                <h4 class="text-white mt-2 mb-4">Deleting Your Account</h4>
+                <h4 class="text-white mt-2 mb-4">{{__('Deleting Your Account')}}</h4>
                 <div class="col-sm-8 m-auto">
                     <div class="text-start mb-5">
-                        <label class="text-white mb-1" for="">Please enter your current password</label>
+                        <label class="text-white mb-1" for="">{{__('Please enter your current password')}}</label>
                         <div class="input-field w-100 mb-3">
                             <input class="form-control" type="password" id="passwordForDelete" placeholder="Current Password">
                             <button class="eye" data-target="passwordForDelete">
@@ -113,28 +113,28 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                 </svg>
                             </button>
                             <span class="text-danger text-start d-flex mt-1" style="font-size: 12px;"></span>
-                            <p class="mb-0 small text-white">We’ll send you an OTP to verify your account</p>
+                            <p class="mb-0 small text-white">{{__('We’ll send you an OTP to verify your account')}}</p>
                         </div>
                     </div>
                 </div>
                 <button class="login-btn mt-4" id="getDeleteAccountOTP" style="width: 280px;">
-                    Get OTP Now
+                    {{__('Get OTP Now')}}
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
                     </svg>
                 </button>
                 <span class="text-danger text-start d-flex mt-1 error" id="password-error" style="font-size: 12px;"></span>
-                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">Go Back</button>
+                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Go Back')}}</button>
             </div>
 
 
             <div class="modal-body text-center py-5" id="verifyOTP">
-                <h4 class="text-white mt-2 mb-4">Deleting Your Account</h4>
+                <h4 class="text-white mt-2 mb-4">{{__('Deleting Your Account')}}</h4>
                 <form id="verifyOTPDeleteAccountForm">
                     <div class="col-sm-12 col-md-12 col-lg-7 m-auto">
                         <div class="mb-5">
-                            <label class="text-white text-start w-100 mb-1" for="">Enter the 4-digit code sent to +9186******41</label>
+                            <label class="text-white text-start w-100 mb-1" for="">{{__('Enter the 4-digit code sent to +9186******41')}}</label>
                             <div class="childpin">
                                 <div class="childpin-input d-flex justify-content-between pt-3">
                                     <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
@@ -145,28 +145,28 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                     <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
                                 </div>
                             </div>
-                            <p class="text-start w-100 text-white small mt-2 resend-otp">Resend OTP in 0:30</p>
-                            <button id="resendOTPBtn" onclick="resendVerifyOTP()" style="display:none">Resend OTP</button>
+                            <p class="text-start w-100 text-white small mt-2 resend-otp">{{__('Resend OTP in 0:30')}}</p>
+                            <button id="resendOTPBtn" onclick="resendVerifyOTP()" style="display:none">{{__('Resend OTP')}}</button>
                         </div>
                     </div>
                     <a id="verifyDeleteAccountOTPBtn" class="login-btn mt-4" style="width: 280px;">
-                        Verify OTP
+                        {{__('Verify OTP')}}
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
                         </svg>
                     </a>
                     <span class="text-danger text-start d-flex mt-1 error" id="verify-otp-error" style="font-size: 12px;"></span>
-                    <button type="button" class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                    <button type="button" class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Cancel')}}</button>
                 </form>
             </div>
 
             <div class="modal-body text-center py-5" id="reasonFordelete">
-                <h4 class="text-white mt-2 mb-4">Deleting Your Account</h4>
+                <h4 class="text-white mt-2 mb-4">{{__('Deleting Your Account')}}</h4>
                 <div class="col-sm-12 col-md-12 col-lg-7 m-auto">
                     <div class="mb-5">
                         <div class="input-field w-100 mb-3">
-                            <p class="text-start w-100 text-white mt-2">Tell us why you’re leaving us so soon?</p>
+                            <p class="text-start w-100 text-white mt-2">{{__('Tell us why you’re leaving us so soon?')}}</p>
                             <select name="deleteAcctReason" id="deleteAcctReason">
                                 <option value="">Reason(Optional)</option>
                                 <option value="Option1">Option1</option>
@@ -177,14 +177,14 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                     </div>
                 </div>
                 <a id="deleteAcctReasonBtn" class="login-btn mt-4" style="width: 280px;">
-                    Delete Account
+                    {{__('Delete Account')}}
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
                     </svg>
                 </a>
                 <span class="text-danger text-start d-flex mt-1 error" id="reason-error" style="font-size: 12px;"></span>
-                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Cancel')}}</button>
             </div>
 
         </div>
@@ -200,24 +200,24 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                 <div class="sidenav-setting">
                     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <button class="nav-link bg-transparent">
-                            <h4>Settings</h4>
+                            <h4>{{__('Settings')}}</h4>
                         </button>
-                        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Account</button>
-                        <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Language</button>
+                        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">{{__('Account')}}</button>
+                        <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">{{__('Language')}}</button>
 
                         <button class="nav-link bg-transparent d-flex justify-content-between">
-                            <span>Privacy & Policy</span>
+                            <span>{{__('Privacy & Policy')}}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path d="M12.0677 13.3139L17.0177 8.36388C17.11 8.26837 17.2203 8.19219 17.3423 8.13978C17.4643 8.08737 17.5955 8.05979 17.7283 8.05863C17.8611 8.05748 17.9928 8.08278 18.1157 8.13306C18.2386 8.18334 18.3502 8.25759 18.4441 8.35149C18.538 8.44538 18.6123 8.55703 18.6625 8.67993C18.7128 8.80282 18.7381 8.9345 18.737 9.06728C18.7358 9.20006 18.7082 9.33128 18.6558 9.45329C18.6034 9.57529 18.5272 9.68564 18.4317 9.77788L12.7747 15.4349C12.5872 15.6224 12.3329 15.7277 12.0677 15.7277C11.8026 15.7277 11.5483 15.6224 11.3607 15.4349L5.70373 9.77788C5.60822 9.68564 5.53203 9.57529 5.47962 9.45329C5.42722 9.33128 5.39963 9.20006 5.39848 9.06728C5.39732 8.9345 5.42262 8.80282 5.4729 8.67993C5.52318 8.55703 5.59744 8.44538 5.69133 8.35149C5.78522 8.25759 5.89688 8.18334 6.01977 8.13306C6.14267 8.08278 6.27435 8.05748 6.40713 8.05863C6.53991 8.05979 6.67113 8.08737 6.79313 8.13978C6.91513 8.19219 7.02548 8.26837 7.11773 8.36388L12.0677 13.3139Z" fill="white" />
                             </svg>
                         </button>
 
-                        <button class="nav-link" id="v-pills-sync-tab" data-bs-toggle="pill" data-bs-target="#v-pills-sync" type="button" role="tab" aria-controls="v-pills-sync" aria-selected="true">Sync Device</button>
-                        <button class="nav-link" id="v-pills-active-device-tab" data-bs-toggle="pill" data-bs-target="#v-pills-active-device" type="button" role="tab" aria-controls="v-pills-active-device" aria-selected="true">Active Devices</button>
-                        <button class="nav-link" id="v-pills-childpin-tab" data-bs-toggle="pill" data-bs-target="#v-pills-childpin" type="button" role="tab" aria-controls="v-pills-childpin" aria-selected="true">Set/Change Child PIN</button>
-                        <button class="nav-link" id="v-pills-changed-password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-changed-password" type="button" role="tab" aria-controls="v-pills-changed-password" aria-selected="true">Change Password</button>
-                        <button class="nav-link" id="v-pills-clear-search-history-tab" data-bs-toggle="pill" data-bs-target="#v-pills-clear-search-history" type="button" role="tab" aria-controls="v-pills-clear-search-history" aria-selected="true">Clear Search History</button>
-                        <button class="nav-link" id="v-pills-delete-account-tab" data-bs-toggle="pill" data-bs-target="#v-pills-delete-account" type="button" role="tab" aria-controls="v-pills-delete-account" aria-selected="true">Delete Account</button>
+                        <button class="nav-link" id="v-pills-sync-tab" data-bs-toggle="pill" data-bs-target="#v-pills-sync" type="button" role="tab" aria-controls="v-pills-sync" aria-selected="true">{{__('Sync Device')}}</button>
+                        <button class="nav-link" id="v-pills-active-device-tab" data-bs-toggle="pill" data-bs-target="#v-pills-active-device" type="button" role="tab" aria-controls="v-pills-active-device" aria-selected="true">{{__('Active Devices')}}</button>
+                        <button class="nav-link" id="v-pills-childpin-tab" data-bs-toggle="pill" data-bs-target="#v-pills-childpin" type="button" role="tab" aria-controls="v-pills-childpin" aria-selected="true">{{__('Set/Change Child PIN')}}</button>
+                        <button class="nav-link" id="v-pills-changed-password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-changed-password" type="button" role="tab" aria-controls="v-pills-changed-password" aria-selected="true">{{__('Change Password')}}</button>
+                        <button class="nav-link" id="v-pills-clear-search-history-tab" data-bs-toggle="pill" data-bs-target="#v-pills-clear-search-history" type="button" role="tab" aria-controls="v-pills-clear-search-history" aria-selected="true">{{__('Clear Search History')}}</button>
+                        <button class="nav-link" id="v-pills-delete-account-tab" data-bs-toggle="pill" data-bs-target="#v-pills-delete-account" type="button" role="tab" aria-controls="v-pills-delete-account" aria-selected="true">{{__('Delete Account')}}</button>
 
                     </div>
                 </div>
@@ -231,9 +231,9 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                 <form id="updateInterestForm" class="better-solution">
                                     <div class="bs-left">
                                         <h4 class="mb-2">
-                                            Manage your preferences
+                                            {{__('Manage your preferences')}}
                                         </h4>
-                                        <p class="small text-start w-100">Update your interests (choose 5 or more)</p>
+                                        <p class="small text-start w-100">{{__('Update your interests')}} ({{__('choose 5 or more')}})</p>
                                         <div class="choose">
                                             <div class="three">
                                                 <span><img src="{{ asset('/img/welcom.jpeg') }}" alt=""></span>
@@ -243,7 +243,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                                 <span><img src="{{ asset('/img/welcom.jpeg') }}" alt=""></span>
                                                 <span class="span-text-5 genre-select-count">{{ $interestsCount }} of 5</span>
                                             </div>
-                                            <button type="button" id="updatePreference">Next
+                                            <button type="button" id="updatePreference">{{('Next')}}
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                     <path d="M5 12H19" stroke="#161616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                                     <path d="M12 5L19 12L12 19" stroke="#161616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -265,7 +265,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                                 <img src="{{ $genre['cover_image']['medium'] }}" alt="{{ $genre['genre'] }}">
                                                 <div class="is-overlay">
                                                     <h1>{{ $genre['genre'] }}</h1>
-                                                    <p>Like NH10, Talaash, Airlift, Mirzapur, Breathe</p>
+                                                    <p>{{__('Like NH10, Talaash, Airlift, Mirzapur, Breathe')}}</p>
                                                 </div>
                                             </div>
                                         <?php } ?>
@@ -276,134 +276,49 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                         </div>
                         <div class="tab-pane text-white fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                             <div class="language-setting">
-                                <h4 class="pb-4 border-bot">Manage your language preferences</h4>
+                                <h4 class="pb-4 border-bot">{{ __('Manage your language preferences') }} </h4>
 
                                 <div class="display-language border-bot">
-                                    <p>Display Language</p>
+                                    <p>{{ __('Display Language') }}</p>
                                     <div>
                                         <div class="form-check mb-4">
-                                            <input class="form-check-input me-2" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                            <label class="form-check-label" for="exampleRadios1">
-                                                All
-                                            </label>
-                                        </div>
-                                        <div class="form-check mb-4">
-                                            <input class="form-check-input me-2" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                            <input class="form-check-input me-2" type="radio" name="displayLang" id="exampleRadios2" value="en" <?php if ($displayLanguage == 'en') {
+                                                                                                                                                    echo 'checked';
+                                                                                                                                                } ?>>
                                             <label class="form-check-label" for="exampleRadios2">
-                                                English
+                                                {{ __('English') }}
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input me-2" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                                            <input class="form-check-input me-2" type="radio" name="displayLang" id="exampleRadios3" value="hi" <?php if ($displayLanguage == 'hi') {
+                                                                                                                                                    echo 'checked';
+                                                                                                                                                } ?>>
                                             <label class="form-check-label" for="exampleRadios3">
-                                                Hindi
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="form-check mb-4">
-                                            <input class="form-check-input me-2" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
-                                            <label class="form-check-label" for="exampleRadios4">
-                                                Tamil தமிழ்
-                                            </label>
-                                        </div>
-                                        <div class="form-check mb-4">
-                                            <input class="form-check-input me-2" type="radio" name="exampleRadios" id="exampleRadios5" value="option5">
-                                            <label class="form-check-label" for="exampleRadios5">
-                                                Telugu தமிழ்
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input me-2" type="radio" name="exampleRadios" id="exampleRadios6" value="option6">
-                                            <label class="form-check-label" for="exampleRadios6">
-                                                Punjabi தமிழ்
+                                                {{ __('Hindi')}}
                                             </label>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="display-language border-bot">
-                                    <p>Default Subtitles</p>
-                                    <div>
-                                        <div class="form-check mb-4">
-                                            <input class="form-check-input me-2" type="radio" name="exampleRadios" id="exampleRadios7" value="option7" checked>
-                                            <label class="form-check-label" for="exampleRadios7">
-                                                All
-                                            </label>
-                                        </div>
-                                        <div class="form-check mb-4">
-                                            <input class="form-check-input me-2" type="radio" name="exampleRadios" id="exampleRadios8" value="option8">
-                                            <label class="form-check-label" for="exampleRadios8">
-                                                English
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input me-2" type="radio" name="exampleRadios" id="exampleRadios9" value="option9">
-                                            <label class="form-check-label" for="exampleRadios9">
-                                                Hindi
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="form-check mb-4">
-                                            <input class="form-check-input me-2" type="radio" name="exampleRadios" id="exampleRadios10" value="option10">
-                                            <label class="form-check-label" for="exampleRadios10">
-                                                Tamil தமிழ்
-                                            </label>
-                                        </div>
-                                        <div class="form-check mb-4">
-                                            <input class="form-check-input me-2" type="radio" name="exampleRadios" id="exampleRadios11" value="option11">
-                                            <label class="form-check-label" for="exampleRadios11">
-                                                Telugu தமிழ்
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input me-2" type="radio" name="exampleRadios" id="exampleRadios12" value="option12">
-                                            <label class="form-check-label" for="exampleRadios12">
-                                                Punjabi தமிழ்
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="display-language pb-0">
-                                    <p>Default Subtitles</p>
+                                    <p>{{ __('Content Language') }}</p>
                                     <div>
                                         <div class="form-check mb-4">
-                                            <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault1" checked>
-                                            <label class="form-check-label" for="flexCheckDefault1">
-                                                All
+                                            <input class="form-check-input me-2" type="radio" name="contentLang" id="exampleRadios7" value="en" checked>
+                                            <label class="form-check-label" for="exampleRadios7">
+                                                {{__('All')}}
                                             </label>
                                         </div>
                                         <div class="form-check mb-4">
-                                            <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault2">
-                                            <label class="form-check-label" for="flexCheckDefault2">
-                                                English
+                                            <input class="form-check-input me-2" type="radio" name="contentLang" id="exampleRadios8" value="en">
+                                            <label class="form-check-label" for="exampleRadios8">
+                                                {{ __('English') }}
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault3">
-                                            <label class="form-check-label" for="flexCheckDefault3">
-                                                Hindi
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="form-check mb-4">
-                                            <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault4">
-                                            <label class="form-check-label" for="flexCheckDefault4">
-                                                Tamil தமிழ்
-                                            </label>
-                                        </div>
-                                        <div class="form-check mb-4">
-                                            <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault5">
-                                            <label class="form-check-label" for="flexCheckDefault5">
-                                                Telugu தமிழ்
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault6">
-                                            <label class="form-check-label" for="flexCheckDefault6">
-                                                Punjabi தமிழ்
+                                            <input class="form-check-input me-2" type="radio" name="contentLang" id="exampleRadios9" value="hi">
+                                            <label class="form-check-label" for="exampleRadios9">
+                                                {{__('Hindi')}}
                                             </label>
                                         </div>
                                     </div>
@@ -412,13 +327,13 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                         </div>
                         <div class="tab-pane text-white fade" id="v-pills-sync" role="tabpanel" aria-labelledby="v-pills-sync-tab">
                             <div class="language-setting">
-                                <h4 class="pb-4 border-bot">Sync your device</h4>
+                                <h4 class="pb-4 border-bot">{{__('Sync your device')}}</h4>
 
                                 <div class="sync-device-main pb-4 w-100">
                                     <div class="pt-3">
-                                        <p>Use the generated pin to Sign-in on your smart tv</p>
+                                        <p>{{__('Use the generated pin to Sign-in on your smart tv')}}</p>
                                         <div class="sync-device">
-                                            <h1 id="syncDevicePin">{{ $syncPin }}</h1> <a href="javascript:regenerateSyncPin()" class="">Regenerate PIN</a>
+                                            <h1 id="syncDevicePin">{{ $syncPin }}</h1> <a href="javascript:regenerateSyncPin()" class="">{{__('Regenerate PIN')}}</a>
                                         </div>
                                         <div class="d-flex mt-5">
                                             <button class="border-btn copyBtn" onclick="copyText('syncDevicePin')">
@@ -427,7 +342,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                                 </svg>&nbsp;
                                                 Copy PIN
                                             </button>
-                                            <button class="border-btn copiedBtn" style="display:none">Copied</button>
+                                            <button class="border-btn copiedBtn" style="display:none">{{__('Copied')}}</button>
                                             <button class="fill-btn">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                                     <g clip-path="url(#clip0_91_19405)">
@@ -450,7 +365,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                         </div>
                         <div class="tab-pane text-white fade" id="v-pills-active-device" role="tabpanel" aria-labelledby="v-pills-active-device-tab">
                             <div class="language-setting">
-                                <h4 class="pb-4 border-bot">Manage the active devices</h4>
+                                <h4 class="pb-4 border-bot">{{__('Manage the active devices')}}</h4>
 
                                 <div class="container-fluid">
                                     <?php if (count($activeDevices) > 0) {
@@ -459,7 +374,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                     ?>
                                             <div class="row border-bot pt-4" data-id="{{ $deviceId }}">
                                                 <div class="col-sm-4 col-md-3">
-                                                    <p>Device</p>
+                                                    <p>{{__('Device')}}</p>
                                                 </div>
                                                 <div class="col-sm-4 col-md-5">
                                                     <div class="form-check d-flex align-items-center ps-0 mb-4">
@@ -468,19 +383,19 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                                         </svg>
                                                         <div class="ms-3">
                                                             <p class="mb-0 w-auto">{{ $device['device'] }}</p>
-                                                            <span class="small text-opacity">Last Active: <?php echo date('Y-m-d h:i:s A', strtotime($device['date'])); ?></span>
+                                                            <span class="small text-opacity">{{__('Last Active')}}: <?php echo date('Y-m-d h:i:s A', strtotime($device['date'])); ?></span>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 col-md-4">
-                                                    <button class="border-btn mb-4" onclick="logoutDevice('{{ $deviceId }}')">Log Out</button>
+                                                    <button class="border-btn mb-4" onclick="logoutDevice('{{ $deviceId }}')">{{__('Log Out')}}</button>
                                                 </div>
                                             </div>
                                         <?php }
                                     } else { ?>
                                         <div class="row pt-4">
                                             <div class="col-sm-4 col-md-3">
-                                                <p>No device found</p>
+                                                <p>{{__('No device found')}}</p>
                                             </div>
                                         </div>
                                     <?php } ?>
@@ -490,15 +405,15 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                         </div>
                         <div class="tab-pane text-white fade" id="v-pills-childpin" role="tabpanel" aria-labelledby="v-pills-childpin-tab">
                             <div class="language-setting">
-                                <h4 class="pb-4 border-bot">Control kids’ access</h4>
+                                <h4 class="pb-4 border-bot">{{__('Control kids’ access')}}</h4>
 
                                 <div class="childpin text-start py-4">
                                     <form id="childPinForm">
                                         <?php if (!$kidSection) { ?>
                                             <div>
                                                 <input type="hidden" name="command" value="createKidsPin">
-                                                <h6 class="mb-3">Create a 4-digit Child PIN</h6>
-                                                <p class="small mb-4">This PIN will be used to switch from kids profile to all adult profiles</p>
+                                                <h6 class="mb-3">{{__('Create a 4-digit Child PIN')}}</h6>
+                                                <p class="small mb-4">{{__('This PIN will be used to switch from kids profile to all adult profiles')}}</p>
                                                 <div class="childpin-input pt-3">
                                                     <input class="mx-1 child-box" type="number" min="0" max="9" name="kidsPin[]" maxlength="1">
                                                     <input class="mx-1 child-box" type="number" min="0" max="9" name="kidsPin[]" maxlength="1">
@@ -516,9 +431,9 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                         <?php } else { ?>
                                             <div>
                                                 <input type="hidden" name="command" value="changeKidsPin">
-                                                <h6 class="mb-3">Change Child PIN</h6>
+                                                <h6 class="mb-3">{{__('Change Child PIN')}}</h6>
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <p class="small" style="width: 150px;">Current PIN</p>
+                                                    <p class="small" style="width: 150px;">{{__('Current PIN')}}</p>
                                                     <div class="childpin-input">
                                                         <input class="mx-1 child-box" type="number" min="0" max="9" name="oldKidsPin[]" maxlength="1">
                                                         <input class="mx-1 child-box" type="number" min="0" max="9" name="oldKidsPin[]" maxlength="1">
@@ -527,7 +442,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                                     </div>
                                                 </div>
                                                 <div class="d-flex align-items-center">
-                                                    <p class="small" style="width: 150px;">New PIN</p>
+                                                    <p class="small" style="width: 150px;">{{__('New PIN')}}</p>
                                                     <div class="childpin-input">
                                                         <input class="mx-1 child-box" type="number" min="0" max="9" name="newKidsPin[]" maxlength="1">
                                                         <input class="mx-1 child-box" type="number" min="0" max="9" name="newKidsPin[]" maxlength="1">
@@ -536,7 +451,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                                     </div>
                                                 </div>
                                                 <button type="button" class="login-btn mt-5 ms-0" id="setChildPin" style="width: 280px;">
-                                                    Done
+                                                    {{__('Done')}}
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
@@ -553,16 +468,16 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                         </div>
                         <div class="tab-pane text-white fade" id="v-pills-changed-password" role="tabpanel" aria-labelledby="v-pills-changed-password-tab">
                             <div class="language-setting">
-                                <h4 class="pb-4 border-bot">Manage your passwords</h4>
+                                <h4 class="pb-4 border-bot">{{__('Manage your passwords')}}</h4>
 
                                 <div class="childpin text-start py-4">
                                     <form id="change_password">
-                                        <h6 class="mb-3">Change Password</h6>
+                                        <h6 class="mb-3">{{__('Change Password')}}</h6>
 
                                         <div class="container-fluid ps-0">
                                             <div class="row">
                                                 <div class="col-sm-3 col-md-4 col-lg-3 col-xl-3 d-flex align-items-center">
-                                                    <p>Current Password</p>
+                                                    <p>{{__('Current Password')}}</p>
                                                 </div>
                                                 <div class="col-sm-4 col-md-7 col-lg-6 col-xl-5">
                                                     <div class="input-field w-100 mb-3">
@@ -578,7 +493,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm-3 col-md-4 col-lg-3 col-xl-3 d-flex align-items-center">
-                                                    <p>New Password</p>
+                                                    <p>{{__('New Password')}}</p>
                                                 </div>
                                                 <div class="col-sm-4 col-md-7 col-lg-6 col-xl-5">
                                                     <div class="input-field w-100 mb-3">
@@ -594,7 +509,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm-3 col-md-4 col-lg-3 col-xl-3 d-flex align-items-center">
-                                                    <p>Confirm Password</p>
+                                                    <p>{{__('Confirm Password')}}</p>
                                                 </div>
                                                 <div class="col-sm-4 col-md-7 col-lg-6 col-xl-5">
                                                     <div class="input-field w-100 mb-3">
@@ -610,7 +525,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                             </div>
                                         </div>
                                         <button class="login-btn mt-4 ms-0" type="button" id="changePassword" style="width: 280px;">
-                                            Continue
+                                            {{__('Continue')}}
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
@@ -623,24 +538,24 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                         </div>
                         <div class="tab-pane text-white fade" id="v-pills-clear-search-history" role="tabpanel" aria-labelledby="v-pills-clear-search-history-tab">
                             <div class="language-setting">
-                                <h4 class="pb-4 border-bot">Clear your search history</h4>
+                                <h4 class="pb-4 border-bot">{{__('Clear your search history')}}</h4>
 
                                 <div class="childpin text-start py-4">
 
                                     <div class="sync-device-main pb-4 w-100">
                                         <div>
-                                            <p class="my-3">Are you sure you want to clear all your search history?</p>
+                                            <p class="my-3">{{__('Are you sure you want to clear all your search history?')}}</p>
                                             <button class="login-btn mt-4 ms-0" style="width: 100px;" data-bs-toggle="modal" data-bs-target="#clear-history">
-                                                Yes
+                                                {{__('Yes')}}
                                             </button>
                                         </div>
                                         <img class="mb-4" width="150" src="{{ asset('/img/clear-icon.svg') }}" alt="icon">
                                     </div>
                                     <div class="w-100 text-center mt-4">
                                         <img width="300" src="{{ asset('/img/clear-history-bg.svg') }}" alt="img">
-                                        <p>You do not have any recent search history.</p>
+                                        <p>{{__('You do not have any recent search history.')}}</p>
                                         <button class="login-btn mt-4" style="width: 250px;" data-bs-toggle="modal" data-bs-target="#clear-history">
-                                            Browse Now
+                                            {{__('Browse Now')}}
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
@@ -654,16 +569,16 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                         </div>
                         <div class="tab-pane text-white fade" id="v-pills-delete-account" role="tabpanel" aria-labelledby="v-pills-delete-account-tab">
                             <div class="language-setting">
-                                <h4 class="pb-4 border-bot">Permanently delete your account</h4>
+                                <h4 class="pb-4 border-bot">{{__('Permanently delete your account')}}</h4>
 
                                 <div class="childpin text-start py-4">
 
                                     <div class="sync-device-main pb-4 w-100">
                                         <div>
-                                            <p class="delete-text my-3">Deleting your account will delete all your saved content. You will also lose any subscription linked to your account. You can chose to log out instead. This will allow you to come back any time you wish.</p>
+                                            <p class="delete-text my-3">{{__('Deleting your account will delete all your saved content. You will also lose any subscription linked to your account. You can chose to log out instead. This will allow you to come back any time you wish.')}}</p>
                                             <div class="d-flex mt-4">
-                                                <button class="border-btn" id="delete_user_account">Delete Acc</button>
-                                                <button class="fill-btn logout">Log Out</button>
+                                                <button class="border-btn" id="delete_user_account">{{__('Delete Acc')}}</button>
+                                                <button class="fill-btn logout">{{__('Log Out')}}</button>
                                             </div>
                                         </div>
                                         <img class="mb-4" width="150" src="{{ asset('/img/delete-account-icon.svg') }}" alt="icon">
@@ -744,7 +659,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             var formData = $('#updateInterestForm').serialize();
             if (formData != '') {
                 $.ajax({
-                    url: "{{ route('update-genre') }}",
+                    url: "{{ getUrl('update-genre') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -774,7 +689,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             var formData = $('#childPinForm').serialize();
             var command = $('#childPinForm input[name="command"]').val();
             $.ajax({
-                url: "{{ route('set-kidsPin') }}",
+                url: "{{ getUrl('set-kidsPin') }}",
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
@@ -826,7 +741,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
 
             var formData = $('#change_password').serialize();
             $.ajax({
-                url: "{{ route('change-password') }}",
+                url: "{{ getUrl('change-password') }}",
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
@@ -878,7 +793,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             }
 
             $.ajax({
-                url: "{{ route('sendOTP-delete-account') }}",
+                url: "{{ getUrl('sendOTP-delete-account') }}",
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
@@ -920,7 +835,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             var formData = $('#verifyOTPDeleteAccountForm').serialize();
 
             $.ajax({
-                url: "{{ route('verifyOTP-delete-account') }}",
+                url: "{{ getUrl('verifyOTP-delete-account') }}",
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
@@ -952,7 +867,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             };
 
             $.ajax({
-                url: "{{ route('delete-account') }}",
+                url: "{{ getUrl('delete-account') }}",
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
@@ -972,6 +887,40 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                 }
             });
         })
+
+        $('input[name="displayLang"]').change(function() {
+            var selectedLang = $('input[name="displayLang"]:checked').val();
+            // var formData = {
+            //     language: selectedLang,
+            //     type: 'display'
+            // };
+            var formData = "language=" + selectedLang + "&type=display";
+            $.ajax({
+                url: "{{ getUrl('set-language') }}?" + formData,
+                type: 'GET',
+                //data: formData,
+                //dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (selectedLang != "en") {
+                        window.location.href = "{{url('/')}}/"+selectedLang;
+                    } else {
+                        window.location.href = "{{url('/')}}";
+                    }
+                    // if (response.payload.success == true) {
+                    //     //$(".logout").trigger('click');
+                    // } else {
+                    //     $("#reason-error").html(response.payload.message);
+                    // }
+                },
+                error: function(xhr, status, error) {
+                    onError(xhr);
+                }
+            });
+        })
     })
 
     function logoutDevice(params) {
@@ -980,7 +929,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             deviceId: params
         }
         $.ajax({
-            url: "{{ route('remove-device') }}",
+            url: "{{ getUrl('remove-device') }}",
             type: 'POST',
             data: formData,
             dataType: 'json',
@@ -1025,7 +974,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
 
     function regenerateSyncPin() {
         $.ajax({
-            url: "{{ route('syncDevice-pin') }}",
+            url: "{{ getUrl('syncDevice-pin') }}",
             type: 'POST',
             dataType: 'json',
             headers: {

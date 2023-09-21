@@ -109,18 +109,21 @@ Route::post('search', [SearchController::class, 'search'])->name('search');
 
 // Route::get('login/facebook/callback', '\App\Http\Controllers\Auth\AuthSocialController@handleProviderCallback')->name('facebook');
 
-Route::group(['middleware' => 'loggedin'], function () {
-    //setting controller routes start
-    Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
-    Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
-    Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
-    Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
-    Route::post('change-password', [SettingController::class, 'changePassword'])->name('change-password');
-    Route::post('delete-account', [SettingController::class, 'deleteAccount'])->name('delete-account');
-    Route::post('sendOTP-delete-account', [SettingController::class, 'sendOTPForDeleteAccount'])->name('sendOTP-delete-account');
-    Route::post('verifyOTP-delete-account', [SettingController::class, 'verifyOTPForDeleteAccount'])->name('verifyOTP-delete-account');
-    Route::post('syncDevice-pin', [SettingController::class, 'syncDevicePin'])->name('syncDevice-pin');
-    //setting controller routes end
+//setting controller routes start
+Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
+Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
+Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
+Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
+Route::post('change-password', [SettingController::class, 'changePassword'])->name('change-password');
+Route::post('delete-account', [SettingController::class, 'deleteAccount'])->name('delete-account');
+Route::post('sendOTP-delete-account', [SettingController::class, 'sendOTPForDeleteAccount'])->name('sendOTP-delete-account');
+Route::post('verifyOTP-delete-account', [SettingController::class, 'verifyOTPForDeleteAccount'])->name('verifyOTP-delete-account');
+Route::post('syncDevice-pin', [SettingController::class, 'syncDevicePin'])->name('syncDevice-pin');
+Route::get('set-language', [SettingController::class, 'setLanguage'])->name('set-language');
+//setting controller routes end
+
+Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => ['loggedin', 'languageManager']], function ($locale) {
+    Route::get('settings', [SettingController::class, 'Setting'])->name('settings');    
 });
 
 

@@ -27,7 +27,24 @@ Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.lo
 Route::get('explore', [PageController::class, 'explore'])->name('explore');
 Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
 Route::post('clap', [PageDetailController::class, 'clap'])->name('clap');
+//dynamic pages route
+Route::any('/supermix', [SupermixController::class, 'superMix']);
+Route::get('/{slug}', [PageController::class, 'index']);
+Route::get('/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
 
+Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'languageManager'], function ($locale) {
+    Route::get('/', [PageController::class, 'index'])->name('homepage');
+    Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.loadmore');
+
+    Route::get('explore', [PageController::class, 'explore'])->name('explore');
+    Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
+    Route::post('clap', [PageDetailController::class, 'clap'])->name('clap');
+    //dynamic pages route
+    Route::any('/supermix', [SupermixController::class, 'superMix']);
+    Route::get('/{slug}', [PageController::class, 'index']);
+    Route::get('/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
+
+});
 
 
 // Route::middleware(['loggedin'])->resource('profile', ProfileController::class);
@@ -43,7 +60,7 @@ Route::group(['middleware' => 'loggedin', 'as' => 'profile.', 'prefix' => 'profi
     Route::post('/setChildPin', [ProfileController::class, 'setChildPin'])->name('setChildPin');
 });
 
-Route::group(['middleware' => 'loggedin'], function () {
+Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => ['loggedin', 'languageManager']], function ($locale) {
     Route::any('logout', LogoutController::class)->name('logout');
     Route::post('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
 });
@@ -51,7 +68,3 @@ Route::group(['middleware' => 'loggedin'], function () {
 
 
 
-//dynamic pages route
-Route::any('/supermix', [SupermixController::class, 'superMix']);
-Route::get('/{slug}', [PageController::class, 'index']);
-Route::get('/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);

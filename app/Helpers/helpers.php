@@ -528,3 +528,18 @@ function getCardImage($content, $key, $size = 'medium', $fallback = [])
     }
     return $img_url;
 }
+
+if (!file_exists('getUrl')) {
+    function getUrl($path = '')
+    {
+        if (!empty($path) && substr($path, 0, 1) != '/') {
+            $path = "/" . $path;
+        }
+        $lang = (app()->getLocale() != 'en') ? app()->getLocale() : '';
+        if (app()->getLocale() != 'en') {
+            return url($lang . $path);
+        } else {
+            return url($path);
+        }
+    }
+}

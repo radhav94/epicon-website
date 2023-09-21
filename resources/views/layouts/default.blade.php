@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
 
@@ -132,7 +132,7 @@
     <script>
         $(document).ready(function() {
             $('.logout').click(function() {
-                sendAjaxRequest('{{ route('logout') }}', 'POST', [],
+                sendAjaxRequest('{{ getUrl('logout') }}', 'POST', [],
                     onSuccess, onError);
             });
         });

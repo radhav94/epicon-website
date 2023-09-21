@@ -8,7 +8,7 @@
         <div class="row middle-footer">
             <div class="col-lg-3">
                 <div class="connect-with">
-                    <h1>Connect With Us</h1>
+                    <h1>{{__('Connect With Us')}}</h1>
                     <div class="w-100 f-share-icons">
                         <a href="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
@@ -66,16 +66,16 @@
             <div class="col-lg-6 link-pos">
                 <div class="f-link">
                     <ul class="d-flex mb-0">
-                        <li><a href="{{route('about')}}">About Us</a></li>
-                        <li><a href="{{route('terms-of-use')}}">Terms of Use</a></li>
-                        <li><a href="{{route('privacy')}}">Privacy Policy</a></li>
-                        <li><a href="{{route('feedback')}}">Help Centre</a></li>
+                        <li><a href="{{route('about')}}">{{__('About Us')}}</a></li>
+                        <li><a href="{{route('terms-of-use')}}">{{__('Terms of Use')}}</a></li>
+                        <li><a href="{{route('privacy')}}">{{__('Privacy Policy')}}</a></li>
+                        <li><a href="{{route('feedback')}}">{{__('Help Centre')}}</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="download-store">
-                    <h1>Download App</h1>
+                    <h1>{{__('Download App')}}</h1>
                     <div class="w-100 download-store-logo">
                         <a href="#/"><img class="me-3" src="{{ asset('assets/img/google-logo.png') }}"
                                 alt=""></a>
