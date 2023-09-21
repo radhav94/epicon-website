@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','New homepage')
+@section('title','New & Popular')
 
 @section('style')
 
@@ -55,7 +55,7 @@
                     </a>
                     <div class="bottom-text d-flex mt-2">
                         <div class="left-text">
-                            <h4 class="text-heading text-white">{{$val['title'] ?? ''}}</h4>
+                            <h4 class="text-heading text-white">{{ isset($val['title']) ? $val['title'] : ''}}</h4>
                             <ul class="text-white">
                                 <?php echo $sub_points ?>
                                 <!-- <li>{{$val['age_limit']}}</li>

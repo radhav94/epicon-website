@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', 'New homepage')
+@section('title', 'Library')
 
 @section('style')
 
@@ -90,6 +90,10 @@
                                     </div> -->
 
                             </div>
+                            <?php }else{ ?>
+                                <div class="carousel-main">
+                                    <h4 style="color:white">No History Found</h4>
+                                </div>
                             <?php } ?>
                         </div>
                     </div>

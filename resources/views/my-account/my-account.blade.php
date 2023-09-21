@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','New homepage')
+@section('title','My Account')
 
 @section('style')
 
@@ -8,6 +8,7 @@
 @section('content')
 
 <?php
+if(!empty($subscriptionPurchases)){
 if(isset($subscriptionPurchases[0]['subscription_start_date'])){
     $subscription_start_date = date('Y-m-d', strtotime($subscriptionPurchases[0]['subscription_start_date']));
 
@@ -31,7 +32,9 @@ if($subscriptionPurchases[0]['validity_days'] == 30){
 
 $today = date_create(date('Y-m-d'));
 $enddate = date_create(date('Y-m-d', strtotime($subscriptionPurchases[0]['subscription_end_date'])));
-
+$dateDiff = date_diff($enddate,$today);
+$numOfDays = $dateDiff->format('%a');
+}
 ?>
 
 <!-- login model -->
@@ -72,23 +75,26 @@ $enddate = date_create(date('Y-m-d', strtotime($subscriptionPurchases[0]['subscr
             <div class="col-sm-12">
                     <h4 class="text-white border-bot pb-3">My Account</h4>
             </div>
+            @if(!empty($subscriptionPurchases))
+            <?php
+            if($today < $enddate){
+                $plancss = '';
+            }else{
+                $plancss = 'plan-expired';
+            }
+            ?>
             <div class="col-sm-6 col-md-7">
-                <div class="my-account-main plan-expired position-relative mt-2">
-                    @if($today < $enddate)
-                    <div class="plan-ex">Plan Active</div>
-                    @else
+                <div class="my-account-main {{$plancss}} position-relative mt-2">
+                    
                     <div class="plan-ex">Plan Expired</div>
-                    @endif
+                    
                     <img class="corner-bg" src="{{ asset('/img/corner-bg.svg') }}" alt="">
-                   <!--  <p class="current-subs d-flex">Current Subscription</p>
-                    <h1>Premium HD</h1> -->
+                    <p class="current-subs d-flex">Current Subscription</p>
+                    <h1>Premium HD</h1>
                     <div class="premium-plan">
-                        @if(isset($subscriptionPurchases[0]['plan_status']) == 'current')
-                        <div class="past-sub w-100">CURRENT SUBSCRIPTION</div>
-                        @else
+
                         <div class="past-sub w-100">PAST SUBSCRIPTION</div>
-                        @endif
-                        <h2>{{ $subscriptionPurchases[0]['plan_name'] }}</h2>
+                        <h2>{{ isset($subscriptionPurchases[0]['plan_name']) ? $subscriptionPurchases[0]['plan_name'] : '' }}</h2>
                         <div class="progress blue">
                             <span class="progress-left">
                                               <span class="progress-bar"></span>
@@ -97,13 +103,13 @@ $enddate = date_create(date('Y-m-d', strtotime($subscriptionPurchases[0]['subscr
                                               <span class="progress-bar"></span>
                             </span>
                             <div class="progress-value">
-                                <span>320</span>
+                                <span>{{ isset($numOfDays) ? $numOfDays : '' }}</span>
                                 <p>Days left</p>
                             </div>
                         </div>
                         <div class="pp-right">
-                            <h3>₹ {{$subscriptionPurchases[0]['plan_amount']}} <span>/ {{$plan_name}}</span></h3>
-                            <p>{{$substartdate}} - {{$subenddate}}</p>
+                            <h3>₹ {{ isset($subscriptionPurchases[0]['plan_amount']) ? $subscriptionPurchases[0]['plan_amount'] : '' }} <span>/ {{ isset($plan_name) ? $plan_name : '' }}</span></h3>
+                            <p>{{isset($substartdate) ? $substartdate : ''}} - {{ isset($subenddate) ? $subenddate : '' }}</p>
                         </div>
                     </div>
 
@@ -119,18 +125,19 @@ $enddate = date_create(date('Y-m-d', strtotime($subscriptionPurchases[0]['subscr
 
                 </div>
             </div>
+            @if(!empty($viewprofile))
             <div class="col-sm-6 col-md-5 d-flex align-items-center">
                 <div class="billing-details w-100 text-white">
                     <h4>Billing Details</h4>
                     <p class="position-relative"> 
                         <img src="{{ asset('/img/email.svg') }}" alt="">
-                        ananyaabc@gmail.com &nbsp;
+                        {{ isset($viewprofile['email']) ? $viewprofile['email'] : '' }} &nbsp;
                         <button class="edit-icon bg-transparent border-0">
                             <img src="{{ asset('/img/edit-icon.svg') }}" alt="">
                         </button>
                     </p>
                     <p>
-                        <img src="{{ asset('/img/mobile.svg') }}" alt="">&nbsp; 8123456789
+                        <img src="{{ asset('/img/mobile.svg') }}" alt="">&nbsp; {{ isset($viewprofile['user_id']) ? $viewprofile['user_id'] : '' }}
                     </p>
                     <p class="border-bot pb-4">
                         <img src="{{ asset('/img/visa.svg') }}" alt=""> &nbsp; visa **** **** **** 1823
@@ -153,7 +160,8 @@ $enddate = date_create(date('Y-m-d', strtotime($subscriptionPurchases[0]['subscr
                     </p>
                 </div>
             </div>
-
+            @endif
+            @else
             <div class="col-12 text-center mt-5">
                 <img src="{{ asset('/img/not-subscribe.svg') }}" alt="img" style="margin-bottom: -50px;">
                 <p class="small text-white">You have not subscribed to Epic On yet!</p>
@@ -165,6 +173,18 @@ $enddate = date_create(date('Y-m-d', strtotime($subscriptionPurchases[0]['subscr
                     </svg>
                  </button>
             </div>
+            @endif
+            <!-- <div class="col-12 text-center mt-5">
+                <img src="{{ asset('/img/not-subscribe.svg') }}" alt="img" style="margin-bottom: -50px;">
+                <p class="small text-white">You have not subscribed to Epic On yet!</p>
+                <button class="login-btn mt-4" style="width: 280px;">
+                    Subscribe Now
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
+                    </svg>
+                 </button>
+            </div> -->
 
         </div>
     </section>
