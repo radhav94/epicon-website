@@ -89,7 +89,7 @@ function getDispLangContent($content, $displayLanguageParam, $item)
         if ($displayLanguageParam == "ENGLISH") {
             return $content['description'];
         } elseif ($displayLanguageParam == "HINDI") {
-            return !empty($content['description_ln']['HINDI']) ? $content['description_ln']['HINDI'] : $content['description'];
+            return !empty($content['description_ln']['HINDI']) ? $content['description_ln']['HINDI'] : @$content['description'];
         } elseif ($displayLanguageParam == "TAMIL") {
             return !empty($content['description_ln']['TAMIL']) ? $content['description_ln']['TAMIL'] : $content['description'];
         } elseif ($displayLanguageParam == "MARATHI") {
@@ -101,7 +101,7 @@ function getDispLangContent($content, $displayLanguageParam, $item)
         if ($displayLanguageParam == "ENGLISH") {
             return @$content['title'];
         } elseif ($displayLanguageParam == "HINDI") {
-            return !empty($content['title_ln']['HINDI']) ? $content['title_ln']['HINDI'] : $content['title'];
+            return !empty($content['title_ln']['HINDI']) ? $content['title_ln']['HINDI'] : @$content['title'];
         } elseif ($displayLanguageParam == "TAMIL") {
             return !empty($content['title_ln']['TAMIL']) ? $content['title_ln']['TAMIL'] : $content['title'];
         } elseif ($displayLanguageParam == "MARATHI") {
@@ -113,7 +113,7 @@ function getDispLangContent($content, $displayLanguageParam, $item)
         if ($displayLanguageParam == "ENGLISH") {
             return @$content['cover_image'];
         } elseif ($displayLanguageParam == "HINDI") {
-            return !empty($content['cover_image_v2_ln']['HINDI']) ? $content['cover_image_v2_ln']['HINDI'] : $content['cover_image'];
+            return !empty($content['cover_image_v2_ln']['HINDI']) ? $content['cover_image_v2_ln']['HINDI'] : @$content['cover_image'];
         } elseif ($displayLanguageParam == "TAMIL") {
             return !empty($content['cover_image_v2_ln']['TAMIL']) ? $content['cover_image_v2_ln']['TAMIL'] : $content['cover_image'];
         } elseif ($displayLanguageParam == "MARATHI") {
@@ -125,7 +125,7 @@ function getDispLangContent($content, $displayLanguageParam, $item)
         if ($displayLanguageParam == "ENGLISH") {
             return @$content['short_description'];
         } elseif ($displayLanguageParam == "HINDI") {
-            return !empty($content['short_description_ln']['HINDI']) ? $content['short_description_ln']['HINDI'] : $content['short_description'];
+            return !empty($content['short_description_ln']['HINDI']) ? $content['short_description_ln']['HINDI'] : @$content['short_description'];
         } elseif ($displayLanguageParam == "TAMIL") {
             return !empty($content['short_description_ln']['TAMIL']) ? $content['short_description_ln']['TAMIL'] : $content['short_description'];
         } elseif ($displayLanguageParam == "MARATHI") {
@@ -139,7 +139,7 @@ function getDispLangContent($content, $displayLanguageParam, $item)
             // return $content['banner_image']['original'];
             return @$content['banner_image'];
         } elseif ($displayLanguageParam == "HINDI") {
-            return !empty($content['banner_image_v2_ln']['HINDI']) ? $content['banner_image_v2_ln']['HINDI'] : $content['banner_image'];
+            return !empty($content['banner_image_v2_ln']['HINDI']) ? $content['banner_image_v2_ln']['HINDI'] : @$content['banner_image'];
         } elseif ($displayLanguageParam == "TAMIL") {
             return !empty($content['banner_image_v2_ln']['TAMIL']) ? $content['banner_image_v2_ln']['TAMIL'] : $content['banner_image'];
         } elseif ($displayLanguageParam == "MARATHI") {

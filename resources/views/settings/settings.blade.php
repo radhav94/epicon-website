@@ -169,9 +169,11 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                             <p class="text-start w-100 text-white mt-2">{{__('Tell us why you’re leaving us so soon?')}}</p>
                             <select name="deleteAcctReason" id="deleteAcctReason">
                                 <option value="">Reason(Optional)</option>
-                                <option value="Option1">Option1</option>
-                                <option value="Option1">Option1</option>
-                                <option value="Option1">Option1</option>
+                                <option value="I didn’t like the platform">I didn’t like the platform</option>
+                                <option value="I have privacy concerns">I have privacy concerns</option>
+                                <option value="It is very costly">It is very costly</option>
+                                <option value="I am wasting too much time">I am wasting too much time</option>
+                                <option value="Just need a break">Just need a break</option>
                             </select>
                         </div>
                     </div>
@@ -906,7 +908,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                 success: function(response) {
                     console.log(response);
                     if (selectedLang != "en") {
-                        window.location.href = "{{url('/')}}/"+selectedLang;
+                        window.location.href = "{{url('/')}}/" + selectedLang;
                     } else {
                         window.location.href = "{{url('/')}}";
                     }

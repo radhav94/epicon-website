@@ -47,7 +47,7 @@
          let requestData = {
              genre: $genre
          };
-         sendAjaxRequest('{{ route('spinner') }}', 'POST', JSON.stringify(requestData), onSpinnerSuccess, onSpinnerError,
+         sendAjaxRequest('{{ getUrl('spinner') }}', 'POST', JSON.stringify(requestData), onSpinnerSuccess, onSpinnerError,
              'application/json');
      }
 

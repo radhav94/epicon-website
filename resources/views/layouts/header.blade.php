@@ -13,7 +13,7 @@ $kids_page = $segment == 'kids' ? true : false;
                         fill="white" />
                 </svg>
             </a>
-            <a class="navbar-brand me-3" href="{{ route('homepage') }}"><img height="28"
+            <a class="navbar-brand me-3" href="{{ getUrl('homepage') }}"><img height="28"
                     src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
             <a class="subscribe-btn" href="#">{{__('Subscribe')}}</a>
         </div>

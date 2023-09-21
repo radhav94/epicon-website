@@ -13,7 +13,7 @@ use App\Http\Controllers\PopularController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\LiveTvController;
-
+use App;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -124,7 +124,13 @@ Route::get('set-language', [SettingController::class, 'setLanguage'])->name('set
 //setting controller routes end
 
 Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => ['loggedin', 'languageManager']], function ($locale) {
-    Route::get('settings', [SettingController::class, 'Setting'])->name('settings');    
+    Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
+});
+
+Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => 'languageManager'], function ($locale) {
+    Route::get('explore/{slug}/', function ($slug) {
+        return App::call('\App\Http\Controllers\PageController@explore_details', ['slug' => $slug]);
+    });
 });
 
 

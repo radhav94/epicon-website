@@ -8,6 +8,7 @@ use App\Http\Controllers\RetroRewindController;
 use App\Http\Controllers\SupermixController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LogoutController;
+use App;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,13 +29,12 @@ Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.lo
 Route::get('explore', [PageController::class, 'explore'])->name('explore');
 Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
 Route::post('clap', [PageDetailController::class, 'clap'])->name('clap');
-//dynamic pages route
-Route::any('/supermix', [SupermixController::class, 'superMix']);
-Route::get('/{slug}', [PageController::class, 'index']);
-Route::get('/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
 
 Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'languageManager'], function ($locale) {
-    Route::get('/', [PageController::class, 'index'])->name('homepage');
+    //Route::get('/', [PageController::class, 'index'])->name('homepage');
+    Route::get('/', function () {
+        return App::call('\App\Http\Controllers\PageController@index', ['homepage']);
+    });
     Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.loadmore');
 
     Route::get('explore', [PageController::class, 'explore'])->name('explore');
@@ -42,9 +42,9 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'l
     Route::post('clap', [PageDetailController::class, 'clap'])->name('clap');
     //dynamic pages route
     Route::any('/supermix', [SupermixController::class, 'superMix']);
+    Route::get('/kids/{slug?}', [PageController::class, 'kidsIndex'])->name('kidsIndex');
     Route::get('/{slug}', [PageController::class, 'index']);
     Route::get('/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
-
 });
 
 
