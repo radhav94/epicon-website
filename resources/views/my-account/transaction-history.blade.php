@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','New homepage')
+@section('title','Transaction History')
 
 @section('style')
 
@@ -7,7 +7,6 @@
 
 @section('content')
 
-    
     <section class="container w-100 my-4">
         <div class="row justify-content-center">
             <div class="col-sm-12">
@@ -26,38 +25,59 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Service Period</th>
-                            <th>Payment Method</th>
+                            <th>Plan</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
                             <th class="text-end">Total</th>
                         </tr>
                         </thead>
+                      
                         <tbody>
+                    @if(!empty($subscriptionPurchases))
+                        @foreach($subscriptionPurchases as $key => $value)
+                        @php
+                        $subs_start_date = $value['subscription_start_date'];
+                        $start_date = new DateTime($subs_start_date);
+                        $subs_start_date = $start_date->format('d/m/y');
+
+                        $subs_end_date = $value['subscription_end_date'];
+                        $end_date = new DateTime($subs_end_date);
+                        $subs_end_date = $end_date->format('d/m/y');
+                        
+                        @$validity_days = $value['validity_days'];
+                        $plan_name = '';
+
+                        switch ($validity_days) {
+                            case 30:
+                                $plan_name = '1 Month';
+                                break;
+                            case 90:
+                                $plan_name = '3 Months';
+                                break;
+                            case 180:
+                                $plan_name = '6 Months';
+                                break;
+                            default:
+                                $plan_name = '1 Year';
+                                break;
+                        }
+
+                        @endphp
                             <tr>
-                                <td>20/05/23</td>
-                                <td>20/07/23 - 20/07/24</td>
-                                <td><img src="{{ asset('/img/visa.svg') }}" alt="icon" class="me-2">visa **** **** **** 1823</td>
-                                <td class="text-end">₹499</td>
+                                <td>{{$plan_name}}</td>
+                                <td>{{ isset($subs_start_date) ? $subs_start_date : '' }} </td>
+                                <!-- <td><img src="{{ asset('/img/visa.svg') }}" alt="icon" class="me-2">visa **** **** **** 1823</td> -->
+                                <td>{{ isset($subs_end_date) ? $subs_end_date : '' }}</td>
+                                <td class="text-end">₹ {{ isset($value['plan_amount']) ? $value['plan_amount'] : '' }}</td>
                             </tr>
+                        @endforeach
+                    @else
                         <tr>
-                            <td>20/05/23</td>
-                            <td>20/07/23 - 20/07/24</td>
-                            <td><img src="{{ asset('/img/visa.svg') }}" alt="icon" class="me-2">visa **** **** **** 1823</td>
-                            <td class="text-end">₹499</td>
+                          <td colspan="4">{{__('text.myaccount-history-not-found')}}</td>
                         </tr>
-                        <tr>
-                            <td>20/05/23</td>
-                            <td>20/07/23 - 20/07/24</td>
-                            <td><img src="{{ asset('/img/visa.svg') }}" alt="icon" class="me-2">visa **** **** **** 1823</td>
-                            <td class="text-end">₹499</td>
-                        </tr>
-                        <tr>
-                            <td>20/05/23</td>
-                            <td>20/07/23 - 20/07/24</td>
-                            <td><img src="{{ asset('/img/visa.svg') }}" alt="icon" class="me-2">visa **** **** **** 1823</td>
-                            <td class="text-end">₹499</td>
-                        </tr>
+                    @endif
                         </tbody>
+                        
                     </table>
                 </div>
             </div>

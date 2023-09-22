@@ -18,7 +18,7 @@ class LiveTvController extends Controller
             // dd($displayLanguageParam);
             return view('pages.livetv.live-tv', compact('response', 'displayLanguageParam'));
         }else{
-            return view('pages.error.404');
+            return view('pages.error.data-error');
         }
         // dd($response);
     }
