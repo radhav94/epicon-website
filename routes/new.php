@@ -13,7 +13,6 @@ use App\Http\Controllers\PopularController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\LiveTvController;
-use App;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

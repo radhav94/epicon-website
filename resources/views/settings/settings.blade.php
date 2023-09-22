@@ -661,7 +661,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             var formData = $('#updateInterestForm').serialize();
             if (formData != '') {
                 $.ajax({
-                    url: "{{ getUrl('update-genre') }}",
+                    url: "{{ route('update-genre') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -691,7 +691,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             var formData = $('#childPinForm').serialize();
             var command = $('#childPinForm input[name="command"]').val();
             $.ajax({
-                url: "{{ getUrl('set-kidsPin') }}",
+                url: "{{ route('set-kidsPin') }}",
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
@@ -743,7 +743,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
 
             var formData = $('#change_password').serialize();
             $.ajax({
-                url: "{{ getUrl('change-password') }}",
+                url: "{{ route('change-password') }}",
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
@@ -795,7 +795,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             }
 
             $.ajax({
-                url: "{{ getUrl('sendOTP-delete-account') }}",
+                url: "{{ route('sendOTP-delete-account') }}",
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
@@ -837,7 +837,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             var formData = $('#verifyOTPDeleteAccountForm').serialize();
 
             $.ajax({
-                url: "{{ getUrl('verifyOTP-delete-account') }}",
+                url: "{{ route('verifyOTP-delete-account') }}",
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
@@ -869,7 +869,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             };
 
             $.ajax({
-                url: "{{ getUrl('delete-account') }}",
+                url: "{{ route('delete-account') }}",
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
@@ -898,7 +898,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             // };
             var formData = "language=" + selectedLang + "&type=display";
             $.ajax({
-                url: "{{ getUrl('set-language') }}?" + formData,
+                url: "{{ route('set-language') }}?" + formData,
                 type: 'GET',
                 //data: formData,
                 //dataType: 'json',
@@ -931,7 +931,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             deviceId: params
         }
         $.ajax({
-            url: "{{ getUrl('remove-device') }}",
+            url: "{{ route('remove-device') }}",
             type: 'POST',
             data: formData,
             dataType: 'json',
@@ -976,7 +976,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
 
     function regenerateSyncPin() {
         $.ajax({
-            url: "{{ getUrl('syncDevice-pin') }}",
+            url: "{{ route('syncDevice-pin') }}",
             type: 'POST',
             dataType: 'json',
             headers: {
