@@ -168,12 +168,12 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                         <div class="input-field w-100 mb-3">
                             <p class="text-start w-100 text-white mt-2">{{__('Tell us why you’re leaving us so soon?')}}</p>
                             <select name="deleteAcctReason" id="deleteAcctReason">
-                                <option value="">Reason(Optional)</option>
-                                <option value="I didn’t like the platform">I didn’t like the platform</option>
-                                <option value="I have privacy concerns">I have privacy concerns</option>
-                                <option value="It is very costly">It is very costly</option>
-                                <option value="I am wasting too much time">I am wasting too much time</option>
-                                <option value="Just need a break">Just need a break</option>
+                                <option value="">{{__('Reason(Optional)')}}</option>
+                                <option value="I didn’t like the platform">{{__('I didn’t like the platform')}}</option>
+                                <option value="I have privacy concerns">{{__('I have privacy concerns')}}</option>
+                                <option value="It is very costly">{{__('It is very costly')}}</option>
+                                <option value="I am wasting too much time">{{__('I am wasting too much time')}}</option>
+                                <option value="Just need a break">{{__('Just need a break')}}</option>
                             </select>
                         </div>
                     </div>
