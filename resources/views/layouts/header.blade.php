@@ -1,6 +1,9 @@
 <?php
 $segment = Request::segment(1);
 $kids_page = $segment == 'kids' ? true : false;
+
+$action = app('request')->route()->getAction();
+#dd($action);
 ?>
 <!-- Side Menu Start-->
 <div class="side-menu-main" id="side-menu">
@@ -143,7 +146,7 @@ $kids_page = $segment == 'kids' ? true : false;
 
         </ul>
         <div class="main-header-right d-flex align-items-center">
-            <a href="{{ $kids_page ? getUrl('homepage') : getUrl('kidsIndex') }}" class="p-2 me-2">
+            <a href="{{ $kids_page ? getUrl('homepage') : route('kidsIndex') }}" class="p-2 me-2">
                 <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt=""></a>
             <a href="{{ getUrl('trendingsearch') }}" class="p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -271,7 +274,7 @@ $kids_page = $segment == 'kids' ? true : false;
                                 @endforeach
 
                                 @if (count($profile['profiles']) < config('global.max_profile_limit'))
-                                    <a href="{{ getUrl('profile.add') }}">
+                                    <a href="{{ route('profile.add') }}">
                                         <div class="profile-pik pro-add">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="49" height="48"
                                                 viewBox="0 0 49 48" fill="none">
@@ -291,7 +294,7 @@ $kids_page = $segment == 'kids' ? true : false;
                             <button> <img class="me-1" width="18" src="{{ asset('assets/img/crown.svg') }}"
                                     alt=""> Subscribe</button>
                         </li>
-                        <li class="subc-text"><a href="{{ getUrl('profile.index') }}">Manage Profiles</a></li>
+                        <li class="subc-text"><a href="{{ route('profile.index') }}">Manage Profiles</a></li>
                         <li class="subc-text"><a href="{{ getUrl('library') }}">Library</a></li>
                         <li class="subc-text"><a href="{{ getUrl('my-account') }}">My Account</a></li>
                         <li class="subc-text"><a href="{{ getUrl('my-rewards') }}">My Rewards</a></li>

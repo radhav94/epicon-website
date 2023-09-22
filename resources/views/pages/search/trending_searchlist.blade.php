@@ -1,7 +1,6 @@
 <div class="w-100 mb-4">
     <div class="carousel-title-n-arrow mb-3">
         <h1 class="text-white small">Trending Moments</h1>
-        <button class="bg-transparent text-white border-0">Clear All</button>
     </div>
     <ul class="more-like-this px-0">
         <?php foreach ($trendingData as $val) {

@@ -32,7 +32,7 @@
                             <button class="search-icon"><img src="{{ asset('/img/search-icon.svg') }}"
                                     alt="icon"></button>
                         </div>
-                        <button class="remove-text p-0">
+                        <button class="remove-text p-0" style="display:none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"
                                 fill="none">
                                 <g clip-path="url(#clip0_132_4915)">

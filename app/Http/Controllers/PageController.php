@@ -54,7 +54,6 @@ class PageController extends Controller
             'page' => 1,
             'limit' => $this->limit,
         ];
-        dd($params);
 
         $result = CurlAPI("pages/homepage", "GET", $params, 1);
 

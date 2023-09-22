@@ -9,6 +9,8 @@ use App\Http\Controllers\SupermixController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LogoutController;
 
+$lang = ['hi', 'en'];
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,10 +24,10 @@ use App\Http\Controllers\Auth\LogoutController;
 
 Route::get('test', [TestController::class, 'index']);
 
-Route::get('/', [PageController::class, 'index'])->name('homepage');
+// Route::get('/', [PageController::class, 'index'])->name('homepage');
 Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.loadmore');
 
-Route::get('explore', [PageController::class, 'explore'])->name('explore');
+// Route::get('explore', [PageController::class, 'explore'])->name('explore');
 Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
 Route::post('clap', [PageDetailController::class, 'clap'])->name('clap');
 
@@ -42,57 +44,24 @@ Route::group(['middleware' => 'loggedin', 'as' => 'profile.', 'prefix' => 'profi
     Route::post('/setChildPin', [ProfileController::class, 'setChildPin'])->name('setChildPin');
 });
 
-Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => ['loggedin', 'languageManager']], function ($locale) {
+Route::group(['middleware' => 'loggedin'], function ($locale) {
     Route::any('logout', LogoutController::class)->name('logout');
     Route::post('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
 });
 
-
-
-
 //dynamic / other pages route
-Route::get('/retro-rewind/{slug}', [RetroRewindController::class, 'retroRewindList'])->name('retro-list');
 Route::post('/retro-content', [RetroRewindController::class, 'retroRewindContent']);
 
 Route::any('/supermix', [SupermixController::class, 'superMix']);
-Route::get('/kids/{slug?}', [PageController::class, 'kidsIndex'])->name('kidsIndex');
-Route::get('/{slug}', [PageController::class, 'index']);
-Route::get('/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
 
 
-Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => 'languageManager'], function ($locale) {
-    //dd($locale);
-    Route::get('/', function () {
-        return App::call('\App\Http\Controllers\PageController@index', ['homepage']);
-    });
-    Route::get('explore', [PageController::class, 'explore'])->name('explore');
-    //dynamic pages route
-    // Route::get(
-    //     '/kids/{slug?}',
-    //     function ($slug) {
-    //         dd($slug);
-    //         return App::call('\App\Http\Controllers\PageController@kidsIndex', ['slug' => $slug]);
-    //     }
-    // )->name('kidsIndex');
+foreach ($lang as $val) {
+    $prefix = $val != 'en' ? "/$val" : "";
+    Route::get($prefix . '/', [PageController::class, 'index'])->name('homepage');
+    Route::get($prefix . '/explore', [PageController::class, 'explore'])->name('explore');
+    Route::get($prefix . '/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
+    Route::get($prefix . '/retro-rewind/{slug}', [RetroRewindController::class, 'retroRewindList'])->name('retro-list');
+    Route::get($prefix . '/kids/{slug?}', [PageController::class, 'kidsIndex'])->name('kidsIndex');
+    Route::get($prefix . '/{slug}', [PageController::class, 'index']);
+}
 
-    Route::get('/{slug}', function ($lang, $slug) {
-        return App::call('\App\Http\Controllers\PageController@index', ['slug' => $slug]);
-    });
-    //dd("stop");
-    // Route::get('/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
-
-
-
-    // Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
-    // Route::post('clap', [PageDetailController::class, 'clap'])->name('clap');
-
-    // Route::middleware(['loggedin'])->resource('profile', ProfileController::class);
-
-
-
-
-    //dynamic / other pages route
-    // Route::get('/retro-rewind/{slug}', [RetroRewindController::class, 'retroRewindList'])->name('retro-list');
-
-    // Route::get('/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
-});

@@ -10,6 +10,12 @@ $(document).ready(function(){
 
 $("#searchname").on("keyup", function () {
     var searchtext = $('input[name="search"]').val();
+    if (searchtext != "") {
+        $(".remove-text").show();
+     } else {
+        $(".remove-text").hide();
+        $('#Alltopresult, #Moviestopresult, #Showtopresult, #Podcasttopresult, #Kidstopresult, #Gamestopresult').html("");
+     }
     console.log(searchtext + "Text Value");
     $.ajax({
         url: '/search',
@@ -61,12 +67,7 @@ $("#searchname").on("keyup", function () {
                 $('.Gamestopresult-error').show();
             }
         }else{
-            $('.Alltopresult-error').hide();
-            $('.Moviestopresult-error').hide();
-            $('.Showtopresult-error').hide();
-            $('.Podcasttopresult-error').hide();
-            $('.Kidstopresult-error').hide();
-            $('.Gamestopresult-error').hide();
+            $('.Alltopresult-error, .Moviestopresult-error, .Showtopresult-error, .Podcasttopresult-error, .Kidstopresult-error, .Gamestopresult-error').hide();
         }
             
             
@@ -78,11 +79,8 @@ $("#searchname").on("keyup", function () {
 });
 
 $(document).on('click', '.remove-text', function () {
-    $('input[name="search"]').val('');
-    $('#Alltopresult').html('');
-    $('#Moviestopresult').html('');
-    $('#Showtopresult').html('');
-    $('#Podcasttopresult').html('');
-    $('#Kidstopresult').html('');
-    $('#Gamestopresult').html('');
+    $('input[name="search"]').val('');    
+    $('#Alltopresult, #Moviestopresult, #Showtopresult, #Podcasttopresult, #Kidstopresult, #Gamestopresult').html("");    
+    $('.Alltopresult-error, .Moviestopresult-error, .Showtopresult-error, .Podcasttopresult-error, .Kidstopresult-error, .Gamestopresult-error').hide();
+    $(this).hide();
 });
