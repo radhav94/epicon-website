@@ -31,7 +31,7 @@ trait payments {
         }
 		else{
             // return $container->call('App\Http\Controllers\PayuController@__paymentprocess', [$order,$currency,$payment_type]);
-             return $container->call('App\Http\Controllers\PayuController@__paymentprocess', ['order'=>$order,'currency'=>$currency,'payment_type'=>$payment_type]);
+             return $container->call('App\Http\Controllers\NewPayuController@__paymentprocess', ['order'=>$order,'currency'=>$currency,'payment_type'=>$payment_type]);
              // return App::call('\App\Http\Controllers\indexController@showlistdetail',['displayLanguage'=>'','pageslug'=>$pageslug,'listcatalog'=>$listcatalog,'contentslug'=>'watch','seasonslug'=>'','episodeslug'=>'']);
         }
   }

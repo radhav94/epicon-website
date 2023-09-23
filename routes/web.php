@@ -7,6 +7,7 @@ use App\Http\Controllers\PageDetailController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Auth\LogoutController;
+use APP\Http\Controller\Auth\NewPayuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,15 +49,18 @@ Route::group(['middleware' => 'loggedin', 'as' => 'profile.', 'prefix' => 'profi
 Route::group(['middleware' => 'loggedin'], function () {
     Route::any('logout', LogoutController::class)->name('logout');
     //Subscription routes created by Ram
-    Route::get('getSubscription',[SubscriptionController::class,'subscription'])->name('subscription');
+    
     Route::post('paymentMethod',[SubscriptionController::class,'setSubscription'])->name('paymentMethod');
     Route::post('planBenefit',[SubscriptionController::class,'planBenefit']);
     Route::post('getCouponAjax',[SubscriptionController::class,'getCoupon'])->name('getCoupon');
-    Route::post('saveSubscription',[SubscriptionController::class,'saveSubscription'])->name('saveSubscription');
+    Route::post('saveSubscription',[SubscriptionController::class,'saveSubscription'])->name('saveSubscription'); 
+    Route::get('checkpayu',[SubscriptionController::class,'checkpayu'])->name('checkpayu'); 
+    Route::get('getSubscription',[SubscriptionController::class,'subscription'])->name('subscription');
     //end
 
-
 });
+Route::post('payusuccess',[SubscriptionController::class,'payusuccess'])->name('payusuccess');
+Route::post('payufail',[SubscriptionController::class,'payufail'])->name('payufail');
 
 
 

@@ -42,6 +42,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1)
 
     if ($apiDomain == 2) {
         $url = config('epicconfig.EPICAPI.API_DOMAIN_2') . $context;
+        
     } else {
         $url = config('epicconfig.EPICAPI.API_DOMAIN_1') . $context;
     }
@@ -467,4 +468,34 @@ function getProfileData()
     $controller = new ProfileController();
     $result = $controller->getProfileData();
     return $result;
+}
+
+function getDays($startDate, $endDate, $timezone = '')
+{
+	$startTimeStamp = strtotime($startDate);
+	//echo date("d-m-Y H:i:s",$startTimeStamp)."<br>";
+	$endTimeStamp = strtotime($endDate);
+	//echo date("d-m-Y H:i:s",$endTimeStamp)."<br>";echo "<br>";
+
+	if ($timezone == 'IST' && function_exists('date_default_timezone_set')) {
+		date_default_timezone_set("Asia/Kolkata");
+	}
+	$startTimeStamp = strtotime($startDate);
+	//echo date("d-m-Y H:i:s",$startTimeStamp)."<br>";
+	$endTimeStamp = strtotime($endDate);
+	//echo date("d-m-Y H:i:s",$endTimeStamp)."<br>";echo "<br>";
+
+	$timeDiff = abs($endTimeStamp - $startTimeStamp);
+	//echo $timeDiff."<br>";
+	$numberDays = $timeDiff / 86400;  // 86400 seconds in one day
+	//echo $numberDays."<br>";
+	// and you might want to convert to integer
+	//$numberDays = intval($numberDays);
+	$numberDays = round($numberDays);
+	return $numberDays;
+}
+
+function generateTransactionID()
+{
+    return substr(hash('sha256', mt_rand() . microtime()), 0, 20);
 }

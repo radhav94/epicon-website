@@ -311,14 +311,14 @@ if($environment=='PRODUCTION'){
 		],*/
 		//PRODUCTION
         'PAYUMONEY'=>[
-            'PAYUMONEY_MERCHANT_KEY'=>'lkvpv7', // MERCHABT_ID 117245
-            'PAYUMONEY_SALT'=>'Rj7KA4rC',
+            'PAYUMONEY_MERCHANT_KEY'=>'gtKFFx', // MERCHABT_ID 117245
+            'PAYUMONEY_SALT'=>'4R38IvwiV57FwVpsgOvTXBdLE4tHUXFW',
             'RESPONSE_URL'=>'https://dev.epicon.in/payumoney/response',
             'ANDROID_RESPONSE_URL'=>'https://dev.epicon.in/payumoney/androidresponse',
-            'TESTMODE'=>false,
-            'SUBSCRIPTION_URL'=>'https://subscription.citruspay.com/',
-            'ENABLE_RECURRING_API'=>false,
-            'ENABLE_RECURRING_AT_FROM_TRANSACTION'=>false,
+            'TESTMODE'=>true,
+            'SUBSCRIPTION_URL'=>'https://test.payu.in/_payment/',
+            'ENABLE_RECURRING_API'=>true,
+            'ENABLE_RECURRING_AT_FROM_TRANSACTION'=>true,
             'API_URL'=>'https://info.payu.in/merchant/postservice.php?form=2',
         ],
         'PAYTMQR'=>[

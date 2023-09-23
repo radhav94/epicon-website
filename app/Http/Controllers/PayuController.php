@@ -133,14 +133,16 @@ class PayuController extends Controller
                 Log::debug(json_encode($parameters));
                 Log::info("-----END ios full renew plan for payu----------------------");
             }else {
-                $user = getLoggedInUser();
+                $user = isUserLoggedIn();
+                $userData = $request->session()->get('user');
+                //d($userData);exit();
                 if($finalcurrency == 'INR'){
                     
                     $parameters = ['tid' => time(),
                         'txnid' => $order_number,
                         'amount' => $totalamount,
-                        'firstname'=>$user->name,
-                        'email'=>$user->user_id,
+                        'firstname'=>$userData['name'],
+                        'email'=>$userData['user_id'],
                         'phone'=>'',
                         'si'=>1,
                         'productinfo'=>'epicon '.$plan_id,
