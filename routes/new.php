@@ -25,11 +25,11 @@ use App\Http\Controllers\LiveTvController;
 */
 
 //Profile routes
-Route::get('/profile/add', '\App\Http\Controllers\UserAccountController@addprofile')->name('addprofile');
+// Route::get('/profile/add', '\App\Http\Controllers\UserAccountController@addprofile')->name('addprofile');
 
-Route::get('/profile/edit', '\App\Http\Controllers\UserAccountController@editprofile')->name('editprofile');
+// Route::get('/profile/edit', '\App\Http\Controllers\UserAccountController@editprofile')->name('editprofile');
 
-Route::get('/profile/manage', '\App\Http\Controllers\UserAccountController@manageprofile')->name('manageprofile');
+// Route::get('/profile/manage', '\App\Http\Controllers\UserAccountController@manageprofile')->name('manageprofile');
 
 // Mobile Number Update Route
 Route::post('sendotp', [LoginController::class, 'setSendOTP'])->name('sendotp');
