@@ -456,6 +456,15 @@ function getUserId()
     return Session::get('user_id') ?? '';
 }
 
+function getProfileId()
+{
+    $user = Session::get('user');
+    if ($user) {
+        return $user['profiles'][0]['id'] ?? false;
+    }
+    return false;
+}
+
 function getContentUrl($value)
 {
     if (isset($value['url'])) {
