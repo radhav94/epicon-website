@@ -66,10 +66,10 @@
             <div class="col-lg-6 link-pos">
                 <div class="f-link">
                     <ul class="d-flex mb-0">
-                        <li><a href="{{route('about')}}">{{__('About Us')}}</a></li>
+                        <li><a href="{{getUrl('about')}}">{{__('About Us')}}</a></li>
                         <li><a href="{{route('terms-of-use')}}">{{__('Terms of Use')}}</a></li>
                         <li><a href="{{route('privacy')}}">{{__('Privacy Policy')}}</a></li>
-                        <li><a href="{{route('feedback')}}">{{__('Help Centre')}}</a></li>
+                        <li><a href="{{getUrl('feedback')}}">{{__('Help Centre')}}</a></li>
                     </ul>
                 </div>
             </div>

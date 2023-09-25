@@ -459,10 +459,10 @@ function getUserId()
 function getContentUrl($value)
 {
     if (isset($value['url'])) {
-        return url($value['url']);
+        return getUrl($value['url']);
     }
 
-    return url('/');
+    return getUrl('/');
 }
 
 
@@ -505,7 +505,7 @@ function generateCategoryResponse($result)
         . '<h6>' . $topResult['title'] . '</h6>'
         . '<span>' . @$dateText . ' | ' . @$topResult['duration'] . '</span>'
         . '<p class="search-top mt-2">' . $topResult['description'] . '</p>'
-        . '<div class="d-flex align-items-center"><a href="' . $url . '"><button class="fill-btn em ms-0">Watch</button></a>' . $wishlistAction . '</div></div>';
+        . '<div class="d-flex align-items-center"><a href="' . $url . '"><button class="fill-btn em ms-0">'.__('Watch').'</button></a>' . $wishlistAction . '</div></div>';
 }
 
 function getCardImage($content, $key, $size = 'medium', $fallback = [])
@@ -552,15 +552,28 @@ if (!file_exists('getUrl')) {
 }
 
 if (!file_exists('getUrlWithPrefix')) {
-    function getUrlWithPrefix($path = '')
+    function getUrlWithPrefix($path = '', $id = '')
     {
         $lang = (app()->getLocale() != 'en') ? app()->getLocale() : '';
         if (app()->getLocale() != 'en') {
-            return route($lang . "." . $path);
+            return !empty($id) ? route($lang . "." . $path, $id) : route($lang . "." . $path);
         } else {
-            return route($path);
+            return !empty($id) ? route($path, $id) : route($path);
         }
     }
+}
+
+if (!file_exists('getUrlWithPrefix')) {
+    function getUrlWithoutPrefix($path = '', $id = '')
+    {
+        $lang = (app()->getLocale() != 'en') ? app()->getLocale() : '';
+        if (app()->getLocale() != 'en') {
+            return !empty($id) ? route($lang . "/" . $path, $id) : route($lang . "/" . $path);
+        } else {
+            return !empty($id) ? route($path, $id) : route($path);
+        }
+    }
+}
 
 function isActiveSubscription()
 {

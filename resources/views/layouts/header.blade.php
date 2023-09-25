@@ -32,7 +32,7 @@ $action = app('request')->route()->getAction();
                 </a>
             </li>
             <li>
-                <a href="{{ route('live-tv') }}">
+                <a href="{{ getUrl('live-tv') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
@@ -146,7 +146,7 @@ $action = app('request')->route()->getAction();
 
         </ul>
         <div class="main-header-right d-flex align-items-center">
-            <a href="{{ $kids_page ? getUrl('homepage') : route('kidsIndex') }}" class="p-2 me-2">
+            <a href="{{ $kids_page ? getUrl('homepage') : getUrlWithPrefix('kidsIndex') }}" class="p-2 me-2">
                 <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt=""></a>
             <a href="{{ getUrl('trendingsearch') }}" class="p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -303,8 +303,8 @@ $action = app('request')->route()->getAction();
                         <li class="subc-text logout"><a href="javascript:void(0);">{{__('Log out')}}</a></li>
                         <li class="subc-text atp">
                             <a href="{{ getUrl('about') }}">{{__('About Us')}}</a>
-                            <a href="{{ getUrl('terms-of-use') }}">{{__('Terms of Use')}}</a>
-                            <a href="{{ getUrl('privacy') }}">{{__('Privacy Policy')}}</a>
+                            <a href="{{ route('terms-of-use') }}">{{__('Terms of Use')}}</a>
+                            <a href="{{ route('privacy') }}">{{__('Privacy Policy')}}</a>
                         </li>
                     @elseloggedin
                         <li class="subc-text login"><a href="javascript:void(0);">{{__('Login')}}</a></li>

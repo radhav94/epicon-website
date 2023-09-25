@@ -132,7 +132,7 @@
     <script>
         $(document).ready(function() {
             $('.logout').click(function() {
-                sendAjaxRequest('{{ getUrl('logout') }}', 'POST', [],
+                sendAjaxRequest('{{ route('logout') }}', 'POST', [],
                     onSuccess, onError);
             });
         });

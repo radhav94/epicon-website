@@ -14,7 +14,7 @@
         <div class="card-details">
 
             @foreach ($result['data']['genres'] as $key => $value)
-            <a href="{{ url('explore/' . @$value['slug']) }}" class="card-body">
+            <a href="{{ getUrl('explore/' . @$value['slug']) }}" class="card-body">
                 {{-- <h4 class="action">{{ @$value['name'] }}</h4> --}}
                 <img src="{{ @$value['images']['small'] }}" alt="">
             </a>

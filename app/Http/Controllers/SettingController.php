@@ -176,7 +176,6 @@ class SettingController extends Controller
     {
         $request = Request();
         $language = $request->input('language');
-        // dd($language);
         $type = $request->input('type');
         if ($type == "display") {
 		    $request->session()->put('displayLanguage', $language);
@@ -185,10 +184,8 @@ class SettingController extends Controller
 		    $request->session()->put('listLanguage', $language);
         }
 		if ($language == 'hi') {
-            // dd("true");
 			return redirect('/hi');
 		} else {
-            // dd("false");
 			return redirect('/');
 		}
     }

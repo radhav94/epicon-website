@@ -461,7 +461,7 @@
                                 .hide();
                             $('.screen-sucess-logged').show();
                             setTimeout(function() {
-                                window.location.href = response.payload.redirect;
+                                location.reload(true);
                             }, 3000);
                             return false;
 

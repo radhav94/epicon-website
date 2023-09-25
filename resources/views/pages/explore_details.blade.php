@@ -45,7 +45,7 @@
 
 <section class="container">
     <div class="new-popular-main explore-details" id="showmore_load">
-        <h4 class="new-popularheading text-white mb-3">{{ucfirst($slug)}}</h4>
+        <h4 class="new-popularheading text-white mb-3">{{__(ucfirst($slug))}}</h4>
 
         <?php $count = $count_card_detail = 1;
         foreach ($result as $key => $val) {

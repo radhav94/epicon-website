@@ -13,61 +13,70 @@ $("#searchname").on("keyup", function () {
     if (searchtext != "") {
         $(".remove-text").show();
     } else {
-        $(".remove-text").hide();
+        $(".remove-text, .Alltopresult-error").hide();
         $('#Alltopresult, #Moviestopresult, #Showtopresult, #Podcasttopresult, #Kidstopresult, #Gamestopresult').html("");
     }
     console.log(searchtext + "Text Value");
+    var lang = $("html").attr("lang") != 'en' ? $("html").attr("lang") + "/" : "";
+    var ajaxUrl = lang + 'search';
     $.ajax({
-        url: '/search',
+        url: "/"+ajaxUrl,
         type: 'POST',
         data: { 'searchinput': searchtext },
         dataType: 'json',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        success: function (response) {
+        success: function (data) {
+            var response = data.payload.data
+
             var searchText = $('#searchname').val();
 
-            $('#Alltopresult').html(response.AlltopResult);
-            $('#Moviestopresult').html(response.MoviestopResult);
-            $('#Showtopresult').html(response.ShowstopResult);
-            $('#Podcasttopresult').html(response.PodcaststopResult);
-            $('#Kidstopresult').html(response.KidstopResult);
-            $('#Gamestopresult').html(response.GamestopResult);
-
-            if (searchText.length > 2) {
-                if (response.AlltopResult != '') {
-                    $('.Alltopresult-error').hide();
+            if (data.payload.success) {
+                $('#Alltopresult').html(response.AlltopResult);
+                $('#Moviestopresult').html(response.MoviestopResult);
+                $('#Showtopresult').html(response.ShowstopResult);
+                $('#Podcasttopresult').html(response.PodcaststopResult);
+                $('#Kidstopresult').html(response.KidstopResult);
+                $('#Gamestopresult').html(response.GamestopResult);
+                if (searchText.length > 2) {
+                    if (response.AlltopResult != '') {
+                        $('.Alltopresult-error').hide();
+                    } else {
+                        $('.Alltopresult-error').show();
+                    }
+                    if (response.MoviestopResult != '') {
+                        $('.Moviestopresult-error').hide();
+                    } else {
+                        $('.Moviestopresult-error').show();
+                    }
+                    if (response.ShowstopResult != '') {
+                        $('.Showtopresult-error').hide();
+                    } else {
+                        $('.Showtopresult-error').show();
+                    }
+                    if (response.PodcaststopResult != '') {
+                        $('.Podcasttopresult-error').hide();
+                    } else {
+                        $('.Podcasttopresult-error').show();
+                    }
+                    if (response.KidstopResult != '') {
+                        $('.Kidstopresult-error').hide();
+                    } else {
+                        $('.Kidstopresult-error').show();
+                    }
+                    if (response.GamestopResult != '') {
+                        $('.Gamestopresult-error').hide();
+                    } else {
+                        $('.Gamestopresult-error').show();
+                    }
                 } else {
-                    $('.Alltopresult-error').show();
-                }
-                if (response.MoviestopResult != '') {
-                    $('.Moviestopresult-error').hide();
-                } else {
-                    $('.Moviestopresult-error').show();
-                }
-                if (response.ShowstopResult != '') {
-                    $('.Showtopresult-error').hide();
-                } else {
-                    $('.Showtopresult-error').show();
-                }
-                if (response.PodcaststopResult != '') {
-                    $('.Podcasttopresult-error').hide();
-                } else {
-                    $('.Podcasttopresult-error').show();
-                }
-                if (response.KidstopResult != '') {
-                    $('.Kidstopresult-error').hide();
-                } else {
-                    $('.Kidstopresult-error').show();
-                }
-                if (response.GamestopResult != '') {
-                    $('.Gamestopresult-error').hide();
-                } else {
-                    $('.Gamestopresult-error').show();
+                    $('.Alltopresult-error, .Moviestopresult-error, .Showtopresult-error, .Podcasttopresult-error, .Kidstopresult-error, .Gamestopresult-error').hide();
                 }
             } else {
-                $('.Alltopresult-error, .Moviestopresult-error, .Showtopresult-error, .Podcasttopresult-error, .Kidstopresult-error, .Gamestopresult-error').hide();
+                if (searchtext != "") {
+                    $('.Alltopresult-error').show();
+                }
             }
         },
         error: function (xhr, status, error) {
@@ -77,8 +86,8 @@ $("#searchname").on("keyup", function () {
 });
 
 $(document).on('click', '.remove-text', function () {
-    $('input[name="search"]').val('');    
-    $('#Alltopresult, #Moviestopresult, #Showtopresult, #Podcasttopresult, #Kidstopresult, #Gamestopresult').html("");    
+    $('input[name="search"]').val('');
+    $('#Alltopresult, #Moviestopresult, #Showtopresult, #Podcasttopresult, #Kidstopresult, #Gamestopresult').html("");
     $('.Alltopresult-error, .Moviestopresult-error, .Showtopresult-error, .Podcasttopresult-error, .Kidstopresult-error, .Gamestopresult-error').hide();
     $(this).hide();
 });

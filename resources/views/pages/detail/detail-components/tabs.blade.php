@@ -52,7 +52,7 @@
                                <button class="nav-link {{ $key == 0 ? 'ep active' : '' }}" id="{{ $value['key'] }}"
                                    data-bs-toggle="pill" data-bs-target="#pills-{{ $value['key'] }}" type="button"
                                    role="tab" aria-controls="pills-{{ $value['key'] }}"
-                                   aria-selected="{{ $key == 0 ? 'true' : 'false' }}">{{ $value['title'] }}</button>
+                                   aria-selected="{{ $key == 0 ? 'true' : 'false' }}">{{ __($value['title']) }}</button>
                            </li>
                        @endforeach
 
@@ -61,7 +61,7 @@
                        <div class="episode-season" style="display:block">
                            <div class="all-episode">
                                <select>
-                                   <option value="0">All Episodes</option>
+                                   <option value="0">{{__('All Episodes')}}</option>
                                    <option value="1">1 to 50</option>
                                    <option value="2">51 - 100</option>
                                    <option value="3">101 - 150</option>

@@ -28,7 +28,7 @@ class SearchController extends Controller
         ];
 
         $searchResult = CurlAPI("pages/search", 'POST', $postData, 1);
-
+// dd(app()->getLocale());
         if ($searchResult && @$searchResult['success'] == true) {
             $data = [];
 
@@ -51,10 +51,12 @@ class SearchController extends Controller
                 }
             }
 
-            return json_encode($data);
-        } else {
+            return JSONResponse(200, '', ['data' => $data, 'success' => 1]);
+        } else if ($searchResult && @$searchResult['success'] == false) {
             // Handle the case when the search is not successful
-            return JSONResponse(400, 'Error.');
+            return JSONResponse(200, '', ['message' => "No results found", 'success' => 0]);
+        } else {
+            return JSONResponse(400, "Something went wrong. Please try again!");
         }
     }
 

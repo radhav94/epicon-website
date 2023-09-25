@@ -25,7 +25,6 @@ $lang = ['hi', 'en'];
 
 Route::get('test', [TestController::class, 'index']);
 
-// Route::get('/', [PageController::class, 'index'])->name('homepage');
 Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.loadmore');
 
 // Route::get('explore', [PageController::class, 'explore'])->name('explore');
@@ -63,7 +62,7 @@ foreach ($lang as $val) {
     Route::get($prefix . '/explore', [PageController::class, 'explore'])->name('explore');
     Route::get($prefix . '/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
     Route::get($prefix . '/retro-rewind/{slug}', [RetroRewindController::class, 'retroRewindList'])->name('retro-list');
-    Route::get($prefix . '/kids/{slug?}', [PageController::class, 'kidsIndex'])->name('kidsIndex');
+    Route::get($prefix . '/kids/{slug?}', [PageController::class, 'kidsIndex'])->name($prefix_name . 'kidsIndex');
     Route::get($prefix . '/{slug}', [PageController::class, 'index']);
 }
 
