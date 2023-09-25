@@ -1,27 +1,21 @@
 <div class="w-100 mb-4">
-                                <div class="carousel-title-n-arrow mb-3">
-                                    <h1 class="text-white small">Trending Moments</h1>
-                                    <button class="bg-transparent text-white border-0">Clear All</button>
-                                </div>
-                                <ul class="more-like-this px-0">
-                                    <?php foreach($trendingData as $val){ 
-                                        $cover_img = isset($val['cover_image']) ? @$val['cover_image']['medium'] : '';
-                                    ?>
-                                    <li> 
-                                        <a href="{{ getContentUrl($val) }}" class="main-card mt-0">
-                                            <?php if(isset($val['pay_per_use']) && $val['pay_per_use'] == true){ ?>
-                                            <span class="crown position-absolute"><img src="{{asset('/img/crown.svg')}}" alt=""></span>
-                                            <?php } ?>
-                                            <button class="close-btn position-absolute">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32" fill="none">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M25.1349 8.60204C25.2489 8.48816 25.3394 8.35293 25.4011 8.20408C25.4629 8.05524 25.4947 7.89568 25.4948 7.73453C25.4949 7.57338 25.4633 7.41378 25.4017 7.26486C25.3401 7.11593 25.2498 6.9806 25.136 6.86657C25.0221 6.75255 24.8868 6.66208 24.738 6.60031C24.5891 6.53855 24.4296 6.50671 24.2684 6.50661C24.1073 6.50651 23.9477 6.53816 23.7988 6.59974C23.6498 6.66132 23.5145 6.75162 23.4005 6.86551L16 14.266L8.60155 6.86551C8.37127 6.63523 8.05895 6.50586 7.73329 6.50586C7.40762 6.50586 7.0953 6.63523 6.86502 6.86551C6.63474 7.09579 6.50537 7.40811 6.50537 7.73377C6.50537 8.05944 6.63474 8.37176 6.86502 8.60204L14.2656 16.0004L6.86502 23.3988C6.751 23.5129 6.66055 23.6482 6.59884 23.7972C6.53713 23.9462 6.50537 24.1059 6.50537 24.2671C6.50537 24.4284 6.53713 24.588 6.59884 24.737C6.66055 24.886 6.751 25.0214 6.86502 25.1354C7.0953 25.3657 7.40762 25.495 7.73329 25.495C7.89454 25.495 8.05421 25.4633 8.20319 25.4016C8.35217 25.3398 8.48753 25.2494 8.60155 25.1354L16 17.7348L23.4005 25.1354C23.6308 25.3654 23.943 25.4945 24.2684 25.4943C24.5939 25.4941 24.906 25.3646 25.136 25.1343C25.3659 24.904 25.495 24.5918 25.4948 24.2664C25.4946 23.9409 25.3652 23.6288 25.1349 23.3988L17.7344 16.0004L25.1349 8.60204Z" fill="#F8F8F8"/>
-                                                </svg>
-                                            </button>
-                                            <div class="main-img mt-0">
-                                                <img src="{{$cover_img}}" alt="">
-                                            </div>
-                                        </a> 
-                                    </li>
-                                    <?php } ?>
-                                </ul>
-                            </div>
+    <div class="carousel-title-n-arrow mb-3">
+        <h1 class="text-white small">Trending Moments</h1>
+    </div>
+    <ul class="more-like-this px-0">
+        <?php foreach ($trendingData as $val) {
+            $cover_img = isset($val['cover_image']) ? @$val['cover_image']['medium'] : '';
+        ?>
+            <li>
+                <a href="{{ getContentUrl($val) }}" class="main-card mt-0">
+                    <?php if (isset($val['pay_per_use']) && $val['pay_per_use'] == true) { ?>
+                        <span class="crown position-absolute"><img src="{{asset('/img/crown.svg')}}" alt=""></span>
+                    <?php } ?>
+                    <div class="main-img mt-0">
+                        <img src="{{$cover_img}}" alt="">
+                    </div>
+                </a>
+            </li>
+        <?php } ?>
+    </ul>
+</div>
