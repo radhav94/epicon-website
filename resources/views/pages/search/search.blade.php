@@ -219,5 +219,5 @@
 @stop
 
 @section('script')
-<script src="{{ asset('assets/js/search.js') }}"></script>
+<script src="{{ asset('assets/js/search.js') }}?version=1"></script>
 @stop
