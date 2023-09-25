@@ -229,13 +229,12 @@ $(document).ready(function () {
 	const attactPlayerEvents = function (player) {
 		player.on('play', event => {
 			vidPlaying = true;
-			console.log('playing');
 			setplaytracking(player);
 		});
 
-		// player.on('pause', event => {
-		// 	setplaytracking(player);
-		// });
+		player.on('pause', event => {
+			setplaytracking(player);
+		});
 
 		player.on('seeked', event => {
 			setplaytracking(player);
@@ -244,13 +243,18 @@ $(document).ready(function () {
 		player.on('ended', event => {
 			setplaytracking(player);
 		});
+
 	}
 
-	// const setplaytracking = function (cid, tp, elapsed, title) {
 	const setplaytracking = function (player) {
 
 		let requestData = player.config.customData;
 		requestData.elapsed = player.currentTime;
+		requestData.completed = false;
+
+		if ((player.duration - player.currentTime) < 10) {
+			requestData.completed = true;
+		}
 
 		if (requestData.lg == 1) {
 			sendAjaxRequest(APP_URL + '/setplayTracking', 'POST', JSON.stringify(requestData),

@@ -85,18 +85,17 @@ class PlayerController extends Controller
                 'duration' => $request->elapsed,
                 'title' => $request->title,
                 'type' => $request->tp,
-                'profile_id' => getUserId(),
+                'profile_id' => getProfileId(),
                 'completed' => $request->completed ?? false,
             ];
 
-            $result = CurlAPI("pages/setplaytracking", "POST", $param, 1);
-            // dd($result);
-            if ($result && @$result['success'] ==  true) {
+            $result = CurlAPI("pages/setplaytracking", "POST", $param, 1, true);
 
+            if ($result && @$result['success'] ==  true) {
                 return true;
-            } else {
-                return false;
             }
+
+            return false;
         }
     }
 }
