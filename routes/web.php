@@ -8,6 +8,7 @@ use App\Http\Controllers\RetroRewindController;
 use App\Http\Controllers\SupermixController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\PlayerController;
 
 $lang = ['hi', 'en'];
 
@@ -65,3 +66,6 @@ foreach ($lang as $val) {
     Route::get($prefix . '/kids/{slug?}', [PageController::class, 'kidsIndex'])->name('kidsIndex');
     Route::get($prefix . '/{slug}', [PageController::class, 'index']);
 }
+
+Route::post('/player', [PlayerController::class, 'getVideoUrl']);
+Route::post('/setplayTracking', [PlayerController::class, 'setplayTracking']);

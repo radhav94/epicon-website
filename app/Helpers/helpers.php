@@ -451,6 +451,10 @@ function isUserLoggedIn()
     return Session::get('user_id') ? true : false;
 }
 
+function getUserId()
+{
+    return Session::get('user_id') ?? '';
+}
 
 function getContentUrl($value)
 {
@@ -557,4 +561,16 @@ if (!file_exists('getUrlWithPrefix')) {
             return route($path);
         }
     }
+
+function isActiveSubscription()
+{
+    if (isUserLoggedIn()) {
+        // $today = strtotime(date("Y-m-d")); //date("Y-m-d")."T".date("H:i:s")."Z";
+        // @$endtime = strtotime($user->subscriptions['subscription_end_date']);
+        // if ((!empty($user->subscriptions['subscription_end_date'])) && $today < $endtime) {
+        //     return true;
+        // }
+    }
+
+    return false;
 }

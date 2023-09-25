@@ -9,18 +9,18 @@
 @stop
 
 @section('content')
-
+    <?php
+    $cover_img = getCardImage($content, 'banner_image', 'large');
+    ?>
     <input type="hidden" id="cont_id" value="{{ $content['ID'] }}">
+
+    {{-- @include('pages.detail.video-player') --}}
 
     <section class="content-detail-banner position-relative">
         <div class="banner-main position-relative">
             <button class="rounded-transparent-btn pos-btn">
                 <img src="{{ asset('assets/img/mute-icon.svg') }}" alt="icon">
             </button>
-
-            <?php
-            $cover_img = getCardImage($content, 'banner_image', 'large');
-            ?>
 
             <img src="{{ $cover_img }}" alt="img">
         </div>
@@ -40,9 +40,14 @@
                                     </svg>&nbsp;
                                     Watch
                                 </button>
-                                <button class="subcription-btn me-3">
-                                    <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> Subscribe Now
-                                </button>
+
+                                @if (@$content['free_premium'] == true && !isActiveSubscription())
+                                    <button class="subcription-btn me-3">
+                                        <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> Subscribe Now
+                                    </button>
+                                @endif
+
+
                                 <?php
                                 $wishlist = getWishlist();
                                 
@@ -168,6 +173,8 @@
         </div>
     </section>
 
+
+
     @include('pages.detail.detail-components.tabs')
 
     @include('components.share-modal')
@@ -178,6 +185,8 @@
     <script src="{{ asset('assets/js/socialSharing.js') }}"></script>
 
     <script src="{{ asset('assets/js/detail.js') }}"></script>
+    <script src="{{ asset('assets/js/webvtt-subtitler.js') }}"></script>
+    <script src="{{ asset('assets/js/video-player.js') }}"></script>
 
 
 @stop
