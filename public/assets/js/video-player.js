@@ -165,6 +165,30 @@ $(document).ready(function () {
 
 				player.play();
 
+				player.on('ready', event => {
+					$height = $('#vidPlayer').height() + 'px';
+
+					$('#vidPlayer').css({ "object-fit": "cover", "object-position": "center center", "width": "100%", "height": $height });
+
+					// Set the desired width and height for the video
+					// const videoElement = event.target.elements.container.querySelector('video');
+
+					// console.log('clientWidth', player.elements.wrapper.clientWidth);
+					// console.log('config aspectRatio', player.config.video.aspectRatio);
+
+
+					// const aspectRatio = player.elements.wrapper.clientWidth / player.config.video.aspectRatio;
+					// console.log('aspectRatio', aspectRatio);
+					// const playerContainer = document.querySelector('.videocont');
+					// playerContainer.style.height = `${aspectRatio}px`;
+
+					// videoElement.width = 640;  
+					// videoElement.height = 360;  
+				});
+
+
+				// video.style.height = $('#vidPlayer').height() + 'px';
+
 				attactPlayerEvents(player);
 
 				// customPlayButton.style.display = 'none';
@@ -237,5 +261,18 @@ $(document).ready(function () {
 		}
 	}
 
-
+	/*
+		// Calculate the height based on the aspect ratio and container width
+		function setPlayerHeight() {
+			const aspectRatio = player.elements.wrapper.clientWidth / player.config.video.aspectRatio;
+			const playerContainer = document.querySelector('.videocont');
+			playerContainer.style.height = `${aspectRatio}px`;
+		}
+	
+		// Set the player height initially
+		setPlayerHeight();
+	
+		// Update the player height when the window is resized
+		window.addEventListener('resize', setPlayerHeight);
+		*/
 });
