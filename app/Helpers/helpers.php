@@ -546,3 +546,15 @@ if (!file_exists('getUrl')) {
         }
     }
 }
+
+if (!file_exists('getUrlWithPrefix')) {
+    function getUrlWithPrefix($path = '')
+    {
+        $lang = (app()->getLocale() != 'en') ? app()->getLocale() : '';
+        if (app()->getLocale() != 'en') {
+            return route($lang . "." . $path);
+        } else {
+            return route($path);
+        }
+    }
+}

@@ -12,11 +12,11 @@
         <div class="row justify-content-center">
             <div class="col-sm-4 col-md-6 col-lg-4">
 
-                <form method="POST" action="{{ route('profile.update') }}" id="profileAdd" autocomplete="off">
+                <form method="POST" action="{{ getUrlWithPrefix('profile.update') }}" id="profileAdd" autocomplete="off">
                     <input type="hidden" name="profile_id" value="{{ $profile['id'] }}" id="profile_id">
                     <div class="add-profile">
                         <div class="login-title">
-                            <a href="{{ route('profile.index') }}">
+                            <a href="{{ getUrlWithPrefix('profile.index') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
                                     fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -101,7 +101,7 @@
 
                         @if (@$profile['is_default'] == false)
                             <button class="login-btn bg-transparent mt-0 text-white" type="button" id="delete_profile"
-                                data-url="{{ route('profile.destroy', $profile['id']) }}">Delete
+                                data-url="{{ getUrlWithPrefix('profile.destroy', $profile['id']) }}">Delete
                                 Profile</button>
                         @endif
 
