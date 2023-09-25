@@ -1,7 +1,8 @@
 var dummyPlayer;
 
 $(document).ready(function () {
-	dummyPlayer = new Plyr('#vidPlayer');
+	var vidPlaying = false;
+	/*dummyPlayer = new Plyr('#vidPlayer');
 	var dummyInit = false;
 
 	dummyPlayer.on('play', () => {
@@ -9,11 +10,27 @@ $(document).ready(function () {
 		if (dummyInit === false) {
 			$('#playVideo').trigger('click');
 		}
+	});*/
+
+	$(document).on('click', '#watchVideo', function () {
+		if (vidPlaying) {
+
+			window.player.play();
+
+			if (!$('.videoContainer').is(":visible")) {
+				$('.videoContainer').show();
+			}
+			console.log('video is already playing');
+			$('html, body').animate({
+				scrollTop: 0
+			}, 1000);
+			return false;
+		}
+
+		$('#playVideo').trigger('click');
 	});
 
 	$(document).on('click', '#playVideo', function () {
-		console.log('yeees');
-		// $('#playVideo a').click(function () {
 		let cid = $(this).data('id');
 		let ctype = $(this).data('type');
 		let title = $(this).data('title');
@@ -28,13 +45,13 @@ $(document).ready(function () {
 			title: title,
 			lg: lg
 		};
-		console.log(customData);
+
 		sendAjaxRequest(APP_URL + '/player', 'POST', JSON.stringify(requestData),
 			onPlayerSuccess, onPlayerError, 'application/json');
 
 		function onPlayerSuccess(response) {
 			console.log(response);
-			dummyInit = true;
+			// dummyInit = true;
 
 			let video_url;
 			if (ctype == 'SHOW' || ctype == 'SEASON') {
@@ -48,6 +65,11 @@ $(document).ready(function () {
 				// if (response.payload.subtitles) {
 				// 	$('#vidPlayer').html(response.payload.html);
 				// }
+
+				$('.videoContainer').show();
+				$('html, body').animate({
+					scrollTop: 0
+				}, 1000);
 				loadVideoPlayer(video_url, response.payload.html, customData);
 			}
 		}
@@ -55,10 +77,10 @@ $(document).ready(function () {
 			try {
 				$res = JSON.parse(xhr.responseText);
 				if ($res.message != undefined && $res.message != 'failed') {
-					if (dummyPlayer) {
-						dummyPlayer.destroy();
-						dummyPlayer = new Plyr('#vidPlayer');
-					}
+					// if (dummyPlayer) {
+					// 	dummyPlayer.destroy();
+					// 	dummyPlayer = new Plyr('#vidPlayer');
+					// }
 					showToaster($res.message, 2);
 				}
 			} catch (err) { }
@@ -68,9 +90,9 @@ $(document).ready(function () {
 
 	const loadVideoPlayer = function (source, subtitles, customData = false) {
 
-		if (dummyPlayer) {
-			dummyPlayer.destroy();
-		}
+		// if (dummyPlayer) {
+		// 	dummyPlayer.destroy();
+		// }
 
 		$('#vidPlayer').html(subtitles);
 		// const source = 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8';
@@ -79,6 +101,8 @@ $(document).ready(function () {
 		const video = document.querySelector('video');
 		const forwardButton = document.querySelector('.forward-btn');
 		const rewindButton = document.querySelector('.rewind-btn');
+		const closePlayer = document.getElementById('closePlayer');
+		const watchVideo = document.getElementById('watchVideo');
 		// const customPlayButton = document.getElementById('customPlayButton');
 
 		const defaultOptions = {
@@ -137,6 +161,7 @@ $(document).ready(function () {
 
 				// Initialize new Plyr player with quality options
 				player = new Plyr(video, defaultOptions);
+				window.player = player;
 
 				player.play();
 
@@ -158,6 +183,10 @@ $(document).ready(function () {
 		rewindButton.addEventListener('click', () => {
 			player.currentTime -= 10;
 		});
+		closePlayer.addEventListener('click', () => {
+			player.pause();
+			$('.videoContainer').hide();
+		});
 
 		function updateQuality(newQuality) {
 			if (newQuality === 0) {
@@ -175,7 +204,8 @@ $(document).ready(function () {
 
 	const attactPlayerEvents = function (player) {
 		player.on('play', event => {
-			console.log(player);
+			vidPlaying = true;
+			console.log('playing');
 			setplaytracking(player);
 		});
 
