@@ -62,7 +62,7 @@
 
                 $.ajax({
                     // url: APP_URL+'/sendotp',
-                    url: '{{ route('sendotp') }}',
+                    url: "{{ route('sendotp') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -96,7 +96,7 @@
             var formData = $('#mobile-number-form-id').serialize();
             $.ajax({
                 // url: APP_URL+'/sendotp',
-                url: '{{ route('sendotp') }}',
+                url: "{{ route('sendotp') }}",
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
@@ -161,7 +161,7 @@
                 var formData = $('#forgot-pwd-form-id').serialize();
                 // alert(formData);
                 $.ajax({
-                    url: '{{ route('sendforgototp') }}',
+                    url: "{{ route('sendforgototp') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -196,7 +196,7 @@
             e.preventDefault();
             var formData = $('#forgot-pwd-form-id').serialize();
             $.ajax({
-                url: '{{ route('sendforgototp') }}',
+                url: "{{ route('sendforgototp') }}",
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
@@ -296,7 +296,7 @@
                 var formData = $('#verify-number-form-id').serialize();
                 // alert(formData);
                 $.ajax({
-                    url: '{{ route('verifyotp') }}',
+                    url: "{{ route('verifyotp') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -364,7 +364,7 @@
             // alert(formData);
             if (name != '' && password != '' && confirmPassword != '') {
                 $.ajax({
-                    url: '{{ route('register') }}',
+                    url: "{{ route('register') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -444,7 +444,7 @@
             // alert(formData);
             if (name != '' && password != '') {
                 $.ajax({
-                    url: '{{ route('loginwithpwd') }}',
+                    url: "{{ route('loginwithpwd') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -504,7 +504,7 @@
                 var formData = $('#verify-forgot-number-form-id').serialize();
                 // alert(formData);
                 $.ajax({
-                    url: '{{ route('verifyforgototp') }}',
+                    url: "{{ route('verifyforgototp') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -560,7 +560,7 @@
                 var formData = $('#set-password-form-id').serialize();
                 // alert("login sucess");
                 $.ajax({
-                    url: '{{ route('resetpwdapi') }}',
+                    url: "{{ route('resetpwdapi') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
