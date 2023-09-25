@@ -61,7 +61,7 @@ class PageDetailController extends Controller
                 d($about);
                 echo '--------result --------';
 
-                d($result);
+                dd($result);
                 die;
             }
 

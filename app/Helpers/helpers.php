@@ -451,6 +451,10 @@ function isUserLoggedIn()
     return Session::get('user_id') ? true : false;
 }
 
+function getUserId()
+{
+    return Session::get('user_id') ?? '';
+}
 
 function getContentUrl($value)
 {
@@ -530,4 +534,18 @@ function getCardImage($content, $key, $size = 'medium', $fallback = [])
     $replaceWith = 'st2.epicon.in';
     $img_url = str_replace($match, $replaceWith, $img_url);
     return $img_url;
+}
+
+
+function isActiveSubscription()
+{
+    if (isUserLoggedIn()) {
+        // $today = strtotime(date("Y-m-d")); //date("Y-m-d")."T".date("H:i:s")."Z";
+        // @$endtime = strtotime($user->subscriptions['subscription_end_date']);
+        // if ((!empty($user->subscriptions['subscription_end_date'])) && $today < $endtime) {
+        //     return true;
+        // }
+    }
+
+    return false;
 }

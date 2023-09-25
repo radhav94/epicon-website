@@ -12,7 +12,7 @@
              
              ?>
 
-             <li class="pod-main position-relative py-3">
+             <li class="pod-main position-relative py-3" data-id="{{ $value['ID'] }}">
                  <div class="col-sm-11 ps-3 d-flex">
                      <div class="pik position-relative">
                          <a href="{{ getContentUrl($value) }}" class="pik-img">

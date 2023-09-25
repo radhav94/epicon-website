@@ -8,6 +8,7 @@ use App\Http\Controllers\RetroRewindController;
 use App\Http\Controllers\SupermixController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\PlayerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,8 @@ Route::any('/supermix', [SupermixController::class, 'superMix']);
 Route::get('/kids/{slug?}', [PageController::class, 'kidsIndex'])->name('kidsIndex');
 Route::get('/{slug}', [PageController::class, 'index']);
 Route::get('/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
+
+
+
+Route::post('/player', [PlayerController::class, 'getVideoUrl']);
+Route::post('/setplayTracking', [PlayerController::class, 'setplayTracking']);
