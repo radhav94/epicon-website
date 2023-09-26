@@ -6,8 +6,8 @@
                 <div class="childpin text-center py-4">
 
                     <form method="POST" action="{{ route('profile.setChildPin') }}" id="setPinForn" autocomplete="off">
-                        <h5 class="mb-3">Create a 4-digit Child PIN</h5>
-                        <p class="small mb-4">This PIN will be used to switch from kids profile to all adult profiles
+                        <h5 class="mb-3">{{__('Create a 4-digit Child PIN')}}</h5>
+                        <p class="small mb-4">{{__('This PIN will be used to switch from kids profile to all adult profiles')}}
                         </p>
                         <div class="childpin-input">
                             <input class="cpin onlydigit" type="text" min="0" max="9" maxlength="1"
@@ -21,7 +21,7 @@
 
                         </div>
                         <button class="login-btn mt-4" style="width: 280px;" type="submit">
-                            Done
+                            {{__('Done')}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -34,7 +34,7 @@
                         </button>
                         <button class="login-btn mt-0 bg-transparent text-white" class="btn-close"
                             data-bs-dismiss="modal" aria-label="Close" style="width: 280px;" type="button"
-                            id="pinCloseBtn">Cancel</button>
+                            id="pinCloseBtn">{{__('Cancel')}}</button>
                     </form>
                 </div>
             </div>
