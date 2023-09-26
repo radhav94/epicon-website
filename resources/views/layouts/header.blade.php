@@ -139,8 +139,8 @@ $action = app('request')->route()->getAction();
                 'premium' => 'Premium',
             ];
         }
-        
-        $current_route = request()->path();
+
+        $current_route = str_replace("hi/", "", request()->path());
         ?>
         <ul class="menu-item list-unstyled d-flex mb-0">
             @foreach ($links as $key => $value)
