@@ -118,8 +118,8 @@ foreach ($lang as $val) {
     Route::get($prefix . '/live-tv', [LiveTvController::class, 'livetv'])->name('live-tv');
     Route::get($prefix . '/upcoming-epicon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
     Route::get($prefix . '/new-popular', [PopularController::class, 'NewsPopular'])->name('new-popular');
-    Route::get($prefix . '/trendingsearch', [SearchController::class, 'trendingsearch'])->name('trendingsearch');
-    Route::post($prefix . '/search', [SearchController::class, 'search'])->name('search');
+    Route::get($prefix . '/search', [SearchController::class, 'trendingsearch'])->name('search');
+    Route::post($prefix . '/get-search', [SearchController::class, 'search'])->name('get-search');
     Route::get($prefix . '/midpage/{pageslug}/{catalog}', function ($pageslug, $catalog) {
         // dd($pageslug);
         if ($pageslug != 'live-tv') {

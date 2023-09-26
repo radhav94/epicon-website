@@ -620,7 +620,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
         }
 
         $("#searchBrowseBtn").click(function() {
-            window.location.href = "{{ getUrl('trendingsearch') }}";
+            window.location.href = "{{ getUrl('search') }}";
         })
 
         $("#clearSearchBtn").click(function() {

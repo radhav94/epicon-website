@@ -152,7 +152,7 @@ $action = app('request')->route()->getAction();
         <div class="main-header-right d-flex align-items-center">
             <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" class="p-2 me-2">
                 <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt=""></a>
-            <a href="{{ getUrl('trendingsearch') }}" class="p-2 me-2">
+            <a href="{{ getUrl('search') }}" class="p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">
                     <circle cx="11.6842" cy="11.6842" r="7.71929" stroke="white" stroke-width="1.92982" />
