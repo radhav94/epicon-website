@@ -40,177 +40,63 @@
                     </button>
                 </div>
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-12" id="searchTab" style="display:none">
                 <div class="w-100 library mb-0 search-main">
                     <ul class="nav nav-pills d-flex justify-content-center pb-3" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link ep active" id="episode" data-bs-toggle="pill" data-bs-target="#pills-episode" type="button" role="tab" aria-controls="pills-episode" aria-selected="true">All</button>
+                            <button class="nav-link ep active" id="episode" data-bs-toggle="pill" data-bs-target="#pills-episode" type="button" role="tab" aria-controls="pills-episode" aria-selected="true">{{__('All')}}</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="morelike" data-bs-toggle="pill" data-bs-target="#pills-morelike" type="button" role="tab" aria-controls="pills-morelike" aria-selected="false">Movies</button>
+                            <button class="nav-link" id="morelike" data-bs-toggle="pill" data-bs-target="#pills-morelike" type="button" role="tab" aria-controls="pills-morelike" aria-selected="false">{{__('Movies')}}</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="trailors" data-bs-toggle="pill" data-bs-target="#pills-trailors" type="button" role="tab" aria-controls="pills-trailors" aria-selected="false">Shows</button>
+                            <button class="nav-link" id="trailors" data-bs-toggle="pill" data-bs-target="#pills-trailors" type="button" role="tab" aria-controls="pills-trailors" aria-selected="false">{{__('Shows')}}</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="history" data-bs-toggle="pill" data-bs-target="#pills-about" type="button" role="tab" aria-controls="pills-about" aria-selected="false">Podcast</button>
+                            <button class="nav-link" id="history" data-bs-toggle="pill" data-bs-target="#pills-about" type="button" role="tab" aria-controls="pills-about" aria-selected="false">{{__('Podcasts')}}</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="kids" data-bs-toggle="pill" data-bs-target="#pills-kids" type="button" role="tab" aria-controls="pills-kids" aria-selected="false">Kids</button>
+                            <button class="nav-link" id="kids" data-bs-toggle="pill" data-bs-target="#pills-kids" type="button" role="tab" aria-controls="pills-kids" aria-selected="false">{{__('Kids')}}</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="games" data-bs-toggle="pill" data-bs-target="#pills-games" type="button" role="tab" aria-controls="pills-games" aria-selected="false">Games</button>
+                            <button class="nav-link" id="games" data-bs-toggle="pill" data-bs-target="#pills-games" type="button" role="tab" aria-controls="pills-games" aria-selected="false">{{__('Games')}}</button>
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-episode" role="tabpanel" aria-labelledby="my-list">
-                            <ul class="list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4">
-                                <li class="episode-main mb-4" id="Alltopresult">
-                                    <!--  @isset($Alltopresponse)
-        {!! $Alltopresponse !!}
-    @endisset -->
-                                    <!-- <div class="pik">
-                                            <img src="{{ asset('/img/episode.png') }}" alt="img">
-                                            <img class="crown" src="{{ asset('/img/crown.svg') }}" alt="icon">
-                                        </div>
-
-                                        <div class="episode-text-details">
-                                            <h6>E1 - It’s Man who exist in the dark</h6>
-                                            <span>12 May 2023 | 42m</span>
-                                            <p class="search-top mt-2">The first episode of Laal Banarasi is about the struggle of a Banaras based poor weaver girl Gauri with poverty and education and about the ambition perfection of a Shakuntala Saree owner Garv.</p>
-                                            <div class="d-flex align-items-center">
-                                                <button class="fill-btn em ms-0">Watch S1 • E1</button>
-                                                <button class="rounded-grey-btn ms-3"><img src="{{ asset('/img/add-icon.svg') }}" alt="icon"></button>
-                                            </div>
-                                        </div> -->
-
-                                </li>
-                            </ul>
-                            <div class="Alltopresult-error" style="color:white;">No Results Found</div>
-                            <!-- 'pages.detail.detail-components.tabs' -->
-                            @include('pages.search.trending_searchlist')
-
+                            <div class="topResult" id="Alltopresult"></div>
+                            <div class="otherResult" id="AllOtherResult"></div>
                         </div>
                         <div class="tab-pane fade" id="pills-morelike" role="tabpanel" aria-labelledby="my-list">
-                            <ul class="list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4">
-                                <li class="episode-main mb-4" id="Moviestopresult">
-                                    <!-- <div class="pik">
-                                            <img src="public/img/episode.png" alt="img">
-                                            <img class="crown" src="public/img/crown.svg" alt="icon">
-                                        </div>
-                                        <div class="episode-text-details">
-                                            <h6>E1 - It’s Man who exist in the dark</h6>
-                                            <span>12 May 2023 | 42m</span>
-                                            <p class="search-top mt-2">The first episode of Laal Banarasi is about the struggle of a Banaras based poor weaver girl Gauri with poverty and education and about the ambition perfection of a Shakuntala Saree owner Garv.</p>
-                                            <div class="d-flex align-items-center">
-                                                <button class="fill-btn em ms-0">Watch S1 • E1</button>
-                                                <button class="rounded-grey-btn ms-3"><img src="public/img/add-icon.svg" alt="icon"></button>
-                                            </div>
-                                        </div> -->
-
-                                </li>
-                            </ul>
-                            <div class="Moviestopresult-error" style="color:white;">No Results Found</div>
-                            @include('pages.search.trending_searchlist')
-
+                            <div class="topResult" id="Moviestopresult"></div>
+                            <div class="otherResult" id="MoviesOtherResult"></div>
                         </div>
                         <div class="tab-pane fade" id="pills-trailors" role="tabpanel" aria-labelledby="my-list">
-                            <ul class="list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4">
-                                <li class="episode-main mb-4" id="Showtopresult">
-                                    <!-- <div class="pik">
-                                            <img src="public/img/episode.png" alt="img">
-                                            <img class="crown" src="public/img/crown.svg" alt="icon">
-                                        </div>
-                                        <div class="episode-text-details">
-                                            <h6>E1 - It’s Man who exist in the dark</h6>
-                                            <span>12 May 2023 | 42m</span>
-                                            <p class="search-top mt-2">The first episode of Laal Banarasi is about the struggle of a Banaras based poor weaver girl Gauri with poverty and education and about the ambition perfection of a Shakuntala Saree owner Garv.</p>
-                                            <div class="d-flex align-items-center">
-                                                <button class="fill-btn em ms-0">Watch S1 • E1</button>
-                                                <button class="rounded-grey-btn ms-3"><img src="public/img/add-icon.svg" alt="icon"></button>
-                                            </div>
-                                        </div> -->
-
-                                </li>
-                            </ul>
-                            <div class="Showtopresult-error" style="color:white;">No Results Found</div>
-                            @include('pages.search.trending_searchlist')
-
-
+                            <div class="topResult" id="Showtopresult"></div>
+                            <div class="otherResult" id="ShowOtherResult"></div>
                         </div>
                         <div class="tab-pane fade" id="pills-about" role="tabpanel" aria-labelledby="my-list">
-                            <ul class="list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4">
-                                <li class="episode-main mb-4" id="Podcasttopresult">
-                                    <!-- <div class="pik">
-                                            <img src="public/img/episode.png" alt="img">
-                                            <img class="crown" src="public/img/crown.svg" alt="icon">
-                                        </div>
-                                        <div class="episode-text-details">
-                                            <h6>E1 - It’s Man who exist in the dark</h6>
-                                            <span>12 May 2023 | 42m</span>
-                                            <p class="search-top mt-2">The first episode of Laal Banarasi is about the struggle of a Banaras based poor weaver girl Gauri with poverty and education and about the ambition perfection of a Shakuntala Saree owner Garv.</p>
-                                            <div class="d-flex align-items-center">
-                                                <button class="fill-btn em ms-0">Watch S1 • E1</button>
-                                                <button class="rounded-grey-btn ms-3"><img src="public/img/add-icon.svg" alt="icon"></button>
-                                            </div>
-                                        </div> -->
-
-                                </li>
-                            </ul>
-                            <div class="Podcasttopresult-error" style="color:white;">No Results Found</div>
-                            @include('pages.search.trending_searchlist')
-
+                            <div class="topResult" id="Podcasttopresult"></div>
+                            <div class="otherResult" id="PodcastOtherResult"></div>
                         </div>
                         <div class="tab-pane fade" id="pills-kids" role="tabpanel" aria-labelledby="my-list">
-                            <ul class="list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4">
-                                <li class="episode-main mb-4" id="Kidstopresult">
-
-                                    <!-- <div class="pik">
-                                            <img src="public/img/episode.png" alt="img">
-                                            <img class="crown" src="public/img/crown.svg" alt="icon">
-                                        </div>
-                                        <div class="episode-text-details">
-                                            <h6>E1 - It’s Man who exist in the dark</h6>
-                                            <span>12 May 2023 | 42m</span>
-                                            <p class="search-top mt-2">The first episode of Laal Banarasi is about the struggle of a Banaras based poor weaver girl Gauri with poverty and education and about the ambition perfection of a Shakuntala Saree owner Garv.</p>
-                                            <div class="d-flex align-items-center">
-                                                <button class="fill-btn em ms-0">Watch S1 • E1</button>
-                                                <button class="rounded-grey-btn ms-3"><img src="public/img/add-icon.svg" alt="icon"></button>
-                                            </div>
-                                        </div> -->
-
-                                </li>
-                            </ul>
-                            <div class="Kidstopresult-error" style="color:white;">No Results Found</div>
-                            @include('pages.search.trending_searchlist')
-
-
+                            <div class="topResult" id="Kidstopresult"></div>
+                            <div class="otherResult" id="KidsOtherResult"></div>
                         </div>
                         <div class="tab-pane fade" id="pills-games" role="tabpanel" aria-labelledby="my-list">
-                            <ul class="list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4">
-                                <li class="episode-main mb-4" id="Gamestopresult">
-                                    <!-- <div class="pik">
-                                            <img src="public/img/episode.png" alt="img">
-                                            <img class="crown" src="public/img/crown.svg" alt="icon">
-                                        </div>
-                                        <div class="episode-text-details">
-                                            <h6>E1 - It’s Man who exist in the dark</h6>
-                                            <span>12 May 2023 | 42m</span>
-                                            <p class="search-top mt-2">The first episode of Laal Banarasi is about the struggle of a Banaras based poor weaver girl Gauri with poverty and education and about the ambition perfection of a Shakuntala Saree owner Garv.</p>
-                                            <div class="d-flex align-items-center">
-                                                <button class="fill-btn em ms-0">Watch S1 • E1</button>
-                                                <button class="rounded-grey-btn ms-3"><img src="public/img/add-icon.svg" alt="icon"></button>
-                                            </div>
-                                        </div> -->
-
-                                </li>
-                            </ul>
-                            <div class="Gamestopresult-error" style="color:white;">No Results Found</div>
-                            @include('pages.search.trending_searchlist')
-
-
+                            <div class="topResult" id="Gamestopresult"></div>
+                            <div class="otherResult" id="GamesOtherResult"></div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="col-sm-12" id="noData-error" style="color:white; padding-top: 20px;display:none;">
+                <p style="text-align:center">{{__('No Results Found')}}</p>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="w-100 library mb-0 search-main">
+                    @include('pages.search.trending_searchlist')
                 </div>
             </div>
         </div>

@@ -267,7 +267,6 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                                 <img src="{{ $genre['cover_image']['medium'] }}" alt="{{ $genre['genre'] }}">
                                                 <div class="is-overlay">
                                                     <h1>{{ $genre['genre'] }}</h1>
-                                                    <p>{{__('Like NH10, Talaash, Airlift, Mirzapur, Breathe')}}</p>
                                                 </div>
                                             </div>
                                         <?php } ?>

@@ -9,6 +9,8 @@ $(document).ready(function () {
 });
 
 $("#searchname").on("keyup", function () {
+    $("#searchTab, #noData-error").hide();
+    $('.otherResult .topResult').html('');
     var searchtext = $('input[name="search"]').val();
     if (searchtext != "") {
         $(".remove-text").show();
@@ -19,75 +21,84 @@ $("#searchname").on("keyup", function () {
     console.log(searchtext + "Text Value");
     var lang = $("html").attr("lang") != 'en' ? $("html").attr("lang") + "/" : "";
     var ajaxUrl = lang + 'search';
-    $.ajax({
-        url: "/"+ajaxUrl,
-        type: 'POST',
-        data: { 'searchinput': searchtext },
-        dataType: 'json',
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function (data) {
-            var response = data.payload.data
+    if (searchtext.length > 2) {
+        $.ajax({
+            url: "/" + ajaxUrl,
+            type: 'POST',
+            data: { 'searchinput': searchtext },
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                var response = data.payload.data;
 
-            var searchText = $('#searchname').val();
+                if (data.payload.success) {
+                    var result = false;
+                    var topResult = response.topResult;
+                    var otherResult = response.otherResult;
 
-            if (data.payload.success) {
-                $('#Alltopresult').html(response.AlltopResult);
-                $('#Moviestopresult').html(response.MoviestopResult);
-                $('#Showtopresult').html(response.ShowstopResult);
-                $('#Podcasttopresult').html(response.PodcaststopResult);
-                $('#Kidstopresult').html(response.KidstopResult);
-                $('#Gamestopresult').html(response.GamestopResult);
-                if (searchText.length > 2) {
-                    if (response.AlltopResult != '') {
-                        $('.Alltopresult-error').hide();
+                    if (topResult) {
+                        $('#Alltopresult').html(topResult.AllResult);
+                        $('#Moviestopresult').html(topResult.MoviesResult);
+                        $('#Showtopresult').html(topResult.ShowsResult);
+                        $('#Podcasttopresult').html(topResult.PodcastsResult);
+                        $('#Kidstopresult').html(topResult.KidsResult);
+                        $('#Gamestopresult').html(topResult.GamesResult);
                     } else {
-                        $('.Alltopresult-error').show();
+                        $('.topResult').html('');
                     }
-                    if (response.MoviestopResult != '') {
-                        $('.Moviestopresult-error').hide();
+
+                    if (otherResult) {
+                        if (otherResult.AllResult != "") {
+                            result = true;
+                            $('#AllOtherResult').html(otherResult.AllResult);
+                        }
+                        if (otherResult.MoviesResult != "") {
+                            result = true;
+                            $('#MoviesOtherResult').html(otherResult.MoviesResult);
+                        }
+                        if (otherResult.ShowsResult != "") {
+                            result = true;
+                            $('#ShowOtherResult').html(otherResult.ShowsResult);
+                        }
+                        if (otherResult.PodcastsResult != "") {
+                            result = true;
+                            $('#PodcastOtherResult').html(otherResult.PodcastsResult);
+                        }
+                        if (otherResult.KidsResult != "") {
+                            result = true;
+                            $('#KidsOtherResult').html(otherResult.KidsResult);
+                        }
+                        if (otherResult.GamesResult != "") {
+                            result = true;
+                            $('#GamesOtherResult').html(otherResult.GamesResult);
+                        }
                     } else {
-                        $('.Moviestopresult-error').show();
+                        $('.otherResult').html('');
                     }
-                    if (response.ShowstopResult != '') {
-                        $('.Showtopresult-error').hide();
+
+                    if (result) {
+                        $("#searchTab").show();
                     } else {
-                        $('.Showtopresult-error').show();
-                    }
-                    if (response.PodcaststopResult != '') {
-                        $('.Podcasttopresult-error').hide();
-                    } else {
-                        $('.Podcasttopresult-error').show();
-                    }
-                    if (response.KidstopResult != '') {
-                        $('.Kidstopresult-error').hide();
-                    } else {
-                        $('.Kidstopresult-error').show();
-                    }
-                    if (response.GamestopResult != '') {
-                        $('.Gamestopresult-error').hide();
-                    } else {
-                        $('.Gamestopresult-error').show();
+                        $("#searchTab").hide();
+                        $("#noData-error").show();
                     }
                 } else {
-                    $('.Alltopresult-error, .Moviestopresult-error, .Showtopresult-error, .Podcasttopresult-error, .Kidstopresult-error, .Gamestopresult-error').hide();
+                    $("#searchTab").hide();
+                    $("#noData-error").show();
                 }
-            } else {
-                if (searchtext != "") {
-                    $('.Alltopresult-error').show();
-                }
+            },
+            error: function (xhr, status, error) {
+                console.log("in error function");
             }
-        },
-        error: function (xhr, status, error) {
-            console.log("in error function");
-        }
-    });
+        });
+    }
 });
 
 $(document).on('click', '.remove-text', function () {
     $('input[name="search"]').val('');
-    $('#Alltopresult, #Moviestopresult, #Showtopresult, #Podcasttopresult, #Kidstopresult, #Gamestopresult').html("");
-    $('.Alltopresult-error, .Moviestopresult-error, .Showtopresult-error, .Podcasttopresult-error, .Kidstopresult-error, .Gamestopresult-error').hide();
+    $("#searchTab, #noData-error").hide();
+    $('.otherResult .topResult').html('');
     $(this).hide();
 });

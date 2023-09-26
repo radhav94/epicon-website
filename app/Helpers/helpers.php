@@ -509,12 +509,16 @@ function generateCategoryResponse($result)
     $wishlistAction = getWishListAction($topResult, $wishlist, 2);
     $url = getContentUrl($topResult);
 
-    return '<div class="pik"><img src="' . $topResult['cover_image']['medium'] . '" alt="img">' . $premium . '</div>'
+    return '<h5 class="text-white">Top Result</h5>'
+        . '<ul class="list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4">'
+        . '<li class="episode-main mb-4">'
+        . '<div class="pik"><img src="' . $topResult['cover_image']['medium'] . '" alt="img">' . $premium . '</div>'
         . '<div class="episode-text-details">'
         . '<h6>' . $topResult['title'] . '</h6>'
         . '<span>' . @$dateText . ' | ' . @$topResult['duration'] . '</span>'
         . '<p class="search-top mt-2">' . $topResult['description'] . '</p>'
-        . '<div class="d-flex align-items-center"><a href="' . $url . '"><button class="fill-btn em ms-0">'.__('Watch').'</button></a>' . $wishlistAction . '</div></div>';
+        . '<div class="d-flex align-items-center"><a href="' . $url . '"><button class="fill-btn em ms-0">'.__('Watch').'</button></a>' . $wishlistAction . '</div></div>'
+        . '</li></ul>';
 }
 
 function getCardImage($content, $key, $size = 'medium', $fallback = [])
