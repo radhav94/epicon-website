@@ -14,10 +14,13 @@ class PlayerController extends Controller
 
     public function getVideoUrl(Request $request): JsonResponse
     {
-        // $data = [
-        //     'video_url' => 'https://epiconvod.s.llnwi.net/mmd-video/lmpl_test/laal-banarasi/season-1/e1-laal-banarasi/stream.ismd/manifest.m3u8?stream=144p;240p;320p;480p;720p;1080p&s=1695536327&e=1696832327&h=6335870e548a7f7dbef3b6244bc52f6e&hls_force_no_caption_tag=true&filter=(type!=\"audio\"||systemBitrate>128000)',
-        //     'promo_url' => 'https://epiconvod-mmd-cust.lldns.net/lmpl_test/laal-banarasi/promo/stream.ismd/manifest.m3u8?stream=144p;240p;320p;480p;720p;1080p'
-        // ];
+        $data = [
+            // 'video_url' => 'https://epiconvod.s.llnwi.net/mmd-video/lmpl_test/laal-banarasi/season-1/e1-laal-banarasi/stream.ismd/manifest.m3u8?stream=144p;240p;320p;480p;720p;1080p&s=1695536327&e=1696832327&h=6335870e548a7f7dbef3b6244bc52f6e&hls_force_no_caption_tag=true&filter=(type!=\"audio\"||systemBitrate>128000)',
+            'video_url' => urlencode('https://epiconvod.s.llnwi.net/mmd-video/lmpl_test/epicpedia/season-1/e1-mount-everest/stream.ismd/manifest.m3u8?stream=144p;240p;320p;480p;720p;1080p&s=1695536327&e=1696832327&h=6335870e548a7f7dbef3b6244bc52f6e&hls_force_no_caption_tag=true&filter=(type!=\"audio\"||systemBitrate>128000)'),
+            'promo_url' => 'https://epiconvod-mmd-cust.lldns.net/lmpl_test/laal-banarasi/promo/stream.ismd/manifest.m3u8?stream=144p;240p;320p;480p;720p;1080p',
+            'subtitles' => '',
+            'html' => '',
+        ];
 
         // return JSONResponse(200, 'success.', $data);
 
@@ -62,6 +65,7 @@ class PlayerController extends Controller
 
             $data = [
                 'video_url' => $result['url']['video_url'] ?? '',
+                'promo_url' => $result['url']['promo_url'] ?? '',
                 'subtitles' => $temp,
                 'html' => $html,
             ];
@@ -81,18 +85,17 @@ class PlayerController extends Controller
                 'duration' => $request->elapsed,
                 'title' => $request->title,
                 'type' => $request->tp,
-                'profile_id' => getUserId(),
+                'profile_id' => getProfileId(),
                 'completed' => $request->completed ?? false,
             ];
 
-            $result = CurlAPI("pages/setplaytracking", "POST", $param, 1);
-            // dd($result);
-            if ($result && @$result['success'] ==  true) {
+            $result = CurlAPI("pages/setplaytracking", "POST", $param, 1, true);
 
+            if ($result && @$result['success'] ==  true) {
                 return true;
-            } else {
-                return false;
             }
+
+            return false;
         }
     }
 }

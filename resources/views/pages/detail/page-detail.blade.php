@@ -1,3 +1,12 @@
+<?php
+$loadPlayer = @$content['free_premium'] == false || isActiveSubscription() ? true : false;
+
+if (@$content['content_type'] == 'SHOW' || $content['content_type'] == 'SEASON') {
+    $loadPlayer = true;
+}
+$loadPlayer = true;
+?>
+
 @extends('layouts.default')
 @section('title', @$content['title'])
 
@@ -6,6 +15,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
         integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    @if ($loadPlayer)
+        <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    @endif
 @stop
 
 @section('content')
@@ -14,7 +27,9 @@
     ?>
     <input type="hidden" id="cont_id" value="{{ $content['ID'] }}">
 
-    {{-- @include('pages.detail.video-player') --}}
+    @if ($loadPlayer)
+        @include('pages.detail.video-player')
+    @endif
 
     <section class="content-detail-banner position-relative">
         <div class="banner-main position-relative">
@@ -31,7 +46,7 @@
                     <div class="col-sm-12">
                         <div class="banner-content">
                             <div class="all-btn">
-                                <button class="fill-btn mobile-width me-3 ms-0">
+                                <button class="fill-btn mobile-width me-3 ms-0" id="watchVideo">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                         viewBox="0 0 28 28" fill="none">
                                         <path
@@ -185,8 +200,14 @@
     <script src="{{ asset('assets/js/socialSharing.js') }}"></script>
 
     <script src="{{ asset('assets/js/detail.js') }}"></script>
-    <script src="{{ asset('assets/js/webvtt-subtitler.js') }}"></script>
-    <script src="{{ asset('assets/js/video-player.js') }}"></script>
+
+    @if ($loadPlayer)
+        <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+        <script src="https://cdn.rawgit.com/video-dev/hls.js/18bb552/dist/hls.min.js"></script>
+        <script src="{{ asset('assets/js/webvtt-subtitler.js') }}"></script>
+        <script src="{{ asset('assets/js/video-player.js') }}"></script>
+    @endif
+
 
 
 @stop

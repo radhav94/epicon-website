@@ -1,7 +1,3 @@
-<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
-<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
-<script src="https://cdn.rawgit.com/video-dev/hls.js/18bb552/dist/hls.min.js"></script>
-
 <style>
     .videoContainer {
         position: relative;
@@ -40,9 +36,17 @@
         color: white;
         font-size: 36px;
     }
+
+    #closePlayer {
+        text-align: right;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+    }
 </style>
 
-<div class="container videoContainer">
+<div class="container videoContainer" style="display: none">
+    <p id="closePlayer">Close</p>
     <div id="playVideo" data-id="{{ $content['ID'] }}" data-type="{{ $content['content_type'] }}"
         data-lg="{{ isUserLoggedIn() }}" data-title="{{ $content['title'] }}">
 
