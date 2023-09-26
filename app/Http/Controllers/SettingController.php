@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Redirect;
 
 class SettingController extends Controller
 {
+
     public function Setting()
     {
         $request = Request();
@@ -39,7 +41,10 @@ class SettingController extends Controller
         }
         $syncPin = array_key_exists("pin", $syncDevice) ? $syncDevice['pin'] : "";
 
-        return view('settings.settings', compact('genrelist', 'user_data', 'activeDevice', 'syncPin'));
+        $displayLanguage = $request->session()->has('displayLanguage') ? $request->session()->get('displayLanguage') : 'en';
+        $listLanguage = $request->session()->has('listLanguage') ? $request->session()->get('listLanguage') : 'all';
+
+        return view('settings.settings', compact('genrelist', 'user_data', 'activeDevice', 'syncPin', 'displayLanguage', 'listLanguage'));
     }
 
     public function updateUserGenre()
@@ -165,5 +170,23 @@ class SettingController extends Controller
         }
         $syncPin = array_key_exists("pin", $response) ? $response['pin'] : "";
         return JSONResponse(200, '', ['message' => @$response['message'], 'success' => @$response['success'], 'syncPin' => $syncPin]);
+    }
+
+    function setLanguage()
+    {
+        $request = Request();
+        $language = $request->input('language');
+        $type = $request->input('type');
+        if ($type == "display") {
+		    $request->session()->put('displayLanguage', $language);
+            app()->setLocale(trim($language)); 
+        } else {
+		    $request->session()->put('listLanguage', $language);
+        }
+		if ($language == 'hi') {
+			return redirect('/hi');
+		} else {
+			return redirect('/');
+		}
     }
 }

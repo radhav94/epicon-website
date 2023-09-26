@@ -89,7 +89,7 @@ function getDispLangContent($content, $displayLanguageParam, $item)
         if ($displayLanguageParam == "ENGLISH") {
             return $content['description'];
         } elseif ($displayLanguageParam == "HINDI") {
-            return !empty($content['description_ln']['HINDI']) ? $content['description_ln']['HINDI'] : $content['description'];
+            return !empty($content['description_ln']['HINDI']) ? $content['description_ln']['HINDI'] : @$content['description'];
         } elseif ($displayLanguageParam == "TAMIL") {
             return !empty($content['description_ln']['TAMIL']) ? $content['description_ln']['TAMIL'] : $content['description'];
         } elseif ($displayLanguageParam == "MARATHI") {
@@ -101,7 +101,7 @@ function getDispLangContent($content, $displayLanguageParam, $item)
         if ($displayLanguageParam == "ENGLISH") {
             return @$content['title'];
         } elseif ($displayLanguageParam == "HINDI") {
-            return !empty($content['title_ln']['HINDI']) ? $content['title_ln']['HINDI'] : $content['title'];
+            return !empty($content['title_ln']['HINDI']) ? $content['title_ln']['HINDI'] : @$content['title'];
         } elseif ($displayLanguageParam == "TAMIL") {
             return !empty($content['title_ln']['TAMIL']) ? $content['title_ln']['TAMIL'] : $content['title'];
         } elseif ($displayLanguageParam == "MARATHI") {
@@ -113,7 +113,7 @@ function getDispLangContent($content, $displayLanguageParam, $item)
         if ($displayLanguageParam == "ENGLISH") {
             return @$content['cover_image'];
         } elseif ($displayLanguageParam == "HINDI") {
-            return !empty($content['cover_image_v2_ln']['HINDI']) ? $content['cover_image_v2_ln']['HINDI'] : $content['cover_image'];
+            return !empty($content['cover_image_v2_ln']['HINDI']) ? $content['cover_image_v2_ln']['HINDI'] : @$content['cover_image'];
         } elseif ($displayLanguageParam == "TAMIL") {
             return !empty($content['cover_image_v2_ln']['TAMIL']) ? $content['cover_image_v2_ln']['TAMIL'] : $content['cover_image'];
         } elseif ($displayLanguageParam == "MARATHI") {
@@ -125,7 +125,7 @@ function getDispLangContent($content, $displayLanguageParam, $item)
         if ($displayLanguageParam == "ENGLISH") {
             return @$content['short_description'];
         } elseif ($displayLanguageParam == "HINDI") {
-            return !empty($content['short_description_ln']['HINDI']) ? $content['short_description_ln']['HINDI'] : $content['short_description'];
+            return !empty($content['short_description_ln']['HINDI']) ? $content['short_description_ln']['HINDI'] : @$content['short_description'];
         } elseif ($displayLanguageParam == "TAMIL") {
             return !empty($content['short_description_ln']['TAMIL']) ? $content['short_description_ln']['TAMIL'] : $content['short_description'];
         } elseif ($displayLanguageParam == "MARATHI") {
@@ -139,7 +139,7 @@ function getDispLangContent($content, $displayLanguageParam, $item)
             // return $content['banner_image']['original'];
             return @$content['banner_image'];
         } elseif ($displayLanguageParam == "HINDI") {
-            return !empty($content['banner_image_v2_ln']['HINDI']) ? $content['banner_image_v2_ln']['HINDI'] : $content['banner_image'];
+            return !empty($content['banner_image_v2_ln']['HINDI']) ? $content['banner_image_v2_ln']['HINDI'] : @$content['banner_image'];
         } elseif ($displayLanguageParam == "TAMIL") {
             return !empty($content['banner_image_v2_ln']['TAMIL']) ? $content['banner_image_v2_ln']['TAMIL'] : $content['banner_image'];
         } elseif ($displayLanguageParam == "MARATHI") {
@@ -468,16 +468,16 @@ function getProfileId()
 function getContentUrl($value)
 {
     if (isset($value['url'])) {
-        return url($value['url']);
+        return getUrl($value['url']);
     }
 
-    return url('/');
+    return getUrl('/');
 }
 
 
 function getMidPageUrl($value)
 {
-    return url('/midpage/' . ($value['slug'] ?? 'slug') . '/' . @$value['catalog']);
+    return getUrl('/midpage/' . ($value['slug'] ?? 'slug') . '/' . @$value['catalog']);
 }
 
 function getProfileData()
@@ -514,7 +514,7 @@ function generateCategoryResponse($result)
         . '<h6>' . $topResult['title'] . '</h6>'
         . '<span>' . @$dateText . ' | ' . @$topResult['duration'] . '</span>'
         . '<p class="search-top mt-2">' . $topResult['description'] . '</p>'
-        . '<div class="d-flex align-items-center"><a href="' . $url . '"><button class="fill-btn em ms-0">Watch</button></a>' . $wishlistAction . '</div></div>';
+        . '<div class="d-flex align-items-center"><a href="' . $url . '"><button class="fill-btn em ms-0">'.__('Watch').'</button></a>' . $wishlistAction . '</div></div>';
 }
 
 function getCardImage($content, $key, $size = 'medium', $fallback = [])
@@ -545,6 +545,50 @@ function getCardImage($content, $key, $size = 'medium', $fallback = [])
     return $img_url;
 }
 
+if (!file_exists('getUrl')) {
+    function getUrl($path = '')
+    {
+        if (!empty($path) && substr($path, 0, 1) != '/') {
+            $path = "/" . $path;
+        }
+        $request = Request();
+        $displayLanguage = $request->session()->has('displayLanguage') ? $request->session()->get('displayLanguage') : 'en';
+        $lang = ($displayLanguage != 'en') ? $displayLanguage : '';
+        if ($displayLanguage != 'en') {
+            return url($lang . $path);
+        } else {
+            return url($path);
+        }
+    }
+}
+
+if (!file_exists('getUrlWithPrefix')) {
+    function getUrlWithPrefix($path = '', $id = '')
+    {
+        $request = Request();
+        $displayLanguage = $request->session()->has('displayLanguage') ? $request->session()->get('displayLanguage') : 'en';
+        $lang = ($displayLanguage != 'en') ? $displayLanguage : '';
+        if ($displayLanguage != 'en') {
+            return !empty($id) ? route($lang . "." . $path, $id) : route($lang . "." . $path);
+        } else {
+            return !empty($id) ? route($path, $id) : route($path);
+        }
+    }
+}
+
+if (!file_exists('getUrlWithPrefix')) {
+    function getUrlWithoutPrefix($path = '', $id = '')
+    {
+        $request = Request();
+        $displayLanguage = $request->session()->has('displayLanguage') ? $request->session()->get('displayLanguage') : 'en';
+        $lang = ($displayLanguage != 'en') ? $displayLanguage : '';
+        if ($displayLanguage != 'en') {
+            return !empty($id) ? route($lang . "/" . $path, $id) : route($lang . "/" . $path);
+        } else {
+            return !empty($id) ? route($path, $id) : route($path);
+        }
+    }
+}
 
 function isActiveSubscription()
 {

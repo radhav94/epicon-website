@@ -12,11 +12,11 @@
         <div class="row justify-content-center">
             <div class="col-sm-4 col-md-6 col-lg-4">
 
-                <form method="POST" action="{{ route('profile.store') }}" id="profileAdd" autocomplete="off">
+                <form method="POST" action="{{ getUrlWithPrefix('profile.store') }}" id="profileAdd" autocomplete="off">
 
                     <div class="add-profile">
                         <div class="login-title">
-                            <a href="{{ route('profile.index') }}">
+                            <a href="{{ getUrlWithPrefix('profile.index') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
                                     fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -27,7 +27,7 @@
                                         fill="white" />
                                 </svg>
                             </a>
-                            <h5 class="w-100 text-white text-center mb-0" style="margin-left: -32px;">Add Profile</h5>
+                            <h5 class="w-100 text-white text-center mb-0" style="margin-left: -32px;">{{__('Add Profile')}}</h5>
                         </div>
                         <?php
                         
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="input-field w-100 mb-3">
-                            <label for="exampleDataList" class="form-label text-white">Your Name</label>
+                            <label for="exampleDataList" class="form-label text-white">{{__('Your Name')}}</label>
                             <input class="form-control" id="exampleDataList" name="name">
                             <button class="x emptyText">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -58,13 +58,13 @@
                             </button>
                         </div>
                         <div class="input-field w-100 mb-3">
-                            <label for="exampleDataList" class="form-label text-white">Date of Birth</label>
+                            <label for="exampleDataList" class="form-label text-white">{{__('Date of Birth')}}</label>
                             <input class="form-control" type="date" id="exampleDataList" name="dob">
                         </div>
 
                         {{-- <div class="input-field sel-bor d-flex justify-content-between align-items-center w-100 mb-3">
                             <label for="exampleDataList" class="form-label text-white mb-0" style="font-size: 14px;">Set
-                                Child PIN</label>
+                                {{__('Child PIN')}}</label>
                             <button class="setchildpin" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12"
                                     fill="none">
@@ -76,7 +76,7 @@
                         </div> --}}
 
                         <button class="login-btn">
-                            Create Profile
+                            {{__('Create Profile')}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none">
                                 <path fill-rule="evenodd" clip-rule="evenodd"

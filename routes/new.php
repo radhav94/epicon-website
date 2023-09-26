@@ -14,6 +14,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\LiveTvController;
 
+$lang = ['hi', 'en'];
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,13 +25,6 @@ use App\Http\Controllers\LiveTvController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-//Profile routes
-Route::get('/profile/add', '\App\Http\Controllers\UserAccountController@addprofile')->name('addprofile');
-
-Route::get('/profile/edit', '\App\Http\Controllers\UserAccountController@editprofile')->name('editprofile');
-
-Route::get('/profile/manage', '\App\Http\Controllers\UserAccountController@manageprofile')->name('manageprofile');
 
 // Mobile Number Update Route
 Route::post('sendotp', [LoginController::class, 'setSendOTP'])->name('sendotp');
@@ -54,27 +48,11 @@ Route::post('getGenre', [LoginController::class, 'getGenreList'])->name('getGenr
 //     return view('epicon.login-popup');
 // });
 
-Route::get('library', [LibraryController::class, 'index'])->name('library');
-
-Route::get('my-account', [UserAccountController::class, 'myaccount'])->name('my-account');
-
 Route::get('transaction-history', [UserAccountController::class, 'TransactionHistory'])->name('trans-history');
-
-Route::get('my-rewards', [RewardsController::class, 'MyRewards'])->name('my-rewards');
 
 Route::post('redeemcoupon', [RewardsController::class, 'RedeemCouponCode'])->name('redeemcoupon');
 
-Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback');
-
 Route::post('save-feedback', [FeedbackController::class, 'saveFeedback'])->name('save-feedback');
-
-Route::get('upcoming-epicon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
-
-Route::get('new-popular', [PopularController::class, 'NewsPopular'])->name('new-popular');
-
-Route::get('about', function () {
-    return view('static.about');
-})->name('about');
 
 Route::get('terms-of-use', function () {
     return view('static.terms-of-use');
@@ -84,25 +62,8 @@ Route::get('privacy', function () {
     return view('static.privacy');
 })->name('privacy');
 
-Route::get('midpage/{pageslug}/{catalog}', function ($pageslug, $catalog) {
-    // dd($catalog);
-    if ($pageslug != 'live-tv') {
-        return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog]);
-    }
-    // if($pageslug=='tv-shows' || $pageslug=='epic-shorts' || $pageslug=='documentaries' || $pageslug=='live-tv' || $pageslug=='video-books' || $pageslug=='movies' || $pageslug=='amar-chitra-katha'){
-    //     return App::call('\App\Http\Controllers\indexController@showdetail', [$displayLanguage,$pageslug,$contentslug,'','']);
-    // } else if($pageslug=='podcast'){
-    //     return App::call('\App\Http\Controllers\indexController@podcastdetails', [$displayLanguage,$pageslug,$contentslug,'','']);
-    // } else if($pageslug=='ebooks'){
-    //     $booktitle = $contentslug;
-    //     return App::call('\App\Http\Controllers\indexController@showreaddetails', [$displayLanguage,$pageslug,$booktitle,'','']);
-    // }
-});
-
 Route::post('paginatecontent', [PageController::class, 'paginatecontent'])->name('paginatecontent');
 
-Route::get('trendingsearch', [SearchController::class, 'trendingsearch'])->name('trendingsearch');
-Route::post('search', [SearchController::class, 'search'])->name('search');
 // Route::get('{pageslug}/{listcatalog}', function () {
 //     return view('static.privacy');
 // })->name('privacy');
@@ -110,20 +71,22 @@ Route::post('search', [SearchController::class, 'search'])->name('search');
 
 // Route::get('login/facebook/callback', '\App\Http\Controllers\Auth\AuthSocialController@handleProviderCallback')->name('facebook');
 
-Route::group(['middleware' => 'loggedin'], function () {
-    //setting controller routes start
-    Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
-    Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
-    Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
-    Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
-    Route::post('change-password', [SettingController::class, 'changePassword'])->name('change-password');
-    Route::post('delete-account', [SettingController::class, 'deleteAccount'])->name('delete-account');
-    Route::post('sendOTP-delete-account', [SettingController::class, 'sendOTPForDeleteAccount'])->name('sendOTP-delete-account');
-    Route::post('verifyOTP-delete-account', [SettingController::class, 'verifyOTPForDeleteAccount'])->name('verifyOTP-delete-account');
-    Route::post('syncDevice-pin', [SettingController::class, 'syncDevicePin'])->name('syncDevice-pin');
-    //setting controller routes end
-});
+//setting controller routes start
+Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
+Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
+Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
+Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
+Route::post('change-password', [SettingController::class, 'changePassword'])->name('change-password');
+Route::post('delete-account', [SettingController::class, 'deleteAccount'])->name('delete-account');
+Route::post('sendOTP-delete-account', [SettingController::class, 'sendOTPForDeleteAccount'])->name('sendOTP-delete-account');
+Route::post('verifyOTP-delete-account', [SettingController::class, 'verifyOTPForDeleteAccount'])->name('verifyOTP-delete-account');
+Route::post('syncDevice-pin', [SettingController::class, 'syncDevicePin'])->name('syncDevice-pin');
+Route::get('set-language', [SettingController::class, 'setLanguage'])->name('set-language');
+//setting controller routes end
 
+Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => ['loggedin', 'languageManager']], function ($locale) {
+    Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
+});
 
 Route::get('login/google', [AuthSocialController::class, 'redirectToProvider'])->name('login.google');
 Route::get('login/google/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.google.callback');
@@ -134,10 +97,41 @@ Route::get('login/facebook/callback', [AuthSocialController::class, 'handleProvi
 Route::get('login/twitter', [AuthSocialController::class, 'redirectToProvider'])->name('login.twitter');
 Route::get('login/twitter/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.twitter.callback');
 
-Route::get('explore/{slug}/', function ($slug) {
-    return App::call('\App\Http\Controllers\PageController@explore_details', ['slug' => $slug]);
-});
-
 Route::post('explorecontent', [PageController::class, 'explorecontent'])->name('explorecontent');
 
-Route::get('live-tv', [LiveTvController::class, 'livetv'])->name('live-tv');
+foreach ($lang as $val) {
+    $prefix = $val != 'en' ? "/$val" : "";
+    $prefix_name = $val != 'en' ? $val . "." : "";
+
+    Route::get($prefix . '/library', [LibraryController::class, 'index'])->name('library');
+    Route::get($prefix . '/my-account', [UserAccountController::class, 'myaccount'])->name('my-account');
+    Route::get($prefix . '/my-rewards', [RewardsController::class, 'MyRewards'])->name('my-rewards');
+    Route::get($prefix . '/feedback', [FeedbackController::class, 'Feedback'])->name('feedback');
+    Route::get($prefix . '/about', function () {
+        return view('static.about');
+    })->name('about');
+
+    Route::get($prefix . '/explore/{slug}/', function ($slug) {
+        return App::call('\App\Http\Controllers\PageController@explore_details', ['slug' => $slug]);
+    });
+
+    Route::get($prefix . '/live-tv', [LiveTvController::class, 'livetv'])->name('live-tv');
+    Route::get($prefix . '/upcoming-epicon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
+    Route::get($prefix . '/new-popular', [PopularController::class, 'NewsPopular'])->name('new-popular');
+    Route::get($prefix . '/trendingsearch', [SearchController::class, 'trendingsearch'])->name('trendingsearch');
+    Route::post($prefix . '/search', [SearchController::class, 'search'])->name('search');
+    Route::get($prefix . '/midpage/{pageslug}/{catalog}', function ($pageslug, $catalog) {
+        // dd($pageslug);
+        if ($pageslug != 'live-tv') {
+            return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog]);
+        }
+        // if($pageslug=='tv-shows' || $pageslug=='epic-shorts' || $pageslug=='documentaries' || $pageslug=='live-tv' || $pageslug=='video-books' || $pageslug=='movies' || $pageslug=='amar-chitra-katha'){
+        //     return App::call('\App\Http\Controllers\indexController@showdetail', [$displayLanguage,$pageslug,$contentslug,'','']);
+        // } else if($pageslug=='podcast'){
+        //     return App::call('\App\Http\Controllers\indexController@podcastdetails', [$displayLanguage,$pageslug,$contentslug,'','']);
+        // } else if($pageslug=='ebooks'){
+        //     $booktitle = $contentslug;
+        //     return App::call('\App\Http\Controllers\indexController@showreaddetails', [$displayLanguage,$pageslug,$booktitle,'','']);
+        // }
+    });
+}
