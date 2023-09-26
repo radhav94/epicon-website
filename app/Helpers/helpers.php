@@ -580,7 +580,7 @@ if (!file_exists('getUrlWithPrefix')) {
     }
 }
 
-if (!file_exists('getUrlWithPrefix')) {
+if (!file_exists('getUrlWithoutPrefix')) {
     function getUrlWithoutPrefix($path = '', $id = '')
     {
         $request = Request();

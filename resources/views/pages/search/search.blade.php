@@ -20,8 +20,6 @@
                         </svg>
                     </button>
                     <div class="search-bar" id="searchform_id">
-
-                        <button class="mic"><img src="{{ asset('/img/mic-icon.svg') }}" alt="icon"></button>
                         <input type="text" name="search" id="searchname" placeholder="Movies, shows, podcasts and more" autocomplete="off">
                         <button class="search-icon"><img src="{{ asset('/img/search-icon.svg') }}" alt="icon"></button>
                     </div>
