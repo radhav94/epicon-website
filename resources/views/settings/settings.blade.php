@@ -57,7 +57,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
         <div class="modal-content">
             <div class="modal-body text-center py-5">
                 <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="img">
-                <h4 class="text-white mt-4">{{__('Child PIN has been created successfully!')}}</h4>
+                <h4 class="text-white mt-4">{{__('Child PIN has been updated successfully!')}}</h4>
                 <p class="w-75 text-white small m-auto mb-4">{{__('You can change it again any time from the settings tab.')}}</p>
 
                 <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
@@ -106,7 +106,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                     <div class="text-start mb-5">
                         <label class="text-white mb-1" for="">{{__('Please enter your current password')}}</label>
                         <div class="input-field w-100 mb-3">
-                            <input class="form-control" type="password" id="passwordForDelete" placeholder="Current Password">
+                            <input class="form-control" type="password" id="passwordForDelete" placeholder="{{__('Current Password')}}">
                             <button class="eye" data-target="passwordForDelete">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
                                     <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white" />
@@ -146,7 +146,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                 </div>
                             </div>
                             <p class="text-start w-100 text-white small mt-2 resend-otp">{{__('Resend OTP in 0:30')}}</p>
-                            <button id="resendOTPBtn" onclick="resendVerifyOTP()" style="display:none">{{__('Resend OTP')}}</button>
+                            <button class="btn btn-primary" id="resendOTPBtn" onclick="resendVerifyOTP()" style="display:none">{{__('Resend OTP')}}</button>
                         </div>
                     </div>
                     <a id="verifyDeleteAccountOTPBtn" class="login-btn mt-4" style="width: 280px;">
@@ -306,19 +306,25 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                     <p>{{ __('Content Language') }}</p>
                                     <div>
                                         <div class="form-check mb-4">
-                                            <input class="form-check-input me-2" type="radio" name="contentLang" id="exampleRadios7" value="en" checked>
+                                            <input class="form-check-input me-2" type="radio" name="contentLang" id="exampleRadios7" value="all" <?php if ($listLanguage == 'all') {
+                                                                                                                                                    echo 'checked';
+                                                                                                                                                } ?>>
                                             <label class="form-check-label" for="exampleRadios7">
                                                 {{__('All')}}
                                             </label>
                                         </div>
                                         <div class="form-check mb-4">
-                                            <input class="form-check-input me-2" type="radio" name="contentLang" id="exampleRadios8" value="en">
+                                            <input class="form-check-input me-2" type="radio" name="contentLang" id="exampleRadios8" value="en" <?php if ($listLanguage == 'en') {
+                                                                                                                                                    echo 'checked';
+                                                                                                                                                } ?>>
                                             <label class="form-check-label" for="exampleRadios8">
                                                 {{ __('English') }}
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input me-2" type="radio" name="contentLang" id="exampleRadios9" value="hi">
+                                            <input class="form-check-input me-2" type="radio" name="contentLang" id="exampleRadios9" value="hi" <?php if ($listLanguage == 'hi') {
+                                                                                                                                                    echo 'checked';
+                                                                                                                                                } ?>>
                                             <label class="form-check-label" for="exampleRadios9">
                                                 {{__('Hindi')}}
                                             </label>
@@ -342,7 +348,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M1.33594 12.6654C1.33594 13.1958 1.54665 13.7045 1.92172 14.0796C2.2968 14.4547 2.8055 14.6654 3.33594 14.6654H5.33594V13.332H3.33594C3.15913 13.332 2.98956 13.2618 2.86453 13.1368C2.73951 13.0117 2.66927 12.8422 2.66927 12.6654V3.33203C2.66927 3.15522 2.73951 2.98565 2.86453 2.86063C2.98956 2.7356 3.15913 2.66536 3.33594 2.66536H12.6693C12.8461 2.66536 13.0157 2.7356 13.1407 2.86063C13.2657 2.98565 13.3359 3.15522 13.3359 3.33203V5.33203H7.33594C6.8055 5.33203 6.2968 5.54274 5.92172 5.91782C5.54665 6.29289 5.33594 6.8016 5.33594 7.33203V16.6654C5.33594 17.1958 5.54665 17.7045 5.92172 18.0796C6.2968 18.4547 6.8055 18.6654 7.33594 18.6654H16.6693C17.1997 18.6654 17.7084 18.4547 18.0835 18.0796C18.4586 17.7045 18.6693 17.1958 18.6693 16.6654V7.33203C18.6693 6.8016 18.4586 6.29289 18.0835 5.91782C17.7084 5.54274 17.1997 5.33203 16.6693 5.33203H14.6693V3.33203C14.6693 2.8016 14.4586 2.29289 14.0835 1.91782C13.7084 1.54274 13.1997 1.33203 12.6693 1.33203H3.33594C2.8055 1.33203 2.2968 1.54274 1.92172 1.91782C1.54665 2.29289 1.33594 2.8016 1.33594 3.33203V12.6654ZM6.66927 7.33203C6.66927 7.15522 6.73951 6.98565 6.86453 6.86063C6.98956 6.7356 7.15913 6.66536 7.33594 6.66536H16.6693C16.8461 6.66536 17.0157 6.7356 17.1407 6.86063C17.2657 6.98565 17.3359 7.15522 17.3359 7.33203V16.6654C17.3359 16.8422 17.2657 17.0117 17.1407 17.1368C17.0157 17.2618 16.8461 17.332 16.6693 17.332H7.33594C7.15913 17.332 6.98956 17.2618 6.86453 17.1368C6.73951 17.0117 6.66927 16.8422 6.66927 16.6654V7.33203Z" fill="white" />
                                                 </svg>&nbsp;
-                                                Copy PIN
+                                                {{__('Copy PIN')}}
                                             </button>
                                             <button class="border-btn copiedBtn" style="display:none">{{__('Copied')}}</button>
                                             <button class="fill-btn">
@@ -356,7 +362,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                                         </clipPath>
                                                     </defs>
                                                 </svg>&nbsp;
-                                                Share PIN
+                                                {{__('Share PIN')}}
                                             </button>
                                         </div>
                                     </div>
@@ -483,7 +489,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                                 </div>
                                                 <div class="col-sm-4 col-md-7 col-lg-6 col-xl-5">
                                                     <div class="input-field w-100 mb-3">
-                                                        <input type="password" name="old_password" class="form-control" id="old_password" placeholder="Create Password">
+                                                        <input type="password" name="old_password" class="form-control" id="old_password" placeholder="{{__('Current Password')}}">
                                                         <button class="eye" type="button" data-target="old_password">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
                                                                 <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white" />
@@ -499,7 +505,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                                 </div>
                                                 <div class="col-sm-4 col-md-7 col-lg-6 col-xl-5">
                                                     <div class="input-field w-100 mb-3">
-                                                        <input type="password" name="new_password" class="form-control" id="new_password" placeholder="Create Password">
+                                                        <input type="password" name="new_password" class="form-control" id="new_password" placeholder="{{__('New Password')}}">
                                                         <button type="button" class="eye" data-target="new_password">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
                                                                 <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white" />
@@ -515,7 +521,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                                 </div>
                                                 <div class="col-sm-4 col-md-7 col-lg-6 col-xl-5">
                                                     <div class="input-field w-100 mb-3">
-                                                        <input type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="Create Password">
+                                                        <input type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="{{__('Confirm Password')}}">
                                                         <button class="eye" type="button" data-target="confirm_password">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
                                                                 <path d="M11 5C10.2044 5 9.44129 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44129 10.6839 10.2044 11 11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5ZM11 13C9.67392 13 8.40215 12.4732 7.46447 11.5355C6.52678 10.5979 6 9.32608 6 8C6 6.67392 6.52678 5.40215 7.46447 4.46447C8.40215 3.52678 9.67392 3 11 3C12.3261 3 13.5979 3.52678 14.5355 4.46447C15.4732 5.40215 16 6.67392 16 8C16 9.32608 15.4732 10.5979 14.5355 11.5355C13.5979 12.4732 12.3261 13 11 13ZM11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5Z" fill="white" />
@@ -892,16 +898,10 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
 
         $('input[name="displayLang"]').change(function() {
             var selectedLang = $('input[name="displayLang"]:checked').val();
-            // var formData = {
-            //     language: selectedLang,
-            //     type: 'display'
-            // };
             var formData = "language=" + selectedLang + "&type=display";
             $.ajax({
                 url: "{{ route('set-language') }}?" + formData,
                 type: 'GET',
-                //data: formData,
-                //dataType: 'json',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
@@ -912,11 +912,23 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                     } else {
                         window.location.href = "{{url('/')}}";
                     }
-                    // if (response.payload.success == true) {
-                    //     //$(".logout").trigger('click');
-                    // } else {
-                    //     $("#reason-error").html(response.payload.message);
-                    // }
+                },
+                error: function(xhr, status, error) {
+                    onError(xhr);
+                }
+            });
+        })
+        
+        $('input[name="contentLang"]').change(function() {
+            var selectedLang = $('input[name="contentLang"]:checked').val();
+            var formData = "language=" + selectedLang + "&type=content";
+            $.ajax({
+                url: "{{ route('set-language') }}?" + formData,
+                type: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                success: function(response) {
                 },
                 error: function(xhr, status, error) {
                     onError(xhr);

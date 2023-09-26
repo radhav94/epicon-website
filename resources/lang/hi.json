@@ -161,5 +161,22 @@
     "Kids": "किड",
     "Fantasy": "कल्पना",
     "Fiction": "फ़िक्सन",
-    "Watch": "देखो"
+    "Watch": "देखो",
+    "Copy PIN": "पिन कॉपी करें",
+    "My List": "मेरी सूची",
+    "History": "इतिहास",
+    "No History Found": "कोई इतिहास नहीं मिला",
+    "Congratulations!": "बधाई हो!",
+    "You've successfully redeemed offer": "आपने ऑफ़र सफलतापूर्वक भुना लिया है",
+    "Coupon Code": "कूपन कोड",
+    "Your coupon is saved in your summary": "आपका कूपन आपके सारांश में सहेजा गया है",
+    "EpicOn Coin Balance": "एपिकऑन कॉइन बैलेंस",
+    "Total EpicOn": "कुल एपिकऑन",
+    "Coins Claimed": "सिक्के का दावा किया गया",
+    "Coins Earned": "सिक्के कमाए",
+    "Earn": "कमाना",
+    "Redeem": "रिडीम",
+    "Summary": "सारांश",
+    "Share PIN": "पिन साझा करें",
+    "Child PIN has been updated successfully!" : "चाइल्ड पिन सफलतापूर्वक अपडेट कर दिया गया है!"
 }

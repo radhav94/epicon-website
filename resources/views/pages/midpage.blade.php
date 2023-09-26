@@ -140,7 +140,7 @@
             <a href="javascript:;" class="autowidth catalog-showmore"
                 data-currenturl="<?= $baseUrl . "/paginatecontent"; ?>"
                 catalog-id="<?= $catalog; ?>"
-                pageslug="<?= $pageslug; ?>">Show More</a>
+                pageslug="<?= $pageslug; ?>">{{__('Show More')}}</a>
             </div>
             <!-- Load More Btn End -->
 

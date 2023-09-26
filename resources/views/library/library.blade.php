@@ -13,7 +13,7 @@
     <section class="container w-100 my-4">
         <div class="row justify-content-center">
             <div class="col-sm-12">
-                <h4 class="text-white">Library</h4>
+                <h4 class="text-white">{{__('Library')}}</h4>
             </div>
             <div class="col-sm-12">
                 <div class="w-100 library">
@@ -21,12 +21,12 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="my-list" data-bs-toggle="pill"
                                 data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                aria-selected="true">My List</button>
+                                aria-selected="true">{{__('My List')}}</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="history" data-bs-toggle="pill" data-bs-target="#pills-profile"
                                 type="button" role="tab" aria-controls="pills-profile"
-                                aria-selected="false">History</button>
+                                aria-selected="false">{{__('History')}}</button>
                         </li>
                         <!-- <div class="filter-library">
                                 <select name="" id="">
@@ -92,7 +92,7 @@
                             </div>
                             <?php }else{ ?>
                                 <div class="carousel-main">
-                                    <h4 style="color:white">No History Found</h4>
+                                    <h4 style="color:white">{{__('No History Found')}}</h4>
                                 </div>
                             <?php } ?>
                         </div>

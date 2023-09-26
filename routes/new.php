@@ -62,21 +62,6 @@ Route::get('privacy', function () {
     return view('static.privacy');
 })->name('privacy');
 
-Route::get('midpage/{pageslug}/{catalog}', function ($pageslug, $catalog) {
-    // dd($catalog);
-    if ($pageslug != 'live-tv') {
-        return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog]);
-    }
-    // if($pageslug=='tv-shows' || $pageslug=='epic-shorts' || $pageslug=='documentaries' || $pageslug=='live-tv' || $pageslug=='video-books' || $pageslug=='movies' || $pageslug=='amar-chitra-katha'){
-    //     return App::call('\App\Http\Controllers\indexController@showdetail', [$displayLanguage,$pageslug,$contentslug,'','']);
-    // } else if($pageslug=='podcast'){
-    //     return App::call('\App\Http\Controllers\indexController@podcastdetails', [$displayLanguage,$pageslug,$contentslug,'','']);
-    // } else if($pageslug=='ebooks'){
-    //     $booktitle = $contentslug;
-    //     return App::call('\App\Http\Controllers\indexController@showreaddetails', [$displayLanguage,$pageslug,$booktitle,'','']);
-    // }
-});
-
 Route::post('paginatecontent', [PageController::class, 'paginatecontent'])->name('paginatecontent');
 
 // Route::get('{pageslug}/{listcatalog}', function () {
@@ -135,4 +120,18 @@ foreach ($lang as $val) {
     Route::get($prefix . '/new-popular', [PopularController::class, 'NewsPopular'])->name('new-popular');
     Route::get($prefix . '/trendingsearch', [SearchController::class, 'trendingsearch'])->name('trendingsearch');
     Route::post($prefix . '/search', [SearchController::class, 'search'])->name('search');
+    Route::get($prefix . '/midpage/{pageslug}/{catalog}', function ($pageslug, $catalog) {
+        // dd($pageslug);
+        if ($pageslug != 'live-tv') {
+            return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog]);
+        }
+        // if($pageslug=='tv-shows' || $pageslug=='epic-shorts' || $pageslug=='documentaries' || $pageslug=='live-tv' || $pageslug=='video-books' || $pageslug=='movies' || $pageslug=='amar-chitra-katha'){
+        //     return App::call('\App\Http\Controllers\indexController@showdetail', [$displayLanguage,$pageslug,$contentslug,'','']);
+        // } else if($pageslug=='podcast'){
+        //     return App::call('\App\Http\Controllers\indexController@podcastdetails', [$displayLanguage,$pageslug,$contentslug,'','']);
+        // } else if($pageslug=='ebooks'){
+        //     $booktitle = $contentslug;
+        //     return App::call('\App\Http\Controllers\indexController@showreaddetails', [$displayLanguage,$pageslug,$booktitle,'','']);
+        // }
+    });
 }

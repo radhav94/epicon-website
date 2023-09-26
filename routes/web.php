@@ -58,11 +58,11 @@ foreach ($lang as $val) {
         Route::post('/setChildPin', [ProfileController::class, 'setChildPin'])->name('setChildPin');
     });
 
-    Route::get($prefix . '/', [PageController::class, 'index'])->name('homepage');
+    Route::get($prefix . '/kids/{slug?}', [PageController::class, 'kidsIndex'])->name($prefix_name . 'kidsIndex');
+    Route::get($prefix . '/', [PageController::class, 'index'])->name($prefix_name . 'homepage');
     Route::get($prefix . '/explore', [PageController::class, 'explore'])->name('explore');
     Route::get($prefix . '/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
     Route::get($prefix . '/retro-rewind/{slug}', [RetroRewindController::class, 'retroRewindList'])->name('retro-list');
-    Route::get($prefix . '/kids/{slug?}', [PageController::class, 'kidsIndex'])->name($prefix_name . 'kidsIndex');
     Route::get($prefix . '/{slug}', [PageController::class, 'index']);
 }
 

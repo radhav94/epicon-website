@@ -1,9 +1,13 @@
 <?php
-$segment = Request::segment(1);
+if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
+    $segment = Request::segment(2);
+} else {
+    $segment = Request::segment(1);
+}
 $kids_page = $segment == 'kids' ? true : false;
 
 $action = app('request')->route()->getAction();
-#dd($action);
+// dd($action);
 ?>
 <!-- Side Menu Start-->
 <div class="side-menu-main" id="side-menu">
@@ -16,7 +20,7 @@ $action = app('request')->route()->getAction();
                         fill="white" />
                 </svg>
             </a>
-            <a class="navbar-brand me-3" href="{{ getUrl('homepage') }}"><img height="28"
+            <a class="navbar-brand me-3" href="{{ getUrlWithPrefix('homepage') }}"><img height="28"
                     src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
             <a class="subscribe-btn" href="#">{{__('Subscribe')}}</a>
         </div>
@@ -111,7 +115,7 @@ $action = app('request')->route()->getAction();
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </a>
-            <a class="navbar-brand" href="{{ getUrl('homepage') }}"><img
+            <a class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img
                     src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
             <a class="subscribe-btn" href="#">{{__('Subscribe')}}</a>
         </div>
@@ -146,7 +150,7 @@ $action = app('request')->route()->getAction();
 
         </ul>
         <div class="main-header-right d-flex align-items-center">
-            <a href="{{ $kids_page ? getUrl('homepage') : getUrlWithPrefix('kidsIndex') }}" class="p-2 me-2">
+            <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" class="p-2 me-2">
                 <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt=""></a>
             <a href="{{ getUrl('trendingsearch') }}" class="p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

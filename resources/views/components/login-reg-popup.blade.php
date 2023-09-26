@@ -127,7 +127,7 @@
                                 <div id="verifyotp-result" style="color: red;">
                                     <!-- Display validation result here -->
                                 </div>
-                                <button id="resendBtn" onclick="resendOTP()">Resend OTP</button>
+                                <button class="btn btn-primary" id="resendBtn" onclick="resendOTP()">Resend OTP</button>
                                 <button class="login-btn verify-btn mt-4" style="width: 280px;">
                                     Verify Number
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

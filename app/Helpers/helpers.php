@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -468,7 +469,7 @@ function getContentUrl($value)
 
 function getMidPageUrl($value)
 {
-    return url('/midpage/' . ($value['slug'] ?? 'slug') . '/' . @$value['catalog']);
+    return getUrl('/midpage/' . ($value['slug'] ?? 'slug') . '/' . @$value['catalog']);
 }
 
 function getProfileData()
@@ -542,8 +543,10 @@ if (!file_exists('getUrl')) {
         if (!empty($path) && substr($path, 0, 1) != '/') {
             $path = "/" . $path;
         }
-        $lang = (app()->getLocale() != 'en') ? app()->getLocale() : '';
-        if (app()->getLocale() != 'en') {
+        $request = Request();
+        $displayLanguage = $request->session()->has('displayLanguage') ? $request->session()->get('displayLanguage') : 'en';
+        $lang = ($displayLanguage != 'en') ? $displayLanguage : '';
+        if ($displayLanguage != 'en') {
             return url($lang . $path);
         } else {
             return url($path);
@@ -554,8 +557,10 @@ if (!file_exists('getUrl')) {
 if (!file_exists('getUrlWithPrefix')) {
     function getUrlWithPrefix($path = '', $id = '')
     {
-        $lang = (app()->getLocale() != 'en') ? app()->getLocale() : '';
-        if (app()->getLocale() != 'en') {
+        $request = Request();
+        $displayLanguage = $request->session()->has('displayLanguage') ? $request->session()->get('displayLanguage') : 'en';
+        $lang = ($displayLanguage != 'en') ? $displayLanguage : '';
+        if ($displayLanguage != 'en') {
             return !empty($id) ? route($lang . "." . $path, $id) : route($lang . "." . $path);
         } else {
             return !empty($id) ? route($path, $id) : route($path);
@@ -566,8 +571,10 @@ if (!file_exists('getUrlWithPrefix')) {
 if (!file_exists('getUrlWithPrefix')) {
     function getUrlWithoutPrefix($path = '', $id = '')
     {
-        $lang = (app()->getLocale() != 'en') ? app()->getLocale() : '';
-        if (app()->getLocale() != 'en') {
+        $request = Request();
+        $displayLanguage = $request->session()->has('displayLanguage') ? $request->session()->get('displayLanguage') : 'en';
+        $lang = ($displayLanguage != 'en') ? $displayLanguage : '';
+        if ($displayLanguage != 'en') {
             return !empty($id) ? route($lang . "/" . $path, $id) : route($lang . "/" . $path);
         } else {
             return !empty($id) ? route($path, $id) : route($path);

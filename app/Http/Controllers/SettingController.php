@@ -42,7 +42,7 @@ class SettingController extends Controller
         $syncPin = array_key_exists("pin", $syncDevice) ? $syncDevice['pin'] : "";
 
         $displayLanguage = $request->session()->has('displayLanguage') ? $request->session()->get('displayLanguage') : 'en';
-        $listLanguage = $request->session()->has('listLanguage') ? $request->session()->get('listLanguage') : 'en';
+        $listLanguage = $request->session()->has('listLanguage') ? $request->session()->get('listLanguage') : 'all';
 
         return view('settings.settings', compact('genrelist', 'user_data', 'activeDevice', 'syncPin', 'displayLanguage', 'listLanguage'));
     }
