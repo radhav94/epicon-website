@@ -13,20 +13,21 @@ class SubscriptionController extends Controller
     use payments;
     public function subscription(Request $request)
     {
-        //$sessionData = $request->session()->get('user_token');
+        $sessionData = $request->session()->get('user_token');
         $userData = $request->session()->get('user');
-        //d($userData);exit;
+        //dd($userData);exit;
         $subscriptionPurchases = $allPurchasedPlans = $activePlan = $futurePlan = $result = [];
         $offerCount = 0;
         $today = date("Y-m-d") . "T" . date("H:i:s") . "Z";
         $todayStrToTime = strtotime($today);
         $usedDays = 0;
         $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2);
-        //d($subscriptionPurchases);exit();
+        //dd($subscriptionPurchases);exit();
 
         if (empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['message'] == 'No subscriptions found') {
 
             $result = CurlAPI("subscriptions/plans", "GET", "", 2);
+            //dd($result);
             if ($result && @$result['success'] == true) {
 
                 $offerCount = count($result['plans'][0]['benifits']);
@@ -37,12 +38,14 @@ class SubscriptionController extends Controller
                         'name' => $val['name'],
                         'plan' => $val['plan'],
                         'actual_price' => $val['actual_price'],
-                        'old_price' => '',
+                        'currency' => $val['currency'],
+                        'epic_price' =>$val['actual_price'],
                         'save' => '',
 
                     ];
 
                 }
+                //dd($plandata);
                 if (!empty($plandata)) {
                     $request->session()->put('plandata', $plandata);
                 }
@@ -80,12 +83,14 @@ class SubscriptionController extends Controller
                             'name' => $val['name'],
                             'plan' => $val['plan'],
                             'actual_price' => $val['actual_price'],
-                            'old_price' => '',
+                            'currency' => $val['currency'],
+                            'epic_price' => $val['actual_price'],
                             'save' => '',
 
                         ];
 
                     }
+                    //dd($plandata);
                     if (!empty($plandata)) {
                         $request->session()->put('plandata', $plandata);
                     }
@@ -107,37 +112,61 @@ class SubscriptionController extends Controller
 		if (!isUserLoggedIn()) {
             return redirect('/');
         }
-
         $data = $request->all();
         $sessionPlanData = $request->session()->get('plandata');
         $userData = $request->session()->get('user');
         if ($sessionPlanData[$data['amountid']]) {
             $result = ($sessionPlanData[$data['amountid']]);
         }
+    
 
+
+        return view('subscription.payment-method', compact('result','data'));
+
+    }
+
+    public function saveSubscription(Request $request)
+    {
+        $formData = $request->all();
+        //dd($formData);
+        $payment_type = $formData['payment_type'] ?? '';
+        $sessionPlanData = $request->session()->get('plandata');
+     
+        $userData = $request->session()->get('user');
+
+        if ($sessionPlanData[$formData['amountid']]) {
+            $result = ($sessionPlanData[$formData['amountid']]);
+        }
+        $currency = $result['currency'] ??'';
+        //dd($result);
         $postData = [
             'user_id' => $userData['user_id'],
             'plan_id' => $result['id'],
             'order_value' => $result['actual_price'],
 
         ];
-        $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2);
+        
+        $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2); 
         if ($resultData['success'] == true && !empty(@$resultData['order_data'])) {
             $resorder = $resultData['order_data'];
+            //dd($resorder);
             $orderPostData = [
                 "plan_id" => $resorder['plan_id'],
                 "user_id" => $resorder['user_id'],
-                "payment_gateway" => "payu",
+                "payment_gateway" => "payumoney",
                 "web_device" => $resorder['device'],
                 "coupon_applied" => "N",
                 "amount" => $resorder['order_value'],
+                "epic_price"=> $result['epic_price'],
+                "coupanstatus"=>$formData['coupanstatus'],
             ];
-
-            $updateData = CurlAPI("subscriptions/createupdateorder", 'POST', $postData, 2);
-            //d($updateData);exit();
+            $request->session()->put('create_order', $orderPostData);
 
         }
-        //dd($result);
+        
+        $parameters = $this->paymentProcess($resultData,$currency,$payment_type);
+        //dd($parameters);
+
         $txid = generateTransactionID();
         $amount = $result['actual_price'];
         $productinfo = $result['id'];
@@ -148,21 +177,244 @@ class SubscriptionController extends Controller
         } else {
             $email = "ramv339@gmail.com";
         }
-        //echo $amount;exit;
-        $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . "|" . $txid . "|" . $amount . "|" . $productinfo . "|" . $firstname . "|" . $email . "|||||||||||" . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
-        $calculated_hash = strtolower(hash("sha512", $HASH));
-        $has = $calculated_hash;
-        $payudata = [
-            "has" => $has,
-            "email" => $email,
-            "txid" => $txid,
-            "key" => config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY'),
-            "firstname" => $firstname,
-        ];
 
-        return view('subscription.payment-method', compact('result', 'payudata'));
+        $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . "|" . $parameters['txnid'] . "|" . $parameters['amount'] . "|" . $parameters['productinfo'] . "|" . $parameters['firstname'] . "|" . $parameters['email'] ."|||||||||||". $parameters['si_details'] ."|". config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+        $calculated_hash = strtolower(hash("sha512", $HASH));
+        $parameters = [
+            "hash" => $calculated_hash,
+            "email" => $parameters['email'],
+            "txnid" => $parameters['txnid'],
+            "key" => $parameters['key'],
+            "firstname" => $parameters['firstname'],
+            "amount"=> $parameters['amount'],
+            "phone"=> $parameters['phone'],
+            "productinfo"=>$parameters['productinfo'],
+            "surl"=> $parameters['surl'],
+            "furl"=> $parameters['furl'],
+            "payuUrl" => $parameters['payuUrl'],
+            "si_details" =>$parameters['si_details'],
+        ];
+        //dd($parameters);
+        //return view('subscription.payumoney', compact('parameters'));
+        return view('subscription.payumoney', compact('parameters'));
 
     }
+
+    public function paymentProcess($orderArr,$currency,$payment_type){
+	    /* All Required Parameters by your Gateway */
+       
+        $request = Request();
+        $userData = $request->session()->get('user');
+        //dd($orderArr);
+        $order = $orderArr['order_data'];
+        $userid = $userData['user_id'] ??'';
+        $order_number = $order['order_id'];
+        $totalamount = $order['order_value'];
+        $plan_id = $order['plan_id'];
+        $timestamp =$order['created_date'];
+        @$validity =$order['validity'];
+        $splitTimeStamp = explode("T",$timestamp);
+        $newDate = $splitTimeStamp[0];
+        $startdate = date("d-m-Y", strtotime($newDate));
+        $finalcurrency = $currency;
+        // if(!empty($order['eq_amount']) && !empty($request->post('subscription_eq_amount'))){
+        //     //$finalcurrency = 'USD';
+        //     //$totalamount = $order['eq_amount'];
+        //     $totalamount = $order['order_value'];
+        //     $finalcurrency = $currency;
+        // }
+        //$forcepg = $request->post('payment_method');
+
+        // if($finalcurrency == 'INR'){
+        //     config(['epicconfig.PayUMoney.INDIPAY_MERCHANT_ID'=>config('epicconfig.INR_PayUMoney.INDIPAY_MERCHANT_ID')]);
+        //     config(['epicconfig.PayUMoney.INDIPAY_ACCESS_CODE'=>config('epicconfig.INR_PayUMoney.INDIPAY_ACCESS_CODE')]);
+        //     config(['epicconfig.PayUMoney.INDIPAY_WORKING_KEY'=>config('epicconfig.INR_PayUMoney.INDIPAY_WORKING_KEY')]);
+        // }
+        
+
+        if(strtoupper(env('APP_ENV'))=='PRODUCTION'){
+            if ($request->post('device') == 'android' || $request->post('device') == 'ios'){
+                    if (empty($userData['email'])){
+                        $parameters = ['tid' => time(),
+                            'txnid' => $order_number,
+                            'amount' => $totalamount,
+                            'firstname' => $userData['name'],
+                            'email' => $userData['mobile'],
+                            'phone' => $userData['mobile'],
+                            'productinfo' => 'epicon ' . $plan_id];
+                    }
+                    else{
+                        $parameters = ['tid' => time(),
+                            'txnid' => $order_number,
+                            'amount' => $totalamount,
+                            'firstname' => $userData['name'],
+                            'email' => $userData['email'],
+                            'phone' => $userData['mobile'],
+                            'productinfo' => 'epicon ' . $plan_id];
+                    }
+
+                    if($finalcurrency == 'USD'){
+                        $rate = $this->getConvertedPrice($finalcurrency,'INR');
+                        $totalamount = (!empty($totalamount) && $rate!==false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE',70) * $totalamount;
+                        $parameters['amount'] = round(floor($totalamount), 2);
+                    }
+            } else {
+                if($finalcurrency == 'INR'){
+                    $parameters = ['tid' => time(),
+                        'txnid' => $order_number,
+                        'amount' => $totalamount,
+                        'firstname'=>$userData['name'],
+                        'email'=>$userid,
+                        'phone'=>'',
+                        'si'=>1,
+                        'productinfo'=>'epicon '.$plan_id,
+                        //'udf1'=>$user->user_id.'#'.$user->user_subscription_type
+                    ];
+                    // dd($parameters);
+                }else{
+                    $parameters = ['tid' => time(),'txnid' => $order_number,'amount' => $totalamount,'firstname'=>$userData['name'],'email'=>$userid,'phone'=>'','productinfo'=>'epicon '.$plan_id];
+                    if($finalcurrency == 'USD'){
+                        $rate = $this->getConvertedPrice($finalcurrency,'INR');
+                        $totalamount = (!empty($totalamount) && $rate!==false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE',70) * $totalamount;
+                        $parameters['amount'] = round(floor($totalamount), 2);
+                    }
+                }
+            }
+        } else {
+
+            //$totalamount = 1.0;
+            if ($request->post('device') == 'android' || $request->post('device') == 'ios'){
+                
+                if (empty($userData['email'])){
+                    $parameters = ['tid' => time(),
+                        'txnid' => $order_number,
+                        'amount' => $totalamount,
+                        'firstname' => $userData['name'],
+                        'email' => $userData['email'],
+                        'phone' => $userData['mobile'],
+                        'productinfo' => 'epicon ' . $plan_id];
+                }
+                else{
+                  
+                    $parameters = ['tid' => time(),
+                        'txnid' => $order_number,
+                        'amount' => $totalamount,
+                        'firstname' => $userData['name'],
+                        'email' => $userData['email'],
+                        'phone' => $userData['mobile'],
+                        'productinfo' => 'epicon ' . $plan_id];
+                }
+                if($finalcurrency == 'USD'){
+                 
+                    $rate = $this->getConvertedPrice($finalcurrency,'INR');
+                    $totalamount = (!empty($totalamount) && $rate!==false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE',70) * $totalamount;
+                    $parameters['amount'] = round(floor($totalamount), 2);
+                }
+                Log::info("----------#####log for ios full renew plan for payu -----------");
+                Log::debug(json_encode($parameters));
+                Log::info("-----END ios full renew plan for payu----------------------");
+            }else {
+                if($finalcurrency == 'INR'){
+                    $parameters = ['tid' => time(),
+                        'txnid' => $order_number,
+                        'amount' => $totalamount,
+                        'firstname'=>$userData['name'],
+                        'email'=> $userData['email'],
+                        'phone'=> $userData['mobile'],
+                        'si'=>1,
+                        'productinfo'=>'epicon '.$plan_id,
+                        //'udf1'=>$user->user_id.'#'.$user->user_subscription_type
+                    ];
+                
+                }else{
+
+                    $parameters = ['tid' => time(),'txnid' => $order_number,'amount' => $totalamount,'firstname'=>$userData['name'],'email'=>$userid,'phone'=>$userData['mobile'],'productinfo'=>'epicon '.$plan_id];
+                    if($finalcurrency == 'USD'){
+                        $rate = $this->getConvertedPrice($finalcurrency,'INR');
+                        $totalamount = (!empty($totalamount) && $rate!==false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE',70) * $totalamount;
+                        $parameters['amount'] = round(floor($totalamount), 2);
+                    }
+                }
+            }
+        }
+        if(config('epicconfig.PAYUMONEY.ENABLE_RECURRING_AT_FROM_TRANSACTION')==true){
+                $billingCycle = 'MONTHLY';
+                if($plan_id == 'epic_in_pl_1'){
+                    $billingInterval = 1;
+                    $newstartdate = date("Y-m-d");
+                    $billingCycle = 'MONTHLY';
+                    $endstartdate = date("Y-m-d",strtotime("+1 month -1 day"));
+                }
+                else if ($plan_id == 'epic_in_pl_2') {
+                    $billingInterval = 3;
+                    $billingCycle = 'MONTHLY';
+                    $newstartdate = date("Y-m-d");
+                    $endstartdate = date("Y-m-d",strtotime("+3 month -1 day"));
+                }
+                else if ($plan_id == 'epic_in_pl_3') {
+                    $billingInterval = 6;
+                    $billingCycle = 'MONTHLY';
+                    $newstartdate = date("Y-m-d");
+                    $endstartdate = date("Y-m-d",strtotime("+6 month -1 day"));
+                }
+                else{
+                    $billingInterval = 1;
+                    $billingCycle = 'YEARLY';
+                    $newstartdate = date("Y-m-d");
+                    $endstartdate = date("Y-m-d",strtotime("+1 year"));
+                }
+                $parameters['si'] = "1";
+                $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
+                $parameters['phone'] = $userData['mobile'] ??'9819208025';
+                $parameters['api_version'] = "7";
+                $parameters['si_details'] = json_encode([
+                    'billingAmount'=>$totalamount,
+                    'billingCurrency'=>$finalcurrency,
+                    'billingCycle'=>$billingCycle,
+                    'billingInterval'=>$billingInterval,
+                    'paymentStartDate'=>$newstartdate,
+                    'paymentEndDate'=>$endstartdate
+                ]);
+        }
+      
+        if(in_array($payment_type,['CC','DC','NB','CASH','UPI'])){
+            $parameters['pg'] = $payment_type;    
+        }
+        
+        // if($parameters['pg']=='UPI'){
+        //     $parameters['bankcode'] = "INTENT";    
+        // }
+        //$parameters['txn_s2s_flow'] = 2;
+        // dd(config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY'));
+        // sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)
+        $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY').'|'.$parameters['txnid'].'|'.$parameters['amount'].'|'.$parameters['productinfo'].'|'.$parameters['firstname'].'|'.$parameters['email'].'|||||||||||'.$parameters['si_details'].'|'.config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+         
+        $calculated_hash = strtolower(hash("sha512", $HASH));
+        $parameters['hash']= $calculated_hash;
+        $parameters['SALT']= config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+        $parameters['curl'] = config('epicconfig.PAYUMONEY.RESPONSE_URL');
+        $parameters['surl'] = config('epicconfig.PAYUMONEY.RESPONSE_URL');
+        $parameters['furl'] = config('epicconfig.PAYUMONEY.RESPONSE_FAIL_URL');
+        $parameters['payuUrl'] = config('epicconfig.PAYUMONEY.SUBSCRIPTION_URL');
+        $parameters['phone'] =  empty($parameters['phone']) ? '9819208025' :'9819208025';
+        $parameters['email'] =  empty($parameters['email']) ? 'ramv339@gmail.com' :'ramv339@gmail.com';
+
+
+        Log::info("----------#####full parametes for log for ios full renew plan for payu -----------");
+        Log::debug(json_encode($parameters));
+        Log::info("-----full parametes for END ios full renew plan for payu----------------------");
+        $request->session()->forget('orderdata');
+        $request->session()->put('orderdata',$order);
+
+        $request->session()->forget('payuParams');
+        $request->session()->put('payuParams',$parameters);
+
+        Log::info("-----PayUMoney Request Data------");
+		Log::debug(json_encode($parameters));
+		Log::info("-----End------");
+         //dd($parameters);
+        return $parameters;
+	} 
 
     public function planBenefit(Request $request)
     {
@@ -244,7 +496,8 @@ class SubscriptionController extends Controller
                         'name' => $val['name'],
                         'plan' => isset($sessionData[$val['id']]['plan']) ? $sessionData[$val['id']]['plan'] : '',
                         'actual_price' => $val['discounted_price'], // this is use for final transaction
-                        'old_price' => $val['actual_price'], // this is actual price without discount
+                        'currency' => $val['currency'], 
+                        'epic_price' => $val['actual_price'], // this is actual price without discount
                         'save' => '', // this is disount percetage like 20%
 
                     ];
@@ -268,30 +521,190 @@ class SubscriptionController extends Controller
     }
     public function payusuccess(Request $request)
     {
-       // dd($request->all());
-		 $payuResponse = $request->all();
-		 if($payuResponse['status'] =='success'){
+		 $paymentresponse = $request->all();
+         //dd($payuResponse);
+         $paymtentStatus = strtolower($paymentresponse['status']);
+         $final_result = ['message' => 'The transaction has been declined.'];
+         $getOnlyDate = date('Y-m-d',strtotime(@$orderdata['subscription_end_date']));
+		 if($paymentresponse['status'] =='success'){
+            $orderData = $request->session()->get('orderdata');
+            $orderValue = $request->session()->get('create_order');
+            //dd($orderValue);
+            $planValue = $orderValue['epic_price'] ?? '';
+            /////////// Verify Payment Start ///////////
 
-			return redirect('/my-account');
+            $parameters_verify_payment['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
+            $parameters_verify_payment['command'] = 'verify_payment';
+            $parameters_verify_payment['var1'] = $paymentresponse['txnid'];
+            $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY').'|'.$parameters_verify_payment['command'].'|'.$parameters_verify_payment['var1'].'|'.config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+            $calculated_hash = strtolower(hash("sha512", $HASH));
+            $parameters_verify_payment['hash']= $calculated_hash;
+            $data = 'key='.$parameters_verify_payment['key'].'&command='.$parameters_verify_payment['command'].'&var1='.$parameters_verify_payment['var1'].'&hash='.$parameters_verify_payment['hash']; 
+            $url = config('epicconfig.PAYUMONEY.API_URL');
+            $verify_payment = si_transaction($url,$data);
+            Log::info("-----Verify Payment Status");
+            Log::debug(json_encode($parameters_verify_payment));
+            Log::debug($verify_payment);
+            Log::info("-----END----------------------");
+            /////////// Verify Payment End ///////////
 
-		 }
+            $verifyDetails = json_decode($verify_payment);
+            if($verifyDetails->status){
+
+            ///---------***Prchase order api***-------///
+
+            $updateData = CurlAPI("subscriptions/createupdateorder", 'POST', $orderData, 2);
+
+            Log::info("-----update Subscription Status after payment verify.");
+            Log::debug(json_encode($updateData));
+            Log::info("-----END----------------------");    
+            ///---------***End Prchase order api***-------///
+            
+            $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
+            $parameters['command'] = 'pre_debit_SI';
+            $parameters['txnid'] = $paymentresponse['txnid'];
+            $parameters['var1'] = json_encode([
+                'authpayuid'=>$paymentresponse['mihpayid'],
+                'requestId'=>md5($paymentresponse['mihpayid']),
+                'debitDate'=>$getOnlyDate,
+                'invoiceDisplayNumber'=>$paymentresponse['mihpayid'],
+                'amount'=>$planValue,
+                'action'=>'retreive'
+            ]);
+            $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY').'|'.$parameters['command'].'|'.$parameters['var1'].'|'.config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+            $calculated_hash = strtolower(hash("sha512", $HASH));
+            $parameters['hash']= $calculated_hash;
+            $data = 'key='.$parameters['key'].'&command='.$parameters['command'].'&var1='.$parameters['var1'].'&var2=&var3=&var4=&var5=&var6=&var7=&var8=&var9=&hash='.$parameters['hash'];
+            $url = config('epicconfig.PAYUMONEY.API_URL');
+            $pre_debit = si_transaction($url,$data);
+            Log::info("-----PayuMoney Pre Debit response");
+            Log::debug(json_encode($parameters));
+            Log::debug($pre_debit);
+            Log::info("-----END----------------------");
+            /////////////// Recurring Payment Transaction //////////
+            $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
+            $parameters['command'] = 'si_transaction';
+            $parameters['var1'] = json_encode([
+                'authpayuid'=>$paymentresponse['mihpayid'],
+                'invoiceDisplayNumber'=>$paymentresponse['mihpayid'],
+                'amount'=>$planValue,
+                'txnid' => 'rec_txid_'.$paymentresponse['txnid'],
+                'phone' => $paymentresponse['phone'],
+                "email" => $paymentresponse['email'],
+            ]);
+            $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY').'|'.$parameters['command'].'|'.$parameters['var1'].'|'.config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+            $calculated_hash = strtolower(hash("sha512", $HASH));
+            $parameters['hash']= $calculated_hash;
+            $data = 'key='.$parameters['key'].'&command='.$parameters['command'].'&var1='.$parameters['var1'].'&var2=&var3=&var4=&var5=&var6=&var7=&var8=&var9=&hash='.$parameters['hash']; 
+            $url = config('epicconfig.PAYUMONEY.API_URL');
+            $recurring_payment = si_transaction($url,$data);
+            Log::info("-----PayuMoney Recuring Payment response");
+            Log::debug(json_encode($parameters));
+            Log::debug($recurring_payment);
+            Log::info("-----END----------------------");
+
+            $this->EventPushData($paymtentStatus);
+
+            $final_result = ['message' => 'You have successfully purchased a subscription plan.'];
+            return view('subscription.thankyou', compact('final_result'));
+            }else{
+                 //if payment not verify. 
+                return view('subscription.subscription-fail', compact('final_result'));
+            }
+		 }else{
+            return view('subscription.subscription-fail', compact('final_result'));
+         }
 
     }
 
+    public function EventPushData($paymtentStatus){
+        $request = Request();
+        $orderdata = $request->session()->get('orderdata');
+        $userData = $request->session()->get('user');
+        //dd($orderdata);
+        $orderdata['plan_name'] ="1 Month";
+        $user_id = $userData['user_id'] ??'';
+        $pName = 'Monthly';
+        if(isset($orderdata['plan_name'])){
+            if($orderdata['plan_name']=="1 Year"){
+                $pName = "Yearly";
+            }
+            if($orderdata['plan_name']=="6 Months"){
+                $pName = "Half Yearly";
+            }
+            if($orderdata['plan_name']=="3 Months"){
+                $pName = "Quarterly";
+            }
+            if($orderdata['plan_name']=="1 Month"){
+                $pName = "Monthly";
+            }
+        }
+        else{
+            $orderdata['plan_name'] = '';
+        }
+        if ($paymtentStatus == "success") {
+           
+            $message = 'You have successfully purchased a subscription plan.';
+            $eventCat = 'Subscription Success';
+            $authEventTrack = $pName;
+            
+                $commonMenuUserData['Mobile'] = (isset($userData['mobile']) && !empty($userData['mobile'])) ? $userData['mobile'] : '';
+                EventPush($user_id,'Subscribe',$commonMenuUserData, true, false);
+           
+        } 
+        //Store for GA tracking
+        $request->session()->put('authEventTrack', $authEventTrack);
+        $request->session()->put('eventCat', $eventCat);
+
+    } 
+    
     public function payufail(Request $request)
     {
         //dd($request->all());
-        $payuResponse = $request->all();
-        $result=[];
-        if($payuResponse['status'] =='failure'){
-             $result=[
-                'message'=>$payuResponse['error_Message']??'',
-             ];
+        $paymtentStatus = $request->all();
+        $orderdata = $request->session()->get('orderdata');
+        $message="";
+        $orderdata['plan_name'] ="1 Month";
+        $pName = 'Monthly';
+        if(isset($orderdata['plan_name'])){
+            if($orderdata['plan_name']=="1 Year"){
+                $pName = "Yearly";
+            }
+            if($orderdata['plan_name']=="6 Months"){
+                $pName = "Half Yearly";
+            }
+            if($orderdata['plan_name']=="3 Months"){
+                $pName = "Quarterly";
+            }
+            if($orderdata['plan_name']=="1 Month"){
+                $pName = "Monthly";
+            }
+        }
+        else{
+            $orderdata['plan_name'] = '';
+        }
 
-			return view('subscription.subscription-fail', compact('result'));
+        if ($paymtentStatus['status'] == "aborted") {
+            $message = $paymtentStatus['error_Message'];
+            $eventCat = 'Subscription Failure';
+            $authEventTrack = $pName;
+        } else if ($paymtentStatus['status'] === "failure") {
+            $message = $paymtentStatus['error_Message'];
+            $eventCat = 'Subscription Failure';
+            $authEventTrack = $pName;
+        } else {
+            $message = $paymtentStatus['error_Message'];
+            $eventCat = 'Subscription Failure';
+            $authEventTrack = $pName;
+        }
 
-		 }
-		//return redirect('/subscription');
-
+        //Store for GA tracking
+        $request->session()->put('authEventTrack', $authEventTrack);
+        $request->session()->put('eventCat', $eventCat);
+		
+        return view('subscription.subscription-fail', compact('message'));
     }
+
+    
+    
 }

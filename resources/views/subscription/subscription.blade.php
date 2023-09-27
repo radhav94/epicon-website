@@ -126,6 +126,7 @@
                                 <div> 
                                 <button class="apl-btn bg-transparent CoupanApply" id="">Apply</button>
                                 </div>
+                                
                                 <div> </div>
                             </div>
                             <div style="color:red" class="coupan-msg"></div>
@@ -135,6 +136,9 @@
                         <form method="post" action="{{route('paymentMethod')}}" class="paymentForm">
                             @csrf
                             <input type="hidden" name="amountid" id="amountid" value="{{$result['plans'][0]['id']}}">
+                            <input type="hidden" name="currency" id="currency" value="{{$val['currency']}}">
+                            <input type="hidden" name="coupanstatus" id="coupanstatus" value="No">
+                            
                             <p class="get-help mt-2 small">Already subscribed?<a href="">Restore</a></p>
                             <button class="fill-btn payment">Continue with Premium
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
@@ -251,6 +255,7 @@
 
             var btnval =$(this).text();
             if(btnval =='Remove'){
+                $("#coupanstatus").val('No');
                 setTimeout(function() {
                 location.reload();
             }, 2500);
@@ -285,6 +290,7 @@
                         $('.save-'+t.id).removeClass('d-none');
                         $('.save-'+t.id).text('Save 20%');
                         $('.current-'+t.id).html('₹ '+t.discounted_price+'<span class="ms-1 small"> / '+t.plan+'</span>');
+                        $("#coupanstatus").val('Yes');
                        
                     });
                     showToaster('Coupon applied', 1);
@@ -316,6 +322,5 @@
     });
    
     });
-</script>
-
+    </script> 
 @stop

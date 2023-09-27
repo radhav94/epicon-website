@@ -13,14 +13,14 @@ $request = Request();
 $userData = $request->session()->get('user');
 
 
-$subscribData = ''; $id = ''; $name = ''; $plan = ''; $actual_price = ''; $old_price = ''; $save = '';
+$subscribData = ''; $id = ''; $name = ''; $plan = ''; $actual_price = ''; $epic_price = ''; $save = '';
 //dd($result);
 if(isset($result) && !empty($result)){
     $id = $result['id'];
     $name = $result['name'];
     $plan = $result['plan'];
     $actual_price = $result['actual_price'];
-    $old_price = $result['old_price'];
+    $epic_price = $result['epic_price'];
     $save = $result['save'];
 }
 ?>
@@ -37,7 +37,7 @@ if(isset($result) && !empty($result)){
         </div>
     </section>
     <section class="container pb-5">
-        <form name="checkoutsubscriptionform" method="post" id="checkoutsubscriptionid" action="https://test.payu.in/_payment">
+        <form name="checkoutsubscriptionform" method="post" id="checkoutsubscriptionid" action="{{route('saveSubscription')}}">
         @csrf
         <div class="row justify-content-center">
             <h4 class="text-white text-center mb-4">Payment Methods</h4>
@@ -77,16 +77,18 @@ if(isset($result) && !empty($result)){
                 </div>
             </div>
           
-            <input type="hidden" name="key" value="{{$payudata['key']}}">
+            {{--<input type="hidden" name="key" value="{{$payudata['key']}}"> --}}
             <input type="hidden" name="amount" value="{{$actual_price}}">
-            <input type="hidden" name="email" value="{{$payudata['email']}}">
+            <input type="hidden" name="amountid" value="{{$data['amountid']}}">
+            <input type="hidden" name="coupanstatus" value="{{$data['coupanstatus']}}">
+            {{--  <input type="hidden" name="email" value="{{$payudata['email']}}"> 
             <input type="hidden" name="productinfo" value="{{$id}}">
             <input type="hidden" name="furl" value="http://local.epicon-revamp-v3.com/payufail">
             <input type="hidden" name="txnid" value="{{$payudata['txid']}}">
             <input type="hidden" name="firstname" value="{{$payudata['firstname']}}">
             <input type="hidden" name="phone" value="9819208025">
             <input type="hidden" name="surl" value="http://local.epicon-revamp-v3.com/payusuccess">
-            <input type="hidden" name="hash" value="{{$payudata['has']}}">
+            <input type="hidden" name="hash" value="{{$payudata['has']}}"> --}}
             <div class="continue-payment mt-5">
                 <p>You will be redirected to a third party site to complete the payment</p>
                 <button class="fill-btn px-5" type="submit">Continue Pay Rs. <?=$result['actual_price']?>

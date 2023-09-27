@@ -56,11 +56,15 @@ Route::group(['middleware' => 'loggedin'], function () {
     Route::post('saveSubscription',[SubscriptionController::class,'saveSubscription'])->name('saveSubscription'); 
     Route::get('checkpayu',[SubscriptionController::class,'checkpayu'])->name('checkpayu'); 
     Route::get('getSubscription',[SubscriptionController::class,'subscription'])->name('subscription');
+    Route::post('saveSubscription',[SubscriptionController::class,'saveSubscription'])->name('saveSubscription');
+    Route::post('payusuccess',[SubscriptionController::class,'payusuccess'])->name('payusuccess');
+    Route::post('payufail',[SubscriptionController::class,'payufail'])->name('payufail');
+    Route::post('paymentProcess',[SubscriptionController::class,'paymentProcess'])->name('paymentProcess');
+    Route::post('thankyou',[SubscriptionController::class,'thankyou'])->name('thankyou'); 
     //end
 
 });
-Route::post('payusuccess',[SubscriptionController::class,'payusuccess'])->name('payusuccess');
-Route::post('payufail',[SubscriptionController::class,'payufail'])->name('payufail');
+
 
 
 

@@ -495,7 +495,169 @@ function getDays($startDate, $endDate, $timezone = '')
 	return $numberDays;
 }
 
-function generateTransactionID()
-{
+function generateTransactionID(){
     return substr(hash('sha256', mt_rand() . microtime()), 0, 20);
 }
+
+function getConvertedPrice($source_currency,$destination_currency,$amount=''){
+    return false;
+    if($source_currency!='' && $destination_currency!=''){
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.exchangeratesapi.io/latest?base=".$source_currency."&symbols=".$destination_currency,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Accept: */*",
+                "Accept-Encoding: gzip, deflate",
+                "Cache-Control: no-cache",
+                "Connection: keep-alive",
+                "Host: api.exchangeratesapi.io",
+                //		    "Postman-Token: 5f5c0182-96ac-4dcc-b7dc-0c75f9073a11,4bc83cc9-305f-4062-b68a-04d14a96e2e4",
+                //		    "User-Agent: PostmanRuntime/7.15.2",
+                "cache-control: no-cache"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+        Log::info("-----Current Price Curl:------");
+        Log::debug($response);
+        Log::info("-----End------");
+        if ($curl_errno > 0) {
+            return false;
+        } else {
+            //return json_decode($response,true);
+            $rates = json_decode($response,true);
+            return $rates['rates'][$destination_currency];
+        }
+    } else {
+        return false;
+    }
+}
+
+function si_transaction($url,$data = null)
+{
+    //dd($url);
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	$headers = array( "Content-Type: application/x-www-form-urlencoded", ); 
+	curl_setopt($ch, CURLOPT_POSTFIELDS,$data);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+	curl_setopt($ch, CURLOPT_POST, 1);
+	$resp = curl_exec($ch);
+	curl_close($ch);
+	return $resp;
+
+    $curl = curl_init();
+
+}
+function EventPush($user_id, $eventName, $properties, $is_moengage = true, $is_clevertap = true)
+{
+	$properties['Source'] = @$_GET['utm_source'];
+	$properties['Medium'] = @$_GET['utm_medium'];
+	$properties['Campaign'] = @$_GET['utm_campaign'];
+	if (!empty($user_id)) {
+
+		if ((empty(env('CLEVERTAP')) || strtoupper(env("CLEVERTAP")) == "ON") && $is_clevertap == true) {
+
+			$txn_url = config('epicconfig.CLEVERTAP.CLEVERTAP_TXN_URL');
+
+			$postData['identity'] = $user_id;
+			$postData['evtName'] = $eventName;	/* Data type String */
+			$postData['evtData'] = $properties; /* Data type array */
+			$postData['type'] = 'event';
+			$postData['ts'] = time();
+
+			/*			Log::info("-----CLEVERTAP CURL Parameters: ".$txn_url."----\n");
+			Log::debug(json_encode($postData));
+			Log::info("-----END----------------------");*/
+
+			$responseClevertap = CURLFOREVENTPUSH($txn_url, $postData, 'CLEVERTAP');
+
+			/*			Log::info("-----CLEVERTAP CURL response");
+			Log::debug($responseClevertap);
+			Log::info("-----END----------------------");*/
+		}
+
+		if ((empty(env('MOENGAGE')) || strtoupper(env("MOENGAGE")) == "ON") && $is_moengage == true) {
+			$txn_url = config('epicconfig.moengage.EVENT_TXN_URL') . '' . config('epicconfig.moengage.APP_ID_API');
+
+			$postDataMoengage['type'] = 'event';
+			$postDataMoengage['customer_id'] = $user_id;
+			$postDataMoengage['actions'][0]['action'] = $eventName;	/* Data type String */
+			$postDataMoengage['actions'][0]['attributes'] = $properties;   /* Data type List */
+
+			/*			Log::info("-----MOENGAGE CURL Parameters: ".$txn_url."----\n");
+			Log::debug(json_encode($postDataMoengage));
+			Log::info("-----END----------------------");*/
+
+			$responseMoengage = CURLFOREVENTPUSH($txn_url, $postDataMoengage, 'MOENGAGE');
+
+			/*			Log::info("-----MOENGAGE CURL response");
+			Log::debug($responseMoengage);
+			Log::info("-----END----------------------");*/
+		}
+
+		if (empty(env('MOENGAGE')) || strtoupper(env("MOENGAGE")) == "ON") {
+			$return = @$responseMoengage;
+		} else if (empty(env('CLEVERTAP')) || strtoupper(env("CLEVERTAP")) == "ON") {
+			$return = @$responseClevertap;
+		} else if (!empty(env('CLEVERTAP')) && strtoupper(env("CLEVERTAP")) == "ON" && !empty(env('MOENGAGE')) && strtoupper(env("MOENGAGE")) == "ON") {
+			$return = array_merge($responseClevertap, $responseMoengage);
+		}
+
+		return $return;
+	}
+    
+}
+
+function CURLFOREVENTPUSH($txn_url, $postData, $headerType)
+{
+
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_URL, $txn_url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+	$headers = array();
+	$headers[] = 'Content-Type: application/json; charset=utf-8';
+
+
+	if ($headerType == 'CLEVERTAP') {
+
+		$headers[] = 'X-CleverTap-Account-Id: ' . config('epicconfig.CLEVERTAP.CLEVERTAP_ACCOUNT_ID');
+		$headers[] = 'X-CleverTap-Passcode: ' . config('epicconfig.CLEVERTAP.CLEVERTAP_PASSCODE');
+
+		curl_setopt($ch, CURLOPT_POSTFIELDS, "{ \"d\": [ " . json_encode($postData, JSON_PRETTY_PRINT) . " ] }");
+	}
+
+	if ($headerType == 'MOENGAGE') {
+
+		$headers[] = 'Authorization: Basic ' . base64_encode(config('epicconfig.moengage.APP_ID_API') . ':' . config('epicconfig.moengage.APP_KEY'));
+		$headers[] = 'MOE-APPKEY: ' . config('epicconfig.moengage.APP_KEY');
+
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData, JSON_PRETTY_PRINT));
+	}
+
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+	Log::info("----- CURL Header: ----\n");
+	Log::debug(json_encode($headers));
+	Log::info("-----END----------------------");
+
+	curl_setopt($ch, CURLOPT_POST, 1);
+
+	$response = curl_exec($ch);
+
+	return $response;
+}
+

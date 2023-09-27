@@ -313,13 +313,15 @@ if($environment=='PRODUCTION'){
         'PAYUMONEY'=>[
             'PAYUMONEY_MERCHANT_KEY'=>'gtKFFx', // MERCHABT_ID 117245
             'PAYUMONEY_SALT'=>'4R38IvwiV57FwVpsgOvTXBdLE4tHUXFW',
-            'RESPONSE_URL'=>'https://dev.epicon.in/payumoney/response',
+            'RESPONSE_URL'=>env('APP_URL').'payusuccess',
+			'RESPONSE_FAIL_URL'=>env('APP_URL').'payufail',
             'ANDROID_RESPONSE_URL'=>'https://dev.epicon.in/payumoney/androidresponse',
             'TESTMODE'=>true,
-            'SUBSCRIPTION_URL'=>'https://test.payu.in/_payment/',
+            'SUBSCRIPTION_URL'=>'https://test.payu.in/_payment',
             'ENABLE_RECURRING_API'=>true,
             'ENABLE_RECURRING_AT_FROM_TRANSACTION'=>true,
-            'API_URL'=>'https://info.payu.in/merchant/postservice.php?form=2',
+            //'API_URL'=>'https://info.payu.in/merchant/postservice.php?form=2',
+			'API_URL'=>'https://test.payu.in/merchant/postservice.php?form=2',	
         ],
         'PAYTMQR'=>[
 			'PAYTMQR_MERCHANT_ID'=>'EPICTE67767187383060',
