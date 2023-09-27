@@ -7,7 +7,7 @@ if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
 $kids_page = $segment == 'kids' ? true : false;
 
 $action = app('request')->route()->getAction();
-// dd($action);
+// print_r($action);
 ?>
 <!-- Side Menu Start-->
 <div class="side-menu-main" id="side-menu">
