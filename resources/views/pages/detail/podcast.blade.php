@@ -4,6 +4,11 @@
 @section('style')
 <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/socialSharing.css') }}" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    li.pod-main.episode-active {
+        background: linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%);
+    }
+</style>
 @stop
 
 @section('content')
@@ -11,32 +16,24 @@
 
 <?php
 $cover_img = getCardImage($content, 'cover_image', 'large');
-?>
-<!-- <div>
-    <?php
-    // print_r($content);
-    $episode_list = [];
-    if (array_key_exists('season', $content)) {
-        $seasons = $content['season'];
-        if (is_array($seasons)) {
-            foreach ($seasons as $season) {
-                if (array_key_exists('episodes', $season)) {
-                    if (is_array($season['episodes'])) {
-                        foreach ($season['episodes'] as $episode) {
-                            if (array_key_exists('file_url_original', $episode) && !empty($episode['file_url_original'])) {
-                                $episode_list[] = $episode['file_url_original'];
-                            } else {
-                                continue;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+
+$episode_list = [];
+if (array_key_exists('season', $content)) {
+    $seasons = $content['season'];
+    $season = is_array($seasons) && isset($seasons[0]) ? $seasons[0] : [];
+    $episode_list = getAllEpisodesFromSeason($season);
+} else if (array_key_exists('episodes', $content)) {
+    $episode_list = getAllEpisodesFromSeason($content);
+} else {
+    if (array_key_exists('file_url_original', $content) && !empty($content['file_url_original'])) {
+        $episode_list[] = [
+            'id' => $content['ID'],
+            'ep_url' => $content['file_url_original']
+        ];
     }
-    $episode_json = json_encode($episode_list);
-    ?>
-</div> -->
+}
+$episode_json = json_encode($episode_list);
+?>
 <div class="podcast-background w-100">
     <section class="container w-100 mt-2">
         <div class="row justify-content-center">
@@ -143,19 +140,21 @@ $cover_img = getCardImage($content, 'cover_image', 'large');
                             </button>
                         </div>
 
-                        <?php if (count($episode_list) > 0) { ?>
-                            <audio id="audioPlayer" controls>
-                                <source id="audioSource" src="{{$episode_list[0]}}" type="audio/mpeg">
-                            </audio>
-                            <div id="episodeControls">
-                                <button id="prevEpisode">Previous</button>
-                                <button id="nextEpisode">Next</button>
-                                <button id="playButton">Play</button>
-                                <button id="pauseButton" style="display: none;">pause</button>
-                                <button id="volumeUpButton"><i class='fa fa-volume-up'></i></button>
-                                <button id="volumeDownButton"><i class='fa fa-volume-down'></i></button>
-                            </div>
-                        <?php } ?>
+                        @if (count($episode_list) > 0)
+                        <audio id="audioPlayer" controls>
+                            <source id="audioSource" src="{{$episode_list[0]['ep_url']}}" type="audio/mpeg">
+                        </audio>
+                        <div id="episodeControls">
+                            @if (count($episode_list) > 1)
+                            <button id="prevEpisode">Previous</button>
+                            <button id="nextEpisode">Next</button>
+                            @endif
+                            <button id="playButton">Play</button>
+                            <button id="pauseButton" style="display: none;">pause</button>
+                            <button id="volumeUpButton"><i class='fa fa-volume-up'></i></button>
+                            <button id="volumeDownButton"><i class='fa fa-volume-down'></i></button>
+                        </div>
+                        @endif
 
 
                     </div>
@@ -201,8 +200,7 @@ $cover_img = getCardImage($content, 'cover_image', 'large');
         audio.volume = 0.25; // Set default volume 25%
         // Function to load and play the current episode
         function playCurrentEpisode() {
-            var episodeURL = episodes[currentEpisodeIndex];
-            $("#audioSource").attr("src", episodeURL);
+            $("li.pod-main").removeClass('episode-active');
             audio.load();
             audio.play().then(() => {
                     console.log('Audio is playing');
@@ -210,6 +208,13 @@ $cover_img = getCardImage($content, 'cover_image', 'large');
                 .catch(error => {
                     console.error('Failed to play audio:', error);
                 });
+            var episodeURL = episodes[currentEpisodeIndex]['ep_url'];
+            $("#audioSource").attr("src", episodeURL);
+            var episodeID = episodes[currentEpisodeIndex]['id'];
+            $("li.pod-main[data-id='" + episodeID + "']").addClass('episode-active');
+            if ($("li.pod-main").attr("data-id") == episodeID) {
+
+            }
         }
 
         // Next episode button click handler
@@ -248,12 +253,12 @@ $cover_img = getCardImage($content, 'cover_image', 'large');
         });
 
         $("#volumeUpButton").click(function() {
-            if (audio.volume < 1) {
+            if (audio.volume < 0.95) {
                 audio.volume += 0.05; // Increase volume by 5%
             } else {
                 audio.volume = 1;
             }
-            
+
         });
 
         $("#volumeDownButton").click(function() {
@@ -263,6 +268,13 @@ $cover_img = getCardImage($content, 'cover_image', 'large');
                 audio.volume = 0;
             }
         });
+
+        $('.playBtn').click(function() {
+            var data_url = $(this).attr("data-url");
+            if (data_url != "") {
+                window.location.href = data_url;
+            }
+        })
     });
 </script>
 @stop

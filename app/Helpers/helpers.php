@@ -517,7 +517,7 @@ function generateCategoryResponse($result)
         . '<h6>' . $topResult['title'] . '</h6>'
         . '<span>' . @$dateText . ' | ' . @$topResult['duration'] . '</span>'
         . '<p class="search-top mt-2">' . $topResult['description'] . '</p>'
-        . '<div class="d-flex align-items-center"><a href="' . $url . '"><button class="fill-btn em ms-0">'.__('Watch').'</button></a>' . $wishlistAction . '</div></div>'
+        . '<div class="d-flex align-items-center"><a href="' . $url . '"><button class="fill-btn em ms-0">' . __('Watch') . '</button></a>' . $wishlistAction . '</div></div>'
         . '</li></ul>';
 }
 
@@ -549,7 +549,7 @@ function getCardImage($content, $key, $size = 'medium', $fallback = [])
     return $img_url;
 }
 
-if (!file_exists('getUrl')) {
+if (!function_exists('getUrl')) {
     function getUrl($path = '')
     {
         if (!empty($path) && substr($path, 0, 1) != '/') {
@@ -566,7 +566,7 @@ if (!file_exists('getUrl')) {
     }
 }
 
-if (!file_exists('getUrlWithPrefix')) {
+if (!function_exists('getUrlWithPrefix')) {
     function getUrlWithPrefix($path = '', $id = '')
     {
         $request = Request();
@@ -580,7 +580,7 @@ if (!file_exists('getUrlWithPrefix')) {
     }
 }
 
-if (!file_exists('getUrlWithoutPrefix')) {
+if (!function_exists('getUrlWithoutPrefix')) {
     function getUrlWithoutPrefix($path = '', $id = '')
     {
         $request = Request();
@@ -605,4 +605,26 @@ function isActiveSubscription()
     }
 
     return false;
+}
+
+if (!function_exists("getAllEpisodesFromSeason")) {
+    function getAllEpisodesFromSeason($season)
+    {
+        $episode_list = [];
+        if (array_key_exists('episodes', $season)) {
+            if (is_array($season['episodes'])) {
+                foreach ($season['episodes'] as $episode) {
+                    if (array_key_exists('file_url_original', $episode) && !empty($episode['file_url_original'])) {
+                        $episode_list[] = [
+                            'id' => $episode['ID'],
+                            'ep_url' => $episode['file_url_original']
+                        ];
+                    } else {
+                        continue;
+                    }
+                }
+            }
+        }
+        return $episode_list;
+    }
 }
