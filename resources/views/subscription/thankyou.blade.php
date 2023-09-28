@@ -23,6 +23,6 @@ var start = new Date;
     }, 1000);
         window.setTimeout(function() {
         window.location.href = APP_URL+'/';
-    }, 4000);
+    }, 5000);
 </script>    
 @stop
