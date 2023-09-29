@@ -181,13 +181,14 @@ $episode_json = json_encode($episode_list);
 
 <script src="{{ asset('assets/js/socialSharing.js') }}"></script>
 
+<script src="{{ asset('assets/js/common.js') }}"></script>
 <script>
     $(".pod-main").hover(function() {
         $(this).addClass("active"); //Add the active class to the area is hovered
     }, function() {
         $(this).removeClass("active");
     });
-    
+
     $(document).ready(function() {
         // List of episode URLs
         var episodes = <?php echo $episode_json; ?>;

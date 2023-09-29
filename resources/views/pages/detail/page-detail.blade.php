@@ -200,6 +200,7 @@ $loadPlayer = true;
     <script src="{{ asset('assets/js/socialSharing.js') }}"></script>
 
     <script src="{{ asset('assets/js/detail.js') }}"></script>
+    <script src="{{ asset('assets/js/common.js') }}"></script>
 
     @if ($loadPlayer)
         <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>

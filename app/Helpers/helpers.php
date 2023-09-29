@@ -278,7 +278,7 @@ function getWishlist()
         $params = [
             'action' => 'view'
         ];
-        $result = CurlAPI("pages/wishlist", "POST", $params);
+        $result = CurlAPI("pages/wishlist", "POST", $params, 1, true);
 
         if ($result && @$result['success'] ==  true) {
 
