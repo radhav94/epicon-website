@@ -140,7 +140,8 @@ $episode_json = json_encode($episode_list);
                             </button>
                         </div>
 
-                        @if (count($episode_list) > 0)
+                        @if (count($episode_list) > 0 && (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription())))
+                            
                         <audio id="audioPlayer" controls>
                             <source id="audioSource" src="{{$episode_list[0]['ep_url']}}" type="audio/mpeg">
                         </audio>
@@ -163,9 +164,9 @@ $episode_json = json_encode($episode_list);
 
         </div>
     </section>
-
-    @include('pages.detail.detail-components.tabs')
-
+    @if (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription()))
+        @include('pages.detail.detail-components.tabs')
+    @endif
 
 </div>
 
@@ -189,15 +190,15 @@ $episode_json = json_encode($episode_list);
 </script>
 <script>
     $(document).ready(function() {
-        var audioPlayer = document.getElementById("audioPlayer");
-
         // List of episode URLs
         var episodes = <?php echo $episode_json; ?>;
 
         var currentEpisodeIndex = 0;
         var audio = $("#audioPlayer")[0]; // Get the native audio element
         console.log(audio);
-        audio.volume = 0.25; // Set default volume 25%
+        if ($("#audioPlayer").length) {
+            audio.volume = 0.25; // Set default volume 25%
+        }
         // Function to load and play the current episode
         function playCurrentEpisode() {
             $("li.pod-main").removeClass('episode-active');
