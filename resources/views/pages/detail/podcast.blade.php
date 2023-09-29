@@ -187,8 +187,7 @@ $episode_json = json_encode($episode_list);
     }, function() {
         $(this).removeClass("active");
     });
-</script>
-<script>
+    
     $(document).ready(function() {
         // List of episode URLs
         var episodes = <?php echo $episode_json; ?>;
