@@ -160,7 +160,6 @@ class SubscriptionController extends Controller
                 "coupon_applied" => $formData['coupanstatus'] ??'',
                 "amount" => $resorder['order_value'],
                 "epic_price"=> $result['epic_price'],
-                //"coupanstatus"=>$formData['coupanstatus'],
             ];
             $request->session()->put('create_order', $orderPostData);
 
@@ -529,6 +528,7 @@ class SubscriptionController extends Controller
          $getOnlyDate = date('Y-m-d',strtotime(@$orderdata['subscription_end_date']));
 		 if($paymentresponse['status'] =='success'){
             $orderData = $request->session()->get('orderdata');
+            //dd($orderData);
             $orderValue = $request->session()->get('create_order');
 
             $updateOrderData =[
@@ -574,14 +574,16 @@ class SubscriptionController extends Controller
             if($verifyDetails->status){
 
             ///---------***Prchase order api***-------///
-
-            $updateData = CurlAPI("subscriptions/createupdateorder", 'POST', $orderData, 2);
-
-            Log::info("-----update Subscription Status after payment verify.");
-            Log::debug(json_encode($updateData));
-            Log::info("-----END----------------------");    
+            // Log::info("-----createupdateorder----------------------"); 
+            // Log::debug(json_encode($orderData));
+            // $updateData = CurlAPI("subscriptions/createupdateorder", 'POST', $orderData, 2);
+            // //dd($updateData);
+            // Log::info("-----update Subscription Status after payment verify.");
+            // Log::debug(json_encode($updateData));
+            // Log::info("-----END----------------------");    
             ///---------***End Prchase order api***-------///
-
+            Log::info("-----updateOrderData----------------------"); 
+            Log::debug(json_encode($updateOrderData));
             ///------***Update create order with payment details***--------///
             $updatePayment = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2);
 
