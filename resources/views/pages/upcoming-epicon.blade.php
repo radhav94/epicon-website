@@ -48,9 +48,7 @@ krsort($output);
                         <?php foreach ($releaseDate as $val) {
                             $cover_img = isset($val['cover_image']) ? @$val['cover_image']['medium'] : '';
                             $generes = array_column($val['genres_assign'] ?? [], 'name');
-                            // echo '<pre>';
-                            // print_r($val);
-                            // echo '</pre>';
+                            
                             $sub_text = [];
 
                             if (isset($val['release_date'])) {

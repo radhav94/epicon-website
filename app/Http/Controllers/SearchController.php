@@ -31,7 +31,6 @@ class SearchController extends Controller
         ];
 
         $searchResult = CurlAPI("pages/search", 'POST', $postData, 1);
-        // dd(app()->getLocale());
         if ($searchResult) {
             $data = [];
 
