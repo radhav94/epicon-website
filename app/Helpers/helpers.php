@@ -664,7 +664,7 @@ function CURLFOREVENTPUSH($txn_url, $postData, $headerType)
 		$headers[] = 'Authorization: Basic ' . base64_encode(config('epicconfig.moengage.APP_ID_API') . ':' . config('epicconfig.moengage.APP_KEY'));
 		$headers[] = 'MOE-APPKEY: ' . config('epicconfig.moengage.APP_KEY');
 
-		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData, JSON_PRETapp/Helpers/helpers.phpTY_PRINT));
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData, JSON_PRETTY_PRINT));
 	}
 
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
