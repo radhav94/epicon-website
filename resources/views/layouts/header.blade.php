@@ -107,9 +107,11 @@
             <a class="navbar-brand" href="#"><img src="{{ asset('assets/img/epicon-logo.png') }}"
                     alt=""></a>
             @loggedin
-
+            <?php $subplan = checkSubscription(); ?>
+            @if(@$subplan['status'] != 'active')
+           
             <a class="subscribe-btn" href="{{ route('subscription') }}">Subscribe</a>
-            
+            @endif
             @elseloggedin
 
             <a class="subscribe-btn login" href="javascript:void(0);">Subscribe</a>

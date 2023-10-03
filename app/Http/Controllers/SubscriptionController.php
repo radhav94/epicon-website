@@ -15,14 +15,12 @@ class SubscriptionController extends Controller
     {
         $sessionData = $request->session()->get('user_token');
         $userData = $request->session()->get('user');
-        //dd($userData);exit;
         $subscriptionPurchases = $allPurchasedPlans = $activePlan = $futurePlan = $result = [];
         $offerCount = 0;
         $today = date("Y-m-d") . "T" . date("H:i:s") . "Z";
         $todayStrToTime = strtotime($today);
         $usedDays = 0;
         $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2);
-        //dd($subscriptionPurchases);exit();
 
         if (empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['message'] == 'No subscriptions found') {
 
@@ -53,25 +51,28 @@ class SubscriptionController extends Controller
                 return view('subscription.subscription', compact('result', 'offerCount'));
             }
         } else {
-            foreach ($subscriptionPurchases['data'] as $k => $item) {
-                if (!isset($item['plan_name'])) {
-                    $item['plan_name'] = '';
-                }
-                $allPurchasedPlans[@$item['plan_id']] = $item;
-                // now based on plan status from API
-                $planstartdate = @$item['subscription_start_date'];
-                $planstartdate = date("Y-m-d", strtotime($planstartdate));
-                if ($item['plan_status'] == "current") {
-                    $remainingDays = getDays($today, @$item['subscription_end_date'], 'IST');
-                    $activePlan = $item;
-                    $activePlan['remainingDays'] = $remainingDays;
-                } else if ($item['plan_status'] == 'future' && date("Y-m-d") == $planstartdate) {
-                    $remainingDays = getDays($today, @$item['subscription_end_date'], 'IST');
-                    $activePlan = $item;
-                    $activePlan['remainingDays'] = $remainingDays;
+            if(isset($subscriptionPurchases['data'])){
+                foreach ($subscriptionPurchases['data'] as $k => $item) {
+                    if (!isset($item['plan_name'])) {
+                        $item['plan_name'] = '';
+                    }
+                    $allPurchasedPlans[@$item['plan_id']] = $item;
+                    // now based on plan status from API
+                    $planstartdate = @$item['subscription_start_date'];
+                    $planstartdate = date("Y-m-d", strtotime($planstartdate));
+                    if ($item['plan_status'] == "current") {
+                        $remainingDays = getDays($today, @$item['subscription_end_date'], 'IST');
+                        $activePlan = $item;
+                        $activePlan['remainingDays'] = $remainingDays;
+                    } else if ($item['plan_status'] == 'future' && date("Y-m-d") == $planstartdate) {
+                        $remainingDays = getDays($today, @$item['subscription_end_date'], 'IST');
+                        $activePlan = $item;
+                        $activePlan['remainingDays'] = $remainingDays;
+                    }
                 }
             }
-            if (!empty($activePlan)) {
+            //dd($activePlan);
+            if (empty($activePlan)) {
                 $result = CurlAPI("subscriptions/plans", "GET", "", 2);
                 if ($result && @$result['success'] == true) {
 
@@ -101,6 +102,7 @@ class SubscriptionController extends Controller
             } else {
 
                 return redirect()->route('my-account');
+                
             }
 
         }
@@ -149,16 +151,15 @@ class SubscriptionController extends Controller
         $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2); 
         if ($resultData['success'] == true && !empty(@$resultData['order_data'])) {
             $resorder = $resultData['order_data'];
-            //dd($resorder);
             $orderPostData = [
                 "plan_id" => $resorder['plan_id'],
                 "user_id" => $resorder['user_id'],
                 "payment_gateway" => "payumoney",
                 "web_device" => $resorder['device'],
-                "coupon_applied" => "N",
+                "coupon_applied" => $formData['coupanstatus'] ??'',
                 "amount" => $resorder['order_value'],
                 "epic_price"=> $result['epic_price'],
-                "coupanstatus"=>$formData['coupanstatus'],
+                //"coupanstatus"=>$formData['coupanstatus'],
             ];
             $request->session()->put('create_order', $orderPostData);
 
@@ -522,14 +523,34 @@ class SubscriptionController extends Controller
     public function payusuccess(Request $request)
     {
 		 $paymentresponse = $request->all();
-         //dd($payuResponse);
          $paymtentStatus = strtolower($paymentresponse['status']);
          $final_result = ['message' => 'The transaction has been declined.'];
          $getOnlyDate = date('Y-m-d',strtotime(@$orderdata['subscription_end_date']));
 		 if($paymentresponse['status'] =='success'){
             $orderData = $request->session()->get('orderdata');
             $orderValue = $request->session()->get('create_order');
-            //dd($orderValue);
+
+            $updateOrderData =[
+                'plan' => $orderValue['plan_id'] ?? '',
+                'user_id'=> $orderValue['user_id'] ?? '',
+                'order_id'=>$orderData['order_id'] ?? '',
+                'order_status'=>'complete',
+                'payment_gateway'=>$orderValue['payment_gateway'] ?? '',
+                'bank_ref_no'=>$paymentresponse['bank_ref_num'] ?? '',
+                'ios_receipt'=>'',
+                'android_receipt'=>'',
+                'web_device'=>$orderValue['web'] ?? '',
+                'coupon_applied'=>$orderValue['coupon_applied'] ?? '',
+                'subscriptionId'=>'',
+                'subscriptionPaymentMode'=>'',
+                'note'=>'',
+                'recurring_receipt'=>'',
+                'bank_name'=>'',
+                'payment_mode'=>$paymentresponse['mode'] ?? '',
+
+
+            ];
+
             $planValue = $orderValue['epic_price'] ?? '';
             /////////// Verify Payment Start ///////////
 
@@ -559,6 +580,14 @@ class SubscriptionController extends Controller
             Log::debug(json_encode($updateData));
             Log::info("-----END----------------------");    
             ///---------***End Prchase order api***-------///
+
+            ///------***Update create order with payment details***--------///
+            $updatePayment = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2);
+
+            Log::info("-----update Subscription Payment details after payment verify.");
+            Log::debug(json_encode($updatePayment));
+            Log::info("-----END----------------------");
+            ///------***End payment details***--------///
             
             $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
             $parameters['command'] = 'pre_debit_SI';

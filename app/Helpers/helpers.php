@@ -661,3 +661,41 @@ function CURLFOREVENTPUSH($txn_url, $postData, $headerType)
 	return $response;
 }
 
+function checkSubscription(){
+
+    $offerCount = 0;
+    $result['status']=[];
+    $today = date("Y-m-d") . "T" . date("H:i:s") . "Z";
+    $todayStrToTime = strtotime($today);
+    $usedDays = 0;
+    $activePlan=[];
+    $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2);
+    //dd($subscriptionPurchases);
+    if (!empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['success'] == true) {
+        foreach ($subscriptionPurchases['data'] as $k => $item) {
+            if (!isset($item['plan_name'])) {
+                $item['plan_name'] = '';
+            }
+            $allPurchasedPlans[@$item['plan_id']] = $item;
+            // now based on plan status from API
+            $planstartdate = @$item['subscription_start_date'];
+            $planstartdate = date("Y-m-d", strtotime($planstartdate));
+            if ($item['plan_status'] == "current") {
+                $remainingDays = getDays($today, @$item['subscription_end_date'], 'IST');
+                $activePlan = $item;
+                $activePlan['remainingDays'] = $remainingDays;
+            } else if ($item['plan_status'] == 'future' && date("Y-m-d") == $planstartdate) {
+                $remainingDays = getDays($today, @$item['subscription_end_date'], 'IST');
+                $activePlan = $item;
+                $activePlan['remainingDays'] = $remainingDays;
+            }
+        }
+        //dd($activePlan);
+        if(isset($activePlan['remainingDays']) && $activePlan['remainingDays'] > 1){
+            $result['status'] = 'active';
+        }
+
+      
+        return $result;
+    }   
+}
