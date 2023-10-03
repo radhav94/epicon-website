@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 class UpcomingController extends Controller
 {
     public function UpcomingEpicon(){
-        return view('pages.upcoming-epicon');
+         $UpcomingResponse = CurlAPI("pages/upcomingContent", 'GET', '' , 1);
+        // dd($UpcomingResponse);
+        if($UpcomingResponse && @$UpcomingResponse['success'] == true){
+            $Upcomingdata = $UpcomingResponse['data'];
+            // dd($Upcomingdata);
+            return view('pages.upcoming-epicon')->with('upcoming',$Upcomingdata);
+        }else{
+            return view('pages.error.data-error');
+        }
     }
 }

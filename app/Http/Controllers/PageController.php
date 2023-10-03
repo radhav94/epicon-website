@@ -8,19 +8,20 @@ use Illuminate\Support\Facades\Session;
 
 class PageController extends Controller
 {
+    private  $limit;
+    public function  __construct()
+    {
+        $this->limit = 50;
+    }
+
     public function index($slug = 'home-v2')
     {
-        // $res = getWishlist();
-        // dd($res);
-
         $params = [
             'slug' => $slug,
-            // 'slug' => 'home-v2',
-            // 'slug' => 'movies',
             'list_language' => 'ALL',
             'display_language' => 'ENGLISH',
             'page' => 1,
-            'limit' => 50,
+            'limit' => $this->limit,
         ];
 
         $result = CurlAPI("pages/homepage", "GET", $params, 1);
@@ -32,13 +33,6 @@ class PageController extends Controller
             dd($result);
         }
 
-        // dd($result['data']['list']['20']);
-        // $temp = [];
-        // foreach ($result['data']['list'] as $key => $value) {
-        //    $temp[] = $value['display_type'];
-        // }
-        // dd(array_unique(array_column($result['data']['list'], "display_type")));
-        // dd($result);
         if ($result && @$result['success'] ==  true) {
 
             $displayLanguageParam = setLanguageParameter();
@@ -48,6 +42,38 @@ class PageController extends Controller
             // dd($result['data']['list'][18]);
             return view('pages.homepage', compact('result', 'displayLanguageParam', 'meta_title'));
         }
+        return view('pages.error.404');
+    }
+
+    public function kidsIndex($slug = 'home')
+    {
+        $params = [
+            'slug' => 'kids-' . $slug,
+            'list_language' => 'ALL',
+            'display_language' => 'ENGLISH',
+            'page' => 1,
+            'limit' => $this->limit,
+        ];
+
+        $result = CurlAPI("pages/homepage", "GET", $params, 1);
+
+        if (request()->v == 2) {
+            foreach ($result['data']['list'] as $key => $value) {
+                d($value);
+            }
+            dd($result);
+        }
+
+        if ($result && @$result['success'] ==  true) {
+
+            $displayLanguageParam = setLanguageParameter();
+
+            $meta_title = strtoupper($slug);
+
+            // dd($result['data']['list'][18]);
+            return view('pages.homepage', compact('result', 'displayLanguageParam', 'meta_title'));
+        }
+        return view('pages.error.404');
     }
 
     public function loadMore(Request $request)
@@ -58,7 +84,7 @@ class PageController extends Controller
             'list_language' => 'ALL',
             'display_language' => 'ENGLISH',
             'page' => $request->page,
-            'limit' => 5,
+            'limit' => $this->limit,
         ];
 
         $result = CurlAPI("pages/homepage", "GET", $params, 1);
@@ -85,12 +111,33 @@ class PageController extends Controller
     public function explore()
     {
         $result = CurlAPI("pages/explorepage", "GET", [], 1);
-        // dd($result);
+
         if ($result && @$result['success'] ==  true) {
 
             return view('pages.explore', compact('result'));
         }
+
+        return view('pages.error.data-error');
     }
+
+    public function explore_details($slug)
+    {
+        $page = 1;
+        $params = [
+            'limit' => 18,
+            'page' => $page,
+        ];
+
+        $result = CurlAPI("pages/midpage/" . $slug, "GET", $params, 1);
+
+        if ($result && @$result['success'] ==  true) {
+            $result = $result['data'];
+            return view('pages.explore_details', compact('result', 'slug', 'page'));
+        } else {
+            return view('pages.error.data-error');
+        }
+    }
+
     public function getSpinnerContent(Request $request)
     {
         $result = CurlAPI("pages/spinnerContent", "POST", ['genre' => $request->genre]);
@@ -119,8 +166,8 @@ class PageController extends Controller
             'content_id' => $request->content_id,
             'action' => $request->action
         ];
-        $result = CurlAPI("pages/wishlist", "POST", $params);
-        // dd($result);
+        $result = CurlAPI("pages/wishlist", "POST", $params, 1, true);
+
         if ($result && @$result['success'] ==  true) {
             Cache::forget('getWishlist');
             // session()->forget('user_wishlist');
@@ -141,7 +188,70 @@ class PageController extends Controller
 
             return JSONResponse(200, ($request->action == 'add') ? 'Added to wishlist' : 'Removed from wishlist', ['icon' => $html]);
         } else {
-            return JSONResponse(400, 'Error.');
+            return JSONResponse(400, 'Something went wrong. Please try again!');
         }
+    }
+
+    public function showmidpagedetail($pageslug, $catalog)
+    {
+        // dd($catalog);
+        // if (($user = getLoggedInUser()) != false) {
+        //     $epicwebArr = CurlAPI("pages/midpage", "POST", ['user_id' => $user->user_id, 'session_id' => $user->api_session_id, 'catalogId' => $catalogid]);
+        // } else {
+        $page = 1;
+        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 50, 'page' => 1], 1);
+        if (isset($epicwebArr) && $epicwebArr['success'] == true) {
+            $epicwebArr = $epicwebArr['data'];
+            return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page'));
+        } else {
+            return view('pages.error.data-error');
+        }
+    }
+
+    public function paginatecontent()
+    {
+        $request = Request();
+        // dd($request->all());
+        $page = $request->page;
+        $limit = 50;
+        $catalog = $request->catalogid;
+        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 50, 'page' => $page], 1);
+        // dd($epicwebArr);
+        $catalogue_blade = "paginatecontent";
+        if ($epicwebArr && @$epicwebArr['success'] == true) {
+            $epicwebArr = $epicwebArr['data'];
+            $dataCount = count($epicwebArr);
+            $paginateHTML = (string) view('pages.' . $catalogue_blade, compact('epicwebArr', 'page', 'catalog'));
+        } else {
+            $paginateHTML = "false";
+        }
+        // dd($paginateHTML);
+        return json_encode(['paginateHTML' => $paginateHTML, 'dataCount' => $dataCount, 'limit' => $limit]);
+    }
+
+    public function explorecontent()
+    {
+        $request = Request();
+        // dd($request->all());
+        $page = $request->page;
+        $slug = $request->slug;
+        $limit = 18;
+        $params = [
+            'page' => $page,
+            'limit' => 18,
+        ];
+        $dataCount = 0;
+        $result = CurlAPI("pages/midpage/" . $slug, "GET", $params, 1);
+        $explore_blade = "explorecontent";
+        if ($result && @$result['success'] == true) {
+            $result = $result['data'];
+            $dataCount = count($result);
+            $paginateHTML = (string) view('pages.' . $explore_blade, compact('result', 'page'));
+        } else {
+            $paginateHTML = "false";
+        }
+        // dd($result);
+        // dd($paginateHTML);
+        return json_encode(['paginateHTML' => $paginateHTML, 'dataCount' => $dataCount, 'limit' => $limit]);
     }
 }

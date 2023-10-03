@@ -18,8 +18,9 @@ class LoggedIn
         if (isUserLoggedIn()) {
             return $next($request);
         }
-
+        if ($request->ajax()) {
+            return JSONResponse(400, 'Please log in or sign up to continue.');
+        }
         return redirect(route('homepage'));
-        // abort(403, 'Unauthorized action.');
     }
 }

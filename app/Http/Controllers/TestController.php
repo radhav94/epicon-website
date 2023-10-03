@@ -9,8 +9,21 @@ class TestController extends Controller
 {
     public function index()
     {
-        $res = getProfileData();
-        dd($res);
+        $request = Request();
+        d(request()->session()->all());
+        echo '-------------------- <br>';
+        $request->session()->get('user_token');
+        $curlData = [];
+        $genrelist = postCurlApicall("users/viewProfile", $curlData, 2);
+
+        d($genrelist);
+        echo '-------------------- <br>';
+
+        echo "Old api <br>";
+
+        $result = CurlAPI("users/viewProfile", "POST", null, 2);
+
+        dd($result);
     }
     public function index1()
     {

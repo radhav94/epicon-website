@@ -1,3 +1,16 @@
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
 <!-- login model -->
 <div class="modal fade" id="login-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -69,14 +82,14 @@
                                 <div class="lg-social">
                                     <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
                                             alt=""></a>
-                                    <a href=""><img src="{{ asset('/img/lg-twitter-icon.svg') }}"
+                                    <a href="{{route('login.twitter')}}"><img src="{{ asset('/img/lg-twitter-icon.svg') }}"
                                             alt=""></a>
-                                    <a href=""><img src="{{ asset('/img/lg-google-icon.svg') }}"
+                                    <a href="{{route('login.google')}}"><img src="{{ asset('/img/lg-google-icon.svg') }}"
                                             alt=""></a>
                                     <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
                                             alt=""></a>
                                 </div>
-                                <p class="get-help mt-5 small">Having trouble signing in? <a href="">Get Help</a>
+                                <p class="get-help mt-5 small">Having trouble signing in? <a href="{{route('feedback')}}">Get Help</a>
                                 </p>
                             </form>
                         </div>
@@ -114,7 +127,7 @@
                                 <div id="verifyotp-result" style="color: red;">
                                     <!-- Display validation result here -->
                                 </div>
-                                <button id="resendBtn" onclick="resendOTP()">Resend OTP</button>
+                                <button class="btn btn-primary" id="resendBtn" onclick="resendOTP()">Resend OTP</button>
                                 <button class="login-btn verify-btn mt-4" style="width: 280px;">
                                     Verify Number
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -230,14 +243,14 @@
                                 <h5 class="mb-4 text-white">Login with Password</h5>
                                 <div class="input-field w-100 mb-3">
                                     <input class="form-control" id="mobilenumber" name="mobilenumber"
-                                        placeholder="Email or Mobile Number">
+                                        placeholder="Email or Mobile Number" value="<?php if(isset($_COOKIE["user_id"])) { echo $_COOKIE["user_id"]; } ?>">
                                     <input type="hidden" name="signup_method" id="signup_method" value="">
                                     <span class="text-danger text-start d-flex mt-1 error" id="mobile-error"
                                         style="font-size: 12px;"></span>
                                 </div>
                                 <div class="input-field w-100 mb-3">
                                     <input class="form-control" id="login_pwd" name="login_pwd" type="password"
-                                        placeholder="Enter Password">
+                                        placeholder="Enter Password" value="<?php if(isset($_COOKIE["user_password"])) { echo $_COOKIE["user_password"]; } ?>">
                                     <div class="eye-toggle" data-target="login_pwd">
                                         <a class="eye eye-open-login_pwd" style="display: none;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16"
@@ -480,6 +493,39 @@
                             </svg>
                         </button>
                     </div>
+
+                    <!-- better suggetion start -->
+                    <div class="better-solution choose-interests">
+                        <form id="interestsSuggestions" class="better-solution">                            <
+                            <div class="bs-left">
+                                <h4>
+                                    Choose 5 interests for better suggestions
+                                </h4>
+                                <div class="choose">
+                                    <div class="three">
+                                        <span><img src="{{ asset('img/welcom.jpeg')}}" alt=""></span>
+                                        <span><img src="{{ asset('img/dhamal.jpeg')}}" alt=""></span>
+                                        <span><img src="{{ asset('img/welcom.jpeg')}}" alt=""></span>
+                                        <span class="span-text-3" id="genre-select-count">0 of 5</span>
+                                    </div>
+                                    <button type="button" class="better-suggestion-nxtBtn">Next
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <path d="M5 12H19" stroke="#161616" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M12 5L19 12L12 19" stroke="#161616" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </button> 
+                                    <input type="hidden" name="user_token">                                   
+                                </div>
+                                <div id="error-meg-for-genre-select" style="color: red;"></div>
+                            </div>
+                            <div class="bs-right" id="interest-suggetion">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- better suggetion end -->
 
                     <!-- successfully logged  start-->
                     <div class="successfully-loged w-100 screen-sucess-logged">

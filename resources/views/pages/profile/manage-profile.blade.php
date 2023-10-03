@@ -8,16 +8,20 @@
 @section('content')
 
     <section class="w-100 mt-5">
-        <h4 class="w-100 text-white text-center">Manage Profiles</h4>
+        <h4 class="w-100 text-white text-center">{{__('Manage Profiles')}}</h4>
         @if ($data['profiles'])
             <div class="manage-profile">
                 <ul class="list-unstyled m-0 p-0">
                     @foreach ($data['profiles'] as $key => $value)
                         <?php
-                        $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : asset('assets/img/edit-profile-pik.png');
+                        
+                        $gender = @$data['result']['user_data']['gender'] ?? 'Male';
+                        $default_img = $gender == 'Female' ? asset('assets/img/edit-profile-pik.png') : asset('assets/img/profile-boy.png');
+                        
+                        $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : $default_img;
                         ?>
                         <li>
-                            <a href="{{ route('profile.edit', $value['id']) }}">
+                            <a href="{{ getUrlWithPrefix('profile.edit', $value['id']) }}">
                                 <img src="{{ $profile_img }}" alt="img">
                                 <span><img src="{{ asset('assets/img/mn-edit-icon.png') }}" alt="icon"></span>
                             </a>
@@ -27,16 +31,16 @@
 
                     @if (count($data['profiles']) < $data['profile_limit'])
                         <li>
-                            <a href="{{ route('profile.add') }}">
+                            <a href="{{ getUrlWithPrefix('profile.add') }}">
                                 <img src="{{ asset('assets/img/mn-add.png') }}" alt="img">
                             </a>
                         </li>
                     @endif
                 </ul>
-                {{-- <button class="custom-btn mt-4">Done</button> --}}
+                {{-- <button class="custom-btn mt-4">{{__('Done')}}</button> --}}
             </div>
         @else
-            <h2>No data found</h2>
+            <h2>{{__('No data found')}}</h2>
         @endif
 
     </section>

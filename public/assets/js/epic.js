@@ -75,11 +75,11 @@ function onError(xhr) {
         }
     } catch (err) { }
     showToaster($msg, 2);
-
     console.log('Error:', xhr);
 }
 
-const showToaster = (message, type = 1, timeout = 5000) => {
+const showToaster = (message, type = 1, timeout = 4000) => {
+    toastr.clear();
     if (type == 1) {
         toastr.success(message, "Success", {
             timeOut: timeout
@@ -112,13 +112,24 @@ $(document).on('click', '.addToList', function () {
     };
 
     sendAjaxRequest(APP_URL + '/wishlist', 'POST', JSON.stringify(requestData),
-        onWishlistSuccess, onWishlistError, 'application/json');
+        onWishlistSuccess, onError, 'application/json');
 
     function onWishlistSuccess(response) {
         console.log('type : ' + type);
         if (type == 1) {
             console.log(response.payload?.icon);
             element.replaceWith(response.payload?.icon);
+        } else if (type == 3) {
+            element.data('action', element.data('action') === 'add' ? 'delete' : 'add');
+
+            if (action == 'add') {
+                element.find('.wl_add').hide();
+                element.find('.wl_remove').show();
+            } else {
+                element.find('.wl_add').show();
+                element.find('.wl_remove').hide();
+            }
+
         } else {
             element.data('action', element.data('action') === 'add' ? 'delete' : 'add');
             element.toggleClass('add-icon delete-icon');
@@ -126,10 +137,6 @@ $(document).on('click', '.addToList', function () {
 
 
         showToaster(response?.message, 1);
-    }
-
-    function onWishlistError(response) {
-        showToaster('Some error occured', 2);
     }
 });
 // end start add to wishlist
@@ -140,3 +147,33 @@ $(document).on('keydown', '.onlydigit', function (e) {
     }
 });
 
+//social share
+$(document).on('click', '.shareThis', function () {
+    let url = $(this).data('url');
+    let title = $(this).data('title') || 'Epic On';
+
+    console.log(title);
+
+    $('#shareDiv').empty();
+    $('#shareDiv').socialSharingPlugin({
+        url: url,
+        title: title,
+        description: title,
+        // description: $('meta[property="og:description"]').attr('content'),
+        // img: $('meta[property="og:image"]').attr('content'),
+        enable: ['copy', 'facebook', 'twitter']
+    });
+    $('#shareModal').modal('show')
+});
+//end social share
+
+$('.menu-close').click(function (e) {
+    e.preventDefault();
+});
+
+$('#side-menu').on('click', function (e) {
+    // Check if the click was not inside the .abc class
+    if (!$(e.target).hasClass('ps-3')) {
+        $('.menu-close').trigger('click');
+    }
+});

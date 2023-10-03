@@ -190,4 +190,18 @@ return [
         'ApiHelper' => App\Providers\HelperServiceProvider::class,
     ])->toArray(),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Available locales
+    |--------------------------------------------------------------------------
+    |
+    | List all locales that your application works with
+    |
+    */
+
+    'available_locales' => [
+        'English' => 'en',
+        'Hindi' => 'hi',
+    ],
+
 ];

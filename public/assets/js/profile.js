@@ -68,6 +68,7 @@ $(document).ready(function () {
             let onSuccessPin = function (response) {
                 showToaster(response?.message, 1);
                 $('#pinCloseBtn').trigger('click');
+                $('.setpinWrapper').hide();
             }
             sendAjaxRequest($(form).attr('action'), 'POST', new FormData(form), onSuccessPin, onError);
         }

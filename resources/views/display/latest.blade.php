@@ -32,7 +32,7 @@
                 <div class="d-flex align-items-baseline aie">
                     <h1 class="me-3">{{ $card['title'] }} </h1><span> {{ $extra_text }} </span>
                 </div>
-                <button class="start-mix-btn">Start MixTape</button>
+                <button class="start-mix-btn">{{__('Start MixTape')}}</button>
             </div>
         </div>
 

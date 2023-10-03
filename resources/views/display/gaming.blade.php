@@ -3,7 +3,9 @@
          <div class="galore-title">
              <h1>{{ $title }}</h1>
              @if (@$value['show_more'])
-                 <button>Explore More</button>
+                 <a href="{{ getMidPageUrl($value) }}">
+                     <button>Explore More</button>
+                 </a>
              @endif
          </div>
          <div class="gaming-galore">
@@ -11,11 +13,11 @@
              @foreach ($value['content'] as $key => $val)
                  <?php
                  $card = getItemCardData($val, $displayLanguageParam);
-                 $cover_img = isset($val['cover_image']) ? $val['cover_image']['small'] : $card['banner_img'];
+                 $cover_img = getCardImage($val, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
                  ?>
 
                  <div>
-                     <a href="{{ url($val['url']) }}">
+                     <a href="{{ getContentUrl($val) }}">
                          <img src="{{ $cover_img }}" alt="game">
                          <h1>{{ $card['title'] }}</h1>
                          <span>{{ @$val['content_type'] }}</span>

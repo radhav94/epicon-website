@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','New homepage')
+@section('title','My Rewards')
 
 @section('style')
 
@@ -14,13 +14,13 @@
             <div class="modal-content">
                 <div class="modal-body coupon-model-body text-center py-5">
                     <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <h4 class="text-white mt-4">Congratulations!</h4>
-                    <p class="w-75 text-white medium m-auto mb-4">You've successfully redeemed offer</p>
+                    <h4 class="text-white mt-4">{{__('Congratulations')}}</h4>
+                    <p class="w-75 text-white medium m-auto mb-4">{{__("You've successfully redeemed offer")}}</p>
                     <div class="coupon-code">
-                        <h6 class="code small">Coupon Code</h6>
+                        <h6 class="code small">{{__('Coupon Code')}}</h6>
                         <p class="redeem-code">F E M C L K 10</p>
                     </div>
-                    <p class="w-50 text-white small m-auto mb-4 mt-4">Your coupon is saved in your summary</p>
+                    <p class="w-50 text-white small m-auto mb-4 mt-4">{{__('Your coupon is saved in your summary')}}</p>
     
                 </div>
             </div>
@@ -32,29 +32,29 @@
     <section class="container w-100 my-4">
         <div class="row justify-content-center">
             <div class="col-sm-12">
-                <h4 class="text-white pb-3">My Rewards</h4>
+                <h4 class="text-white pb-3">{{__('My Rewards')}}</h4>
             </div>
             <div class="col-sm-12">
                 <div class="my-reward">
                     <ul class="p-0 m-0 list-unstyled">
                         <li>
                             <div class="coin-balance">
-                                <p>EpicOn Coin Balance</p>
-                                <h1>{{$walletArr['epicoinData']['epicoins']}}<img src="{{ asset('/img/coin.svg') }}" alt="coin"></h1>
+                                <p>{{__('EpicOn Coin Balance')}}</p>
+                                <h1>{{isset($walletArr['epicoinData']['epicoins']) ? $walletArr['epicoinData']['epicoins'] : '' }}<img src="{{ asset('/img/coin.svg') }}" alt="coin"></h1>
                             </div>
                             <img class="my-reward-gift" src="{{ asset('/img/my-reward-gift.svg') }}" alt="">
                         </li>
                         <li>
                             <div class="coin-balance">
-                                <p class="small">Total EpicOn<br>Coins Claimed</p>
-                                <h1>{{$walletArr['epicoinData']['debited']}}</h1>
+                                <p class="small">{{__('Total EpicOn')}}<br>{{__('Coins Claimed')}}</p>
+                                <h1>{{ isset($walletArr['epicoinData']['debited']) ? $walletArr['epicoinData']['debited'] : '' }}</h1>
                             </div>
                             <img class="my-reward-gift" src="{{ asset('/img/my-reward-coin.svg') }}" alt="">
                         </li>
                         <li>
                             <div class="coin-balance">
-                                <p class="small">Total EpicOn<br>Coins Earned</p>
-                                <h1>{{$walletArr['epicoinData']['credited']}}</h1>
+                                <p class="small">{{__('Total EpicOn')}}<br>{{__('Coins Earned')}}</p>
+                                <h1>{{ isset($walletArr['epicoinData']['credited']) ? $walletArr['epicoinData']['credited'] : '' }}</h1>
                             </div>
                             <img class="my-reward-gift" src="{{ asset('/img/my-reward-coin.svg') }}" alt="">
                         </li>
@@ -66,13 +66,13 @@
                 <div class="w-100 library">
                     <ul class="nav nav-pills border-bot pb-3" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="my-list" data-bs-toggle="pill" data-bs-target="#pills-earn" type="button" role="tab" aria-controls="pills-earn" aria-selected="true">Earn</button>
+                            <button class="nav-link active" id="my-list" data-bs-toggle="pill" data-bs-target="#pills-earn" type="button" role="tab" aria-controls="pills-earn" aria-selected="true">{{__('Earn')}}</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="history" data-bs-toggle="pill" data-bs-target="#pills-redeem" type="button" role="tab" aria-controls="pills-redeem" aria-selected="false">Redeem</button>
+                            <button class="nav-link" id="history" data-bs-toggle="pill" data-bs-target="#pills-redeem" type="button" role="tab" aria-controls="pills-redeem" aria-selected="false">{{__('Redeem')}}</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="history" data-bs-toggle="pill" data-bs-target="#pills-summary" type="button" role="tab" aria-controls="pills-summary" aria-selected="false">Summary</button>
+                            <button class="nav-link" id="history" data-bs-toggle="pill" data-bs-target="#pills-summary" type="button" role="tab" aria-controls="pills-summary" aria-selected="false">{{__('Summary')}}</button>
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
@@ -139,12 +139,12 @@
                                         <input type="hidden" name="redeem_coupon" id="redeem_coupon" value="{{$offercontent['coupon_code']}}">
                                         <div class="logo-coin">
                                             <img src="{{ $offer_image }}" alt="logo">
-                                            <h4><img src="{{ asset('/img/coin.svg') }}" alt="">{{$offercontent['epicoins']}}</h4>
+                                            <h4><img src="{{ asset('/img/coin.svg') }}" alt="">{{ isset($offercontent['epicoins']) ? $offercontent['epicoins'] : '' }}</h4>
                                         </div>
-                                        <p class="mt-4">{{$offercontent['offer_title']}}</p>
+                                        <p class="mt-4">{{ isset($offercontent['offer_title']) ? $offercontent['offer_title'] : '' }}</p>
                                     </div>
                                     <div class="redeem-bottom">
-                                        Expires in<span>&nbsp;{{$expiry_days}} Days</span>
+                                        Expires in<span>&nbsp;{{isset($expiry_days) ? $expiry_days : '' }} Days</span>
                                     </div>
                                 </li>
                                 <?php } ?>
@@ -220,9 +220,9 @@
                                             $redeemOn = isset($offersummary['redeem_on']) && !empty($offersummary['redeem_on']) ? date('d F Y', strtotime($offersummary['redeem_on'])) : '';
                                         ?>
                                         <tr>
-                                            <td><img class="summary-img" src="{{ $offer_image }}" alt="logo">Audible {{$offersummary['offer_title']}}</td>
-                                            <td style="color:#B7B7B7">Claimed on {{$redeemOn}}</td>
-                                            <td class="text-end"><img width="15" src="{{ asset('/img/coin.svg') }}" alt="">&nbsp; {{$offersummary['epicoins']}}</td>
+                                            <td><img class="summary-img" src="{{ $offer_image }}" alt="logo">Audible {{isset($offersummary['offer_title']) ? $offersummary['offer_title'] : '' }}</td>
+                                            <td style="color:#B7B7B7">Claimed on {{ isset($redeemOn) ? $redeemOn : '' }}</td>
+                                            <td class="text-end"><img width="15" src="{{ asset('/img/coin.svg') }}" alt="">&nbsp; {{ isset($offersummary['epicoins']) ? $offersummary['epicoins'] : '' }}</td>
                                         </tr>
                                         <?php } ?>
                                     <!-- <tr>

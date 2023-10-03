@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','New homepage')
+@section('title','My Account')
 
 @section('style')
 
@@ -7,7 +7,35 @@
 
 @section('content')
 
+<?php
+if(!empty($subscriptionPurchases)){
+if(isset($subscriptionPurchases[0]['subscription_start_date'])){
+    $subscription_start_date = date('Y-m-d', strtotime($subscriptionPurchases[0]['subscription_start_date']));
 
+    $substartdate=date("jS F, Y", strtotime($subscriptionPurchases[0]['subscription_start_date']));  
+}
+if(isset($subscriptionPurchases[0]['subscription_end_date'])){
+    $subscription_end_date = date('Y-m-d', strtotime($subscriptionPurchases[0]['subscription_end_date']));
+
+    $subenddate=date("jS F, Y", strtotime($subscriptionPurchases[0]['subscription_end_date']));  
+}
+
+if($subscriptionPurchases[0]['validity_days'] == 30){
+    $plan_name = 'month';
+}else if($subscriptionPurchases[0]['validity_days'] == 90){
+    $plan_name = 'quarter';
+}else if($subscriptionPurchases[0]['validity_days'] == 180){
+    $plan_name = 'half-yearly';
+}else{
+    $plan_name = 'year';
+}
+
+$today = date_create(date('Y-m-d'));
+$enddate = date_create(date('Y-m-d', strtotime($subscriptionPurchases[0]['subscription_end_date'])));
+$dateDiff = date_diff($enddate,$today);
+$numOfDays = $dateDiff->format('%a');
+}
+?>
 
 <!-- login model -->
 <div class="modal fade" id="cancelMembership" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -27,10 +55,10 @@
                         </defs>
                       </svg>
                 </span>
-                <h4 class="text-white mt-4">Cancel Membership</h4>
-                <p class="w-75 text-white small m-auto">Cancellation will be effective at the end of your current billing cycle on 20 May 2024. No refunds will be made.</p>
+                <h4 class="text-white mt-4">{{__('Cancel Membership')}}</h4>
+                <p class="w-75 text-white small m-auto">{{__('Cancellation will be effective at the end of your current billing cycle on 20 May 2024. No refunds will be made.')}}</p>
                 <button class="login-btn mt-4" style="width: 280px;">
-                    Finish Cancellation
+                    {{__('Finish Cancellation')}}
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"/>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"/>
@@ -45,17 +73,28 @@
     <section class="container w-100 my-4">
         <div class="row justify-content-center">
             <div class="col-sm-12">
-                    <h4 class="text-white border-bot pb-3">My Account</h4>
+                    <h4 class="text-white border-bot pb-3">{{__('My Account')}}</h4>
             </div>
+            @if(!empty($subscriptionPurchases))
+            <?php
+            if($today < $enddate){
+                $plancss = '';
+            }else{
+                $plancss = 'plan-expired';
+            }
+            ?>
             <div class="col-sm-6 col-md-7">
-                <div class="my-account-main plan-expired position-relative mt-2">
-                    <div class="plan-ex">Plan Expired</div>
+                <div class="my-account-main {{$plancss}} position-relative mt-2">
+                    
+                    <div class="plan-ex">{{__('Plan Expired')}}</div>
+                    
                     <img class="corner-bg" src="{{ asset('/img/corner-bg.svg') }}" alt="">
-                    <p class="current-subs d-flex">Current Subscription</p>
+                    <p class="current-subs d-flex">{{__('Current Subscription')}}</p>
                     <h1>Premium HD</h1>
                     <div class="premium-plan">
-                        <div class="past-sub w-100">PAST SUBSCRIPTION</div>
-                        <h2>Premium HD</h2>
+
+                        <div class="past-sub w-100">{{__('PAST SUBSCRIPTION')}}</div>
+                        <h2>{{ isset($subscriptionPurchases[0]['plan_name']) ? $subscriptionPurchases[0]['plan_name'] : '' }}</h2>
                         <div class="progress blue">
                             <span class="progress-left">
                                               <span class="progress-bar"></span>
@@ -64,19 +103,19 @@
                                               <span class="progress-bar"></span>
                             </span>
                             <div class="progress-value">
-                                <span>320</span>
-                                <p>Days left</p>
+                                <span>{{ isset($numOfDays) ? $numOfDays : '' }}</span>
+                                <p>{{__('Days left')}}</p>
                             </div>
                         </div>
                         <div class="pp-right">
-                            <h3>₹499 <span>/ year</span></h3>
-                            <p>20th May, 23 - 20th May, 24</p>
+                            <h3>₹ {{ isset($subscriptionPurchases[0]['plan_amount']) ? $subscriptionPurchases[0]['plan_amount'] : '' }} <span>/ {{ isset($plan_name) ? $plan_name : '' }}</span></h3>
+                            <p>{{isset($substartdate) ? $substartdate : ''}} - {{ isset($subenddate) ? $subenddate : '' }}</p>
                         </div>
                     </div>
 
                     <div class="w-100 text-center">
                         <button class="renew-paln">
-                            Renew plan
+                            {{__('Renew plan')}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="white"/>
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="white"/>
@@ -86,24 +125,25 @@
 
                 </div>
             </div>
+            @if(!empty($viewprofile))
             <div class="col-sm-6 col-md-5 d-flex align-items-center">
                 <div class="billing-details w-100 text-white">
-                    <h4>Billing Details</h4>
+                    <h4>{{__('Billing Details')}}</h4>
                     <p class="position-relative"> 
                         <img src="{{ asset('/img/email.svg') }}" alt="">
-                        ananyaabc@gmail.com &nbsp;
+                        {{ isset($viewprofile['email']) ? $viewprofile['email'] : '' }} &nbsp;
                         <button class="edit-icon bg-transparent border-0">
                             <img src="{{ asset('/img/edit-icon.svg') }}" alt="">
                         </button>
                     </p>
                     <p>
-                        <img src="{{ asset('/img/mobile.svg') }}" alt="">&nbsp; 8123456789
+                        <img src="{{ asset('/img/mobile.svg') }}" alt="">&nbsp; {{ isset($viewprofile['user_id']) ? $viewprofile['user_id'] : '' }}
                     </p>
                     <p class="border-bot pb-4">
                         <img src="{{ asset('/img/visa.svg') }}" alt=""> &nbsp; visa **** **** **** 1823
                     </p>
                     <p class="position-relative border-bot pb-4"> 
-                        View Transaction History
+                        {{__('View Transaction History')}}
                         <a href="{{route('trans-history')}}" class="edit-icon bg-transparent border-0">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="20" viewBox="0 0 14 20" fill="none">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M1.31843 0.422975C1.83708 -0.108049 2.7162 -0.143922 3.282 0.34285L13.3894 9.0385C13.6766 9.28555 13.8401 9.63438 13.8401 10C13.8401 10.3656 13.6766 10.7144 13.3894 10.9615L3.282 19.6572C2.7162 20.1439 1.83708 20.1081 1.31843 19.577C0.799777 19.046 0.838 18.2209 1.4038 17.7341L10.3936 10L1.4038 2.26586C0.838 1.77909 0.799777 0.954 1.31843 0.422975Z" fill="white"/>
@@ -111,7 +151,7 @@
                         </a>
                     </p>
                     <p class="position-relative border-bot pb-4"> 
-                        Cancel Membership
+                        {{__('Cancel Membership')}}
                         <button class="edit-icon bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#cancelMembership">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="20" viewBox="0 0 14 20" fill="none">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M1.31843 0.422975C1.83708 -0.108049 2.7162 -0.143922 3.282 0.34285L13.3894 9.0385C13.6766 9.28555 13.8401 9.63438 13.8401 10C13.8401 10.3656 13.6766 10.7144 13.3894 10.9615L3.282 19.6572C2.7162 20.1439 1.83708 20.1081 1.31843 19.577C0.799777 19.046 0.838 18.2209 1.4038 17.7341L10.3936 10L1.4038 2.26586C0.838 1.77909 0.799777 0.954 1.31843 0.422975Z" fill="white"/>
@@ -120,8 +160,21 @@
                     </p>
                 </div>
             </div>
-
+            @endif
+            @else
             <div class="col-12 text-center mt-5">
+                <img src="{{ asset('/img/not-subscribe.svg') }}" alt="img" style="margin-bottom: -50px;">
+                <p class="small text-white">{{__('You have not subscribed to Epic On yet!')}}</p>
+                <button class="login-btn mt-4" style="width: 280px;">
+                    {{__('Subscribe Now')}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
+                    </svg>
+                 </button>
+            </div>
+            @endif
+            <!-- <div class="col-12 text-center mt-5">
                 <img src="{{ asset('/img/not-subscribe.svg') }}" alt="img" style="margin-bottom: -50px;">
                 <p class="small text-white">You have not subscribed to Epic On yet!</p>
                 <button class="login-btn mt-4" style="width: 280px;">
@@ -131,7 +184,7 @@
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
                     </svg>
                  </button>
-            </div>
+            </div> -->
 
         </div>
     </section>

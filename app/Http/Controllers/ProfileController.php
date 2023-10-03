@@ -17,11 +17,11 @@ class ProfileController extends Controller
 
     public function getProfileData()
     {
-        $result = CurlAPI("users/viewProfile", "POST", null, 2);
+        $result = CurlAPI("users/viewProfile", "POST", null, 2, true);
 
         if ($result && @$result['success'] ==  true) {
 
-            $profiles = $result['user_data']['profiles'];
+            $profiles = $result['user_data']['profiles'] ?? [];
 
             $profile_limit = $this->profile_limit;
 
@@ -42,19 +42,21 @@ class ProfileController extends Controller
     public function index()
     {
         // $res = getProfileData();
-        // dd($res);
+
         $res = $this->getProfileData();
         // dd($res);
         if ($res) {
             return view('pages.profile.manage-profile')->with('data', $res);
         } else {
-            return view('pages.404');
+            return view('pages.error.404');
         }
     }
 
     public function add()
     {
-        return view('pages.profile.add-profile');
+        $data = session()->get('profile_data');
+
+        return view('pages.profile.add-profile', compact('data'));
     }
 
     public function store(Request $request): JsonResponse
@@ -69,7 +71,7 @@ class ProfileController extends Controller
             $param['profile_img'] = $url;
         }
 
-        $result = CurlAPI("users/createProfile", "POST", $param, 2);
+        $result = CurlAPI("users/createProfile", "POST", $param, 2, true);
 
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(200, 'Profile created successfully.', ['redirect' => route('profile.index')]);
@@ -81,16 +83,18 @@ class ProfileController extends Controller
     {
         // $all = request()->session()->all();
         // dd($all);
-        $result = CurlAPI("users/viewProfile", "POST", null, 2);
+        $result = CurlAPI("users/viewProfile", "POST", null, 2, true);
         // dd($result);
 
         $profile = '';
 
         if ($result && @$result['success'] ==  true) {
+            $data = $result['user_data'] ?? [];
 
             foreach ($result['user_data']['profiles'] as $key => $value) {
                 if ($id == $value['id']) {
                     $value['date_of_birth'] = (isset($value['date_of_birth'])) ? timestampToDate($value['date_of_birth'], 'Y-m-d') : '';
+                    $value['kidSection'] = $data['kidSection'] ?? false;
                     $profile = $value;
                     break;
                 }
@@ -98,9 +102,9 @@ class ProfileController extends Controller
         }
 
         if ($profile) {
-            return view('pages.profile.edit-profile', compact('profile'));
+            return view('pages.profile.edit-profile', compact('profile', 'data'));
         } else {
-            return view('pages.404');
+            return view('pages.error.404');
         }
     }
 
@@ -119,7 +123,7 @@ class ProfileController extends Controller
             $param['profile_img'] = $request->old_profile_img ? $request->old_profile_img : '';
         }
 
-        $result = CurlAPI("users/editProfile", "POST", $param, 2);
+        $result = CurlAPI("users/editProfile", "POST", $param, 2, true);
 
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(200, 'Profile updated successfully.', ['redirect' => route('profile.index')]);
@@ -133,7 +137,7 @@ class ProfileController extends Controller
         $params = [
             'profile_id' => $profile_id
         ];
-        $result = CurlAPI("users/deleteProfile", "POST", $params, 2);
+        $result = CurlAPI("users/deleteProfile", "POST", $params, 2, true);
 
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(200, 'Profile deleted successfully.', ['redirect' => route('profile.index')]);
@@ -146,7 +150,7 @@ class ProfileController extends Controller
     {
         $param = ['pin' => $request->cpin_1 . $request->cpin_2 . $request->cpin_3 . $request->cpin_4];
 
-        $result = CurlAPI("users/setChildPin", "POST", $param, 2);
+        $result = CurlAPI("users/setChildPin", "POST", $param, 2, true);
 
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(200, 'Pin added successfully.', ['redirect' => route('profile.index')]);

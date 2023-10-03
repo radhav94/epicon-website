@@ -3,8 +3,9 @@
     $(document).ready(function() {
 
         $('.login').click(function() {
-            $('.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd').hide();
-            $('.left-side,.right-side').show();
+            $('.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd,.choose-interests').hide();
+
+            $('.left-side,.right-side,.screen-login').show();
             $('#login-modal').show();
             $('#login-modal').addClass("show");
 
@@ -61,7 +62,7 @@
 
                 $.ajax({
                     // url: APP_URL+'/sendotp',
-                    url: '{{ route('sendotp') }}',
+                    url: "{{ route('sendotp') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -95,7 +96,7 @@
             var formData = $('#mobile-number-form-id').serialize();
             $.ajax({
                 // url: APP_URL+'/sendotp',
-                url: '{{ route('sendotp') }}',
+                url: "{{ route('sendotp') }}",
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
@@ -160,7 +161,7 @@
                 var formData = $('#forgot-pwd-form-id').serialize();
                 // alert(formData);
                 $.ajax({
-                    url: '{{ route('sendforgototp') }}',
+                    url: "{{ route('sendforgototp') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -195,7 +196,7 @@
             e.preventDefault();
             var formData = $('#forgot-pwd-form-id').serialize();
             $.ajax({
-                url: '{{ route('sendforgototp') }}',
+                url: "{{ route('sendforgototp') }}",
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
@@ -295,7 +296,7 @@
                 var formData = $('#verify-number-form-id').serialize();
                 // alert(formData);
                 $.ajax({
-                    url: '{{ route('verifyotp') }}',
+                    url: "{{ route('verifyotp') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -336,6 +337,7 @@
 
         $('.register-btn').click(function(e) {
             e.preventDefault();
+            getGenreList();
             // Clear previous errors
             $('.error').text('');
             // Validate Name
@@ -362,7 +364,7 @@
             // alert(formData);
             if (name != '' && password != '' && confirmPassword != '') {
                 $.ajax({
-                    url: '{{ route('register') }}',
+                    url: "{{ route('register') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -375,9 +377,10 @@
                             // $('#register-result').html('');
                             $("#username").text(response.payload.name);
                             // $("#sign_method").val(response.payload.user_signup_method);
-                            $('.screen-login,.screen-verify,.screen-register,.left-side,.right-side,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
+                            $('.screen-login,.screen-verify,.screen-register,.left-side,.right-side,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd,.better-solution')
                                 .hide();
                             $('.screen-sucess-register').show();
+                            $("#interestsSuggestions input[name='user_token']").val(response.payload.user_token);
                         } else {
                             $('#register-result').html(response.payload.response.message);
                             // return false;
@@ -390,6 +393,13 @@
             } else {
                 return false;
             }
+        });
+
+        $('.interest-btn').click(function(e) {
+            e.preventDefault();
+            $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd.screen-sucess-register').hide();
+            $('.choose-interests').show();
+            $('.better-solution').show();
         });
 
         $('.login-btn-pwd').click(function(e) {
@@ -434,7 +444,7 @@
             // alert(formData);
             if (name != '' && password != '') {
                 $.ajax({
-                    url: '{{ route('loginwithpwd') }}',
+                    url: "{{ route('loginwithpwd') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -451,7 +461,7 @@
                                 .hide();
                             $('.screen-sucess-logged').show();
                             setTimeout(function() {
-                                window.location.href = response.payload.redirect;
+                                location.reload(true);
                             }, 3000);
                             return false;
 
@@ -494,7 +504,7 @@
                 var formData = $('#verify-forgot-number-form-id').serialize();
                 // alert(formData);
                 $.ajax({
-                    url: '{{ route('verifyforgototp') }}',
+                    url: "{{ route('verifyforgototp') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -550,7 +560,7 @@
                 var formData = $('#set-password-form-id').serialize();
                 // alert("login sucess");
                 $.ajax({
-                    url: '{{ route('resetpwdapi') }}',
+                    url: "{{ route('resetpwdapi') }}",
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -592,5 +602,105 @@
                 $(this).next(".mx-1").focus();
             }
         });
+
+        //choose genre section
+        $('.better-suggestion-nxtBtn').click(function() {
+            var genreCount = 0;                
+            $("input[name='chooseGenre[]']").each(function() {
+                if (this.checked) {
+                    genreCount++;
+                }
+            });
+            if (genreCount > 0 && genreCount != 5) {
+                $("#error-meg-for-genre-select").html("Selected genre list should be 5");
+            }
+
+            var formData = $('#interestsSuggestions').serialize();
+            if (formData != '') {
+                $.ajax({
+                    url: "{{ route('saveGenre') }}",
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response.payload.success == true) {
+                            $('#login-modal').hide();
+                            $('#login-modal').removeClass("show");
+                            setTimeout(function() {
+                                location.reload();
+                            }, 3000);
+                        } else {
+                            $("#error-meg-for-genre-select").html(response.payload.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('error me aaya');
+                    }
+                });
+            } else {
+                $('#login-modal').hide();
+                $('#login-modal').removeClass("show");
+            }
+        })
     });
+
+    function getGenreList() {
+        $('#interest-suggetion').html("")
+        $.ajax({
+            url: "{{ route('getGenre') }}",
+            type: 'POST',
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                console.log(response);
+                if (response.payload.success) {
+                    var lists = response.payload.response.data;
+                    var content = '';
+                    for (var i = 0; i < lists.length; i++) {
+                        content = '<div class="interest-suggetion">'
+                                +'<label class="is-checkbox">'
+                                    +'<input type="checkbox" name="chooseGenre[]" onclick="genreSelect(this)" value="'+lists[i]['genre']+'">'
+                                    +'<span class="checkmark"></span>'
+                                +'</label>'
+                                +'<img src="'+lists[i]['banner_image']['medium']+'" alt="img">'
+                                +'<div class="is-overlay">'
+                                    +'<h1>'+lists[i]['genre']+'</h1>'
+                                    +'<p>Like NH10, Talaash, Airlift, Mirzapur, Breathe</p>'
+                                +'</div>'
+                            +'</div>';
+                        $('#interest-suggetion').append(content);
+                    }
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log('error me aaya');
+            }
+        });
+    }
+
+    function genreSelect(thiss) {
+        console.log('scsadcs')
+            var genreCount = 0;
+            
+            $("input[name='chooseGenre[]']").each(function() {
+                if (this.checked) {
+                    genreCount++;
+                }
+            });
+            if (genreCount > 5) {
+                console.log(thiss);
+                if (thiss.checked) {
+                    thiss.checked = false;                        
+                }
+            } else {
+                $("#genre-select-count").text(genreCount+" of 5");
+            }
+        }
+   
 </script>

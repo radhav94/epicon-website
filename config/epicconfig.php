@@ -282,6 +282,8 @@ if($environment=='PRODUCTION'){
 		'EPICAPI'=>[
 			'API_DOMAIN_1'=>'http://contentapi-njsapi.epicon.in/index/',
 			'API_DOMAIN_2' => 'http://userapi-njsapi.epicon.in/',
+			'API_DOMAIN_3' => 'https://njsapi.epicon.in/v2/',
+
 
 			'API_AUTH_TOKEN'=>'szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH',
 			'CONSCENT_API_URL' => 'https://sandbox-api.conscent.in',
@@ -369,7 +371,7 @@ if($environment=='PRODUCTION'){
 				'FACEBOOK_CLIENT_SECRET'=>'72fc40fffd7c00b412d143e6e0a7b3e7'
 			],
 			'twitter' => [
-				'redirect'=>'https://dev.epicon.epicchannel.com/login/twitter/callback',
+				'redirect'=>'https://dev.epicon.in/login/twitter/callback',
 				'TWITTER_CLIENT_ID'=>'nwKbID9Lq9Pzbkg5YCE3Dd8Z7',
 				'TWITTER_CLIENT_SECRET'=>'h3hZYGKk8qEbAns5q6YnfRZYMR2vIGDxjEQZffRT9hyIanF9Lx'
 			],
