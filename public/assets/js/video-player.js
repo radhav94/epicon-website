@@ -88,7 +88,7 @@ $(document).ready(function () {
 	})
 
 
-	const loadVideoPlayer = function (source, subtitles, customData = false) {
+	loadVideoPlayer = function (source, subtitles, customData = false) {
 
 		// if (dummyPlayer) {
 		// 	dummyPlayer.destroy();

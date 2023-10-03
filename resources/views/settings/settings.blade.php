@@ -234,7 +234,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                         <h4 class="mb-2">
                                             {{__('Manage your preferences')}}
                                         </h4>
-                                        <p class="small text-start w-100">{{__('Update your interests')}} ({{__('choose 5 or more')}})</p>
+                                        <p class="small text-start w-100">{{__('Update your interests')}} ({{__('choose 5')}})</p>
                                         <div class="choose">
                                             <div class="three">
                                                 <span><img src="{{ asset('/img/welcom.jpeg') }}" alt=""></span>

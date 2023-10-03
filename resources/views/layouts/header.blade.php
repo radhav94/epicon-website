@@ -140,7 +140,20 @@ $action = app('request')->route()->getAction();
             ];
         }
 
-        $current_route = str_replace("hi/", "", request()->path());
+        if (request()->path() == "hi") {
+            $current_route = "/";
+        } else {
+            $path = explode("/", request()->path());
+            $finalPath = [];
+            foreach ($path as $value) {
+                if ($value == "hi") {
+                    continue;
+                } else {
+                    $finalPath[] = $value;
+                }
+            }
+            $current_route = implode("/", $finalPath);
+        }
         ?>
         <ul class="menu-item list-unstyled d-flex mb-0">
             @foreach ($links as $key => $value)

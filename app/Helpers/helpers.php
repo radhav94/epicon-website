@@ -597,11 +597,16 @@ if (!function_exists('getUrlWithoutPrefix')) {
 function isActiveSubscription()
 {
     if (isUserLoggedIn()) {
-        // $today = strtotime(date("Y-m-d")); //date("Y-m-d")."T".date("H:i:s")."Z";
-        // @$endtime = strtotime($user->subscriptions['subscription_end_date']);
-        // if ((!empty($user->subscriptions['subscription_end_date'])) && $today < $endtime) {
-        //     return true;
-        // }
+        $user = session()->get('user');
+        if (array_key_exists('subscriptions', $user)) {
+            $today = strtotime(date("Y-m-d")); //date("Y-m-d")."T".date("H:i:s")."Z";
+            if (array_key_exists('subscription_end_date', $user['subscriptions'])) {
+                @$endtime = strtotime(@$user['subscriptions']['subscription_end_date']);
+                if ((!empty(@$user['subscriptions']['subscription_end_date'])) && $today < $endtime) {
+                    return true;
+                }
+            }
+        }
     }
 
     return false;
@@ -626,5 +631,18 @@ if (!function_exists("getAllEpisodesFromSeason")) {
             }
         }
         return $episode_list;
+    }
+}
+
+if (!function_exists("update_user_session")) {
+    function update_user_session()
+    {
+        $profile_detail = CurlAPI("users/viewProfile", "POST", [], 2, true);
+        if (is_array($profile_detail) && array_key_exists('success', $profile_detail) && $profile_detail['success']) {
+            if (array_key_exists('user_data', $profile_detail)) {
+                $user_data = @$profile_detail['user_data'];
+                session()->put('user', $user_data);
+            }
+        }
     }
 }
