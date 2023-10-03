@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
-
 class UserAccountController extends Controller
 {
     public function addprofile()

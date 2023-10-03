@@ -9,13 +9,10 @@ use App\Http\Controllers\SupermixController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Auth\LogoutController;
-<<<<<<< HEAD
 use APP\Http\Controller\Auth\NewPayuController;
-=======
 use App\Http\Controllers\PlayerController;
 
 $lang = ['hi', 'en'];
->>>>>>> d375a5be064eb19928b3e69eacfbabe9257a5df8
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +50,7 @@ Route::group(['middleware' => 'loggedin', 'as' => 'profile.', 'prefix' => 'profi
 
 Route::group(['middleware' => 'loggedin'], function () {
     Route::any('logout', LogoutController::class)->name('logout');
+    Route::post('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
     //Subscription routes created by Ram
     
     Route::post('paymentMethod',[SubscriptionController::class,'setSubscription'])->name('paymentMethod');
@@ -67,10 +65,6 @@ Route::group(['middleware' => 'loggedin'], function () {
     Route::post('paymentProcess',[SubscriptionController::class,'paymentProcess'])->name('paymentProcess');
     Route::post('thankyou',[SubscriptionController::class,'thankyou'])->name('thankyou'); 
     //end
-
-Route::group(['middleware' => 'loggedin'], function () {
-    Route::any('logout', LogoutController::class)->name('logout');
-    Route::post('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
 });
 
 //dynamic / other pages route
@@ -83,13 +77,11 @@ foreach ($lang as $val) {
     $prefix = $val != 'en' ? "/$val" : "";
     $prefix_name = $val != 'en' ? $val . "." : "";
 
-<<<<<<< HEAD
 
 //dynamic pages route
-Route::get('/{slug}', [PageController::class, 'index']);
-Route::get('/{pageslug}/{contentslug}', [PageDetailController::class, 'detail']);
+//Route::get('/{slug}', [PageController::class, 'index']);
+//Route::get('/{pageslug}/{contentslug}', [PageDetailController::class, 'detail']);
 
-=======
     Route::group(['middleware' => 'loggedin', 'as' => $prefix_name . "profile.", 'prefix' => $prefix . "/profile"], function () {
         Route::get('/manage', [ProfileController::class, 'index'])->name('index');
         Route::get('/add-profile', [ProfileController::class, 'add'])->name('add');
@@ -110,4 +102,3 @@ Route::get('/{pageslug}/{contentslug}', [PageDetailController::class, 'detail'])
 
 Route::post('/player', [PlayerController::class, 'getVideoUrl']);
 Route::post('/setplayTracking', [PlayerController::class, 'setplayTracking']);
->>>>>>> d375a5be064eb19928b3e69eacfbabe9257a5df8

@@ -35,25 +35,6 @@ if (!function_exists('d')) {
         }
     }
 }
-
-<<<<<<< HEAD
-function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1)
-{
-    if (empty($context)) return;
-
-    if ($apiDomain == 2) {
-        $url = config('epicconfig.EPICAPI.API_DOMAIN_2') . $context;
-        
-    } else {
-        $url = config('epicconfig.EPICAPI.API_DOMAIN_1') . $context;
-    }
-    $token = Session::get('user_token') ?? '';
-    return ApiHelper::api($url, $method, $data, $token);
-}
-
-
-=======
->>>>>>> d375a5be064eb19928b3e69eacfbabe9257a5df8
 function setLanguageParameter()
 {
     $displaylangParameter = app()->getLocale();
@@ -707,8 +688,7 @@ function checkSubscription(){
     $todayStrToTime = strtotime($today);
     $usedDays = 0;
     $activePlan=[];
-    $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2);
-    //dd($subscriptionPurchases);
+    $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2,true);
     if (!empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['success'] == true) {
         foreach ($subscriptionPurchases['data'] as $k => $item) {
             if (!isset($item['plan_name'])) {
@@ -735,7 +715,8 @@ function checkSubscription(){
 
       
         return $result;
-    }   
+    }
+}   
 function formatDate($date, $format = 'd F Y')
 {
     return date($format, strtotime($date));

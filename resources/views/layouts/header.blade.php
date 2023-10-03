@@ -22,11 +22,7 @@ $action = app('request')->route()->getAction();
             </a>
             <a class="navbar-brand me-3" href="{{ getUrlWithPrefix('homepage') }}"><img height="28"
                     src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
-<<<<<<< HEAD
-            <a class="subscribe-btn" href="{{ route('subscription') }}">Subscribe</a>
-=======
             <a class="subscribe-btn" href="#">{{__('Subscribe')}}</a>
->>>>>>> d375a5be064eb19928b3e69eacfbabe9257a5df8
         </div>
         <ul class="ps-3">
             <li>
@@ -119,22 +115,19 @@ $action = app('request')->route()->getAction();
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </a>
-            <a class="navbar-brand" href="#"><img src="{{ asset('assets/img/epicon-logo.png') }}"
+            <a class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}"
                     alt=""></a>
             @loggedin
-            <?php $subplan = checkSubscription(); ?>
+            <?php $subplan = checkSubscription();?>
             @if(@$subplan['status'] != 'active')
            
-            <a class="subscribe-btn" href="{{ route('subscription') }}">Subscribe</a>
+            <a class="subscribe-btn" href="{{ route('subscription') }}">{{__('Subscribe')}}</a>
             @endif
             @elseloggedin
 
-            <a class="subscribe-btn login" href="javascript:void(0);">Subscribe</a>
+            <!-- <a class="subscribe-btn login" href="javascript:void(0);">{{__('Subscribe')}}</a> -->
 
             @endloggedin
-            <a class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img
-                    src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
-            <a class="subscribe-btn" href="#">{{__('Subscribe')}}</a>
         </div>
 
         <?php

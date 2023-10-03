@@ -14,13 +14,14 @@ class SubscriptionController extends Controller
     public function subscription(Request $request)
     {
         $sessionData = $request->session()->get('user_token');
+        //dd($sessionData);
         $userData = $request->session()->get('user');
         $subscriptionPurchases = $allPurchasedPlans = $activePlan = $futurePlan = $result = [];
         $offerCount = 0;
         $today = date("Y-m-d") . "T" . date("H:i:s") . "Z";
         $todayStrToTime = strtotime($today);
         $usedDays = 0;
-        $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2);
+        $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2,true);
 
         if (empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['message'] == 'No subscriptions found') {
 
