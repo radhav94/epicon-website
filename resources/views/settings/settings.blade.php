@@ -4,7 +4,6 @@ $interests = array_key_exists("interests", $user_data) ? $user_data['interests']
 $interestsCount = count($interests) ?? 0;
 $kidSection = array_key_exists("kidSection", $user_data) ? $user_data['kidSection'] : false;
 $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDevice) ? $activeDevice['data'] : [];
-
 ?>
 
 @extends('layouts.default')
@@ -235,7 +234,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                         <h4 class="mb-2">
                                             {{__('Manage your preferences')}}
                                         </h4>
-                                        <p class="small text-start w-100">{{__('Update your interests')}} ({{__('choose 5 or more')}})</p>
+                                        <p class="small text-start w-100">{{__('Update your interests')}} ({{__('choose 5')}})</p>
                                         <div class="choose">
                                             <div class="three">
                                                 <span><img src="{{ asset('/img/welcom.jpeg') }}" alt=""></span>
@@ -267,7 +266,6 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
                                                 <img src="{{ $genre['cover_image']['medium'] }}" alt="{{ $genre['genre'] }}">
                                                 <div class="is-overlay">
                                                     <h1>{{ $genre['genre'] }}</h1>
-                                                    <p>{{__('Like NH10, Talaash, Airlift, Mirzapur, Breathe')}}</p>
                                                 </div>
                                             </div>
                                         <?php } ?>
@@ -550,19 +548,19 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
 
                                 <div class="childpin text-start py-4">
 
-                                    <div class="sync-device-main pb-4 w-100">
+                                    <div id="clearHistoryDiv" class="sync-device-main pb-4 w-100">
                                         <div>
                                             <p class="my-3">{{__('Are you sure you want to clear all your search history?')}}</p>
-                                            <button class="login-btn mt-4 ms-0" style="width: 100px;" data-bs-toggle="modal" data-bs-target="#clear-history">
+                                            <button class="login-btn mt-4 ms-0" style="width: 100px;" id="clearSearchBtn">
                                                 {{__('Yes')}}
                                             </button>
                                         </div>
                                         <img class="mb-4" width="150" src="{{ asset('/img/clear-icon.svg') }}" alt="icon">
                                     </div>
-                                    <div class="w-100 text-center mt-4">
+                                    <div id="browseHistoryDiv" class="w-100 text-center mt-4">
                                         <img width="300" src="{{ asset('/img/clear-history-bg.svg') }}" alt="img">
                                         <p>{{__('You do not have any recent search history.')}}</p>
-                                        <button class="login-btn mt-4" style="width: 250px;" data-bs-toggle="modal" data-bs-target="#clear-history">
+                                        <button class="login-btn mt-4" style="width: 250px;" id="searchBrowseBtn">
                                             {{__('Browse Now')}}
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
@@ -609,7 +607,29 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
 @section('script')
 <script>
     $(document).ready(function() {
+        var searchHistory = "{{ session()->has('searchHistory') }}";
         var resendOtp = false;
+
+        console.log(searchHistory);
+        if (searchHistory == "1") {
+            $("#clearHistoryDiv").show();
+            $("#browseHistoryDiv").hide();
+        } else {
+            $("#clearHistoryDiv").hide();
+            $("#browseHistoryDiv").show();
+        }
+
+        $("#searchBrowseBtn").click(function() {
+            window.location.href = "{{ getUrl('search') }}";
+        })
+
+        $("#clearSearchBtn").click(function() {
+            "{{ session()->forget('searchHistory') }}"
+            $("#clear-history").modal('show');
+            $("#clearHistoryDiv").hide();
+            $("#browseHistoryDiv").show();
+        })
+
         //focus otp input
         $(".mx-1").on("input", function() {
             const maxLength = parseInt($(this).attr("maxlength"));

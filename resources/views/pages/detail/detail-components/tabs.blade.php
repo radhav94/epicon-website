@@ -1,41 +1,47 @@
    <?php
-   $ep_season_data = [];
-   $temp = [];
-   
-   $tab1_title = '';
-   if ($content['content_type'] == 'SHOW') {
-       $temp = $content['season'] ?? [];
-       $tab1_title = 'Seasons';
-   } elseif ($content['content_type'] == 'SEASON') {
-       $temp = $content['episodes'] ?? [];
-       $tab1_title = 'Episodes';
-   }
-   
-   if ($temp) {
-       foreach ($temp as $k => $v) {
-           if (isset($v['ID'])) {
-               $ep_season_data[] = $v;
-           }
-       }
-   }
-   
-   $active_tab = '';
-   $tabs = [];
-   
-   if ($ep_season_data) {
-       $tabs[] = ['key' => 'episode', 'title' => $tab1_title];
-   }
-   if ($morelike) {
-       $tabs[] = ['key' => 'morelike', 'title' => 'More like this'];
-   }
-   if ($trailers && isset($trailers['list']) && !empty($trailers['list'])) {
-       $tabs[] = ['key' => 'trailors', 'title' => 'Trailers & More'];
-   }
-   if ($about) {
-       $tabs[] = ['key' => 'about', 'title' => 'About'];
-   }
-   
-   ?>
+    $ep_season_data = [];
+    $temp = $seasonList = [];
+
+    $tab1_title = '';
+    if ($content['content_type'] == 'SHOW') {
+        $temp = $content['season'] ?? [];
+        $tab1_title = 'Seasons';
+        foreach ($temp as $value) {
+            $seasonList[] = [
+                'title' => $value['title'],
+                'url' => $value['url']
+            ];
+        }
+    } elseif ($content['content_type'] == 'SEASON') {
+        $temp = $content['episodes'] ?? [];
+        $tab1_title = 'Episodes';
+    }
+
+    if ($temp) {
+        foreach ($temp as $k => $v) {
+            if (isset($v['ID'])) {
+                $ep_season_data[] = $v;
+            }
+        }
+    }
+
+    $active_tab = '';
+    $tabs = [];
+
+    if ($ep_season_data) {
+        $tabs[] = ['key' => 'episode', 'title' => $tab1_title];
+    }
+    if ($morelike) {
+        $tabs[] = ['key' => 'morelike', 'title' => 'More like this'];
+    }
+    if ($trailers && isset($trailers['list']) && !empty($trailers['list'])) {
+        $tabs[] = ['key' => 'trailors', 'title' => 'Trailers & More'];
+    }
+    if ($about) {
+        $tabs[] = ['key' => 'about', 'title' => 'About'];
+    }
+
+    ?>
    <section class="container w-100 mt-2 mb-4">
        <div class="row justify-content-center">
            <div class="col-sm-12">
@@ -43,17 +49,14 @@
                    <ul class="nav nav-pills border-bot pb-3 ps-2" id="pills-tab" role="tablist">
 
                        @foreach ($tabs as $key => $value)
-                           <?php
-                           if ($key == 0) {
-                               $active_tab = $value['key'];
-                           }
-                           ?>
-                           <li class="nav-item" role="presentation">
-                               <button class="nav-link {{ $key == 0 ? 'ep active' : '' }}" id="{{ $value['key'] }}"
-                                   data-bs-toggle="pill" data-bs-target="#pills-{{ $value['key'] }}" type="button"
-                                   role="tab" aria-controls="pills-{{ $value['key'] }}"
-                                   aria-selected="{{ $key == 0 ? 'true' : 'false' }}">{{ __($value['title']) }}</button>
-                           </li>
+                       <?php
+                        if ($key == 0) {
+                            $active_tab = $value['key'];
+                        }
+                        ?>
+                       <li class="nav-item" role="presentation">
+                           <button class="nav-link {{ $key == 0 ? 'ep active' : '' }}" id="{{ $value['key'] }}" data-bs-toggle="pill" data-bs-target="#pills-{{ $value['key'] }}" type="button" role="tab" aria-controls="pills-{{ $value['key'] }}" aria-selected="{{ $key == 0 ? 'true' : 'false' }}">{{ __($value['title']) }}</button>
+                       </li>
                        @endforeach
 
 
@@ -68,15 +71,15 @@
                                    <option value="4">151 - 200</option>
                                </select>
                            </div>
+                           @if (count($seasonList) > 0)
                            <div class="season">
-                               <select>
-                                   <option value="0">Season 1</option>
-                                   <option value="1">Season 2</option>
-                                   <option value="2">Season 3</option>
-                                   <option value="3">Season 4</option>
-                                   <option value="4">Season 5</option>
+                               <select id="seasonSelect">
+                                   @foreach ($seasonList as $season)
+                                        <option value="{{ $season['url'] }}">{{ $season['title'] }}</option>
+                                   @endforeach
                                </select>
                            </div>
+                           @endif
                        </div>
                        <!-- filter end-->
                    </ul>
@@ -85,15 +88,15 @@
                    <div class="tab-content" id="pills-tabContent">
 
                        @if (@$content['asset_type'] == 'LISTEN')
-                           @include('pages.detail.detail-components.podcast-episodes')
+                       @include('pages.detail.detail-components.podcast-episodes')
                        @else
-                           @include('pages.detail.detail-components.episodes')
+                       @include('pages.detail.detail-components.episodes')
                        @endif
 
                        @if (@$content['asset_type'] == 'LISTEN')
-                           @include('pages.detail.detail-components.podcast-morelike')
+                       @include('pages.detail.detail-components.podcast-morelike')
                        @else
-                           @include('pages.detail.detail-components.morelike')
+                       @include('pages.detail.detail-components.morelike')
                        @endif
 
 

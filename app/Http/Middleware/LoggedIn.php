@@ -16,6 +16,7 @@ class LoggedIn
     public function handle(Request $request, Closure $next)
     {
         if (isUserLoggedIn()) {
+            update_user_session();
             return $next($request);
         }
         if ($request->ajax()) {
