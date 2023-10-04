@@ -1,16 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PageDetailController;
-use App\Http\Controllers\RetroRewindController;
-use App\Http\Controllers\SupermixController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\Auth\LogoutController;
-use APP\Http\Controller\Auth\NewPayuController;
 use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RetroRewindController;
+use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\SupermixController;
+use App\Http\Controllers\TestController;
+use Illuminate\Support\Facades\Route;
 
 $lang = ['hi', 'en'];
 
@@ -23,7 +22,7 @@ $lang = ['hi', 'en'];
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+ */
 
 Route::get('test', [TestController::class, 'index']);
 
@@ -52,18 +51,18 @@ Route::group(['middleware' => 'loggedin'], function () {
     Route::any('logout', LogoutController::class)->name('logout');
     Route::post('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
     //Subscription routes created by Ram
-    
-    Route::post('paymentMethod',[SubscriptionController::class,'setSubscription'])->name('paymentMethod');
-    Route::post('planBenefit',[SubscriptionController::class,'planBenefit']);
-    Route::post('getCouponAjax',[SubscriptionController::class,'getCoupon'])->name('getCoupon');
-    Route::post('saveSubscription',[SubscriptionController::class,'saveSubscription'])->name('saveSubscription'); 
-    Route::get('checkpayu',[SubscriptionController::class,'checkpayu'])->name('checkpayu'); 
-    Route::get('getSubscription',[SubscriptionController::class,'subscription'])->name('subscription');
-    Route::post('saveSubscription',[SubscriptionController::class,'saveSubscription'])->name('saveSubscription');
-    Route::post('payusuccess',[SubscriptionController::class,'payusuccess'])->name('payusuccess');
-    Route::post('payufail',[SubscriptionController::class,'payufail'])->name('payufail');
-    Route::post('paymentProcess',[SubscriptionController::class,'paymentProcess'])->name('paymentProcess');
-    Route::post('thankyou',[SubscriptionController::class,'thankyou'])->name('thankyou'); 
+
+    Route::post('paymentMethod', [SubscriptionController::class, 'setSubscription'])->name('paymentMethod');
+    Route::post('planBenefit', [SubscriptionController::class, 'planBenefit']);
+    Route::post('getCouponAjax', [SubscriptionController::class, 'getCoupon'])->name('getCoupon');
+    Route::post('saveSubscription', [SubscriptionController::class, 'saveSubscription'])->name('saveSubscription');
+    Route::get('checkpayu', [SubscriptionController::class, 'checkpayu'])->name('checkpayu');
+    Route::get('getSubscription', [SubscriptionController::class, 'subscription'])->name('subscription');
+    Route::post('saveSubscription', [SubscriptionController::class, 'saveSubscription'])->name('saveSubscription');
+    Route::post('payusuccess', [SubscriptionController::class, 'payusuccess'])->name('payusuccess');
+    Route::post('payufail', [SubscriptionController::class, 'payufail'])->name('payufail');
+    Route::post('paymentProcess', [SubscriptionController::class, 'paymentProcess'])->name('paymentProcess');
+    Route::post('thankyou', [SubscriptionController::class, 'thankyou'])->name('thankyou');
     //end
 });
 
@@ -72,11 +71,9 @@ Route::post('/retro-content', [RetroRewindController::class, 'retroRewindContent
 
 Route::any('/supermix', [SupermixController::class, 'superMix']);
 
-
 foreach ($lang as $val) {
     $prefix = $val != 'en' ? "/$val" : "";
     $prefix_name = $val != 'en' ? $val . "." : "";
-
 
 //dynamic pages route
 //Route::get('/{slug}', [PageController::class, 'index']);
