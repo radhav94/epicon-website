@@ -71,21 +71,18 @@ Route::post('paginatecontent', [PageController::class, 'paginatecontent'])->name
 
 // Route::get('login/facebook/callback', '\App\Http\Controllers\Auth\AuthSocialController@handleProviderCallback')->name('facebook');
 
-//setting controller routes start
-Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
-Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
-Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
-Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
-Route::post('change-password', [SettingController::class, 'changePassword'])->name('change-password');
-Route::post('delete-account', [SettingController::class, 'deleteAccount'])->name('delete-account');
-Route::post('sendOTP-delete-account', [SettingController::class, 'sendOTPForDeleteAccount'])->name('sendOTP-delete-account');
-Route::post('verifyOTP-delete-account', [SettingController::class, 'verifyOTPForDeleteAccount'])->name('verifyOTP-delete-account');
-Route::post('syncDevice-pin', [SettingController::class, 'syncDevicePin'])->name('syncDevice-pin');
-Route::get('set-language', [SettingController::class, 'setLanguage'])->name('set-language');
-//setting controller routes end
-
-Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => ['loggedin', 'languageManager']], function ($locale) {
-    Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
+Route::group(['middleware' => 'loggedin'], function () {
+    //setting controller routes start
+    Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
+    Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
+    Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
+    Route::post('change-password', [SettingController::class, 'changePassword'])->name('change-password');
+    Route::post('delete-account', [SettingController::class, 'deleteAccount'])->name('delete-account');
+    Route::post('sendOTP-delete-account', [SettingController::class, 'sendOTPForDeleteAccount'])->name('sendOTP-delete-account');
+    Route::post('verifyOTP-delete-account', [SettingController::class, 'verifyOTPForDeleteAccount'])->name('verifyOTP-delete-account');
+    Route::post('syncDevice-pin', [SettingController::class, 'syncDevicePin'])->name('syncDevice-pin');
+    Route::get('set-language', [SettingController::class, 'setLanguage'])->name('set-language');
+    //setting controller routes end
 });
 
 Route::get('login/google', [AuthSocialController::class, 'redirectToProvider'])->name('login.google');
@@ -102,6 +99,9 @@ Route::post('explorecontent', [PageController::class, 'explorecontent'])->name('
 foreach ($lang as $val) {
     $prefix = $val != 'en' ? "/$val" : "";
     $prefix_name = $val != 'en' ? $val . "." : "";
+    Route::group(['prefix' => $prefix, 'middleware' => 'loggedin'], function () {
+        Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
+    });
 
     Route::get($prefix . '/library', [LibraryController::class, 'index'])->name('library');
     Route::get($prefix . '/my-account', [UserAccountController::class, 'myaccount'])->name('my-account');
@@ -118,8 +118,8 @@ foreach ($lang as $val) {
     Route::get($prefix . '/live-tv', [LiveTvController::class, 'livetv'])->name('live-tv');
     Route::get($prefix . '/upcoming-epicon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
     Route::get($prefix . '/new-popular', [PopularController::class, 'NewsPopular'])->name('new-popular');
-    Route::get($prefix . '/trendingsearch', [SearchController::class, 'trendingsearch'])->name('trendingsearch');
-    Route::post($prefix . '/search', [SearchController::class, 'search'])->name('search');
+    Route::get($prefix . '/search', [SearchController::class, 'trendingsearch'])->name('search');
+    Route::post($prefix . '/get-search', [SearchController::class, 'search'])->name('get-search');
     Route::get($prefix . '/midpage/{pageslug}/{catalog}', function ($pageslug, $catalog) {
         // dd($pageslug);
         if ($pageslug != 'live-tv') {

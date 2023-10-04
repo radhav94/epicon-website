@@ -7,7 +7,7 @@ if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
 $kids_page = $segment == 'kids' ? true : false;
 
 $action = app('request')->route()->getAction();
-// dd($action);
+// print_r($action);
 ?>
 <!-- Side Menu Start-->
 <div class="side-menu-main" id="side-menu">
@@ -139,8 +139,21 @@ $action = app('request')->route()->getAction();
                 'premium' => 'Premium',
             ];
         }
-        
-        $current_route = request()->path();
+
+        if (request()->path() == "hi") {
+            $current_route = "/";
+        } else {
+            $path = explode("/", request()->path());
+            $finalPath = [];
+            foreach ($path as $value) {
+                if ($value == "hi") {
+                    continue;
+                } else {
+                    $finalPath[] = $value;
+                }
+            }
+            $current_route = implode("/", $finalPath);
+        }
         ?>
         <ul class="menu-item list-unstyled d-flex mb-0">
             @foreach ($links as $key => $value)
@@ -152,7 +165,7 @@ $action = app('request')->route()->getAction();
         <div class="main-header-right d-flex align-items-center">
             <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" class="p-2 me-2">
                 <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt=""></a>
-            <a href="{{ getUrl('trendingsearch') }}" class="p-2 me-2">
+            <a href="{{ getUrl('search') }}" class="p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">
                     <circle cx="11.6842" cy="11.6842" r="7.71929" stroke="white" stroke-width="1.92982" />

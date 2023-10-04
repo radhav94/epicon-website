@@ -38,7 +38,15 @@ class PageDetailController extends Controller
             $params = ['catalog_slug' => $content['catalog_slug']];
             $morelike_curl = CurlAPI("v2Content/related/" . $content['ID'], "GET", $params, 1);
             if ($morelike_curl && @$morelike_curl['success'] ==  true) {
-                $morelike = $morelike_curl['data'];
+                $contentID = $content['ID'] ?? "";
+                $morelike_curlID = count(@$morelike_curl['data']) == 1 && @$morelike_curl['data'][0]['ID'] ? @$morelike_curl['data'][0]['ID'] : '';
+                //check most like content and active content are same 
+                if ($morelike_curlID && $morelike_curlID == $contentID) {
+                    //if most like content has only one content and is same then set empty most like content
+                    $morelike = [];
+                } else {
+                    $morelike = $morelike_curl['data'];
+                }
             }
 
             //get about tab data
