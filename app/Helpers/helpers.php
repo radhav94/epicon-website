@@ -619,11 +619,8 @@ if (!function_exists("getAllEpisodesFromSeason")) {
         if (array_key_exists('episodes', $season)) {
             if (is_array($season['episodes'])) {
                 foreach ($season['episodes'] as $episode) {
-                    if (array_key_exists('file_url_original', $episode) && !empty($episode['file_url_original'])) {
-                        $episode_list[] = [
-                            'id' => $episode['ID'],
-                            'ep_url' => $episode['file_url_original']
-                        ];
+                    if (array_key_exists('ID', $episode) && !empty($episode['ID'])) {
+                        $episode_list[] = $episode['ID'];
                     } else {
                         continue;
                     }

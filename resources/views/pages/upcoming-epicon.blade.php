@@ -79,7 +79,7 @@ krsort($output);
                                 <div class="card-body">
                                     {!! freePremiumDiv($val) !!}
 
-                                    <a class="upper-img upcomingVid" href="javascript:void(0)" data-id="{{ @$val['ID'] }}" data-type="promo" data-title="{{ @$val['title'] }}">
+                                    <a class="upper-img upcomingVid" href="javascript:void(0)" data-id="{{ @$val['ID'] }}" data-type="{{ @val['content_type'] }}" data-title="{{ @$val['title'] }}">
                                         <img src="{{ $cover_img }}" alt="">
                                     </a>
                                     <div class="bottom-text d-flex mt-2">
@@ -220,13 +220,14 @@ krsort($output);
             let cid = $(this).data('id');
             let title = $(this).data('title');
             let lg = $(this).data('lg');
+            let tp = $(this).data('type');
 
             let requestData = {
                 cid: cid
             };
             let customData = {
                 cid: cid,
-                tp: 'promo',
+                tp: tp,
                 title: title,
                 lg: lg
             };
