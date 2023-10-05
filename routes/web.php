@@ -56,7 +56,6 @@ Route::group(['middleware' => 'loggedin'], function () {
     Route::post('planBenefit', [SubscriptionController::class, 'planBenefit']);
     Route::post('getCouponAjax', [SubscriptionController::class, 'getCoupon'])->name('getCoupon');
     Route::post('saveSubscription', [SubscriptionController::class, 'saveSubscription'])->name('saveSubscription');
-    Route::get('checkpayu', [SubscriptionController::class, 'checkpayu'])->name('checkpayu');
     Route::get('getSubscription', [SubscriptionController::class, 'subscription'])->name('subscription');
     Route::post('saveSubscription', [SubscriptionController::class, 'saveSubscription'])->name('saveSubscription');
     Route::post('payusuccess', [SubscriptionController::class, 'payusuccess'])->name('payusuccess');

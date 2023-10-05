@@ -120,7 +120,7 @@ $action = app('request')->route()->getAction();
             @loggedin
             <?php $subplan = checkSubscription();?>
             @if(@$subplan['status'] != 'active')
-           
+
             <a class="subscribe-btn" href="{{ route('subscription') }}">{{__('Subscribe')}}</a>
             @endif
             @elseloggedin
@@ -131,40 +131,40 @@ $action = app('request')->route()->getAction();
         </div>
 
         <?php
-        
-        if ($kids_page) {
-            $links = [
-                'kids' => 'Home',
-                'kids/movies' => 'Movies',
-                'kids/shows' => 'Shows',
-                'kids/podcast' => 'Podcasts',
-            ];
-        } else {
-            $links = [
-                '/' => 'Home',
-                'movies' => 'Movies',
-                'tv-shows' => 'Shows',
-                'podcast' => 'Podcasts',
-                'explore' => 'Explore',
-                'premium' => 'Premium',
-            ];
-        }
 
-        if (request()->path() == "hi") {
-            $current_route = "/";
+if ($kids_page) {
+    $links = [
+        'kids' => 'Home',
+        'kids/movies' => 'Movies',
+        'kids/shows' => 'Shows',
+        'kids/podcast' => 'Podcasts',
+    ];
+} else {
+    $links = [
+        '/' => 'Home',
+        'movies' => 'Movies',
+        'tv-shows' => 'Shows',
+        'podcast' => 'Podcasts',
+        'explore' => 'Explore',
+        'premium' => 'Premium',
+    ];
+}
+
+if (request()->path() == "hi") {
+    $current_route = "/";
+} else {
+    $path = explode("/", request()->path());
+    $finalPath = [];
+    foreach ($path as $value) {
+        if ($value == "hi") {
+            continue;
         } else {
-            $path = explode("/", request()->path());
-            $finalPath = [];
-            foreach ($path as $value) {
-                if ($value == "hi") {
-                    continue;
-                } else {
-                    $finalPath[] = $value;
-                }
-            }
-            $current_route = implode("/", $finalPath);
+            $finalPath[] = $value;
         }
-        ?>
+    }
+    $current_route = implode("/", $finalPath);
+}
+?>
         <ul class="menu-item list-unstyled d-flex mb-0">
             @foreach ($links as $key => $value)
                 <li><a href="{{ getUrl($key) }}"
@@ -283,14 +283,14 @@ $action = app('request')->route()->getAction();
                 <ul class="profile-drop-down list-unstyled">
                     @loggedin
                         <?php
-                        $profile = getProfileData();
-                        ?>
+$profile = getProfileData();
+?>
                         <li class="profile-main p-3">
                             @if ($profile)
                                 @foreach ($profile['profiles'] as $key => $value)
                                     <?php
-                                    $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : asset('assets/img/edit-profile-pik.png');
-                                    ?>
+$profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : asset('assets/img/edit-profile-pik.png');
+?>
 
                                     <a href="#/">
                                         <div class="profile-pik girl-bg active">

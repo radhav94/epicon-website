@@ -596,13 +596,13 @@ function EventPush($user_id, $eventName, $properties, $is_moengage = true, $is_c
 			$postData['type'] = 'event';
 			$postData['ts'] = time();
 
-			/*			Log::info("-----CLEVERTAP CURL Parameters: ".$txn_url."----\n");
+			/* Log::info("-----CLEVERTAP CURL Parameters: ".$txn_url."----\n");
 			Log::debug(json_encode($postData));
 			Log::info("-----END----------------------");*/
 
 			$responseClevertap = CURLFOREVENTPUSH($txn_url, $postData, 'CLEVERTAP');
 
-			/*			Log::info("-----CLEVERTAP CURL response");
+			/*Log::info("-----CLEVERTAP CURL response");
 			Log::debug($responseClevertap);
 			Log::info("-----END----------------------");*/
 		}
@@ -708,7 +708,6 @@ function checkSubscription(){
                 $activePlan['remainingDays'] = $remainingDays;
             }
         }
-        //dd($activePlan);
         if(isset($activePlan['remainingDays']) && $activePlan['remainingDays'] > 1){
             $result['status'] = 'active';
         }
