@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Traits\payments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
@@ -10,7 +9,6 @@ use Route;
 
 class SubscriptionController extends Controller
 {
-    use payments;
     public function subscription(Request $request)
     {
         $sessionData = $request->session()->get('user_token');
