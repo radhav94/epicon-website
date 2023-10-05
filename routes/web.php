@@ -51,17 +51,7 @@ Route::group(['middleware' => 'loggedin'], function () {
     Route::any('logout', LogoutController::class)->name('logout');
     Route::post('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
     //Subscription routes created by Ram
-
-    Route::post('paymentMethod', [SubscriptionController::class, 'setSubscription'])->name('paymentMethod');
-    Route::post('planBenefit', [SubscriptionController::class, 'planBenefit']);
     Route::post('getCouponAjax', [SubscriptionController::class, 'getCoupon'])->name('getCoupon');
-    Route::post('saveSubscription', [SubscriptionController::class, 'saveSubscription'])->name('saveSubscription');
-    Route::get('getSubscription', [SubscriptionController::class, 'subscription'])->name('subscription');
-    Route::post('saveSubscription', [SubscriptionController::class, 'saveSubscription'])->name('saveSubscription');
-    Route::post('payusuccess', [SubscriptionController::class, 'payusuccess'])->name('payusuccess');
-    Route::post('payufail', [SubscriptionController::class, 'payufail'])->name('payufail');
-    Route::post('paymentProcess', [SubscriptionController::class, 'paymentProcess'])->name('paymentProcess');
-    Route::post('thankyou', [SubscriptionController::class, 'thankyou'])->name('thankyou');
     //end
 });
 
@@ -86,6 +76,20 @@ foreach ($lang as $val) {
         Route::post('/edit-Profile', [ProfileController::class, 'update'])->name('update');
         Route::post('/delete-Profile/{id}', [ProfileController::class, 'destroy'])->name('destroy');
         Route::post('/setChildPin', [ProfileController::class, 'setChildPin'])->name('setChildPin');
+    });
+
+    Route::group(['middleware' => 'loggedin', 'prefix' => $prefix], function () {
+        //Subscription routes created by Ram
+        Route::post('paymentMethod', [SubscriptionController::class, 'setSubscription'])->name('paymentMethod');
+        Route::post('planBenefit', [SubscriptionController::class, 'planBenefit']);
+        Route::post('saveSubscription', [SubscriptionController::class, 'saveSubscription'])->name('saveSubscription');
+        Route::get('subscription', [SubscriptionController::class, 'subscription'])->name('subscription');
+        Route::post('saveSubscription', [SubscriptionController::class, 'saveSubscription'])->name('saveSubscription');
+        Route::post('payusuccess', [SubscriptionController::class, 'payusuccess'])->name('payusuccess');
+        Route::post('payufail', [SubscriptionController::class, 'payufail'])->name('payufail');
+        Route::post('paymentProcess', [SubscriptionController::class, 'paymentProcess'])->name('paymentProcess');
+        Route::post('thankyou', [SubscriptionController::class, 'thankyou'])->name('thankyou');
+        //end
     });
 
     Route::get($prefix . '/kids/{slug?}', [PageController::class, 'kidsIndex'])->name($prefix_name . 'kidsIndex');

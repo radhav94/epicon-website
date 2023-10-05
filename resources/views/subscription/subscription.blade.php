@@ -20,7 +20,7 @@
     </section>
     <section class="container pb-5">
         <div class="row justify-content-center">
-            <h4 class="text-white text-center mb-4">Choose Your Plan</h4>
+            <h4 class="text-white text-center mb-4">{{__('Choose Your Plan')}}</h4>
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-10 choose-plan">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     @foreach($result['plans'] as $key => $val)
@@ -56,33 +56,33 @@
                                 <li>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" fill="none">
                                         <path d="M1.3313 7.27451L5.25287 11.1961L14.6646 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg> &nbsp; No ads
+                                    </svg> &nbsp; {{__('No ads')}}
                                 </li>
                                 <li>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" fill="none">
                                         <path d="M1.3313 7.27451L5.25287 11.1961L14.6646 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg> &nbsp; Upto 3 user profiles
+                                    </svg> &nbsp; {{__('Upto 3 user profiles')}}
                                 </li>
                                 <li>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" fill="none">
                                         <path d="M1.3313 7.27451L5.25287 11.1961L14.6646 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg> &nbsp; Watch on all devices
+                                    </svg> &nbsp; {{__('Watch on all devices')}}
                                 </li>
                                 <li>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" fill="none">
                                         <path d="M1.3313 7.27451L5.25287 11.1961L14.6646 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg> &nbsp; Max video quality: Full HD 1080p
+                                    </svg> &nbsp; {{__('Max video quality: Full HD 1080p')}}
                                 </li>
                                 <li>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" fill="none">
                                         <path d="M1.3313 7.27451L5.25287 11.1961L14.6646 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg> &nbsp; All premium content
+                                    </svg> &nbsp; <?php echo __('All premium content'); ?>
                                 </li>
                             </ul>
                             <div class="additional-offer">
                                 <div class="d-flex justify-content-between align-items-center text-white">
-                                    <h6>Additional offer(s) benefits with your subscription</h6>
-                                    <h6>Total Coupons: <span id="count">{{$offerCount}}</span></h6>
+                                    <h6>{{__('Additional offer(s) benefits with your subscription')}}</h6>
+                                    <h6>{{__('Total Coupons')}}: <span id="count">{{$offerCount}}</span></h6>
                                 </div>
                                 <div class="offer-data"> 
                                 <ul class="additional-carousel mb-0 mt-3 p-0">
@@ -120,11 +120,11 @@
                             </div>
                         </div>
                         <div class="use-code mt-4">
-                            <p>Use code GET20 and get flat 20% off on 3/6/12-month subscriptions or get extra benefits. (T&C apply*)</p>
+                            <p>{{__('Use code GET20 and get flat 20% off on 3/6/12-month subscriptions or get extra benefits. (T&C apply*)')}}</p>
                             <div class="position-relative">
-                                <input type="text" placeholder="Enter promo code" class="promocode">
+                                <input type="text" placeholder="{{__('Enter promo code')}}" class="promocode">
                                 <div> 
-                                <button class="apl-btn bg-transparent CoupanApply" id="">Apply</button>
+                                <button class="apl-btn bg-transparent CoupanApply" id="">{{__('Apply')}}</button>
                                 </div>
                                 
                                 <div> </div>
@@ -133,14 +133,14 @@
                         </div>
                         
                         <div class="subscribe-bottom mt-4">
-                        <form method="post" action="{{route('paymentMethod')}}" class="paymentForm">
+                        <form method="post" action="{{getUrl('paymentMethod')}}" class="paymentForm">
                             @csrf
                             <input type="hidden" name="amountid" id="amountid" value="{{$result['plans'][0]['id']}}">
                             <input type="hidden" name="currency" id="currency" value="{{$val['currency']}}">
                             <input type="hidden" name="coupanstatus" id="coupanstatus" value="No">
                             
-                            <p class="get-help mt-2 small">Already subscribed?<a href="">Restore</a></p>
-                            <button class="fill-btn payment">Continue with Premium
+                            <p class="get-help mt-2 small">{{__('Already subscribed')}}?<a href="">{{__('Restore')}}</a></p>
+                            <button class="fill-btn payment">{{__('Continue with Premium')}}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M4.75 12C4.75 11.5858 5.08579 11.25 5.5 11.25H19.5C19.9142 11.25 20.25 11.5858 20.25 12C20.25 12.4142 19.9142 12.75 19.5 12.75H5.5C5.08579 12.75 4.75 12.4142 4.75 12Z" fill="#070707"/>
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9697 4.46967C12.2626 4.17678 12.7374 4.17678 13.0303 4.46967L20.0303 11.4697C20.3232 11.7626 20.3232 12.2374 20.0303 12.5303L13.0303 19.5303C12.7374 19.8232 12.2626 19.8232 11.9697 19.5303C11.6768 19.2374 11.6768 18.7626 11.9697 18.4697L18.4393 12L11.9697 5.53033C11.6768 5.23744 11.6768 4.76256 11.9697 4.46967Z" fill="#070707"/>
@@ -148,9 +148,9 @@
                             </button>
                             </form>
                             <div class="tc mt-3">
-                                <a href="{{route('terms-of-use')}}">Terms of Use</a>
+                                <a href="{{route('terms-of-use')}}">{{__('Terms of Use')}}</a>
                                 <b>•</b>
-                                <a href="{{route('privacy')}}">Privacy Policy</a>
+                                <a href="{{route('privacy')}}">{{__('Privacy Policy')}}</a>
                             </div>
                             
                         </div>
@@ -254,7 +254,7 @@
                 }
 
             var btnval =$(this).text();
-            if(btnval =='Remove'){
+            if(btnval =="{{__('Remove')}}"){
                 $("#coupanstatus").val('No');
                 setTimeout(function() {
                 location.reload();
@@ -294,7 +294,7 @@
                        
                     });
                     showToaster('Coupon applied', 1);
-                    $(".CoupanApply").text('Remove');
+                    $(".CoupanApply").text("{{__('Remove')}}");
                 }
             },
             error: function (e, t, a) {

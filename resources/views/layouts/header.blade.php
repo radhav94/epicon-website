@@ -7,7 +7,7 @@ if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
 $kids_page = $segment == 'kids' ? true : false;
 
 $action = app('request')->route()->getAction();
-// print_r($action);
+ //print_r($action);
 ?>
 <!-- Side Menu Start-->
 <div class="side-menu-main" id="side-menu">
@@ -121,7 +121,7 @@ $action = app('request')->route()->getAction();
             <?php $subplan = checkSubscription();?>
             @if(@$subplan['status'] != 'active')
 
-            <a class="subscribe-btn" href="{{ route('subscription') }}">{{__('Subscribe')}}</a>
+            <a class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
             @endif
             @elseloggedin
 

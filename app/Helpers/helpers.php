@@ -872,3 +872,14 @@ if (!function_exists("update_user_session")) {
         }
     }
 }
+function checkLang($lang){
+    if($lang == 'en'){
+        $res = 'ENGLISH';
+    }else if($lang == 'hi'){
+        $res = 'HINDI';
+    }else{
+        $res = 'ALL';
+    }
+
+    return $res;
+}

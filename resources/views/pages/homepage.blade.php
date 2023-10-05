@@ -43,7 +43,7 @@
                 if ($(window).scrollTop() >= ($(document).height() - $(window).height()) * 0.4) {
                     processing = true;
 
-                    // loadMoreData();
+                    loadMoreData();
 
 
 
@@ -70,7 +70,7 @@
                     },
                     dataType: 'json',
                     success: function(response) {
-                        console.log(response);
+                        console.log("Ram="+response);
                         if (response.payload.html != '') {
                             $('.loadmorecontent').css('overflow', 'auto');
                             $('.loadmorecontent').append(response.payload.html);
