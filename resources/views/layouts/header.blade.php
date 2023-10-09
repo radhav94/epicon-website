@@ -7,6 +7,7 @@ if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
 $kids_page = $segment == 'kids' ? true : false;
 
 $action = app('request')->route()->getAction();
+$subplan = checkSubscription();
  //print_r($action);
 ?>
 <!-- Side Menu Start-->
@@ -22,7 +23,10 @@ $action = app('request')->route()->getAction();
             </a>
             <a class="navbar-brand me-3" href="{{ getUrlWithPrefix('homepage') }}"><img height="28"
                     src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
-            <a class="subscribe-btn" href="#">{{__('Subscribe')}}</a>
+          
+                @if(@$subplan['status'] != 'active')
+                <a class="subscribe-btn" href="#">{{__('Subscribe')}}</a>
+            @endif
         </div>
         <ul class="ps-3">
             <li>
@@ -118,7 +122,7 @@ $action = app('request')->route()->getAction();
             <a class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}"
                     alt=""></a>
             @loggedin
-            <?php $subplan = checkSubscription();?>
+            
             @if(@$subplan['status'] != 'active')
 
             <a class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
@@ -318,8 +322,11 @@ $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : ass
                         </li>
                         <li class="exclusive-subc w-100">
                             <p class="m-0 small">{{__('Get access to exclusive content, with no ad breaks.')}}</p>
-                            <button> <img class="me-1" width="18" src="{{ asset('assets/img/crown.svg') }}"
-                                    alt=""> {{__('Subscribe')}}</button>
+                          
+                            @if(@$subplan['status'] != 'active')
+                                <button> <img class="me-1" width="18" src="{{ asset('assets/img/crown.svg') }}"
+                                    alt=""> {{__('Subscribe')}}1</button>
+                            @endif
                         </li>
                         <li class="subc-text"><a href="{{ getUrlWithPrefix('profile.index') }}">{{__('Manage Profiles')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('library') }}">{{__('Library')}}</a></li>
