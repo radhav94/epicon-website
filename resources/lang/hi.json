@@ -179,5 +179,38 @@
     "Share PIN": "पिन साझा करें",
     "Child PIN has been updated successfully!" : "चाइल्ड पिन सफलतापूर्वक अपडेट कर दिया गया है!",
     "Start MixTape": "मिक्सटेप प्रारंभ करें",
-    "No Results Found": "कोई डाटा नहीं मिला"
+    "No Results Found": "कोई डाटा नहीं मिला",
+    "Choose Your Plan":"अपनी योजना चुनें",
+    "No ads":"विज्ञापन नहीं",
+    "Upto 3 user profiles" : "3 उपयोगकर्ता प्रोफ़ाइल तक",
+    "Watch on all devices" : "सभी उपकरणों पर नजर रखें",
+    "Max video quality: Full HD 1080p" :"अधिकतम वीडियो गुणवत्ता: पूर्ण HD 1080p",
+    "All premium content" : "सभी प्रीमियम सामग्री",
+    "Additional offer(s) benefits with your subscription" : "आपकी सदस्यता के साथ अतिरिक्त ऑफ़र का लाभ",
+    "Total Coupons" : "कुल कूपन",
+    "Use code GET20 and get flat 20% off on 3/6/12-month subscriptions or get extra benefits. (T&C apply*)" : "कोड GET20 का उपयोग करें और 3/6/12-माह की सदस्यता पर 20% की छूट प्राप्त करें या अतिरिक्त लाभ प्राप्त करें। (नियम एवं शर्तें लागू*)",
+    "Apply":"आवेदन करें",
+    "Already subscribed" : "पहले से सदस्यता ले रखी",
+    "Restore" : "पुनर्स्थापित करना",
+    "Continue with Premium" : "प्रीमियम जारी रखें",
+    "Enter promo code" : "प्रचार कि नियमावली दर्ज करो",
+    "Remove" : "निकालना",
+    "Payment Methods" : "भुगतान की विधि",
+    "Debit Card" :"डेबिट कार्ड",
+    "Credit Card": "क्रेडिट कार्ड",
+    "Net Banking" :"नेट बैंकिंग",
+    "UPI" : "यू पी आई",
+    "Wallet" : "बटुआ",
+    "Other Options" : "अन्य विकल्प",
+    "You will be redirected to a third party site to complete the payment" : "भुगतान पूरा करने के लिए आपको तीसरे पक्ष की साइट पर पुनः निर्देशित किया जाएगा",
+    "Continue Pay":"भुगतान जारी रखें",
+    "UPI Payment" : "यूपीआई भुगतान",
+    "Pay with QR code" :"QR कोड से भुगतान करें",
+    "You will receive a payment request on your UPI app" : "आपको अपने UPI ऐप पर भुगतान अनुरोध प्राप्त होगा",
+    "Or" :"या",
+    "UPI Id" : "यूपीआई आईडी"
+
+
+
+
 }

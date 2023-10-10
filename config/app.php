@@ -171,6 +171,7 @@ return [
 
         App\Providers\HelperServiceProvider::class,
         App\Providers\BladeServiceProvider::class,
+
     ])->toArray(),
 
     /*

@@ -7,7 +7,8 @@ if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
 $kids_page = $segment == 'kids' ? true : false;
 
 $action = app('request')->route()->getAction();
-// print_r($action);
+$subplan = checkSubscription();
+ //print_r($action);
 ?>
 <!-- Side Menu Start-->
 <div class="side-menu-main" id="side-menu">
@@ -22,7 +23,10 @@ $action = app('request')->route()->getAction();
             </a>
             <a class="navbar-brand me-3" href="{{ getUrlWithPrefix('homepage') }}"><img height="28"
                     src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
-            <a class="subscribe-btn" href="#">{{__('Subscribe')}}</a>
+          
+                @if(@$subplan['status'] != 'active')
+                <a class="subscribe-btn" href="#">{{__('Subscribe')}}</a>
+            @endif
         </div>
         <ul class="ps-3">
             <li>
@@ -115,46 +119,56 @@ $action = app('request')->route()->getAction();
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </a>
-            <a class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img
-                    src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
-            <a class="subscribe-btn" href="#">{{__('Subscribe')}}</a>
+            <a class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}"
+                    alt=""></a>
+            @loggedin
+            
+            @if(@$subplan['status'] != 'active')
+
+            <a class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
+            @endif
+            @elseloggedin
+
+            <!-- <a class="subscribe-btn login" href="javascript:void(0);">{{__('Subscribe')}}</a> -->
+
+            @endloggedin
         </div>
 
         <?php
-        
-        if ($kids_page) {
-            $links = [
-                'kids' => 'Home',
-                'kids/movies' => 'Movies',
-                'kids/shows' => 'Shows',
-                'kids/podcast' => 'Podcasts',
-            ];
-        } else {
-            $links = [
-                '/' => 'Home',
-                'movies' => 'Movies',
-                'tv-shows' => 'Shows',
-                'podcast' => 'Podcasts',
-                'explore' => 'Explore',
-                'premium' => 'Premium',
-            ];
-        }
 
-        if (request()->path() == "hi") {
-            $current_route = "/";
+if ($kids_page) {
+    $links = [
+        'kids' => 'Home',
+        'kids/movies' => 'Movies',
+        'kids/shows' => 'Shows',
+        'kids/podcast' => 'Podcasts',
+    ];
+} else {
+    $links = [
+        '/' => 'Home',
+        'movies' => 'Movies',
+        'tv-shows' => 'Shows',
+        'podcast' => 'Podcasts',
+        'explore' => 'Explore',
+        'premium' => 'Premium',
+    ];
+}
+
+if (request()->path() == "hi") {
+    $current_route = "/";
+} else {
+    $path = explode("/", request()->path());
+    $finalPath = [];
+    foreach ($path as $value) {
+        if ($value == "hi") {
+            continue;
         } else {
-            $path = explode("/", request()->path());
-            $finalPath = [];
-            foreach ($path as $value) {
-                if ($value == "hi") {
-                    continue;
-                } else {
-                    $finalPath[] = $value;
-                }
-            }
-            $current_route = implode("/", $finalPath);
+            $finalPath[] = $value;
         }
-        ?>
+    }
+    $current_route = implode("/", $finalPath);
+}
+?>
         <ul class="menu-item list-unstyled d-flex mb-0">
             @foreach ($links as $key => $value)
                 <li><a href="{{ getUrl($key) }}"
@@ -273,14 +287,14 @@ $action = app('request')->route()->getAction();
                 <ul class="profile-drop-down list-unstyled">
                     @loggedin
                         <?php
-                        $profile = getProfileData();
-                        ?>
+$profile = getProfileData();
+?>
                         <li class="profile-main p-3">
                             @if ($profile)
                                 @foreach ($profile['profiles'] as $key => $value)
                                     <?php
-                                    $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : asset('assets/img/edit-profile-pik.png');
-                                    ?>
+$profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : asset('assets/img/edit-profile-pik.png');
+?>
 
                                     <a href="#/">
                                         <div class="profile-pik girl-bg active">
@@ -308,8 +322,11 @@ $action = app('request')->route()->getAction();
                         </li>
                         <li class="exclusive-subc w-100">
                             <p class="m-0 small">{{__('Get access to exclusive content, with no ad breaks.')}}</p>
-                            <button> <img class="me-1" width="18" src="{{ asset('assets/img/crown.svg') }}"
-                                    alt=""> {{__('Subscribe')}}</button>
+                          
+                            @if(@$subplan['status'] != 'active')
+                                <button> <img class="me-1" width="18" src="{{ asset('assets/img/crown.svg') }}"
+                                    alt=""> {{__('Subscribe')}}1</button>
+                            @endif
                         </li>
                         <li class="subc-text"><a href="{{ getUrlWithPrefix('profile.index') }}">{{__('Manage Profiles')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('library') }}">{{__('Library')}}</a></li>

@@ -11,7 +11,7 @@ class PageController extends Controller
     private  $limit;
     public function  __construct()
     {
-        $this->limit = 50;
+        $this->limit = 10;
     }
 
     public function index($slug = 'home-v2')
@@ -79,14 +79,16 @@ class PageController extends Controller
     public function loadMore(Request $request)
     {
         // dd($request->all());
+        
+        $listlang = Session::has('listLanguage') ? Session::get('listLanguage') : 'all';
+        $displang = Session::has('displayLanguage') ? Session::get('displayLanguage') : 'en';
         $params = [
             'slug' => ($request->route == '/') ? 'home-v2' : $request->route,
-            'list_language' => 'ALL',
-            'display_language' => 'ENGLISH',
+            'list_language' => checkLang($listlang),
+            'display_language' => checkLang($displang),
             'page' => $request->page,
             'limit' => $this->limit,
         ];
-
         $result = CurlAPI("pages/homepage", "GET", $params, 1);
 
         // dd($result);
