@@ -6,7 +6,8 @@
 @stop
 
 @section('content')
-<?php //dd($trendingData);
+<?php
+
 ?>
 <main class="search-bg w-100">
     <section class="container w-100">
@@ -38,6 +39,16 @@
                     </button>
                 </div>
             </div>
+
+            @if (!empty($searchList))
+            <div class="col-sm-12 search-main" id="search-result">
+                <h5 class="text-white">Search History</h5>
+                <ul class="list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4">
+                    {!! $searchList !!}
+                </ul>
+            </div>
+            @endif
+
             <div class="col-sm-12" id="searchTab" style="display:none">
                 <div class="w-100 library mb-0 search-main">
                     <ul class="nav nav-pills d-flex justify-content-center pb-3" id="pills-tab" role="tablist">

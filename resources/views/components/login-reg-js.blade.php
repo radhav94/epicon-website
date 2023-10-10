@@ -2,7 +2,10 @@
 <script>
     $(document).ready(function() {
 
-        $('.login').click(function() {
+        $('.login').click(function(event) {
+            if (!event.isTrigger) {
+                window.history.replaceState({}, document.title, "/" );
+            }
             $('.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd,.choose-interests').hide();
 
             $('.left-side,.right-side,.screen-login').show();
@@ -316,7 +319,11 @@
                                 $('.screen-login-with-pwd').hide();
                             } else {
                                 // $('.modal-content').hide();
-                                location.reload();
+                                if (queryParams.get('profile') == "kids" && queryParams.get('redirect')) {
+                                    window.location.href = queryParams.get('redirect');
+                                } else {
+                                    location.reload();
+                                }
                                 return false;
                             }
                             // alert("true resp");
@@ -461,7 +468,11 @@
                                 .hide();
                             $('.screen-sucess-logged').show();
                             setTimeout(function() {
-                                location.reload(true);
+                                if (queryParams.get('profile') == "kids" && queryParams.get('redirect')) {
+                                    window.location.href = queryParams.get('redirect');
+                                } else {
+                                    window.location.href = response.payload.redirect;
+                                }
                             }, 3000);
                             return false;
 

@@ -48,6 +48,9 @@ krsort($output);
                         <?php foreach ($releaseDate as $val) {
                             $cover_img = isset($val['cover_image']) ? @$val['cover_image']['medium'] : '';
                             $generes = array_column($val['genres_assign'] ?? [], 'name');
+                            $id = isset($val['ID']) ? $val['ID'] : '';
+                            $content_type = isset($val['content_type']) ? $val['content_type'] : '';
+                            $title = isset($val['title']) ? $val['title'] : '';
                             
                             $sub_text = [];
 
@@ -79,12 +82,12 @@ krsort($output);
                                 <div class="card-body">
                                     {!! freePremiumDiv($val) !!}
 
-                                    <a class="upper-img upcomingVid" href="javascript:void(0)" data-id="{{ @$val['ID'] }}" data-type="{{ @val['content_type'] }}" data-title="{{ @$val['title'] }}">
+                                    <a class="upper-img upcomingVid" href="javascript:void(0)" data-id="{{ $id }}" data-type="{{ $content_type }}" data-title="{{ $title }}">
                                         <img src="{{ $cover_img }}" alt="">
                                     </a>
                                     <div class="bottom-text d-flex mt-2">
                                         <div class="left-text">
-                                            <h4 class="text-heading text-white">{{$val['title'] ?? ''}}</h4>
+                                            <h4 class="text-heading text-white">{{$title}}</h4>
                                             <ul class="text-white">
                                                 <?php echo $sub_points ?>
                                                 <!--  <li>Drama</li>

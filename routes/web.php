@@ -9,6 +9,7 @@ use App\Http\Controllers\SupermixController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\KidsController;
 
 $lang = ['hi', 'en'];
 
@@ -36,6 +37,7 @@ Route::post('clap', [PageDetailController::class, 'clap'])->name('clap');
 Route::group(['middleware' => 'loggedin'], function () {
     Route::any('logout', LogoutController::class)->name('logout');
     Route::post('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
+    Route::post('verify-kidsPin', [KidsController::class, 'verifyKidsPin'])->name('verify-kidsPin');
 });
 
 //dynamic / other pages route
@@ -58,12 +60,20 @@ foreach ($lang as $val) {
         Route::post('/setChildPin', [ProfileController::class, 'setChildPin'])->name('setChildPin');
     });
 
-    Route::get($prefix . '/kids/{slug?}', [PageController::class, 'kidsIndex'])->name($prefix_name . 'kidsIndex');
-    Route::get($prefix . '/', [PageController::class, 'index'])->name($prefix_name . 'homepage');
-    Route::get($prefix . '/explore', [PageController::class, 'explore'])->name('explore');
-    Route::get($prefix . '/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
-    Route::get($prefix . '/retro-rewind/{slug}', [RetroRewindController::class, 'retroRewindList'])->name('retro-list');
-    Route::get($prefix . '/{slug}', [PageController::class, 'index']);
+    Route::group(['middleware' => 'loggedin', 'as' => $prefix_name], function () {
+        Route::get('/kids/{slug?}', [KidsController::class, 'index'])->name('kidsIndex');
+        Route::get('kids/midpage/{pageslug}/{catalog}', [PageController::class, 'showmidpagedetail']);
+        Route::get('/kids/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
+    });
+    Route::group(['prefix' => $prefix, 'as' => $prefix_name, 'middleware' => 'checkUserAuthToken'], function () {
+        Route::get('/', [PageController::class, 'index'])->name('homepage');
+    });
+    Route::group(['prefix' => $prefix, 'middleware' => 'checkUserAuthToken'], function () {
+        Route::get('explore', [PageController::class, 'explore'])->name('explore');
+        Route::get('{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
+        Route::get('retro-rewind/{slug}', [RetroRewindController::class, 'retroRewindList'])->name('retro-list');
+        Route::get('{slug}', [PageController::class, 'index']);
+    });
 }
 
 Route::post('/player', [PlayerController::class, 'getVideoUrl']);

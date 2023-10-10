@@ -45,37 +45,6 @@ class PageController extends Controller
         return view('pages.error.404');
     }
 
-    public function kidsIndex($slug = 'home')
-    {
-        $params = [
-            'slug' => 'kids-' . $slug,
-            'list_language' => 'ALL',
-            'display_language' => 'ENGLISH',
-            'page' => 1,
-            'limit' => $this->limit,
-        ];
-
-        $result = CurlAPI("pages/homepage", "GET", $params, 1);
-
-        if (request()->v == 2) {
-            foreach ($result['data']['list'] as $key => $value) {
-                d($value);
-            }
-            dd($result);
-        }
-
-        if ($result && @$result['success'] ==  true) {
-
-            $displayLanguageParam = setLanguageParameter();
-
-            $meta_title = strtoupper($slug);
-
-            // dd($result['data']['list'][18]);
-            return view('pages.homepage', compact('result', 'displayLanguageParam', 'meta_title'));
-        }
-        return view('pages.error.404');
-    }
-
     public function loadMore(Request $request)
     {
         // dd($request->all());
@@ -253,5 +222,14 @@ class PageController extends Controller
         // dd($result);
         // dd($paginateHTML);
         return json_encode(['paginateHTML' => $paginateHTML, 'dataCount' => $dataCount, 'limit' => $limit]);
+    }
+
+    private function epicShots() 
+    {
+        $response = CurlAPI("contents/epic-shorts/epic-on-talkies", "GET", null, 3);
+        if ($response && @$response['success'] == true) {
+
+        }
+
     }
 }

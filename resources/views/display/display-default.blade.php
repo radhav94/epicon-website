@@ -20,6 +20,10 @@
                      <h1>{{ $value['display_type'] }}</h1>
                  @endif
 
+                @if($template == "display.genre")
+                    @include('display.epicshots')
+                @endif
+
                  @include($template, [
                      'value' => $value,
                      'title' => $title,
