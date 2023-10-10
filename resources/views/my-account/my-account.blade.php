@@ -9,31 +9,32 @@
 
 <?php
 if(!empty($subscriptionPurchases)){
-if(isset($subscriptionPurchases[0]['subscription_start_date'])){
-    $subscription_start_date = date('Y-m-d', strtotime($subscriptionPurchases[0]['subscription_start_date']));
+if(isset($subscriptionPurchases['subscription_start_date'])){
+    $subscription_start_date = date('Y-m-d', strtotime($subscriptionPurchases['subscription_start_date']));
 
-    $substartdate=date("jS F, Y", strtotime($subscriptionPurchases[0]['subscription_start_date']));  
+    $substartdate=date("jS F, Y", strtotime($subscriptionPurchases['subscription_start_date']));  
 }
-if(isset($subscriptionPurchases[0]['subscription_end_date'])){
-    $subscription_end_date = date('Y-m-d', strtotime($subscriptionPurchases[0]['subscription_end_date']));
+if(isset($subscriptionPurchases['subscription_end_date'])){
+    $subscription_end_date = date('Y-m-d', strtotime($subscriptionPurchases['subscription_end_date']));
 
-    $subenddate=date("jS F, Y", strtotime($subscriptionPurchases[0]['subscription_end_date']));  
+    $subenddate=date("jS F, Y", strtotime($subscriptionPurchases['subscription_end_date']));  
 }
 
-if($subscriptionPurchases[0]['validity_days'] == 30){
+if($subscriptionPurchases['validity_days'] == 30){
     $plan_name = 'month';
-}else if($subscriptionPurchases[0]['validity_days'] == 90){
+}else if($subscriptionPurchases['validity_days'] == 90){
     $plan_name = 'quarter';
-}else if($subscriptionPurchases[0]['validity_days'] == 180){
+}else if($subscriptionPurchases['validity_days'] == 180){
     $plan_name = 'half-yearly';
 }else{
     $plan_name = 'year';
 }
 
 $today = date_create(date('Y-m-d'));
-$enddate = date_create(date('Y-m-d', strtotime($subscriptionPurchases[0]['subscription_end_date'])));
+$enddate = date_create(date('Y-m-d', strtotime($subscriptionPurchases['subscription_end_date'])));
 $dateDiff = date_diff($enddate,$today);
-$numOfDays = $dateDiff->format('%a');
+$numOfDays = checkNumDays($subscriptionPurchases['subscription_end_date']);
+
 }
 ?>
 
@@ -94,7 +95,7 @@ $numOfDays = $dateDiff->format('%a');
                     <div class="premium-plan">
 
                         <div class="past-sub w-100">{{__('PAST SUBSCRIPTION')}}</div>
-                        <h2>{{ isset($subscriptionPurchases[0]['plan_name']) ? $subscriptionPurchases[0]['plan_name'] : '' }}</h2>
+                        <h2>{{ isset($subscriptionPurchases['plan_name']) ? $subscriptionPurchases['plan_name'] : '' }}</h2>
                         <div class="progress blue">
                             <span class="progress-left">
                                               <span class="progress-bar"></span>
@@ -108,13 +109,13 @@ $numOfDays = $dateDiff->format('%a');
                             </div>
                         </div>
                         <div class="pp-right">
-                            <h3>₹ {{ isset($subscriptionPurchases[0]['plan_amount']) ? $subscriptionPurchases[0]['plan_amount'] : '' }} <span>/ {{ isset($plan_name) ? $plan_name : '' }}</span></h3>
+                            <h3>₹ {{ isset($subscriptionPurchases['plan_amount']) ? $subscriptionPurchases['plan_amount'] : '' }} <span>/ {{ isset($plan_name) ? $plan_name : '' }}</span></h3>
                             <p>{{isset($substartdate) ? $substartdate : ''}} - {{ isset($subenddate) ? $subenddate : '' }}</p>
                         </div>
                     </div>
-
+                    @if($numOfDays <= 3 || $subscriptionPurchases['plan_status'] == 'past')    
                     <div class="w-100 text-center">
-                        <button class="renew-paln">
+                        <button class="renew-paln" onclick="window.location.href='subscription'">
                             {{__('Renew plan')}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="white"/>
@@ -122,6 +123,7 @@ $numOfDays = $dateDiff->format('%a');
                             </svg>
                         </button>
                     </div>
+                    @endif
 
                 </div>
             </div>

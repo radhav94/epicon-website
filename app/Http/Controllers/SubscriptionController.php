@@ -19,13 +19,15 @@ class SubscriptionController extends Controller
         $todayStrToTime = strtotime($today);
         $usedDays = 0;
         $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2, true);
+        $result = CurlAPI("subscriptions/plans", "GET", "", 2);
+        $offerCount = count($result['plans'][0]['benifits']);
 
         if (empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['message'] == 'No subscriptions found') {
 
-            $result = CurlAPI("subscriptions/plans", "GET", "", 2);
+            //$result = CurlAPI("subscriptions/plans", "GET", "", 2);
             if ($result && @$result['success'] == true) {
 
-                $offerCount = count($result['plans'][0]['benifits']);
+                //$offerCount = count($result['plans'][0]['benifits']);
                 $plandata = [];
                 foreach ($result['plans'] as $val) {
                     $plandata[$val['id']] = [
@@ -67,11 +69,12 @@ class SubscriptionController extends Controller
                     }
                 }
             }
+            
             if (empty($activePlan)) {
-                $result = CurlAPI("subscriptions/plans", "GET", "", 2);
+                //$result = CurlAPI("subscriptions/plans", "GET", "", 2);
                 if ($result && @$result['success'] == true) {
 
-                    $offerCount = count($result['plans'][0]['benifits']);
+                    //$offerCount = count($result['plans'][0]['benifits']);
                     $plandata = [];
                     foreach ($result['plans'] as $val) {
                         $plandata[$val['id']] = [
@@ -95,8 +98,13 @@ class SubscriptionController extends Controller
 
             } else {
 
-                return redirect()->route('my-account');
-
+                //dd($activePlan['subscription_end_date']);
+                $numOfDays = checkNumDays($activePlan['subscription_end_date']);
+                if($numOfDays <= 3){
+                    return view('subscription.subscription', compact('result', 'offerCount'));
+                }else{
+                    return redirect()->route('my-account'); 
+                }
             }
 
         }
@@ -678,5 +686,26 @@ class SubscriptionController extends Controller
 
         return view('subscription.subscription-fail', compact('message'));
     }
+
+    public function cancelRecurringPayu(){
+            $parameters_verify_payment =[];
+            $parameters_verify_payment['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
+            $parameters_verify_payment['command'] = 'mandate_revoke';
+            $parameters_verify_payment['var1'] = json_encode([
+            'authPayuId'=>'403993715530242574',
+            'requestId'=>'b3f5ea242a7a8026281909ca75eebe7d',
+        ]);
+            //dd($parameters_verify_payment['var1']);
+            $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters_verify_payment['command'] . '|' . $parameters_verify_payment['var1'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+            $calculated_hash = strtolower(hash("sha512", $HASH));
+            $parameters_verify_payment['hash'] = $calculated_hash;
+            $data = 'key=' . $parameters_verify_payment['key'] . '&command=' . $parameters_verify_payment['command'] . '&var1=' . $parameters_verify_payment['var1'] . '&hash=' . $parameters_verify_payment['hash'];
+            
+           //dd($data);
+            $url = "https://test.payu.in/merchant/postservice.php?form=2";
+            $verify_payment = si_transaction($url, $data);
+            dd($verify_payment);
+    }
+
 
 }

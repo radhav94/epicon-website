@@ -323,7 +323,8 @@ if($environment=='PRODUCTION'){
             'ENABLE_RECURRING_API'=>true,
             'ENABLE_RECURRING_AT_FROM_TRANSACTION'=>true,
             //'API_URL'=>'https://info.payu.in/merchant/postservice.php?form=2',
-			'API_URL'=>'https://test.payu.in/merchant/postservice.php?form=2',	
+			'API_URL'=>'https://test.payu.in/merchant/postservice.php?form=2',
+			'CANCEL_RECURRING_URL' =>'https://test.payu.in/merchant/'	
         ],
         'PAYTMQR'=>[
 			'PAYTMQR_MERCHANT_ID'=>'EPICTE67767187383060',

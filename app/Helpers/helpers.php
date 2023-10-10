@@ -883,3 +883,12 @@ function checkLang($lang){
 
     return $res;
 }
+
+function checkNumDays($date){
+    $today = date_create(date('Y-m-d'));
+    $enddate = date_create(date('Y-m-d', strtotime($date)));
+    //$dateDiff = date_diff($enddate,$today);
+    $dateDiff = date_diff($today,$enddate);
+    $numOfDays = $dateDiff->format('%r%a');
+    return $numOfDays;
+}

@@ -89,6 +89,7 @@ foreach ($lang as $val) {
         Route::post('payufail', [SubscriptionController::class, 'payufail'])->name('payufail');
         Route::post('paymentProcess', [SubscriptionController::class, 'paymentProcess'])->name('paymentProcess');
         Route::post('thankyou', [SubscriptionController::class, 'thankyou'])->name('thankyou');
+        Route::get('cancelRecurringPayu',[SubscriptionController::class,'cancelRecurringPayu'])->name('cancelRecurringPayu');
         //end
     });
 
