@@ -70,7 +70,6 @@
                     },
                     dataType: 'json',
                     success: function(response) {
-                        console.log("Ram="+response);
                         if (response.payload.html != '') {
                             $('.loadmorecontent').css('overflow', 'auto');
                             $('.loadmorecontent').append(response.payload.html);
