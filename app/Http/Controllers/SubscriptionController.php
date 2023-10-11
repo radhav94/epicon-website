@@ -69,7 +69,7 @@ class SubscriptionController extends Controller
                     }
                 }
             }
-            
+
             if (empty($activePlan)) {
                 //$result = CurlAPI("subscriptions/plans", "GET", "", 2);
                 if ($result && @$result['success'] == true) {
@@ -100,10 +100,10 @@ class SubscriptionController extends Controller
 
                 //dd($activePlan['subscription_end_date']);
                 $numOfDays = checkNumDays($activePlan['subscription_end_date']);
-                if($numOfDays <= 3){
+                if ($numOfDays <= 3) {
                     return view('subscription.subscription', compact('result', 'offerCount'));
-                }else{
-                    return redirect()->route('my-account'); 
+                } else {
+                    return redirect()->route('my-account');
                 }
             }
 
@@ -134,7 +134,7 @@ class SubscriptionController extends Controller
         $sessionPlanData = $request->session()->get('plandata');
 
         $userData = $request->session()->get('user');
-        
+
         if ($sessionPlanData[$formData['amountid']]) {
             $result = ($sessionPlanData[$formData['amountid']]);
         }
@@ -398,7 +398,7 @@ class SubscriptionController extends Controller
                 }
                 $html = "";
                 foreach ($plandata as $key => $val) {
-                    $pname = $val['name']; 
+                    $pname = $val['name'];
                     $i = 0;
                     foreach ($val['benifits'] as $bn => $bnval) {
                         $html .= '<li>
@@ -424,7 +424,7 @@ class SubscriptionController extends Controller
                     }
 
                 }
-                $res['html']  = '<ul class="additional-carousel mb-0 mt-3 p-0">' . $html . '</ul>';
+                $res['html'] = '<ul class="additional-carousel mb-0 mt-3 p-0">' . $html . '</ul>';
                 $res['count'] = $i;
                 $res['pname'] = ucfirst(strtolower($pname));
                 return response()->json($res, 201)->header('Content-Type', 'application/json');
@@ -688,55 +688,55 @@ class SubscriptionController extends Controller
         return view('subscription.subscription-fail', compact('message'));
     }
 
-    public function updateUserDataAjax(Request $request){
+    public function updateUserDataAjax(Request $request)
+    {
         $ajaxData = $request->all();
         //dd($ajaxData);
         $type = $ajaxData['type'] ?? '';
         $userData = $ajaxData['userdetail'] ?? '';
         $updateResponse = true;
-        $res =[];
-        $postData=[
-            'type'=>$type,
-            'userData'=>$userData
+        $res = [];
+        $postData = [
+            'type' => $type,
+            'userData' => $userData,
         ];
         //$updateResponse = CurlAPI("users/editProfile", "POST", $postData, 2, true);
         //dd($updateResponse);
-        $res['html'] = '<button class="fill-btn px-5" type="submit">'.__('Continue Pay').' Rs. '.$ajaxData['price'].'
+        $res['html'] = '<button class="fill-btn px-5" type="submit">' . __('Continue Pay') . ' Rs. ' . $ajaxData['price'] . '
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M4.75 12C4.75 11.5858 5.08579 11.25 5.5 11.25H19.5C19.9142 11.25 20.25 11.5858 20.25 12C20.25 12.4142 19.9142 12.75 19.5 12.75H5.5C5.08579 12.75 4.75 12.4142 4.75 12Z" fill="#070707"/>
             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9697 4.46967C12.2626 4.17678 12.7374 4.17678 13.0303 4.46967L20.0303 11.4697C20.3232 11.7626 20.3232 12.2374 20.0303 12.5303L13.0303 19.5303C12.7374 19.8232 12.2626 19.8232 11.9697 19.5303C11.6768 19.2374 11.6768 18.7626 11.9697 18.4697L18.4393 12L11.9697 5.53033C11.6768 5.23744 11.6768 4.76256 11.9697 4.46967Z" fill="#070707"/>
           </svg>
     </button>';
-        
-        if($updateResponse){
-         return response()->json($res, 200)->header('Content-Type', 'application/json');
+        update_user_session();
+        if ($updateResponse) {
+            return response()->json($res, 200)->header('Content-Type', 'application/json');
         } else {
-        return response()->json('something went wrong !', 400)->header('Content-Type', 'application/json');
+            return response()->json('something went wrong !', 400)->header('Content-Type', 'application/json');
         }
 
-        //update session 
-
+        //update session
 
     }
-    public function cancelRecurringPayu(){
-            $parameters_verify_payment =[];
-            $parameters_verify_payment['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
-            $parameters_verify_payment['command'] = 'mandate_revoke';
-            $parameters_verify_payment['var1'] = json_encode([
-            'authPayuId'=>'403993715530242574',
-            'requestId'=>'b3f5ea242a7a8026281909ca75eebe7d',
+    public function cancelRecurringPayu()
+    {
+        $parameters_verify_payment = [];
+        $parameters_verify_payment['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
+        $parameters_verify_payment['command'] = 'mandate_revoke';
+        $parameters_verify_payment['var1'] = json_encode([
+            'authPayuId' => '403993715530242574',
+            'requestId' => 'b3f5ea242a7a8026281909ca75eebe7d',
         ]);
-            //dd($parameters_verify_payment['var1']);
-            $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters_verify_payment['command'] . '|' . $parameters_verify_payment['var1'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
-            $calculated_hash = strtolower(hash("sha512", $HASH));
-            $parameters_verify_payment['hash'] = $calculated_hash;
-            $data = 'key=' . $parameters_verify_payment['key'] . '&command=' . $parameters_verify_payment['command'] . '&var1=' . $parameters_verify_payment['var1'] . '&hash=' . $parameters_verify_payment['hash'];
-            
-           //dd($data);
-            $url = "https://test.payu.in/merchant/postservice.php?form=2";
-            $verify_payment = si_transaction($url, $data);
-            dd($verify_payment);
-    }
+        //dd($parameters_verify_payment['var1']);
+        $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters_verify_payment['command'] . '|' . $parameters_verify_payment['var1'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+        $calculated_hash = strtolower(hash("sha512", $HASH));
+        $parameters_verify_payment['hash'] = $calculated_hash;
+        $data = 'key=' . $parameters_verify_payment['key'] . '&command=' . $parameters_verify_payment['command'] . '&var1=' . $parameters_verify_payment['var1'] . '&hash=' . $parameters_verify_payment['hash'];
 
+        //dd($data);
+        $url = "https://test.payu.in/merchant/postservice.php?form=2";
+        $verify_payment = si_transaction($url, $data);
+        dd($verify_payment);
+    }
 
 }
