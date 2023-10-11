@@ -447,7 +447,7 @@ function getSeasonEpisodeNum($val)
 
 function isUserLoggedIn()
 {
-    return Session::get('user_id') ? true : false;
+    return Session::has('user_id') && Session::get('user_id') ? true : false;
 }
 
 function getUserId()
@@ -466,17 +466,25 @@ function getProfileId()
 
 function getContentUrl($value)
 {
+    $prefix = '/';
+    if (session()->has('kidsMode') && session()->get('kidsMode')) {
+        $prefix = '/kids/';
+    }
     if (isset($value['url'])) {
-        return getUrl($value['url']);
+        return getUrl($prefix.$value['url']);
     }
 
-    return getUrl('/');
+    return getUrl($prefix);
 }
 
 
 function getMidPageUrl($value)
 {
-    return getUrl('/midpage/' . ($value['slug'] ?? 'slug') . '/' . @$value['catalog']);
+    $midpage_prefix = '/midpage/';
+    if (session()->has('kidsMode') && session()->get('kidsMode')) {
+        $midpage_prefix = '/kids/midpage/';
+    }
+    return getUrl($midpage_prefix . ($value['slug'] ?? 'slug') . '/' . @$value['catalog']);
 }
 
 function getProfileData()
@@ -721,32 +729,6 @@ function formatDate($date, $format = 'd F Y')
     return date($format, strtotime($date));
 }
 
-function generateCategoryResponse($result)
-{
-    if (empty($result) || !isset($result['topResult'])) {
-        return '';
-    }
-
-    $topResult = $result['topResult'];
-
-    $premium = ($topResult['free_premium'] == true) ? '<img class="crown" src="' . asset('assets/img/crown.svg') . '" alt="icon">' : '';
-    $dateText = isset($topResult['release_date']) ? date('Y-m-d', strtotime($topResult['release_date'])) : '';
-    $wishlist = getWishlist();
-    $wishlistAction = getWishListAction($topResult, $wishlist, 2);
-    $url = getContentUrl($topResult);
-
-    return '<h5 class="text-white">Top Result</h5>'
-        . '<ul class="list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4">'
-        . '<li class="episode-main mb-4">'
-        . '<div class="pik"><img src="' . $topResult['cover_image']['medium'] . '" alt="img">' . $premium . '</div>'
-        . '<div class="episode-text-details">'
-        . '<h6>' . $topResult['title'] . '</h6>'
-        . '<span>' . @$dateText . ' | ' . @$topResult['duration'] . '</span>'
-        . '<p class="search-top mt-2">' . $topResult['description'] . '</p>'
-        . '<div class="d-flex align-items-center"><a href="' . $url . '"><button class="fill-btn em ms-0">' . __('Watch') . '</button></a>' . $wishlistAction . '</div></div>'
-        . '</li></ul>';
-}
-
 function getCardImage($content, $key, $size = 'medium', $fallback = [])
 {
     if (empty($fallback)) {
@@ -845,11 +827,8 @@ if (!function_exists("getAllEpisodesFromSeason")) {
         if (array_key_exists('episodes', $season)) {
             if (is_array($season['episodes'])) {
                 foreach ($season['episodes'] as $episode) {
-                    if (array_key_exists('file_url_original', $episode) && !empty($episode['file_url_original'])) {
-                        $episode_list[] = [
-                            'id' => $episode['ID'],
-                            'ep_url' => $episode['file_url_original']
-                        ];
+                    if (array_key_exists('ID', $episode) && !empty($episode['ID'])) {
+                        $episode_list[] = $episode['ID'];
                     } else {
                         continue;
                     }
@@ -864,12 +843,17 @@ if (!function_exists("update_user_session")) {
     function update_user_session()
     {
         $profile_detail = CurlAPI("users/viewProfile", "POST", [], 2, true);
-        if (is_array($profile_detail) && array_key_exists('success', $profile_detail) && $profile_detail['success']) {
-            if (array_key_exists('user_data', $profile_detail)) {
-                $user_data = @$profile_detail['user_data'];
-                session()->put('user', $user_data);
+        if (is_array($profile_detail) && array_key_exists('success', $profile_detail)) {
+            if ($profile_detail['success']) {
+                if (array_key_exists('user_data', $profile_detail)) {
+                    $user_data = @$profile_detail['user_data'];
+                    session()->put('user', $user_data);
+                }
+            } else if (!$profile_detail['success'] && array_key_exists('errorcode', $profile_detail) && $profile_detail['errorcode'] == 2012) {
+                return false;
             }
         }
+        return true;
     }
 }
 function checkLang($lang){

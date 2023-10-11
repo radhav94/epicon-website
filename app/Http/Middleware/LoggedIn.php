@@ -16,8 +16,16 @@ class LoggedIn
     public function handle(Request $request, Closure $next)
     {
         if (isUserLoggedIn()) {
-            update_user_session();
+            $response = update_user_session();
+            if (!$response) {
+                $request->session()->flush();
+                return redirect(route('homepage') . "?type=logout");
+            }
             return $next($request);
+        }
+        if ($request->segment(1) == "kids") {
+            $url = $request->url();
+            return redirect(route('homepage') . "?profile=kids&redirect=$url");
         }
         if ($request->ajax()) {
             return JSONResponse(400, 'Please log in or sign up to continue.');

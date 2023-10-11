@@ -16,15 +16,8 @@ class PageController extends Controller
 
     public function index($slug = 'home-v2')
     {
-        $params = [
-            'slug' => $slug,
-            'list_language' => 'ALL',
-            'display_language' => 'ENGLISH',
-            'page' => 1,
-            'limit' => $this->limit,
-        ];
-
-        $result = CurlAPI("pages/homepage", "GET", $params, 1);
+        $data = $this->homepageData($slug);
+        $result = $data['result'];
 
         if (request()->v == 2) {
             foreach ($result['data']['list'] as $key => $value) {
@@ -34,71 +27,25 @@ class PageController extends Controller
         }
 
         if ($result && @$result['success'] ==  true) {
-
-            $displayLanguageParam = setLanguageParameter();
-
-            $meta_title = strtoupper($slug);
-
-            // dd($result['data']['list'][18]);
-            return view('pages.homepage', compact('result', 'displayLanguageParam', 'meta_title'));
-        }
-        return view('pages.error.404');
-    }
-
-    public function kidsIndex($slug = 'home')
-    {
-        $params = [
-            'slug' => 'kids-' . $slug,
-            'list_language' => 'ALL',
-            'display_language' => 'ENGLISH',
-            'page' => 1,
-            'limit' => $this->limit,
-        ];
-
-        $result = CurlAPI("pages/homepage", "GET", $params, 1);
-
-        if (request()->v == 2) {
-            foreach ($result['data']['list'] as $key => $value) {
-                d($value);
-            }
-            dd($result);
-        }
-
-        if ($result && @$result['success'] ==  true) {
-
-            $displayLanguageParam = setLanguageParameter();
+            $displayLanguageParam = $data['displayLanguageParam'];
+            $stories = $data['stories'];
 
             $meta_title = strtoupper($slug);
-
-            // dd($result['data']['list'][18]);
-            return view('pages.homepage', compact('result', 'displayLanguageParam', 'meta_title'));
+            return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta_title'));
         }
         return view('pages.error.404');
     }
 
     public function loadMore(Request $request)
-    {
-        // dd($request->all());
-        
-        $listlang = Session::has('listLanguage') ? Session::get('listLanguage') : 'all';
-        $displang = Session::has('displayLanguage') ? Session::get('displayLanguage') : 'en';
-        $params = [
-            'slug' => ($request->route == '/') ? 'home-v2' : $request->route,
-            'list_language' => checkLang($listlang),
-            'display_language' => checkLang($displang),
-            'page' => $request->page,
-            'limit' => $this->limit,
-        ];
-        $result = CurlAPI("pages/homepage", "GET", $params, 1);
-
-        // dd($result);
-
-
+    {   
+        $slug = ($request->route == '/') ? 'home-v2' : $request->route;
+        $data = $this->homepageData($slug, $request->page);
+        $result = $data['result'];
         if ($result && @$result['success'] ==  true) {
+            $displayLanguageParam = $data['displayLanguageParam'];
+            $stories = $data['stories'];
 
-            $displayLanguageParam = setLanguageParameter();
-
-            $view = view('display.display-default', compact('result', 'displayLanguageParam'))->render();
+            $view = view('display.display-default', compact('result', 'displayLanguageParam', 'stories'))->render();
 
             return JSONResponse(
                 200,
@@ -252,8 +199,63 @@ class PageController extends Controller
         } else {
             $paginateHTML = "false";
         }
-        // dd($result);
-        // dd($paginateHTML);
         return json_encode(['paginateHTML' => $paginateHTML, 'dataCount' => $dataCount, 'limit' => $limit]);
+    }
+
+    private function homepageData($slug = 'home-v2', $page = 1)
+    {
+        $stories = [];
+        $listlang = Session::has('listLanguage') ? Session::get('listLanguage') : 'all';
+        $displang = Session::has('displayLanguage') ? Session::get('displayLanguage') : 'en';
+        $params = [
+            'slug' => $slug,
+            'list_language' => checkLang($listlang),
+            'display_language' => checkLang($displang),
+            'page' => $page,
+            'limit' => $this->limit,
+        ];
+        $result = CurlAPI("pages/homepage", "GET", $params, 1);
+
+        if ($result && @$result['success'] ==  true) {
+            $data = key_exists('data', $result) ? $result['data'] : [];
+            $lists = key_exists('list', $data) ? $data['list'] : [];
+            foreach ($lists as $list) {
+                if (@$list['slug'] == "uniquely-yours") {
+                    $stories = $this->epicShots();
+                    break;
+                }
+                continue;
+            }
+        }
+        $displayLanguageParam = setLanguageParameter();
+        return [
+            'result' => $result,
+            'displayLanguageParam' => $displayLanguageParam,
+            'stories' => $stories
+        ];
+    }
+
+    private function epicShots() 
+    {
+        $stories_arr = [];
+        $response = CurlAPI("pages/stories", "GET", null, 1);
+        if ($response && @$response['success'] == true) {
+            $data = key_exists('data', $response) ? $response['data'] : [];
+            $list = key_exists('list', $data) ? $data['list'] : [];
+            foreach ($list as $val) {
+                if (@$val['display_page'] != "homepage") {
+                    continue;
+                }
+                $stories = key_exists('stories', $val) ? $val['stories'] : [];
+                foreach ($stories as $story) {
+                    $stories_arr[] = [
+                        'id' => $story['ID'],
+                        'title' => $story['title'],
+                        'img_url' => getCardImage($story, 'imageUrl', 'small', [])
+                    ];
+                }
+            }
+        }
+        return $stories_arr;
     }
 }

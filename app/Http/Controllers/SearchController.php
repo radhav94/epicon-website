@@ -9,12 +9,20 @@ class SearchController extends Controller
 {
     public function trendingsearch(Request $request)
     {
-        // dd($request);
+        $searchArray = session()->has('searchHistory') ? session()->get('searchHistory') : [];
+        $searchList = "";
+
+        if (count($searchArray) > 0) {
+            krsort($searchArray);
+            foreach ($searchArray as $val) {
+                $searchList .= $val['list'];
+            }
+        }
+
         $trending = CurlAPI("pages/trendingsearch", 'POST', '', 1);
-        // dd($trending);
         if ($trending && (@$trending['success'] == 'true' || @$trending['success'] == true)) {
             $trendingData = $trending['contents'] ?? [];
-            return view('pages.search.search')->with('trendingData', $trendingData);
+            return view('pages.search.search', compact('trendingData', 'searchList'));
         } else {
             return view('pages.error.404');
         }
@@ -23,9 +31,6 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $searchText = $request->post('searchinput');
-        $searchArray = session()->has('searchHistory') ? session('searchHistory') : [];
-        $searchArray[] = $searchText;
-        session()->put('searchHistory', $searchArray);
         $postData = [
             'searchTerm' => $searchText,
         ];
@@ -50,7 +55,7 @@ class SearchController extends Controller
 
                     if (isset($categoryMapping[$title])) {
                         $categoryKey = $categoryMapping[$title];
-                        $data['topResult'][$categoryKey] = generateCategoryResponse($val);
+                        $data['topResult'][$categoryKey] = $this->generateCategoryResponse($val);
                     }
 
                     if (isset($categoryMapping[$title])) {
@@ -63,6 +68,57 @@ class SearchController extends Controller
             return JSONResponse(200, '', ['data' => $data, 'success' => @$searchResult['success']]);
         } else {
             return JSONResponse(400, "Something went wrong. Please try again!");
+        }
+    }
+
+    private function generateCategoryResponse($result)
+    {
+        if (empty($result) || !isset($result['topResult'])) {
+            return '';
+        }
+
+        $topResult = $result['topResult'];
+
+        $premium = ($topResult['free_premium'] == true) ? '<img class="crown" src="' . asset('assets/img/crown.svg') . '" alt="icon">' : '';
+        $dateText = isset($topResult['release_date']) ? date('Y-m-d', strtotime($topResult['release_date'])) : '';
+        $wishlist = getWishlist();
+        $wishlistAction = getWishListAction($topResult, $wishlist, 2);
+        $url = getContentUrl($topResult);
+
+        $htmlContent = '<h5 class="text-white">Top Result</h5>'
+            . '<ul class="list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4">';
+
+        $list = '<li class="episode-main mb-4">'
+            . '<div class="pik"><img src="' . @$topResult['cover_image']['medium'] . '" alt="img">' . $premium . '</div>'
+            . '<div class="episode-text-details">'
+            . '<h6>' . @$topResult['title'] . '</h6>'
+            . '<span>' . @$dateText . ' | ' . @$topResult['duration'] . '</span>'
+            . '<p class="search-top mt-2">' . @$topResult['description'] . '</p>'
+            . '<div class="d-flex align-items-center"><a href="' . $url . '"><button class="fill-btn em ms-0">' . __('Watch') . '</button></a>' . $wishlistAction . '</div></div>'
+            . '</li>';
+        $htmlContent .= $list . '</ul>';
+        $this->addHistorySession($list, @$topResult['title']);
+
+        return $htmlContent;
+    }
+
+    private function addHistorySession($list = "", $title = "")
+    {
+        if (isUserLoggedIn()) {
+            $searchArray = session()->has('searchHistory') ? session()->get('searchHistory') : [];
+            if (count($searchArray) == 10) {
+                array_splice($searchArray, 0, 1);
+            } else {
+                $key = array_search($title, array_column($searchArray, 'title'));
+                if ($key !== false) {
+                    array_splice($searchArray, $key, 1);
+                }
+                $searchArray[] = [
+                    'title' => $title,
+                    'list' => $list
+                ];
+            }
+            session()->put('searchHistory', $searchArray);
         }
     }
 
