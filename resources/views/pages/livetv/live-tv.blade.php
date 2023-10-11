@@ -20,7 +20,7 @@
               <div class="livetc-right">
                 <img src="{{ asset('/img/ishara-logo.png')}}" alt="ishara tv" width="140">
               </div>
-              <h3><span>Hindi Entertainment Channel</span></h3>
+              <h3><span>{{__('Hindi Entertainment Channel')}}</span></h3>
               <div class="livetv-img-container">
                 <img src="{{ asset('/img/Ishara_livetv.png') }}" alt="" class="livetv-img">
               </div>
@@ -32,7 +32,7 @@
               }
               $fourlive_url_final = env('ISHARA_LIVE_TV_LINK', $fourlive_url);
               ?>
-              <a href="{{ $fourlive_url_final }}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">Start Live TV</a>
+              <a href="{{ $fourlive_url_final }}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@
               <div class="livetc-right">
                 <img src="{{ asset('/img/epic-tv.png') }}" alt="ishara tv" width="140">
               </div>
-              <h3><span>India Ka Apna Infotainment</span></h3>
+              <h3><span>{{__('India Ka Apna Infotainment')}}</span></h3>
               <div class="livetv-img-container">
                 <img src="{{ asset('/img/Epic_livetv.png') }}" alt="" class="livetv-img">
               </div>
@@ -54,7 +54,7 @@
                 $firstlive_url = url('/' . $response[1]['url']);
               }
               ?>
-              <a href="{{ $firstlive_url }}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">Start Live TV</a>
+              <a href="{{ $firstlive_url }}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
             </div>
           </div>
         </div>
@@ -71,7 +71,7 @@
                 ?>
                 <img src="{{ asset($filamchinewlogo) }}" alt="ishara tv" width="140">
               </div>
-              <h3><span>Bhojpuri Movie Channel</span></h3>
+              <h3><span>{{__('Bhojpuri Movie Channel')}}</span></h3>
               <div class="livetv-img-container">
                 <img src="{{ asset('/img/Filamchi_livetv.png') }}" alt="" class="livetv-img">
               </div>
@@ -82,7 +82,7 @@
                 $thirdlive_url = url('/' . $response[2]['url']);
               }
               ?>
-              <a href="{{$thirdlive_url}}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">Start Live TV</a>
+              <a href="{{$thirdlive_url}}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
             </div>
           </div>
         </div>
@@ -99,7 +99,7 @@
                 ?>
                 <img src="{{ asset($showboxnewlogo) }}" alt="Show Box" width="140">
               </div>
-              <h3><span>Youth Centric Music Channel</span></h3>
+              <h3><span>{{__('Youth Centric Music Channel')}}</span></h3>
               <div class="livetv-img-container">
                 <img src="{{ asset('/img/Showbox_livetv.png') }}" alt="" class="livetv-img">
               </div>
@@ -110,7 +110,7 @@
                 $secondlive_url = url('/' . $response[3]['url']);
               }
               ?>
-              <a href="{{ $secondlive_url }}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">Start Live TV</a>
+              <a href="{{ $secondlive_url }}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
             </div>
           </div>
         </div>
@@ -121,7 +121,7 @@
               <div class="livetc-right">
                 <img src="{{ asset('/img/gubbare-logo.png') }}" alt="ishara tv" width="140">
               </div>
-              <h3><span>Kids Channel</span></h3>
+              <h3><span>{{__('Kids Channel')}}</span></h3>
               <div class="livetv-img-container">
                 <img src="{{ asset('/img/Gubbare_livetv.png') }}" alt="" class="livetv-img">
               </div>
@@ -132,7 +132,7 @@
                   $secondlive_url = url('/' . @$response[4]['url']);
                 }
                 ?>
-              <a href="" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">Start Live TV</a>
+              <a href="{{$secondlive_url}}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
             </div>
           </div>
         </div>
@@ -144,7 +144,7 @@
                 <div class="livetc-right">
                   <img src="{{ asset('/img/nazara-logo.png') }}" alt="" width="140">
                 </div>
-                <h3><span>Hindi Entertainment Channel</span></h3>
+                <h3><span>{{__('Hindi Entertainment Channel')}}</span></h3>
                 <div class="livetv-img-container">
                   <img src="{{ asset('/img/Nazara_livetv.png') }}" alt="" class="livetv-img">
                 </div>
@@ -156,7 +156,7 @@
                 }
                 $fourlive_url_final = env('ISHARA_LIVE_TV_LINK', $fourlive_url);
                 ?>
-                <a href="{{$fourlive_url_final}}" class="play-btn ct-livetv-clicked" ct-livetv-type="NazaraTv">{{__('text.livetv-start')}}</a>
+                <a href="{{$fourlive_url_final}}" class="play-btn ct-livetv-clicked" ct-livetv-type="NazaraTv">{{__('Start Live TV')}}</a>
               </div>
             </div>
           </div>

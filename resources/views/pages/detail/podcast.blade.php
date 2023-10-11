@@ -20,16 +20,13 @@ $cover_img = getCardImage($content, 'cover_image', 'large');
 $episode_list = [];
 if (array_key_exists('season', $content)) {
     $seasons = $content['season'];
-    $season = is_array($seasons) && isset($seasons[0]) ? $seasons[0] : [];
-    $episode_list = getAllEpisodesFromSeason($season);
+    // $season = is_array($seasons) && isset($seasons[0]) ? $seasons[0] : [];
+    // $episode_list = getAllEpisodesFromSeason($season);
 } else if (array_key_exists('episodes', $content)) {
     $episode_list = getAllEpisodesFromSeason($content);
 } else {
     if (array_key_exists('file_url_original', $content) && !empty($content['file_url_original'])) {
-        $episode_list[] = [
-            'id' => $content['ID'],
-            'ep_url' => $content['file_url_original']
-        ];
+        $episode_list[] = $content['ID'];
     }
 }
 $episode_json = json_encode($episode_list);
@@ -141,9 +138,9 @@ $episode_json = json_encode($episode_list);
                         </div>
 
                         @if (count($episode_list) > 0 && (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription())))
-                            
+
                         <audio id="audioPlayer" controls>
-                            <source id="audioSource" src="{{$episode_list[0]['ep_url']}}" type="audio/mpeg">
+                            <source id="audioSource" src="" type="audio/mpeg">
                         </audio>
                         <div id="episodeControls">
                             @if (count($episode_list) > 1)
@@ -165,7 +162,7 @@ $episode_json = json_encode($episode_list);
         </div>
     </section>
     @if (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription()))
-        @include('pages.detail.detail-components.tabs')
+    @include('pages.detail.detail-components.tabs')
     @endif
 
 </div>
@@ -183,6 +180,12 @@ $episode_json = json_encode($episode_list);
 
 <script src="{{ asset('assets/js/common.js') }}"></script>
 <script>
+    // List of episode URLs
+    var episodes = <?php echo $episode_json; ?>;
+    var currentEpisodeIndex = 0;
+    var audio = $("#audioPlayer")[0]; // Get the native audio element
+    var isPlayed = false;
+
     $(".pod-main").hover(function() {
         $(this).addClass("active"); //Add the active class to the area is hovered
     }, function() {
@@ -190,32 +193,9 @@ $episode_json = json_encode($episode_list);
     });
 
     $(document).ready(function() {
-        // List of episode URLs
-        var episodes = <?php echo $episode_json; ?>;
-
-        var currentEpisodeIndex = 0;
-        var audio = $("#audioPlayer")[0]; // Get the native audio element
-        console.log(audio);
+        playCurrentEpisode();
         if ($("#audioPlayer").length) {
             audio.volume = 0.25; // Set default volume 25%
-        }
-        // Function to load and play the current episode
-        function playCurrentEpisode() {
-            $("li.pod-main").removeClass('episode-active');
-            audio.load();
-            audio.play().then(() => {
-                    console.log('Audio is playing');
-                })
-                .catch(error => {
-                    console.error('Failed to play audio:', error);
-                });
-            var episodeURL = episodes[currentEpisodeIndex]['ep_url'];
-            $("#audioSource").attr("src", episodeURL);
-            var episodeID = episodes[currentEpisodeIndex]['id'];
-            $("li.pod-main[data-id='" + episodeID + "']").addClass('episode-active');
-            if ($("li.pod-main").attr("data-id") == episodeID) {
-
-            }
         }
 
         // Next episode button click handler
@@ -245,12 +225,14 @@ $episode_json = json_encode($episode_list);
                 });
             $("#pauseButton").show();
             $(this).hide();
+            isPlayed = true;
         });
 
         $("#pauseButton").click(function() {
             audio.pause();
             $("#playButton").show();
             $(this).hide();
+            isPlayed = false;
         });
 
         $("#volumeUpButton").click(function() {
@@ -271,11 +253,82 @@ $episode_json = json_encode($episode_list);
         });
 
         $('.playBtn').click(function() {
-            var data_url = $(this).attr("data-url");
-            if (data_url != "") {
-                window.location.href = data_url;
+            if (episodes == "") {
+                var data_url = $(this).attr("data-url");
+                if (data_url != "") {
+                    window.location.href = data_url;
+                }
+            } else {
+                let episodeID = $(this).attr("data-id");
+                currentEpisodeIndex = $.inArray(parseInt(episodeID), episodes) == -1 ? 0 : $.inArray(parseInt(episodeID), episodes);
+                playCurrentEpisode();
             }
         })
     });
+
+    // Function to load and play the current episode
+    function playCurrentEpisode() {
+        $("li.pod-main").removeClass('episode-active');
+        let cid = episodes[currentEpisodeIndex];
+        if (cid) {
+            let requestData = {
+                cid: cid
+            };
+
+            sendAjaxRequest(APP_URL + '/player', 'POST', JSON.stringify(requestData),
+                onPlayerSuccess, onPlayerError, 'application/json');
+        }
+    }
+    async function onPlayerSuccess(response) {
+        console.log('response: ', response);
+        var audio_url = response.payload.promo_url != "" ? response.payload.promo_url : response.payload.video_url;
+        $("#audioSource").attr("src", audio_url);
+        let episodeID = episodes[currentEpisodeIndex];
+        audio.load();
+        console.log("audio is loading")
+        if (isPlayed) {
+            audio.play().then(() => {
+                    console.log('Audio is playing');
+                })
+                .catch(error => {
+                    console.error('Failed to play audio:', error);
+                });
+        }
+        $("li.pod-main[data-id='" + episodeID + "']").addClass('episode-active');
+
+    }
+
+    async function onPlayerError(xhr) {
+        try {
+            $res = JSON.parse(xhr.responseText);
+            if ($res.message != undefined && $res.message != 'failed') {
+                showToaster($res.message, 2);
+            }
+        } catch (err) {}
+    }
+
+    function sendAjaxRequest1(url, method, data, contentType) {
+        return new Promise(function(resolve, reject) {
+            // Your AJAX logic here
+            $.ajax({
+                type: method,
+                url: url,
+                data: data,
+                contentType: contentType,
+                cache: false,
+                processData: false,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    resolve(response);
+                },
+                error: function(xhr) {
+                    reject(xhr);
+                }
+            });
+        });
+    }
 </script>
 @stop

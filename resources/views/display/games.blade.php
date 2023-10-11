@@ -37,12 +37,13 @@
      <ul class="vertical-carousel-initilize p-0 mb-0">
          @foreach ($value['content'] as $key => $val)
              <?php
+            //  print_r($val);
              $card = getItemCardData($val, $displayLanguageParam);
              $cover_img = isset($val['cover_image']) ? $val['cover_image']['small'] : $card['banner_img'];
              ?>
              <li>
 
-                 <a href="{{ @$val['game_url'] }}" class="main-card">
+                 <a href="javascript:void(0)" data-url="{{ @$val['game_url'] }}" data-premium="{{ @$val['free_premium'] }}" data-activesubscriber="{{ isActiveSubscription() }}" class="main-card check-content-url">
                      {!! freePremiumDiv($val) !!}
                      @if (@$extra['hide_top10'] != 1)
                          {!! topTenDiv($val) !!}

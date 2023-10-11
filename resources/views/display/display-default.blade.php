@@ -25,6 +25,10 @@
                      'title' => $title,
                      'shortdescription' => $shortdescription,
                  ])
+
+                @if (isset($stories) && @$value['slug'] == "uniquely-yours")
+                    @include('display.epicshots', ['stories' => $stories])
+                @endif
              @else
                  <h1>
                      Template not found - {{ $value['display_type'] }}

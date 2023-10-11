@@ -68,7 +68,7 @@
                          </button>
                      </div>
                  </div>
-                 <button class="pod-play playBtn" data-url="{{ getContentUrl($value) }}"> <img src="{{ asset('assets/img/play-icon.svg') }}" alt="">
+                 <button class="pod-play playBtn" data-id="{{ @$value['ID'] }}" data-url="{{ getContentUrl($value) }}"> <img src="{{ asset('assets/img/play-icon.svg') }}" alt="">
                      </a>
 
              </div>

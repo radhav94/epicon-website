@@ -117,6 +117,7 @@
 
 
     <script src="{{ asset('assets/js/epic.js') }}"></script>
+    <script src="{{ asset('assets/js/common.js') }}"></script>
     {{-- End footer common scripts --}}
 
 
@@ -128,6 +129,10 @@
     @notloggedin
         @include('components.login-reg-js')
     @endnotloggedin
+
+    @if (session()->has('kidsMode') && session()->get('kidsMode'))
+        @include('kids.child-pin-popup')
+    @endif
 
     <script>
         $(document).ready(function() {

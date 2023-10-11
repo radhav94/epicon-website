@@ -10,7 +10,7 @@ $(document).ready(function () {
             $(".remove-text, .Alltopresult-error").hide();
             $('#Alltopresult, #Moviestopresult, #Showtopresult, #Podcasttopresult, #Kidstopresult, #Gamestopresult').html("");
         }
-        console.log(searchtext + "Text Value");
+        console.log(searchtext + " Text Value");
         var lang = $("html").attr("lang") != 'en' ? $("html").attr("lang") + "/" : "";
         var ajaxUrl = lang + 'get-search';
         if (searchtext.length > 2) {
@@ -19,6 +19,7 @@ $(document).ready(function () {
                 type: 'POST',
                 data: { 'searchinput': searchtext },
                 dataType: 'json',
+                async: true,
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
@@ -26,10 +27,11 @@ $(document).ready(function () {
                     var response = data.payload.data;
 
                     if (data.payload.success) {
+                        $("#search-result").hide();
                         var result = false;
                         var topResult = response.topResult;
                         var otherResult = response.otherResult;
-
+                        console.log(topResult);
                         if (topResult) {
                             $('#Alltopresult').html(topResult.AllResult);
                             $('#Moviestopresult').html(topResult.MoviesResult);
@@ -98,4 +100,5 @@ $(document).on('click', '.remove-text', function () {
     $("#searchTab, #noData-error").hide();
     $('.otherResult .topResult').html('');
     $(this).hide();
+    $("#search-result").show();
 });

@@ -68,7 +68,7 @@
                             <div class="carousel-main">
                                 <ul class="vertical-carousel-initilize p-0">
                                     <?php foreach($historydata as $historydatalist){ 
-                                    $cover_image = isset($historydatalist['vertical_cover_image']) ? @$historydatalist['vertical_cover_image']['medium'] : $historydatalist['banner_image']['medium'];
+                                    $cover_image = isset($historydatalist['vertical_cover_image']) ? @$historydatalist['vertical_cover_image']['medium'] : @$historydatalist['banner_image']['medium'];
                                      ?>
                                     <li>
                                         <a href="{{ url($historydatalist['url'] ?? '/library') }}" class="main-card">
