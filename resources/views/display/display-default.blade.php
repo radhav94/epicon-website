@@ -20,15 +20,15 @@
                      <h1>{{ $value['display_type'] }}</h1>
                  @endif
 
-                @if($template == "display.genre")
-                    @include('display.epicshots')
-                @endif
-
                  @include($template, [
                      'value' => $value,
                      'title' => $title,
                      'shortdescription' => $shortdescription,
                  ])
+
+                @if (isset($stories) && @$value['slug'] == "uniquely-yours")
+                    @include('display.epicshots', ['stories' => $stories])
+                @endif
              @else
                  <h1>
                      Template not found - {{ $value['display_type'] }}

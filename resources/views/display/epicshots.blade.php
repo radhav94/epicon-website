@@ -9,11 +9,13 @@
     </div>
     <div class="gaming-galore-main">
         <div class="epic-shots">
+            @foreach ($stories as $story)
             <div>
-                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#epicShots">
-                    <img src="public/img/shots.jpg" alt="shots">
+                <a href="javascript:void(0)" data-id="{{$story['id']}}" data-bs-toggle="modal" data-bs-target="#epicShots">
+                    <img src="{{$story['img_url']}}" alt="shots">
                 </a>
             </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -24,7 +26,7 @@
         <div class="modal-content p-0">
             <div class="progressBar">
                 <progress max="100" value="100"></progress>
-                <progress max="100" value="0"></progress>
+                <progress max="100" value="100"></progress>
                 <progress max="100" value="0"></progress>
                 <progress max="100" value="0"></progress>
                 <progress max="100" value="0"></progress>

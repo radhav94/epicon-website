@@ -132,7 +132,7 @@
                   $secondlive_url = url('/' . @$response[4]['url']);
                 }
                 ?>
-              <a href="" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
+              <a href="{{$secondlive_url}}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
             </div>
           </div>
         </div>
