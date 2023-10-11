@@ -129,7 +129,7 @@ $subplan = checkSubscription();
             @endif
             @elseloggedin
 
-            <!-- <a class="subscribe-btn login" href="javascript:void(0);">{{__('Subscribe')}}</a> -->
+            <a class="subscribe-btn login" href="javascript:void(0);">{{__('Subscribe')}}</a>
 
             @endloggedin
         </div>

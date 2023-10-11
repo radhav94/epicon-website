@@ -139,8 +139,8 @@
                             <input type="hidden" name="currency" id="currency" value="{{$val['currency']}}">
                             <input type="hidden" name="coupanstatus" id="coupanstatus" value="No">
                             
-                            <p class="get-help mt-2 small">{{__('Already subscribed')}}?<a href="">{{__('Restore')}}</a></p>
-                            <button class="fill-btn payment">{{__('Continue with Premium')}}
+                            {{--<p class="get-help mt-2 small">{{__('Already subscribed')}}?<a href="">{{__('Restore')}}</a></p>--}}
+                            <button class="fill-btn payment">{{__('Continue with')}}&nbsp;<span id="plan_name"> Starter </span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M4.75 12C4.75 11.5858 5.08579 11.25 5.5 11.25H19.5C19.9142 11.25 20.25 11.5858 20.25 12C20.25 12.4142 19.9142 12.75 19.5 12.75H5.5C5.08579 12.75 4.75 12.4142 4.75 12Z" fill="#070707"/>
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9697 4.46967C12.2626 4.17678 12.7374 4.17678 13.0303 4.46967L20.0303 11.4697C20.3232 11.7626 20.3232 12.2374 20.0303 12.5303L13.0303 19.5303C12.7374 19.8232 12.2626 19.8232 11.9697 19.5303C11.6768 19.2374 11.6768 18.7626 11.9697 18.4697L18.4393 12L11.9697 5.53033C11.6768 5.23744 11.6768 4.76256 11.9697 4.46967Z" fill="#070707"/>
@@ -181,7 +181,7 @@
             data: {planid:planid},
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                console.log(data.pname);
                 //console.log(plan[0].vendor_image);
                 // $.each(plan, function (e, t) {
                 //     //console.log(t.vendor_image);
@@ -191,51 +191,53 @@
 
                 $(".offer-data").html(data.html);
                 $('#count').text(data.count);
+                $("#plan_name").text(data.pname);
+
 
                 $('.additional-carousel').not('.slick-initialized').slick({
-    dots: false,
-    infinite: false,
-    speed: 300,
-    slidesToShow: 3.2,
-    slidesToScroll: 1,
-    accessibility: true,
-    responsive: [
-      {
-        breakpoint: 1367,
-        settings: {
-          slidesToShow: 3.2,
-          slidesToScroll: 1,
+                dots: false,
+                infinite: false,
+                speed: 300,
+                slidesToShow: 3.2,
+                slidesToScroll: 1,
+                accessibility: true,
+        responsive: [
+        {
+            breakpoint: 1367,
+            settings: {
+            slidesToShow: 3.2,
+            slidesToScroll: 1,
+            }
+        },
+        {
+            breakpoint: 1025,
+            settings: {
+            slidesToShow: 2.2,
+            slidesToScroll: 1,
+            }
+        },
+        {
+            breakpoint: 769,
+            settings: {
+            slidesToShow: 1.6,
+            slidesToScroll: 1,
+            }
+        },
+        {
+            breakpoint: 600,
+            settings: {
+            slidesToShow: 1.1,
+            slidesToScroll: 1
+            }
+        },
+        {
+            breakpoint: 480,
+            settings: {
+            slidesToShow: 1.1,
+            slidesToScroll: 1
+            }
         }
-      },
-      {
-        breakpoint: 1025,
-        settings: {
-          slidesToShow: 2.2,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 769,
-        settings: {
-          slidesToShow: 1.6,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1.1,
-          slidesToScroll: 1
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1.1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+        ]
   });
 
                 
@@ -295,6 +297,8 @@
                     });
                     showToaster('Coupon applied', 1);
                     $(".CoupanApply").text("{{__('Remove')}}");
+                    //console.log(o.pname);
+                    
                 }
             },
             error: function (e, t, a) {
