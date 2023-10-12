@@ -160,6 +160,10 @@ function getContentLanguage()
     return $listLanguage;
 }
 
+function getPlayText($value){
+    return $value['asset_type'] ?? 'WATCH';
+}
+
 
 function getImage($image, $size = 'original')
 {

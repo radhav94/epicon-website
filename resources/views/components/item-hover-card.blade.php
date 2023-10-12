@@ -33,7 +33,7 @@ $banner_img = getCardImage($val, 'banner_image', 'small');
                         </svg>
 
                         <?php
-                        $watch_text = 'Watch';
+                        $watch_text = 'WATCH';
                         
                         $se_epi_text = getSeasonEpisodeNum($val);
                         if (@$se_epi_text['season']) {
