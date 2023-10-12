@@ -10,6 +10,7 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SupermixController;
 use App\Http\Controllers\KidsController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 $lang = ['hi', 'en'];
@@ -73,10 +74,13 @@ foreach ($lang as $val) {
         Route::post('thankyou', [SubscriptionController::class, 'thankyou'])->name('thankyou');
         Route::get('cancelRecurringPayu', [SubscriptionController::class, 'cancelRecurringPayu'])->name('cancelRecurringPayu');
         //end
-
+        // Kids Search Routes
+        Route::get('/kids/search', [SearchController::class, 'trendingsearch']);
+        
         Route::get('/kids/{slug?}', [KidsController::class, 'index'])->name('kidsIndex');
         Route::get('/kids/midpage/{pageslug}/{catalog}', [PageController::class, 'showmidpagedetail']);
         Route::get('/kids/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
+        
     });
 
     Route::group(['prefix' => $prefix, 'as' => $prefix_name, 'middleware' => 'checkUserAuthToken'], function () {
