@@ -98,7 +98,6 @@ class SubscriptionController extends Controller
 
             } else {
 
-                //dd($activePlan['subscription_end_date']);
                 $numOfDays = checkNumDays($activePlan['subscription_end_date']);
                 if ($numOfDays <= 3) {
                     return view('subscription.subscription', compact('result', 'offerCount'));
