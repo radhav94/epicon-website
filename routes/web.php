@@ -28,7 +28,7 @@ $lang = ['hi', 'en'];
 Route::get('test', [TestController::class, 'index']);
 
 Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.loadmore');
-
+Route::GET('ajaxStoryData', [PageController::class, 'ajaxStoryData'])->name('ajaxStoryData');
 Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
 Route::post('clap', [PageDetailController::class, 'clap'])->name('clap');
 
