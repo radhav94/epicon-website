@@ -129,7 +129,7 @@ $subplan = checkSubscription();
             @endif
             @elseloggedin
 
-            <!-- <a class="subscribe-btn login" href="javascript:void(0);">{{__('Subscribe')}}</a> -->
+            <a class="subscribe-btn login" href="javascript:void(0);">{{__('Subscribe')}}</a>
 
             @endloggedin
         </div>
@@ -192,6 +192,7 @@ if (request()->path() == "hi") {
                         fill="white" />
                 </svg>
             </a>
+            @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
             <div class="notification p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">
@@ -350,6 +351,7 @@ $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : ass
 
                 </ul>
             </div>
+            @endif
         </div>
 
     </nav>

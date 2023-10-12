@@ -18,7 +18,7 @@
                 <div class="search-header">
                     <div class="inside-head">
                         <img src="{{ asset('/img/search-white.png') }}" alt="">
-                        <input type="text" placeholder="{{__('How can we help you today?')}}">
+                        <input type="text" id="search-feedback" name="search-feedback" placeholder="{{__('How can we help you today?')}}">
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
         </div>
         <div class="faq-accordian col-sm-12 mb-5">
             <div class="accordion" id="accordionPanelsStayOpenExample">
-                <div class="accordion-item border-bot">
+                <div class="accordion-item border-bot" id="accordion1">
                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                         <button class="accordion-button text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                             Does Epic On provide content for kids also?
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item border-bot">
+                <div class="accordion-item border-bot" id="accordion2">
                     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                         <button class="accordion-button collapsed text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
                             How to change preferences?
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item border-bot">
+                <div class="accordion-item border-bot" id="accordion3">
                     <h2 class="accordion-header" id="panelsStayOpen-headingThree">
                         <button class="accordion-button collapsed text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                             How many languages are available on Epic ON?
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item border-bot">
+                <div class="accordion-item border-bot" id="accordion4">
                     <h2 class="accordion-header" id="panelsStayOpen-headingFour">
                         <button class="accordion-button collapsed text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
                             Service availability
@@ -74,7 +74,7 @@
                     </h2>
                     <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
                         <div class="accordion-body text-white">
-                            Epic's library has been carefully curated with content from only the most reputable and respected partners like National Geographic Kids and Sesame Workshop, so children have access to the highest quality content available.
+                            Testing Content
                         </div>
                     </div>
                 </div>
@@ -147,7 +147,21 @@
                 $("#feedbackForm #error-msg").html("Please type your query.");
             }
         })
+
     });
+
+     $("#search-feedback").on('keyup', function() {
+            var value = $(this).val().toLowerCase();
+            $("#accordionPanelsStayOpenExample .accordion-item").each(function() {
+                if ($(this).text().toLowerCase().search(value) > -1) {
+                    $(this).show();
+                    // $(this).prev('.subjectName').last().show();
+                } else {
+                    $(this).hide();
+                }
+            });
+    });
+
 </script>
 
 @stop

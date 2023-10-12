@@ -12,7 +12,7 @@ $request = Request();
 
 $userData = $request->session()->get('user');
 
-
+//dd($userData);
 $subscribData = ''; $id = ''; $name = ''; $plan = ''; $actual_price = ''; $epic_price = ''; $save = '';
 //dd($result);
 if(isset($result) && !empty($result)){
@@ -24,6 +24,12 @@ if(isset($result) && !empty($result)){
     $save = $result['save'];
 }
 ?>
+<style>
+    .active{ border-color: #04AA6D !important;
+             color: green !important;
+        }
+</style>
+
 <section class="container-fluid mt-4">
         <div class="row">
             <div class="col-12">
@@ -40,45 +46,41 @@ if(isset($result) && !empty($result)){
         <form name="checkoutsubscriptionform" method="post" id="checkoutsubscriptionid" action="{{route('saveSubscription')}}">
         @csrf
         <div class="row justify-content-center">
+        <input type="hidden" name="payment_type" value="DC" class="card_type" id="card_type">
             <h4 class="text-white text-center mb-4">{{__('Payment Methods')}}</h4>
             <div class="col-12 payment-method">
-                <button type="button">
+                <button type="button" class="button-type active" data-attr="DC">
                     <img src="{{ asset('/img/pm-debit-card.svg') }}" alt="icon">
                     <?php echo __('Debit Card'); ?>
-                    <input type="radio" name="payment_type" value="DC" id="debit-card" checked>
                 </button>
-                <button type="button">
+                <button type="button" class="button-type" data-attr="CC">
                     <img src="{{ asset('/img/pm-credit-card.svg') }}" alt="icon">
                     <?php echo __('Credit Card'); ?>
-                    <input type="radio" name="payment_type" value="CC" id="credit-card">
                 </button>
-                <button type="button">
+                <button type="button" class="button-type" data-attr="NB">
                     <img src="{{ asset('/img/pm-netbanking.svg') }}" alt="icon">
                     <?php echo __('Net Banking'); ?>
-                    <input type="radio" name="payment_type" value="NB" id="netbanking">
                 </button>
-                <button type="button">
+                <button type="button" class="button-type" data-attr="UPI">
                     <img src="{{ asset('/img/pm-UPI.svg') }}" alt="icon">
                     <?php echo __('UPI'); ?>
-                    <input type="radio" name="payment_type" value="UPI" id="upi">
                 </button>
-                <button type="button">
+                <button type="button" class="button-type" data-attr="CASH">
                     <img src="{{ asset('/img/pm-wallet.svg') }}" alt="icon">
                     <?php echo __('Wallet'); ?>
-                    <input type="radio" name="payment_type" value="CASH" id="wallet">
                 </button>
             </div>
 
-            <div class="other-payment-option mt-5 pb-5">
+            {{--<div class="other-payment-option mt-5 pb-5">
                 <p class="text-white text-center">{{__('Other Options')}}</p>
                 <div class="opt">
                     <button type="button"><img src="{{ asset('/img/quick-cilver.png') }}" alt="icon"></button>
                     <button type="button"><img src="{{ asset('/img/google-play.png') }}" alt="icon"></button>
                 </div>
-            </div>
+            </div>--}}
           
             {{--<input type="hidden" name="key" value="{{$payudata['key']}}"> --}}
-            <input type="hidden" name="amount" value="{{$actual_price}}">
+            <input type="hidden" name="amount" value="{{$actual_price}}" id="actual_price">
             <input type="hidden" name="amountid" value="{{$data['amountid']}}">
             <input type="hidden" name="coupanstatus" value="{{$data['coupanstatus']}}">
             {{--  <input type="hidden" name="email" value="{{$payudata['email']}}"> 
@@ -86,33 +88,39 @@ if(isset($result) && !empty($result)){
             <input type="hidden" name="furl" value="http://local.epicon-revamp-v3.com/payufail">
             <input type="hidden" name="txnid" value="{{$payudata['txid']}}">
             <input type="hidden" name="firstname" value="{{$payudata['firstname']}}">
-            <input type="hidden" name="phone" value="9819208025">
+            <input type="hidden" name="phone" value="">
             <input type="hidden" name="surl" value="http://local.epicon-revamp-v3.com/payusuccess">
             <input type="hidden" name="hash" value="{{$payudata['has']}}"> --}}
             <div class="continue-payment mt-5">
                 <p>{{__('You will be redirected to a third party site to complete the payment')}}</p>
+                @if(empty($userData['mobile']) && $userData['mobile']=='' || empty($userData['email']) && $userData['email']=='')
+                      <span id="submit_button"> </span>  
+                @else
                 <button class="fill-btn px-5" type="submit">{{__('Continue Pay')}} Rs. <?=$result['actual_price']?>
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.75 12C4.75 11.5858 5.08579 11.25 5.5 11.25H19.5C19.9142 11.25 20.25 11.5858 20.25 12C20.25 12.4142 19.9142 12.75 19.5 12.75H5.5C5.08579 12.75 4.75 12.4142 4.75 12Z" fill="#070707"/>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9697 4.46967C12.2626 4.17678 12.7374 4.17678 13.0303 4.46967L20.0303 11.4697C20.3232 11.7626 20.3232 12.2374 20.0303 12.5303L13.0303 19.5303C12.7374 19.8232 12.2626 19.8232 11.9697 19.5303C11.6768 19.2374 11.6768 18.7626 11.9697 18.4697L18.4393 12L11.9697 5.53033C11.6768 5.23744 11.6768 4.76256 11.9697 4.46967Z" fill="#070707"/>
                       </svg>
                 </button>
+                @endif
             </div>
         </div>
 
-        <div class="row justify-content-center mt-5">
+        {{--<div class="row justify-content-center mt-5">
             <div class="col-sm-10">
                 <div class="upi-qr">
                     <div class="left text-white">
                         <h4 class="text-center mb-5">{{__('UPI Payment')}}</h4>
                         <input type="text" placeholder="{{__('UPI Id')}}">
                         <p class="small text-white mb-5 mt-2">{{__('You will receive a payment request on your UPI app')}}</p>
+                        
                         <button class="fill-btn m-auto w-100" type="submit">{{__('Continue Pay')}} Rs. <?=$result['actual_price']?>
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M4.75 12C4.75 11.5858 5.08579 11.25 5.5 11.25H19.5C19.9142 11.25 20.25 11.5858 20.25 12C20.25 12.4142 19.9142 12.75 19.5 12.75H5.5C5.08579 12.75 4.75 12.4142 4.75 12Z" fill="#070707"/>
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9697 4.46967C12.2626 4.17678 12.7374 4.17678 13.0303 4.46967L20.0303 11.4697C20.3232 11.7626 20.3232 12.2374 20.0303 12.5303L13.0303 19.5303C12.7374 19.8232 12.2626 19.8232 11.9697 19.5303C11.6768 19.2374 11.6768 18.7626 11.9697 18.4697L18.4393 12L11.9697 5.53033C11.6768 5.23744 11.6768 4.76256 11.9697 4.46967Z" fill="#070707"/>
                               </svg>
                         </button>
+                       
                     </div>
                     <div class="or">
                         <span>{{__('Or')}}</span>
@@ -123,13 +131,90 @@ if(isset($result) && !empty($result)){
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
         </form>
     </section>
+
+    @include('components.update-user-modal')
 
     @stop
 
 @section('script')
 
+@if(empty($userData['mobile']) && $userData['mobile']=='' || empty($userData['email']) && $userData['email']=='')
+<script>
+$(document).ready(function(){
+    $(".button-type").click(function () {
+        var card_type = $(this).attr("data-attr");
+        $("#card_type").val(card_type);   
+        $(".button-type").removeClass("active");
+        $(this).addClass("active");
+            
+    });
+    $('#update_user_modal').modal('show');
+    $(".updateProfile").click(function (e) {
+            var userdetail = $(".userdetail").val();
+            var type = $(".userdetail").attr('data-id');
+            var actual_price = $("#actual_price").val();
+            $(".errMessage").text('');
+                if(userdetail == ''){
+                    $(".errMessage").text('This field is required and cannot be empty.');
+                    return false;
+                }
+            if(type == 'email'){
+                if( !validateEmail(userdetail)){
+                   $(".errMessage").text('You have entered an invalid email address.');
+                    return false;   
+                
+                }
+            }else{
+                if( !validatePhone(userdetail)){
+                   $(".errMessage").text('You have entered an invalid mobile number.');
+                    return false;   
+                
+                }
+            }
+            
+            //alert(userdetail);
+            $('#update_user_modal').modal('hide');
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        e.preventDefault();
+        var ajaxurl = APP_URL+'/updateUserDataAjax';
+        $.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: {userdetail:userdetail,type:type,price:actual_price},
+            dataType: 'json',
+            success: function (res) {
+                console.log(res);
+                $("#submit_button").html(res.html);
+                
+            },
+            error: function (e) {
+            },
+        });
+    });
+});
+
+function validateEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
+function validatePhone(phone_number) {
+    var filter =  /^(0|91)?[6-9][0-9]{9}$/;    
+    if (filter.test(phone_number)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+</script>
+@endif
 @stop
