@@ -107,7 +107,6 @@ class PageController extends Controller
         }
     }
 
-
     public function wishlist(Request $request)
     {
         // dd($request->all());
@@ -202,6 +201,23 @@ class PageController extends Controller
         return json_encode(['paginateHTML' => $paginateHTML, 'dataCount' => $dataCount, 'limit' => $limit]);
     }
 
+    public function ajaxStoryData(Request $request)
+    {
+        $story_id = $request->id;
+        $story_list = $this->epicShots($story_id);
+
+        $view = view('components.epic-story-popup', compact('story_list'))->render();
+        // d($view);
+        return JSONResponse(
+            200,
+            'Success.',
+            [
+                'html' => $view,
+            ]
+        );
+        dd($story_list);
+    }
+
     private function homepageData($slug = 'home-v2', $page = 1)
     {
         $stories = [];
@@ -217,8 +233,8 @@ class PageController extends Controller
         $result = CurlAPI("pages/homepage", "GET", $params, 1);
 
         if ($result && @$result['success'] ==  true) {
-            $data = key_exists('data', $result) ? $result['data'] : [];
-            $lists = key_exists('list', $data) ? $data['list'] : [];
+            $data = $result['data'] ?? [];
+            $lists = $data['list'] ?? [];
             foreach ($lists as $list) {
                 if (@$list['slug'] == "uniquely-yours") {
                     $stories = $this->epicShots();
@@ -235,24 +251,28 @@ class PageController extends Controller
         ];
     }
 
-    private function epicShots() 
+    private function epicShots($story_id = "") 
     {
         $stories_arr = [];
         $response = CurlAPI("pages/stories", "GET", null, 1);
         if ($response && @$response['success'] == true) {
-            $data = key_exists('data', $response) ? $response['data'] : [];
-            $list = key_exists('list', $data) ? $data['list'] : [];
+            $data = $response['data'] ?? [];
+            $list = $data['list'] ?? [];
             foreach ($list as $val) {
-                if (@$val['display_page'] != "homepage") {
-                    continue;
-                }
-                $stories = key_exists('stories', $val) ? $val['stories'] : [];
-                foreach ($stories as $story) {
-                    $stories_arr[] = [
-                        'id' => $story['ID'],
-                        'title' => $story['title'],
-                        'img_url' => getCardImage($story, 'imageUrl', 'small', [])
-                    ];
+                if ($val['status']) {
+                    $stories = key_exists('stories', $val) ? $val['stories'] : [];
+                    foreach ($stories as $story) {
+                        if (!empty($story_id) && $story['ID'] == $story_id) {
+                            $stories_arr = $story;
+                            break;
+                        } else {
+                            $stories_arr[] = [
+                                'id' => @$story['ID'],
+                                'title' => @$story['title'],
+                                'img_url' => getCardImage($story, 'imageUrl', 'small', [])
+                            ];
+                        }
+                    }
                 }
             }
         }

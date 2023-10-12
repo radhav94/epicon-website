@@ -75,7 +75,7 @@ $subplan = checkSubscription();
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="#epic-story-main">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
