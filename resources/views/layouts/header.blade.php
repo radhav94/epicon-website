@@ -8,7 +8,7 @@ $kids_page = $segment == 'kids' ? true : false;
 
 $action = app('request')->route()->getAction();
 $subplan = checkSubscription();
- //print_r($action);
+//print_r($action);
 ?>
 <!-- Side Menu Start-->
 <div class="side-menu-main" id="side-menu">
@@ -23,7 +23,7 @@ $subplan = checkSubscription();
             </a>
             <a class="navbar-brand me-3" href="{{ getUrlWithPrefix('homepage') }}"><img height="28"
                     src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
-          
+
                 @if(@$subplan['status'] != 'active')
                 <a class="subscribe-btn" href="#">{{__('Subscribe')}}</a>
             @endif
@@ -121,8 +121,9 @@ $subplan = checkSubscription();
             </a>
             <a class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}"
                     alt=""></a>
+            @if(!$kids_page)
             @loggedin
-            
+
             @if(@$subplan['status'] != 'active')
 
             <a class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
@@ -132,6 +133,7 @@ $subplan = checkSubscription();
             <a class="subscribe-btn login" href="javascript:void(0);">{{__('Subscribe')}}</a>
 
             @endloggedin
+            @endif
         </div>
 
         <?php
@@ -184,12 +186,11 @@ if (request()->path() == "hi") {
             <!-- <button id="allAccessBtn">All access</button> -->
             <div class="form-check form-switch">
             <input class="form-check-input" name ="kidscheckbox" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
-            
+
             </div>
-                <input type="hidden" name="kidsUrl" id="kidsUrl" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
-            <!-- <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" id="kidsUrl" class="p-2 me-2">
-                </a> -->
-                <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt="">
+                <input type="hidden" name="kidsUrl" id="kidsUrl" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}"
+            <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" id="kidsUrl" class="p-2 me-2">
+                </a><img src="{{ asset('assets/img/kidz-icon.svg') }}" alt="">
             <a href="{{ getUrl('search') }}" class="p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">
@@ -335,7 +336,7 @@ $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : ass
                         </li>
                         <li class="exclusive-subc w-100">
                             <p class="m-0 small">{{__('Get access to exclusive content, with no ad breaks.')}}</p>
-                          
+
                             @if(@$subplan['status'] != 'active')
                                 <button> <img class="me-1" width="18" src="{{ asset('assets/img/crown.svg') }}"
                                     alt=""> {{__('Subscribe')}}1</button>

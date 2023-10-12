@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Session;
 class SupermixController extends Controller
 {
 
-
     public function superMix(Request $request)
     {
         $params = [];
@@ -25,8 +24,6 @@ class SupermixController extends Controller
 
             $content = $result['data'];
             $displayLanguageParam = setLanguageParameter();
-            // return view('components.supermix-content', compact('content', 'displayLanguageParam'));
-
             $view = view('components.supermix-content', compact('content', 'displayLanguageParam'))->render();
 
             return JSONResponse(
