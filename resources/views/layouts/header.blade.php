@@ -177,12 +177,19 @@ if (request()->path() == "hi") {
 
         </ul>
         <div class="main-header-right d-flex align-items-center">
+            @php $isactive = ""; @endphp
             @if (session()->has('kidsMode') && session()->get('kidsMode'))
-            <button id="allAccessBtn">All access</button>
-            @else
-            <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" class="p-2 me-2">
-                <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt=""></a>
+            @php $isactive = "checked"; @endphp
             @endif
+            <!-- <button id="allAccessBtn">All access</button> -->
+            <div class="form-check form-switch">
+            <input class="form-check-input" name ="kidscheckbox" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
+            
+            </div>
+                <input type="hidden" name="kidsUrl" id="kidsUrl" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
+            <!-- <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" id="kidsUrl" class="p-2 me-2">
+                </a> -->
+                <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt="">
             <a href="{{ getUrl('search') }}" class="p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">
@@ -293,6 +300,7 @@ if (request()->path() == "hi") {
                     @loggedin
                         <?php
 $profile = getProfileData();
+//echo "Testing"; dd($profile);
 ?>
                         <li class="profile-main p-3">
                             @if ($profile)
@@ -337,7 +345,7 @@ $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : ass
                         <li class="subc-text"><a href="{{ getUrl('library') }}">{{__('Library')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('my-account') }}">{{__('My Account')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('my-rewards') }}">{{__('My Rewards')}}</a></li>
-                        <li class="subc-text"><a href="{{ getUrl('settings') }}">{{__('Settings')}}</a></li>
+                        <li class="subc-text"><a href="{{ getUrl('settings?status=ispin') }}">{{__('Settings')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('feedback') }}">{{__('Help & Feedback')}}</a></li>
                         <li class="subc-text logout"><a href="javascript:void(0);">{{__('Log out')}}</a></li>
                         <li class="subc-text atp">

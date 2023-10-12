@@ -1,6 +1,6 @@
 <!-- Child Pin model -->
 <div class="modal fade" id="child-pin-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered px-3">
+    <div class="modal-dialog modal-lg modal-dialog-centered px-3">
         <div class="modal-content">
             <button class="x-btn bg-transparent text-white closebtn position-absolute" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 31 32" fill="none">
@@ -40,10 +40,6 @@
 
 <script>
     $(document).ready(function() {
-        $("#allAccessBtn").click(function() {
-            $("#child-pin-modal").modal('show');
-        })
-
         $("#verifyChildPin").click(function() {
             $("#childPinForm #error-msg").html("");
             var formData = $('#childPinForm').serialize();

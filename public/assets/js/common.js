@@ -35,6 +35,19 @@ $(document).ready(function () {
         }
         window.location.href = content_url;
     })
+
+    $("#allAccessBtn").click(function() {
+        var checkstaus = $(this).is(':checked');
+        var kidsUrl= $("#kidsUrl").val();
+        //alert(kidsUrl);
+        if(checkstaus){
+            window.location.href=kidsUrl;
+        }else{
+            $("#allAccessBtn").prop( "checked", true );
+            $("#child-pin-modal").modal('show');
+        }
+        
+    })
 })
 
 $(window).on('load', function () {
