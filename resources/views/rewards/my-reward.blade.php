@@ -172,7 +172,7 @@
                                         Expires in<span>1 Day</span>
                                     </div>
                                 </li> -->
-                                <li>
+                                <!-- <li>
                                     <div class="redeem-top">
                                         <div class="logo-coin">
                                             <img src="{{ asset('/img/McD.svg') }}" alt="logo">
@@ -207,7 +207,7 @@
                                     <div class="redeem-bottom">
                                         Expires in<span>1 Day</span>
                                     </div>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                         <div class="tab-pane fade" id="pills-summary" role="tabpanel" aria-labelledby="my-list">
