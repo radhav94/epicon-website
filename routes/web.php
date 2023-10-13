@@ -12,7 +12,6 @@ use App\Http\Controllers\KidsController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
 
 $lang = ['hi', 'en'];
 

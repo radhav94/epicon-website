@@ -34,6 +34,7 @@ $(document).ready(function () {
             return;
         }
         window.location.href = content_url;
+        return false;
     })
 
     $("#allAccessBtn").click(function() {
@@ -42,6 +43,7 @@ $(document).ready(function () {
         //alert(kidsUrl);
         if(checkstaus){
             window.location.href=kidsUrl;
+            return false;
         }else{
             $("#allAccessBtn").prop( "checked", true );
             $("#child-pin-modal").modal('show');
