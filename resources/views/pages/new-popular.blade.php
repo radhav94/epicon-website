@@ -50,7 +50,12 @@
                         <span><img src="{{ asset('/img/fire-emoji.png') }}" alt=""></span>Most Popular
                     </h6>
                     <?php } ?>
+
+                    @if(@$val['asset_type'] == 'PLAY')
+                    {!! getplayanchorhtml($val) !!}
+                    @else
                     <a class="upper-img" href="{{ getContentUrl($val) }}">
+                    @endif
                         <img src="{{ $cover_img }}" alt="">
                     </a>
                     <div class="bottom-text d-flex mt-2">

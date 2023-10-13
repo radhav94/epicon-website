@@ -13,7 +13,11 @@
                 $cover_img = getCardImage($value, 'cover_image', 'medium');
                 ?>
                 <li class="episode-main mb-4">
+                    @if(@$value['asset_type'] == 'PLAY')
+                    {!! getplayanchorhtml($value) !!}
+                    @else
                     <a href="{{ getContentUrl($value) }}" class="pik">
+                    @endif
                         <img src="{{ $cover_img }}" alt="img">
 
                         <?php

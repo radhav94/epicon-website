@@ -52,8 +52,8 @@
                         <div class="bottom-card-content">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="w-100 d-flex justify-content-between align-items-center">
-                                    @if($val['asset_type'] == 'PLAY')
-                                    <a href="javascript:void(0)" data-url="{{ @$val['game_url'] }}" data-premium="{{ @$val['free_premium'] }}" data-activesubscriber="{{ isActiveSubscription() }}" class="main-card check-content-url">
+                                    @if(@$val['asset_type'] == 'PLAY')
+                                    {!! getplayanchorhtml($val) !!}
                                     @else
                                     <a href="{{ getContentUrl($val) }}">
                                     @endif

@@ -25,7 +25,7 @@
                             <li class="d-flex">
 
                                 @if(@$val['asset_type'] == 'PLAY')
-                                <a href="javascript:void(0)" data-url="{{ @$val['game_url'] }}" data-premium="{{ @$val['free_premium'] }}" data-activesubscriber="{{ isActiveSubscription() }}" class="main-card check-content-url">
+                                {!! getplayanchorhtml($val) !!}
                                 @else
                                 <a href="{{ getContentUrl($val) }}">
                                 @endif

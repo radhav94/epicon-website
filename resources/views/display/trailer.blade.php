@@ -30,7 +30,11 @@
                               <ul class="w-100 d-flex justify-content-between align-items-center list-unstyled mb-0">
                                   <li class="d-flex">
 
-                                      <a href="{{ getContentUrl($val) }}">
+                                       @if(@$val['asset_type'] == 'PLAY')
+                                        {!! getplayanchorhtml($val) !!}
+                                        @else
+                                        <a href="{{ getContentUrl($val) }}">
+                                        @endif
                                           <button class="big-play d-flex align-items-center">
                                               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                                   viewBox="0 0 28 28" fill="none">

@@ -16,7 +16,11 @@
                             $cover_img = isset($value['cover_image']) ? $value['cover_image']['medium'] : $card['banner_img'];
                             ?>
                             <li>
+                                @if(@$value['asset_type'] == 'PLAY')
+                                {!! getplayanchorhtml($value) !!}
+                                @else
                                 <a href="{{ getContentUrl($value) }}" class="main-card">
+                                @endif
                                     {!! freePremiumDiv($value) !!}
                                     <div class="main-img">
                                         <img src="{{ $cover_img }}" alt="">

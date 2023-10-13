@@ -38,8 +38,11 @@
              <p>{{ @$val['description'] }}</p>
              <ul class="w-100 d-flex justify-content-between align-items-center list-unstyled mb-0 explore-main">
                  <li class="d-flex">
-
-                     <a href="{{ getContentUrl($val) }}" class="big-play d-flex align-items-center">
+                    @if(@$val['asset_type'] == 'PLAY')
+                    {!! getplayanchorhtml($val) !!}
+                    @else
+                    <a href="{{ getContentUrl($val) }}" class="big-play d-flex align-items-center">
+                    @endif
                          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
                              fill="none">
                              <path

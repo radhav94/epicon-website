@@ -11,15 +11,15 @@
          </div>
          <div class="gaming-galore">
 
-             @foreach ($value['content'] as $key => $val)
+             @foreach($value['content'] as $key => $val)
                  <?php
                  $card = getItemCardData($val, $displayLanguageParam);
                  $cover_img = getCardImage($val, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
                  ?>
 
                  <div>
-                     @if(@$val['asset_type'] == 'PLAY')
-                    <a href="javascript:void(0)" data-url="{{ @$val['game_url'] }}" data-premium="{{ @$val['free_premium'] }}" data-activesubscriber="{{ isActiveSubscription() }}" class="main-card check-content-url">
+                    @if(@$val['asset_type'] == 'PLAY')
+                    {!! getplayanchorhtml($val) !!}
                     @else
                     <a href="{{ getContentUrl($val) }}">
                     @endif
