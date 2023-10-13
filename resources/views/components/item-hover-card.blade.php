@@ -21,9 +21,12 @@ $banner_img = getCardImage($val, 'banner_image', 'small');
     </div>
     <div class="bottom-card-content">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <div class="w-100 d-flex justify-content-between align-items-center">
-
-                <a href="{{ getContentUrl($val) }}">
+            <div class="w-100 d-flex justify-content-between align-items-center"> 
+                @if(@$val['asset_type'] == 'PLAY')
+                    {!! getplayanchorhtml($val) !!}
+                @else
+                    <a class="upper-img" href="{{ getContentUrl($val) }}">
+                @endif
                     <button class="play-btn w-100 text-center me-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none">
@@ -33,7 +36,7 @@ $banner_img = getCardImage($val, 'banner_image', 'small');
                         </svg>
 
                         <?php
-                        $watch_text = 'Watch';
+                        $watch_text = getPlayText($val);
                         
                         $se_epi_text = getSeasonEpisodeNum($val);
                         if (@$se_epi_text['season']) {

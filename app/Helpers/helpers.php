@@ -160,6 +160,10 @@ function getContentLanguage()
     return $listLanguage;
 }
 
+function getPlayText($value){
+    return $value['asset_type'] ?? 'WATCH';
+}
+
 
 function getImage($image, $size = 'original')
 {
@@ -477,6 +481,11 @@ function getContentUrl($value)
     return getUrl($prefix);
 }
 
+function getplayanchorhtml($value){
+   $data_url = (isActiveSubscription() && $value['free_premium']) || !$value['free_premium'] ? $value['game_url'] : '';
+   $html = '<a href="javascript:void(0)" data-url="'. $data_url .'" data-premium="'.$value['free_premium'].'" data-activesubscriber="'. isActiveSubscription().'" class="main-card check-content-url">';
+   return $html;
+}
 
 function getMidPageUrl($value)
 {
