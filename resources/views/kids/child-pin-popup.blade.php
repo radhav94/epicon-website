@@ -1,6 +1,6 @@
 <!-- Child Pin model -->
 <div class="modal fade" id="child-pin-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered px-3">
+    <div class="modal-dialog modal-md modal-dialog-centered px-3">
         <div class="modal-content">
             <button class="x-btn bg-transparent text-white closebtn position-absolute" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 31 32" fill="none">
@@ -9,7 +9,7 @@
             </button>
 
             <div class="modal-body">
-                <h4 class="pb-4 border-bot">{{__('Create a 4-digit Child PIN')}}</h4>
+                {{--<h4 class="pb-4 border-bot">{{__('Create a 4-digit Child PIN')}}</h4>--}}
 
                 <div class="childpin text-start py-4">
                     <form id="childPinForm">

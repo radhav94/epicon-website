@@ -11,6 +11,7 @@ use App\Http\Controllers\SupermixController;
 use App\Http\Controllers\KidsController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 $lang = ['hi', 'en'];
 
