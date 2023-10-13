@@ -18,8 +18,11 @@
                  ?>
 
                  <div>
-                     <!-- <a href="{{ getContentUrl($val) }}"> -->
+                     @if(@$val['asset_type'] == 'PLAY')
                     <a href="javascript:void(0)" data-url="{{ @$val['game_url'] }}" data-premium="{{ @$val['free_premium'] }}" data-activesubscriber="{{ isActiveSubscription() }}" class="main-card check-content-url">
+                    @else
+                    <a href="{{ getContentUrl($val) }}">
+                    @endif
                          <img src="{{ $cover_img }}" alt="game">
                          <h1>{{ $card['title'] }}</h1>
                          <span>{{ @$val['content_type'] }}</span>
