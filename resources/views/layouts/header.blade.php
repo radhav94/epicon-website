@@ -196,6 +196,11 @@ if (request()->path() == "hi") {
             <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" id="kidsUrl" class="p-2 me-2">
                 </a><img src="{{ asset('assets/img/kidz-icon.svg') }}" alt="">
             <a href="{{ getUrl('search') }}" class="p-2 me-2">
+            @if (session()->has('kidsMode') && session()->get('kidsMode') == true)
+            <a href="{{ getUrl('kids/search') }}" class="p-2 me-2">
+            @else
+            <a href="{{ getUrl('search') }}" class="p-2 me-2">
+            @endif
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">
                     <circle cx="11.6842" cy="11.6842" r="7.71929" stroke="white" stroke-width="1.92982" />

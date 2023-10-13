@@ -18,8 +18,11 @@
             $cover_img = getCardImage($val, 'epic_shorts_image', 'small', ['cover_image', 'banner_image']);
             ?>
             <div>
-
+                @if(@$val['asset_type'] == 'PLAY')
+                    {!! getplayanchorhtml($val) !!}
+                @else
                 <a href="{{ getContentUrl($val) }}" class="content">
+                @endif
                     <div class="top">
                         <img src="{{ $cover_img }}" alt="img">
                     </div>

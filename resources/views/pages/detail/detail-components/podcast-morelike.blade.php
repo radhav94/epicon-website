@@ -15,7 +15,11 @@
                 ?>
 
                 <li>
+                    @if(@$value['asset_type'] == 'PLAY')
+                    {!! getplayanchorhtml($value) !!}
+                    @else
                     <a href="{{ getContentUrl($value) }}" class="main-card">
+                    @endif
                         <div class="main-img eod-darlings">
                             <img src="{{ $cover_img }}" alt="">
                             <div class="new-show-title"><img src="{{ asset('img/sound-equalizer.svg') }}"

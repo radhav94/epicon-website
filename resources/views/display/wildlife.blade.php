@@ -25,7 +25,11 @@
                     $cover_img = getCardImage($v, 'vertical_cover_image', 'small', ['cover_image', 'banner_image']);
                     ?>
                     <div>
+                        @if(@$v['asset_type'] == 'PLAY')
+                        {!! getplayanchorhtml($v) !!}
+                        @else
                         <a href="{{ getContentUrl($v) }}" class="{{ $k == 0 ? 'left' : 'right' }}">
+                        @endif
                             <img src="{{ $cover_img }}" alt="">
                         </a>
                     </div>

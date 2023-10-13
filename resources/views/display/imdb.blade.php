@@ -30,7 +30,11 @@
                     ?>
 
                     <div class="{{ $k == 0 ? 'imdb-top' : 'imdb-bottom' }}">
+                        @if(@$v['asset_type'] == 'PLAY')
+                            {!! getplayanchorhtml($v) !!}
+                        @else
                         <a href="{{ getContentUrl($v) }}">
+                        @endif
                             <img src="{{ $card['banner_img'] }}" alt="img">
                             <div class="content">
                                 @if (@$v['free_premium'] == true)

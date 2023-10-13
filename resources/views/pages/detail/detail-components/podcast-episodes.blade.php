@@ -14,7 +14,11 @@
          <li class="pod-main position-relative py-3" data-id="{{ $value['ID'] }}">
              <div class="col-sm-11 ps-3 d-flex">
                  <div class="pik position-relative">
+                    @if(@$value['asset_type'] == 'PLAY')
+                    {!! getplayanchorhtml($value) !!}
+                    @else
                      <a href="{{ getContentUrl($value) }}" class="pik-img">
+                    @endif
                          <img src="{{ $cover_img }}" alt="img">
                      </a>
                      {{-- <h6 class="pod-title">EPIC ON ORIGINAL</h6> --}}
