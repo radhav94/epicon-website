@@ -1,3 +1,4 @@
+<?php //dd($value['content']); echo "ValValVal"; ?>
  <section class="carousel-main mt-0">
      <div class="gaming-galore-main">
          <div class="galore-title">
@@ -17,11 +18,12 @@
                  ?>
 
                  <div>
-                     <a href="{{ getContentUrl($val) }}">
+                     <!-- <a href="{{ getContentUrl($val) }}"> -->
+                    <a href="javascript:void(0)" data-url="{{ @$val['game_url'] }}" data-premium="{{ @$val['free_premium'] }}" data-activesubscriber="{{ isActiveSubscription() }}" class="main-card check-content-url">
                          <img src="{{ $cover_img }}" alt="game">
                          <h1>{{ $card['title'] }}</h1>
                          <span>{{ @$val['content_type'] }}</span>
-                     </a>
+                    </a>
                  </div>
              @endforeach
          </div>

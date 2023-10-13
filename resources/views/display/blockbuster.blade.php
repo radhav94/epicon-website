@@ -18,7 +18,8 @@
                  ?>
 
                  <div>
-                     <a href="{{ getContentUrl($val) }}">
+                     <!-- <a href="{{ getContentUrl($val) }}"> -->
+                    <a href="javascript:void(0)" data-url="{{ @$val['game_url'] }}" data-premium="{{ @$val['free_premium'] }}" data-activesubscriber="{{ isActiveSubscription() }}" class="main-card check-content-url">
                          <img src="{{ $cover_img }}" alt="{{ $val['title'] }}">
                      </a>
                  </div>

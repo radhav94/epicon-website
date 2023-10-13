@@ -66,7 +66,7 @@
                                         </svg>
                         <?php
                         $wishlist = getWishlist();
-                        $watch_text = 'WATCH';
+                        $watch_text = getPlayText($val);
                         
                         $se_epi_text = getSeasonEpisodeNum($val);
                         if (@$se_epi_text['season']) {

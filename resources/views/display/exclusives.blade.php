@@ -32,7 +32,8 @@
                                 <ul class="w-100 d-flex justify-content-between align-items-center list-unstyled mb-0">
                                     <li class="d-flex">
 
-                                        <a href="{{ getContentUrl($val) }}">
+                                        <!-- <a href="{{ getContentUrl($val) }}"> -->
+                                        <a href="javascript:void(0)" data-url="{{ @$val['game_url'] }}" data-premium="{{ @$val['free_premium'] }}" data-activesubscriber="{{ isActiveSubscription() }}" class="main-card check-content-url">
                                             <button class="big-play d-flex align-items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                                     viewBox="0 0 28 28" fill="none">
