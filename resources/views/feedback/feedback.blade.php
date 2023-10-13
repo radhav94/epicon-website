@@ -28,6 +28,9 @@
         <div class="col-sm-12">
             <h4 class="text-white mb-4">{{__('Frequently Asked Questions')}}</h4>
         </div>
+        <div class="col-sm-12" id="noData-error" style="color:white; padding-top: 20px;display:none;">
+                <p style="text-align:center">{{__('No Results Found')}}</p>
+        </div>
         <div class="faq-accordian col-sm-12 mb-5">
             <div class="accordion" id="accordionPanelsStayOpenExample">
                 <div class="accordion-item border-bot" id="accordion1">
@@ -150,16 +153,24 @@
 
     });
 
-     $("#search-feedback").on('keyup', function() {
+    $("#search-feedback").on('keyup', function() {
             var value = $(this).val().toLowerCase();
+            var status = false;
             $("#accordionPanelsStayOpenExample .accordion-item").each(function() {
                 if ($(this).text().toLowerCase().search(value) > -1) {
                     $(this).show();
+                    status = true;
                     // $(this).prev('.subjectName').last().show();
                 } else {
                     $(this).hide();
+                  //  $("#noData-error").show();
                 }
             });
+            if(status == false) {
+                $("#noData-error").show();
+            }else{
+                $("#noData-error").hide();
+            }
     });
 
 </script>
