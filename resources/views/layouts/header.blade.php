@@ -9,6 +9,10 @@ $kids_page = $segment == 'kids' ? true : false;
 $action = app('request')->route()->getAction();
 $subplan = checkSubscription();
 //print_r($action);
+//session()->flush();
+if (isUserLoggedIn()) {
+    $profile = getProfileData();
+}
 ?>
 <!-- Side Menu Start-->
 <div class="side-menu-main" id="side-menu">
