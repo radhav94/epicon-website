@@ -20,8 +20,11 @@
             ?>
 
             <li>
-
+                @if(@$val['asset_type'] == 'PLAY')
+                {!! getplayanchorhtml($val) !!}
+                @else
                 <a href="{{ getContentUrl($val) }}" class="main-card">
+                @endif
                     <img src="{{ $cover_img }}" alt="">
                 </a>
             </li>

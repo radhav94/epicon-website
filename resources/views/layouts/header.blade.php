@@ -151,8 +151,13 @@ if (isUserLoggedIn()) {
             <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" class="p-2 me-2">
                 <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt=""></a>
             @endif
+            @if (session()->has('kidsMode') && session()->get('kidsMode') == true)
+            <a href="{{ getUrl('kids/search') }}" class="p-2 me-2">
+            @else
             <a href="{{ getUrl('search') }}" class="p-2 me-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            @endif
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none">
                     <circle cx="11.6842" cy="11.6842" r="7.71929" stroke="white" stroke-width="1.92982" />
                     <path d="M20.6536 22.0153C21.0305 22.3921 21.6414 22.3921 22.0182 22.0153C22.3951 21.6385 22.3951 21.0275 22.0182 20.6507L20.6536 22.0153ZM22.0182 20.6507L18.1586 16.7911L16.794 18.1557L20.6536 22.0153L22.0182 20.6507Z" fill="white" />
                 </svg>
