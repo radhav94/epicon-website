@@ -42,7 +42,7 @@ krsort($output);
                         <div class="date-card text-white">
                             <h6>{{date("d", strtotime($key))}}</h6>
                             <h6>{{date("M", strtotime($key))}}</h6>
-                            <h5>{{date("y", strtotime($key))}}</h5>
+                            <h6>{{date("y", strtotime($key))}}</h6>
                         </div>
 
                         <?php foreach ($releaseDate as $val) {

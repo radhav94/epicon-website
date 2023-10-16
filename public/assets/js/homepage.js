@@ -719,14 +719,14 @@ function initSliders() {
         dots: false,
         infinite: false,
         speed: 300,
-        slidesToShow: 5.5,
+        slidesToShow: 6.5,
         slidesToScroll: 1,
         accessibility: true,
         responsive: [
             {
                 breakpoint: 1367,
                 settings: {
-                    slidesToShow: 5.5,
+                    slidesToShow: 6.5,
                     slidesToScroll: 1,
                 }
             },
