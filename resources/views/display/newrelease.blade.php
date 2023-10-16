@@ -94,7 +94,14 @@
          <div class="container">
              <div class="new-release-bottom w-100">
 
-                 {!! $sub_slider_html !!}
+                 {{--{!! $sub_slider_html !!}--}}
+                 @foreach ($value['content'] as $key => $val)
+                 @foreach ($val['episodes'] as $key => $data)
+                 <?php  $child_cover_img = getCardImage($data, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
+                 //dd($val); ?>
+                 <div class="new-release-card"><img src="{{$child_cover_img}}" alt=""><div class="new-episode-time"> <ul>' . $s_txt . ' ' . $li . '</ul></div></div>
+                 @endforeach
+                 @endforeach
 
              </div>
          </div>

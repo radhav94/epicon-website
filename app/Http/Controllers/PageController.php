@@ -11,7 +11,7 @@ class PageController extends Controller
     private  $limit;
     public function  __construct()
     {
-        $this->limit = 10;
+        $this->limit = 100;
     }
 
     public function index($slug = 'home-v2')
