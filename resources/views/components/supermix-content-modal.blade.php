@@ -19,10 +19,11 @@
                             <div class="col-sm-12">
                                 <div class="supermix-main w-100">
                                     <div class="supermix-banner w-100 mb-4">
+                                        <video id="vidPlayer" controls crossorigin playsinline poster="" style="width:100%"></video>
                                         <img src="#" alt="banner">
                                     </div>
                                     <div class="podcast-btns d-flex align-items-center">
-                                        <button class="fill-btn spr-mix ms-0 px-4 me-2">
+                                        <button class="fill-btn spr-mix ms-0 px-4 me-2" id="supermixWatchBtn">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28"
                                                 viewBox="0 0 29 28" fill="none">
                                                 <path

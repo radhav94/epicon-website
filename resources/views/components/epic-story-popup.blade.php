@@ -34,11 +34,11 @@ $content_list = $story_list['content_list'] ?? [];
         <h5 class="epic-shots-title text-white w-100 text-center mb-3">Epic Shots</h5>
         <!--start player -->
         <!-- top views -->
-        <span class="total-views">
+        <!-- <span class="total-views">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M7.9974 6C7.46696 6 6.95826 6.21071 6.58318 6.58579C6.20811 6.96086 5.9974 7.46957 5.9974 8C5.9974 8.53043 6.20811 9.03914 6.58318 9.41421C6.95826 9.78929 7.46696 10 7.9974 10C8.52783 10 9.03654 9.78929 9.41161 9.41421C9.78668 9.03914 9.9974 8.53043 9.9974 8C9.9974 7.46957 9.78668 6.96086 9.41161 6.58579C9.03654 6.21071 8.52783 6 7.9974 6ZM7.9974 11.3333C7.11334 11.3333 6.2655 10.9821 5.64037 10.357C5.01525 9.7319 4.66406 8.88406 4.66406 8C4.66406 7.11595 5.01525 6.2681 5.64037 5.64298C6.2655 5.01786 7.11334 4.66667 7.9974 4.66667C8.88145 4.66667 9.7293 5.01786 10.3544 5.64298C10.9795 6.2681 11.3307 7.11595 11.3307 8C11.3307 8.88406 10.9795 9.7319 10.3544 10.357C9.7293 10.9821 8.88145 11.3333 7.9974 11.3333ZM7.9974 3C4.66406 3 1.8174 5.07333 0.664062 8C1.8174 10.9267 4.66406 13 7.9974 13C11.3307 13 14.1774 10.9267 15.3307 8C14.1774 5.07333 11.3307 3 7.9974 3Z" fill="white" />
             </svg>&nbsp; 124
-        </span>
+        </span> -->
         <!-- top end -->
         <!-- mute button start-->
         <button class="mute-btn-storie">
@@ -50,36 +50,22 @@ $content_list = $story_list['content_list'] ?? [];
         <!-- mute button end-->
         <!-- <div> -->
         <div class="play-add-share">
-            <button>
+            <button class="story-play-btn" id="story-play-btn{{ ($key + 1) }}" data-id="{{ @$value['ID'] }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
                     <path d="M30.25 19.9977L30.25 20.0023C30.2504 20.1664 30.2104 20.3252 30.1374 20.4625C30.0645 20.5996 29.9629 20.7076 29.8479 20.7811L29.8479 20.7811L29.8431 20.7841L13.4704 31.3774L13.47 31.3776C13.3477 31.4569 13.2125 31.4972 13.0782 31.4999C12.944 31.5025 12.8081 31.4675 12.684 31.3936L12.6817 31.3923C12.5597 31.3201 12.4511 31.2106 12.3725 31.0693C12.2939 30.9278 12.2503 30.7626 12.25 30.5912V9.40877C12.2503 9.2374 12.2939 9.07222 12.3725 8.93074C12.4511 8.7894 12.5597 8.6799 12.6817 8.60774L12.6817 8.60775L12.684 8.60638C12.8081 8.53254 12.944 8.49751 13.0782 8.50014C13.2125 8.50277 13.3477 8.54314 13.47 8.62239L13.4704 8.62263L29.8431 19.2159L29.8431 19.2159L29.8479 19.2189C29.9629 19.2924 30.0645 19.4004 30.1374 19.5375C30.2104 19.6748 30.2504 19.8336 30.25 19.9977Z" stroke="white" stroke-width="2" />
-                </svg>
-            </button>
-            <button>
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <path d="M20 8.75L20 31.25" stroke="white" stroke-width="2" stroke-linecap="round" />
-                    <path d="M31.25 20L8.75 20" stroke="white" stroke-width="2" stroke-linecap="round" />
-                </svg>
-            </button>
-            <button>
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <path d="M13.5264 12.0073L25.4736 8.02484C30.8351 6.23768 33.748 9.16468 31.9749 14.5262L27.9925 26.4734C25.3188 34.5086 20.9283 34.5086 18.2546 26.4734L17.0726 22.9272L13.5264 21.7452C5.49121 19.0715 5.49121 14.695 13.5264 12.0073Z" stroke="white" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M17.3418 22.3214L22.3796 17.2695" stroke="white" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </button>
         </div>
 
         <!--play button-->
-        <div>
+        <!-- <div>
             <button class="story-play-btn" id="story-play-btn{{ ($key + 1) }}" data-id="{{ @$value['ID'] }}" data-type="{{ @$value['content_type'] }}" data-title="{{ @$value['title'] }}" data-lg="{{ isUserLoggedIn() }} style=" margin: 50%;">play</button>
-        </div>
+        </div> -->
 
         <?php
-                $poster_img_url = getCardImage($value, 'banner_image', 'small', []);
-                ?>
-        <video id="vidPlayer" class="videocont" controls crossorigin playsinline poster="{{ $poster_img_url }}">
-            <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> -->
-
+        $poster_img_url = getCardImage($value, 'banner_image', 'small', []);
+        ?>
+        <video class="videocont" controls crossorigin playsinline poster="{{ $poster_img_url }}">
         </video>
 
         <div class="stories-title">
