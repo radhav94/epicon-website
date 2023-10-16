@@ -645,7 +645,15 @@ class SubscriptionController extends Controller
     public function payufail(Request $request)
     {
         $paymtentStatus = $request->all();
+
+        Log::info("----- PayuMoney Payment Failed Response.");
+        Log::debug(json_encode($paymtentStatus));
+        Log::info("-----END----------------------");
         $orderdata = $request->session()->get('orderdata');
+        Log::info("----- Order data get From Session");
+        Log::debug(json_encode($orderdata));
+        Log::info("-----END----------------------");
+        
         $message = "";
         $orderdata['plan_name'] = "1 Month";
         $pName = 'Monthly';
