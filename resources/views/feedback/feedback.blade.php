@@ -153,18 +153,24 @@
 
     });
 
-     $("#search-feedback").on('keyup', function() {
+    $("#search-feedback").on('keyup', function() {
             var value = $(this).val().toLowerCase();
+            var status = false;
             $("#accordionPanelsStayOpenExample .accordion-item").each(function() {
                 if ($(this).text().toLowerCase().search(value) > -1) {
                     $(this).show();
-                    $("#noData-error").hide();
+                    status = true;
                     // $(this).prev('.subjectName').last().show();
                 } else {
                     $(this).hide();
-                    $("#noData-error").show();
+                  //  $("#noData-error").show();
                 }
             });
+            if(status == false) {
+                $("#noData-error").show();
+            }else{
+                $("#noData-error").hide();
+            }
     });
 
 </script>

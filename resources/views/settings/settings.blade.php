@@ -4,8 +4,13 @@ $interests = array_key_exists("interests", $user_data) ? $user_data['interests']
 $interestsCount = count($interests) ?? 0;
 $kidSection = array_key_exists("kidSection", $user_data) ? $user_data['kidSection'] : false;
 $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDevice) ? $activeDevice['data'] : [];
+//$segment2 =  Request::segment(2);
+$request = Request();
+$ispin = $request->input('status') ?? '';
+//echo $ispin;exit;
+//$ispin = $segment2 ?? '';
 ?>
-
+ 
 @extends('layouts.default')
 @section('title','Setting')
 
@@ -200,6 +205,7 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
             <div class="col-sm-3 pb-4">
                 <div class="sidenav-setting">
                     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <input type="hidden" name="ispin" value="{{$ispin}}" id="ispin">
                         <button class="nav-link bg-transparent">
                             <h4>{{__('Settings')}}</h4>
                         </button>
@@ -607,6 +613,10 @@ $activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDe
 @section('script')
 <script>
     $(document).ready(function() {
+        var checkpin = $("#ispin").val();
+        if(checkpin !="ispin"){
+            $("#v-pills-childpin-tab").trigger('click');
+        }
         var searchHistory = "{{ session()->has('searchHistory') }}";
         var resendOtp = false;
 
