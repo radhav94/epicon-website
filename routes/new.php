@@ -13,6 +13,7 @@ use App\Http\Controllers\PopularController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\LiveTvController;
+use App\Http\Controllers\NotificationController;
 
 $lang = ['hi', 'en'];
 /*
@@ -88,6 +89,8 @@ Route::get('login/twitter', [AuthSocialController::class, 'redirectToProvider'])
 Route::get('login/twitter/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.twitter.callback');
 
 Route::post('explorecontent', [PageController::class, 'explorecontent'])->name('explorecontent');
+
+Route::get('/notifications', [NotificationController::class, 'getNotifications']);
 
 foreach ($lang as $val) {
     $prefix = $val != 'en' ? "/$val" : "";

@@ -34,7 +34,8 @@ $(document).on("click", ".check-content-url", function () {
         showToaster("Content not found.", 2);
         return;
     }
-    window.location.href = content_url;
+    window.open(content_url,'_blank');
+    // window.location.href = content_url;
 });
 
 

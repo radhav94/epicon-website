@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
   $('.additional-carousel').not('.slick-initialized').slick({
     dots: false,
     infinite: false,
@@ -79,6 +78,7 @@ $(document).ready(function () {
   }
   else {
     $(".notification").hover(function () {
+      getNotification();
       var e = document.querySelector(".notification-drop-down");
       if (e.style.display == 'block')
         e.style.display = 'none';
@@ -89,6 +89,37 @@ $(document).ready(function () {
 
 });
 // top menu
+
+function getNotification(){
+    $.ajax({
+        type: 'GET',
+        url: '/notifications',
+        success: function (data) {
+            // Handle the response data here
+            
+            var data = data.notifications;
+            // console.log(data);
+            var html = '';
+            if(data != ''){
+            $('.no-notification').hide();
+            data.forEach(function(item, index) {
+              // console.log('Item at index ' + index + ':');
+              // console.log(item.big_picture);
+              html += '<li class="content active mb-3"><span class="notif-dot"></span><div class="notif-img"><img src="'+item.big_picture+'" alt=""></div><div><h3>Upcoming Show</h3><h4>Rajvansh</h4><p>10 June</p></div></li>';
+              // You can access properties of the item like item.adm_big_picture, item.adm_group, etc.
+            });
+            // console.log(html+"HTML Response");
+            $('.notification-list').html(html);
+            }else{
+              $('.no-notification').show();
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener('scroll', function () {

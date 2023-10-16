@@ -483,7 +483,7 @@ function getContentUrl($value)
 
 function getplayanchorhtml($value){
    $data_url = (isActiveSubscription() && $value['free_premium']) || !$value['free_premium'] ? $value['game_url'] : '';
-   $html = '<a href="javascript:void(0)" data-url="'. $data_url .'" data-premium="'.$value['free_premium'].'" data-activesubscriber="'. isActiveSubscription().'" class="main-card check-content-url">';
+   $html = '<a href="javascript:void(0)" target="_blank" data-url="'. $data_url .'" data-premium="'.$value['free_premium'].'" data-activesubscriber="'. isActiveSubscription().'" class="main-card check-content-url">';
    return $html;
 }
 

@@ -84,11 +84,13 @@ if (isUserLoggedIn()) {
 <div class="main-header">
     <nav id="navbar_top" class="navbar navbar-expand-lg justify-content-between px-3 py-0">
         <div class="main-header-left d-flex">
+            @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
             <a class="hamburger" href="javascript:void(0)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                     <path d="M5.5 24.5H26.5M5.5 16.5H26.5M5.5 8.5H26.5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </a>
+            @endif
             <a class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
             @loggedin
 
@@ -111,6 +113,7 @@ if (isUserLoggedIn()) {
                 'kids/movies' => 'Movies',
                 'kids/shows' => 'Shows',
                 'kids/podcast' => 'Podcasts',
+                'kids/games' => 'Games'
             ];
         } else {
             $links = [
@@ -163,6 +166,7 @@ if (isUserLoggedIn()) {
                 </svg>
             </a>
             @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
+            @loggedin
             <div class="notification p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M20.7927 16.4944C20.2724 15.5981 19.4989 13.0622 19.4989 9.75C19.4989 7.76088 18.7087 5.85322 17.3022 4.4467C15.8957 3.04018 13.988 2.25 11.9989 2.25C10.0098 2.25 8.10214 3.04018 6.69561 4.4467C5.28909 5.85322 4.49891 7.76088 4.49891 9.75C4.49891 13.0631 3.72454 15.5981 3.20423 16.4944C3.07135 16.7222 3.00091 16.9811 3.00001 17.2449C2.9991 17.5086 3.06776 17.768 3.19907 17.9967C3.33037 18.2255 3.51968 18.4156 3.74789 18.5478C3.9761 18.6801 4.23515 18.7498 4.49891 18.75H8.32485C8.49789 19.5967 8.95806 20.3577 9.62754 20.9042C10.297 21.4507 11.1347 21.7492 11.9989 21.7492C12.8631 21.7492 13.7008 21.4507 14.3703 20.9042C15.0398 20.3577 15.4999 19.5967 15.673 18.75H19.4989C19.7626 18.7496 20.0215 18.6798 20.2496 18.5475C20.4777 18.4151 20.6669 18.225 20.7981 17.9963C20.9292 17.7676 20.9978 17.5083 20.9969 17.2446C20.9959 16.9809 20.9255 16.7222 20.7927 16.4944ZM11.9989 20.25C11.5337 20.2499 11.0801 20.1055 10.7003 19.8369C10.3205 19.5683 10.0333 19.1886 9.87829 18.75H14.1195C13.9645 19.1886 13.6773 19.5683 13.2975 19.8369C12.9178 20.1055 12.4641 20.2499 11.9989 20.25ZM4.49891 17.25C5.22079 16.0088 5.99891 13.1325 5.99891 9.75C5.99891 8.1587 6.63105 6.63258 7.75627 5.50736C8.88149 4.38214 10.4076 3.75 11.9989 3.75C13.5902 3.75 15.1163 4.38214 16.2416 5.50736C17.3668 6.63258 17.9989 8.1587 17.9989 9.75C17.9989 13.1297 18.7752 16.0059 19.4989 17.25H4.49891Z" fill="white" />
@@ -171,8 +175,8 @@ if (isUserLoggedIn()) {
                     <div class="notif-header">
                         <h1>{{__('Notification')}}</h1><a href="#/">{{__('Clear All')}}</a>
                     </div>
-                    <ul class="list-unstyled">
-                        <li class="content active mb-3">
+                    <ul class="list-unstyled notification-list">
+                        <!-- <li class="content active mb-3">
                             <span class="notif-dot"></span>
                             <div class="notif-img">
                                 <img src="{{ asset('assets/img/welcom.jpeg') }}" alt="">
@@ -237,7 +241,7 @@ if (isUserLoggedIn()) {
                                 <h4>Rajvansh</h4>
                                 <p>10 June</p>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                     <div class="no-notification">
                         <img src="{{ asset('assets/img/no-notification.svg') }}" alt="">
@@ -246,6 +250,7 @@ if (isUserLoggedIn()) {
                     </div>
                 </div>
             </div>
+            @endloggedin
             <div class="profile p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8C17 10.7614 14.7614 13 12 13C9.23858 13 7 10.7614 7 8ZM12 11C13.6569 11 15 9.65685 15 8C15 6.34315 13.6569 5 12 5C10.3431 5 9 6.34315 9 8C9 9.65685 10.3431 11 12 11Z" fill="white" />
