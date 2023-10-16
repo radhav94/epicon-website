@@ -59,8 +59,9 @@ Route::post('explorecontent', [PageController::class, 'explorecontent'])->name('
 //dynamic / other pages route
 Route::post('/retro-content', [RetroRewindController::class, 'retroRewindContent']);
 Route::any('/supermix', [SupermixController::class, 'superMix']);
+Route::post('paginatecontent', [PageController::class, 'paginatecontent'])->name('paginatecontent');
 
-/*socail login start*/
+/*social login start*/
 Route::get('login/google', [AuthSocialController::class, 'redirectToProvider'])->name('login.google');
 Route::get('login/google/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.google.callback');
 
@@ -69,7 +70,7 @@ Route::get('login/facebook/callback', [AuthSocialController::class, 'handleProvi
 
 Route::get('login/twitter', [AuthSocialController::class, 'redirectToProvider'])->name('login.twitter');
 Route::get('login/twitter/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.twitter.callback');
-/*socail login end*/
+/*social login end*/
 
 Route::group(['middleware' => 'checkUserAuthToken'], function () {
     Route::get('terms-of-use', function () {
@@ -79,8 +80,6 @@ Route::group(['middleware' => 'checkUserAuthToken'], function () {
     Route::get('privacy', function () {
         return view('static.privacy');
     })->name('privacy');
-
-    Route::post('paginatecontent', [PageController::class, 'paginatecontent'])->name('paginatecontent');
 });
 
 
