@@ -289,6 +289,9 @@ $episode_json = json_encode($episode_list);
         if (isPlayed) {
             audio.play().then(() => {
                     console.log('Audio is playing');
+                    $('html, body').animate({
+                        scrollTop: 0
+                    }, 1000);
                 })
                 .catch(error => {
                     console.error('Failed to play audio:', error);
