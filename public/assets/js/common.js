@@ -21,7 +21,7 @@ $(document).ready(function () {
         }
     });
 
-    $(".mx-1").keydown(function(event) {
+    $(".backpress").keydown(function(event) {
         if (event.keyCode == 8 && $(this).val().length == 0) {
           if ($(this).prev('.mx-1')) {
             $(this).prev('.mx-1').focus();
