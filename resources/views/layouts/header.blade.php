@@ -59,7 +59,7 @@ if (isUserLoggedIn()) {
                 </a>
             </li>
             <li>
-                <a href="#epic-story-main">
+                <a href="{{ getUrlWithPrefix('homepage') }}#epic-story-main">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32" fill="none">
                         <path d="M29.3332 19.9998V11.9998C29.3332 5.33317 26.6665 2.6665 19.9998 2.6665H11.9998C5.33317 2.6665 2.6665 5.33317 2.6665 11.9998V19.9998C2.6665 26.6665 5.33317 29.3332 11.9998 29.3332H19.9998C26.6665 29.3332 29.3332 26.6665 29.3332 19.9998Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M3.35986 9.47998H28.6399" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />

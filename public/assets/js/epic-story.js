@@ -29,6 +29,21 @@ $(document).ready(function () {
             }
         });
     })
+    if (player) {
+        player.muted = false;
+    }
+})
+
+$(document).on('click', ".mute-btn-storie", function () {
+    console.log(player.muted);
+    if (player) {
+        console.log(player.muted);
+        if (player.muted) {
+            player.muted = false;
+        } else {
+            player.muted = true;
+        }
+    }
 })
 
 $(document).on('click', '.nextStoryBtn', function () {
@@ -36,7 +51,6 @@ $(document).on('click', '.nextStoryBtn', function () {
         currentStep++;
         showStoryPopup(currentStep);
         $(".progressBar progress:nth-child(" + currentStep + ")").val(100);
-        playnextcontent();
     }
 });
 
@@ -45,7 +59,6 @@ $(document).on('click', '.previousStoryBtn', function () {
         $(".progressBar progress:nth-child(" + currentStep + ")").val(0);
         currentStep--;
         showStoryPopup(currentStep);
-        playnextcontent();
     }
 });
 
@@ -60,21 +73,12 @@ $(document).on('click', '.epic-short-close', function () {
 
 $(document).on('click', '.story-play-btn', function (e) {
     e.preventDefault();
-    var video_id = $(this).data('id');
     let cid = $(this).data('id');
-    let title = $(this).data('title');
-    let lg = $(this).data('lg');
-    let tp = $(this).data('type');
 
     let requestData = {
         cid: cid
     };
-    let customData = {
-        cid: cid,
-        tp: tp,
-        title: title,
-        lg: lg
-    };
+    let customData = false;
 
     sendAjaxRequest(APP_URL + '/player', 'POST', JSON.stringify(requestData),
         onPlayerSuccess, onPlayerError, 'application/json');
@@ -86,7 +90,7 @@ $(document).on('click', '.story-play-btn', function (e) {
         console.log('vid', video_url);
 
         if (video_url) {
-            loadVideoPlayer(video_url, response.payload.html, customData);
+            loadStoryVideoPlayer(video_url, response.payload.html, customData);
         }
     }
 
@@ -99,17 +103,17 @@ $(document).on('click', '.story-play-btn', function (e) {
         } catch (err) { }
     }
 
-    const loadVideoPlayer = function (source, subtitles, customData = false) {
+    const loadStoryVideoPlayer = function (source, subtitles, customData = false) {
 
         if (player) {
             player.pause();
             player.destroy();
         }
-        $('#vidPlayer').html(subtitles);
+
         const video = document.querySelector("#story-modal-" + currentStep + " video");
         const closePlayer = document.querySelector(".epic-short-close");
         const customPlayButton = document.querySelector('.story-play-btn');
-
+        
         const defaultOptions = {
             seekTime: 10,
             controls: ['rewind', 'play', 'fast-forward', 'progress', 'current-time', 'volume', 'captions', 'settings', 'pip'],
@@ -166,17 +170,6 @@ $(document).on('click', '.story-play-btn', function (e) {
                 window.player = player;
 
                 player.play();
-
-                player.on('ready', event => {
-                    $height = $('#vidPlayer').height() + 'px';
-
-                    $('#vidPlayer').css({ "object-fit": "cover", "object-position": "center center", "width": "100%", "height": $height });
-
-                    // Set the desired width and height for the video
-                    const videoElement = document.querySelector("#story-modal-" + currentStep + " video");
-                    videoElement.width = 340;
-                    videoElement.height = 500;
-                });
                 attactPlayerEvents(player);
             });
 
@@ -218,12 +211,13 @@ function showStoryPopup(step) {
     } else {
         $(".nextStoryBtn").show();
     }
+    playnextcontent();
 }
 
 function playnextcontent() {
     if (player) {
         player.pause();
         player.destroy();
-        $("#story-modal-" + currentStep + " .story-play-btn").trigger('click');
     }
+    $("#story-modal-" + currentStep + " .story-play-btn").trigger('click');
 }

@@ -53,7 +53,7 @@ $(window).on('load', function () {
     /*logout if token not found*/
     if (queryParams.get('type') == "logout") {
         showToaster("Your token has been expired.", 2, 5000)
-        window.history.replaceState({}, document.title, "/" );
+        window.history.replaceState({}, document.title, "/");
     }
 })
 
