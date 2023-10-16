@@ -11,7 +11,7 @@ class PageController extends Controller
     private  $limit;
     public function  __construct()
     {
-        $this->limit = 10;
+                $this->limit = 10;
     }
 
     public function index($slug = 'home-v2')
@@ -159,12 +159,10 @@ class PageController extends Controller
     public function paginatecontent()
     {
         $request = Request();
-        // dd($request->all());
         $page = $request->page;
         $limit = 50;
         $catalog = $request->catalogid;
         $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 50, 'page' => $page], 1);
-        // dd($epicwebArr);
         $catalogue_blade = "paginatecontent";
         if ($epicwebArr && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
@@ -173,7 +171,6 @@ class PageController extends Controller
         } else {
             $paginateHTML = "false";
         }
-        // dd($paginateHTML);
         return json_encode(['paginateHTML' => $paginateHTML, 'dataCount' => $dataCount, 'limit' => $limit]);
     }
 

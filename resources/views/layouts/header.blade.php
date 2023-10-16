@@ -83,13 +83,6 @@ if (isUserLoggedIn()) {
             </li>
             <li>
                 <a href="{{ getUrlWithPrefix('homepage') }}#epic-story-main">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32" fill="none">
-                        <path d="M29.3332 19.9998V11.9998C29.3332 5.33317 26.6665 2.6665 19.9998 2.6665H11.9998C5.33317 2.6665 2.6665 5.33317 2.6665 11.9998V19.9998C2.6665 26.6665 5.33317 29.3332 11.9998 29.3332H19.9998C26.6665 29.3332 29.3332 26.6665 29.3332 19.9998Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M3.35986 9.47998H28.6399" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M11.3599 2.81348V9.29348" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M20.6401 2.81348V8.69348" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M13 19.2667V17.6667C13 15.6133 14.4533 14.7733 16.2267 15.8L17.6133 16.6L19 17.4C20.7733 18.4267 20.7733 20.1067 19 21.1333L17.6133 21.9333L16.2267 22.7333C14.4533 23.76 13 22.92 13 20.8667V19.2667V19.2667Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
@@ -202,7 +195,7 @@ if (request()->path() == "hi") {
             <input class="form-check-input" name ="kidscheckbox" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
 
             </div>
-                <input type="hidden" name="kidsUrl" id="kidsUrl" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}"
+                <input type="hidden" name="kidsUrl" id="kidsUrl" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
             <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" id="kidsUrl" class="p-2 me-2">
                 </a><img src="{{ asset('assets/img/kidz-icon.svg') }}" alt="">
             <a href="{{ getUrl('search') }}" class="p-2 me-2">
