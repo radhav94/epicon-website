@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
 
 function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendUserToken = false)
 {
@@ -23,8 +24,14 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
 
     $curl = curl_init();
 
+    Log::channel('api')->info('-----------------------------------------'); 
+    Log::channel('api')->info('Method : '.strtoupper($method)); 
+    
+
     if (strtoupper($method) == 'GET') {
         $api_url = ($data != null && !empty($data)) ? $url . "?" . http_build_query($data) : $url;
+
+        Log::channel('api')->info('URL : '.$api_url); 
 
         curl_setopt_array($curl, array(
             CURLOPT_URL => $api_url,
@@ -41,6 +48,10 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
         $headers[] = 'Content-Type: application/json';
 
         $req_data = ($data != null && !empty($data)) ? json_encode($data) : null;
+
+        Log::channel('api')->info('URL : '.$url); 
+        Log::channel('api')->info('INPUT : '.$req_data); 
+
         curl_setopt_array($curl, array(
             CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
@@ -62,9 +73,12 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
     curl_close($curl);
     // dd($response);
     if ($curl_errno > 0) {
+        Log::channel('api')->info('Status : Failed, Curl error : '.$curl_errno ); 
 
         return ['success' => false, 'message' => 'Curl failed', 'error' => $curl_errno];
     } else {
+        Log::channel('api')->info('Status : Success'); 
+
         $apiresponse = json_decode($response, true);
 
         return $apiresponse;
