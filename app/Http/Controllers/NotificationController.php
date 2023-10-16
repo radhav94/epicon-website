@@ -11,6 +11,7 @@ class NotificationController extends Controller
 {
     public function getNotifications(Request $request)
     {
+        // dd($request->all());
         $client = new Client();
         $url = 'https://onesignal.com/api/v1/notifications?app_id=71f3a678-707c-4f27-b722-836e941fab29&limit=10';
 

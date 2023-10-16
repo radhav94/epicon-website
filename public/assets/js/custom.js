@@ -1,4 +1,16 @@
 $(document).ready(function () {
+  getNotification();
+
+  function scheduleGetNotification() {
+    setTimeout(function() {
+      getNotification();
+      scheduleGetNotification(); // Call itself again to set up the next setTimeout
+    }, 30 * 60 * 1000); // 30 minutes in milliseconds //1.36pm
+  }
+
+  // Start the recursive timeout
+  scheduleGetNotification();
+
   $('.additional-carousel').not('.slick-initialized').slick({
     dots: false,
     infinite: false,
@@ -78,7 +90,6 @@ $(document).ready(function () {
   }
   else {
     $(".notification").hover(function () {
-      getNotification();
       var e = document.querySelector(".notification-drop-down");
       if (e.style.display == 'block')
         e.style.display = 'none';
@@ -105,7 +116,7 @@ function getNotification(){
             data.forEach(function(item, index) {
               // console.log('Item at index ' + index + ':');
               // console.log(item.big_picture);
-              html += '<li class="content active mb-3"><span class="notif-dot"></span><div class="notif-img"><img src="'+item.big_picture+'" alt=""></div><div><h3>Upcoming Show</h3><h4>Rajvansh</h4><p>10 June</p></div></li>';
+              html += '<li class="content active mb-3"><a href="'+item.data.customkey+'" class="notif-img"><img src="'+item.big_picture+'" alt=""></a><div><h3>'+item.headings.en+'</h3><h4>'+item.contents.en+'</h4></div></li>';
               // You can access properties of the item like item.adm_big_picture, item.adm_group, etc.
             });
             // console.log(html+"HTML Response");

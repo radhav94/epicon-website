@@ -224,7 +224,8 @@ if (request()->path() == "hi") {
                 </svg>
                 <div class="notification-drop-down">
                     <div class="notif-header">
-                        <h1>{{__('Notification')}}</h1><a href="#/">{{__('Clear All')}}</a>
+                        <h1>{{__('Notification')}}</h1>
+                        <!-- <a href="#/">{{__('Clear All')}}</a> -->
                     </div>
                     <ul class="list-unstyled notification-list">
                         <!-- <li class="content active mb-3">
