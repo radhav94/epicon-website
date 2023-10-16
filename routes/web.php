@@ -11,6 +11,16 @@ use App\Http\Controllers\SupermixController;
 use App\Http\Controllers\KidsController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\Auth\AuthSocialController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\LibraryController;
+use App\Http\Controllers\UserAccountController;
+use App\Http\Controllers\RewardsController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\UpcomingController;
+use App\Http\Controllers\PopularController;
+use App\Http\Controllers\LiveTvController;
 use Illuminate\Support\Facades\Route;
 
 $lang = ['hi', 'en'];
@@ -33,19 +43,71 @@ Route::GET('ajaxStoryData', [PageController::class, 'ajaxStoryData'])->name('aja
 Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
 Route::post('clap', [PageDetailController::class, 'clap'])->name('clap');
 
+/*login and registration start */
+Route::post('sendotp', [LoginController::class, 'setSendOTP'])->name('sendotp');
+Route::post('verifyotp', [LoginController::class, 'setOTPVerification'])->name('verifyotp');
+Route::post('register', [LoginController::class, 'setSignUp'])->name('register');
+Route::post('loginwithpwd', [LoginController::class, 'setSignin'])->name('loginwithpwd');
+Route::post('sendforgototp', [LoginController::class, 'SendForgotOtp'])->name('sendforgototp');
+Route::post('verifyforgototp', [LoginController::class, 'setForgotOTPVerification'])->name('verifyforgototp');
+Route::post('resetpwdapi', [LoginController::class, 'ResetPasswordVerification'])->name('resetpwdapi');
+Route::post('saveGenre', [LoginController::class, 'saveGenreForUser'])->name('saveGenre');
+Route::post('getGenre', [LoginController::class, 'getGenreList'])->name('getGenre');
+/*login and registration end */
+
+Route::post('explorecontent', [PageController::class, 'explorecontent'])->name('explorecontent');
+//dynamic / other pages route
+Route::post('/retro-content', [RetroRewindController::class, 'retroRewindContent']);
+Route::any('/supermix', [SupermixController::class, 'superMix']);
+
+/*socail login start*/
+Route::get('login/google', [AuthSocialController::class, 'redirectToProvider'])->name('login.google');
+Route::get('login/google/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.google.callback');
+
+Route::get('login/facebook', [AuthSocialController::class, 'redirectToProvider'])->name('login.facebook');
+Route::get('login/facebook/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.facebook.callback');
+
+Route::get('login/twitter', [AuthSocialController::class, 'redirectToProvider'])->name('login.twitter');
+Route::get('login/twitter/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.twitter.callback');
+/*socail login end*/
+
+Route::group(['middleware' => 'checkUserAuthToken'], function () {
+    Route::get('terms-of-use', function () {
+        return view('static.terms-of-use');
+    })->name('terms-of-use');
+
+    Route::get('privacy', function () {
+        return view('static.privacy');
+    })->name('privacy');
+
+    Route::post('paginatecontent', [PageController::class, 'paginatecontent'])->name('paginatecontent');
+});
+
+
 Route::group(['middleware' => 'loggedin'], function () {
     Route::any('logout', LogoutController::class)->name('logout');
     Route::post('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
     Route::post('verify-kidsPin', [KidsController::class, 'verifyKidsPin'])->name('verify-kidsPin');
+
+    //setting controller routes start
+    Route::post('update-genre', [SettingController::class, 'updateUserGenre'])->name('update-genre');
+    Route::post('remove-device', [SettingController::class, 'removeDevice'])->name('remove-device');
+    Route::post('set-kidsPin', [SettingController::class, 'setKidsPin'])->name('set-kidsPin');
+    Route::post('change-password', [SettingController::class, 'changePassword'])->name('change-password');
+    Route::post('delete-account', [SettingController::class, 'deleteAccount'])->name('delete-account');
+    Route::post('sendOTP-delete-account', [SettingController::class, 'sendOTPForDeleteAccount'])->name('sendOTP-delete-account');
+    Route::post('verifyOTP-delete-account', [SettingController::class, 'verifyOTPForDeleteAccount'])->name('verifyOTP-delete-account');
+    Route::post('syncDevice-pin', [SettingController::class, 'syncDevicePin'])->name('syncDevice-pin');
+    Route::get('set-language', [SettingController::class, 'setLanguage'])->name('set-language');
+    //setting controller routes end
+
     //Subscription routes created by Ram
     Route::post('getCouponAjax', [SubscriptionController::class, 'getCoupon'])->name('getCoupon');
+    Route::get('transaction-history', [UserAccountController::class, 'TransactionHistory'])->name('trans-history');
+    Route::post('redeemcoupon', [RewardsController::class, 'RedeemCouponCode'])->name('redeemcoupon');
+    Route::post('save-feedback', [FeedbackController::class, 'saveFeedback'])->name('save-feedback');
     //end
 });
-
-//dynamic / other pages route
-Route::post('/retro-content', [RetroRewindController::class, 'retroRewindContent']);
-
-Route::any('/supermix', [SupermixController::class, 'superMix']);
 
 foreach ($lang as $val) {
     $prefix = $val != 'en' ? "/$val" : "";
@@ -61,7 +123,7 @@ foreach ($lang as $val) {
         Route::post('/setChildPin', [ProfileController::class, 'setChildPin'])->name('setChildPin');
     });
 
-    Route::group(['middleware' => 'loggedin', 'prefix' => $prefix], function () {
+    Route::group(['prefix' => $prefix, 'middleware' => 'loggedin'], function () {
         //Subscription routes created by Ram
         Route::post('paymentMethod', [SubscriptionController::class, 'setSubscription'])->name('paymentMethod');
         Route::post('planBenefit', [SubscriptionController::class, 'planBenefit']);
@@ -72,23 +134,49 @@ foreach ($lang as $val) {
         Route::post('payufail', [SubscriptionController::class, 'payufail'])->name('payufail');
         Route::post('paymentProcess', [SubscriptionController::class, 'paymentProcess'])->name('paymentProcess');
         Route::post('thankyou', [SubscriptionController::class, 'thankyou'])->name('thankyou');
-        Route::get('cancelRecurringPayu',[SubscriptionController::class,'cancelRecurringPayu'])->name('cancelRecurringPayu');
+        Route::get('cancelRecurringPayu', [SubscriptionController::class, 'cancelRecurringPayu'])->name('cancelRecurringPayu');
         Route::post('updateUserDataAjax', [SubscriptionController::class, 'updateUserDataAjax']);
         //end
-        // Kids Search Routes
+
+        /*settings route*/
+        Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
+
+        /* Kids section start */
         Route::get('/kids/search', [SearchController::class, 'trendingsearch']);
-        
-        Route::get('/kids/{slug?}', [KidsController::class, 'index'])->name('kidsIndex');
         Route::get('/kids/midpage/{pageslug}/{catalog}', [PageController::class, 'showmidpagedetail']);
         Route::get('/kids/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
-        
+        /* Kids section end */
     });
 
     Route::group(['prefix' => $prefix, 'as' => $prefix_name, 'middleware' => 'checkUserAuthToken'], function () {
         Route::get('/', [PageController::class, 'index'])->name('homepage');
+        Route::get('/kids/{slug?}', [KidsController::class, 'index'])->name('kidsIndex');
     });
 
     Route::group(['prefix' => $prefix, 'middleware' => 'checkUserAuthToken'], function () {
+        Route::get('library', [LibraryController::class, 'index'])->name('library');
+        Route::get('my-account', [UserAccountController::class, 'myaccount'])->name('my-account');
+        Route::get('my-rewards', [RewardsController::class, 'MyRewards'])->name('my-rewards');
+        Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback');
+        Route::get('about', function () {
+            return view('static.about');
+        })->name('about');
+
+        Route::get('explore/{slug}/', function ($slug) {
+            return App::call('\App\Http\Controllers\PageController@explore_details', ['slug' => $slug]);
+        });
+
+        Route::get('live-tv', [LiveTvController::class, 'livetv'])->name('live-tv');
+        Route::get('upcoming-epicon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
+        Route::get('new-popular', [PopularController::class, 'NewsPopular'])->name('new-popular');
+        Route::get('search', [SearchController::class, 'trendingsearch'])->name('search');
+        Route::post('get-search', [SearchController::class, 'search'])->name('get-search');
+        Route::get('midpage/{pageslug}/{catalog}', function ($pageslug, $catalog) {
+            if ($pageslug != 'live-tv') {
+                return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog]);
+            }
+        });
+
         Route::get('explore', [PageController::class, 'explore'])->name('explore');
         Route::get('{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
         Route::get('retro-rewind/{slug}', [RetroRewindController::class, 'retroRewindList'])->name('retro-list');
