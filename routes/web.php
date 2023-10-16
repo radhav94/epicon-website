@@ -102,7 +102,6 @@ Route::group(['middleware' => 'loggedin'], function () {
 
     //Subscription routes created by Ram
     Route::post('getCouponAjax', [SubscriptionController::class, 'getCoupon'])->name('getCoupon');
-    Route::get('transaction-history', [UserAccountController::class, 'TransactionHistory'])->name('trans-history');
     Route::post('redeemcoupon', [RewardsController::class, 'RedeemCouponCode'])->name('redeemcoupon');
     Route::post('save-feedback', [FeedbackController::class, 'saveFeedback'])->name('save-feedback');
     //end
@@ -135,6 +134,7 @@ foreach ($lang as $val) {
         Route::post('thankyou', [SubscriptionController::class, 'thankyou'])->name('thankyou');
         Route::get('cancelRecurringPayu', [SubscriptionController::class, 'cancelRecurringPayu'])->name('cancelRecurringPayu');
         Route::post('updateUserDataAjax', [SubscriptionController::class, 'updateUserDataAjax']);
+        Route::get('transaction-history', [UserAccountController::class, 'TransactionHistory'])->name('transaction-history');
         //end
 
         /*settings route*/
