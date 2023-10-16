@@ -29,7 +29,7 @@ function initSliders() {
         slidesToShow: 1,
         arrows: true,
         dots: true,
-        autoplay: false,
+        autoplay: true,
         appendDots: $(".slide-m-dots"),
         prevArrow: $(".slide-m-prev"),
         nextArrow: $(".slide-m-next"),
@@ -82,7 +82,7 @@ function initSliders() {
             {
                 breakpoint: 1367,
                 settings: {
-                    slidesToShow: 4.5,
+                    slidesToShow: 5.5,
                     slidesToScroll: 1,
                 }
             },
@@ -110,7 +110,7 @@ function initSliders() {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1.5,
+                    slidesToShow: 1.9,
                     slidesToScroll: 1
                 }
             }
@@ -127,7 +127,7 @@ function initSliders() {
             {
                 breakpoint: 1367,
                 settings: {
-                    slidesToShow: 7.5,
+                    slidesToShow: 8.4,
                     slidesToScroll: 1,
                 }
             },
@@ -311,7 +311,7 @@ function initSliders() {
             {
                 breakpoint: 1367,
                 settings: {
-                    slidesToShow: 6.5,
+                    slidesToShow: 7.4,
                     slidesToScroll: 1,
                 }
             },
