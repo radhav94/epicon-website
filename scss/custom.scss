@@ -193,23 +193,22 @@
 .genresexplore {
     .card-details {
         display: grid;
-        grid-template-columns: auto auto auto auto;
+        grid-template-columns: repeat(5,1fr);
         gap: 10px;
 
         @media (max-width:1024px) {
-            grid-template-columns: auto auto auto;
+            grid-template-columns: auto auto auto auto;
         }
 
         @media (max-width:768px) {
-            grid-template-columns: auto auto;
+            grid-template-columns: auto auto auto;
         }
 
         @media (max-width:700px) {
-            grid-template-columns: auto;
+            grid-template-columns: auto auto;
         }
 
         .card-body {
-            background: linear-gradient(90deg, #846ADD 0%, #D7A1E7 100%), linear-gradient(90deg, #130001 0%, #FA2847 100%), linear-gradient(90deg, #080808 0%, #FFF 100%);
             border-radius: 8px;
             display: flex;
             justify-content: space-between;
@@ -226,50 +225,6 @@
                 margin-top: 10px;
                 margin-left: 10px;
             }
-        }
-
-        a:nth-child(2) {
-            background: linear-gradient(90deg, #FCAA96 0%, #D3FCE8 100%), linear-gradient(90deg, #E0E0E0 0%, #A0C0E0 100%), linear-gradient(90deg, #170028 0%, #0FF595 100%), linear-gradient(90deg, #410029 0%, #13000D 100%);
-        }
-
-        a:nth-child(3) {
-            background: linear-gradient(90deg, #FB4667 0%, #FCAFFB 100%), linear-gradient(90deg, #FCAFD7 0%, #EAE6FE 100%), linear-gradient(90deg, #FDE1DD 0%, #D6FEE4 100%), linear-gradient(90deg, #F7593A 0%, #F6A945 100%), linear-gradient(90deg, #FB4667 0%, #FCAFFB 100%), linear-gradient(90deg, #15F3C0 0%, #09022B 100%), linear-gradient(90deg, #25A9FC 0%, #99FF8A 100%), linear-gradient(90deg, #9FF986 0%, #03D8AA 100%), linear-gradient(90deg, #170028 0%, #0FF595 100%);
-        }
-
-        a .card-body:nth-child(4) {
-            background: linear-gradient(90deg, #9F1C1C 0%, #FF7A83 100%), linear-gradient(90deg, #080343 0%, #08A7F6 100%), linear-gradient(90deg, #00190B 0%, #8009EF 100%), linear-gradient(90deg, #846ADD 0%, #D7A1E7 100%), linear-gradient(90deg, #130001 0%, #FA2847 100%), linear-gradient(90deg, #080808 0%, #FFF 100%);
-        }
-
-        a .card-body:nth-child(5) {
-            background: linear-gradient(90deg, #FAD1A2 0%, #08A953 100%), linear-gradient(90deg, #AC87FC 0%, #FDC8D5 100%), linear-gradient(90deg, #FE8D42 0%, #F7FEDC 100%), linear-gradient(90deg, #DE43FE 0%, #040952 100%), linear-gradient(90deg, #B6F5FB 0%, #004AC1 100%), linear-gradient(90deg, #F85DBF 0%, #B4C0FC 100%), linear-gradient(90deg, #FB92BE 0%, #045D8A 100%), linear-gradient(90deg, #FF70DD 0%, #6C94F8 100%), linear-gradient(90deg, #FC689E 0%, #FB4670 100%), linear-gradient(90deg, #AA63FC 0%, #3909B3 100%), linear-gradient(90deg, #E7A2FA 0%, #EAF3FF 100%), linear-gradient(90deg, #F6B3FE 0%, #4B9AFA 100%), linear-gradient(90deg, #5FD1FB 0%, #FD95DF 100%), linear-gradient(90deg, #FCC9ED 0%, #42F5EF 100%), linear-gradient(90deg, #3685FC 0%, #E8CAFC 100%), linear-gradient(90deg, #FEDBE3 0%, #E00485 100%), linear-gradient(90deg, #FF0A37 0%, #4F01C4 100%), #FFF;
-        }
-
-        .card-body:nth-child(6) {
-            background: linear-gradient(90deg, #5FD1FB 0%, #FD95DF 100%), linear-gradient(90deg, #FCAFD7 0%, #EAE6FE 100%), linear-gradient(90deg, #FDE1DD 0%, #D6FEE4 100%), linear-gradient(90deg, #F7593A 0%, #F6A945 100%), linear-gradient(90deg, #FB4667 0%, #FCAFFB 100%), linear-gradient(90deg, #15F3C0 0%, #09022B 100%), linear-gradient(90deg, #25A9FC 0%, #99FF8A 100%), linear-gradient(90deg, #9FF986 0%, #03D8AA 100%), linear-gradient(90deg, #170028 0%, #0FF595 100%);
-        }
-
-        .card-body:nth-child(7) {
-            background: linear-gradient(90deg, #F7593A 0%, #F6A945 100%), linear-gradient(90deg, #FB4667 0%, #FCAFFB 100%), linear-gradient(90deg, #15F3C0 0%, #09022B 100%), linear-gradient(90deg, #25A9FC 0%, #99FF8A 100%), linear-gradient(90deg, #9FF986 0%, #03D8AA 100%), linear-gradient(90deg, #170028 0%, #0FF595 100%);
-        }
-
-        .card-body:nth-child(8) {
-            background: linear-gradient(90deg, #00341D 0%, #A9CBC4 100%), linear-gradient(90deg, #170028 0%, #0FF595 100%);
-        }
-
-        .card-body:nth-child(9) {
-            background: linear-gradient(90deg, #3685FC 0%, #E8CAFC 100%), linear-gradient(90deg, #FEDBE3 0%, #E00485 100%), linear-gradient(90deg, #FF0A37 0%, #4F01C4 100%), #FFF;
-        }
-
-        .card-body:nth-child(10) {
-            background: linear-gradient(90deg, #C0E0E0 0%, #002040 100%), linear-gradient(90deg, #130001 0%, #FA2847 100%), linear-gradient(90deg, #080808 0%, #FFF 100%);
-        }
-
-        .card-body:nth-child(11) {
-            background: linear-gradient(90deg, #891DF5 0%, #8EB0FA 100%), linear-gradient(90deg, #3685FC 0%, #E8CAFC 100%), linear-gradient(90deg, #FEDBE3 0%, #E00485 100%), linear-gradient(90deg, #FF0A37 0%, #4F01C4 100%), #FFF;
-        }
-
-        .card-body:nth-child(12) {
-            background: linear-gradient(90deg, #FE8D42 0%, #F7FEDC 100%), linear-gradient(90deg, #DE43FE 0%, #040952 100%), linear-gradient(90deg, #B6F5FB 0%, #004AC1 100%), linear-gradient(90deg, #F85DBF 0%, #B4C0FC 100%), linear-gradient(90deg, #FB92BE 0%, #045D8A 100%), linear-gradient(90deg, #FF70DD 0%, #6C94F8 100%), linear-gradient(90deg, #FC689E 0%, #FB4670 100%), linear-gradient(90deg, #AA63FC 0%, #3909B3 100%), linear-gradient(90deg, #E7A2FA 0%, #EAF3FF 100%), linear-gradient(90deg, #F6B3FE 0%, #4B9AFA 100%), linear-gradient(90deg, #5FD1FB 0%, #FD95DF 100%), linear-gradient(90deg, #FCC9ED 0%, #42F5EF 100%), linear-gradient(90deg, #3685FC 0%, #E8CAFC 100%), linear-gradient(90deg, #FEDBE3 0%, #E00485 100%), linear-gradient(90deg, #FF0A37 0%, #4F01C4 100%), #FFF;
         }
     }
 }
@@ -592,7 +547,7 @@
             fill: var(--Separator-Gradient, linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%));
             width: 50px;
             padding: 14px;
-            height: 80px;
+            height: 100px;
             margin-top: 10px;
         }
 

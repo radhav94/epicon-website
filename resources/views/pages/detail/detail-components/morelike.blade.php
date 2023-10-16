@@ -13,7 +13,11 @@
                 $cover_img = getCardImage($value, 'vertical_cover_image', 'small', ['cover_image', 'banner_image']);
                 ?>
                 <li>
+                    @if(@$value['asset_type'] == 'PLAY')
+                    {!! getplayanchorhtml($value) !!}
+                    @else
                     <a href="{{ getContentUrl($value) }}" class="main-card">
+                    @endif
                         {!! freePremiumDiv($value) !!}
                         {!! topTenDiv($value) !!}
 

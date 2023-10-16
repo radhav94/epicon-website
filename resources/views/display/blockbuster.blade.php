@@ -18,7 +18,11 @@
                  ?>
 
                  <div>
-                     <a href="{{ getContentUrl($val) }}">
+                    @if(@$val['asset_type'] == 'PLAY')
+                                {!! getplayanchorhtml($val) !!}
+                    @else
+                    <a href="{{ getContentUrl($val) }}">
+                    @endif
                          <img src="{{ $cover_img }}" alt="{{ $val['title'] }}">
                      </a>
                  </div>

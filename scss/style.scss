@@ -268,6 +268,7 @@ input {
             height: 100%;
             display: flex;
             align-items: center;
+            text-decoration: none;
         }
         .profile,.notification{
             position: relative;
@@ -643,7 +644,7 @@ input {
         }
         .carousel-items{
             width: 100%;
-            height: auto;
+            height: 450px;
             display: flex;
             overflow: hidden;
             border-radius: 1rem;
@@ -693,6 +694,9 @@ input {
                     background-position:bottom center;
                     background-size: 100% auto;
                 }
+                a{
+                    text-decoration: none;
+                }
                 h2{
                     font-size: 12px;
                     color: $bg-white;
@@ -704,8 +708,9 @@ input {
                 }
                 p{
                     width: 50%;
-                    font-size: 16px;
+                    font-size: 20px;
                     color: $bg-white;
+                    @include line-clamp(2);
                     @media (max-width:768px){
                         width: 100%;
                         font-size: 16px;
@@ -1121,15 +1126,23 @@ input {
         }
         .carousel-items{
             width: 100%;
-            height: auto;
+            height: 500px;
             display: flex;
             overflow: hidden;
             border-radius: 1rem;
             position: relative;
+            @media (max-width:1024px) {
+                height: 450px;
+            }
+            @media (max-width:767px) {
+                height: auto;
+            }
             img{
                 width: 100%;
                 height: 100%;
                 border-radius: 24px;
+                object-position: top;
+                object-fit: cover;
             }
             .carousel-items-content{
                 bottom: 0;
@@ -1159,8 +1172,10 @@ input {
                 }
                 p{
                     width: 50%;
-                    font-size: 16px;
+                    font-size: 20px;
                     color: $bg-white;
+                    @include line-clamp(2);
+
                     @media (max-width:768px){
                         width: 100%;
                         font-size: 16px;
@@ -1203,6 +1218,7 @@ input {
         height: 100%;
         border-radius: 16px;
         overflow: hidden;
+        text-decoration: none;
     }
     ul li a img{
         width: 100%;
@@ -1371,7 +1387,7 @@ input {
 
             img{
                 width: auto !important;
-                height: 130px!important;
+                height: 95px!important;
                 float: right;
                 margin-right: -15px;
                 margin-bottom: 15px;
@@ -2176,12 +2192,15 @@ input {
         }
         img{
             width: 100%;
-            height: auto;
+            height: 400px;
             overflow: hidden;
             border-radius: 10px;
             margin-bottom: 24px;
+            object-fit: cover;
+            object-position: center;
             @media (max-width:700px) {
                 margin-bottom: 10px;
+                height: auto;
             }
         }
         .aie{
@@ -2268,6 +2287,7 @@ input {
             margin-bottom: 20px;
             position: relative;
             z-index: 1;
+            text-align: center;
             @media (max-width:768px) {
                 font-size: 16px;
                 margin-bottom: 10px;
@@ -2388,7 +2408,7 @@ input {
             @include flex(row,center,center);
 
             img{
-                width: 80px;
+                width: 115px;
                 height: auto;
             }
         }
@@ -2981,10 +3001,12 @@ input {
             background: conic-gradient(from 180deg at 50% 50.00%, #302EBD 65.62500178813934deg, #D54CD4 234.37500715255737deg, #845BFF 360deg);
 
             img{
-                width: 90%;
+                width: 100%;
                 height: 100%;
                 object-fit: cover;
-                margin-top: -30px;
+                // margin-top: -30px;
+                border-top-left-radius: 50%;
+                border-top-right-radius: 50%;
             }
         }
 
@@ -3222,7 +3244,7 @@ input {
     display: block;
     border: none;
     border-radius: 40px;
-    width: 90%;
+    width: 100%;
     margin: 40px auto 0 auto;
     font-size: 16px;
     font-weight: 600;

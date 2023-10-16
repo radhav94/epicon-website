@@ -9,13 +9,21 @@ class SearchController extends Controller
 {
     public function trendingsearch(Request $request)
     {
-        $searchArray = session()->has('searchHistory') ? session()->get('searchHistory') : [];
+        // session()->put('searchHistory', []);
+        $searchHistory = session()->has('searchHistory') ? session()->get('searchHistory') : [];
+        $kidsMode = session()->has('kidsMode') ? session()->get('kidsMode') : false;
+        if ($kidsMode) {
+            $searchArray = $searchHistory['kids'] ?? [];
+        } else {
+            $searchArray = $searchHistory['all_access'] ?? [];
+        }
+        
         $searchList = "";
 
         if (count($searchArray) > 0) {
             krsort($searchArray);
             foreach ($searchArray as $val) {
-                $searchList .= $val['list'];
+                $searchList .= @$val['list'];
             }
         }
 
@@ -31,9 +39,18 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $searchText = $request->post('searchinput');
-        $postData = [
+        $kidsMode = session()->has('kidsMode') ? session()->get('kidsMode') : false;
+        if($kidsMode == true){
+            $postData = [
             'searchTerm' => $searchText,
-        ];
+            'kids_content' => true
+            ];
+        }else{
+            $postData = [
+            'searchTerm' => $searchText,
+            ];
+        }
+        
 
         $searchResult = CurlAPI("pages/search", 'POST', $postData, 1);
         if ($searchResult) {
@@ -104,8 +121,15 @@ class SearchController extends Controller
 
     private function addHistorySession($list = "", $title = "")
     {
+        $kidsMode = session()->has('kidsMode') ? session()->get('kidsMode') : false;
+        
         if (isUserLoggedIn()) {
-            $searchArray = session()->has('searchHistory') ? session()->get('searchHistory') : [];
+            $searchHistory = session()->has('searchHistory') ? session()->get('searchHistory') : [];
+            if ($kidsMode) {
+                $searchArray = $searchHistory['kids'] ?? [];
+            } else {
+                $searchArray = $searchHistory['all_access'] ?? [];
+            }
             if (count($searchArray) == 10) {
                 array_splice($searchArray, 0, 1);
             } else {
@@ -118,7 +142,13 @@ class SearchController extends Controller
                     'list' => $list
                 ];
             }
-            session()->put('searchHistory', $searchArray);
+            if ($kidsMode == true) {
+                $searchHistory['kids'] = $searchArray;
+            } else {
+                $searchHistory['all_access'] = $searchArray;
+            }
+            session()->put('searchHistory', $searchHistory);
+
         }
     }
 
@@ -136,8 +166,9 @@ class SearchController extends Controller
                             <ul class="more-like-this carousel-initilize p-0">';
             foreach ($contents as $content) {
                 $cover_img = getCardImage($content, 'cover_image', 'small');
+                $url = getContentUrl($content);
                 $htmlContent .= '<li>
-                                <a href="javascript:void(0);" class="main-card mt-0">
+                                <a href="'.$url.'" class="main-card mt-0">
                                     <div class="main-img mt-0">
                                         <img src="' . $cover_img . '" alt="">
                                     </div>

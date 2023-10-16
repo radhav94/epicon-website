@@ -1,6 +1,6 @@
 <!-- Child Pin model -->
 <div class="modal fade" id="child-pin-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered px-3">
+    <div class="modal-dialog modal-md modal-dialog-centered px-3">
         <div class="modal-content">
             <button class="x-btn bg-transparent text-white closebtn position-absolute" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 31 32" fill="none">
@@ -9,19 +9,19 @@
             </button>
 
             <div class="modal-body">
-                <h4 class="pb-4 border-bot">{{__('Create a 4-digit Child PIN')}}</h4>
+                {{--<h4 class="pb-4 border-bot">{{__('Create a 4-digit Child PIN')}}</h4>--}}
 
                 <div class="childpin text-start py-4">
                     <form id="childPinForm">
-                        <div>
+                        <div class="text-center">
                             <p class="small mb-4">{{__('This PIN will be used to switch from kids profile to all adult profiles')}}</p>
                             <div class="childpin-input pt-3">
-                                <input class="mx-1 child-box onlydigit" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
-                                <input class="mx-1 child-box onlydigit" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
-                                <input class="mx-1 child-box onlydigit" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
-                                <input class="mx-1 child-box onlydigit" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
                             </div>
-                            <button type="button" class="login-btn mt-5 ms-0" id="verifyChildPin" style="width: 280px;">
+                            <button type="button" class="login-btn mt-5 ms-0" id="verifyChildPin">
                                 Done
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
@@ -40,10 +40,6 @@
 
 <script>
     $(document).ready(function() {
-        $("#allAccessBtn").click(function() {
-            $("#child-pin-modal").modal('show');
-        })
-
         $("#verifyChildPin").click(function() {
             $("#childPinForm #error-msg").html("");
             var formData = $('#childPinForm').serialize();

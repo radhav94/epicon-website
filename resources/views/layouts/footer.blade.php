@@ -10,7 +10,7 @@
                 <div class="connect-with">
                     <h1>{{__('Connect With Us')}}</h1>
                     <div class="w-100 f-share-icons">
-                        <a href="">
+                        <a target="_blank" href="https://www.facebook.com/theepicon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
                                 fill="none">
                                 <circle cx="20" cy="20" r="20" fill="white"
@@ -20,7 +20,7 @@
                                     fill="white" />
                             </svg>
                         </a>
-                        <a href="">
+                        <a target="_blank" href="https://twitter.com/theepicon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
                                 fill="none">
                                 <circle cx="20" cy="20" r="20" fill="white"
@@ -30,7 +30,7 @@
                                     fill="white" />
                             </svg>
                         </a>
-                        <a href="">
+                        <a target="_blank" href="https://www.linkedin.com/company/theepicon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
                                 fill="none">
                                 <circle cx="20" cy="20" r="20" fill="white"
@@ -40,7 +40,7 @@
                                     fill="white" />
                             </svg>
                         </a>
-                        <a href="">
+                        <a target="_blank" href="https://www.youtube.com/channel/UC6TRCmHt1MZeArqN0efBhWQ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
                                 fill="none">
                                 <circle cx="20" cy="20" r="20" fill="white"
@@ -50,7 +50,7 @@
                                     fill="white" />
                             </svg>
                         </a>
-                        <a href="">
+                        <a target="_blank" href="https://www.instagram.com/theepicon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
                                 fill="none">
                                 <circle cx="20" cy="20" r="20" fill="white"

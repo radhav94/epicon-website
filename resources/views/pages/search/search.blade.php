@@ -102,12 +102,13 @@
             <div class="col-sm-12" id="noData-error" style="color:white; padding-top: 20px;display:none;">
                 <p style="text-align:center">{{__('No Results Found')}}</p>
             </div>
-
+            @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
             <div class="col-sm-12">
                 <div class="w-100 library mb-0 search-main">
                     @include('pages.search.trending_searchlist')
                 </div>
             </div>
+            @endif
         </div>
     </section>
 </main>

@@ -21,6 +21,14 @@ $(document).ready(function () {
         }
     });
 
+    $(".backpress").keydown(function(event) {
+        if (event.keyCode == 8 && $(this).val().length == 0) {
+          if ($(this).prev('.mx-1')) {
+            $(this).prev('.mx-1').focus();
+          }
+        }
+      });
+
     $(".check-content-url").click(function () {
         var content_url = $(this).attr('data-url');
         var is_premium = $(this).data('premium');
@@ -34,8 +42,39 @@ $(document).ready(function () {
             return;
         }
         window.location.href = content_url;
+        return false;
+    })
+
+    $("#allAccessBtn").click(function() {
+        var checkstaus = $(this).is(':checked');
+        var kidsUrl= $("#kidsUrl").val();
+        //alert(kidsUrl);
+        if(checkstaus){
+            window.location.href=kidsUrl;
+            return false;
+        }else{
+            $("#allAccessBtn").prop( "checked", true );
+            $("#child-pin-modal").modal('show');
+        }
+        
     })
 })
+
+$(document).on("click", ".check-content-url", function () {
+    var content_url = $(this).attr('data-url');
+    var is_premium = $(this).data('premium');
+    var active_subscriber = $(this).data('activesubscriber');
+    if (is_premium == 1 && active_subscriber != 1) {
+        showToaster("Please subscribe to play this game.", 2);
+        return;
+    }
+    if (content_url == "") {
+        showToaster("Content not found.", 2);
+        return;
+    }
+    window.location.href = content_url;
+});
+
 
 $(window).on('load', function () {
     /*kids section*/
