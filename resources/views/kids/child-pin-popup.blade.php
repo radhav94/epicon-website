@@ -16,10 +16,10 @@
                         <div>
                             <p class="small mb-4">{{__('This PIN will be used to switch from kids profile to all adult profiles')}}</p>
                             <div class="childpin-input pt-3">
-                                <input class="mx-1 child-box onlydigit" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
-                                <input class="mx-1 child-box onlydigit" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
-                                <input class="mx-1 child-box onlydigit" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
-                                <input class="mx-1 child-box onlydigit" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
                             </div>
                             <button type="button" class="login-btn mt-5 ms-0" id="verifyChildPin" style="width: 280px;">
                                 Done

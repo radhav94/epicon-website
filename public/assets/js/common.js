@@ -21,6 +21,14 @@ $(document).ready(function () {
         }
     });
 
+    $(".backpress").keydown(function(event) {
+        if (event.keyCode == 8 && $(this).val().length == 0) {
+          if ($(this).prev('.mx-1')) {
+            $(this).prev('.mx-1').focus();
+          }
+        }
+      });
+
     $(".check-content-url").click(function () {
         var content_url = $(this).attr('data-url');
         var is_premium = $(this).data('premium');
