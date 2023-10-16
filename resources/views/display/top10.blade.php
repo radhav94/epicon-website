@@ -1,4 +1,4 @@
- <div class="carousel-main">
+<div class="carousel-main">
      <div class="carousel-title-n-arrow px-2 mb-2">
          <h1 class="text-white small">{{ $title }}</h1>
          @if (@$value['show_more'])

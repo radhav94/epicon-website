@@ -1,4 +1,4 @@
- <div class="carousel-main">
+<div class="carousel-main">
      <div class="carousel-title-n-arrow px-2">
          <h1 class="text-white small">{{ $title }}</h1>
          @if (@$value['show_more'])
@@ -16,14 +16,15 @@
              <?php
              $card = getItemCardData($val, $displayLanguageParam);
              $cover_img = getCardImage($val, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
-             
+             $getTitle = getNewTitle($val);
              ?>
              <li>
                  @include('components.item-hover-card')
                  <a href="javascript:void(0);" class="main-card">
                      {!! freePremiumDiv($val) !!}
-                     <div class="main-img">
+                     <div class="main-img {{$getTitle['cls']}}">
                          <img src="{{ $cover_img }}" alt="">
+                         {!! $getTitle['html'] !!}
                      </div>
                      <div class="upcoming-title-play-btn">
                          <div class="title">{{ $card['title'] }}</div>

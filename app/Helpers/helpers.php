@@ -885,3 +885,26 @@ function checkNumDays($date){
     $numOfDays = $dateDiff->format('%r%a');
     return $numOfDays;
 }
+
+function getNewTitle($value){
+    // dd($value);
+    $html = '';
+    $cls = '';
+    if(isset($value['catalog_slug']) && $value['catalog_slug'] == 'movies' && isset($value['is_new']) && $value['is_new']){
+        $html = '<div class="new-show-title">New Movie</div>';
+        $cls = 'eod-darlings';
+    }else if(isset($value['catalog_slug']) && $value['catalog_slug'] == 'tv-shows' && isset($value['content_type']) && $value['content_type'] == 'SHOW' && isset($value['is_new']) && $value['is_new']){
+        $html = '<div class="new-show-title">New Show</div>';
+        $cls = 'eod-darlings';
+    }else if(isset($value['catalog_slug']) && $value['catalog_slug'] == 'tv-shows' && isset($value['content_type']) && $value['content_type'] == 'SEASON' && isset($value['is_new']) && $value['is_new']){
+        $html = '<div class="new-show-title">New Season</div>';
+        $cls = 'eod-darlings';
+    }else if(isset($value['catalog_slug']) && $value['catalog_slug'] == 'tv-shows' && isset($value['content_type']) && $value['content_type'] == 'EPISODE' && isset($value['is_new']) && $value['is_new']){
+        $html = '<div class="new-show-title">New Episode</div>';
+        $cls = 'eod-darlings';
+    }else if(isset($value['asset_type']) && $value['asset_type'] == 'LISTEN' && $value['is_new']){
+        $html = '<div class="new-show-title"><img src="' . asset('assets/img/sound-equalizer.svg') . '" alt=""></div>';
+        $cls = 'eod-darlings';
+    }
+    return ['cls'=> $cls,'html' => $html];
+}
