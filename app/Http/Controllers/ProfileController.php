@@ -64,7 +64,6 @@ class ProfileController extends Controller
         $param = [
             'name' => $request->name,
             'date_of_birth' => $request->dob,
-            'profile_img' => null
         ];
         if ($request->hasFile('profile_img')) {
             $url = uploadFile('profile_img', 'profile');
