@@ -3,7 +3,25 @@
 
 @section('style')
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-
+<style>
+    #epicShots video {
+        width: 340px;
+        height: 500px;
+    }
+    #supermixModal .plyr__controls__item {
+        display: none;
+    }
+    #supermixModal button:disabled, #supermixModal button[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    }
+    #supermixModal li.episode-main.mb-4.active {
+        border: 1px solid #999999;
+        background-color: #16161600;
+    }
+</style>
 @stop
 
 @section('content')
@@ -29,6 +47,8 @@
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
     <script src="https://cdn.rawgit.com/video-dev/hls.js/18bb552/dist/hls.min.js"></script>
     <script src="{{ asset('assets/js/webvtt-subtitler.js') }}"></script>
+    <script src="{{ asset('assets/js/supermix.js') }}"></script>
+
     
     <script>
         var processing;
@@ -56,7 +76,6 @@
 
 
             const loadMoreData = function() {
-                console.log('asdasda');
                 var paging = $("#pageval").val();
                 var paging = parseInt(paging) + 1;
                 var routepage = $("#routepage").val();
