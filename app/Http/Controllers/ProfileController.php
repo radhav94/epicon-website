@@ -56,7 +56,10 @@ class ProfileController extends Controller
     {
         $data = session()->get('profile_data');
 
-        return view('pages.profile.add-profile', compact('data'));
+        if (count($data['profiles']) < $this->profile_limit){
+            return view('pages.profile.add-profile', compact('data'));
+        }
+        return view('pages.error.404');
     }
 
     public function store(Request $request): JsonResponse
@@ -65,6 +68,10 @@ class ProfileController extends Controller
             'name' => $request->name,
             'date_of_birth' => $request->dob,
         ];
+        if(!empty($request->dob) && $request->dob >= date('Y-m-d')){
+            return JSONResponse(400, 'Date of birth must be less than today.');
+        }
+        
         if ($request->hasFile('profile_img')) {
             $url = uploadFile('profile_img', 'profile');
             $param['profile_img'] = $url;
@@ -114,6 +121,10 @@ class ProfileController extends Controller
             'name' => $request->name,
             'date_of_birth' => $request->dob,
         ];
+
+        if(!empty($request->dob) && $request->dob >= date('Y-m-d')){
+            return JSONResponse(400, 'Date of birth must be less than today.');
+        }
 
         if ($request->hasFile('profile_img')) {
             $url = uploadFile('profile_img', 'profile', null, [100, 100]);
