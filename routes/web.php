@@ -139,6 +139,7 @@ foreach ($lang as $val) {
         Route::get('cancelRecurringPayu', [SubscriptionController::class, 'cancelRecurringPayu'])->name('cancelRecurringPayu');
         Route::post('updateUserDataAjax', [SubscriptionController::class, 'updateUserDataAjax']);
         Route::get('transaction-history', [UserAccountController::class, 'TransactionHistory'])->name('transaction-history');
+        Route::post('cancelMembership', [SubscriptionController::class, 'cancelMembership']);
         //end
 
         /*settings route*/

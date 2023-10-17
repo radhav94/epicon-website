@@ -310,7 +310,7 @@
 
     $(".payment").click(function(){
      if($("#amountid").val() == ""){
-        alert("please select you plan");
+        showToaster('please select you plan', 2);
      }else{
 
         $(".paymentForm").submit();
