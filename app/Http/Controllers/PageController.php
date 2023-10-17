@@ -38,7 +38,7 @@ class PageController extends Controller
 
     public function loadMore(Request $request)
     {   
-        $slug = ($request->route == '/') ? 'home-v2' : $request->route;
+        $slug = ($request->route == '/' || $request->route == 'hi') ? 'home-v2' : $request->route;
         $data = $this->homepageData($slug, $request->page);
         $result = $data['result'];
         if ($result && @$result['success'] ==  true) {
