@@ -34,10 +34,6 @@ $loadPlayer = true;
 
     <section class="content-detail-banner position-relative">
         <div class="banner-main position-relative">
-            <button class="rounded-transparent-btn pos-btn">
-                <img src="{{ asset('assets/img/mute-icon.svg') }}" alt="icon">
-            </button>
-
             <img src="{{ $cover_img }}" alt="img">
         </div>
 
@@ -58,9 +54,9 @@ $loadPlayer = true;
                                 </button>
 
                                 @if (@$content['free_premium'] == true && !isActiveSubscription())
-                                    <button class="subcription-btn me-3">
+                                    <a class="subcription-btn me-3" href="{{ getUrl('subscription') }}" style="text-decoration: none">
                                         <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> {{__('Subscribe Now')}}
-                                    </button>
+                                    </a>
                                 @endif
 
 

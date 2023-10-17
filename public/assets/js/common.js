@@ -29,22 +29,6 @@ $(document).ready(function () {
         }
       });
 
-    $(".check-content-url").click(function () {
-        var content_url = $(this).attr('data-url');
-        var is_premium = $(this).data('premium');
-        var active_subscriber = $(this).data('activesubscriber');
-        if (is_premium == 1 && active_subscriber != 1) {
-            showToaster("Please subscribe to play this game.", 2);
-            return;
-        }
-        if (content_url == "") {
-            showToaster("Content not found.", 2);
-            return;
-        }
-        window.location.href = content_url;
-        return false;
-    })
-
     $("#allAccessBtn").click(function() {
         var checkstaus = $(this).is(':checked');
         var kidsUrl= $("#kidsUrl").val();

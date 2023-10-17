@@ -16,7 +16,7 @@
              $cover_img = isset($val['cover_image']) ? $val['cover_image']['medium'] : $val['banner_img'];
              $generes = array_column($val['genres_assign'] ?? [], 'name');
               $sub_text = [];
-
+    $getTitle = getNewTitle($val);
     if (isset($val['release_date'])) {
         $date_text = date('Y', strtotime($val['release_date']));
     }
@@ -48,17 +48,6 @@
                             @if (@$extra['hide_top10'] != 1)
                                 {!! topTenDiv($val) !!}
                             @endif
-                            <a href="#/" class="mute-btn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                                    fill="none">
-                                    <path
-                                        d="M15 11.3333L16.6667 9.66667M16.6667 9.66667L18.3333 8M16.6667 9.66667L15 8M16.6667 9.66667L18.3333 11.3333"
-                                        stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path
-                                        d="M1 11.3332V8.2382C1 7.79617 1.17559 7.37225 1.48816 7.05968C1.80072 6.74712 2.22464 6.57153 2.66667 6.57153H5.08333C5.24627 6.57149 5.40562 6.52368 5.54167 6.43403L10.5417 3.13736C10.6673 3.05463 10.813 3.00744 10.9632 3.00081C11.1135 2.99418 11.2628 3.02834 11.3952 3.09968C11.5277 3.17102 11.6383 3.27688 11.7154 3.40602C11.7926 3.53516 11.8333 3.68277 11.8333 3.8332V15.7382C11.8333 15.8886 11.7926 16.0362 11.7154 16.1654C11.6383 16.2945 11.5277 16.4004 11.3952 16.4717C11.2628 16.543 11.1135 16.5772 10.9632 16.5706C10.813 16.5639 10.6673 16.5168 10.5417 16.434L5.54167 13.1374C5.40562 13.0477 5.24627 12.9999 5.08333 12.9999H2.66667C2.22464 12.9999 1.80072 12.8243 1.48816 12.5117C1.17559 12.1991 1 11.7752 1 11.3332Z"
-                                        stroke="white" stroke-width="1.5" />
-                                </svg>
-                            </a>
                             <img src="{{ $cover_img }}" alt="">
                         </div>
                         <div class="bottom-card-content">
@@ -130,8 +119,9 @@
                     <a href="javascript:void(0);" class="main-card">
                         {!! freePremiumDiv($val) !!}
                         {!! topTenDiv($val) !!}
-                        <div class="main-img">
+                        <div class="main-img {{$getTitle['cls']}}">
                             <img src="{{ $cover_img }}" alt="">
+                            {!! $getTitle['html'] !!}
                         </div>
                     </a>
                 </li>
