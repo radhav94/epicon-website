@@ -893,17 +893,17 @@ function getNewTitle($value){
     if (isset($value['is_new']) && $value['is_new']) {
         if (isset($value['catalog_slug'])) {
             if ($value['catalog_slug'] == 'movies') {
-                $html = '<div class="new-show-title">New Movie</div>';
+                $html = '<div class="new-show-title">New</div>';
                 $cls = 'eod-darlings';
             } elseif ($value['catalog_slug'] == 'tv-shows' && isset($value['content_type'])) {
                 if ($value['content_type'] == 'SHOW') {
-                    $html = '<div class="new-show-title">New Show</div>';
+                    $html = '<div class="new-show-title">New</div>';
                     $cls = 'eod-darlings';
                 } elseif ($value['content_type'] == 'SEASON') {
-                    $html = '<div class="new-show-title">New Season</div>';
+                    $html = '<div class="new-show-title">New</div>';
                     $cls = 'eod-darlings';
                 } elseif ($value['content_type'] == 'EPISODE') {
-                    $html = '<div class="new-show-title">New Episode</div>';
+                    $html = '<div class="new-show-title">New</div>';
                     $cls = 'eod-darlings';
                 }
             }
