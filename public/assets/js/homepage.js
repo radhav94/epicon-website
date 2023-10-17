@@ -629,44 +629,50 @@ function initSliders() {
         focusOnSelect: true,
         arrows: true,
         dots: false,
-        asNavFor: '.banner-carousel-new-release',
+        //asNavFor: '.banner-carousel-new-release',
+        // responsive: [
+        //     {
+        //         breakpoint: 1367,
+        //         settings: {
+        //             slidesToShow: 6,
+        //             slidesToScroll: 1,
+        //         }
+        //     },
+        //     {
+        //         breakpoint: 1025,
+        //         settings: {
+        //             slidesToShow: 6,
+        //             slidesToScroll: 1,
+        //         }
+        //     },
+        //     {
+        //         breakpoint: 769,
+        //         settings: {
+        //             slidesToShow: 5,
+        //             slidesToScroll: 1,
+        //         }
+        //     },
+        //     {
+        //         breakpoint: 600,
+        //         settings: {
+        //             slidesToShow: 3,
+        //             slidesToScroll: 2
+        //         }
+        //     },
+        //     {
+        //         breakpoint: 480,
+        //         settings: {
+        //             slidesToShow: 2,
+        //             slidesToScroll: 1
+        //         }
+        //     }
+        // ]
         responsive: [
             {
-                breakpoint: 1367,
-                settings: {
-                    slidesToShow: 6,
-                    slidesToScroll: 1,
-                }
-            },
-            {
-                breakpoint: 1025,
-                settings: {
-                    slidesToShow: 6,
-                    slidesToScroll: 1,
-                }
-            },
-            {
-                breakpoint: 769,
-                settings: {
-                    slidesToShow: 5,
-                    slidesToScroll: 1,
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1
-                }
+               breakpoint: 2000,
+               settings: "unslick"
             }
-        ]
+         ]
     });
 
     $('.imdb').not('.slick-initialized').slick({
@@ -719,14 +725,14 @@ function initSliders() {
         dots: false,
         infinite: false,
         speed: 300,
-        slidesToShow: 6.5,
+        slidesToShow: 5.5,
         slidesToScroll: 1,
         accessibility: true,
         responsive: [
             {
                 breakpoint: 1367,
                 settings: {
-                    slidesToShow: 6.5,
+                    slidesToShow: 5.5,
                     slidesToScroll: 1,
                 }
             },
@@ -823,22 +829,12 @@ function initSliders() {
         }
     }
 
-    $(document).on('click', '.shuffleContent', function (e) {
-        stopPlayer();
-        e.preventDefault();
-        $("#supermixWatchBtn").prop("disabled", false);
-        getSupermixData();
-        $('.supermix-banner video').hide();
-        $('.supermix-banner img').show();
-    });
+    $(document).on('click', '.shuffleContent', getSupermixData);
 
-    $(document).on('click', '.superMixButton', function (e) {
-        e.preventDefault();
-        $("#supermixWatchBtn").prop("disabled", false);
+    $(document).on('click', '.superMixButton', function () {
         let img = $(this).parents('.super-mix').find('.supImg').attr('src');
-        $('.supermix-banner img').attr('src', img);
-        $('.supermix-banner video').hide();
-        $('.supermix-banner img').show();
+
+        $('#supermixModal .supermix-banner img').attr('src', img);
         $('#supermixModal').modal('show');
 
         getSupermixData();
@@ -853,5 +849,14 @@ function initSliders() {
     });
 
     //end supermix
+
+    $(document).ready(function(){
+        $(".banner-carousel-new-release").on("afterChange", function (event, slick, currentSlide){
+           $(".episode-wrapper-nr").hide();
+           $(".episode-wrapper-nr-"+currentSlide).show();           
+
+        })
+
+    });
 
 }
