@@ -121,13 +121,13 @@ $sub_slider_html .= '<div class="new-release-card"><img src="' . $cover_img . '"
                         $child_cover_img = getCardImage($data, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
                        
                         ?>
-                        @if(!empty($child_cover_img))
+                       
                         <div class="new-release-card new-release-card-{{$key}}"><a href="{{ getContentUrl($data) }}"><img src="{{$child_cover_img}}" alt=""> </a>
                             <div class="new-episode-time">
                                 <ul><span class="nr_epi">{{$s_txt}}</span> <span class="nr_time">{{$li}}</span> </ul>
                             </div>
                         </div>
-                        @endif
+                      
                     @endforeach
                 </div>
                  @endforeach
