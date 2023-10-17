@@ -177,7 +177,7 @@ class SearchController extends Controller
             }
             $htmlContent .= '</ul></div>';
         } else {
-            $htmlContent = '<p style="text-align:center;color:#fff">' . __('No Results Found') . '</p>';
+            $htmlContent = '<h5 class="text-white">Other Results</h5><p style="text-align:center;color:#fff">' . __('No Results Found') . '</p>';
         }
 
         return $htmlContent;

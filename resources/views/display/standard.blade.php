@@ -17,14 +17,16 @@
              
              $cover_img = getCardImage($val, 'vertical_cover_image', 'small', ['cover_image', 'banner_image']);
              
+             $getTitle = getNewTitle($val);
              ?>
              <li>
                  @include('components.item-hover-card')
                  <a href="javascript:void(0);" class="main-card">
                      {!! freePremiumDiv($val) !!}
                      {!! topTenDiv($val) !!}
-                     <div class="main-img">
+                     <div class="main-img {{$getTitle['cls']}}">
                          <img src="{{ $cover_img }}" alt="">
+                         {!! $getTitle['html'] !!}
                      </div>
                  </a>
              </li>

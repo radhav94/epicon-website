@@ -15,7 +15,7 @@
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
             $cover_img = getCardImage($val, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
-            
+            $getTitle = getNewTitle($val);
             ?>
             <li>
                 @if(@$val['asset_type'] == 'PLAY')
@@ -23,8 +23,9 @@
                 @else
                 <a href="{{ getContentUrl($val) }}" class="main-card">
                 @endif
-                    <div class="main-img eod-darlings pb-0">
+                    <div class="main-img {{$getTitle['cls']}} pb-0">
                         <img src="{{ $cover_img }}" alt="">
+                        {!! $getTitle['html'] !!}
                     </div>
                 </a>
             </li>
