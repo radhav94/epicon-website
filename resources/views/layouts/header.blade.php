@@ -119,6 +119,7 @@ if (isUserLoggedIn()) {
 <div class="main-header">
     <nav id="navbar_top" class="navbar navbar-expand-lg justify-content-between px-3 py-0">
         <div class="main-header-left d-flex">
+            @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
             <a class="hamburger" href="javascript:void(0)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
                     fill="none">
@@ -126,6 +127,7 @@ if (isUserLoggedIn()) {
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </a>
+            @endif
             <a class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}"
                     alt=""></a>
             @if(!$kids_page)
@@ -145,23 +147,25 @@ if (isUserLoggedIn()) {
 
         <?php
 
-if ($kids_page) {
-    $links = [
-        'kids' => 'Home',
-        'kids/movies' => 'Movies',
-        'kids/shows' => 'Shows',
-        'kids/podcast' => 'Podcasts',
-    ];
-} else {
-    $links = [
-        '/' => 'Home',
-        'movies' => 'Movies',
-        'tv-shows' => 'Shows',
-        'podcast' => 'Podcasts',
-        'explore' => 'Explore',
-        'premium' => 'Premium',
-    ];
-}
+        if ($kids_page) {
+            $links = [
+                'kids' => 'Home',
+                'kids/movies' => 'Movies',
+                'kids/shows' => 'Shows',
+                'kids/podcast' => 'Podcasts',
+                'kids/games' => 'Games'
+            ];
+        } else {
+            $links = [
+                '/' => 'Home',
+                'movies' => 'Movies',
+                'tv-shows' => 'Shows',
+                'podcast' => 'Podcasts',
+                'explore' => 'Explore',
+                'premium' => 'Premium',
+            ];
+        }
+
 
 if (request()->path() == "hi") {
     $current_route = "/";
@@ -213,6 +217,7 @@ if (request()->path() == "hi") {
                 </svg>
             </a>
             @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
+            @loggedin
             <div class="notification p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">
@@ -222,10 +227,11 @@ if (request()->path() == "hi") {
                 </svg>
                 <div class="notification-drop-down">
                     <div class="notif-header">
-                        <h1>{{__('Notification')}}</h1><a href="#/">{{__('Clear All')}}</a>
+                        <h1>{{__('Notification')}}</h1>
+                        <!-- <a href="#/">{{__('Clear All')}}</a> -->
                     </div>
-                    <ul class="list-unstyled">
-                        <li class="content active mb-3">
+                    <ul class="list-unstyled notification-list">
+                        <!-- <li class="content active mb-3">
                             <span class="notif-dot"></span>
                             <div class="notif-img">
                                 <img src="{{ asset('assets/img/welcom.jpeg') }}" alt="">
@@ -290,7 +296,7 @@ if (request()->path() == "hi") {
                                 <h4>Rajvansh</h4>
                                 <p>10 June</p>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                     <div class="no-notification">
                         <img src="{{ asset('assets/img/no-notification.svg') }}" alt="">
@@ -299,6 +305,7 @@ if (request()->path() == "hi") {
                     </div>
                 </div>
             </div>
+            @endloggedin
             <div class="profile p-2">
            
 

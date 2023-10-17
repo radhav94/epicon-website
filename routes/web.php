@@ -21,6 +21,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\UpcomingController;
 use App\Http\Controllers\PopularController;
 use App\Http\Controllers\LiveTvController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 $lang = ['hi', 'en'];
@@ -60,6 +61,9 @@ Route::post('explorecontent', [PageController::class, 'explorecontent'])->name('
 Route::post('/retro-content', [RetroRewindController::class, 'retroRewindContent']);
 Route::any('/supermix', [SupermixController::class, 'superMix']);
 Route::post('paginatecontent', [PageController::class, 'paginatecontent'])->name('paginatecontent');
+
+// Notifications
+Route::get('/notifications', [NotificationController::class, 'getNotifications']);
 
 /*social login start*/
 Route::get('login/google', [AuthSocialController::class, 'redirectToProvider'])->name('login.google');

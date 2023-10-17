@@ -32,6 +32,7 @@ $(document).ready(function () {
                         var topResult = response.topResult;
                         var otherResult = response.otherResult;
                         console.log(topResult);
+                        
                         if (topResult) {
                             $('#Alltopresult').html(topResult.AllResult);
                             $('#Moviestopresult').html(topResult.MoviesResult);
