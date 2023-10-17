@@ -2457,6 +2457,10 @@ input {
         width: 100%;
         overflow: auto;
         white-space: nowrap;
+
+        a{
+            text-decoration: none;
+        }
         
         button{
             display: inline-flex;
@@ -5831,7 +5835,7 @@ input {
             }
             .epic-shots-title{
                 position: absolute;
-                top: -40px;
+                // top: -40px;
             }
             .total-views{
                 position: absolute;
