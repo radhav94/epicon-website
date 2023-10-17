@@ -17,7 +17,7 @@ class NotificationController extends Controller
 
         // Headers
         $headers = [
-            'Authorization' => 'Basic MjRjOWIyYWYtNjM2Zi00MjViLTkwZjUtODI3NjI1NmZiNTE4',
+            'Authorization' => env('NOTIFICATION_AUTH'),
             'Accept' => 'application/json',
             'Cookie' => '__cf_bm=eDHllvhoj99zAOo7VeDp4FL81HyGN12fG2wLX9uP5M4-1694688186-0-AdTC3iLJpDAFrF/XMALJlmy7xNa/Pn47yzz2sWH8w/3v3S/+FaaZq7EYAzeOGTEhDfQIjz9RFMBhZVsUS2G6/f8=; __cf_bm=L_pkXpCkhSsqhYZQyG.ICwkMn7nV6itcRE9iLQ7H2XA-1697205677-0-AS9cr18Ug1Qfhh2HOpYTLVVgwn6cYKYyq9CLdAKcgVebc8eTKSv4EqAY312XY+9xUbm9bP/P2rbTbre9eL0Wnb0=',
         ];

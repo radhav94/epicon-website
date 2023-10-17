@@ -1,15 +1,20 @@
 $(document).ready(function () {
-  getNotification();
+// Check if an element with the class "notification" exists in the document
+var notificationElement = document.querySelector('.notification');
 
-  function scheduleGetNotification() {
-    setTimeout(function() {
+if (notificationElement) {
       getNotification();
-      scheduleGetNotification(); // Call itself again to set up the next setTimeout
-    }, 30 * 60 * 1000); // 30 minutes in milliseconds //1.36pm
-  }
 
-  // Start the recursive timeout
-  scheduleGetNotification();
+    function scheduleGetNotification() {
+      setTimeout(function() {
+        getNotification();
+        scheduleGetNotification(); // Call itself again to set up the next setTimeout
+      }, 30 * 60 * 1000); // 30 minutes in milliseconds
+    }
+
+    // Start the recursive timeout
+    scheduleGetNotification();
+}
 
   $('.additional-carousel').not('.slick-initialized').slick({
     dots: false,
