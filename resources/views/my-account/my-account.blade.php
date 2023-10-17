@@ -141,9 +141,9 @@ $numOfDays = checkNumDays($subscriptionPurchases['subscription_end_date']);
                     <p>
                         <img src="{{ asset('/img/mobile.svg') }}" alt="">&nbsp; {{ isset($viewprofile['user_id']) ? $viewprofile['user_id'] : '' }}
                     </p>
-                    <p class="border-bot pb-4">
+                    {{--<p class="border-bot pb-4">
                         <img src="{{ asset('/img/visa.svg') }}" alt=""> &nbsp; visa **** **** **** 1823
-                    </p>
+                    </p>--}}
                     <p class="position-relative border-bot pb-4"> 
                         {{__('View Transaction History')}}
                         <a href="{{ getUrl('transaction-history') }}" class="edit-icon bg-transparent border-0">

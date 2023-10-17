@@ -421,7 +421,7 @@ function getSeasonEpisodeNum($val)
         // 'season' => '',
         // 'episode' => ''
     ];
-    if ($val['content_type'] == 'EPISODE') {
+    if (@$val['content_type'] == 'EPISODE') {
         if (isset($val['parent_name'])) {
             $parent_name = trim($val['parent_name']);
             $wordToFind = 'season';
