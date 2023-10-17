@@ -11,7 +11,7 @@ class PageController extends Controller
     private  $limit;
     public function  __construct()
     {
-                $this->limit = 10;
+        $this->limit = 10;
     }
 
     public function index($slug = 'home-v2')
@@ -38,7 +38,7 @@ class PageController extends Controller
 
     public function loadMore(Request $request)
     {   
-        $slug = ($request->route == '/') ? 'home-v2' : $request->route;
+        $slug = ($request->route == '/' || $request->route == 'hi') ? 'home-v2' : $request->route;
         $data = $this->homepageData($slug, $request->page);
         $result = $data['result'];
         if ($result && @$result['success'] ==  true) {

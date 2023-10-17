@@ -141,9 +141,9 @@ $numOfDays = checkNumDays($subscriptionPurchases['subscription_end_date']);
                     <p>
                         <img src="{{ asset('/img/mobile.svg') }}" alt="">&nbsp; {{ isset($viewprofile['user_id']) ? $viewprofile['user_id'] : '' }}
                     </p>
-                    <p class="border-bot pb-4">
+                    {{--<p class="border-bot pb-4">
                         <img src="{{ asset('/img/visa.svg') }}" alt=""> &nbsp; visa **** **** **** 1823
-                    </p>
+                    </p>--}}
                     <p class="position-relative border-bot pb-4"> 
                         {{__('View Transaction History')}}
                         <a href="{{ getUrl('transaction-history') }}" class="edit-icon bg-transparent border-0">
@@ -167,13 +167,13 @@ $numOfDays = checkNumDays($subscriptionPurchases['subscription_end_date']);
             <div class="col-12 text-center mt-5">
                 <img src="{{ asset('/img/not-subscribe.svg') }}" alt="img" style="margin-bottom: -50px;">
                 <p class="small text-white">{{__('You have not subscribed to Epic On yet!')}}</p>
-                <button class="login-btn mt-4" style="width: 280px;">
+                <a href="{{ getUrl('subscription') }}" class="login-btn mt-4" style="width: 280px;">
                     {{__('Subscribe Now')}}
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"></path>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
                     </svg>
-                 </button>
+                    </a>
             </div>
             @endif
             <!-- <div class="col-12 text-center mt-5">
