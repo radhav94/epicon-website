@@ -289,6 +289,9 @@ $episode_json = json_encode($episode_list);
         if (isPlayed) {
             audio.play().then(() => {
                     console.log('Audio is playing');
+                    $('html, body').animate({
+                        scrollTop: 0
+                    }, 1000);
                 })
                 .catch(error => {
                     console.error('Failed to play audio:', error);
@@ -305,30 +308,6 @@ $episode_json = json_encode($episode_list);
                 showToaster($res.message, 2);
             }
         } catch (err) {}
-    }
-
-    function sendAjaxRequest1(url, method, data, contentType) {
-        return new Promise(function(resolve, reject) {
-            // Your AJAX logic here
-            $.ajax({
-                type: method,
-                url: url,
-                data: data,
-                contentType: contentType,
-                cache: false,
-                processData: false,
-                dataType: 'json',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(response) {
-                    resolve(response);
-                },
-                error: function(xhr) {
-                    reject(xhr);
-                }
-            });
-        });
     }
 </script>
 @stop

@@ -29,7 +29,7 @@ function initSliders() {
         slidesToShow: 1,
         arrows: true,
         dots: true,
-        autoplay: false,
+        autoplay: true,
         appendDots: $(".slide-m-dots"),
         prevArrow: $(".slide-m-prev"),
         nextArrow: $(".slide-m-next"),
@@ -82,7 +82,7 @@ function initSliders() {
             {
                 breakpoint: 1367,
                 settings: {
-                    slidesToShow: 4.5,
+                    slidesToShow: 5.5,
                     slidesToScroll: 1,
                 }
             },
@@ -110,7 +110,7 @@ function initSliders() {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1.5,
+                    slidesToShow: 1.9,
                     slidesToScroll: 1
                 }
             }
@@ -127,7 +127,7 @@ function initSliders() {
             {
                 breakpoint: 1367,
                 settings: {
-                    slidesToShow: 7.5,
+                    slidesToShow: 8.4,
                     slidesToScroll: 1,
                 }
             },
@@ -311,7 +311,7 @@ function initSliders() {
             {
                 breakpoint: 1367,
                 settings: {
-                    slidesToShow: 6.5,
+                    slidesToShow: 7.4,
                     slidesToScroll: 1,
                 }
             },
@@ -719,14 +719,14 @@ function initSliders() {
         dots: false,
         infinite: false,
         speed: 300,
-        slidesToShow: 5.5,
+        slidesToShow: 6.5,
         slidesToScroll: 1,
         accessibility: true,
         responsive: [
             {
                 breakpoint: 1367,
                 settings: {
-                    slidesToShow: 5.5,
+                    slidesToShow: 6.5,
                     slidesToScroll: 1,
                 }
             },
@@ -823,12 +823,22 @@ function initSliders() {
         }
     }
 
-    $(document).on('click', '.shuffleContent', getSupermixData);
+    $(document).on('click', '.shuffleContent', function (e) {
+        stopPlayer();
+        e.preventDefault();
+        $("#supermixWatchBtn").prop("disabled", false);
+        getSupermixData();
+        $('.supermix-banner video').hide();
+        $('.supermix-banner img').show();
+    });
 
-    $(document).on('click', '.superMixButton', function () {
+    $(document).on('click', '.superMixButton', function (e) {
+        e.preventDefault();
+        $("#supermixWatchBtn").prop("disabled", false);
         let img = $(this).parents('.super-mix').find('.supImg').attr('src');
-
-        $('#supermixModal .supermix-banner img').attr('src', img);
+        $('.supermix-banner img').attr('src', img);
+        $('.supermix-banner video').hide();
+        $('.supermix-banner img').show();
         $('#supermixModal').modal('show');
 
         getSupermixData();

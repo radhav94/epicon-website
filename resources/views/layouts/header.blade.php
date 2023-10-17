@@ -82,7 +82,7 @@ if (isUserLoggedIn()) {
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ getUrlWithPrefix('homepage') }}#epic-story-main">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
@@ -195,7 +195,7 @@ if (request()->path() == "hi") {
             <input class="form-check-input" name ="kidscheckbox" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
 
             </div>
-                <input type="hidden" name="kidsUrl" id="kidsUrl" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}"
+                <input type="hidden" name="kidsUrl" id="kidsUrl" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
             <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" id="kidsUrl" class="p-2 me-2">
                 </a><img src="{{ asset('assets/img/kidz-icon.svg') }}" alt="">
             <a href="{{ getUrl('search') }}" class="p-2 me-2">
