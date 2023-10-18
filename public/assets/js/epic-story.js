@@ -35,13 +35,15 @@ $(document).ready(function () {
 })
 
 $(document).on('click', ".mute-btn-storie", function () {
-    console.log(player.muted);
     if (player) {
-        console.log(player.muted);
         if (player.muted) {
             player.muted = false;
+            $(".mute-btn").show();
+            $(".unmute-btn").hide();
         } else {
             player.muted = true;
+            $(".mute-btn").hide();
+            $(".unmute-btn").show();
         }
     }
 })
@@ -50,7 +52,8 @@ $(document).on('click', '.nextStoryBtn', function () {
     if (currentStep < $(".story-modal").length) {
         currentStep++;
         showStoryPopup(currentStep);
-        $(".progressBar progress:nth-child(" + currentStep + ")").val(100);
+        $(".progressBar progress:nth-child(" + (currentStep - 1) + ")").val(100);
+        // $(".progressBar progress:nth-child(" + currentStep + ")").val(100);
     }
 });
 
@@ -73,6 +76,13 @@ $(document).on('click', '.epic-short-close', function () {
 
 $(document).on('click', '.story-play-btn', function (e) {
     e.preventDefault();
+    if (player && !e.isTrigger) {
+        player.play();
+        $('.story-pause-btn').show();
+        $(".story-play-btn").hide();
+        return;
+    }
+
     let cid = $(this).data('id');
 
     let requestData = {
@@ -98,6 +108,7 @@ $(document).on('click', '.story-play-btn', function (e) {
         try {
             $res = JSON.parse(xhr.responseText);
             if ($res.message != undefined && $res.message != 'failed') {
+                $(".progressBar progress:nth-child(" + currentStep + ")").val(100);
                 showToaster($res.message, 2);
             }
         } catch (err) { }
@@ -113,7 +124,7 @@ $(document).on('click', '.story-play-btn', function (e) {
         const video = document.querySelector("#story-modal-" + currentStep + " video");
         const closePlayer = document.querySelector(".epic-short-close");
         const customPlayButton = document.querySelector('.story-play-btn');
-        
+
         const defaultOptions = {
             seekTime: 10,
             controls: ['rewind', 'play', 'fast-forward', 'progress', 'current-time', 'volume', 'captions', 'settings', 'pip'],
@@ -168,9 +179,27 @@ $(document).on('click', '.story-play-btn', function (e) {
                 // Initialize new Plyr player with quality options
                 player = new Plyr(video, defaultOptions);
                 window.player = player;
-
+                
                 player.play();
-                attactPlayerEvents(player);
+                
+                player.on('play', event => {
+                    $('.story-pause-btn').show();
+                    $(".story-play-btn").hide();
+                });
+                player.on('pause', event => {
+                    $('.story-pause-btn').hide();
+                    $(".story-play-btn").show();
+                });
+                // player.on('fullscreenchange', event => {
+                //     document.exitFullscreen();
+                // });
+                player.on('ended', event => {
+                    $("#story-modal-" + currentStep + " .nextStoryBtn").trigger('click');
+                });
+
+                player.on('timeupdate', event => {
+                    storyProgress();
+                });
             });
 
             hls.attachMedia(video);
@@ -197,6 +226,14 @@ $(document).on('click', '.story-play-btn', function (e) {
     }
 });
 
+$(document).on('click', '.story-pause-btn', function (e) {
+    if (player) {
+        player.pause();
+        $('.story-pause-btn').hide();
+        $(".story-play-btn").show();
+    }
+});
+
 function showStoryPopup(step) {
     $(".story-modal").hide();
     $("#story-modal-" + step).show();
@@ -220,4 +257,11 @@ function playnextcontent() {
         player.destroy();
     }
     $("#story-modal-" + currentStep + " .story-play-btn").trigger('click');
+}
+
+function storyProgress() {
+    let duration = player.duration;
+    let currentTime = player.currentTime;
+    let progress = Math.round((currentTime / duration) * 100);
+    $(".progressBar progress:nth-child(" + currentStep + ")").val(progress);
 }
