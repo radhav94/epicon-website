@@ -969,7 +969,7 @@ input {
         width: fit-content;
     }
     & .slick-dots li button {
-        width: 12px;
+        width: 10px;
         height: 4px;
         padding: 0;
         border-radius: 20px;
@@ -1057,8 +1057,12 @@ input {
         background: #4C252C;
         padding: 10px;
         border-radius: 10px;
-        overflow: hidden;
-
+        // overflow: hidden;
+        
+        .episode-wrapper-nr{
+            display: flex;
+            overflow: auto;
+        }
         .new-release-card{
             position: relative;
             width: 100%;
@@ -1073,6 +1077,7 @@ input {
                     @include flex(row,center,space-between);
                     font-size: 14px;
                     width: 100%;
+                    color: #fff;
         
                     li:first-child{
                         color: #fff;
@@ -2200,7 +2205,7 @@ input {
             object-position: center;
             @media (max-width:700px) {
                 margin-bottom: 10px;
-                height: auto;
+                height: 150px;
             }
         }
         .aie{
@@ -2233,7 +2238,7 @@ input {
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 15%;
+            width: 22%;
             @media (max-width:1024px) {
                 padding: 10px 20px;
                 font-size: 100%;
@@ -2243,8 +2248,8 @@ input {
                 font-size: 69%;
             }
             @media (max-width:700px) {
-                padding: 5px;
-                font-size: 30%;
+                padding: 10px 0;
+                font-size: 57%;
             }
         }
     }
@@ -2430,13 +2435,16 @@ input {
     .genere-fiesta-title{
         color: $bg-white;
         width: 250px;
-        @media (max-width:768px) {
-            margin-bottom: 20px;
-        }
+        // @media (max-width:768px) {
+        //     margin-bottom: 20px;
+        // }
         h1{
             font-size: 30px;
             font-weight: 700;
             margin-bottom: 20px;
+            @media (max-width:767px) {
+                font-size: 22px;
+            }
         }
         button{
             font-size: 18px;
@@ -2480,9 +2488,9 @@ input {
 
             @media (max-width:768px) {
                 display: inline-flex;
-                padding: 10px 16px;
+                padding: 8px 6px;
                 gap: 10px;
-                font-size: 14px;
+                font-size: 12px;
                 margin: 5px;
             }
         }
