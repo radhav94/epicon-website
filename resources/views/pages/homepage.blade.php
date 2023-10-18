@@ -111,8 +111,7 @@
         }
 
         });
-    </script>
-    <script>
+
     function closeModal() {
         var modal = document.querySelector('.modal-backdrop');
         modal.style.display = 'none';
