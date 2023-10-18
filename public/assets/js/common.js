@@ -4,8 +4,10 @@ const queryParams = new URLSearchParams(window.location.search);
 $(document).ready(function () {
     $("#seasonSelect").change(function () {
         var url = $(this).val();
-        if (url != "") {
+        if (url != "" && url != 0) {
             window.location.href = window.location.protocol + "//" + window.location.host + "/" + url;
+        }else{
+            return false;
         }
     })
 

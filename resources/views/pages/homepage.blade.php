@@ -38,6 +38,37 @@
     @include('components.supermix-content-modal')
     @include('components.video-player-modal')
 
+    <!-- page blocker start -->
+    <?php 
+                $ua = strtolower($_SERVER["HTTP_USER_AGENT"]);
+                $isMob = is_numeric(strpos($ua, "mobile"));
+                 if(isset($isMob) && $isMob==true){
+                    if(!empty(env('PAGEBLOCKERDATE'))) {
+                      $pageblockername = 'Mobile-Page-Blocks_'.env('PAGEBLOCKERDATE').'.jpg';
+                  } else {
+                      $pageblockername = 'Mobile-Page-Blocks.jpg';
+                  }
+                }else{
+                     if(!empty(env('PAGEBLOCKERDATE'))) {
+                        $pageblockername = 'Desktop-Page-Blocks_'.env('PAGEBLOCKERDATE').'.jpg';
+                    } else {
+                        $pageblockername = 'Desktop-Page-Blocks.jpg';
+                    }
+                }
+                   
+    ?>
+<div class="modal modal-backdrop page-blocker" tabindex="-1">
+  <div class="modal-dialog page-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content blocker-content">
+    <button class="close-button page-close" onclick="closeModal()">&times;</button>
+        <div class="modal-body blocker-body" data-url="{{ config('epicconfig.PAGEBLOCKER.PAGEBLOCKER_URL') }}">
+            <a href="{{ config('epicconfig.PAGEBLOCKER.PAGEBLOCKER_URL') }}" target="_blank"><img src="<?php echo config('epicconfig.ASSET.ASSET_URL').'/img/'.$pageblockername;?>" alt=""> </a>
+        </div> 
+    </div>
+  </div>
+</div>
+<!-- page blocker end -->
+
 @stop
 
 @section('script')
@@ -111,5 +142,11 @@
             }
 
         });
+    </script>
+    <script>
+    function closeModal() {
+        var modal = document.querySelector('.modal-backdrop');
+        modal.style.display = 'none';
+    }
     </script>
 @stop
