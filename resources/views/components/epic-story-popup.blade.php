@@ -31,7 +31,7 @@ $content_list = $story_list['content_list'] ?? [];
     </div>
     <!-- Previous story Button -->
     <div class="story-iframe">
-        <h5 class="epic-shots-title text-white w-100 text-center mb-3">Epic Shots</h5>
+        <!-- <h5 class="epic-shots-title text-white w-100 text-center mb-3">Epic Shots</h5> -->
         <!--start player -->
         <!-- top views -->
         <!-- <span class="total-views">
@@ -41,19 +41,25 @@ $content_list = $story_list['content_list'] ?? [];
         </span> -->
         <!-- top end -->
         <!-- mute button start-->
-        <button class="mute-btn-storie">
+        <button class="mute-btn-storie mute-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
                 <path d="M28.7441 22.6782L31.3723 20.05M31.3723 20.05L34.0005 17.4219M31.3723 20.05L28.7441 17.4219M31.3723 20.05L34.0005 22.6782" stroke="white" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round" />
                 <path d="M6.66895 22.6797V17.7992C6.66895 17.1021 6.94584 16.4336 7.43872 15.9408C7.93159 15.4479 8.60008 15.171 9.29711 15.171H13.1079C13.3649 15.1709 13.6162 15.0956 13.8307 14.9542L21.7152 9.75567C21.9133 9.62521 22.143 9.5508 22.38 9.54034C22.6169 9.52988 22.8523 9.58376 23.0612 9.69625C23.27 9.80875 23.4445 9.97567 23.5661 10.1793C23.6877 10.383 23.752 10.6157 23.752 10.8529V29.6259C23.752 29.8631 23.6877 30.0959 23.5661 30.2995C23.4445 30.5032 23.27 30.6701 23.0612 30.7826C22.8523 30.8951 22.6169 30.949 22.38 30.9385C22.143 30.928 21.9133 30.8536 21.7152 30.7232L13.8307 25.5247C13.6162 25.3833 13.3649 25.3079 13.1079 25.3078H9.29711C8.60008 25.3078 7.93159 25.0309 7.43872 24.5381C6.94584 24.0452 6.66895 23.3767 6.66895 22.6797Z" stroke="white" stroke-width="1.875" />
             </svg>
         </button>
+        <button class="mute-btn-storie unmute-btn" style="display:none;">
+            <img src="{{ asset('img/unmute.svg') }}" width="40" height="40">
+        </button>
         <!-- mute button end-->
         <!-- <div> -->
         <div class="play-add-share">
-            <button class="story-play-btn" id="story-play-btn{{ ($key + 1) }}" data-id="{{ @$value['ID'] }}">
+            <button class="story-play-btn" id="story-play-btn{{ ($key + 1) }}" data-id="{{ @$value['ID'] }}" style="display:none;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
                     <path d="M30.25 19.9977L30.25 20.0023C30.2504 20.1664 30.2104 20.3252 30.1374 20.4625C30.0645 20.5996 29.9629 20.7076 29.8479 20.7811L29.8479 20.7811L29.8431 20.7841L13.4704 31.3774L13.47 31.3776C13.3477 31.4569 13.2125 31.4972 13.0782 31.4999C12.944 31.5025 12.8081 31.4675 12.684 31.3936L12.6817 31.3923C12.5597 31.3201 12.4511 31.2106 12.3725 31.0693C12.2939 30.9278 12.2503 30.7626 12.25 30.5912V9.40877C12.2503 9.2374 12.2939 9.07222 12.3725 8.93074C12.4511 8.7894 12.5597 8.6799 12.6817 8.60774L12.6817 8.60775L12.684 8.60638C12.8081 8.53254 12.944 8.49751 13.0782 8.50014C13.2125 8.50277 13.3477 8.54314 13.47 8.62239L13.4704 8.62263L29.8431 19.2159L29.8431 19.2159L29.8479 19.2189C29.9629 19.2924 30.0645 19.4004 30.1374 19.5375C30.2104 19.6748 30.2504 19.8336 30.25 19.9977Z" stroke="white" stroke-width="2" />
                 </svg>
+            </button>
+            <button class="story-pause-btn" id="story-pause-btn{{ ($key + 1) }}" data-id="{{ @$value['ID'] }}">
+                <img src="{{ asset('img/pause.svg') }}" width="40" height="40">
             </button>
         </div>
 
@@ -76,9 +82,9 @@ $content_list = $story_list['content_list'] ?? [];
                 <img src="{{ $img_url }}" alt="shot-img">
                 <div>
                     <h6 class="mt-3">{{ @$value['title'] }}</h6>
-                    <span class="my-1" style="font-size: 10px;">{{ timestampToDate(@$value['publish_start_date'], 'Y') }}. 3 Languages .
+                    <span class="my-1" style="font-size: 10px;">{{ timestampToDate(@$value['publish_start_date'], 'Y') }}.
                         @if (is_array(@$story_list['genre']))
-                        {{ implode(" . ", @$story_list['genre']) }}
+                        {{ ucwords(implode(" . ", @$story_list['genre'])) }}
                         @else
                         {{ @$story_list['genre'] }}
                         @endif

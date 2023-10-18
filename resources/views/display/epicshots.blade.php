@@ -1,4 +1,4 @@
-<section class="carousel-main mt-0" id="epic-story-main">
+<section class="carousel-main mt-0" id="epic-shots">
     <div class="carousel-title-n-arrow px-2 pb-3">
         <h1 class="text-white small">Epic Shots</h1>
         <a href="">
@@ -24,9 +24,6 @@
     #epicShots .plyr__controls__item, #epicShots .plyr__progress__buffer {
         display: none;
     }
-    #epicShots .plyr__progress__container{
-        display: block;
-    }
 
 </style>
 
@@ -34,7 +31,7 @@
 <div class="modal epic-shots-modal fade" id="epicShots" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content p-0">
-            // story content coming from ajax
+            <!-- story content coming from ajax -->
         </div>
     </div>
 </div>

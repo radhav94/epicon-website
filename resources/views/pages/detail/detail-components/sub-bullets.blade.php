@@ -17,7 +17,7 @@
  }
  
  if (isset($v_content['release_date'])) {
-     $subtext[] = date('Y', strtotime($v_content['release_date']));
+     $subtext[] = date('Y', strtotime($v_content['release_date'])) != 1970 ? date('Y', strtotime($v_content['release_date'])) : '';
  }
  ?>
 
