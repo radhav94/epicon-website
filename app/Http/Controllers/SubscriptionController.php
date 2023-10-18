@@ -720,7 +720,7 @@ class SubscriptionController extends Controller
         if ($updateResponse) {
             return response()->json($res, 200)->header('Content-Type', 'application/json');
         } else {
-            return response()->json('something went wrong !', 400)->header('Content-Type', 'application/json');
+            return response()->json('something went wrong !', 201)->header('Content-Type', 'application/json');
         }
 
         //update session
@@ -745,6 +745,18 @@ class SubscriptionController extends Controller
         $url = "https://test.payu.in/merchant/postservice.php?form=2";
         $verify_payment = si_transaction($url, $data);
         dd($verify_payment);
+    }
+
+    public function cancelMembership(Request $request){
+        $ajaxData = $request->all();
+        $Response = false;
+        $error['message'] = "something went wrong !"; 
+        $Response = CurlAPI("subscriptions/cancelSubscription", "POST", '', 2, true);
+        if ($Response['success'] == true && !empty(@$Response['message'])) {
+            return response()->json($Response, 200)->header('Content-Type', 'application/json');
+        } else {
+            return response()->json($error, 201)->header('Content-Type', 'application/json');
+        }
     }
 
 }
