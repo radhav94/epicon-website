@@ -136,12 +136,11 @@ if(isset($result) && !empty($result)){
     </section>
 
     @include('components.update-user-modal')
+    @include('components.verify-user-modal')
 
     @stop
 
 @section('script')
-
-@if(empty($userData['mobile']) && $userData['mobile']=='' || empty($userData['email']) && $userData['email']=='')
 <script>
 $(document).ready(function(){
     $(".button-type").click(function () {
@@ -151,7 +150,13 @@ $(document).ready(function(){
         $(this).addClass("active");
             
     });
+});
+</script>
+@if(empty($userData['mobile']) && $userData['mobile']=='' || empty($userData['email']) && $userData['email']=='')
+<script>
+$(document).ready(function(){
     $('#update_user_modal').modal('show');
+    //$('#verifyotpmodal').modal('show');
     $(".updateProfile").click(function (e) {
             var userdetail = $(".userdetail").val();
             var type = $(".userdetail").attr('data-id');
@@ -174,9 +179,6 @@ $(document).ready(function(){
                 
                 }
             }
-            
-            //alert(userdetail);
-            $('#update_user_modal').modal('hide');
 
         $.ajaxSetup({
             headers: {
@@ -184,21 +186,97 @@ $(document).ready(function(){
             }
         });
         e.preventDefault();
-        var ajaxurl = APP_URL+'/updateUserDataAjax';
+        var ajaxurl = APP_URL+'/sendOtpAjax';
         $.ajax({
             type: 'POST',
             url: ajaxurl,
             data: {userdetail:userdetail,type:type,price:actual_price},
             dataType: 'json',
             success: function (res) {
-                console.log(res);
-                $("#submit_button").html(res.html);
+                console.log(res.success);
+                if(res.success == true){
+                    $('#update_user_modal').modal('hide');
+                    $("#userdata").text(userdetail);
+                    $('#verifyotpmodal').modal('show');
+                }
+
+                //$("#submit_button").html(res.html);
                 
             },
             error: function (e) {
             },
         });
     });
+
+    // user update verify OTP
+
+    $("#veryfy_submit").click(function (e) {
+            e.preventDefault();
+            var userdetail = $(".userdetail").val();
+            var type = $(".userdetail").attr('data-id');
+            var actual_price = $("#actual_price").val();
+            $(".errMessage").text('');
+            var valid = true;
+            $('.vpin').each(function() {
+                if ($(this).val() === '') {
+                    valid = false;
+                    return false; // Exit the loop early if an invalid input is found
+                }
+            });
+            
+            if (valid) {
+                $('#err_message').text('');
+            } else {
+                $('#err_message').text('Please fill in all input boxes.');
+            }
+                
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var formData = $('#verifyUserOtp').serialize()+ "&userdetail=" + userdetail+"&type=" + type+"&price=" + actual_price;
+        var ajaxurl = APP_URL+'/verifyOtpAjax';
+        $.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: formData,
+            dataType: 'json',
+            success: function (res) {
+                console.log(res.success);
+                if(res.success == true){
+                    $('#verifyotpmodal').modal('hide');
+                    $("#submit_button").html(res.html);
+                   
+                }else{
+
+                    showToaster(res.message, 2);
+                }
+                //$("#submit_button").html(res.html);
+                
+            },
+            error: function (e) {
+            },
+        });
+    });
+
+    $("input.vpin").keyup(function(event) {
+    if ($(this).val().length == 1) {
+      $(this).nextAll('input.vpin').first().focus();
+    } else if ($(this).val().length > 1) {
+      var new_val = $(this).val().substring(1, 2);
+      $(this).val(new_val);
+      $(this).nextAll('input.vpin').first().focus();
+    }
+  });
+  $("input.vpin").keydown(function(event) {
+    if (event.keyCode == 8 && $(this).val().length == 0) {
+      if ($(this).prev('input.vpin')) {
+        $(this).prev('input.vpin').focus();
+      }
+    }
+  });
+
 });
 
 function validateEmail(email) {
