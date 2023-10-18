@@ -103,59 +103,6 @@ if (notificationElement) {
     });
   }
 
-  // Pageblocker Start
-
-  function getCookie(cookieName) {
-        const name = cookieName + '=';
-        const decodedCookie = decodeURIComponent(document.cookie);
-        const cookieArray = decodedCookie.split(';');
-
-        for (let i = 0; i < cookieArray.length; i++) {
-            let cookie = cookieArray[i].trim();
-            if (cookie.indexOf(name) === 0) {
-                return cookie.substring(name.length, cookie.length);
-            }
-        }
-        return '';
-    }
-
-
-    function setCookie(cookieName, cookieValue, expiryDays) {
-        const date = new Date();
-        //days
-        date.setTime(date.getTime() + (expiryDays * 24 * 60 * 60 * 1000));
-
-        //minute
-        // date.setTime(date.getTime() + (expiryDays * 60 * 1000));
-
-        const expires = 'expires=' + date.toUTCString();
-        document.cookie = cookieName + '=' + cookieValue + ';' + expires + ';path=/';
-    }
-    
-    function hideShowPageBlocker(){
-        const cookieValue = getCookie('showblocker');
-        $('.page-blocker').show();
-        // if(! cookieValue){
-        //     $('.page-blocker').show();
-        // }
-    }
-
-    hideShowPageBlocker();
-
-    $('.page-blocker').on('click', function(event) {
-        if (!$(event.target).closest('.modal-body').length) {
-            setCookie('showblocker', '1', 1);
-            $('.page-blocker').hide();
-        }
-    });
-
-    $('.page-blocker .modal-body').click(function(){
-          setCookie('showblocker', '1', 1);
-          $('.page-blocker').hide();
-    });
-
-    // Pageblocker End
-
 });
 // top menu
 
