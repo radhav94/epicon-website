@@ -37,11 +37,11 @@
 
     @include('display.display-default')
 </div>
-
-
-@include('components.supermix-content-modal')
-@include('components.video-player-modal')
-
+    @include('components.supermix-content-modal')
+    @include('components.video-player-modal')
+    <?php if(request()->path() == '' || request()->path() == '/' || request()->path() == 'hi' || request()->path() == '/hi'){ ?>
+    @include('components.page-blocker')
+    <?php } ?>
 @stop
 
 @section('script')
@@ -110,6 +110,12 @@
             });
         }
 
-    });
-</script>
+        });
+    </script>
+    <script>
+    function closeModal() {
+        var modal = document.querySelector('.modal-backdrop');
+        modal.style.display = 'none';
+    }
+    </script>
 @stop
