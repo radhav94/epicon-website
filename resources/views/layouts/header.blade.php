@@ -82,7 +82,7 @@ if (isUserLoggedIn()) {
                 </a>
             </li>
             <li>
-                <a href="{{ getUrlWithPrefix('homepage') }}#epic-story-main">
+                <a href="{{ getUrlWithPrefix('homepage') }}#epic-shots">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path

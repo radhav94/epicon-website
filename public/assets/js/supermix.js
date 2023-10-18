@@ -23,6 +23,23 @@ $(document).ready(function () {
         }, 1000);
         $("#supermixWatchBtn").prop("disabled", true);
     })
+
+    // Add a handler for the modal close event
+    $('#supermixModal').on('hidden.bs.modal', function() {
+        if (typeof videoPayer !== "undefined") {
+            console.log(videoPayer)
+            videoPayer.stop();
+        }
+        $('video').attr('src', '');
+    });
+
+    // Add a click event listener to the window
+    $(window).click(function(event) {
+        // Check if the clicked element is not inside the modal
+        if (!$(event.target).closest('#supermixModal').length) {
+            $('#supermixModal').modal('hide');
+        }
+    });
 });
 
 
@@ -138,6 +155,9 @@ function loadSupermixVideo(source, subtitles, customData = false) {
 
             videoPayer.play();
             videoPayer.muted = false;
+            videoPayer.on('ended', event => {
+                $("#supermixData ul li.active").next('li').find('.supermixPlay').trigger('click');
+            });
 
             attactPlayerEvents(videoPayer);
         });
