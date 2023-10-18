@@ -34,7 +34,6 @@ $(document).ready(function () {
     $("#allAccessBtn").click(function() {
         var checkstaus = $(this).is(':checked');
         var kidsUrl= $("#kidsUrl").val();
-        //alert(kidsUrl);
         if(checkstaus){
             window.location.href=kidsUrl;
             return false;

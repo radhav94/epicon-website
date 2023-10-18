@@ -37,7 +37,7 @@ class LoggedIn
 
         if ($request->segment(1) == "kids") {
             $url = $request->url();
-            return redirect(route('homepage') . "?profile=kids&redirect=$url");
+            return redirect(route('homepage') . "?profile=kids");
         }
         if ($request->ajax()) {
             return JSONResponse(400, 'Please log in or sign up to continue.');
