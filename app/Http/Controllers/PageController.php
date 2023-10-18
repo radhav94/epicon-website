@@ -11,7 +11,7 @@ class PageController extends Controller
     private  $limit;
     public function  __construct()
     {
-                $this->limit = 10;
+        $this->limit = 10;
     }
 
     public function index($slug = 'home-v2')
@@ -38,7 +38,7 @@ class PageController extends Controller
 
     public function loadMore(Request $request)
     {   
-        $slug = ($request->route == '/') ? 'home-v2' : $request->route;
+        $slug = ($request->route == '/' || $request->route == 'hi') ? 'home-v2' : $request->route;
         $data = $this->homepageData($slug, $request->page);
         $result = $data['result'];
         if ($result && @$result['success'] ==  true) {
@@ -147,7 +147,7 @@ class PageController extends Controller
         //     $epicwebArr = CurlAPI("pages/midpage", "POST", ['user_id' => $user->user_id, 'session_id' => $user->api_session_id, 'catalogId' => $catalogid]);
         // } else {
         $page = 1;
-        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 50, 'page' => 1], 1);
+        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 48, 'page' => 1], 1);
         if (isset($epicwebArr) && $epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
             return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page'));
@@ -160,9 +160,9 @@ class PageController extends Controller
     {
         $request = Request();
         $page = $request->page;
-        $limit = 50;
+        $limit = 48;
         $catalog = $request->catalogid;
-        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 50, 'page' => $page], 1);
+        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 48, 'page' => $page], 1);
         $catalogue_blade = "paginatecontent";
         if ($epicwebArr && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];

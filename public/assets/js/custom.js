@@ -1,4 +1,20 @@
 $(document).ready(function () {
+// Check if an element with the class "notification" exists in the document
+var notificationElement = document.querySelector('.notification');
+
+if (notificationElement) {
+      getNotification();
+
+    function scheduleGetNotification() {
+      setTimeout(function() {
+        getNotification();
+        scheduleGetNotification(); // Call itself again to set up the next setTimeout
+      }, 30 * 60 * 1000); // 30 minutes in milliseconds
+    }
+
+    // Start the recursive timeout
+    scheduleGetNotification();
+}
 
   $('.additional-carousel').not('.slick-initialized').slick({
     dots: false,
@@ -89,6 +105,37 @@ $(document).ready(function () {
 
 });
 // top menu
+
+function getNotification(){
+    $.ajax({
+        type: 'GET',
+        url: '/notifications',
+        success: function (data) {
+            // Handle the response data here
+            
+            var data = data.notifications;
+            // console.log(data);
+            var html = '';
+            if(data != ''){
+            $('.no-notification').hide();
+            data.forEach(function(item, index) {
+              // console.log('Item at index ' + index + ':');
+              // console.log(item.big_picture);
+              html += '<li class="content active mb-3"><a href="'+item.data.customkey+'" class="notif-img"><img src="'+item.big_picture+'" alt=""></a><div><h3>'+item.headings.en+'</h3><h4>'+item.contents.en+'</h4></div></li>';
+              // You can access properties of the item like item.adm_big_picture, item.adm_group, etc.
+            });
+            // console.log(html+"HTML Response");
+            $('.notification-list').html(html);
+            }else{
+              $('.no-notification').show();
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener('scroll', function () {

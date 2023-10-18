@@ -421,7 +421,7 @@ function getSeasonEpisodeNum($val)
         // 'season' => '',
         // 'episode' => ''
     ];
-    if ($val['content_type'] == 'EPISODE') {
+    if (@$val['content_type'] == 'EPISODE') {
         if (isset($val['parent_name'])) {
             $parent_name = trim($val['parent_name']);
             $wordToFind = 'season';
@@ -483,7 +483,7 @@ function getContentUrl($value)
 
 function getplayanchorhtml($value){
    $data_url = (isActiveSubscription() && $value['free_premium']) || !$value['free_premium'] ? $value['game_url'] : '';
-   $html = '<a href="javascript:void(0)" data-url="'. $data_url .'" data-premium="'.$value['free_premium'].'" data-activesubscriber="'. isActiveSubscription().'" class="main-card check-content-url">';
+   $html = '<a href="javascript:void(0)" target="_blank" data-url="'. $data_url .'" data-premium="'.$value['free_premium'].'" data-activesubscriber="'. isActiveSubscription().'" class="main-card check-content-url">';
    return $html;
 }
 
@@ -884,4 +884,31 @@ function checkNumDays($date){
     $dateDiff = date_diff($today,$enddate);
     $numOfDays = $dateDiff->format('%r%a');
     return $numOfDays;
+}
+
+function getNewTitle($value){
+    $html = '';
+    $cls = '';
+
+    if (isset($value['is_new']) && $value['is_new']) {
+        if (isset($value['catalog_slug'])) {
+            if ($value['catalog_slug'] == 'movies') {
+                $html = '<div class="new-show-title">New</div>';
+                $cls = 'eod-darlings';
+            } elseif ($value['catalog_slug'] == 'tv-shows' && isset($value['content_type'])) {
+                if ($value['content_type'] == 'SHOW') {
+                    $html = '<div class="new-show-title">New</div>';
+                    $cls = 'eod-darlings';
+                } elseif ($value['content_type'] == 'SEASON') {
+                    $html = '<div class="new-show-title">New</div>';
+                    $cls = 'eod-darlings';
+                } elseif ($value['content_type'] == 'EPISODE') {
+                    $html = '<div class="new-show-title">New</div>';
+                    $cls = 'eod-darlings';
+                }
+            }
+        }
+    }
+    
+    return ['cls' => $cls, 'html' => $html];
 }

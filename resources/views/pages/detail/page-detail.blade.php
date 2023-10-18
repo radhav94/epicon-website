@@ -5,6 +5,7 @@ if (@$content['content_type'] == 'SHOW' || $content['content_type'] == 'SEASON')
     $loadPlayer = true;
 }
 $loadPlayer = true;
+// dd($content['catalog_slug']);
 ?>
 
 @extends('layouts.default')
@@ -33,10 +34,6 @@ $loadPlayer = true;
 
     <section class="content-detail-banner position-relative">
         <div class="banner-main position-relative">
-            <button class="rounded-transparent-btn pos-btn">
-                <img src="{{ asset('assets/img/mute-icon.svg') }}" alt="icon">
-            </button>
-
             <img src="{{ $cover_img }}" alt="img">
         </div>
 
@@ -57,9 +54,9 @@ $loadPlayer = true;
                                 </button>
 
                                 @if (@$content['free_premium'] == true && !isActiveSubscription())
-                                    <button class="subcription-btn me-3">
+                                    <a class="subcription-btn me-3" href="{{ getUrl('subscription') }}" style="text-decoration: none">
                                         <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> {{__('Subscribe Now')}}
-                                    </button>
+                                    </a>
                                 @endif
 
 
@@ -83,10 +80,11 @@ $loadPlayer = true;
                                     <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon"
                                         @if ($wishAction == 'add') style="display: none" @endif>
                                 </button>
-
+                                @if(isset($content['catalog_slug']) && $content['catalog_slug'] != 'live-tv')
                                 <button class="rounded-transparent-btn me-3 clapButton" data-id="{{ @$content['ID'] }}">
                                     <img src="{{ asset('assets/img/clap-icon.svg') }}" alt="icon">
                                 </button>
+                                @endif
                                 <button class="rounded-transparent-btn shareThis" data-url="{{ getContentUrl($content) }}"
                                     data-title="{{ $share_title }}">
                                     <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
@@ -142,6 +140,7 @@ $loadPlayer = true;
                                 </button>
                             @endif
 
+                            @if(isset($content['catalog_slug']) && $content['catalog_slug'] != 'live-tv')
                             <button class="border-btn mx-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none">
@@ -167,6 +166,7 @@ $loadPlayer = true;
                                 </svg> &nbsp;
                                 <span class="claps_num">{{ @$content['claps'] }}</span>
                             </button>
+                            @endif
                             @if (@$content['is_popular'])
                                 <button class="border-btn">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

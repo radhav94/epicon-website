@@ -382,6 +382,7 @@ class SubscriptionController extends Controller
     public function planBenefit(Request $request)
     {
         $data = $request->all();
+        $message = "data not found";
         $result = CurlAPI("subscriptions/plans", "GET", "", 2);
         if ($result && @$result['success'] == true) {
 
@@ -434,7 +435,6 @@ class SubscriptionController extends Controller
         } else {
             return response()->json($message, 201)->header('Content-Type', 'application/json');
         }
-        $message = "data not found";
 
     }
 
@@ -480,10 +480,11 @@ class SubscriptionController extends Controller
         $paymentresponse = $request->all();
         $paymtentStatus = strtolower($paymentresponse['status']);
         $final_result = ['message' => 'The transaction has been declined.'];
-        $getOnlyDate = date('Y-m-d', strtotime(@$orderdata['subscription_end_date']));
+        //$getOnlyDate = date('Y-m-d', strtotime(@$orderdata['subscription_end_date']));
         if ($paymentresponse['status'] == 'success') {
             $orderData = $request->session()->get('orderdata');
             $orderValue = $request->session()->get('create_order');
+            $getOnlyDate = date('Y-m-d', strtotime(@$orderData['subscription_end_date']));
 
             $updateOrderData = [
                 'plan' => $orderValue['plan_id'] ?? '',
