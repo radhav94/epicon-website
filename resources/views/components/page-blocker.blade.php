@@ -17,6 +17,7 @@
                 }      
 ?>
 <!-- page blocker start -->
+@if(env('ENABLE_PAGEBLOCKER') == 1)
 <div class="modal modal-backdrop page-blocker" tabindex="-1">
   <div class="modal-dialog page-dialog modal-dialog-centered modal-lg">
     <div class="modal-content blocker-content">
@@ -27,4 +28,5 @@
     </div>
   </div>
 </div>
+@endif
 <!-- page blocker end -->
