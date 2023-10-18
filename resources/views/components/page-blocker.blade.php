@@ -1,5 +1,5 @@
 <?php 
-    $blockerlink = (env('IS_PAGEBLOCKER_FREE_CONTENT')==true) ? GetUrl(env('PAGEBLOCKER_LANDING_URL','/')) : ($isValidSubscription==true ? GetUrl(env('PAGEBLOCKER_LANDING_URL','/')) : GetUrl('/'));
+    $blockerlink = (env('IS_PAGEBLOCKER_FREE_CONTENT')==true) ? getUrl(env('PAGEBLOCKER_LANDING_URL','/')) : getUrl('/');
                 $ua = strtolower($_SERVER["HTTP_USER_AGENT"]);
                 $isMob = is_numeric(strpos($ua, "mobile"));
                  if(isset($isMob) && $isMob==true){
