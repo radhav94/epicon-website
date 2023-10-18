@@ -903,7 +903,12 @@ function initSliders() {
         // }
     }
 
-    hideShowPageBlocker();
+    var home_url = window.location.protocol + "//" + window.location.host;
+    var site_url = window.location.protocol + "//" + window.location.host + "/";
+
+    if(window.location.href == (site_url || home_url)){
+        hideShowPageBlocker();
+    }
 
     $('.page-blocker').on('click', function(event) {
         if (!$(event.target).closest('.modal-body').length) {
@@ -918,7 +923,7 @@ function initSliders() {
     });
 
     // Pageblocker End
-    
+
     });
 
 }
