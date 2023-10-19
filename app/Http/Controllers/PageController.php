@@ -16,6 +16,7 @@ class PageController extends Controller
 
     public function index($slug = 'home-v2')
     {
+        profileActive();
         $data = $this->homepageData($slug);
         $result = $data['result'];
 
@@ -112,7 +113,8 @@ class PageController extends Controller
         // dd($request->all());
         $params = [
             'content_id' => $request->content_id,
-            'action' => $request->action
+            'action' => $request->action,
+            'profile_id' => session()->get('active_profile') ?? ''
         ];
         $result = CurlAPI("pages/wishlist", "POST", $params, 1, true);
 

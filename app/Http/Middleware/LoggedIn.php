@@ -32,13 +32,6 @@ class LoggedIn
 
             return $next($request);
         }
-
-        /* if user not log in then prevent kids section.  */
-
-        if ($request->segment(1) == "kids") {
-            $url = $request->url();
-            return redirect(route('homepage') . "?profile=kids");
-        }
         if ($request->ajax()) {
             return JSONResponse(400, 'Please log in or sign up to continue.');
         }

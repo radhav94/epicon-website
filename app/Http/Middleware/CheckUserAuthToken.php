@@ -30,10 +30,6 @@ class CheckUserAuthToken
 
             }
         }
-        if ($request->segment(1) == "kids") {
-            $url = $request->url();
-            return redirect(route('homepage') . "?profile=kids");
-        }
         return $next($request);
     }
 }

@@ -167,12 +167,7 @@ class SubscriptionController extends Controller
         $amount = $result['actual_price'];
         $productinfo = $result['id'];
         $firstname = $userData['name'];
-        if ((isset($userData['email'])) && !empty($userData['email'])) {
-            $email = $userData['email'];
-
-        } else {
-            $email = "ramv339@gmail.com";
-        }
+        $email = $userData['email'];
 
         $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . "|" . $parameters['txnid'] . "|" . $parameters['amount'] . "|" . $parameters['productinfo'] . "|" . $parameters['firstname'] . "|" . $parameters['email'] . "|||||||||||" . $parameters['si_details'] . "|" . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
         $calculated_hash = strtolower(hash("sha512", $HASH));
@@ -337,7 +332,7 @@ class SubscriptionController extends Controller
             }
             $parameters['si'] = "1";
             $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
-            $parameters['phone'] = $userData['mobile'] ?? '9819208025';
+            $parameters['phone'] = $userData['mobile'] ?? '';
             $parameters['api_version'] = "7";
             $parameters['si_details'] = json_encode([
                 'billingAmount' => $totalamount,
@@ -358,12 +353,12 @@ class SubscriptionController extends Controller
         $calculated_hash = strtolower(hash("sha512", $HASH));
         $parameters['hash'] = $calculated_hash;
         $parameters['SALT'] = config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
-        $parameters['curl'] = config('epicconfig.PAYUMONEY.RESPONSE_URL');
-        $parameters['surl'] = config('epicconfig.PAYUMONEY.RESPONSE_URL');
-        $parameters['furl'] = config('epicconfig.PAYUMONEY.RESPONSE_FAIL_URL');
+        $parameters['curl'] = route('payusuccess');
+        $parameters['surl'] = route('payusuccess');
+        $parameters['furl'] = route('payufail');
         $parameters['payuUrl'] = config('epicconfig.PAYUMONEY.SUBSCRIPTION_URL');
-        $parameters['phone'] = empty($parameters['phone']) ? '9819208025' : '9819208025';
-        $parameters['email'] = empty($parameters['email']) ? 'ramv339@gmail.com' : 'ramv339@gmail.com';
+        $parameters['phone'] = empty($parameters['phone']) ? $parameters['phone'] : '';
+        $parameters['email'] = empty($parameters['email']) ? $parameters['email'] : '';
 
         Log::info("----------#####full parametes for log for ios full renew plan for payu -----------");
         Log::debug(json_encode($parameters));
@@ -377,6 +372,8 @@ class SubscriptionController extends Controller
         Log::info("-----PayUMoney Request Data------");
         Log::debug(json_encode($parameters));
         Log::info("-----End------");
+        //$orderData = $request->session()->get('orderdata');
+        //dd($orderData);
         return $parameters;
     }
 
@@ -476,8 +473,12 @@ class SubscriptionController extends Controller
         }
 
     }
+    public function thankyou(Request $request){
+        return view('subscription.thankyou');
+    }
     public function payusuccess(Request $request)
     {
+        //test success page
         $paymentresponse = $request->all();
         $paymtentStatus = strtolower($paymentresponse['status']);
         $final_result = ['message' => 'The transaction has been declined.'];
@@ -593,7 +594,7 @@ class SubscriptionController extends Controller
                 $this->EventPushData($paymtentStatus);
 
                 $final_result = ['message' => 'You have successfully purchased a subscription plan.'];
-                return view('subscription.thankyou', compact('final_result'));
+                return view('subscription.thankyou', compact('final_result','orderData'));
             } else {
                 ///---*** if payment not verify ***---///
                 return view('subscription.subscription-fail', compact('final_result'));

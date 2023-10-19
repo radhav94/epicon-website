@@ -123,6 +123,7 @@ foreach ($lang as $val) {
         Route::post('/edit-Profile', [ProfileController::class, 'update'])->name('update');
         Route::post('/delete-Profile/{id}', [ProfileController::class, 'destroy'])->name('destroy');
         Route::post('/setChildPin', [ProfileController::class, 'setChildPin'])->name('setChildPin');
+        Route::get('my_profile/{id}', [ProfileController::class, 'myProfile'])->name('myProfile');
     });
 
     Route::group(['prefix' => $prefix, 'middleware' => 'loggedin'], function () {
@@ -135,7 +136,7 @@ foreach ($lang as $val) {
         Route::post('payusuccess', [SubscriptionController::class, 'payusuccess'])->name('payusuccess');
         Route::post('payufail', [SubscriptionController::class, 'payufail'])->name('payufail');
         Route::post('paymentProcess', [SubscriptionController::class, 'paymentProcess'])->name('paymentProcess');
-        Route::post('thankyou', [SubscriptionController::class, 'thankyou'])->name('thankyou');
+        Route::get('thankyou', [SubscriptionController::class, 'thankyou'])->name('thankyou');
         Route::get('cancelRecurringPayu', [SubscriptionController::class, 'cancelRecurringPayu'])->name('cancelRecurringPayu');
         Route::post('sendOtpAjax', [SubscriptionController::class, 'sendOtpAjax']);
         Route::post('verifyOtpAjax', [SubscriptionController::class, 'verifyOtpAjax']);
