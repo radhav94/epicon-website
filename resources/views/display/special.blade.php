@@ -22,6 +22,7 @@
                  @include('components.item-hover-card')
                  <a href="javascript:void(0);" class="main-card">
                      {!! freePremiumDiv($val) !!}
+                     {!! topTenDiv($val) !!}
                      <div class="main-img {{$getTitle['cls']}}">
                          <img src="{{ $cover_img }}" alt="">
                          {!! $getTitle['html'] !!}
