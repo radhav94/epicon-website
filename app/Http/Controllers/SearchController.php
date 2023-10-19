@@ -42,11 +42,10 @@ class SearchController extends Controller
             ];
         } else {
             $postData = [
-                'se archTerm' => $searchText,
+                'searchTerm' => $searchText,
             ];
         }
-
-
+        
         $searchResult = CurlAPI("pages/search", 'POST', $postData, 1);
         if ($searchResult) {
             $data = [];
