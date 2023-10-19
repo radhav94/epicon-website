@@ -200,6 +200,7 @@ class SubscriptionController extends Controller
 
         $request = Request();
         $userData = $request->session()->get('user');
+        //dd($userData);
         $order = $orderArr['order_data'];
         $userid = $userData['user_id'] ?? '';
         $order_number = $order['order_id'];
@@ -696,36 +697,76 @@ class SubscriptionController extends Controller
         return view('subscription.subscription-fail', compact('message'));
     }
 
-    public function updateUserDataAjax(Request $request)
+    public function sendOtpAjax(Request $request)
     {
         $ajaxData = $request->all();
+        $email="";
+        $mobile="";
         //dd($ajaxData);
         $type = $ajaxData['type'] ?? '';
-        $userData = $ajaxData['userdetail'] ?? '';
-        $updateResponse = true;
-        $res = [];
+        if($type == "email"){
+            $email = $ajaxData['userdetail'] ?? '';
+        }else{
+          $mobile =   $ajaxData['userdetail'] ?? '';
+        }
+        $otpResponse = [];
         $postData = [
-            'type' => $type,
-            'userData' => $userData,
+            'mobile' => $mobile,
+            'email' => $email,
         ];
-        //$updateResponse = CurlAPI("users/editProfile", "POST", $postData, 2, true);
-        //dd($updateResponse);
-        $res['html'] = '<button class="fill-btn px-5" type="submit">' . __('Continue Pay') . ' Rs. ' . $ajaxData['price'] . '
+        $otpResponse = CurlAPI("users/contactDetailsOTP", "POST", $postData, 2, true);
+        //dd($otpResponse);
+        //$otpResponse['success'] = true;
+        if ($otpResponse && @$otpResponse['success'] == true) {
+            return response()->json($otpResponse, 200)->header('Content-Type', 'application/json');
+        } else {
+            return response()->json('something went wrong !', 201)->header('Content-Type', 'application/json');
+        }
+
+    }
+
+    public function verifyOtpAjax(Request $request)
+    {
+        $ajaxData = $request->all();
+        $email="";
+        $mobile="";
+        $otp = $ajaxData['vpin'] ? implode("",$ajaxData['vpin']) : '';
+        $type = $ajaxData['type'] ?? '';
+        if($type == "email"){
+            $email = $ajaxData['userdetail'] ?? '';
+        }else{
+          $mobile =   $ajaxData['userdetail'] ?? '';
+        }
+        $verifyResponse = [];
+        $postData = [
+            'mobile' => $mobile,
+            'email' => $email,
+            'otp' => $otp
+        ];
+        //dd($postData);
+        $verifyResponse = CurlAPI("users/contactDetailsOTPVerify", "POST", $postData, 2, true);
+        //dd($verifyResponse);
+        $verifyResponse['html'] = '<button class="fill-btn px-5" type="submit">' . __('Continue Pay') . ' Rs. ' . $ajaxData['price'] . '
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M4.75 12C4.75 11.5858 5.08579 11.25 5.5 11.25H19.5C19.9142 11.25 20.25 11.5858 20.25 12C20.25 12.4142 19.9142 12.75 19.5 12.75H5.5C5.08579 12.75 4.75 12.4142 4.75 12Z" fill="#070707"/>
             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9697 4.46967C12.2626 4.17678 12.7374 4.17678 13.0303 4.46967L20.0303 11.4697C20.3232 11.7626 20.3232 12.2374 20.0303 12.5303L13.0303 19.5303C12.7374 19.8232 12.2626 19.8232 11.9697 19.5303C11.6768 19.2374 11.6768 18.7626 11.9697 18.4697L18.4393 12L11.9697 5.53033C11.6768 5.23744 11.6768 4.76256 11.9697 4.46967Z" fill="#070707"/>
           </svg>
     </button>';
-        update_user_session();
-        if ($updateResponse) {
-            return response()->json($res, 200)->header('Content-Type', 'application/json');
+        
+        if ($verifyResponse && @$verifyResponse['success'] == true) {
+            update_user_session();
+            return response()->json($verifyResponse, 200)->header('Content-Type', 'application/json');
         } else {
-            return response()->json('something went wrong !', 400)->header('Content-Type', 'application/json');
+            return response()->json($verifyResponse, 201)->header('Content-Type', 'application/json');
         }
 
         //update session
 
     }
+
+
+
+
     public function cancelRecurringPayu()
     {
         $parameters_verify_payment = [];
@@ -745,6 +786,18 @@ class SubscriptionController extends Controller
         $url = "https://test.payu.in/merchant/postservice.php?form=2";
         $verify_payment = si_transaction($url, $data);
         dd($verify_payment);
+    }
+
+    public function cancelMembership(Request $request){
+        $ajaxData = $request->all();
+        $Response = false;
+        $error['message'] = "something went wrong !"; 
+        $Response = CurlAPI("subscriptions/cancelSubscription", "POST", '', 2, true);
+        if ($Response['success'] == true && !empty(@$Response['message'])) {
+            return response()->json($Response, 200)->header('Content-Type', 'application/json');
+        } else {
+            return response()->json($error, 201)->header('Content-Type', 'application/json');
+        }
     }
 
 }

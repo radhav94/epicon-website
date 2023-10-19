@@ -138,8 +138,10 @@ foreach ($lang as $val) {
         Route::post('paymentProcess', [SubscriptionController::class, 'paymentProcess'])->name('paymentProcess');
         Route::post('thankyou', [SubscriptionController::class, 'thankyou'])->name('thankyou');
         Route::get('cancelRecurringPayu', [SubscriptionController::class, 'cancelRecurringPayu'])->name('cancelRecurringPayu');
-        Route::post('updateUserDataAjax', [SubscriptionController::class, 'updateUserDataAjax']);
+        Route::post('sendOtpAjax', [SubscriptionController::class, 'sendOtpAjax']);
+        Route::post('verifyOtpAjax', [SubscriptionController::class, 'verifyOtpAjax']);
         Route::get('transaction-history', [UserAccountController::class, 'TransactionHistory'])->name('transaction-history');
+        Route::post('cancelMembership', [SubscriptionController::class, 'cancelMembership']);
         //end
 
         /*settings route*/

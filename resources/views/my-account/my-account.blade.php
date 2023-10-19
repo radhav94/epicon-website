@@ -36,6 +36,7 @@ $dateDiff = date_diff($enddate,$today);
 $numOfDays = checkNumDays($subscriptionPurchases['subscription_end_date']);
 
 }
+$subplan = checkSubscription();
 ?>
 
 <!-- login model -->
@@ -58,7 +59,7 @@ $numOfDays = checkNumDays($subscriptionPurchases['subscription_end_date']);
                 </span>
                 <h4 class="text-white mt-4">{{__('Cancel Membership')}}</h4>
                 <p class="w-75 text-white small m-auto">{{__('Cancellation will be effective at the end of your current billing cycle on 20 May 2024. No refunds will be made.')}}</p>
-                <button class="login-btn mt-4" style="width: 280px;">
+                <button class="login-btn mt-4" style="width: 280px;" id="can_member">
                     {{__('Finish Cancellation')}}
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z" fill="#070707"/>
@@ -132,11 +133,13 @@ $numOfDays = checkNumDays($subscriptionPurchases['subscription_end_date']);
                 <div class="billing-details w-100 text-white">
                     <h4>{{__('Billing Details')}}</h4>
                     <p class="position-relative"> 
+                        @if(!empty($viewprofile['email']))
                         <img src="{{ asset('/img/email.svg') }}" alt="">
                         {{ isset($viewprofile['email']) ? $viewprofile['email'] : '' }} &nbsp;
-                        <button class="edit-icon bg-transparent border-0">
+                        @endif
+                        <!-- <button class="edit-icon bg-transparent border-0">
                             <img src="{{ asset('/img/edit-icon.svg') }}" alt="">
-                        </button>
+                        </button> -->
                     </p>
                     <p>
                         <img src="{{ asset('/img/mobile.svg') }}" alt="">&nbsp; {{ isset($viewprofile['user_id']) ? $viewprofile['user_id'] : '' }}
@@ -152,7 +155,8 @@ $numOfDays = checkNumDays($subscriptionPurchases['subscription_end_date']);
                               </svg>
                         </a>
                     </p>
-                    <p class="position-relative border-bot pb-4"> 
+                    @if(@$subplan['status'] == 'active')
+                    <p class="position-relative border-bot pb-4 can_memb"> 
                         {{__('Cancel Membership')}}
                         <button class="edit-icon bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#cancelMembership">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="20" viewBox="0 0 14 20" fill="none">
@@ -160,6 +164,7 @@ $numOfDays = checkNumDays($subscriptionPurchases['subscription_end_date']);
                               </svg>
                         </button>
                     </p>
+                    @endif
                 </div>
             </div>
             @endif
@@ -195,5 +200,55 @@ $numOfDays = checkNumDays($subscriptionPurchases['subscription_end_date']);
 @stop
 
 @section('script')
+
+<script>
+    $(document).ready(function(){
+        $(".can_memb").click(function(){
+        $("#cancelMembership").modal('show');   
+        });
+        $("#can_member").click(function (e) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        e.preventDefault();
+        var ajaxurl = APP_URL+'/cancelMembership';
+        var langurl = $('html').attr('lang');
+        if(langurl == 'hi'){
+            var langUrl = APP_URL+'/hi/my-account';
+        }else{
+            var langUrl = APP_URL+'/my-account';
+        }
+        $.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: {planid:'cancel'},
+            dataType: 'json',
+            success: function (data) {
+                //console.log(data.pname);
+                if(data.success == true){
+                    showToaster(data.message, 1);
+                    $("#cancelMembership").hide();
+                    setTimeout(function() {
+                        window.location.href=langUrl;
+                    }, 2500);
+                }else{
+                    $("#cancelMembership").hide();
+                    showToaster(data.message, 2);
+                    setTimeout(function() {
+                        window.location.href=langUrl;
+                    }, 2500);
+                   
+                }
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    });
+
+});
+    </script>
   
 @stop
