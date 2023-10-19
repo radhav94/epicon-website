@@ -196,7 +196,7 @@ if (request()->path() == "hi") {
             @endif
             <!-- <button id="allAccessBtn">All access</button> -->
             <div class="form-check form-switch">
-            <input class="form-check-input" name ="kidscheckbox" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
+            <input class="form-check-input" name ="kidscheckbox" data-log="{{ isUserLoggedIn() }}" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
 
             </div>
                 <input type="hidden" name="kidsUrl" id="kidsUrl" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
@@ -329,10 +329,12 @@ $profile = getProfileData();
                             @if ($profile)
                                 @foreach ($profile['profiles'] as $key => $value)
                                     <?php
-$profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : asset('assets/img/edit-profile-pik.png');
-?>
+                                        $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : asset('assets/img/edit-profile-pik.png');
+                                        $active_profile = session()->get('active_profile');
+                                        $isActiveProfile = $value['id'] == $active_profile ? 'active' : '';
+                                    ?>
 
-                                    <a href="#/">
+                                    <a href="{{ getUrlWithPrefix('profile.myProfile', $value['id']) }}" class="{{ $isActiveProfile }}">
                                         <div class="profile-pik girl-bg active">
                                             <img src="{{ $profile_img }}" alt="">
                                         </div>

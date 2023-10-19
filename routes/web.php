@@ -123,6 +123,7 @@ foreach ($lang as $val) {
         Route::post('/edit-Profile', [ProfileController::class, 'update'])->name('update');
         Route::post('/delete-Profile/{id}', [ProfileController::class, 'destroy'])->name('destroy');
         Route::post('/setChildPin', [ProfileController::class, 'setChildPin'])->name('setChildPin');
+        Route::get('my_profile/{id}', [ProfileController::class, 'myProfile'])->name('myProfile');
     });
 
     Route::group(['prefix' => $prefix, 'middleware' => 'loggedin'], function () {

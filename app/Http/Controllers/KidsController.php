@@ -19,6 +19,10 @@ class KidsController extends Controller
         if ($this->isKidsSectionEnabled()) {
             setcookie("KidsMode", true, time() + 60 * 60 * 24 * 30, '/');
             session()->put('kidsMode', true);
+            $kid_profile = getDefaultProfile('kids');
+            if ($kid_profile != "") {
+                profileActive($kid_profile);
+            }
 
             $params = [
                 'slug' => 'kids-' . $slug,
@@ -64,6 +68,10 @@ class KidsController extends Controller
             $request->session()->put('profile_data', $profile_data);
             setcookie("KidsMode", false, time() + 60 * 60 * 24 * 30, '/');
             session()->put('kidsMode', false);
+            $default_profile = getDefaultProfile();
+            if ($default_profile != "") {
+                profileActive($default_profile);
+            }
         }
         return JSONResponse(200, '', ['message' => @$response['message'], 'success' => @$response['success'], 'redirect' => getUrlWithPrefix('homepage')]);
     }

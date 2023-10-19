@@ -912,3 +912,65 @@ function getNewTitle($value){
     
     return ['cls' => $cls, 'html' => $html];
 }
+
+if (!function_exists('profileActive')) {
+    function profileActive($profile_id = "")
+    {
+        if (!isUserLoggedIn()) {
+            return;
+        }
+        if ($profile_id != "") {
+            session()->put('active_profile', $profile_id);
+        } else {
+            if ($profile_id == "" && !session()->has('active_profile')) {
+                $default_profile = getDefaultProfile();
+                session()->put('active_profile', $default_profile);
+            }
+        }
+        return;
+    }
+}
+
+if (!function_exists('getDefaultProfile')) {
+    function getDefaultProfile($type = 'all_access')
+    {
+        $profile_id = '';
+        $user = session()->get('user');
+        $profiles = $user['profiles'];
+        foreach ($profiles as $profile) {
+            if (array_key_exists('is_default', $profile) && $profile['is_default'] == 1) {
+                if ($type == 'kids' && $profile['kids'] == 1) {
+                    $profile_id = $profile['id'];
+                    break;
+                } else {
+                    if ($profile['kids'] != 1) {
+                        $profile_id = $profile['id'];
+                        break;
+                    }
+                }
+            }
+        }
+        return $profile_id;
+    }
+}
+
+if (!function_exists('displayLang')) {
+    function displayLang()
+    {
+        return session()->has('displayLanguageParam') ? session()->get('displayLanguageParam') : 'en';
+    }
+}
+
+if (!function_exists('isKidsProfile')) {
+    function isKidsProfile($profile_id)
+    {
+        $user = session()->get('user');
+        $profiles = $user['profiles'];
+        foreach ($profiles as $profile) {
+            if ($profile['id'] == $profile_id && $profile['kids'] == 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+}

@@ -320,7 +320,7 @@
                             } else {
                                 // $('.modal-content').hide();
                                 if (queryParams.get('profile') == "kids") {
-                                    window.location.href = $("#kidsUrl").val();
+                                    window.location.href = $("input[name='kidsUrl']").val();
                                 } else {
                                     location.reload();
                                 }
@@ -469,7 +469,7 @@
                             $('.screen-sucess-logged').show();
                             setTimeout(function() {
                                 if (queryParams.get('profile') == "kids" ) {
-                                    window.location.href = $("#kidsUrl").val();
+                                    window.location.href = $("input[name='kidsUrl']").val();
                                 } else {
                                     window.location.href = response.payload.redirect;
                                 }

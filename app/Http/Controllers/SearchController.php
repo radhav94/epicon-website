@@ -9,16 +9,11 @@ class SearchController extends Controller
 {
     public function trendingsearch(Request $request)
     {
-        // session()->put('searchHistory', []);
-        $searchHistory = session()->has('searchHistory') ? session()->get('searchHistory') : [];
-        $kidsMode = session()->has('kidsMode') ? session()->get('kidsMode') : false;
-        if ($kidsMode) {
-            $searchArray = $searchHistory['kids'] ?? [];
-        } else {
-            $searchArray = $searchHistory['all_access'] ?? [];
-        }
-        
-        $searchList = "";
+        $searchHistory  = session()->has('searchHistory') ? session()->get('searchHistory') : [];
+        $kidsMode       = session()->has('kidsMode') ? session()->get('kidsMode') : false;
+        $active_profile = session()->get('active_profile') ?? '';
+        $searchArray    = $searchHistory[$active_profile] ?? [];
+        $searchList     = "";
 
         if (count($searchArray) > 0) {
             krsort($searchArray);
@@ -40,17 +35,17 @@ class SearchController extends Controller
     {
         $searchText = $request->post('searchinput');
         $kidsMode = session()->has('kidsMode') ? session()->get('kidsMode') : false;
-        if($kidsMode == true){
+        if ($kidsMode == true) {
             $postData = [
-            'searchTerm' => $searchText,
-            'kids_content' => true
+                'searchTerm' => $searchText,
+                'kids_content' => true
             ];
-        }else{
+        } else {
             $postData = [
-            'searchTerm' => $searchText,
+                'se archTerm' => $searchText,
             ];
         }
-        
+
 
         $searchResult = CurlAPI("pages/search", 'POST', $postData, 1);
         if ($searchResult) {
@@ -58,12 +53,12 @@ class SearchController extends Controller
 
             // Define a mapping of category titles to response keys
             $categoryMapping = [
-                'All' => 'AllResult',
-                'Movies' => 'MoviesResult',
-                'Shows' => 'ShowsResult',
-                'Podcasts' => 'PodcastsResult',
-                'Kids' => 'KidsResult',
-                'Games' => 'GamesResult',
+                'All'       => 'AllResult',
+                'Movies'    => 'MoviesResult',
+                'Shows'     => 'ShowsResult',
+                'Podcasts'  => 'PodcastsResult',
+                'Kids'      => 'KidsResult',
+                'Games'     => 'GamesResult',
             ];
 
             if (key_exists('contents', $searchResult)) {
@@ -121,15 +116,11 @@ class SearchController extends Controller
 
     private function addHistorySession($list = "", $title = "")
     {
-        $kidsMode = session()->has('kidsMode') ? session()->get('kidsMode') : false;
-        
         if (isUserLoggedIn()) {
             $searchHistory = session()->has('searchHistory') ? session()->get('searchHistory') : [];
-            if ($kidsMode) {
-                $searchArray = $searchHistory['kids'] ?? [];
-            } else {
-                $searchArray = $searchHistory['all_access'] ?? [];
-            }
+            $active_profile = session()->get('active_profile') ?? '';
+            $searchArray = $searchHistory[$active_profile] ?? [];
+
             if (count($searchArray) == 10) {
                 array_splice($searchArray, 0, 1);
             } else {
@@ -142,13 +133,9 @@ class SearchController extends Controller
                     'list' => $list
                 ];
             }
-            if ($kidsMode == true) {
-                $searchHistory['kids'] = $searchArray;
-            } else {
-                $searchHistory['all_access'] = $searchArray;
-            }
-            session()->put('searchHistory', $searchHistory);
 
+            $searchHistory[$active_profile] = $searchArray;
+            session()->put('searchHistory', $searchHistory);
         }
     }
 
@@ -168,7 +155,7 @@ class SearchController extends Controller
                 $cover_img = getCardImage($content, 'cover_image', 'small');
                 $url = getContentUrl($content);
                 $htmlContent .= '<li>
-                                <a href="'.$url.'" class="main-card mt-0">
+                                <a href="' . $url . '" class="main-card mt-0">
                                     <div class="main-img mt-0">
                                         <img src="' . $cover_img . '" alt="">
                                     </div>
