@@ -196,7 +196,7 @@ if (request()->path() == "hi") {
             @endif
             <!-- <button id="allAccessBtn">All access</button> -->
             <div class="form-check form-switch">
-            <input class="form-check-input" name ="kidscheckbox" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
+            <input class="form-check-input" name ="kidscheckbox" data-log="{{ isUserLoggedIn() }}" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
 
             </div>
                 <input type="hidden" name="kidsUrl" id="kidsUrl" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
