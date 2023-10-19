@@ -167,12 +167,7 @@ class SubscriptionController extends Controller
         $amount = $result['actual_price'];
         $productinfo = $result['id'];
         $firstname = $userData['name'];
-        if ((isset($userData['email'])) && !empty($userData['email'])) {
-            $email = $userData['email'];
-
-        } else {
-            $email = "ramv339@gmail.com";
-        }
+        $email = $userData['email'];
 
         $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . "|" . $parameters['txnid'] . "|" . $parameters['amount'] . "|" . $parameters['productinfo'] . "|" . $parameters['firstname'] . "|" . $parameters['email'] . "|||||||||||" . $parameters['si_details'] . "|" . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
         $calculated_hash = strtolower(hash("sha512", $HASH));
@@ -358,9 +353,9 @@ class SubscriptionController extends Controller
         $calculated_hash = strtolower(hash("sha512", $HASH));
         $parameters['hash'] = $calculated_hash;
         $parameters['SALT'] = config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
-        $parameters['curl'] = config('epicconfig.PAYUMONEY.RESPONSE_URL');
-        $parameters['surl'] = config('epicconfig.PAYUMONEY.RESPONSE_URL');
-        $parameters['furl'] = config('epicconfig.PAYUMONEY.RESPONSE_FAIL_URL');
+        $parameters['curl'] = route('payusuccess');
+        $parameters['surl'] = route('payusuccess');
+        $parameters['furl'] = route('payufail');
         $parameters['payuUrl'] = config('epicconfig.PAYUMONEY.SUBSCRIPTION_URL');
         $parameters['phone'] = empty($parameters['phone']) ? $parameters['phone'] : '';
         $parameters['email'] = empty($parameters['email']) ? $parameters['email'] : '';
