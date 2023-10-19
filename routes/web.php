@@ -87,7 +87,7 @@ Route::group(['middleware' => 'checkUserAuthToken'], function () {
 });
 
 
-Route::group(['middleware' => 'loggedin'], function () {
+Route::group(['middleware' => ['loggedin', 'checkUserAuthToken']], function () {
     Route::any('logout', LogoutController::class)->name('logout');
     Route::post('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
     Route::post('verify-kidsPin', [KidsController::class, 'verifyKidsPin'])->name('verify-kidsPin');
@@ -115,7 +115,7 @@ foreach ($lang as $val) {
     $prefix = $val != 'en' ? "/$val" : "";
     $prefix_name = $val != 'en' ? $val . "." : "";
 
-    Route::group(['middleware' => 'loggedin', 'as' => $prefix_name . "profile.", 'prefix' => $prefix . "/profile"], function () {
+    Route::group(['middleware' => ['loggedin', 'checkUserAuthToken'], 'as' => $prefix_name . "profile.", 'prefix' => $prefix . "/profile"], function () {
         Route::get('/manage', [ProfileController::class, 'index'])->name('index');
         Route::get('/add-profile', [ProfileController::class, 'add'])->name('add');
         Route::post('/add-profile', [ProfileController::class, 'store'])->name('store');
@@ -126,7 +126,7 @@ foreach ($lang as $val) {
         Route::get('my_profile/{id}', [ProfileController::class, 'myProfile'])->name('myProfile');
     });
 
-    Route::group(['prefix' => $prefix, 'middleware' => 'loggedin'], function () {
+    Route::group(['prefix' => $prefix, 'middleware' => ['loggedin', 'checkUserAuthToken']], function () {
         //Subscription routes created by Ram
         Route::post('paymentMethod', [SubscriptionController::class, 'setSubscription'])->name('paymentMethod');
         Route::post('planBenefit', [SubscriptionController::class, 'planBenefit']);
@@ -146,6 +146,10 @@ foreach ($lang as $val) {
 
         /*settings route*/
         Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
+        
+        Route::get('library', [LibraryController::class, 'index'])->name('library');
+        Route::get('my-account', [UserAccountController::class, 'myaccount'])->name('my-account');
+        Route::get('my-rewards', [RewardsController::class, 'MyRewards'])->name('my-rewards');
 
         /* Kids section start */
         Route::get('/kids/search', [SearchController::class, 'trendingsearch']);
@@ -160,9 +164,6 @@ foreach ($lang as $val) {
     });
 
     Route::group(['prefix' => $prefix, 'middleware' => 'checkUserAuthToken'], function () {
-        Route::get('library', [LibraryController::class, 'index'])->name('library');
-        Route::get('my-account', [UserAccountController::class, 'myaccount'])->name('my-account');
-        Route::get('my-rewards', [RewardsController::class, 'MyRewards'])->name('my-rewards');
         Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback');
         Route::get('about', function () {
             return view('static.about');
