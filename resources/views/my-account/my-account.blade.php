@@ -58,7 +58,7 @@ $subplan = checkSubscription();
                       </svg>
                 </span>
                 <h4 class="text-white mt-4">{{__('Cancel Membership')}}</h4>
-                <p class="w-75 text-white small m-auto">{{__('Cancellation will be effective at the end of your current billing cycle on 20 May 2024. No refunds will be made.')}}</p>
+                <p class="w-75 text-white small m-auto">{{__('Cancellation will be effective at the end of your current billing cycle on') }} {{$subenddate}} | {{__('No refunds will be made')}}</p>
                 <button class="login-btn mt-4" style="width: 280px;" id="can_member">
                     {{__('Finish Cancellation')}}
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -66,7 +66,7 @@ $subplan = checkSubscription();
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"/>
                     </svg>
                  </button>
-                 <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">Go Back</button>
+                 <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Go Back')}}</button>
             </div>
         </div>
     </div>

@@ -52,6 +52,11 @@ $(document).ready(function () {
         }
         
     })
+
+    $('.goBackButton').click(function() {
+        // Go back to the previous page
+        window.history.back();
+    });
 })
 
 $(document).on("click", ".check-content-url", function () {
