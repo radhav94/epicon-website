@@ -69,10 +69,10 @@ $(window).on('load', function () {
         $('.login').trigger('click');
     }
 
-    console.log(getCookie("KidsMode"));
+/*    console.log(getCookie("KidsMode"));
     if (getCookie('KidsMode') == 1 && window.location.href.indexOf("/kids") == -1) {
         location.href = '/kids/'
-    }
+    }*/
     /*kids section end*/
 
     /*logout if token not found*/
