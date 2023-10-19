@@ -319,8 +319,8 @@
                                 $('.screen-login-with-pwd').hide();
                             } else {
                                 // $('.modal-content').hide();
-                                if (queryParams.get('profile') == "kids" && queryParams.get('redirect')) {
-                                    window.location.href = queryParams.get('redirect');
+                                if (queryParams.get('profile') == "kids") {
+                                    window.location.href = $("#kidsUrl").val();
                                 } else {
                                     location.reload();
                                 }
@@ -468,8 +468,8 @@
                                 .hide();
                             $('.screen-sucess-logged').show();
                             setTimeout(function() {
-                                if (queryParams.get('profile') == "kids" && queryParams.get('redirect')) {
-                                    window.location.href = queryParams.get('redirect');
+                                if (queryParams.get('profile') == "kids" ) {
+                                    window.location.href = $("#kidsUrl").val();
                                 } else {
                                     window.location.href = response.payload.redirect;
                                 }
