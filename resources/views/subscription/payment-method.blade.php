@@ -247,7 +247,7 @@ $(document).ready(function(){
                 if(res.success == true){
                     $('#verifyotpmodal').modal('hide');
                     $("#submit_button").html(res.html);
-                   
+                    showToaster(res.message, 1);
                 }else{
 
                     showToaster(res.message, 2);

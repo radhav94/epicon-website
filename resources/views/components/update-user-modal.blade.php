@@ -2,11 +2,13 @@
 $caption="";
 $input ="";
 if(empty($userData['mobile']) && $userData['mobile']==''){
-    $caption = "Update Mobile Number";
-    $input = '<input type="text" name="mobile" class="userdetail" placeholder="Please enter mobile" data-id="mobile">';   
+    $caption = __('Update Mobile Number');
+    $placeholder = __('Please enter mobile');
+    $input = '<input type="text" name="mobile" class="userdetail" placeholder="'.$placeholder.'" data-id="mobile">';   
 }else if(empty($userData['email']) && $userData['email']==''){
-    $caption = "Update Email Id";
-    $input = '<div class="input-field col-sm-6"><input type="text" class="form-control userdetail" name="email" placeholder="Please enter email id" data-id="email"></div>';  
+    $caption = __('Update Email Id');
+    $placeholder = __('Please enter email id');
+    $input = '<div class="input-field col-sm-6"><input type="text" class="form-control userdetail" name="email" placeholder="'.$placeholder.'" data-id="email"></div>';  
 }
 
 ?>
@@ -31,7 +33,7 @@ if(empty($userData['mobile']) && $userData['mobile']==''){
                         <?php echo $input; ?>
                         <span class="errMessage" style="color:red"> </span>
                         <button class="login-btn mt-4 updateProfile" style="width: 280px;" type="button">
-                           Get OTP Now
+                           {{__('Get OTP Now')}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
