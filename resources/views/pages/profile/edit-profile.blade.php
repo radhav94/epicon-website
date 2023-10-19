@@ -40,7 +40,26 @@
                                 <img src="{{ asset('assets/img/mn-edit-icon.png') }}" alt="">
                             </a>
 
-                            <input class="form-control" type="file" name="profile_img" accept="image/*" id="imgupload"
+                            @if (@$profile['profile_img'] != "")
+                            <a for="removeImg" href="javascript:removeProfileImg()" style="
+                                position: absolute;
+                                top: 0;
+                                font-size: 20px;
+                                right: -10px;
+                                color: #fff;
+                                background: red;
+                                width: 25px;
+                                height: 25px;
+                                border-radius: 50%;
+                                padding: 0 8px;
+                                text-decoration: none;
+                                font-family: monospace;
+                            ">
+                                <i class="fa fa-close">x</i>
+                            </a>
+                            @endif
+
+                            <input class="form-control" type="file" name="profile_img" accept=".jpg, .jpeg, .png" id="imgupload"
                                 style="display: none">
 
                         </div>

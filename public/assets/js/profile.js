@@ -87,3 +87,8 @@ $(document).ready(function () {
     });
 
 });
+
+function removeProfileImg(){
+    $('input[name="old_profile_img"]').val('');
+    $("#add-propik").css("background-image", "url()");
+}

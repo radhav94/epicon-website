@@ -171,12 +171,14 @@ class ProfileController extends Controller
 
     public function myProfile($id)
     {
+        $url = getUrlWithPrefix('homepage');
         if ($id != "") {
             profileActive($id);
             if (isKidsProfile($id)) {
-                return displayLang() == 'hi' ? redirect('/hi/kids') : redirect('/kids');
+                $url = getUrlWithPrefix('kidsIndex');
+                return redirect($url);
             }
         }
-        return displayLang() == 'hi' ? redirect('/hi') : redirect('/');
+        return redirect($url);
     }
 }
