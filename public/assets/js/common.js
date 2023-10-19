@@ -33,10 +33,18 @@ $(document).ready(function () {
 
     $("#allAccessBtn").click(function() {
         var checkstaus = $(this).is(':checked');
-        var kidsUrl= $("#kidsUrl").val();
+        var kidsUrl= $("input#kidsUrl").val();
+        var isLoggedIn = $(this).data('log');
         if(checkstaus){
-            window.location.href=kidsUrl;
-            return false;
+            if (isLoggedIn != 1) {
+                window.history.pushState({},'',"?profile=kids");
+                $('.login').trigger('click');
+                return false;
+            } else {
+                console.log('else in kids')
+                window.location.href=kidsUrl;
+                return false;
+            }
         }else{
             $("#allAccessBtn").prop( "checked", true );
             $("#child-pin-modal").modal('show');
@@ -68,11 +76,6 @@ $(window).on('load', function () {
     if (queryParams.get('profile') == "kids") {
         $('.login').trigger('click');
     }
-
-/*    console.log(getCookie("KidsMode"));
-    if (getCookie('KidsMode') == 1 && window.location.href.indexOf("/kids") == -1) {
-        location.href = '/kids/'
-    }*/
     /*kids section end*/
 
     /*logout if token not found*/
