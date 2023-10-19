@@ -1,7 +1,28 @@
 @extends('layouts.default')
 @section('title','Thank you')
-
 @section('content') 
+
+<?php 
+
+    if(!empty($orderData)){
+         
+        if($orderData['plan_id'] == 'epic_in_pl_1'){
+            $planName = "1 Month";
+        }else if($orderData['plan_id'] == 'epic_in_pl_2'){
+            $planName = "3 Months";
+        }else if($orderData['plan_id'] == 'epic_in_pl_3'){
+            $planName = "6 Months";
+        }else if($orderData['plan_id'] == 'epic_in_pl_4'){
+            $planName = "1 Year";
+        }else{
+            $planName = "";
+        }
+
+    $enddate = date('jS F, Y h:i A', strtotime($orderData['subscription_end_date']));
+ 
+    }
+
+?>
 
 <section class="container-fluid mt-4">
         <div class="row">
@@ -21,7 +42,7 @@
 
             <div class="col-sm-8">
                 <div class="current-plan-card position-relative">
-                    <img src="public/img/current-plan-card.png" alt="img">
+                    <img src="{{ asset('assets/img/current-plan-card.png') }}" alt="img">
                     <div class="detail text-white">
                         <div class="active mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -29,14 +50,14 @@
                               </svg>
                             Active
                         </div>
-                        <h1>1 Month</h1>
+                        <h1>{{$planName}}</h1>
                         <p>Subscription</p>
-                        <span>Expires on 31 Jul 2023, 11:59 PM</span>
+                        <span>Expires on {{$enddate}}</span>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-10 choose-plan">
+            {{--<div class="col-sm-12 col-md-12 col-lg-12 col-xl-10 choose-plan">
                         <div class="tab-main">
                             <ul class="benifits list-unstyled m-0">
                                 <li>
@@ -164,20 +185,20 @@
                                 </ul>
                             </div>
                   </div>
-            </div>
+            </div>--}}
         </div>
     </section>
 
 <script>
 var start = new Date;
-    setInterval(function() {
-        var total_seconds = (new Date - start) / 1000;
-        var seconds = Math.floor(total_seconds);
-        var currentTimeString = seconds;
-        $('.Timer').text("We will redirect on account page in "+currentTimeString+ " Seconds"); 
-    }, 1000);
-        window.setTimeout(function() {
-        window.location.href = APP_URL+'/my-account';
-    }, 5000);
+    // setInterval(function() {
+    //     var total_seconds = (new Date - start) / 1000;
+    //     var seconds = Math.floor(total_seconds);
+    //     var currentTimeString = seconds;
+    //     $('.Timer').text("We will redirect on account page in "+currentTimeString+ " Seconds"); 
+    // }, 1000);
+    //     window.setTimeout(function() {
+    //     window.location.href = APP_URL+'/my-account';
+    // }, 5000);
 </script>    
 @stop

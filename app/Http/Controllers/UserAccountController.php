@@ -41,12 +41,10 @@ class UserAccountController extends Controller
     }
 
     public function myaccount(){
-        // $user_token = Session::get('user_token');
         $request = Request();
         $subscriptionPurchases=[];
-        // dd($request->session()->get('user_token'));
         $subscriptionPurchasesArr = CurlAPI("users/purchases", 'POST', [] , 2, true);
-        // dd($subscriptionPurchases);
+        //dd($subscriptionPurchasesArr);
         if(isset($subscriptionPurchasesArr) && @$subscriptionPurchasesArr['success'] == true){
         //dd($subscriptionPurchases['data']);
             foreach($subscriptionPurchasesArr['data'] as $key=>$val){
