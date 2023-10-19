@@ -353,9 +353,9 @@ class SubscriptionController extends Controller
         $calculated_hash = strtolower(hash("sha512", $HASH));
         $parameters['hash'] = $calculated_hash;
         $parameters['SALT'] = config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
-        $parameters['curl'] = route('payusuccess');
-        $parameters['surl'] = route('payusuccess');
-        $parameters['furl'] = route('payufail');
+        $parameters['curl'] = getUrl('payusuccess');
+        $parameters['surl'] = getUrl('payusuccess');
+        $parameters['furl'] = getUrl('payufail');
         $parameters['payuUrl'] = config('epicconfig.PAYUMONEY.SUBSCRIPTION_URL');
         $parameters['phone'] = empty($parameters['phone']) ? $parameters['phone'] : '';
         $parameters['email'] = empty($parameters['email']) ? $parameters['email'] : '';
@@ -373,7 +373,7 @@ class SubscriptionController extends Controller
         Log::debug(json_encode($parameters));
         Log::info("-----End------");
         //$orderData = $request->session()->get('orderdata');
-        //dd($orderData);
+        //dd($parameters);
         return $parameters;
     }
 
@@ -478,7 +478,6 @@ class SubscriptionController extends Controller
     }
     public function payusuccess(Request $request)
     {
-        //test success page
         $paymentresponse = $request->all();
         $paymtentStatus = strtolower($paymentresponse['status']);
         $final_result = ['message' => 'The transaction has been declined.'];
