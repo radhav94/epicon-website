@@ -1,5 +1,5 @@
 // Get the URL query parameters
-const queryParams = new URLSearchParams(window.location.search);
+var queryParams = new URLSearchParams(window.location.search);
 
 $(document).ready(function () {
     $("#seasonSelect").change(function () {
@@ -36,9 +36,10 @@ $(document).ready(function () {
         var kidsUrl= $("input#kidsUrl").val();
         var isLoggedIn = $(this).data('log');
         if(checkstaus){
-            if (isLoggedIn != 1) {
+            $(this).prop('checked', false);
+            if (parseInt(isLoggedIn) != 1) {
                 window.history.pushState({},'',"?profile=kids");
-                $('.login').trigger('click');
+                $('.loginBtn.login').trigger('click');
                 return false;
             } else {
                 console.log('else in kids')
@@ -51,6 +52,11 @@ $(document).ready(function () {
         }
         
     })
+
+    $('.goBackButton').click(function() {
+        // Go back to the previous page
+        window.history.back();
+    });
 })
 
 $(document).on("click", ".check-content-url", function () {

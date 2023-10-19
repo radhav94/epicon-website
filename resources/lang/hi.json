@@ -117,7 +117,8 @@
     "Delete Profile": "प्रोफ़ाइल हटाएं",
     "Edit Profile": "प्रोफ़ाइल संपादित करें",
     "Cancel Membership": "सदस्यता रद्द करें",
-    "Cancellation will be effective at the end of your current billing cycle on 20 May 2024. No refunds will be made.": "रद्दीकरण 20 मई 2024 को आपके वर्तमान बिलिंग चक्र के अंत में प्रभावी होगा। कोई रिफंड नहीं किया जाएगा।",
+    "Cancellation will be effective at the end of your current billing cycle on": "रद्दीकरण आपके वर्तमान बिलिंग चक्र के अंत में प्रभावी होगा",
+    "No refunds will be made":"कोई रिफंड नहीं किया जाएगा |",
     "Finish Cancellation": "रद्दीकरण समाप्त करें",
     "Plan Expired": "योजना समाप्त हो गई",
     "Current Subscription": "वर्तमान सदस्यता",
@@ -214,5 +215,19 @@
     "Pay with QR code": "QR कोड से भुगतान करें",
     "You will receive a payment request on your UPI app": "आपको अपने UPI ऐप पर भुगतान अनुरोध प्राप्त होगा",
     "Or": "या",
-    "UPI Id": "यूपीआई आईडी"
+    "UPI Id": "यूपीआई आईडी",
+    "Your Current Plan":"आपकी वर्तमान योजना",
+    "Transaction History":"ट्रांजेक्शन इतिहास",
+    "Plan":"योजना",
+    "Start Date":"आरंभ करने की तिथि",
+    "End Date":"अंतिम तिथि",
+    "Total":"कुल",
+    "Continue with":"जारी रखें",
+    "Update Email Id" : "ईमेल आईडी अपडेट करें",
+    "Update Mobile Number":"मोबाइल नंबर अपडेट करें",
+    "Please enter email id":"कृपया ईमेल आईडी दर्ज करें",
+    "Please enter mobile": "कृपया मोबाइल दर्ज करें",
+    "Enter the OTP sent to":"भेजे गए ओटीपी को दर्ज करें"
+   
+   
 }

@@ -309,6 +309,7 @@
                     success: function(response) {
                         // alert(response);
                         if (response.payload.success == true) {
+                            queryParams = new URLSearchParams(window.location.search);
                             $('#verifyotp-result').html('');
                             $("#userid").val(response.payload.user_id);
                             $("#sign_method").val(response.payload.user_signup_method);
@@ -318,7 +319,6 @@
                                 $('.screen-register').show();
                                 $('.screen-login-with-pwd').hide();
                             } else {
-                                // $('.modal-content').hide();
                                 if (queryParams.get('profile') == "kids") {
                                     window.location.href = $("input[name='kidsUrl']").val();
                                 } else {
@@ -459,6 +459,7 @@
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
                     success: function(response) {
+                        queryParams = new URLSearchParams(window.location.search);
                         // alert(response);
                         if (response.payload.success == true) {
                             // $('#register-result').html('');
