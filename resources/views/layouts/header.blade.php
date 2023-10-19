@@ -329,10 +329,12 @@ $profile = getProfileData();
                             @if ($profile)
                                 @foreach ($profile['profiles'] as $key => $value)
                                     <?php
-$profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : asset('assets/img/edit-profile-pik.png');
-?>
+                                        $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : asset('assets/img/edit-profile-pik.png');
+                                        $active_profile = session()->get('active_profile');
+                                        $isActiveProfile = $value['id'] == $active_profile ? 'active' : '';
+                                    ?>
 
-                                    <a href="#/">
+                                    <a href="{{ getUrlWithPrefix('profile.myProfile', $value['id']) }}" class="{{ $isActiveProfile }}">
                                         <div class="profile-pik girl-bg active">
                                             <img src="{{ $profile_img }}" alt="">
                                         </div>

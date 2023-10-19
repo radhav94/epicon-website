@@ -168,4 +168,15 @@ class ProfileController extends Controller
             return JSONResponse(400, 'Failed to set pin');
         }
     }
+
+    public function myProfile($id)
+    {
+        if ($id != "") {
+            profileActive($id);
+            if (isKidsProfile($id)) {
+                return displayLang() == 'hi' ? redirect('/hi/kids') : redirect('/kids');
+            }
+        }
+        return displayLang() == 'hi' ? redirect('/hi') : redirect('/');
+    }
 }
