@@ -8,6 +8,10 @@
     li.pod-main.episode-active {
         background: linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%);
     }
+
+    .episode-active .progress-main {
+        display: block !important;
+    }
 </style>
 @stop
 
@@ -217,8 +221,10 @@ $episode_json = json_encode($episode_list);
         });
 
         $("#playButton").click(function() {
+            audio.load();
             audio.play().then(() => {
                     console.log('Audio is playing');
+                    audioEvents();
                 })
                 .catch(error => {
                     console.error('Failed to play audio:', error);
@@ -232,7 +238,6 @@ $episode_json = json_encode($episode_list);
             audio.pause();
             $("#playButton").show();
             $(this).hide();
-            isPlayed = false;
         });
 
         $("#volumeUpButton").click(function() {
@@ -253,6 +258,7 @@ $episode_json = json_encode($episode_list);
         });
 
         $('.playBtn').click(function() {
+            isPlayed = true;
             if (episodes == "") {
                 var data_url = $(this).attr("data-url");
                 if (data_url != "") {
@@ -292,6 +298,7 @@ $episode_json = json_encode($episode_list);
                     $('html, body').animate({
                         scrollTop: 0
                     }, 1000);
+                    audioEvents();
                 })
                 .catch(error => {
                     console.error('Failed to play audio:', error);
@@ -308,6 +315,22 @@ $episode_json = json_encode($episode_list);
                 showToaster($res.message, 2);
             }
         } catch (err) {}
+    }
+
+    function podcastProgress() {
+        let episodeID = episodes[currentEpisodeIndex];
+        let duration = audio.duration;
+        let currentTime = audio.currentTime;
+        let progress = Math.round((currentTime / duration) * 100) + "%";
+        $("li.pod-main[data-id='" + episodeID + "'] .progress-bar").css("width", progress);
+    }
+
+    function audioEvents() {
+        audio.addEventListener("timeupdate", podcastProgress);
+        // audio.addEventListener("ended", function() {
+        //     console.log("currentEpisodeIndex: "+currentEpisodeIndex);
+        //     $("#nextEpisode").trigger('click');
+        // });
     }
 </script>
 @stop

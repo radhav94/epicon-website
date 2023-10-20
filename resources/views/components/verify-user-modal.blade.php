@@ -26,7 +26,7 @@
                         </div>
                         <div id="err_message" style="color: red;"> </div>
                         <button class="login-btn mt-4" style="width: 280px;" id="veryfy_submit">
-                            Verify OTP
+                            {{__('Verify OTP')}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none">
                                 <path fill-rule="evenodd" clip-rule="evenodd"

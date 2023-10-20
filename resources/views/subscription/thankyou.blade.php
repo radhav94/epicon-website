@@ -1,12 +1,34 @@
 @extends('layouts.default')
 @section('title','Thank you')
-
 @section('content') 
+
+<?php 
+    $planName =""; 
+    $enddate ="";
+    if(!empty($orderData)){
+         
+        if($orderData['plan_id'] == 'epic_in_pl_1'){
+            $planName = "1 Month";
+        }else if($orderData['plan_id'] == 'epic_in_pl_2'){
+            $planName = "3 Months";
+        }else if($orderData['plan_id'] == 'epic_in_pl_3'){
+            $planName = "6 Months";
+        }else if($orderData['plan_id'] == 'epic_in_pl_4'){
+            $planName = "1 Year";
+        }else{
+            $planName = "";
+        }
+
+    $enddate = date('jS F, Y h:i A', strtotime($orderData['subscription_end_date']));
+ 
+    }
+
+?>
 
 <section class="container-fluid mt-4">
         <div class="row">
             <div class="col-12">
-                <a href="payment-method.html">
+                <a href="{{route('my-account')}}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M26.3359 15.9987C26.3359 16.551 25.8882 16.9987 25.3359 16.9987L6.66927 16.9987C6.11699 16.9987 5.66927 16.551 5.66927 15.9987C5.66927 15.4464 6.11699 14.9987 6.66927 14.9987L25.3359 14.9987C25.8882 14.9987 26.3359 15.4464 26.3359 15.9987Z" fill="white"/>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M16.7097 26.0391C16.3192 26.4297 15.686 26.4297 15.2955 26.0391L5.96217 16.7058C5.57164 16.3153 5.57164 15.6821 5.96217 15.2916L15.2955 5.95826C15.686 5.56773 16.3192 5.56773 16.7097 5.95826C17.1002 6.34878 17.1002 6.98195 16.7097 7.37247L8.08349 15.9987L16.7097 24.6249C17.1002 25.0154 17.1002 25.6486 16.7097 26.0391Z" fill="white"/>
@@ -17,11 +39,11 @@
     </section>
     <section class="container pb-5">
         <div class="row justify-content-center">
-            <h4 class="text-white text-center mb-4">Your Current Plan</h4>
+            <h4 class="text-white text-center mb-4">{{__('Your Current Plan')}}</h4>
 
             <div class="col-sm-8">
                 <div class="current-plan-card position-relative">
-                    <img src="public/img/current-plan-card.png" alt="img">
+                    <img src="{{ asset('assets/img/current-plan-card.png') }}" alt="img">
                     <div class="detail text-white">
                         <div class="active mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -29,14 +51,14 @@
                               </svg>
                             Active
                         </div>
-                        <h1>1 Month</h1>
+                        <h1>{{$planName}}</h1>
                         <p>Subscription</p>
-                        <span>Expires on 31 Jul 2023, 11:59 PM</span>
+                        <span>Expires on {{$enddate}}</span>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-10 choose-plan">
+            {{--<div class="col-sm-12 col-md-12 col-lg-12 col-xl-10 choose-plan">
                         <div class="tab-main">
                             <ul class="benifits list-unstyled m-0">
                                 <li>
@@ -164,20 +186,20 @@
                                 </ul>
                             </div>
                   </div>
-            </div>
+            </div>--}}
         </div>
     </section>
 
 <script>
 var start = new Date;
-    setInterval(function() {
-        var total_seconds = (new Date - start) / 1000;
-        var seconds = Math.floor(total_seconds);
-        var currentTimeString = seconds;
-        $('.Timer').text("We will redirect on account page in "+currentTimeString+ " Seconds"); 
-    }, 1000);
-        window.setTimeout(function() {
-        window.location.href = APP_URL+'/my-account';
-    }, 5000);
+    // setInterval(function() {
+    //     var total_seconds = (new Date - start) / 1000;
+    //     var seconds = Math.floor(total_seconds);
+    //     var currentTimeString = seconds;
+    //     $('.Timer').text("We will redirect on account page in "+currentTimeString+ " Seconds"); 
+    // }, 1000);
+    //     window.setTimeout(function() {
+    //     window.location.href = APP_URL+'/my-account';
+    // }, 5000);
 </script>    
 @stop

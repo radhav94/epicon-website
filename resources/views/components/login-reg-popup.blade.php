@@ -27,7 +27,7 @@
             </button>
 
             <div class="modal-body">
-                <div class="login-register text-center py-4">
+                <div class="login-register text-center pt-4">
                     <div class="left-side">
                         <div class="w-100">
                             <img class="w-100" src="{{ asset('/img/login-register-bg.png') }}" alt="">

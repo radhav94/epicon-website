@@ -106,6 +106,10 @@ $(document).on('click', '.story-play-btn', function (e) {
 
     function onPlayerError(xhr) {
         try {
+            if (player) {
+                player.pause();
+                player.destroy();
+            }
             $res = JSON.parse(xhr.responseText);
             if ($res.message != undefined && $res.message != 'failed') {
                 $(".progressBar progress:nth-child(" + currentStep + ")").val(100);

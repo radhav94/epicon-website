@@ -1,5 +1,5 @@
 // Get the URL query parameters
-const queryParams = new URLSearchParams(window.location.search);
+var queryParams = new URLSearchParams(window.location.search);
 
 $(document).ready(function () {
     $("#seasonSelect").change(function () {
@@ -33,16 +33,30 @@ $(document).ready(function () {
 
     $("#allAccessBtn").click(function() {
         var checkstaus = $(this).is(':checked');
-        var kidsUrl= $("#kidsUrl").val();
+        var kidsUrl= $("input#kidsUrl").val();
+        var isLoggedIn = $(this).data('log');
         if(checkstaus){
-            window.location.href=kidsUrl;
-            return false;
+            $(this).prop('checked', false);
+            if (parseInt(isLoggedIn) != 1) {
+                window.history.pushState({},'',"?profile=kids");
+                $('.loginBtn.login').trigger('click');
+                return false;
+            } else {
+                console.log('else in kids')
+                window.location.href=kidsUrl;
+                return false;
+            }
         }else{
             $("#allAccessBtn").prop( "checked", true );
             $("#child-pin-modal").modal('show');
         }
         
     })
+
+    $('.goBackButton').click(function() {
+        // Go back to the previous page
+        window.history.back();
+    });
 })
 
 $(document).on("click", ".check-content-url", function () {
@@ -68,11 +82,6 @@ $(window).on('load', function () {
     if (queryParams.get('profile') == "kids") {
         $('.login').trigger('click');
     }
-
-/*    console.log(getCookie("KidsMode"));
-    if (getCookie('KidsMode') == 1 && window.location.href.indexOf("/kids") == -1) {
-        location.href = '/kids/'
-    }*/
     /*kids section end*/
 
     /*logout if token not found*/
