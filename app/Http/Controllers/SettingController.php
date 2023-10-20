@@ -189,4 +189,17 @@ class SettingController extends Controller
 			return redirect('/');
 		}
     }
+
+    function deleteSearchHistory()
+    {
+        if (session()->has('active_profile') && session()->has('searchHistory')) {
+            $activeProfile  = session()->get('active_profile');
+            $searchHistory  = session()->get('searchHistory');
+            if (key_exists($activeProfile, $searchHistory)) {
+                unset($searchHistory[$activeProfile]);
+            }
+            session()->put('searchHistory', $searchHistory);
+        }
+        return JSONResponse(200, '', []);
+    }
 }
