@@ -29,6 +29,10 @@ class CheckUserAuthToken
                 }
 
             }
+        } else {
+            if ($segment == "kids") {
+                return redirect(route('homepage') . "?profile=kids");
+            }
         }
         return $next($request);
     }

@@ -3,12 +3,12 @@
 @import "custom";
 body{
     background: #161616;
-    font-family: 'Outfit';
     font-weight: normal;
     font-style: normal;
     background-image: url("../img/top-bg.svg");
     background-repeat: no-repeat;
     background-size: 100% auto;
+    font-family: 'Outfit', sans-serif;
 }
 *{
     -ms-overflow-style: none;  /* IE and Edge */
@@ -17,6 +17,22 @@ body{
 *::-webkit-scrollbar {
     display: none;
   }
+.banner-carousel{
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease;
+    -webkit-transition: opacity 1s ease;
+}
+
+.banner-carousel.slick-initialized {
+    visibility: visible;
+    opacity: 1;    
+}
+.modal{
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+}
 .modal-dialog {
     margin-right: auto;
     margin-left: auto!important;
@@ -108,6 +124,7 @@ input {
     outline: none;
     border: none;
     margin-right: 10px;
+    font-weight: 600;
     @media (max-width:768px) {
         padding: 5px 15px;
     }
@@ -219,6 +236,7 @@ input {
         font-weight: 500;
         padding: 8px 22px;
         color: $bg-primary;
+        letter-spacing: 0.28px;
 
         @media screen and (max-width: 1024px) {
             padding: 8px 14px;
@@ -698,9 +716,9 @@ input {
                     text-decoration: none;
                 }
                 h2{
-                    font-size: 12px;
+                    font-size: 14px;
                     color: $bg-white;
-                    margin-bottom: 0;
+                    margin-bottom: 10px;
 
                     @media (max-width:768px){
                         margin-bottom: 10px;
@@ -710,7 +728,9 @@ input {
                     width: 50%;
                     font-size: 20px;
                     color: $bg-white;
+                    font-weight: 500;
                     @include line-clamp(2);
+                    line-height: 24px;
                     @media (max-width:768px){
                         width: 100%;
                         font-size: 16px;
@@ -1623,7 +1643,7 @@ input {
             ul{
                 color: $bg-grey;
                 font-size: 12px;
-                font-weight: 500;
+                font-weight: 400;
                 display: flex;
                 padding-left: 0;
                 list-style-position: outside;
@@ -1651,7 +1671,7 @@ input {
             }
             & h1{
                 font-size: 16px;
-                font-weight: 700;
+                font-weight: 500;
                 color: $bg-white;
                 margin-bottom: 3px;
                 @include line-clamp(1);
@@ -2062,6 +2082,7 @@ input {
     }
     @media (max-width:700px) {
         padding-bottom: 0px;
+        padding-top: 0px;
     }
 
     .cant-decide{
@@ -2095,6 +2116,9 @@ input {
         border-radius: 8px;
         overflow: hidden;
         margin: 0 5px;
+        @media (max-width:767px){
+            width: 160px;
+        }
         img{
             width: 100%;
         }
@@ -2173,7 +2197,7 @@ input {
     .chart-trigger{
         width: calc(100% - 28%);
         @media (max-width:700px) {
-            left: -185px;
+            left: -205px;
             transform: scale(0.8);
         }
     }
@@ -3294,6 +3318,13 @@ input {
 
     .left-side{
         width: 60%;
+        img{
+            height: 400px;
+            object-fit: contain;
+            @media (max-width:767px) {
+                display: none;
+            }
+        }
         @media (max-width:768px) {
             width: 100%;
         }
@@ -3411,6 +3442,9 @@ input {
     border: none;
 }
 .login-carousel{
+    &.slick-dotted.slick-slider{
+        margin-bottom: 0;
+    }
     & div h5{
         color: $bg-white;
     }
