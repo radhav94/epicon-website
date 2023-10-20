@@ -12,7 +12,7 @@ $profileSearchHistory = [];
 if (session()->has('active_profile') && session()->has('searchHistory')) {
     $activeProfile  = session()->get('active_profile');
     $searchHistory  = session()->get('searchHistory') ?? [];
-    $profileSearchHistory = $searchHistory[$activeProfile];
+    $profileSearchHistory = $searchHistory[$activeProfile] ?? [];
 }
 $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
 /* search history end */

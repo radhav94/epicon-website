@@ -198,7 +198,6 @@ class SettingController extends Controller
             if (key_exists($activeProfile, $searchHistory)) {
                 unset($searchHistory[$activeProfile]);
             }
-            // dd($searchHistory);
             session()->put('searchHistory', $searchHistory);
         }
         return JSONResponse(200, '', []);
