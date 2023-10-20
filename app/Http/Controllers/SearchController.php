@@ -42,7 +42,7 @@ class SearchController extends Controller
             ];
         } else {
             $postData = [
-                'se archTerm' => $searchText,
+                'searchTerm' => $searchText,
             ];
         }
 

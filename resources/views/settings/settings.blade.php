@@ -1,14 +1,21 @@
 <?php
-$genreList = @$genrelist['success'] && array_key_exists('data', $genrelist) ? $genrelist['data'] : [];
-$interests = array_key_exists("interests", $user_data) ? $user_data['interests'] : [];
+$genreList      = @$genrelist['success'] && array_key_exists('data', $genrelist) ? $genrelist['data'] : [];
+$interests      = array_key_exists("interests", $user_data) ? $user_data['interests'] : [];
 $interestsCount = count($interests) ?? 0;
-$kidSection = array_key_exists("kidSection", $user_data) ? $user_data['kidSection'] : false;
-$activeDevices = @$activeDevice['success'] && array_key_exists('data', $activeDevice) ? $activeDevice['data'] : [];
-//$segment2 =  Request::segment(2);
-$request = Request();
-$ispin = $request->input('status') ?? '';
-//echo $ispin;exit;
-//$ispin = $segment2 ?? '';
+$kidSection     = array_key_exists("kidSection", $user_data) ? $user_data['kidSection'] : false;
+$activeDevices  = @$activeDevice['success'] && array_key_exists('data', $activeDevice) ? $activeDevice['data'] : [];
+$request        = Request();
+$ispin          = $request->input('status') ?? '';
+
+/* search history start */
+$profileSearchHistory = [];
+if (session()->has('active_profile') && session()->has('searchHistory')) {
+    $activeProfile  = session()->get('active_profile');
+    $searchHistory  = session()->get('searchHistory') ?? [];
+    $profileSearchHistory = $searchHistory[$activeProfile];
+}
+$hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
+/* search history end */
 ?>
  
 @extends('layouts.default')
@@ -617,7 +624,7 @@ $ispin = $request->input('status') ?? '';
         if(checkpin !="ispin"){
             $("#v-pills-childpin-tab").trigger('click');
         }
-        var searchHistory = "{{ session()->has('searchHistory') }}";
+        var searchHistory = "{{ $hasSearchHistory }}";
         var resendOtp = false;
 
         console.log(searchHistory);
@@ -634,10 +641,22 @@ $ispin = $request->input('status') ?? '';
         })
 
         $("#clearSearchBtn").click(function() {
-            "{{ session()->forget('searchHistory') }}"
-            $("#clear-history").modal('show');
-            $("#clearHistoryDiv").hide();
-            $("#browseHistoryDiv").show();
+            $.ajax({
+                url: "{{ route('deleteSearchHistory') }}",
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    $("#clear-history").modal('show');
+                    $("#clearHistoryDiv").hide();
+                    $("#browseHistoryDiv").show();
+                },
+                error: function(xhr, status, error) {
+                    console.log('error me aaya');
+                    onError(xhr);
+                }
+            });
         })
 
         //focus otp input
