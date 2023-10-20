@@ -3918,6 +3918,22 @@ input {
     }
 }
 
+.renew-paln-bottom{
+        border-radius: 50px;
+        border: 0.837px solid #474747;
+        background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
+        box-shadow: -1.6734693050384521px 1.6734693050384521px 10.040815353393555px 0px rgba(0, 0, 0, 0.50);
+        color: $bg-white;
+        padding: 10px 30px;
+        width: 300px;
+        margin: 20px auto 0 auto;
+        display: block;
+
+        @media (max-width:768px){
+            width: 100%;
+        }
+    }
+
 .my-account-main.plan-expired{
     .plan-ex{
         border-radius: 0px 0px 6px 0px;
