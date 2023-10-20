@@ -45,8 +45,7 @@ class SearchController extends Controller
                 'searchTerm' => $searchText,
             ];
         }
-
-
+        
         $searchResult = CurlAPI("pages/search", 'POST', $postData, 1);
         if ($searchResult) {
             $data = [];

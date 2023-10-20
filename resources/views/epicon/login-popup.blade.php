@@ -18,7 +18,7 @@
                 </button>
                 
                 <div class="modal-body">
-                    <div class="login-register text-center py-4">
+                    <div class="login-register text-center pt-4">
                                 <div class="left-side">
                                     <div class="w-100">
                                         <img class="w-100" src="{{ asset('/img/login-register-bg.png') }}" alt="">
@@ -625,7 +625,7 @@
     $(document).ready(function() {
   
         $('.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd').hide();
-        $('#login-modal').show();
+        $('#login-modal').modal('show');
         $('#login-modal').addClass("show");
         
         $(".closebtn").click(function(){

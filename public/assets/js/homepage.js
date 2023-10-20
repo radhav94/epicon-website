@@ -339,7 +339,7 @@ function initSliders() {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 2.5,
+                    slidesToShow: 1.5,
                     slidesToScroll: 1
                 }
             }
@@ -385,7 +385,7 @@ function initSliders() {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 3.5,
+                    slidesToShow: 2.8,
                     slidesToScroll: 1
                 }
             }
