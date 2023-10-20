@@ -130,15 +130,15 @@ input {
     }
     @media (max-width:700px) {
         &{
-           height: 32px;
-           padding: 5px 10px;
-           font-size: 12px;
+           height: 26px;
+           padding: 2px 5px;
+           font-size: 10px;
         }
     }
     @media (max-width:700px) {
         & svg{
-            width: 15px;
-            height: 15px;
+            width: 10px;
+            height: 10px;
         }
     }
 }
@@ -159,15 +159,15 @@ input {
 
     @media (max-width:700px) {
         &{
-           height: 34px;
-           padding: 5px 20px;
-           font-size: 12px;
+            height: 26px;
+            padding: 4px 10px;
+            font-size: 10px;
         }
     }
     @media (max-width:700px) {
         & svg{
-            width: 15px;
-            height: 15px;
+            width: 12px;
+            height: 12px;
         }
     }
 }
@@ -1079,10 +1079,14 @@ input {
         border-radius: 10px;
         // overflow: hidden;
         
-        .episode-wrapper-nr{
-            display: flex;
-            overflow: auto;
+        .episode-wrapper-nr {
+            display: none;
+            overflow:auto
         }
+        .episode-wrapper-nr.active {
+            display: flex;
+        }
+        
         .new-release-card{
             position: relative;
             width: 100%;
@@ -1160,7 +1164,7 @@ input {
                 height: 450px;
             }
             @media (max-width:767px) {
-                height: auto;
+                height: 200px;
             }
             img{
                 width: 100%;
@@ -1291,14 +1295,14 @@ input {
             background: linear-gradient(180deg, rgba(0,0,0,0) 34%, rgba(0,0,0,1) 120%);
             .title{
                 width: calc(100% - 50px);
-                font-size: 18px;
+                font-size: 16px;
                 font-weight: 700;
                 @include line-clamp(1);
                 color: $bg-white;
             }
             .play-btn{
-                width: 40px;
-                height: 40px;
+                width: 34px;
+                height: 34px;
                 background: $bg-white;
                 border-radius: 50px;
                 border: none;
@@ -1872,7 +1876,7 @@ input {
                 border-radius: 20px;
             }
             .swiper-pagination-bullet{
-                width: 12px;
+                width: 8px;
                 height: 4px;
                 padding: 0;
                 border-radius: 20px;
@@ -1937,6 +1941,7 @@ input {
             color: $bg-white;
             @media (max-width:700px){
                 font-size: 18px;
+                display: none;
             }
         }
         h2{
@@ -2262,7 +2267,7 @@ input {
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 22%;
+            width: 15%;
             @media (max-width:1024px) {
                 padding: 10px 20px;
                 font-size: 100%;
@@ -2274,6 +2279,7 @@ input {
             @media (max-width:700px) {
                 padding: 10px 0;
                 font-size: 57%;
+                width: 22%;
             }
         }
     }
@@ -2437,7 +2443,7 @@ input {
             @include flex(row,center,center);
 
             img{
-                width: 115px;
+                width: 80px;
                 height: auto;
             }
         }
@@ -2458,20 +2464,20 @@ input {
 
     .genere-fiesta-title{
         color: $bg-white;
-        width: 250px;
+        width: 400px;
         // @media (max-width:768px) {
         //     margin-bottom: 20px;
         // }
         h1{
-            font-size: 30px;
+            font-size: 22px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             @media (max-width:767px) {
                 font-size: 22px;
             }
         }
         button{
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             outline: none;
             border: none;
@@ -2496,7 +2502,7 @@ input {
         
         button{
             display: inline-flex;
-            padding: 18px 20px;
+            padding: 12px 14px;
             justify-content: center;
             align-items: center;
             gap: 16px;
@@ -2602,11 +2608,13 @@ input {
             }
 
             img{
-                transform: skew(18deg, 0deg);
                 height: auto;
-                top: 10px;
-                width: 140px;
+                transform: skew(359deg, 0deg);
+                top: 0px;
+                border-radius: 20px;
+                width: 160px;
                 object-fit: cover;
+                object-position: top;
 
                 @media (max-width:768px) {
                     width: 110px;
@@ -3304,8 +3312,8 @@ input {
             margin-inline: 5px;
 
             @media (max-width:700px) {
-                width: 44px;
-                height: 44px;
+                width: 35px;
+                height: 35px;
                 margin-inline: 2px;
             }
         }
@@ -4960,7 +4968,7 @@ input {
         ul{
             flex-wrap: unset;
             li{
-                height: 180px;
+                height: 160px;
                 @media (max-width:700px) {
                     height: 154px;
                 }
@@ -6090,3 +6098,10 @@ input {
     }
 }
 
+.form-switch{
+    .form-check-input{
+        // background-image: url(/public/img/Ellipse-kids.svg);
+        border: none;
+        background-color: #B14CF0;
+    }
+}
