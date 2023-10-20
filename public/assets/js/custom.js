@@ -1,4 +1,11 @@
 $(document).ready(function () {
+  $(".login-popup").click(function(){
+    $("#side-menu").toggleClass("active");
+    $(".loginBtn.login").trigger('click');
+     return false;
+  });
+ 
+
 // Check if an element with the class "notification" exists in the document
 var notificationElement = document.querySelector('.notification');
 
@@ -66,10 +73,12 @@ if (notificationElement) {
   // on hamburger click
   document.querySelector(".hamburger").addEventListener("click", function () {
     $("#side-menu").toggleClass("active");
+    return false;
   });
 
   $(".menu-close").on("click", function () {
     $("#side-menu").toggleClass("active");
+    return false;
   });
 
 

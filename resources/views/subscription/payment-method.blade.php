@@ -277,6 +277,12 @@ $(document).ready(function(){
     }
   });
 
+  $("#mob-number").on( 'keypress', function( e ){
+    if (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) {
+        e.preventDefault();
+    }
+}); 
+
 });
 
 function validateEmail(email) {
