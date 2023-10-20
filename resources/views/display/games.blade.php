@@ -21,7 +21,7 @@
              
              ?>
              <li>
-                 <a href="{{ @$val['game_url'] }}" class="main-card">
+                 <a href="{{ isset($val['game_url']) ? @$val['game_url'] : $val['url'] }}" class="main-card">
                      <div class="main-img eod-darlings pb-0">
                          <img src="{{ $cover_img }}" alt="">
                      </div>
@@ -43,7 +43,7 @@
              ?>
              <li>
 
-                 <a href="javascript:void(0)" data-url="{{ @$val['game_url'] }}" data-premium="{{ @$val['free_premium'] }}" data-activesubscriber="{{ isActiveSubscription() }}" class="main-card check-content-url">
+                 <a href="{{ isset($val['game_url']) ? 'javascript:void(0)' : $val['url'] }}" data-url="{{ isset($val['game_url']) ? @$val['game_url'] : $val['url'] }}" data-premium="{{ @$val['free_premium'] }}" data-activesubscriber="{{ isActiveSubscription() }}" class="main-card {{ isset($val['game_url']) ? 'check-content-url' : '' }}">
                      {!! freePremiumDiv($val) !!}
                      @if (@$extra['hide_top10'] != 1)
                          {!! topTenDiv($val) !!}
