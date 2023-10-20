@@ -86,7 +86,6 @@ Route::group(['middleware' => 'checkUserAuthToken'], function () {
     })->name('privacy');
 });
 
-
 Route::group(['middleware' => ['loggedin', 'checkUserAuthToken']], function () {
     Route::any('logout', LogoutController::class)->name('logout');
     Route::post('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
@@ -102,6 +101,7 @@ Route::group(['middleware' => ['loggedin', 'checkUserAuthToken']], function () {
     Route::post('verifyOTP-delete-account', [SettingController::class, 'verifyOTPForDeleteAccount'])->name('verifyOTP-delete-account');
     Route::post('syncDevice-pin', [SettingController::class, 'syncDevicePin'])->name('syncDevice-pin');
     Route::get('set-language', [SettingController::class, 'setLanguage'])->name('set-language');
+    Route::post('deleteSearchHistory', [SettingController::class, 'deleteSearchHistory'])->name('deleteSearchHistory');
     //setting controller routes end
 
     //Subscription routes created by Ram

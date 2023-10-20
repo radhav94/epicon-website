@@ -52,12 +52,17 @@ $loadPlayer = true;
                                     </svg>&nbsp;
                                     {!! getPlayText($content) !!}
                                 </button>
-
+                            @loggedin
                                 @if (@$content['free_premium'] == true && !isActiveSubscription())
                                     <a class="subcription-btn me-3" href="{{ getUrl('subscription') }}" style="text-decoration: none">
                                         <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> {{__('Subscribe Now')}}
                                     </a>
                                 @endif
+                                @elseloggedin
+                                <a class="subcription-btn me-3 login" href="javascript:void(0);" style="text-decoration: none">
+                                        <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> {{__('Subscribe Now')}}
+                                    </a>   
+                                @endloggedin
 
 
                                 <?php
