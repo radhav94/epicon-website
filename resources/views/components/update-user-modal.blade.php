@@ -4,7 +4,7 @@ $input ="";
 if(empty($userData['mobile']) && $userData['mobile']==''){
     $caption = __('Update Mobile Number');
     $placeholder = __('Please enter mobile');
-    $input = '<div class="input-field col-sm-6 inputCenter"><input type="text" name="mobile" class="form-control userdetail" placeholder="'.$placeholder.'" data-id="mobile" maxlength="10"></div>'; 
+    $input = '<div class="input-field col-sm-6 inputCenter"><input type="text" name="mobile" class="form-control userdetail" placeholder="'.$placeholder.'" data-id="mobile" maxlength="10" id="mob-number"></div>'; 
 }else if(empty($userData['email']) && $userData['email']==''){
     $caption = __('Update Email Id');
     $placeholder = __('Please enter email id');
