@@ -4,7 +4,13 @@ $(document).ready(function () {
     $(".loginBtn.login").trigger('click');
      return false;
   });
- 
+
+  
+  $(".loginwish").click(function(e){
+    e.preventDefault();
+  $(".loginBtn.login").trigger('click');
+  return false;
+  });
 
 // Check if an element with the class "notification" exists in the document
 var notificationElement = document.querySelector('.notification');

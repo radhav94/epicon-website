@@ -55,6 +55,7 @@
 
 <script>
     var processing;
+    var spinnerAdded = false;
 
     $(document).ready(function() {
         if (typeof activateSpinner === 'function') {
@@ -63,7 +64,6 @@
         initSliders();
 
         $(document).scroll(function(e) {
-
             if (processing) {
                 return false;
             }
@@ -99,9 +99,21 @@
 
                         initSliders();
 
+                        if(spinnerAdded == false){
+                            if (typeof activateSpinner === 'function') {
+                                activateSpinner();
+                            }
+                        }
+                        
+
                         // $("img.lazyload").lazyload();
                         processing = false;
                         $("#pageval").val(paging);
+                        $(".loginwish").click(function(e){
+                            e.preventDefault();
+                        $(".loginBtn.login").trigger('click');
+                        return false;
+                        });
                     } else {
                         $('.loadmorecontent').css('overflow', 'auto');
                         return false;
