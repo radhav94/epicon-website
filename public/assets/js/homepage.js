@@ -25,7 +25,7 @@ function initSliders() {
 
     $('.banner-carousel').not('.slick-initialized').slick({
         centerMode: true,
-        centerPadding: '130px',
+        centerPadding: '230px',
         slidesToShow: 1,
         arrows: true,
         dots: true,
@@ -103,14 +103,14 @@ function initSliders() {
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 2.2,
+                    slidesToShow: 1.8,
                     slidesToScroll: 2
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 2.2,
+                    slidesToShow: 1.8,
                     slidesToScroll: 1
                 }
             }
@@ -148,14 +148,14 @@ function initSliders() {
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 3.2,
+                    slidesToShow: 2.5,
                     slidesToScroll: 2
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 3.2,
+                    slidesToShow: 2.5,
                     slidesToScroll: 1
                 }
             }

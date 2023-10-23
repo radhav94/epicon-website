@@ -195,18 +195,23 @@ if (request()->path() == "hi") {
             @php $isactive = "checked"; @endphp
             @endif
             <!-- <button id="allAccessBtn">All access</button> -->
-            <div class="form-check form-switch">
+
+            <label class="switch">
+                <input type="checkbox" name ="kidscheckbox" data-log="{{ isUserLoggedIn() }}" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
+                <small></small>
+            </label>
+
+            <!-- <div class="form-check form-switch mb-0">
             <input class="form-check-input" name ="kidscheckbox" data-log="{{ isUserLoggedIn() }}" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
 
-            </div>
+            </div> -->
                 <input type="hidden" name="kidsUrl" id="kidsUrl" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
-            <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" id="kidsUrl" class="p-2 me-2">
-                </a><img src="{{ asset('assets/img/kidz-icon.svg') }}" alt="">
-            <a href="{{ getUrl('search') }}" class="p-2 me-2">
+            <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" id="kidsUrl" class="p-2 me-0">
+            <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt=""></a>
             @if (session()->has('kidsMode') && session()->get('kidsMode') == true)
             <a href="{{ getUrl('kids/search') }}" class="p-2 me-2">
             @else
-            <a href="{{ getUrl('search') }}" class="p-2 me-2">
+            <a href="{{ getUrl('search') }}" class="p-2 me-2 search-desk-hide">
             @endif
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">
