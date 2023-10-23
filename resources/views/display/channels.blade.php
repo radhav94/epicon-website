@@ -16,8 +16,8 @@
 
             @foreach ($value['content'] as $key => $val)
                 <div>
-                    <a href="{{ isset($val['path']) ? getUrl(@$val['path']) : $val['url'] }}">
-                        <img src="{{ $val['image'] }}" alt="{{ $val['name'] }}">
+                    <a href="{{ isset($val['path']) ? getUrl(@$val['path']) : @$val['url'] }}">
+                        <img src="{{ @$val['image'] }}" alt="{{ @$val['name'] }}">
                     </a>
                 </div>
             @endforeach

@@ -10,6 +10,7 @@
             </a>
         @endif
     </div>
+
     <ul class="vertical-carousel-initilize p-0">
 
         @foreach ($value['content'] as $key => $val)
@@ -17,21 +18,19 @@
             $card = getItemCardData($val, $displayLanguageParam);
             
             $cover_img = getCardImage($val, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
-            
+            $getTitle = getNewTitle($val);
             ?>
             <li>
                 @include('components.item-hover-card')
                 <a href="javascript:void(0);" class="main-card">
                     {!! freePremiumDiv($val) !!}
 
-                    <div class="main-img oval-shape avilable-audio">
+                    <div class="main-img oval-shape avilable-audio {{$getTitle['cls']}}">
                         <img src="{{ $cover_img }}" alt="">
-                        <ul class="">
+                        <!-- <ul class=""> -->
                             {{-- <li>Available in 4 audios</li> --}}
-                            @if (@$val['is_new'])
-                                <li>New Movie</li>
-                            @endif
-                        </ul>
+                            {!! $getTitle['html'] !!}
+                        <!-- </ul> -->
                     </div>
                 </a>
             </li>
