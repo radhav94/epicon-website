@@ -247,6 +247,14 @@ function getWishListAction($val, $wishlist, $type = 1)
     if (!in_array(@$val['asset_type'], ['WATCH', 'LISTEN'])) {
         return '';
     }
+    if(!isUserLoggedIn()){
+        $logClass = "loginwish";
+        $addToList = "";
+    }else{
+        $logClass = "";
+        $addToList ="addToList";
+    }
+
     $wishlist_ids = $wishlist['ids'] ?? [];
 
     $wishAction = (in_array(@$val['ID'], $wishlist_ids)) ? 'delete' : 'add';
@@ -258,11 +266,10 @@ function getWishListAction($val, $wishlist, $type = 1)
             $icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.1422 11.1919H11.1898C11.1898 11.1919 10.6541 11.1919 9.99934 11.1919C9.34458 11.1919 8.80887 11.1919 8.80887 11.1919H2.85649C2.20173 11.1919 1.66602 10.6562 1.66602 10.0014C1.66602 9.34665 2.20173 8.81094 2.85649 8.81094H8.80887C8.80887 8.81094 9.34458 8.81096 9.99934 8.81096C10.6541 8.81096 11.1898 8.81094 11.1898 8.81094H17.1422C17.797 8.81094 18.3327 9.34665 18.3327 10.0014C18.3327 10.6562 17.797 11.1919 17.1422 11.1919Z" fill="white"/></svg>';
         }
         // return '<button class="big-add-list addToList ' . $wishAction . '-icon" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="1"> </button>';
-        return '<button class="big-add-list addToList" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="1">  ' . $icon . '</button>';
+        return '<button class="big-add-list ' .$logClass. $addToList.'" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="1">  ' . $icon . '</button>';
     } else {
         // $icon = ($wishAction == 'add') ? 'delete-icon' : 'add-icon';
-
-        return '<button class="small-btn ' . $wishAction . '-icon mx-2 addToList" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="2"></button>';
+        return '<button class="small-btn ' . $wishAction . '-icon mx-2 ' .$logClass. $addToList.'" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="2"></button>';
     }
 }
 

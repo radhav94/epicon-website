@@ -64,7 +64,6 @@
         initSliders();
 
         $(document).scroll(function(e) {
-
             if (processing) {
                 return false;
             }
@@ -110,6 +109,11 @@
                         // $("img.lazyload").lazyload();
                         processing = false;
                         $("#pageval").val(paging);
+                        $(".loginwish").click(function(e){
+                            e.preventDefault();
+                        $(".loginBtn.login").trigger('click');
+                        return false;
+                        });
                     } else {
                         $('.loadmorecontent').css('overflow', 'auto');
                         return false;

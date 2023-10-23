@@ -161,7 +161,9 @@ $(document).on('click', '.shareThis', function () {
         description: title,
         // description: $('meta[property="og:description"]').attr('content'),
         // img: $('meta[property="og:image"]').attr('content'),
-        enable: ['copy', 'facebook', 'twitter']
+        enable: ['copy', 'facebook', 'twitter'],
+        copyMessage:'Copy to clipboard',
+
     });
     $('#shareModal').modal('show')
 });
