@@ -1,37 +1,39 @@
 let currentStep = 1;
 var player;
 
-$(document).ready(function () {
-    $(".storyBtn").click(function () {
-        var storyId = $(this).data('id');
-        $.ajax({
-            async: true,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'GET',
-            url: '/ajaxStoryData',
-            data: {
-                id: storyId
-            },
-            dataType: 'json',
-            success: function (response) {
-                console.log(response);
-                if (response.payload.html != '') {
-                    $('#epicShots .modal-content').html(response.payload.html);
-                    currentStep = 1;
-                    $(".progressBar progress:nth-child(" + currentStep + ")").val(100);
-                    showStoryPopup(currentStep);
-                } else {
-                    $('.loadmorecontent').css('overflow', 'auto');
-                    return false;
-                }
-            }
-        });
-    })
+$(document).ready(function () {    
     if (player) {
         player.muted = false;
     }
+})
+
+$(document).on('click', ".storyBtn", function () {
+    var storyId = $(this).data('id');
+    $.ajax({
+        async: true,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'GET',
+        url: '/ajaxStoryData',
+        data: {
+            id: storyId
+        },
+        dataType: 'json',
+        success: function (response) {
+            console.log(response);
+            if (response.payload.html != '') {
+                $("#epicShots").modal('show');
+                $('#epicShots .modal-content').html(response.payload.html);
+                currentStep = 1;
+                $(".progressBar progress:nth-child(" + currentStep + ")").val(100);
+                showStoryPopup(currentStep);
+            } else {
+                $('.loadmorecontent').css('overflow', 'auto');
+                return false;
+            }
+        }
+    });
 })
 
 $(document).on('click', ".mute-btn-storie", function () {

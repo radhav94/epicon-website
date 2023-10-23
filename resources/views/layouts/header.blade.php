@@ -1,4 +1,14 @@
 <?php
+/* check authrization token expired start */
+if (isUserLoggedIn()) {
+    $response = update_user_session();
+    if (!$response) {
+        $request->session()->flush();
+        return redirect(route('homepage') . "?type=logout");
+    }
+}
+/* check authrization token end */
+
 if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
     $segment = Request::segment(2);
 } else {
@@ -189,7 +199,7 @@ if (request()->path() == "hi") {
             @endforeach
 
         </ul>
-        <div class="main-header-right d-flex align-items-center">
+                <div class="main-header-right d-flex align-items-center">
             @php $isactive = ""; @endphp
             @if (session()->has('kidsMode') && session()->get('kidsMode'))
             @php $isactive = "checked"; @endphp
@@ -320,13 +330,9 @@ if (request()->path() == "hi") {
                         fill="white" />
                 </svg>
                 <ul class="profile-drop-down list-unstyled">
-                   
-                        <?php
-$profile = getProfileData();
-//echo "Testing"; dd($profile);
-?>
+
                         <li class="profile-main p-3">
-                            @if ($profile)
+                            @if (isset($profile))
                                 @foreach ($profile['profiles'] as $key => $value)
                                     <?php
                                         $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : asset('assets/img/edit-profile-pik.png');

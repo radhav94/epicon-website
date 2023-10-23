@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', 'Explore')
+@section('title', $meta_title)
 
 @section('style')
 @stop
