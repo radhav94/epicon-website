@@ -33,12 +33,12 @@ class PageController extends Controller
 
             $meta_title = strtoupper($slug);
             return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta_title'));
-        }
+                    }
         return view('pages.error.404');
     }
 
     public function loadMore(Request $request)
-    {   
+    {
         $slug = ($request->route == '/' || $request->route == 'hi') ? 'home-v2' : $request->route;
         $data = $this->homepageData($slug, $request->page);
         $result = $data['result'];
@@ -73,8 +73,9 @@ class PageController extends Controller
     public function explore_details($slug)
     {
         $page = 1;
+        $limit = 18;
         $params = [
-            'limit' => 18,
+            'limit' => $limit,
             'page' => $page,
         ];
 
@@ -82,7 +83,7 @@ class PageController extends Controller
 
         if ($result && @$result['success'] ==  true) {
             $result = $result['data'];
-            return view('pages.explore_details', compact('result', 'slug', 'page'));
+            return view('pages.explore_details', compact('result', 'slug', 'page', 'limit'));
         } else {
             return view('pages.error.data-error');
         }
@@ -250,7 +251,7 @@ class PageController extends Controller
         ];
     }
 
-    private function epicShots($story_id = "") 
+    private function epicShots($story_id = "")
     {
         $stories_arr = [];
         $response = CurlAPI("pages/stories", "GET", null, 1);
