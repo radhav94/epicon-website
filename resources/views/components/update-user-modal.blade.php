@@ -4,14 +4,17 @@ $input ="";
 if(empty($userData['mobile']) && $userData['mobile']==''){
     $caption = __('Update Mobile Number');
     $placeholder = __('Please enter mobile');
-    $input = '<input type="text" name="mobile" class="userdetail" placeholder="'.$placeholder.'" data-id="mobile">';   
+    $input = '<div class="input-field col-sm-6 inputCenter"><input type="text" name="mobile" class="form-control userdetail" placeholder="'.$placeholder.'" data-id="mobile" maxlength="10" id="mob-number"></div>'; 
 }else if(empty($userData['email']) && $userData['email']==''){
     $caption = __('Update Email Id');
     $placeholder = __('Please enter email id');
-    $input = '<div class="input-field col-sm-6"><input type="text" class="form-control userdetail" name="email" placeholder="'.$placeholder.'" data-id="email"></div>';  
+    $input = '<div class="input-field col-sm-6 inputCenter"><input type="text" class="form-control userdetail" name="email" placeholder="'.$placeholder.'" data-id="email" maxlength="50"></div>';  
 }
 
 ?>
+<style>
+    .inputCenter{margin-left: 180px;}
+</style>
 <div class="modal fade" id="update_user_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">

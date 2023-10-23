@@ -108,12 +108,17 @@ $episode_json = json_encode($episode_list);
                                 </svg> &nbsp;
                                 Listen
                             </button>
-
+                            @loggedin
                             @if (@$content['free_premium'] == true && !isActiveSubscription())
-                            <button class="subcription-btn me-3">
+                            <a href="{{ getUrl('subscription') }}" class="subcription-btn me-3">
                                 <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> Subscribe Now
-                            </button>
+                                </a>
                             @endif
+                            @elseloggedin
+                            <a href="javascript:void(0);" class="subcription-btn me-3 login">
+                                <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> Subscribe Now
+                                </a>
+                            @endloggedin
 
                             <?php
                             $wishlist = getWishlist();
