@@ -754,7 +754,7 @@ class SubscriptionController extends Controller
     </button>';
         
         if ($verifyResponse && @$verifyResponse['success'] == true) {
-            // update_user_session();
+            update_user_session();
             return response()->json($verifyResponse, 200)->header('Content-Type', 'application/json');
         } else {
             return response()->json($verifyResponse, 201)->header('Content-Type', 'application/json');
