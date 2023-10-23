@@ -71,6 +71,13 @@ function initSliders() {
         nextArrow: $(".slide-m-next"),
     });
 
+    $('.banner-carousel-1').not('.slick-initialized').slick({
+        slidesToShow: 1,
+        arrows: true,
+        dots: false,
+        autoplay: true,
+    });
+
     $('.carousel-initilize').not('.slick-initialized').slick({
         dots: false,
         infinite: false,

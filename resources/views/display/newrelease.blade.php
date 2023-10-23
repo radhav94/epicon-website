@@ -29,8 +29,8 @@
                  $se_epi_text = getSeasonEpisodeNum($val);
                  $s_txt = '';
                  
-                 $s_txt .= isset($se_epi_text['season']) ? 'S' . $se_epi_text['season'] : '';
-                 $s_txt .= isset($se_epi_text['episode']) ? '<b>E' . $se_epi_text['episode'] . '</b>' : '';
+                 $s_txt .= isset($se_epi_text['season']) ? ' ' . $se_epi_text['season'] : '';
+                 $s_txt .= isset($se_epi_text['episode']) ? '<b>' . $se_epi_text['episode'] . '</b>' : '';
                  
                  if ($s_txt) {
                      $s_txt = '<li>' . $s_txt . '</li>';
