@@ -15,19 +15,11 @@ class CheckUserAuthToken
      */
     public function handle(Request $request, Closure $next)
     {
-
         $segment = $request->segment(1) != 'hi' ? $request->segment(1) : $request->segment(2);
         $kidsmode = session()->get('kidsMode') ?? false;
         if (isUserLoggedIn()) {
-            $response = update_user_session();
-            if (!$response) {
-                $request->session()->flush();
-                return redirect(route('homepage') . "?type=logout");
-            } else {
-                if ($segment != 'kids' && $kidsmode && !$request->ajax()) {
-                    return redirect(route('kidsIndex'));
-                }
-
+            if ($segment != 'kids' && $kidsmode && !$request->ajax()) {
+                return redirect(route('kidsIndex'));
             }
         } else {
             if ($segment == "kids") {
