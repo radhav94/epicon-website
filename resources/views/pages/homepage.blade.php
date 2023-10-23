@@ -55,6 +55,7 @@
 
 <script>
     var processing;
+    var spinnerAdded = false;
 
     $(document).ready(function() {
         if (typeof activateSpinner === 'function') {
@@ -98,6 +99,13 @@
                         $('.loadmorecontent').append(response.payload.html);
 
                         initSliders();
+
+                        if(spinnerAdded == false){
+                            if (typeof activateSpinner === 'function') {
+                                activateSpinner();
+                            }
+                        }
+                        
 
                         // $("img.lazyload").lazyload();
                         processing = false;
