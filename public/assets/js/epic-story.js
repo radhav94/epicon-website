@@ -1,9 +1,7 @@
 let currentStep = 1;
 var player;
 
-$(document).ready(function () {
-    alert("hello");
-    
+$(document).ready(function () {    
     if (player) {
         player.muted = false;
     }
@@ -11,7 +9,6 @@ $(document).ready(function () {
 
 $(document).on('click', ".storyBtn", function () {
     var storyId = $(this).data('id');
-    alert(storyId);
     $.ajax({
         async: true,
         headers: {

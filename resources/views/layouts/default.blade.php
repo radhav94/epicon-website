@@ -107,7 +107,7 @@
 
     {{-- Start footer common scripts --}}
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
-    <!-- <script src="{{ asset('assets/js/custom.js') }}"></script> -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
     <script src="{{ asset('assets/js/swiper.js') }}"></script>
     <script src="{{ asset('assets/js/spiner.js') }}"></script>
     <script src="{{ asset('assets/js/slick.min.js') }}"></script>

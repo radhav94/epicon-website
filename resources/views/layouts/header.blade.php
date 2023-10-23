@@ -45,7 +45,7 @@ if (isUserLoggedIn()) {
             <a class="subscribe-btn login-popup" href="javascript:void(0);">{{__('Subscribe')}}</a>
             @endloggedin
         </div>
-                <ul class="ps-3">
+        <ul class="ps-3">
             <li>
                 <a href="{{ getUrl($kids_page ? '/kids/games' : 'games') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
@@ -122,7 +122,7 @@ if (isUserLoggedIn()) {
                 </a>
             </li>
         </ul>
-            </div>
+    </div>
 </div>
 <!-- Side Menu End-->
 
@@ -154,7 +154,7 @@ if (isUserLoggedIn()) {
             @endloggedin
             @endif
         </div>
-        
+
         <?php
 
         if ($kids_page) {
@@ -226,7 +226,7 @@ if (request()->path() == "hi") {
                         fill="white" />
                 </svg>
             </a>
-                        @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
+            @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
             @loggedin
             <div class="notification p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
