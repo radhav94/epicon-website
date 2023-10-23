@@ -24,7 +24,7 @@
                     <div class="swiper-slide tranding-slide">
                         <div class="tranding-slide-img position-relative">
                             <a href="#/">
-                                <img src="{{ $cover_img }}" />
+                                <img src="{{ $card['banner_img'] }}" />
                             </a>
                             <div class="carousel-items-content position-absolute">
                                 <h1>{{ $card['title'] }}</h1>
