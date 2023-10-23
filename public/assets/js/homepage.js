@@ -103,14 +103,14 @@ function initSliders() {
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 2.2,
                     slidesToScroll: 2
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1.9,
+                    slidesToShow: 2.2,
                     slidesToScroll: 1
                 }
             }
@@ -155,7 +155,7 @@ function initSliders() {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 2.5,
+                    slidesToShow: 3.2,
                     slidesToScroll: 1
                 }
             }
@@ -669,10 +669,10 @@ function initSliders() {
         // ]
         responsive: [
             {
-               breakpoint: 2000,
-               settings: "unslick"
+                breakpoint: 2000,
+                settings: "unslick"
             }
-         ]
+        ]
     });
 
     $('.imdb').not('.slick-initialized').slick({
@@ -830,24 +830,24 @@ function initSliders() {
     }
 
     $(document).on('click', '.shuffleContent', function (e) {
-            stopPlayer();
-            e.preventDefault();
-            $("#supermixWatchBtn").prop("disabled", false);
-            getSupermixData();
-            $('.supermix-banner video').hide();
-            $('.supermix-banner img').show();
-        });
-        
-        $(document).on('click', '.superMixButton', function (e) {
-            e.preventDefault();
-            $("#supermixWatchBtn").prop("disabled", false);
-            let img = $(this).parents('.super-mix').find('.supImg').attr('src');
-            $('#supermixModal .supermix-banner img').attr('src', img);
-            $('.supermix-banner video').hide();
-            $('.supermix-banner img').show();
-            $('#supermixModal').modal('show');
-            getSupermixData();
-        });
+        stopPlayer();
+        e.preventDefault();
+        $("#supermixWatchBtn").prop("disabled", false);
+        getSupermixData();
+        $('.supermix-banner video').hide();
+        $('.supermix-banner img').show();
+    });
+
+    $(document).on('click', '.superMixButton', function (e) {
+        e.preventDefault();
+        $("#supermixWatchBtn").prop("disabled", false);
+        let img = $(this).parents('.super-mix').find('.supImg').attr('src');
+        $('#supermixModal .supermix-banner img').attr('src', img);
+        $('.supermix-banner video').hide();
+        $('.supermix-banner img').show();
+        $('#supermixModal').modal('show');
+        getSupermixData();
+    });
 
     $(document).on('click', '.popupVideo', function () {
         // let video = $(this).data('video');
@@ -859,64 +859,64 @@ function initSliders() {
 
     //end supermix
 
-    $(document).ready(function(){
-        $(".banner-carousel-new-release").on("afterChange", function (event, slick, currentSlide){
-           $(".episode-wrapper-nr").hide();
-           $(".episode-wrapper-nr-"+currentSlide).show();           
+    $(document).ready(function () {
+        $(".banner-carousel-new-release").on("afterChange", function (event, slick, currentSlide) {
+            $(".episode-wrapper-nr").removeClass('active');
+            $(".episode-wrapper-nr-" + currentSlide).addClass('active');
 
         })
 
-    // Pageblocker Start
+        // Pageblocker Start
 
-  function getCookie(cookieName) {
-        const name = cookieName + '=';
-        const decodedCookie = decodeURIComponent(document.cookie);
-        const cookieArray = decodedCookie.split(';');
+        function getCookie(cookieName) {
+            const name = cookieName + '=';
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookieArray = decodedCookie.split(';');
 
-        for (let i = 0; i < cookieArray.length; i++) {
-            let cookie = cookieArray[i].trim();
-            if (cookie.indexOf(name) === 0) {
-                return cookie.substring(name.length, cookie.length);
+            for (let i = 0; i < cookieArray.length; i++) {
+                let cookie = cookieArray[i].trim();
+                if (cookie.indexOf(name) === 0) {
+                    return cookie.substring(name.length, cookie.length);
+                }
+            }
+            return '';
+        }
+
+
+        function setCookie(cookieName, cookieValue, expiryDays) {
+            const date = new Date();
+            //days
+            date.setTime(date.getTime() + (expiryDays * 24 * 60 * 60 * 1000));
+
+            //minute
+            // date.setTime(date.getTime() + (expiryDays * 60 * 1000));
+
+            const expires = 'expires=' + date.toUTCString();
+            document.cookie = cookieName + '=' + cookieValue + ';' + expires + ';path=/';
+        }
+
+        function hideShowPageBlocker() {
+            const cookieValue = getCookie('showblocker');
+            if (!cookieValue) {
+                $('.page-blocker').show();
             }
         }
-        return '';
-    }
-
-
-    function setCookie(cookieName, cookieValue, expiryDays) {
-        const date = new Date();
-        //days
-        date.setTime(date.getTime() + (expiryDays * 24 * 60 * 60 * 1000));
-
-        //minute
-        // date.setTime(date.getTime() + (expiryDays * 60 * 1000));
-
-        const expires = 'expires=' + date.toUTCString();
-        document.cookie = cookieName + '=' + cookieValue + ';' + expires + ';path=/';
-    }
-    
-    function hideShowPageBlocker(){
-        const cookieValue = getCookie('showblocker');
-        if(! cookieValue){
-            $('.page-blocker').show();
-        }
-    }
 
         hideShowPageBlocker();
 
-    $('.page-blocker').on('click', function(event) {
-        if (!$(event.target).closest('.modal-body').length) {
+        $('.page-blocker').on('click', function (event) {
+            if (!$(event.target).closest('.modal-body').length) {
+                setCookie('showblocker', '1', 1);
+                $('.page-blocker').hide();
+            }
+        });
+
+        $('.page-blocker .modal-body').click(function () {
             setCookie('showblocker', '1', 1);
             $('.page-blocker').hide();
-        }
-    });
+        });
 
-    $('.page-blocker .modal-body').click(function(){
-          setCookie('showblocker', '1', 1);
-          $('.page-blocker').hide();
-    });
-
-    // Pageblocker End
+        // Pageblocker End
 
     });
 
