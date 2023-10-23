@@ -609,7 +609,8 @@ function initSliders() {
                 settings: {
                     centerMode: true,
                     centerPadding: '60px',
-                    slidesToShow: 1
+                    slidesToShow: 1,
+                    dots: false,
                 }
             },
             {
@@ -617,7 +618,7 @@ function initSliders() {
                 settings: {
                     centerMode: true,
                     centerPadding: '30px',
-                    slidesToShow: 1
+                    slidesToShow: 1,
                 }
             }
         ]
