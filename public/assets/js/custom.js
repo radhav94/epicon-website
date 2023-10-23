@@ -5,6 +5,7 @@ $(document).ready(function () {
      return false;
   });
 
+  
   $(".loginwish").click(function(e){
     e.preventDefault();
   $(".loginBtn.login").trigger('click');

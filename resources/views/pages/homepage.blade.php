@@ -63,7 +63,6 @@
         initSliders();
 
         $(document).scroll(function(e) {
-
             if (processing) {
                 return false;
             }
