@@ -89,7 +89,62 @@
             Limited. All Rights Reserved.</div>
     </div>
 </section>
-
+<section class="footer-mobile">
+    <?php
+    // $links = [
+    //             '/' => 'Home',
+    //             'premium' => 'Premium',
+    //             'explore' => 'Explore',
+    //             'search' => 'Search',
+    //             'premium' => 'Spotlight',
+    //         ];
+    if (request()->path() == "hi") {
+    $current_route = "/";
+    } else {
+        $path = explode("/", request()->path());
+        $finalPath = [];
+        foreach ($path as $value) {
+            if ($value == "hi") {
+                continue;
+            } else {
+                $finalPath[] = $value;
+            }
+        }
+        $current_route = implode("/", $finalPath);
+    }
+    ?>
+        <nav class="mob-nav">
+            <a href="{{route('homepage')}}" @if ($current_route == '/') class="active" @endif>
+                <p></p>
+                <span>Home</span>
+            </a>
+            @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
+            <a href="{{getUrl('premium')}}" @if ($current_route == 'premium') class="active" @endif>
+                <p></p>
+                <span>Premium</span>
+            </a>
+            <a href="{{getUrl('explore')}}" @if ($current_route == 'explore') class="active" @endif>
+                <p></p>
+                <span>Explore</span>
+            </a>
+            @endif
+            @if (session()->has('kidsMode') && session()->get('kidsMode') == true)
+            <a href="{{ getUrl('kids/search') }}" @if ($current_route == 'kids/search') class="active" @endif>
+            @else
+            <a href="{{ getUrl('search') }}" @if ($current_route == 'search') class="active" @endif>
+            @endif
+                <p></p>
+               <span>Search</span> 
+            </a>
+            @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
+            <a href="javascript:void(0)">
+                <p></p>
+                <span>Spotlight</span>
+            </a>
+            @endif
+            <div class="animation start-home"></div>
+        </nav>
+</section>
 @notloggedin
     @include('components.login-reg-popup')
 @endnotloggedin

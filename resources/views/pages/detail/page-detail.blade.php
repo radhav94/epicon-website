@@ -36,7 +36,18 @@ $loadPlayer = true;
         <div class="banner-main position-relative">
             <img src="{{ $cover_img }}" alt="img">
         </div>
-
+        <?php
+        // $watch_text = getPlayText($content);
+                        
+        // $se_epi_text = getSeasonEpisodeValue($content);
+        // if (@$se_epi_text['season']) {
+        //     $watch_text .= ' '.$se_epi_text['season'];
+        // }
+        
+        // if (@$se_epi_text['episode']) {
+        //     $watch_text .= ' '.$se_epi_text['episode'];
+        // }
+        ?>
         <div class="overlay">
             <div class="container">
                 <div class="row">

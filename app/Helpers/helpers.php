@@ -161,7 +161,8 @@ function getContentLanguage()
 }
 
 function getPlayText($value){
-    return $value['asset_type'] ?? 'WATCH';
+    return 'PLAY';
+    // return $value['asset_type'] ?? 'WATCH';
 }
 
 
@@ -424,7 +425,7 @@ function getSeasonEpisodeNum($val)
     if (@$val['content_type'] == 'EPISODE') {
         if (isset($val['parent_name'])) {
             $parent_name = trim($val['parent_name']);
-            $wordToFind = 'season';
+            $wordToFind = 'Season';
 
             $lastPosition = strrpos($parent_name, $wordToFind);
 
