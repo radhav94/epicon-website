@@ -30,11 +30,11 @@ $banner_img = getCardImage($val, 'banner_image', 'small');
                         
                         $se_epi_text = getSeasonEpisodeNum($val);
                         if (@$se_epi_text['season']) {
-                            $watch_text .= 'S' . $se_epi_text['season'];
+                            $watch_text .= ' '.$se_epi_text['season'];
                         }
                         
                         if (@$se_epi_text['episode']) {
-                            $watch_text .= 'E' . $se_epi_text['episode'];
+                            $watch_text .= ' '.$se_epi_text['episode'];
                         }
                         
                         /*
