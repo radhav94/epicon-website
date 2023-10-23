@@ -13,7 +13,7 @@
 
      <div class="hero-banner-new-release w-100">
          <div class="banner-carousel-new-release">
-             
+               
              @foreach ($value['content'] as $key => $val)
                  <?php
                  $card = getItemCardData($val, $displayLanguageParam);
@@ -117,9 +117,8 @@
                              }
                              //dd($data);
                              $child_cover_img = getCardImage($data, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
-                             
                              ?>
-
+                            @if (isset($data['url']) && !empty($data['url']))
                              <div class="new-release-card new-release-card-{{ $key }}"><a
                                      href="{{ getContentUrl($data) }}"><img src="{{ $child_cover_img }}" alt="">
                                  </a>
@@ -128,6 +127,8 @@
                                              class="nr_time">{{ $li }}</span> </ul>
                                  </div>
                              </div>
+                             @endif
+
                          @endforeach
                      </div>
                  @endforeach

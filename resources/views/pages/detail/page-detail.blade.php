@@ -36,6 +36,16 @@ $loadPlayer = true;
         <div class="banner-main position-relative">
             <img src="{{ $cover_img }}" alt="img">
         </div>
+        <?php 
+        if(!isUserLoggedIn()){
+            $watchClass = "login";
+            $watchid = "";
+        }else{
+            $watchClass = "addToList";
+            $watchid = "watchVideo";
+            
+        }
+        ?>
 
         <div class="overlay">
             <div class="container">
@@ -43,7 +53,7 @@ $loadPlayer = true;
                     <div class="col-sm-12">
                         <div class="banner-content">
                             <div class="all-btn">
-                                <button class="fill-btn mobile-width me-3 ms-0" id="watchVideo">
+                                <button class="fill-btn mobile-width me-3 ms-0 {{$watchClass}}" id="{{$watchid}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                         viewBox="0 0 28 28" fill="none">
                                         <path
@@ -78,7 +88,7 @@ $loadPlayer = true;
                                 }
                                 ?>
 
-                                <button class="rounded-transparent-btn me-3 addToList" data-id="{{ $content['ID'] }}"
+                                <button class="rounded-transparent-btn me-3 {{$watchClass}}" data-id="{{ $content['ID'] }}"
                                     data-action="{{ $wishAction }}" data-type="3">
                                     <img class="wl_add" src="{{ asset('assets/img/add-icon.svg') }}" alt="icon"
                                         @if ($wishAction == 'delete') style="display: none" @endif>
