@@ -247,7 +247,7 @@ function getWishListAction($val, $wishlist, $type = 1)
         return '';
     }
     if(!isUserLoggedIn()){
-        $logClass = "login";
+        $logClass = "loginwish";
         $addToList = "";
     }else{
         $logClass = "";

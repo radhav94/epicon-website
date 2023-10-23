@@ -102,10 +102,11 @@
                         // $("img.lazyload").lazyload();
                         processing = false;
                         $("#pageval").val(paging);
-                        $(".login").click(function(){
+                        $(".loginwish").click(function(e){
+                            e.preventDefault();
                         $(".loginBtn.login").trigger('click');
                         return false;
-                    });
+                        });
                     } else {
                         $('.loadmorecontent').css('overflow', 'auto');
                         return false;
