@@ -146,6 +146,18 @@ function getDispLangContent($content, $displayLanguageParam, $item)
         } else {
             return $content['banner_image_v2_ln']['ENGLISH'];
         }
+    } elseif ($item == "bannerimg-vertical") {
+        if ($displayLanguageParam == "ENGLISH") {
+            return @$content['vertical_cover_image'];
+        } elseif ($displayLanguageParam == "HINDI") {
+            return !empty($content['banner_image_v2_ln']['HINDI']) ? $content['banner_image_v2_ln']['HINDI'] : @$content['vertical_cover_image'];
+        } elseif ($displayLanguageParam == "TAMIL") {
+            return !empty($content['banner_image_v2_ln']['TAMIL']) ? $content['banner_image_v2_ln']['TAMIL'] : $content['vertical_cover_image'];
+        } elseif ($displayLanguageParam == "MARATHI") {
+            return !empty($content['banner_image_v2_ln']['MARATHI']) ? $content['banner_image_v2_ln']['MARATHI'] : $content['vertical_cover_image'];
+        } else {
+            return @$content['vertical_cover_image']['ENGLISH'];
+        }
     }
 }
 
@@ -313,12 +325,23 @@ function getWishlist()
     // }
 }
 
+function isMobliDevice() {
+    $ua = strtolower($_SERVER["HTTP_USER_AGENT"]);
+    $isMob = is_numeric(strpos($ua, "mobile"));
+    $isIPhone = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "iphone"));
+    return (isset($isMob) && $isMob==true) || (isset($isIPhone) && $isIPhone==true) ? true : false;
+}
+
 function getItemCardData($val, $language)
 {
     $title = getDispLangContent($val, $language, 'title');
     $shortdescription = getDispLangContent($val, $language, 'shortdesc');
-
-    $bannerimagcond = getDispLangContent($val, $language, 'bannerimg');
+    
+    if(isMobliDevice()){
+        $bannerimagcond = getDispLangContent($val, $language, 'bannerimg-vertical');
+    } else {
+        $bannerimagcond = getDispLangContent($val, $language, 'bannerimg');
+    }
 
     if (empty($bannerimagcond)) {
         $bannerimagcond = getDispLangContent($val, $language, 'coverimage');
@@ -899,23 +922,25 @@ function getNewTitle($value){
     $cls = '';
 
     if (isset($value['is_new']) && $value['is_new']) {
-        if (isset($value['catalog_slug'])) {
-            if ($value['catalog_slug'] == 'movies') {
-                $html = '<div class="new-show-title">New</div>';
-                $cls = 'eod-darlings';
-            } elseif ($value['catalog_slug'] == 'tv-shows' && isset($value['content_type'])) {
-                if ($value['content_type'] == 'SHOW') {
-                    $html = '<div class="new-show-title">New</div>';
-                    $cls = 'eod-darlings';
-                } elseif ($value['content_type'] == 'SEASON') {
-                    $html = '<div class="new-show-title">New</div>';
-                    $cls = 'eod-darlings';
-                } elseif ($value['content_type'] == 'EPISODE') {
-                    $html = '<div class="new-show-title">New</div>';
-                    $cls = 'eod-darlings';
-                }
-            }
-        }
+        $html = '<div class="new-show-title">New</div>';
+        $cls = 'eod-darlings';
+        // if (isset($value['catalog_slug'])) {
+        //     if ($value['catalog_slug'] == 'movies') {
+        //         $html = '<div class="new-show-title">New</div>';
+        //         $cls = 'eod-darlings';
+        //     } elseif ($value['catalog_slug'] == 'tv-shows' && isset($value['content_type'])) {
+        //         if ($value['content_type'] == 'SHOW') {
+        //             $html = '<div class="new-show-title">New</div>';
+        //             $cls = 'eod-darlings';
+        //         } elseif ($value['content_type'] == 'SEASON') {
+        //             $html = '<div class="new-show-title">New</div>';
+        //             $cls = 'eod-darlings';
+        //         } elseif ($value['content_type'] == 'EPISODE') {
+        //             $html = '<div class="new-show-title">New</div>';
+        //             $cls = 'eod-darlings';
+        //         }
+        //     }
+        // }
     }
     
     return ['cls' => $cls, 'html' => $html];
