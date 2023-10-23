@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','LIVE TV')
+@section('title',$meta_title)
 
 @section('style')
 

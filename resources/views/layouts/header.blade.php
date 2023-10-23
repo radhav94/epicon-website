@@ -1,4 +1,14 @@
 <?php
+/* check authrization token expired start */
+if (isUserLoggedIn()) {
+    $response = update_user_session();
+    if (!$response) {
+        $request->session()->flush();
+        return redirect(route('homepage') . "?type=logout");
+    }
+}
+/* check authrization token end */
+
 if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
     $segment = Request::segment(2);
 } else {
