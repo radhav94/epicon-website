@@ -1014,7 +1014,7 @@ input {
         background: url("../img/ribbon-nav-bg.svg") no-repeat;
         background-size: 100% 64px;
         width: fit-content;
-        margin: 0 auto -3px auto;
+        margin: 0 auto -6px auto;
         padding: 0 50px;
         background-position: center;
         @media (max-width:700px) {
@@ -1479,7 +1479,7 @@ input {
                     position: absolute;
                     top: 5px;
                     right: 5px;
-                    font-size: 14px;
+                    font-size: 11px;
                     font-weight: 600;
                     letter-spacing: .16px;
                     border-radius: 4px;
@@ -1837,6 +1837,7 @@ input {
         right: 0;
         bottom: 25px;
         width: fit-content;
+        z-index: 1;
 
         &::after{
             content: "";
@@ -4986,7 +4987,7 @@ input {
             li{
                 height: 160px;
                 @media (max-width:700px) {
-                    height: 154px;
+                    height: 134px;
                 }
             }
         }
@@ -6120,4 +6121,8 @@ input {
         border: none;
         background-color: #B14CF0;
     }
+}
+
+.swiper-button-lock{
+    display: block !important;
 }
