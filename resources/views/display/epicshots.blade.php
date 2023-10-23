@@ -11,7 +11,7 @@
         <div class="epic-shots">
             @foreach ($stories as $story)
             <div>
-                <a href="javascript:void(0)" class="storyBtn" data-id="{{$story['id']}}" data-bs-toggle="modal" data-bs-target="#epicShots">
+                <a href="javascript:void(0)" class="storyBtn" data-id="{{$story['id']}}">
                     <img src="{{$story['img_url']}}" alt="shots">
                 </a>
             </div>

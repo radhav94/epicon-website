@@ -11,7 +11,6 @@
         @endif
     </div>
     <div class="popular-language">
-
         @foreach ($value['content'] as $key => $val)
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
@@ -20,7 +19,7 @@
             ?>
             <div class="plang">
                 <a href="{{ getUrl('explore/' . @$val['slug']) }}">
-                    <img src="{{ $cover_img }}">
+                    <img src="{{ isset($cover_img) ? $cover_img : ''}}">
                     <!-- <div class="language">
                         <h1>{{ @$val['name'] }}</h1>
                         <span>{{ @$val['name'] }}</span>

@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', 'Explore Details')
+@section('title', $meta_title)
 
 @section('style')
 <style>
@@ -49,8 +49,8 @@
 
         <?php $count = $count_card_detail = 1;
         foreach ($result as $key => $val) {
-            $banner_img = isset($val['banner_image']) ? @$val['banner_image']['medium'] : '';
-            $cover_img = isset($val['cover_image']) ? @$val['cover_image']['medium'] : '';
+            $cover_img = getCardImage($val, 'cover_image', 'small', ['cover_image', 'banner_image']);
+            $banner_img = getCardImage($val, 'banner_image', 'medium', ['cover_image', 'banner_image']);
             $generes = array_column($val['genres_assign'] ?? [], 'name');
 
             $sub_text = [];
@@ -133,12 +133,14 @@
     </div>
     <!-- Load More Btn Start -->
     <input type="hidden" name="page" id="pageid" value="<?php echo $page + 1; ?>">
+    @if (count($result) >= $limit)
     <div class="text-center">
         <?php
         $baseUrl = env("APP_URL");
         ?>
         <a href="javascript:;" class="autowidth explore-showmore" data-currenturl="<?= $baseUrl . "/explorecontent"; ?>" slug="<?= $slug; ?>">{{__('Show More')}}</a>
     </div>
+    @endif
     <!-- Load More Btn End -->
 </section>
 @stop
