@@ -2409,7 +2409,7 @@ input {
 
         @include flex(column,center,center);
         @media (max-width:600px) {
-            width: 270px;
+            width: 200px;
             background-size: 180%;
 
             &::after{
