@@ -28,15 +28,15 @@
         line-height: 52px;
         border-radius: 32px;
         border: solid 2px transparent;
-        background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to top, #c15a2d, #c8265d);
+        background-image: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);   
         background-origin: border-box;
         background-clip: content-box, border-box;
         box-shadow: 2px 1000px 1px rgba(0, 0, 0, 0.6) inset;
         text-transform: uppercase;
         display: inline-block;
-        padding: 0 25px;
         margin-top: 35px;
         transition: all linear 0.4s;
+        text-decoration: none;
     }
 </style>
 @stop
