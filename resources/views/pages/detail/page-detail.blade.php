@@ -37,6 +37,19 @@ $cover_img = getCardImage($content, 'banner_image', 'large');
             <img src="{{ $cover_img }}" alt="img">
         </div>
     <?php
+    if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
+        $segment = Request::segment(2);
+    } else {
+        $segment = Request::segment(1);
+    }
+    $kids_page = $segment == 'kids' ? true : false;
+
+    if($kids_page){
+        $addClass = "allAccessBtn";
+    }else{
+        $addClass = "subscription";
+    }
+
         $watchClass = "";
         $watchid = "";
         $addToList = "";
@@ -45,7 +58,7 @@ if (@$content['free_premium'] == true) {
         $watchClass = "login";
     } else {
         if (@$subplan['status'] != 'active') {
-            $watchClass = "subscription";
+            $watchClass = $addClass;
             $addToList = "addToList";
         } else {
             $addToList = "addToList";
@@ -88,9 +101,15 @@ if (@$content['free_premium'] == true) {
                                 </button>
                             @loggedin
                                 @if (@$content['free_premium'] == true && !isActiveSubscription())
-                                    <a class="subcription-btn me-3" href="{{ getUrl('subscription') }}" style="text-decoration: none">
+                                    @if($kids_page)
+                                    <a class="subcription-btn me-3 {{$watchClass}}" href="javascript:void(0);" style="text-decoration: none">
                                         <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> {{__('Subscribe Now')}}
                                     </a>
+                                    @else
+                                        <a class="subcription-btn me-3" href="{{ getUrl('subscription') }}" style="text-decoration: none">
+                                            <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> {{__('Subscribe Now')}}
+                                        </a>
+                                        @endif
                                 @endif
                                 @elseloggedin
                                 <a class="subcription-btn me-3 login" href="javascript:void(0);" style="text-decoration: none">
