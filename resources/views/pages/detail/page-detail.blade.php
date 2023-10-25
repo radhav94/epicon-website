@@ -41,12 +41,11 @@ $cover_img = getCardImage($content, 'banner_image', 'large');
         <div class="banner-main position-relative">
             <img src="{{ $cover_img }}" alt="img">
         </div>
-        <?php
-if ($content['free_premium']) {
-    $watchClass = "";
-    $watchid = "";
-    $addToList = "";
-
+    <?php
+        $watchClass = "";
+        $watchid = "";
+        $addToList = "";
+if (@$content['free_premium'] == true) {
     if (!isUserLoggedIn()) {
         $watchClass = "login";
     } else {
