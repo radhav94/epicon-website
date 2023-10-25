@@ -24,7 +24,11 @@
                    ?>
                    <li>
                        @include('components.item-hover-card')
-                       <a href="javascript:void(0);" class="main-card">
+                       @if(@$val['asset_type'] == 'PLAY')
+                            {!! getplayanchorhtml($val) !!}
+                        @else
+                            <a href="{{ getContentUrl($val) }}" class="main-card">
+                        @endif
                            {!! freePremiumDiv($val) !!}
                            {!! topTenDiv($val) !!}
                            <div class="main-img eod-darlings">
