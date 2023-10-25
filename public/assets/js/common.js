@@ -32,7 +32,7 @@ $(document).ready(function () {
         }
       });
 
-    $("#allAccessBtn").click(function() {
+    $(".allAccessBtn").click(function() {
         var checkstaus = $(this).is(':checked');
         var kidsUrl= $("input#kidsUrl").val();
         var isLoggedIn = $(this).data('log');
@@ -43,12 +43,12 @@ $(document).ready(function () {
                 $('.loginBtn.login').trigger('click');
                 return false;
             } else {
-                console.log('else in kids')
+                console.log('else in kids');
                 window.location.href=kidsUrl;
                 return false;
             }
         }else{
-            $("#allAccessBtn").prop( "checked", true );
+            $(".allAccessBtn").prop( "checked", true );
             $("#child-pin-modal").modal('show');
         }
         

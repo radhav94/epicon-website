@@ -641,7 +641,7 @@ input {
         padding-top: 1rem;
     }
 }
-.banner-carousel, .premium-carousel,.explore-details{
+.banner-carousel, .premium-carousel,.explore-details,.banner-carousel-1{
     & .carousel-card.slick-slide.slick-active.slick-center .carousel-items{
         transform: scale(1.05);
         z-index: 10;
@@ -663,6 +663,9 @@ input {
     }
     & .slick-track{
         padding-bottom:70px;
+        @media (max-width:767px) {
+            padding-bottom:20px;
+        }
     }
     .carousel-card{
         position: relative;
@@ -739,14 +742,15 @@ input {
                 height: auto;
             }
             @media screen and (max-width: 1336px) {
-                height: 480px;
+                height: 415px;
             }
             @media screen and (max-width: 768px) {
                 padding: 15px 15px 0;
+                height: 480px;
             }
             @media screen and (max-width: 767px) {
                 padding: 8px 8px 0;
-                height: 320px;
+                height: 394px;
             }
             img{
                 width: 100%;
@@ -1203,6 +1207,10 @@ input {
 }
 .banner-carousel-1{
     position: relative;
+    overflow: hidden;
+   & .slick-list{
+        padding-left: 0;
+    }
     .carousel-card{
         position: relative;
         .crown{
@@ -1985,6 +1993,9 @@ input {
                 background: #272727;
                 transition: .3s all;
                 opacity: 1;
+                @media (max-width:767px) {
+                    display: none;
+                }
             }
         }
     }
@@ -2024,6 +2035,7 @@ input {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top;
         }
     }
     .carousel-items-content{
@@ -2132,17 +2144,17 @@ input {
   @media (max-width:600px){
     .tranding-slide{
         width: 340px;
-        height: 140px;
+        height: 420px;
       }
       #tranding .tranding-slider{
         width: 340px;
-        height: 140px;
+        height: 420px;
         padding: 0;
         position: relative;
       }
       .tranding-slide .tranding-slide-img{
         width: 280px;
-        height: 140px;
+        height: 420px;
       }
       .swiper-slide.tranding-slide.swiper-slide-prev{
         transform: translate3d(350px, 0px, -130px) rotateX(0deg) rotateY(0deg) scale(1) !important;
@@ -2190,6 +2202,7 @@ input {
     @media (max-width:700px) {
         padding-bottom: 0px;
         padding-top: 0px;
+        margin-bottom: 0;
     }
 
     .cant-decide{
@@ -2199,11 +2212,12 @@ input {
             margin-bottom: 60px;
         }
         @media (max-width:700px) {
-            margin-bottom: 20px;
+            margin-bottom: -20px;
         }
         h1{
             @media (max-width:700px) {
-                font-size: 20px;
+                font-size: 18px;
+                padding-right: 15px;
             }
         }
     }
@@ -2294,7 +2308,7 @@ input {
             width: 100%;
             position: absolute;
             right: 0;
-            background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8562018557) 100%);
+            // background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8562018557) 100%);
         }
     }
     #question h1{
@@ -2304,8 +2318,8 @@ input {
     .chart-trigger{
         width: calc(100% - 28%);
         @media (max-width:700px) {
-            left: -205px;
-            transform: scale(0.8);
+            left: -170px;
+            transform: scale(0.7);
         }
     }
     .main-chart-spinner{
@@ -2409,7 +2423,7 @@ input {
 
         @include flex(column,center,center);
         @media (max-width:600px) {
-            width: 200px;
+            width: 270px;
             background-size: 180%;
 
             &::after{
@@ -2545,7 +2559,7 @@ input {
             @include flex(row,center,center);
 
             img{
-                width: 60px;
+                width: 200px;
                 height: auto;
             }
         }
