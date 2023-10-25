@@ -484,7 +484,7 @@ function getSeasonEpisodeNum($val)
 
 function isUserLoggedIn()
 {
-    return Session::has('user_id') && Session::has('user_token') ? true : false;
+    return Session::has('user_id') && Session::has('user_token') ? true : false; 
 }
 
 function getUserId()

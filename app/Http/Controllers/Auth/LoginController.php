@@ -99,7 +99,6 @@ class LoginController extends Controller
             'password' => $password,
             'date_of_birth' => $date_of_birth,
             'gender' => $gender,
-
         );
         $registerResponseData = CurlAPI("users/register", 'POST', $postData, 2);
         $request->session()->put('registerResponseData', $registerResponseData);
