@@ -119,7 +119,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="use-code mt-4">
+                        <div class="use-code mt-4 coupan-div" style="display:none">
                             <p>{{__('Use code GET20 and get flat 20% off on 3/6/12-month subscriptions or get extra benefits. (T&C apply*)')}}</p>
                             <div class="position-relative">
                                 <input type="text" placeholder="{{__('Enter promo code')}}" class="promocode">
@@ -168,6 +168,11 @@
 
         $(".planid").click(function (e) {
             var planid =$(this).attr('data-id');
+            if(planid == 'epic_in_pl_1'){
+                $(".coupan-div").hide();
+            }else{
+                $(".coupan-div").show();
+            }
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
