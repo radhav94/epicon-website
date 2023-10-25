@@ -1,11 +1,12 @@
-@if ($ep_season_data)
-    <div class="tab-pane fade {{ $active_tab == 'episode' ? 'show active' : '' }} " id="pills-episode" role="tabpanel"
+@if ($season_episode_data && count($season_episode_data) > 0)
+    <div class="tab-pane fade {{ $active_tab == 'episode' ? 'show active' : '' }}" id="pills-episode" role="tabpanel"
         aria-labelledby="my-list">
-        <ul class="list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4">
+        @foreach ($season_episode_data as $skey => $ep_season_data)
+        <ul class="season-episode-main list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4 {{ $skey == $lastSeason ? '' : 'hide' }}"  id="pills-episode-{{$skey ?? ''}}">
 
             @foreach ($ep_season_data as $key => $value)
                 <?php
-                if ($value['ID'] == $content['ID']) {
+                if (!isset($value['ID']) || $value['ID'] == $content['ID']) {
                     continue;
                 }
                 $card = getItemCardData($value, $displayLanguageParam);
@@ -44,5 +45,6 @@
             @endforeach
 
         </ul>
+        @endforeach
     </div>
 @endif
