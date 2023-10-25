@@ -197,7 +197,7 @@ if (request()->path() == "hi") {
             <!-- <button id="allAccessBtn">All access</button> -->
 
             <label class="switch">
-                <input type="checkbox" name ="kidscheckbox" data-log="{{ isUserLoggedIn() }}" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
+                <input type="checkbox" class="allAccessBtn" name ="kidscheckbox" data-log="{{ isUserLoggedIn() }}" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
                 <small></small>
             </label>
 
