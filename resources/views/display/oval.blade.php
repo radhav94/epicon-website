@@ -22,7 +22,11 @@
             ?>
             <li>
                 @include('components.item-hover-card')
-                <a href="javascript:void(0);" class="main-card">
+                @if(@$val['asset_type'] == 'PLAY')
+                    {!! getplayanchorhtml($val) !!}
+                @else
+                    <a href="{{ getContentUrl($val) }}" class="main-card">
+                @endif
                     {!! freePremiumDiv($val) !!}
 
                     <div class="main-img oval-shape avilable-audio {{$getTitle['cls']}}">
