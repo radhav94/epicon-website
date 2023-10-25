@@ -20,6 +20,11 @@ $loadPlayer = true;
     @if ($loadPlayer)
         <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     @endif
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
 @stop
 
 @section('content')
