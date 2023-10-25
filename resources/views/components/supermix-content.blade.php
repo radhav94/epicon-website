@@ -12,14 +12,14 @@
         $cover_img = isset($value['cover_image_v2']) ? $value['cover_image_v2']['small'] : $card['banner_img'];
         ?>
 
-        <li class="episode-main mb-4 ">
-            <div class="pik supermixPlay" data-id="{{ @$value['ID'] }}" data-video="{{ @$value['supermix_url']['play_url'] }}">
+        <li class="episode-main mb-4">
+            <div class="pik supermixPlay handle" data-id="{{ @$value['ID'] }}" data-video="{{ @$value['supermix_url']['play_url'] }}">
                 <img src="{{ $cover_img }}" alt="img" class="popupVideo">
 
                 {!! freePremiumDiv($value) !!}
                 {{-- <img class="crown" src="public/img/crown.svg" alt="icon"> --}}
             </div>
-            <div class="episode-text-details">
+            <div class="episode-text-details handle">
                 <h6>{{ @$value['title'] }}</h6>
                 <span class="ua-drama">
                     @include('pages.detail.detail-components.sub-bullets', [
