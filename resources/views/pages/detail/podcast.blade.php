@@ -12,6 +12,9 @@
     .episode-active .progress-main {
         display: block !important;
     }
+    .hide {
+        display: none;
+    }
 </style>
 @stop
 
@@ -25,9 +28,11 @@ $episode_list = [];
 if (array_key_exists('season', $content)) {
     $seasons = $content['season'];
     // $season = is_array($seasons) && isset($seasons[0]) ? $seasons[0] : [];
-    // $episode_list = getAllEpisodesFromSeason($season);
-} else if (array_key_exists('episodes', $content)) {
-    $episode_list = getAllEpisodesFromSeason($content);
+    foreach ($seasons as $season) {
+        $episode_list = array_merge($episode_list, getAllEpisodesFromSeason($season));
+    }
+// } else if (array_key_exists('episodes', $content)) {
+    // $episode_list = getAllEpisodesFromSeason($content);
 } else {
     if (array_key_exists('file_url_original', $content) && !empty($content['file_url_original'])) {
         $episode_list[] = $content['ID'];
@@ -146,7 +151,7 @@ $episode_json = json_encode($episode_list);
                             </button>
                         </div>
 
-                        @if (count($episode_list) > 0 && (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription())))
+                        @if (count($episode_list) > 0) {{-- && (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription()))) --}}
 
                         <audio id="audioPlayer" controls>
                             <source id="audioSource" src="" type="audio/mpeg">
@@ -170,9 +175,9 @@ $episode_json = json_encode($episode_list);
 
         </div>
     </section>
-    @if (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription()))
+    {{-- @if (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription())) --}}
     @include('pages.detail.detail-components.tabs')
-    @endif
+    {{-- @endif --}}
 
 </div>
 
@@ -202,7 +207,7 @@ $episode_json = json_encode($episode_list);
     });
 
     $(document).ready(function() {
-        playCurrentEpisode();
+        // playCurrentEpisode();
         if ($("#audioPlayer").length) {
             audio.volume = 0.25; // Set default volume 25%
         }

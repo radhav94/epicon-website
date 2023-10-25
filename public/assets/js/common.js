@@ -3,9 +3,10 @@ var queryParams = new URLSearchParams(window.location.search);
 
 $(document).ready(function () {
     $("#seasonSelect").change(function () {
-        var url = $(this).val();
-        if (url != "" && url != 0) {
-            window.location.href = window.location.protocol + "//" + window.location.host + "/" + url;
+        var slug = $(this).val();
+        if (slug != "" && slug != 0) {
+            $(".season-episode-main").addClass('hide');
+            $("#pills-episode-" + slug).removeClass('hide');
         }else{
             return false;
         }
