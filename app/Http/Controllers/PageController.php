@@ -111,7 +111,7 @@ class PageController extends Controller
         $data = $this->homepageData($slug);
         $displayLanguageParam = $data['displayLanguageParam'];
         $result = CurlAPI("pages/midpage/" . $slug, "GET", $params, 1);
-
+        
         if ($result && @$result['success'] ==  true) {
             $result = $result['data'];
             if ($displayLanguageParam == 'HINDI') {

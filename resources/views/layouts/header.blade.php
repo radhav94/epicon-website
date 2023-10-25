@@ -236,72 +236,7 @@ if (request()->path() == "hi") {
                         <!-- <a href="#/">{{__('Clear All')}}</a> -->
                     </div>
                     <ul class="list-unstyled notification-list">
-                        <!-- <li class="content active mb-3">
-                            <span class="notif-dot"></span>
-                            <div class="notif-img">
-                                <img src="{{ asset('assets/img/welcom.jpeg') }}" alt="">
-                            </div>
-                            <div>
-                                <h3>Upcoming Show</h3>
-                                <h4>Rajvansh</h4>
-                                <p>10 June</p>
-                            </div>
-                        </li>
-                        <li class="content mb-3">
-                            <span class="notif-dot"></span>
-                            <div class="notif-img">
-                                <img src="{{ asset('assets/img/welcom.jpeg') }}" alt="">
-                            </div>
-                            <div>
-                                <h3>Upcoming Show</h3>
-                                <h4>Rajvansh</h4>
-                                <p>10 June</p>
-                            </div>
-                        </li>
-                        <li class="content mb-3">
-                            <span class="notif-dot"></span>
-                            <div class="notif-img">
-                                <img src="{{ asset('assets/img/welcom.jpeg') }}" alt="">
-                            </div>
-                            <div>
-                                <h3>Upcoming Show</h3>
-                                <h4>Rajvansh</h4>
-                                <p>10 June</p>
-                            </div>
-                        </li>
-                        <li class="content mb-3">
-                            <span class="notif-dot"></span>
-                            <div class="notif-img">
-                                <img src="{{ asset('assets/img/welcom.jpeg') }}" alt="">
-                            </div>
-                            <div>
-                                <h3>Upcoming Show</h3>
-                                <h4>Rajvansh</h4>
-                                <p>10 June</p>
-                            </div>
-                        </li>
-                        <li class="content mb-3">
-                            <span class="notif-dot"></span>
-                            <div class="notif-img">
-                                <img src="{{ asset('assets/img/welcom.jpeg') }}" alt="">
-                            </div>
-                            <div>
-                                <h3>Upcoming Show</h3>
-                                <h4>Rajvansh</h4>
-                                <p>10 June</p>
-                            </div>
-                        </li>
-                        <li class="content mb-3">
-                            <span class="notif-dot"></span>
-                            <div class="notif-img">
-                                <img src="{{ asset('assets/img/welcom.jpeg') }}" alt="">
-                            </div>
-                            <div>
-                                <h3>Upcoming Show</h3>
-                                <h4>Rajvansh</h4>
-                                <p>10 June</p>
-                            </div>
-                        </li> -->
+                        
                     </ul>
                     <div class="no-notification">
                         <img src="{{ asset('assets/img/no-notification.svg') }}" alt="">

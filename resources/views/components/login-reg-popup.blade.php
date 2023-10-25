@@ -528,10 +528,12 @@
                     <!-- better suggetion end -->
 
                     <!-- successfully logged  start-->
-                    <div class="successfully-loged w-100 screen-sucess-logged">
-                        <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="">
-                        <h4 class="text-center text-white mt-3">Awesome! You have successfully logged in to Epic ON
+                    <div class="successfully-loged w-100 screen-sucess-logged 12345">
+
+                        <img width="100" class="{{@$subplan['status']}}" src="{{ asset('/img/success-tick.png') }}" alt="">
+                        <h4 class="text-center text-white mt-3">Awesome! You have successfully logged in to Epic ON {{@$subplan_status}}
                         </h4>
+                        <div class="no-subscription-user">
                         <button class="no-active-subscription mt-4 mb-4">No Active Subscription</button>
                         <button class="login-btn subscription-btn mt-4" style="width: 280px;">
                             Buy Subscription
@@ -547,6 +549,7 @@
                         </button>
                         <button class="login-btn skip-btn mt-0 bg-transparent text-white" class="btn-close"
                             style="width: 280px;">Skip for now</button>
+                        </div>
                     </div>
 
                 </div>
