@@ -47,15 +47,17 @@ function initSliders() {
                 settings: {
                     centerMode: true,
                     centerPadding: '60px',
-                    slidesToShow: 1
+                    slidesToShow: 1,
+                    dots: false,
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
                     centerMode: true,
-                    centerPadding: '30px',
-                    slidesToShow: 1
+                    centerPadding: '40px',
+                    slidesToShow: 1,
+                    dots: false,
                 }
             }
         ]
@@ -73,9 +75,12 @@ function initSliders() {
 
     $('.banner-carousel-1').not('.slick-initialized').slick({
         slidesToShow: 1,
-        arrows: true,
-        dots: false,
+        // arrows: true,
+        // dots: true,
         autoplay: true,
+        // appendDots: $(".slide-sl-dots"),
+        // prevArrow: $(".slide-sl-prev"),
+        // nextArrow: $(".slide-sl-next"),
     });
 
     $('.carousel-initilize').not('.slick-initialized').slick({
