@@ -58,7 +58,7 @@ $subplan = checkSubscription();
                       </svg>
                 </span>
                 <h4 class="text-white mt-4">{{__('Cancel Membership')}}</h4>
-                <p class="w-75 text-white small m-auto">{{__('Cancellation will be effective at the end of your current billing cycle on') }} {{$subenddate}} | {{__('No refunds will be made')}}</p>
+                <p class="w-75 text-white small m-auto">{{__('Cancellation will be effective at the end of your current billing cycle on') }} {{$subenddate ??''}} | {{__('No refunds will be made')}}</p>
                 <button class="login-btn mt-4" style="width: 280px;" id="can_member">
                     {{__('Finish Cancellation')}}
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

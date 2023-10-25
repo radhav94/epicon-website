@@ -3,9 +3,10 @@ var queryParams = new URLSearchParams(window.location.search);
 
 $(document).ready(function () {
     $("#seasonSelect").change(function () {
-        var url = $(this).val();
-        if (url != "" && url != 0) {
-            window.location.href = window.location.protocol + "//" + window.location.host + "/" + url;
+        var slug = $(this).val();
+        if (slug != "" && slug != 0) {
+            $(".season-episode-main").addClass('hide');
+            $("#pills-episode-" + slug).removeClass('hide');
         }else{
             return false;
         }
@@ -31,7 +32,7 @@ $(document).ready(function () {
         }
       });
 
-    $("#allAccessBtn").click(function() {
+    $(".allAccessBtn").click(function() {
         var checkstaus = $(this).is(':checked');
         var kidsUrl= $("input#kidsUrl").val();
         var isLoggedIn = $(this).data('log');
@@ -42,12 +43,12 @@ $(document).ready(function () {
                 $('.loginBtn.login').trigger('click');
                 return false;
             } else {
-                console.log('else in kids')
+                console.log('else in kids');
                 window.location.href=kidsUrl;
                 return false;
             }
         }else{
-            $("#allAccessBtn").prop( "checked", true );
+            $(".allAccessBtn").prop( "checked", true );
             $("#child-pin-modal").modal('show');
         }
         

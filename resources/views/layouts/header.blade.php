@@ -1,14 +1,4 @@
 <?php
-/* check authrization token expired start */
-if (isUserLoggedIn()) {
-    $response = update_user_session();
-    if (!$response) {
-        $request->session()->flush();
-        return redirect(route('homepage') . "?type=logout");
-    }
-}
-/* check authrization token end */
-
 if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
     $segment = Request::segment(2);
 } else {
@@ -207,7 +197,7 @@ if (request()->path() == "hi") {
             <!-- <button id="allAccessBtn">All access</button> -->
 
             <label class="switch">
-                <input type="checkbox" name ="kidscheckbox" data-log="{{ isUserLoggedIn() }}" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
+                <input type="checkbox" class="allAccessBtn" name ="kidscheckbox" data-log="{{ isUserLoggedIn() }}" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
                 <small></small>
             </label>
 

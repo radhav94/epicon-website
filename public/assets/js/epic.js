@@ -154,19 +154,34 @@ $(document).on('click', '.shareThis', function () {
 
     console.log(title);
 
-    $('#shareDiv').empty();
-    $('#shareDiv').socialSharingPlugin({
-        url: url,
-        title: title,
-        description: title,
-        // description: $('meta[property="og:description"]').attr('content'),
-        // img: $('meta[property="og:image"]').attr('content'),
-        enable: ['copy', 'facebook', 'twitter'],
-        copyMessage:'Copy to clipboard',
+    $('#shareDiv').html('<div class="socialJS"><a href="javascript:void(0)" data-url="'+url+'" id="linkCopy" data-toggle="tooltip" title="Copy" class="my-tool-tip"><i class="fas fa-copy" style="color:#b9b9b9"></i></a><a data-action="social-share" href="https://www.facebook.com/sharer.php?u='+url+'" target="_blank"><i class="fab fa-facebook" style="color:#4267B2"></i></a><a data-action="social-share" href="https://twitter.com/share?url='+url+'" target="_blank"><i class="fab fa-twitter" style="color:#00acee"></i></a></div>');
 
-    });
-    $('#shareModal').modal('show')
+    // $('#shareDiv').empty();
+    // $('#shareDiv').socialSharingPlugin({
+    //     url: url,
+    //     title: title,
+    //     description: title,
+    //     // description: $('meta[property="og:description"]').attr('content'),
+    //     // img: $('meta[property="og:image"]').attr('content'),
+    //     enable: ['copy', 'facebook', 'twitter'],
+    //     copyMessage:'Copy to clipboard',
+
+    // });
+    $('#shareModal').modal('show');
+    $('#linkCopy').click(function() {
+        var textToCopy = $('#linkCopy').attr('data-url');
+        var tempTextarea = $('<textarea>');
+        $('#shareDiv').append(tempTextarea);
+        tempTextarea.val(textToCopy).select();
+        document.execCommand('copy');
+        tempTextarea.remove();
+        $('#linkCopy').attr("title", "Copied!").tooltip("_fixTitle")
+        .tooltip("show").attr("title", "Copied!").tooltip("_fixTitle");
+       
+      });
+
 });
+
 //end social share
 
 $('.menu-close').click(function (e) {

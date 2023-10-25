@@ -12,6 +12,9 @@
     .episode-active .progress-main {
         display: block !important;
     }
+    .hide {
+        display: none;
+    }
 </style>
 @stop
 
@@ -25,9 +28,11 @@ $episode_list = [];
 if (array_key_exists('season', $content)) {
     $seasons = $content['season'];
     // $season = is_array($seasons) && isset($seasons[0]) ? $seasons[0] : [];
-    // $episode_list = getAllEpisodesFromSeason($season);
-} else if (array_key_exists('episodes', $content)) {
-    $episode_list = getAllEpisodesFromSeason($content);
+    foreach ($seasons as $season) {
+        $episode_list = array_merge($episode_list, getAllEpisodesFromSeason($season));
+    }
+// } else if (array_key_exists('episodes', $content)) {
+    // $episode_list = getAllEpisodesFromSeason($content);
 } else {
     if (array_key_exists('file_url_original', $content) && !empty($content['file_url_original'])) {
         $episode_list[] = $content['ID'];
@@ -35,6 +40,29 @@ if (array_key_exists('season', $content)) {
 }
 $episode_json = json_encode($episode_list);
 ?>
+<?php 
+        // if content not free condition put here...
+        if($content['free_premium']) {
+            if(!isUserLoggedIn()){
+                $watchClass = "login";
+                $watchid = "";
+            }else{
+                if(@$subplan['status'] != 'active'){
+                $watchClass = "subscription";
+                $watchid = "";
+                }else{
+                    
+                    $watchClass = "addToList";
+                    $watchid = "watchVideo";
+                }
+                
+            }
+        }else{
+            $watchClass = "";
+            $watchid = "watchVideo";
+        }
+    ?>
+
 <div class="podcast-background w-100">
     <section class="container w-100 mt-2">
         <div class="row justify-content-center">
@@ -47,7 +75,7 @@ $episode_json = json_encode($episode_list);
                         <img src="{{ $cover_img }}" alt="thumb">
                         <img class="podcast-top-icon" src="{{ asset('assets/img/podcast-top-icon.svg') }}" alt="podcast icon">
                     </div>
-
+                    <input type="hidden" name="subUrl" class="subUrl" id="subUrl" value="{{ getUrl('subscription') }}">
                     <div class="thumb-detail text-white">
                         <h1>{{ @$content['title'] }}</h1>
 
@@ -102,7 +130,7 @@ $episode_json = json_encode($episode_list);
                         </div>
                         <p class="pod-detail-text mt-3">{{ @$content['description'] }}</p>
                         <div class="podcast-btns d-flex align-items-center" data-id="{{ @$content['ID'] }}">
-                            <button class="fill-btn ms-0 px-4 me-3">
+                            <button class="fill-btn ms-0 px-4 me-3 {{$watchClass}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28" viewBox="0 0 29 28" fill="none">
                                     <path d="M26.75 14.0005C26.7507 14.2976 26.6745 14.5899 26.5289 14.8488C26.3832 15.1077 26.173 15.3246 25.9188 15.4782L10.16 25.1185C9.89431 25.2812 9.59001 25.37 9.27852 25.3758C8.96703 25.3816 8.65965 25.3041 8.38813 25.1513C8.11918 25.001 7.89515 24.7817 7.73905 24.516C7.58296 24.2503 7.50045 23.9479 7.5 23.6398V4.36133C7.50045 4.0532 7.58296 3.75076 7.73905 3.48509C7.89515 3.21943 8.11918 3.00014 8.38813 2.84976C8.65965 2.69702 8.96703 2.61953 9.27852 2.6253C9.59001 2.63107 9.89431 2.71989 10.16 2.88258L25.9188 12.5229C26.173 12.6765 26.3832 12.8934 26.5289 13.1523C26.6745 13.4112 26.7507 13.7035 26.75 14.0005Z" fill="#272727" />
                                 </svg> &nbsp;
@@ -146,7 +174,7 @@ $episode_json = json_encode($episode_list);
                             </button>
                         </div>
 
-                        @if (count($episode_list) > 0 && (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription())))
+                        @if (count($episode_list) > 0) {{-- && (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription()))) --}}
 
                         <audio id="audioPlayer" controls>
                             <source id="audioSource" src="" type="audio/mpeg">
@@ -170,9 +198,9 @@ $episode_json = json_encode($episode_list);
 
         </div>
     </section>
-    @if (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription()))
+    {{-- @if (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription())) --}}
     @include('pages.detail.detail-components.tabs')
-    @endif
+    {{-- @endif --}}
 
 </div>
 
@@ -202,7 +230,7 @@ $episode_json = json_encode($episode_list);
     });
 
     $(document).ready(function() {
-        playCurrentEpisode();
+        // playCurrentEpisode();
         if ($("#audioPlayer").length) {
             audio.volume = 0.25; // Set default volume 25%
         }
