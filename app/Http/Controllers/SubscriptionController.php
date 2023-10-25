@@ -469,7 +469,7 @@ class SubscriptionController extends Controller
             }
             return response()->json($listResponseData, 200)->header('Content-Type', 'application/json');
         } else {
-            return response()->json('Coupan not found.', 400)->header('Content-Type', 'application/json');
+            return response()->json('Coupan not found.', 201)->header('Content-Type', 'application/json');
         }
 
     }

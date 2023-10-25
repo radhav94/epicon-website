@@ -20,8 +20,12 @@
              $getTitle = getNewTitle($val);
              ?>
              <li>
-                 @include('components.item-hover-card')
-                 <a href="javascript:void(0);" class="main-card">
+                @include('components.item-hover-card')
+                @if(@$val['asset_type'] == 'PLAY')
+                    {!! getplayanchorhtml($val) !!}
+                @else
+                    <a class="main-card" href="{{ getContentUrl($val) }}">
+                @endif
                      {!! freePremiumDiv($val) !!}
                      {!! topTenDiv($val) !!}
                      <div class="main-img {{$getTitle['cls']}}">

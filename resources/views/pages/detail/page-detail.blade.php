@@ -61,6 +61,7 @@ $cover_img = getCardImage($content, 'banner_image', 'large');
 if (@$content['free_premium'] == true) {
     if (!isUserLoggedIn()) {
         $watchClass = "login";
+        $addToList = "login";
     } else {
         if (@$subplan['status'] != 'active') {
             $watchClass = $addClass;
