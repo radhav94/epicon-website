@@ -30,9 +30,10 @@
                     @include('display.epicshots', ['stories' => $stories])
                 @endif
              @else
+                {{--
                  <h1>
                      Template not found - {{ $value['display_type'] }}
-                 </h1>
+                 </h1>--}}
              @endif
          @endif
      @endforeach

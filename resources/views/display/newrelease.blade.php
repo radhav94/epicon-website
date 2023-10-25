@@ -13,7 +13,7 @@
 
      <div class="hero-banner-new-release w-100">
          <div class="banner-carousel-new-release">
-             
+               
              @foreach ($value['content'] as $key => $val)
                  <?php
                  $card = getItemCardData($val, $displayLanguageParam);
@@ -29,8 +29,8 @@
                  $se_epi_text = getSeasonEpisodeNum($val);
                  $s_txt = '';
                  
-                 $s_txt .= isset($se_epi_text['season']) ? 'S' . $se_epi_text['season'] : '';
-                 $s_txt .= isset($se_epi_text['episode']) ? '<b>E' . $se_epi_text['episode'] . '</b>' : '';
+                 $s_txt .= isset($se_epi_text['season']) ? ' ' . $se_epi_text['season'] : '';
+                 $s_txt .= isset($se_epi_text['episode']) ? '<b>' . $se_epi_text['episode'] . '</b>' : '';
                  
                  if ($s_txt) {
                      $s_txt = '<li>' . $s_txt . '</li>';
@@ -105,9 +105,8 @@
                                  $s_txt = $s_txt;
                              }
                              $child_cover_img = getCardImage($data, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
-                             
                              ?>
-
+                            @if (isset($data['url']) && !empty($data['url']))
                              <div class="new-release-card new-release-card-{{ $key }}"><a
                                      href="{{ getContentUrl($data) }}"><img src="{{ $child_cover_img }}" alt="">
                                  </a>
@@ -116,6 +115,8 @@
                                              class="nr_time">{{ $li }}</span> </ul>
                                  </div>
                              </div>
+                             @endif
+
                          @endforeach
                      </div>
                  @endforeach

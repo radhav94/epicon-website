@@ -25,7 +25,7 @@ function initSliders() {
 
     $('.banner-carousel').not('.slick-initialized').slick({
         centerMode: true,
-        centerPadding: '130px',
+        centerPadding: '230px',
         slidesToShow: 1,
         arrows: true,
         dots: true,
@@ -71,6 +71,13 @@ function initSliders() {
         nextArrow: $(".slide-m-next"),
     });
 
+    $('.banner-carousel-1').not('.slick-initialized').slick({
+        slidesToShow: 1,
+        arrows: true,
+        dots: false,
+        autoplay: true,
+    });
+
     $('.carousel-initilize').not('.slick-initialized').slick({
         dots: false,
         infinite: false,
@@ -103,14 +110,14 @@ function initSliders() {
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 2.2,
+                    slidesToShow: 1.8,
                     slidesToScroll: 2
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 2.2,
+                    slidesToShow: 1.8,
                     slidesToScroll: 1
                 }
             }
@@ -148,14 +155,14 @@ function initSliders() {
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 3.2,
+                    slidesToShow: 2.5,
                     slidesToScroll: 2
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 3.2,
+                    slidesToShow: 2.5,
                     slidesToScroll: 1
                 }
             }
@@ -609,7 +616,8 @@ function initSliders() {
                 settings: {
                     centerMode: true,
                     centerPadding: '60px',
-                    slidesToShow: 1
+                    slidesToShow: 1,
+                    dots: false,
                 }
             },
             {
@@ -617,7 +625,7 @@ function initSliders() {
                 settings: {
                     centerMode: true,
                     centerPadding: '30px',
-                    slidesToShow: 1
+                    slidesToShow: 1,
                 }
             }
         ]

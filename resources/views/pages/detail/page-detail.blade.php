@@ -29,8 +29,8 @@ $loadPlayer = true;
 
 @section('content')
     <?php
-    $cover_img = getCardImage($content, 'banner_image', 'large');
-    ?>
+$cover_img = getCardImage($content, 'banner_image', 'large');
+?>
     <input type="hidden" id="cont_id" value="{{ $content['ID'] }}">
 
     @if ($loadPlayer)
@@ -41,14 +41,49 @@ $loadPlayer = true;
         <div class="banner-main position-relative">
             <img src="{{ $cover_img }}" alt="img">
         </div>
+        <?php
+if ($content['free_premium']) {
+    $watchClass = "";
+    $watchid = "";
+    $addToList = "";
 
+    if (!isUserLoggedIn()) {
+        $watchClass = "login";
+    } else {
+        if (@$subplan['status'] != 'active') {
+            $watchClass = "subscription";
+            $addToList = "addToList";
+        } else {
+            $addToList = "addToList";
+            $watchid = "watchVideo";
+        }
+
+    }
+} else {
+    $addToList = "addToList";
+    $watchid = "watchVideo";
+}
+?>
+        <?php
+// $watch_text = getPlayText($content);
+
+// $se_epi_text = getSeasonEpisodeValue($content);
+// if (@$se_epi_text['season']) {
+//     $watch_text .= ' '.$se_epi_text['season'];
+// }
+
+// if (@$se_epi_text['episode']) {
+//     $watch_text .= ' '.$se_epi_text['episode'];
+// }
+?>
         <div class="overlay">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="banner-content">
                             <div class="all-btn">
-                                <button class="fill-btn mobile-width me-3 ms-0" id="watchVideo">
+                            <input type="hidden" name="subUrl" class="subUrl" id="subUrl" value="{{ getUrl('subscription') }}">
+                                <button class="fill-btn mobile-width me-3 ms-0 {{$watchClass}}" id="{{$watchid}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                         viewBox="0 0 28 28" fill="none">
                                         <path
@@ -66,24 +101,24 @@ $loadPlayer = true;
                                 @elseloggedin
                                 <a class="subcription-btn me-3 login" href="javascript:void(0);" style="text-decoration: none">
                                         <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> {{__('Subscribe Now')}}
-                                    </a>   
+                                    </a>
                                 @endloggedin
 
 
                                 <?php
-                                $wishlist = getWishlist();
-                                
-                                $wishlist_ids = $wishlist['ids'] ?? [];
-                                
-                                $wishAction = in_array($content['ID'], $wishlist_ids) ? 'delete' : 'add';
-                                
-                                $share_title = @$content['title'];
-                                if ($content['content_type'] == 'SEASON') {
-                                    $share_title = @$content['parent_name'] . ' - ' . @$content['title'];
-                                }
-                                ?>
+$wishlist = getWishlist();
 
-                                <button class="rounded-transparent-btn me-3 addToList" data-id="{{ $content['ID'] }}"
+$wishlist_ids = $wishlist['ids'] ?? [];
+
+$wishAction = in_array($content['ID'], $wishlist_ids) ? 'delete' : 'add';
+
+$share_title = @$content['title'];
+if ($content['content_type'] == 'SEASON') {
+    $share_title = @$content['parent_name'] . ' - ' . @$content['title'];
+}
+?>
+
+                                <button class="rounded-transparent-btn me-3 {{$addToList}}" data-id="{{ $content['ID'] }}"
                                     data-action="{{ $wishAction }}" data-type="3">
                                     <img class="wl_add" src="{{ asset('assets/img/add-icon.svg') }}" alt="icon"
                                         @if ($wishAction == 'delete') style="display: none" @endif>

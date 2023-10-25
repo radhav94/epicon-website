@@ -52,6 +52,7 @@
      }
 
      function activateSpinner() {
+            spinnerAdded = true
          var jsArray = <?php echo json_encode($temp); ?>;
 
          // SPINER JS START
