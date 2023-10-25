@@ -133,6 +133,7 @@ class LoginController extends Controller
         $loginResponseData = CurlAPI("users/loginWithPassword", 'POST', $postedData, 2);
         // dd($loginResponseData);
         $response['message'] = $loginResponseData['message'];
+        
         if (@$loginResponseData['success'] == true && !empty($loginResponseData['user_data'])) {
             $userdata = $loginResponseData['user_data'];
             $request->session()->put('user', $userdata);
@@ -143,10 +144,11 @@ class LoginController extends Controller
                 setcookie("user_id", strtolower($userid), time() + 60 * 60 * 24 * 30);
                 setcookie("user_password", $password, time() + 60 * 60 * 24 * 30);
             }
-
-            return JSONResponse(200, 'User Logged In Successfully.', ['redirect' => url('/') , 'success' => true]);
+            $subplan = checkSubscription();
+            return JSONResponse(200, 'User Logged In Successfully.', ['redirect' => url('/') , 'success' => true, 'subplan_status' => @$subplan['status']]);
         } else {
-            return redirect('/');
+            return JSONResponse(200, 'Invalid Credentials.', ['response' => $response, 'success' => false]);
+            // return redirect('/');
         }
     }
 

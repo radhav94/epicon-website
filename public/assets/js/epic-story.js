@@ -8,6 +8,22 @@ $(document).ready(function () {
 })
 
 $(document).on('click', ".storyBtn", function () {
+    var currentURL = window.location.href;
+    var arr=currentURL.split('/')[3];
+    // alert(currentURL+"============"+arr);
+    if(arr=='' || arr==null || arr==undefined)
+    {
+        var mainurl=currentURL+'#';
+        window.history.pushState('forward', null, mainurl);
+    }
+    window.onpopstate = function() {
+      if (player) {
+        player.pause();
+        player.destroy();
+      }
+        $(".modal").modal('hide');
+        $('#epicShots .modal-content').html("");
+    }
     var storyId = $(this).data('id');
     $.ajax({
         async: true,

@@ -468,6 +468,11 @@
                             $('.screen-login,.screen-verify,.screen-register,.left-side,.right-side,.screen-sucess-register,.screen-login-with-pwd,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
                                 .hide();
                             $('.screen-sucess-logged').show();
+                            if(response.payload.subplan_status == 'active'){
+                                $('.no-subscription-user').hide();
+                            }else{
+                                $('.no-subscription-user').show();
+                            }
                             setTimeout(function() {
                                 if (queryParams.get('profile') == "kids" ) {
                                     window.location.href = $("input[name='kidsUrl']").val();
