@@ -103,14 +103,13 @@ class LoginController extends Controller
         );
         $registerResponseData = CurlAPI("users/register", 'POST', $postData, 2);
         $request->session()->put('registerResponseData', $registerResponseData);
-        //dd($registerResponseData);
         $response['message'] = $registerResponseData['message'];
         
         if ($registerResponseData && (@$registerResponseData['success'] == 'true' || @$registerResponseData['success'] == true)) {
             $userdata = $registerResponseData['user_data'];
-            $request->session()->put('user', $userdata);
-            $request->session()->put('user_id', $userid);
-            $request->session()->put('user_token', $registerResponseData['token']);
+            session()->put('user', $userdata);
+            session()->put('user_id', $userid);
+            session()->put('user_token', $registerResponseData['token']);
             return JSONResponse(200, 'User Registered Successfully.', ['user_id' => $userid, 'user_signup_method' => $signup_method, 'name' => $username, 'password' => $password, 'date_of_birth' => $date_of_birth, 'gender' => $gender, 'response' => $response, 'success' => true, 'user_token' => $registerResponseData['token']]);
         } else {
             return JSONResponse(200, 'User Registeration Failed.', ['response' => $response, 'success' => false]);

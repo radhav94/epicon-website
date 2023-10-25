@@ -266,6 +266,12 @@ class PageController extends Controller
             'page' => $page,
             'limit' => $this->limit,
         ];
+
+        if (isUserLoggedIn()) {
+            $params['user_id'] = getUserId();
+            $params['profile_id'] = getProfileId();
+        }
+
         $result = CurlAPI("pages/homepage", "GET", $params, 1);
 
         if ($result && @$result['success'] ==  true) {
