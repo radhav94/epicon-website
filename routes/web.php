@@ -76,6 +76,15 @@ Route::get('login/twitter', [AuthSocialController::class, 'redirectToProvider'])
 Route::get('login/twitter/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.twitter.callback');
 /*social login end*/
 
+// channels midpage
+Route::get('channels/{slug}', function ($slug) {
+            // if ($pageslug != 'live-tv') {
+                return App::call('\App\Http\Controllers\PageController@channelsmidpagedetail', ['slug' => $slug]);
+            // }
+        });
+
+Route::post('channelpaginatecontent', [PageController::class, 'channelpaginatecontent'])->name('channelpaginatecontent');
+
 Route::group(['middleware' => 'checkUserAuthToken'], function () {
     Route::get('terms-of-use', function () {
         return view('static.terms-of-use');
@@ -188,6 +197,7 @@ foreach ($lang as $val) {
         Route::get('{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
         Route::get('retro-rewind/{slug}', [RetroRewindController::class, 'retroRewindList'])->name('retro-list');
         Route::get('{slug}', [PageController::class, 'index']);
+
     });
 }
 
