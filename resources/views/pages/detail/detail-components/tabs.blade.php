@@ -1,17 +1,23 @@
    <?php
-    $ep_season_data = [];
+    $ep_season_data = $season_episode_data = [];
     $temp = $seasonList = [];
 
-    $tab1_title = '';
+    $tab1_title = $lastSeason = '';
+    // dd($content);
     if ($content['content_type'] == 'SHOW') {
-        $temp = $content['season'] ?? [];
+        $seasons = $content['season'] ?? [];
         $tab1_title = 'Seasons';
-        foreach ($temp as $value) {
+        foreach ($seasons as $value) {
             $seasonList[] = [
                 'title' => $value['title'],
-                'url' => $value['url']
+                'url' => $value['slug']
             ];
+            $temp = $value['episodes'] ?? [];
+            $lastSeason = $value['slug'];
+            $season_episode_data[$value['slug']] = $temp;
         }
+        $tab1_title = 'Episodes';
+        rsort($seasonList);
     } elseif ($content['content_type'] == 'SEASON') {
         $temp = $content['episodes'] ?? [];
         $tab1_title = 'Episodes';
@@ -29,7 +35,7 @@
     $tabs = [];
 
     if ($ep_season_data) {
-        $tabs[] = ['key' => 'episode', 'title' => $tab1_title];
+        $tabs[] = ['key' => "episode", 'title' => $tab1_title];
     }
     if ($morelike) {
         $tabs[] = ['key' => 'morelike', 'title' => 'More like this'];
@@ -74,9 +80,9 @@
                            @if (count($seasonList) > 0)
                            <div class="season">
                                <select id="seasonSelect">
-                                <option value="0">{{__('All Seasons')}}</option>
-                                   @foreach ($seasonList as $season)
-                                        <option value="{{ $season['url'] }}">{{ $season['title'] }}</option>
+                                   <!-- <option value="0">{{__('All Seasons')}}</option> -->
+                                   @foreach ($seasonList as $key => $season)
+                                   <option value="{{ $season['url'] }}" <?php echo ($key == 0) ? 'checked' : ''; ?>>{{ $season['title'] }}</option>
                                    @endforeach
                                </select>
                            </div>
@@ -107,8 +113,6 @@
                        @include('pages.detail.detail-components.about')
 
                    </div>
-
-
                </div>
            </div>
        </div>
