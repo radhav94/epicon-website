@@ -193,8 +193,8 @@ input {
     @media (max-width:700px) {
         &{
            height: 26px;
-           padding: 2px 5px;
-           font-size: 10px;
+           padding: 2px 10px;
+            font-size: 14px;
         }
     }
     @media (max-width:700px) {
@@ -228,8 +228,8 @@ input {
     }
     @media (max-width:700px) {
         & svg{
-            width: 12px;
-            height: 12px;
+            width: 18px;
+            height: 18px;
         }
     }
 }
@@ -643,7 +643,7 @@ input {
 }
 .banner-carousel, .premium-carousel,.explore-details,.banner-carousel-1{
     & .carousel-card.slick-slide.slick-active.slick-center .carousel-items{
-        transform: scale(1.05);
+        transform: scale(1.1);
         z-index: 10;
         position: relative;
         img{
@@ -1008,6 +1008,13 @@ input {
                     }
                 }
             }
+        }
+    }
+}
+.hero-banner.podcast-banner{
+    @media (max-width:767px){
+        .carousel-items{
+            height: 276px;
         }
     }
 }
@@ -1388,26 +1395,32 @@ input {
         position: absolute;
         z-index: 9;
         transform: scale(1);
-        transition: 0.8s all;
+        transform-origin: center;
+        transition: 1.2s;
         display: block;
-        top: 80%;
+        top:50%; 
+        left:50%; 
+        transform:translate(-50%, -50%); 
+        -ms-transform:translate(-50%, -50%); 
         width: 330px;
         height: 350px;
-        -ms-transform: translateY(-80%);
-        transform: translateY(-80%);
+       
     }
 
     .seeall-main-page ul li:hover .play-card{
         position: absolute;
         z-index: 9;
         transform: scale(1);
-        transition: 0.8s all;
+        transform-origin: center;
+        transition: 1.2s;
         display: block;
-        top: 80%;
+        top:50%; 
+        left:50%; 
+        transform:translate(-50%, -50%); 
+        -ms-transform:translate(-50%, -50%); 
         width: 330px;
         height: 350px;
-        -ms-transform: translateY(-80%);
-        transform: translateY(-80%);
+       
     }
    
     .carousel-initilize li,.vertical-carousel-initilize li,.library li,.more-like-this li,.seeall-main-page li{
@@ -1713,19 +1726,13 @@ input {
     }
     .play-card{
         position: absolute;
-        width: 330px;
-        height: 350px;
+        width: 0px;
+        height: 0px;
         border-radius: 16px;
         box-shadow: 16px 16px 24px 0px rgba(0, 0, 0, 0.25), -16px -16px 24px 0px rgba(0, 0, 0, 0.25);
-        top: 0;
-        left: 0;
-        right: 0;
         transform: scale(0);
-        margin: 0 auto;
         z-index: 9;
-        transition-property: width;
-        transition-duration: 0.5s;
-        transition-delay: 0.3s;
+
         @media (max-width:768px) {
             display: none!important;
         }
@@ -2388,25 +2395,26 @@ input {
             margin-bottom: 24px;
             object-fit: cover;
             object-position: center;
-            @media (max-width:700px) {
+            @media (max-width:767px) {
                 margin-bottom: 10px;
                 height: 150px;
             }
         }
         .aie{
-            @media (max-width:700px) {
+            @media (max-width:767px) {
                width: 60%;
+               flex-wrap: wrap;
             }
         }
         h1{
-            @media (max-width:700px) {
+            @media (max-width:767px) {
                 font-size: 16px;
-                width: 104px;
+                width: 100%;
                 margin-right: 5px!important;
             }
         }
         span{
-            @media (max-width:700px) {
+            @media (max-width:767px) {
                 font-size: 12px;
                 @include line-clamp(1);
             }
@@ -2434,9 +2442,9 @@ input {
             }
             @media (max-width:700px) {
                 padding: 7px 0;
-                font-size: 54%;
+                font-size: 75%;
                 width: 30%;
-                bottom: 0px;
+                bottom: -2px;
             }
         }
     }
@@ -2522,7 +2530,7 @@ input {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
-                    border-radius: 20px;
+                    border-radius: 10px;
                 }
                 h1{
                     font-size: 16px;
@@ -2596,11 +2604,11 @@ input {
             display: block;
             border-radius: 12px;
             overflow: hidden;
-            padding: 20px 30px;
+            padding: 10px;
             @include flex(row,center,center);
 
             img{
-                width: 200px;
+                width: 100%;
                 height: auto;
             }
         }
@@ -2783,11 +2791,14 @@ input {
 
 .punjab{
     display: flex;
+    @media (max-width:700px) {
+        flex-wrap: wrap;
+    }
     .punjab-da-swaad{
         height: auto;
         color: #fff;
         width: 450px;
-        @include flex(row,flex-end,center);
+        @include flex(row,flex-start,center);
 
         img{
             width: 100%;
@@ -2796,10 +2807,19 @@ input {
 
         .punjab-title{
             @include flex(column,center,center);
+            position: relative;
             .text{
-                position: relative;
-                bottom: 40px;
+                position: absolute;
+                bottom: -28px;
                 text-align: center;
+                @media (max-width:767px) {
+                    bottom: 50px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    padding-inline: 15px;
+                }
             }
                 
                 h1{
@@ -2809,8 +2829,9 @@ input {
                     position: relative;
                     z-index: 1;
         
-                    @media (max-width:700px) {
-                        font-size: 18px;
+                    @media (max-width:767px) {
+                        font-size: 14px;
+                        margin-bottom: 0;
                     }
                 }
                 button{
@@ -2836,6 +2857,7 @@ input {
         width: 100%;
         padding: 0;
         overflow-x: clip;
+        height: fit-content;
         li{
             position: relative;
             padding: 0 5px;
@@ -3042,7 +3064,8 @@ input {
     color: $bg-white;
     margin-bottom: 2px;
     @media (max-width:700px) {
-        font-size: 18px;
+        font-size: 16px;
+        @include line-clamp(1);
     }
 }
 .imdb{
@@ -4304,7 +4327,7 @@ input {
 
     @media (max-width:700px) {
         &.mobile-width{
-            width: 57%;
+            width: 47%;
         }
     }
 }
@@ -4324,9 +4347,15 @@ input {
     img{
         width: 28px!important;
         margin-right: 5px;
+
+        @media (max-width:767px) {
+            width: 21px !important;
+            margin-right: 14px;
+        }
     }
     @media (max-width:700px) {
         margin-right: 0!important;
+        width: 47%;
     }
 }
 .b7-color{
@@ -5465,7 +5494,7 @@ input {
                 left: 0;
                 font-size: 14px;
                 @include line-clamp(2);
-                padding-top: 15px;
+                padding-top: 25px;
             }
         }
     }
@@ -6297,6 +6326,32 @@ input {
         display: block;
         img{
             width: 100%;
+        }
+    }
+}
+
+.seemore p{
+    @include line-clamp(2);
+}
+.readmore-toggle{
+    -webkit-line-clamp: unset!important;
+}
+.content-detail-banner {
+    .banner-main{
+        padding: 30px;
+        overflow: hidden;
+        height: 500px;
+
+        @media (max-width:767px){
+            padding: 0px;
+            height: auto;
+        }
+
+        img{
+            border-radius: 20px;
+            @media (max-width:767px){
+                border-radius: 0px;
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-<section class="hero-banner w-100">
+<section class="hero-banner podcast-banner w-100">
     <div class="banner-carousel">
         @foreach ($value['content'] as $key => $val)
             <?php
