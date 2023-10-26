@@ -1,0 +1,65 @@
+@extends('layouts.default')
+@section('title', 'Midpage')
+
+@section('style')
+@stop
+
+@section('content')
+<div class="container mt-5">
+    <div class="row">
+        <h1 class="text-white fs-5">{{ucwords(str_replace('-', ' ', $slug))}}</h1>
+        <div class="seeall-main-page">
+            <ul class="p-0" id="showmore_load">
+            @include('pages.chanel.channelpaginatecontent')
+            </ul>
+        </div>
+        <!-- Load More Btn Start -->
+        <input type="hidden" name="page" id="pageid" value="<?php echo $page + 1; ?>">
+        <?php if (count($epicwebArr) > 47) { ?>
+            <div class="text-center">
+                <?php
+                $baseUrl = env("APP_URL");
+                ?>
+                <a href="javascript:;" class="autowidth channel-showmore" data-currenturl="<?= $baseUrl . "/channelpaginatecontent"; ?>" slug="<?= $slug; ?>">{{__('Show More')}}</a>
+            </div>
+        <?php } ?>
+        <!-- Load More Btn End -->
+
+    </div>
+</div>
+
+@stop
+@section('script')
+<script>
+    $(document).on("click", ".channel-showmore", function() {
+        // var page = $("#pageid").val(parseInt($("#pageid").val()) + 1);
+        $.ajax({
+            url: '/channelpaginatecontent',
+            type: 'POST',
+            data: {
+                page: $("#pageid").val(),
+                slug: $(this).attr("slug"),
+            },
+            contentType: "application/x-www-form-urlencoded",
+            dataType: "json",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                // console.log(response);
+                var page = parseInt($("#pageid").val()) + 1;
+                // console.log(page+"page Number");
+                $("#pageid").val(page);
+                $("#showmore_load").append(response.paginateHTML);
+                if (response.dataCount < response.limit) {
+                    // console.log("on false condition");
+                    $('.channel-showmore').hide();
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log("in error function");
+            }
+        });
+    });
+</script>
+@stop

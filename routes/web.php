@@ -61,6 +61,7 @@ Route::post('explorecontent', [PageController::class, 'explorecontent'])->name('
 Route::post('/retro-content', [RetroRewindController::class, 'retroRewindContent']);
 Route::any('/supermix', [SupermixController::class, 'superMix']);
 Route::post('paginatecontent', [PageController::class, 'paginatecontent'])->name('paginatecontent');
+Route::post('channelpaginatecontent', [PageController::class, 'channelpaginatecontent'])->name('channelpaginatecontent');
 
 // Notifications
 Route::get('/notifications', [NotificationController::class, 'getNotifications']);
@@ -75,15 +76,6 @@ Route::get('login/facebook/callback', [AuthSocialController::class, 'handleProvi
 Route::get('login/twitter', [AuthSocialController::class, 'redirectToProvider'])->name('login.twitter');
 Route::get('login/twitter/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('login.twitter.callback');
 /*social login end*/
-
-// channels midpage
-Route::get('channels/{slug}', function ($slug) {
-            // if ($pageslug != 'live-tv') {
-                return App::call('\App\Http\Controllers\PageController@channelsmidpagedetail', ['slug' => $slug]);
-            // }
-        });
-
-Route::post('channelpaginatecontent', [PageController::class, 'channelpaginatecontent'])->name('channelpaginatecontent');
 
 Route::group(['middleware' => 'checkUserAuthToken'], function () {
     Route::get('terms-of-use', function () {
@@ -193,11 +185,11 @@ foreach ($lang as $val) {
             }
         });
 
+        Route::get('channels/{slug}', [PageController::class, 'channelsmidpagedetail']);
         Route::get('explore', [PageController::class, 'explore'])->name('explore');
         Route::get('{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
         Route::get('retro-rewind/{slug}', [RetroRewindController::class, 'retroRewindList'])->name('retro-list');
         Route::get('{slug}', [PageController::class, 'index']);
-
     });
 }
 

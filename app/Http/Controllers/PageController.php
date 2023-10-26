@@ -181,11 +181,8 @@ class PageController extends Controller
 
     public function showmidpagedetail($pageslug, $catalog)
     {
-        // dd($catalog);
-        // if (($user = getLoggedInUser()) != false) {
-        //     $epicwebArr = CurlAPI("pages/midpage", "POST", ['user_id' => $user->user_id, 'session_id' => $user->api_session_id, 'catalogId' => $catalogid]);
-        // } else {
         $page = 1;
+        $slug = $pageslug;
         $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 48, 'page' => 1], 1);
         if (isset($epicwebArr) && $epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
@@ -203,7 +200,7 @@ class PageController extends Controller
         
         if (isset($epicwebArr) && $epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
-            return view('pages.channelmidpage', compact('epicwebArr', 'slug', 'page'));
+            return view('pages.chanel.channelmidpage', compact('epicwebArr', 'slug', 'page'));
         } else {
             return view('pages.error.data-error');
         }
@@ -234,7 +231,7 @@ class PageController extends Controller
         $limit = 48;
         $slug = $request->slug;
         $epicwebArr = CurlAPI("pages/midpageData", "POST", ['slug' => $slug, 'limit' => 48, 'page' => $page], 1);
-        $catalogue_blade = "channelpaginatecontent";
+        $catalogue_blade = "chanel.channelpaginatecontent";
         if ($epicwebArr && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
             $dataCount = count($epicwebArr);
