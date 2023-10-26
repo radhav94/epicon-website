@@ -15,14 +15,11 @@
         </div>
         <!-- Load More Btn Start -->
         <input type="hidden" name="page" id="pageid" value="<?php echo $page + 1; ?>">
-        <?php if (count($epicwebArr) > 47) { ?>
+        @if (count($epicwebArr) > 47)
             <div class="text-center">
-                <?php
-                $baseUrl = env("APP_URL");
-                ?>
-                <a href="javascript:;" class="autowidth channel-showmore" data-currenturl="<?= $baseUrl . "/channelpaginatecontent"; ?>" slug="<?= $slug; ?>">{{__('Show More')}}</a>
+                <a href="javascript:;" class="autowidth channel-showmore" data-currenturl="{{ route('channelpaginatecontent') }}" slug="{{ $slug }}">{{__('Show More')}}</a>
             </div>
-        <?php } ?>
+        @endif
         <!-- Load More Btn End -->
 
     </div>
