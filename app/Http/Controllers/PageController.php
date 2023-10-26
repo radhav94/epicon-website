@@ -300,7 +300,7 @@ class PageController extends Controller
             $data = $result['data'] ?? [];
             $lists = $data['list'] ?? [];
             foreach ($lists as $list) {
-                if (@$list['slug'] == "uniquely-yours") {
+                if (@$list['slug'] == "short-and-sweet") {
                     $stories = $this->epicShots();
                     break;
                 }
