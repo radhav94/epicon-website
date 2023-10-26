@@ -40,6 +40,11 @@ class KidsController extends Controller
                 'limit' => $this->limit,
             ];
 
+            if (isUserLoggedIn()) {
+                $params['user_id'] = getUserId();
+                $params['profile_id'] = getProfileId();
+            }
+
             $result = CurlAPI("pages/homepage", "GET", $params, 1);
 
             if (request()->v == 2) {

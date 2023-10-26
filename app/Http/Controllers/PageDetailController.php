@@ -11,14 +11,18 @@ class PageDetailController extends Controller
     public function detail($pageslug, $contentslug, $season = null, $episode = null)
     {
         $url = "pages/episode/{$pageslug}/{$contentslug}";
+        $params = [];
         if ($season && $episode) {
             $url .= "/{$season}/{$episode}";
         } else if ($season) {
             $url .= "/{$season}";
         }
+        if (isUserLoggedIn()) {
+            $params['user_id'] = getUserId();
+            $params['profile_id'] = getProfileId();
+        }
 
-        $result = CurlAPI($url, "GET", [], 1);
-        // dd($result);
+        $result = CurlAPI($url, "GET", $params, 1);
         if ($result && @$result['success'] ==  true) {
             $displayLanguageParam = setLanguageParameter();
 
