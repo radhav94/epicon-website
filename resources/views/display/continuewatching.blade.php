@@ -44,9 +44,6 @@
                                 </button>
                             </a>
                             {!! getWishListAction($val, $wishlist, 2) !!}
-                            <!-- <button id="like-icon" class="small-btn like-icon mx-1"></button>
-                            <button id="share-icon" class="small-btn share-icon mx-1"></button>
-                            <button id="add-icon" class="small-btn circle-icon mx-1"></button> -->
                         </div>
                     </div>
                     <h1>{{ $card['title'] }}</h1>
