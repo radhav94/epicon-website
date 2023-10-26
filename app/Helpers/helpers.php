@@ -967,8 +967,8 @@ if (!function_exists('getDefaultProfile')) {
     function getDefaultProfile($type = 'all_access')
     {
         $profile_id = '';
-        $user = session()->get('user');
-        $profiles = $user['profiles'];
+        $user = session()->get('user') ?? [];
+        $profiles = $user['profiles'] ?? [];
         foreach ($profiles as $profile) {
             if (array_key_exists('is_default', $profile) && $profile['is_default'] == 1) {
                 if ($type == 'kids' && $profile['kids'] == 1) {
