@@ -1,7 +1,6 @@
 $(document).ready(function () {
   $(".login-popup").click(function(){
     $("#side-menu").toggleClass("active");
-    $(".loginBtn.login").trigger('click');
      return false;
   });
 

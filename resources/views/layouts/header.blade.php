@@ -32,7 +32,7 @@ if (isUserLoggedIn()) {
                 <a class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
             @endif
             @elseloggedin
-            <a class="subscribe-btn login-popup" href="javascript:void(0);">{{__('Subscribe')}}</a>
+            <a class="subscribe-btn login-popup login-with-subscription" href="javascript:void(0);">{{__('Subscribe')}}</a>
             @endloggedin
         </div>
         <ul class="ps-3">
@@ -139,7 +139,7 @@ if (isUserLoggedIn()) {
             @endif
             @elseloggedin
 
-            <a class="subscribe-btn login" href="javascript:void(0);" >{{__('Subscribe')}}</a>
+            <a class="subscribe-btn login-with-subscription" href="javascript:void(0);" >{{__('Subscribe')}}</a>
 
             @endloggedin
             @endif
