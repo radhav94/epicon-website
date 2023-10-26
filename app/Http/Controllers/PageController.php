@@ -111,7 +111,7 @@ class PageController extends Controller
         $data = $this->homepageData($slug);
         $displayLanguageParam = $data['displayLanguageParam'];
         $result = CurlAPI("pages/midpage/" . $slug, "GET", $params, 1);
-        
+
         if ($result && @$result['success'] ==  true) {
             $result = $result['data'];
             if ($displayLanguageParam == 'HINDI') {
@@ -181,15 +181,25 @@ class PageController extends Controller
 
     public function showmidpagedetail($pageslug, $catalog)
     {
-        // dd($catalog);
-        // if (($user = getLoggedInUser()) != false) {
-        //     $epicwebArr = CurlAPI("pages/midpage", "POST", ['user_id' => $user->user_id, 'session_id' => $user->api_session_id, 'catalogId' => $catalogid]);
-        // } else {
         $page = 1;
+        $slug = $pageslug;
         $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 48, 'page' => 1], 1);
         if (isset($epicwebArr) && $epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
             return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page'));
+        } else {
+            return view('pages.error.data-error');
+        }
+    }
+
+    public function channelsmidpagedetail($slug)
+    {
+        $page = 1;
+        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['slug' => $slug, 'page' => 1,'limit' => 48], 1);
+        
+        if (isset($epicwebArr) && $epicwebArr['success'] == true) {
+            $epicwebArr = $epicwebArr['data'];
+            return view('pages.chanel.channelmidpage', compact('epicwebArr', 'slug', 'page'));
         } else {
             return view('pages.error.data-error');
         }
@@ -207,6 +217,24 @@ class PageController extends Controller
             $epicwebArr = $epicwebArr['data'];
             $dataCount = count($epicwebArr);
             $paginateHTML = (string) view('pages.' . $catalogue_blade, compact('epicwebArr', 'page', 'catalog'));
+        } else {
+            $paginateHTML = "false";
+        }
+        return json_encode(['paginateHTML' => $paginateHTML, 'dataCount' => $dataCount, 'limit' => $limit]);
+    }
+
+    public function channelpaginatecontent()
+    {
+        $request = Request();
+        $page = $request->page;
+        $limit = 48;
+        $slug = $request->slug;
+        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['slug' => $slug, 'limit' => 48, 'page' => $page], 1);
+        $catalogue_blade = "chanel.channelpaginatecontent";
+        if ($epicwebArr && @$epicwebArr['success'] == true) {
+            $epicwebArr = $epicwebArr['data'];
+            $dataCount = count($epicwebArr);
+            $paginateHTML = (string) view('pages.' . $catalogue_blade, compact('epicwebArr', 'page', 'slug'));
         } else {
             $paginateHTML = "false";
         }
@@ -278,7 +306,7 @@ class PageController extends Controller
             $data = $result['data'] ?? [];
             $lists = $data['list'] ?? [];
             foreach ($lists as $list) {
-                if (@$list['slug'] == "uniquely-yours") {
+                if (@$list['slug'] == "short-and-sweet") {
                     $stories = $this->epicShots();
                     break;
                 }

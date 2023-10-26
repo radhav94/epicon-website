@@ -103,6 +103,26 @@
             margin-top: 35px;
             transition: all linear 0.4s;
         }
+
+        a.autowidth.channel-showmore {
+            font-size: 17px;
+            font-weight: 500;
+            color: #fff;
+            width: 200px;
+            height: 55px;
+            line-height: 52px;
+            border-radius: 32px;
+            border: solid 2px transparent;
+            background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to top, #c15a2d, #c8265d);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            box-shadow: 2px 1000px 1px rgba(0, 0, 0, 0.6) inset;
+            text-transform: uppercase;
+            display: inline-block;
+            padding: 0 25px;
+            margin-top: 35px;
+            transition: all linear 0.4s;
+        }
     </style>
 
     {{-- Start footer common scripts --}}
