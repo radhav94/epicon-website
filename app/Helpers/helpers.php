@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Http\Request;
 
 if (!function_exists('JSONResponse')) {
     function JSONResponse(int $statusCode, string $message, array $data = []): JsonResponse
@@ -1000,4 +1001,19 @@ if (!function_exists('isKidsProfile')) {
         }
         return false;
     }
+}
+
+function getFirstSegment(){
+    
+    if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
+        $segment = request()->segment(2);
+    } else {
+        $segment = request()->segment(1);
+    }
+    return $segment;
+}
+
+function isKidsPage(){
+    $segment = getFirstSegment();
+    return $segment == 'kids' ? true : false;
 }
