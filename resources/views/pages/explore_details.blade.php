@@ -135,10 +135,7 @@
     <input type="hidden" name="page" id="pageid" value="<?php echo $page + 1; ?>">
     @if (count($result) >= $limit)
     <div class="text-center">
-        <?php
-        $baseUrl = env("APP_URL");
-        ?>
-        <a href="javascript:;" class="autowidth explore-showmore" data-currenturl="<?= $baseUrl . "/explorecontent"; ?>" slug="<?= $slug; ?>">{{__('Show More')}}</a>
+        <a href="javascript:;" class="autowidth explore-showmore" data-currenturl="{{ route('explorecontent') }}" slug="{{ $slug }}">{{__('Show More')}}</a>
     </div>
     @endif
     <!-- Load More Btn End -->

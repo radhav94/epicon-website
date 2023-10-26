@@ -20,7 +20,7 @@
                 </button>
                 {!! freePremiumDiv($val) !!}
                 <div class="carousel-items position-relative w-100">
-                    <img src="{{ $banner_img }}" alt="">
+                    <img src="{{ $card['banner_img'] }}" alt="">
                     <div class="carousel-items-content position-absolute">
                         <h2>{{ $card['sub_text'] }}</h2>
                         <p>{{ $card['short_desc'] }}</p>

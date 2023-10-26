@@ -42,40 +42,27 @@ $cover_img = getCardImage($content, 'banner_image', 'large');
             <img src="{{ $cover_img }}" alt="img">
         </div>
     <?php
-    if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
-        $segment = Request::segment(2);
-    } else {
-        $segment = Request::segment(1);
-    }
-    $kids_page = $segment == 'kids' ? true : false;
-
-    if($kids_page){
+    if(isKidsPage()){
         $addClass = "allAccessBtn";
     }else{
         $addClass = "subscription";
     }
-
         $watchClass = "";
         $watchid = "";
         $addToList = "";
-if (@$content['free_premium'] == true) {
-    if (!isUserLoggedIn()) {
-        $watchClass = "login";
-        $addToList = "login";
-    } else {
-        if (@$subplan['status'] != 'active') {
-            $watchClass = $addClass;
-            $addToList = "addToList";
+        $href = "javascript:void(0);";
+
+        if (!isUserLoggedIn()) {
+            $watchClass = @$content['free_premium'] == true ? "login" : "";
+            $watchid = @$content['free_premium'] != true ? "watchVideo" : "";
+            $addToList = "login";
         } else {
             $addToList = "addToList";
-            $watchid = "watchVideo";
+            // for play Video 
+            $watchClass = @$content['free_premium'] == true ? $addClass : "";
+            $watchid = @$content['free_premium'] != true || (@$content['free_premium'] == true && @$subplan['status'] == 'active') ? "watchVideo" : "";
         }
 
-    }
-} else {
-    $addToList = "addToList";
-    $watchid = "watchVideo";
-}
 ?>
         <?php
 // $watch_text = getPlayText($content);
@@ -105,25 +92,16 @@ if (@$content['free_premium'] == true) {
                                     </svg>&nbsp;
                                     {!! getPlayText($content) !!}
                                 </button>
-                            @loggedin
+                                <?php 
+                                
+                                ?>
+
                                 @if (@$content['free_premium'] == true && !isActiveSubscription())
-                                    @if($kids_page)
-                                    <a class="subcription-btn me-3 {{$watchClass}}" href="javascript:void(0);" style="text-decoration: none">
+                                    <a class="subcription-btn me-3 {{$watchClass}}" href="{{$href}}" style="text-decoration: none">
                                         <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> {{__('Subscribe Now')}}
                                     </a>
-                                    @else
-                                        <a class="subcription-btn me-3" href="{{ getUrl('subscription') }}" style="text-decoration: none">
-                                            <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> {{__('Subscribe Now')}}
-                                        </a>
-                                        @endif
                                 @endif
-                                @elseloggedin
-                                <a class="subcription-btn me-3 login" href="javascript:void(0);" style="text-decoration: none">
-                                        <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> {{__('Subscribe Now')}}
-                                    </a>
-                                @endloggedin
-
-
+                              
                                 <?php
 $wishlist = getWishlist();
 
