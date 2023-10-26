@@ -726,7 +726,7 @@ input {
             }
             @media (max-width:700px){
                 width: calc(100% - 16px);
-                height: calc(100% - 8px);
+                height: calc(100% - 18px);
                 border-radius: 12px;
             }
         }
@@ -749,7 +749,7 @@ input {
                 height: 480px;
             }
             @media screen and (max-width: 767px) {
-                padding: 8px 8px 0;
+                padding: 18px 8px 0;
                 height: 394px;
             }
             img{

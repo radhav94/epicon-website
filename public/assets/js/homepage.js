@@ -87,28 +87,28 @@ function initSliders() {
         dots: false,
         infinite: false,
         speed: 300,
-        slidesToShow: 4.2,
+        slidesToShow: 4.8,
         slidesToScroll: 1,
         accessibility: true,
         responsive: [
             {
                 breakpoint: 1367,
                 settings: {
-                    slidesToShow: 5.5,
+                    slidesToShow: 5.2,
                     slidesToScroll: 1,
                 }
             },
             {
                 breakpoint: 1025,
                 settings: {
-                    slidesToShow: 3.9,
+                    slidesToShow: 4.3,
                     slidesToScroll: 1,
                 }
             },
             {
                 breakpoint: 769,
                 settings: {
-                    slidesToShow: 3.2,
+                    slidesToShow: 3.8,
                     slidesToScroll: 1,
                 }
             },
@@ -132,7 +132,7 @@ function initSliders() {
         dots: false,
         infinite: false,
         speed: 300,
-        slidesToShow: 7.2,
+        slidesToShow: 7.9,
         slidesToScroll: 1,
         accessibility: true,
         responsive: [
@@ -146,21 +146,21 @@ function initSliders() {
             {
                 breakpoint: 1025,
                 settings: {
-                    slidesToShow: 5.9,
+                    slidesToShow: 6.2,
                     slidesToScroll: 1,
                 }
             },
             {
                 breakpoint: 769,
                 settings: {
-                    slidesToShow: 4.2,
+                    slidesToShow: 4.5,
                     slidesToScroll: 1,
                 }
             },
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 2.5,
+                    slidesToShow: 2.7,
                     slidesToScroll: 2
                 }
             },
