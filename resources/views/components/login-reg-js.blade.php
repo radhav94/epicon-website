@@ -322,6 +322,10 @@
                             } else {
                                 if (queryParams.get('profile') == "kids") {
                                     window.location.href = $("input[name='kidsUrl']").val();
+                                }else if(queryParams.get('ref') == "subscription"){
+
+                                    window.location.href = APP_URL+'/subscription';
+
                                 } else {
                                     location.reload();
                                 }
@@ -478,6 +482,10 @@
                             setTimeout(function() {
                                 if (queryParams.get('profile') == "kids" ) {
                                     window.location.href = $("input[name='kidsUrl']").val();
+                                }else if(queryParams.get('ref') == "subscription"){
+                                    
+                                    window.location.href = APP_URL+'/subscription';
+
                                 } else {
                                     window.location.href = response.payload.redirect;
                                 }
@@ -700,7 +708,6 @@
                                 +'<img src="'+lists[i]['banner_image']['medium']+'" alt="img">'
                                 +'<div class="is-overlay">'
                                     +'<h1>'+lists[i]['genre']+'</h1>'
-                                    +'<p>Like NH10, Talaash, Airlift, Mirzapur, Breathe</p>'
                                 +'</div>'
                             +'</div>';
                         $('#interest-suggetion').append(content);
