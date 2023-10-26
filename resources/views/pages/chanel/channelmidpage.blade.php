@@ -32,7 +32,6 @@
 @section('script')
 <script>
     $(document).on("click", ".channel-showmore", function() {
-        // var page = $("#pageid").val(parseInt($("#pageid").val()) + 1);
         $.ajax({
             url: '/channelpaginatecontent',
             type: 'POST',
@@ -46,13 +45,10 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(response) {
-                // console.log(response);
                 var page = parseInt($("#pageid").val()) + 1;
-                // console.log(page+"page Number");
                 $("#pageid").val(page);
                 $("#showmore_load").append(response.paginateHTML);
                 if (response.dataCount < response.limit) {
-                    // console.log("on false condition");
                     $('.channel-showmore').hide();
                 }
             },

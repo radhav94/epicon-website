@@ -194,7 +194,6 @@ class PageController extends Controller
 
     public function channelsmidpagedetail($slug)
     {
-        // dd($slug);
         $page = 1;
         $epicwebArr = CurlAPI("pages/midpageData", "POST", ['slug' => $slug, 'page' => 1,'limit' => 48], 1);
         
