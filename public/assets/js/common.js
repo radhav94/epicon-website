@@ -32,6 +32,12 @@ $(document).ready(function () {
         }
       });
 
+      $(".login-with-subscription").click(function(){
+        window.history.pushState({},'',"?ref=subscription");
+        $('.loginBtn.login').trigger('click');
+
+      });
+
     $(".allAccessBtn").click(function() {
         var checkstaus = $(this).is(':checked');
         var kidsUrl= $("input#kidsUrl").val();

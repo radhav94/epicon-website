@@ -102,7 +102,8 @@ class SubscriptionController extends Controller
                 if ($numOfDays <= 3) {
                     return view('subscription.subscription', compact('result', 'offerCount'));
                 } else {
-                    return redirect()->route('my-account');
+                    //return redirect()->route('my-account');
+                    return redirect()->route('homepage');
                 }
             }
 

@@ -54,9 +54,9 @@ $cover_img = getCardImage($content, 'banner_image', 'large');
         $href = "javascript:void(0);";
 
         if (!isUserLoggedIn()) {
-            $watchClass = @$content['free_premium'] == true ? "login" : "";
+            $watchClass = @$content['free_premium'] == true ? "login-with-subscription" : "";
             $watchid = @$content['free_premium'] != true ? "watchVideo" : "";
-            $addToList = "login";
+            $addToList = "login-with-subscription";
         } else {
             $addToList = "addToList";
             // for play Video 
