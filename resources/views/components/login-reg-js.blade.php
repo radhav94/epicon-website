@@ -1,7 +1,6 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script>
     $(document).ready(function() {
-
         $('.login').click(function(event) {
             if (!event.isTrigger) {
                 window.history.replaceState({}, document.title, "/" );
@@ -663,6 +662,16 @@
                 $('#login-modal').removeClass("show");
             }
         })
+
+        $("input.child-box").keydown(function(event) {
+            if (event.keyCode == 8 && $(this).val().length == 0) {
+            if ($(this).prev('input.child-box')) {
+                $(this).prev('input.child-box').focus();
+                }
+            }
+        });
+        
+
     });
 
     function getGenreList() {
