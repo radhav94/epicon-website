@@ -207,6 +207,11 @@ class SubscriptionController extends Controller
         $newDate = $splitTimeStamp[0];
         $startdate = date("d-m-Y", strtotime($newDate));
         $finalcurrency = $currency;
+        // test amount logic
+        if (env('DEV_AMT') == true || $userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956') {
+            $totalamount = "1";
+        }
+
         if (strtoupper(env('APP_ENV')) == 'PRODUCTION') {
             if ($request->post('device') == 'android' || $request->post('device') == 'ios') {
                 if (empty($userData['email'])) {
