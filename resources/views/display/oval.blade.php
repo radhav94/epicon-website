@@ -11,7 +11,7 @@
         @endif
     </div>
 
-    <ul class="vertical-carousel-initilize p-0">
+    <ul class="carousel-initilize p-0">
 
         @foreach ($value['content'] as $key => $val)
             <?php
