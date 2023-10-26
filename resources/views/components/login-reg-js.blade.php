@@ -700,7 +700,6 @@
                                 +'<img src="'+lists[i]['banner_image']['medium']+'" alt="img">'
                                 +'<div class="is-overlay">'
                                     +'<h1>'+lists[i]['genre']+'</h1>'
-                                    +'<p>Like NH10, Talaash, Airlift, Mirzapur, Breathe</p>'
                                 +'</div>'
                             +'</div>';
                         $('#interest-suggetion').append(content);
