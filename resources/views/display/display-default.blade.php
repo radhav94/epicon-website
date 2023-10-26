@@ -20,14 +20,14 @@
                      <h1>{{ $value['display_type'] }}</h1>
                  @endif
 
-                 @include($template, [
-                     'value' => $value,
-                     'title' => $title,
-                     'shortdescription' => $shortdescription,
-                 ])
-
-                @if (isset($stories) && @$value['slug'] == "uniquely-yours")
+                @if (isset($stories) && @$value['slug'] == "short-and-sweet")
                     @include('display.epicshots', ['stories' => $stories])
+                @else
+                    @include($template, [
+                        'value' => $value,
+                        'title' => $title,
+                        'shortdescription' => $shortdescription,
+                    ])
                 @endif
              @else
                 {{--
