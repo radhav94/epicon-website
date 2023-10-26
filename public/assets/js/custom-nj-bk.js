@@ -128,51 +128,51 @@ $(document).ready(function () {
     ]
   });
 
-  $('.punjab-carousel').slick({
-    dots: false,
-    infinite: false,
-    speed: 300,
-    slidesToShow: 5.5,
-    slidesToScroll: 1,
-    accessibility: true,
-    responsive: [
-      {
-        breakpoint: 1367,
-        settings: {
-          slidesToShow: 5.5,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 1025,
-        settings: {
-          slidesToShow: 3.9,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 769,
-        settings: {
-          slidesToShow: 2.7,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  });
+  // $('.punjab-carousel').slick({
+  //   dots: false,
+  //   infinite: false,
+  //   speed: 300,
+  //   slidesToShow: 5.5,
+  //   slidesToScroll: 1,
+  //   accessibility: true,
+  //   responsive: [
+  //     {
+  //       breakpoint: 1367,
+  //       settings: {
+  //         slidesToShow: 5.1,
+  //         slidesToScroll: 1,
+  //       }
+  //     },
+  //     {
+  //       breakpoint: 1025,
+  //       settings: {
+  //         slidesToShow: 3.9,
+  //         slidesToScroll: 1,
+  //       }
+  //     },
+  //     {
+  //       breakpoint: 769,
+  //       settings: {
+  //         slidesToShow: 2.7,
+  //         slidesToScroll: 1,
+  //       }
+  //     },
+  //     {
+  //       breakpoint: 600,
+  //       settings: {
+  //         slidesToShow: 1,
+  //         slidesToScroll: 2
+  //       }
+  //     },
+  //     {
+  //       breakpoint: 480,
+  //       settings: {
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1
+  //       }
+  //     }
+  //   ]
+  // });
 
   $('.gaming-galore').slick({
     dots: false,
