@@ -13,10 +13,11 @@
     </div>
     <div class="gaming-galore-main">
         <div class="epic-channel">
-
             @foreach ($value['content'] as $key => $val)
+            <?php @$val['slug'] = urldecode(@$val['slug']); ?>
                 <div>
-                    <a href="{{ isset($val['path']) ? getUrl(@$val['path']) : @$val['url'] }}">
+                    <a href="{{ getUrl('channels/'.@$val['slug']) }}">
+                    <!-- <a href="{{ isset($val['path']) ? getUrl(@$val['path']) : @$val['url'] }}"> -->
                         <img src="{{ @$val['image'] }}" alt="{{ @$val['name'] }}">
                     </a>
                 </div>

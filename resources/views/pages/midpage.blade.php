@@ -132,13 +132,10 @@
             <!-- Load More Btn Start -->
             <input type="hidden" name="page" id="pageid" value="<?php echo $page+1; ?>">
             <div class="text-center">
-                <?php
-            $baseUrl = env("APP_URL");
-                 ?>
             <a href="javascript:;" class="autowidth catalog-showmore"
-                data-currenturl="<?= $baseUrl . "/paginatecontent"; ?>"
-                catalog-id="<?= $catalog; ?>"
-                pageslug="<?= $pageslug; ?>">{{__('Show More')}}</a>
+                data-currenturl="{{ route('paginatecontent') }}"
+                catalog-id="{{ $catalog }}"
+                pageslug="{{ $pageslug }}">{{__('Show More')}}</a>
             </div>
             <!-- Load More Btn End -->
 
