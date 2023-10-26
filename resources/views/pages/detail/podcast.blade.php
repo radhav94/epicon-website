@@ -255,6 +255,11 @@ $episode_json = json_encode($episode_list);
         });
 
         $("#playButton").click(function() {
+            isPlayed = true;
+            if (audio.currentSrc == '') {
+                playCurrentEpisode();
+                return false;
+            }
             audio.load();
             audio.play().then(() => {
                     console.log('Audio is playing');
@@ -265,7 +270,6 @@ $episode_json = json_encode($episode_list);
                 });
             $("#pauseButton").show();
             $(this).hide();
-            isPlayed = true;
         });
 
         $("#pauseButton").click(function() {

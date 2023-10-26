@@ -88,7 +88,7 @@ class PlayerController extends Controller
                 'profile_id' => getProfileId(),
                 'completed' => $request->completed ?? false,
             ];
-
+            
             $result = CurlAPI("pages/setplaytracking", "POST", $param, 1, true);
 
             if ($result && @$result['success'] ==  true) {
