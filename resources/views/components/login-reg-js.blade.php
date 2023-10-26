@@ -1,5 +1,6 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script>
+    var user_mob_email = '';
     $(document).ready(function() {
         $('.login').click(function(event) {
             if (!event.isTrigger) {
@@ -51,6 +52,7 @@
         $(".login-get-otp").click(function(e) {
             e.preventDefault();
             var isInput = $("#mobile_number").val();
+            user_mob_email = isInput;
             var type = $.isNumeric(isInput);
             if (type == true) {
                 $("#signup_method").val('MOBILE');
@@ -414,6 +416,7 @@
 
         $('.login-btn-pwd').click(function(e) {
             e.preventDefault();
+            $("#login-form-id #mobilenumber").val(user_mob_email);
             // alert("btn clicked");
             $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
                 .hide();
@@ -705,7 +708,6 @@
                                 +'<img src="'+lists[i]['banner_image']['medium']+'" alt="img">'
                                 +'<div class="is-overlay">'
                                     +'<h1>'+lists[i]['genre']+'</h1>'
-                                    +'<p>Like NH10, Talaash, Airlift, Mirzapur, Breathe</p>'
                                 +'</div>'
                             +'</div>';
                         $('#interest-suggetion').append(content);
