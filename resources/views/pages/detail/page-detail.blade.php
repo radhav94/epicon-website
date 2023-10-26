@@ -42,6 +42,7 @@ $cover_img = getCardImage($content, 'banner_image', 'large');
             <img src="{{ $cover_img }}" alt="img">
         </div>
     <?php
+   $subplan = checkSubscription();
     if(isKidsPage()){
         $addClass = "allAccessBtn";
     }else{
@@ -59,22 +60,10 @@ $cover_img = getCardImage($content, 'banner_image', 'large');
         } else {
             $addToList = "addToList";
             // for play Video 
-            $watchClass = @$content['free_premium'] == true ? $addClass : "";
+            $watchClass = @$content['free_premium'] == true && @$subplan['status'] != 'active' ? $addClass : "";
             $watchid = @$content['free_premium'] != true || (@$content['free_premium'] == true && @$subplan['status'] == 'active') ? "watchVideo" : "";
         }
 
-?>
-        <?php
-// $watch_text = getPlayText($content);
-
-// $se_epi_text = getSeasonEpisodeValue($content);
-// if (@$se_epi_text['season']) {
-//     $watch_text .= ' '.$se_epi_text['season'];
-// }
-
-// if (@$se_epi_text['episode']) {
-//     $watch_text .= ' '.$se_epi_text['episode'];
-// }
 ?>
         <div class="overlay">
             <div class="container">

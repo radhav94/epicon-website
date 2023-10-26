@@ -40,28 +40,29 @@ if (array_key_exists('season', $content)) {
 }
 $episode_json = json_encode($episode_list);
 ?>
-<?php 
-        // if content not free condition put here...
-        if($content['free_premium']) {
-            if(!isUserLoggedIn()){
-                $watchClass = "login";
-                $watchid = "";
-            }else{
-                if(@$subplan['status'] != 'active'){
-                $watchClass = "subscription";
-                $watchid = "";
-                }else{
-                    
-                    $watchClass = "addToList";
-                    $watchid = "watchVideo";
-                }
-                
-            }
-        }else{
-            $watchClass = "";
-            $watchid = "watchVideo";
+<?php
+    if(isKidsPage()){
+        $addClass = "allAccessBtn";
+    }else{
+        $addClass = "subscription";
+    }
+        $watchClass = "";
+        $watchid = "";
+        $addToList = "";
+        $href = "javascript:void(0);";
+
+        if (!isUserLoggedIn()) {
+            $watchClass = @$content['free_premium'] == true ? "login" : "";
+            $watchid = @$content['free_premium'] != true ? "watchVideo" : "";
+            $addToList = "login";
+        } else {
+            $addToList = "addToList";
+            // for play Video 
+            $watchClass = @$content['free_premium'] == true && @$subplan['status'] != 'active' ? $addClass : "";
+            $watchid = @$content['free_premium'] != true || (@$content['free_premium'] == true && @$subplan['status'] == 'active') ? "watchVideo" : "";
         }
-    ?>
+
+?>
 
 <div class="podcast-background w-100">
     <section class="container w-100 mt-2">
