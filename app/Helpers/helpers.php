@@ -432,15 +432,17 @@ if (!function_exists('timestamp_to_date_format')) {
 
 function convertSecondsToReadable($seconds)
 {
-    $day = floor($seconds / 86400);
-    $hours = floor(($seconds - ($day * 86400)) / 3600);
-    $minutes = floor(($seconds / 60) % 60);
-    $seconds = $seconds % 60;
+    if ($seconds > 0) {
+        $day = floor($seconds / 86400);
+        $hours = floor(($seconds - ($day * 86400)) / 3600);
+        $minutes = floor(($seconds / 60) % 60);
+        $seconds = $seconds % 60;
 
-    if ($hours) {
-        return $hours . ' hour ' . $minutes . ' min ';
-    } elseif ($minutes) {
-        return $minutes . ' min ';
+        if ($hours) {
+            return $hours . ' hr ' . $minutes . ' min ';
+        } elseif ($minutes) {
+            return $minutes . ' min ';
+        }
     }
     // return Carbon::now()->addSeconds($seconds)->diffForHumans(null, true, true, 2);
     // return  CarbonInterval::seconds($seconds)->cascade()->forHumans();
@@ -482,7 +484,7 @@ function getSeasonEpisodeNum($val)
 
 function isUserLoggedIn()
 {
-    return Session::has('user_id') && Session::has('user_token') ? true : false;
+    return Session::has('user_id') && Session::has('user_token') ? true : false; 
 }
 
 function getUserId()
@@ -492,11 +494,7 @@ function getUserId()
 
 function getProfileId()
 {
-    $user = Session::get('user');
-    if ($user) {
-        return $user['profiles'][0]['id'] ?? false;
-    }
-    return false;
+    return session()->get('active_profile') ?? '';
 }
 
 function getContentUrl($value)
