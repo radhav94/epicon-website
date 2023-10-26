@@ -1,3 +1,4 @@
+
 <section class="hero-banner w-100 {{ getFirstSegment() == 'podcast' ? 'podcast-banner' : '' }}">
     <div class="banner-carousel">
         @foreach ($value['content'] as $key => $val)
