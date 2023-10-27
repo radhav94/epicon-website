@@ -131,7 +131,7 @@ $episode_json = json_encode($episode_list);
                         </div>
                         <p class="pod-detail-text mt-3">{{ @$content['description'] }}</p>
                         <div class="podcast-btns d-flex align-items-center" data-id="{{ @$content['ID'] }}">
-                            <button class="fill-btn ms-0 px-4 me-3 {{$watchClass}}">
+                            <button class="fill-btn ms-0 px-4 {{$watchClass}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28" viewBox="0 0 29 28" fill="none">
                                     <path d="M26.75 14.0005C26.7507 14.2976 26.6745 14.5899 26.5289 14.8488C26.3832 15.1077 26.173 15.3246 25.9188 15.4782L10.16 25.1185C9.89431 25.2812 9.59001 25.37 9.27852 25.3758C8.96703 25.3816 8.65965 25.3041 8.38813 25.1513C8.11918 25.001 7.89515 24.7817 7.73905 24.516C7.58296 24.2503 7.50045 23.9479 7.5 23.6398V4.36133C7.50045 4.0532 7.58296 3.75076 7.73905 3.48509C7.89515 3.21943 8.11918 3.00014 8.38813 2.84976C8.65965 2.69702 8.96703 2.61953 9.27852 2.6253C9.59001 2.63107 9.89431 2.71989 10.16 2.88258L25.9188 12.5229C26.173 12.6765 26.3832 12.8934 26.5289 13.1523C26.6745 13.4112 26.7507 13.7035 26.75 14.0005Z" fill="#272727" />
                                 </svg> &nbsp;
@@ -139,12 +139,12 @@ $episode_json = json_encode($episode_list);
                             </button>
                             @loggedin
                             @if (@$content['free_premium'] == true && !isActiveSubscription())
-                            <a href="{{ getUrl('subscription') }}" class="subcription-btn me-3">
+                            <a href="{{ getUrl('subscription') }}" class="subcription-btn m-0">
                                 <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> Subscribe Now
                                 </a>
                             @endif
                             @elseloggedin
-                            <a href="javascript:void(0);" class="subcription-btn me-3 login">
+                            <a href="javascript:void(0);" class="subcription-btn m-0 login">
                                 <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> Subscribe Now
                                 </a>
                             @endloggedin
@@ -162,12 +162,12 @@ $episode_json = json_encode($episode_list);
                             }
                             ?>
 
-                            <button class="rounded-grey-btn me-3 addToList" data-id="{{ $content['ID'] }}" data-action="{{ $wishAction }}" data-type="3">
+                            <button class="rounded-grey-btn m-0 addToList" data-id="{{ $content['ID'] }}" data-action="{{ $wishAction }}" data-type="3">
                                 <img class="wl_add" src="{{ asset('assets/img/add-icon.svg') }}" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
                                 <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon" @if ($wishAction=='add' ) style="display: none" @endif>
                             </button>
 
-                            <button class="rounded-grey-btn me-3 clapButton" data-id="{{ @$content['ID'] }}">
+                            <button class="rounded-grey-btn m-0 clapButton" data-id="{{ @$content['ID'] }}">
                                 <img src="{{ asset('assets/img/clap-icon.svg') }}" alt="icon">
                             </button>
                             <button class="rounded-grey-btn shareThis" data-url="{{ getContentUrl($content) }}" data-title="{{ $share_title }}">
@@ -176,19 +176,21 @@ $episode_json = json_encode($episode_list);
                         </div>
 
                         @if (count($episode_list) > 0) {{-- && (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription()))) --}}
-
-                        <audio id="audioPlayer" controls>
-                            <source id="audioSource" src="" type="audio/mpeg">
-                        </audio>
-                        <div id="episodeControls">
-                            @if (count($episode_list) > 1)
-                            <button id="prevEpisode">Previous</button>
-                            <button id="nextEpisode">Next</button>
-                            @endif
-                            <button id="playButton">Play</button>
-                            <button id="pauseButton" style="display: none;">pause</button>
-                            <button id="volumeUpButton"><i class='fa fa-volume-up'></i></button>
-                            <button id="volumeDownButton"><i class='fa fa-volume-down'></i></button>
+                        
+                        <div class="audio-player">
+                            <audio id="audioPlayer" controls>
+                                <source id="audioSource" src="" type="audio/mpeg">
+                            </audio>
+                            <div id="episodeControls">
+                                @if (count($episode_list) > 1)
+                                <button id="prevEpisode">Previous</button>
+                                <button id="nextEpisode">Next</button>
+                                @endif
+                                <button id="playButton">Play</button>
+                                <button id="pauseButton" style="display: none;">pause</button>
+                                <button id="volumeUpButton"><i class='fa fa-volume-up'></i></button>
+                                <button id="volumeDownButton"><i class='fa fa-volume-down'></i></button>
+                            </div>
                         </div>
                         @endif
 
