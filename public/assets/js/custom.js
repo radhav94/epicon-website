@@ -178,3 +178,27 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 }); 
+
+
+function hideMiddleCharacters(input) {
+  if (input.includes('@')) {
+    // Handle email addresses
+    const atIndex = input.indexOf('@');
+    if (atIndex !== -1 && atIndex > 1) {
+      const prefix = input.slice(0, 2); // Keep the first two characters
+      const suffix = input.slice(atIndex); // Keep the part after the '@' symbol
+      const middleAsterisks = '*'.repeat(atIndex - 2); // Replace middle characters with asterisks
+      return `${prefix}${middleAsterisks}${suffix}`;
+    }
+  } else {
+    // Handle mobile numbers
+    const cleanInput = input.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+    if (cleanInput.length > 6) {
+      const prefix = cleanInput.slice(0, 3); // Keep the first two digits
+      const suffix = cleanInput.slice(-3); // Keep the last two digits
+      const middleAsterisks = '*'.repeat(cleanInput.length - 4); // Replace middle digits with asterisks
+      return `${prefix}${middleAsterisks}${suffix}`;
+    }
+  }
+  return input; // Input is too short to hide characters
+}
