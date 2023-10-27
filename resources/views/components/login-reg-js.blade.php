@@ -82,7 +82,7 @@
                     },
                     success: function(response) {
                         // console.log(response.payload.user_id+'success me aaya');
-                        var mobile = response.payload.user_id;
+                        var mobile = hideMiddleCharacters(response.payload.user_id);
                         $('.mobileno').html(mobile);
                         $("#user_id").val(response.payload.user_id);
                         $("#signupmethod").val(response.payload.user_signup_method);
@@ -116,7 +116,7 @@
                 },
                 success: function(response) {
                     // console.log(response.payload.user_id+'success me aaya');
-                    var mobile = response.payload.user_id;
+                    var mobile = hideMiddleCharacters(response.payload.user_id);
                     $('.mobileno').html(mobile);
                     $("#user_id").val(response.payload.user_id);
                     $("#signupmethod").val(response.payload.user_signup_method);
@@ -181,7 +181,7 @@
                     },
                     success: function(response) {
                         // console.log(response.payload.user_id+'success me aaya');
-                        var mobile = response.payload.user_id;
+                        var mobile = hideMiddleCharacters(response.payload.user_id);
                         $('.mobile_no').html(mobile);
                         $("#userid_no").val(response.payload.user_id);
                         $("#usersignupmethod").val(response.payload.user_signup_method);
@@ -216,7 +216,8 @@
                 },
                 success: function(response) {
                     // console.log(response.payload.user_id+'success me aaya');
-                    var mobile = response.payload.user_id;
+                    var mobile = hideMiddleCharacters(response.payload.user_id);
+
                     $('.mobile_no').html(mobile);
                     $("#userid_no").val(response.payload.user_id);
                     $("#usersignupmethod").val(response.payload.user_signup_method);

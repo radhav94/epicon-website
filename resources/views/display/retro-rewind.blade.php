@@ -1,4 +1,4 @@
- <section class="carousel-main retro mt-0">
+ <section class="carousel-main mt-0">
      <div class="punjab">
          <div class="punjab-da-swaad align-items-center" style="background: none;">
              <div class="punjab-title">
@@ -10,7 +10,7 @@
                  @endif
              </div>
          </div>
-         <ul class="punjab-carousel p-0 mb-0">
+         <ul class="vertical-carousel-retro p-0 mb-0">
 
              @foreach ($value['content'] as $key => $val)
                  <?php
@@ -21,7 +21,7 @@
                  <li>
                      <a href="{{ route('retro-list', $val['slug']) }}" class="main-card">
                          <div class="main-img mt-0">
-                             <img src="{{ $cover_img }}" alt="">
+                             <img src="{{ $cover_img }}" alt="retro">
                          </div>
                      </a>
                  </li>
