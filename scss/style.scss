@@ -666,7 +666,7 @@ input {
     }
     & .carousel-card.slick-slide.slick-active.slick-center{
         .crown,.mute-btn{
-            display: block;
+            display: none;
         }
         .carousel-items-content{
             display: flex;
@@ -871,7 +871,7 @@ input {
     }
     & .carousel-card.slick-slide.slick-active.slick-center{
         .crown,.mute-btn{
-            display: block;
+            display: none;
         }
         .carousel-items-content{
             display: flex;
@@ -2008,6 +2008,7 @@ input {
         right: 0;
         bottom: 25px;
         width: fit-content;
+        z-index: 1;
 
         &::after{
             content: "";
