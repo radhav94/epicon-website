@@ -263,9 +263,13 @@ if (request()->path() == "hi") {
 
                         <li class="profile-main p-3">
                             @if (isset($profile))
+                            <?php 
+                                $gender = @$profile['result']['user_data']['gender'] ?? 'Male';
+                                $default_img = ($gender == 'Female') ? asset('assets/img/edit-profile-pik.png') : asset('assets/img/profile-boy.png')
+                            ?>
                                 @foreach ($profile['profiles'] as $key => $value)
                                     <?php
-                                        $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : asset('assets/img/edit-profile-pik.png');
+                                        $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : $default_img;
                                         $active_profile = session()->get('active_profile');
                                         $isActiveProfile = $value['id'] == $active_profile ? 'active' : '';
                                     ?>

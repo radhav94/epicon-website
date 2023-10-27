@@ -37,6 +37,9 @@
 
     @include('display.display-default')
 </div>
+
+    <div class="content-loader d-none" style="text-align: center;"> <img style="width: 40px;" src="{{ asset('assets/img/loader.gif') }}"> </div>
+
     @include('components.supermix-content-modal')
     @include('components.video-player-modal')
     <?php if(request()->path() == '' || request()->path() == '/' || request()->path() == 'hi' || request()->path() == '/hi'){ ?>
@@ -92,6 +95,12 @@
                     route: routepage
                 },
                 dataType: 'json',
+                beforeSend: function() {
+                    $('.content-loader').removeClass('d-none');
+                },
+                complete: function() {
+                    $('.content-loader').addClass('d-none');
+                },
                 success: function(response) {
                     if (response.payload.html != '') {
                         $('.loadmorecontent').css('overflow', 'auto');
@@ -111,8 +120,8 @@
                         $("#pageval").val(paging);
                         $(".loginwish").click(function(e){
                             e.preventDefault();
-                        $(".loginBtn.login").trigger('click');
-                        return false;
+                            $(".loginBtn.login").trigger('click');
+                            return false;
                         });
                     } else {
                         $('.loadmorecontent').css('overflow', 'auto');
