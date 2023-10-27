@@ -4,7 +4,6 @@
 @section('style')
 
 @stop
-
 @section('content')    
 <section class="container-fluid mt-4">
         <div class="row">
@@ -171,13 +170,15 @@
 @section('script')
 <script>
     $(document).ready(function(){
-
+        console.log(localStorage.getItem("redirectURL"));
         $(".planid").click(function (e) {
             var planid =$(this).attr('data-id');
             if(planid == 'epic_in_pl_1'){
                 $(".coupan-div").hide();
+                 return false;
             }else{
                 $(".coupan-div").show();
+                 return false;
             }
         $.ajaxSetup({
             headers: {
