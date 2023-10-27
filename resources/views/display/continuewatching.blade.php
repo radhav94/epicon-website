@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <a href="javascript:void(0);" class="main-card">
+            <a href="{{ getContentUrl($val) }}" class="main-card">
                 {!! freePremiumDiv($val) !!}
                 {!! topTenDiv($val) !!}
                 <div class="main-img">
