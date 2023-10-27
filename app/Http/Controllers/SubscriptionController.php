@@ -117,7 +117,9 @@ class SubscriptionController extends Controller
             return redirect('/');
         }
         $data = $request->all();
+        //dd($data);
         $sessionPlanData = $request->session()->get('plandata');
+
         $userData = $request->session()->get('user');
         if ($sessionPlanData[$data['amountid']]) {
             $result = ($sessionPlanData[$data['amountid']]);
@@ -209,7 +211,7 @@ class SubscriptionController extends Controller
         $startdate = date("d-m-Y", strtotime($newDate));
         $finalcurrency = $currency;
         // test amount logic
-        if (env('DEV_AMT') == true || $userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956') {
+        if (env('DEV_AMT') == true || $userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid="9819208025") {
             $totalamount = "1";
         }
 
