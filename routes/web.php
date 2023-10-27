@@ -63,6 +63,7 @@ Route::any('/supermix', [SupermixController::class, 'superMix']);
 Route::post('paginatecontent', [PageController::class, 'paginatecontent'])->name('paginatecontent');
 Route::post('channelpaginatecontent', [PageController::class, 'channelpaginatecontent'])->name('channelpaginatecontent');
 
+
 // Notifications
 Route::get('/notifications', [NotificationController::class, 'getNotifications']);
 
@@ -184,7 +185,6 @@ foreach ($lang as $val) {
                 return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog]);
             }
         });
-
         Route::get('channels/{slug}', [PageController::class, 'channelsmidpagedetail']);
         Route::get('explore', [PageController::class, 'explore'])->name('explore');
         Route::get('{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);

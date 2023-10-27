@@ -322,6 +322,10 @@
                             } else {
                                 if (queryParams.get('profile') == "kids") {
                                     window.location.href = $("input[name='kidsUrl']").val();
+                                }else if(queryParams.get('ref') == "subscription"){
+
+                                    window.location.href = APP_URL+'/subscription';
+
                                 } else {
                                     location.reload();
                                 }
@@ -478,8 +482,15 @@
                             setTimeout(function() {
                                 if (queryParams.get('profile') == "kids" ) {
                                     window.location.href = $("input[name='kidsUrl']").val();
+                                    return false;
+                                }else if(queryParams.get('ref') == "subscription"){
+                                    
+                                    window.location.href = APP_URL+'/subscription';
+                                    return false;
+
                                 } else {
                                     window.location.href = response.payload.redirect;
+                                    return false;
                                 }
                             }, 3000);
                             return false;

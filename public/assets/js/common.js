@@ -32,6 +32,12 @@ $(document).ready(function () {
         }
       });
 
+      $(".login-with-subscription").click(function(){
+        window.history.pushState({},'',"?ref=subscription");
+        $('.loginBtn.login').trigger('click');
+
+      });
+
     $(".allAccessBtn").click(function() {
         var checkstaus = $(this).is(':checked');
         var kidsUrl= $("input#kidsUrl").val();
@@ -64,8 +70,20 @@ $(document).on("click", ".check-content-url", function () {
     var content_url = $(this).attr('data-url');
     var is_premium = $(this).data('premium');
     var active_subscriber = $(this).data('activesubscriber');
+    var Islogin = $(this).attr('check-login');
     if (is_premium == 1 && active_subscriber != 1) {
-        showToaster("Please subscribe to play this game.", 2);
+        if(Islogin == "checklogin"){
+            $(".login").trigger('click');
+            return false;
+        }else if(Islogin == "allAccessBtn"){
+            $(".allAccessBtn").trigger('click');
+            return false;
+        }else{
+            window.location.href = APP_URL+'/subscription';
+            return false; 
+        }
+        
+        //showToaster("Please subscribe to play this game.", 2);
         return;
     }
     if (content_url == "") {

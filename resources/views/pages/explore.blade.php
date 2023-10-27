@@ -37,6 +37,8 @@
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
+
+                        @if( @$result['data']['genres'] )
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="my-list">
                             <div class="genresexplore">
                                 <!-- <h4 class="genresheading text-white">{{__('Genres')}}</h4> -->
@@ -51,35 +53,32 @@
 
                                 </div>
                             </div>
-                        </div>
+                        </div> 
+                        @endif
+
+                        @if( @$result['data']['languages'] )
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="history">
                             <div class="gener-lang">
-                                <a href="http://devepicon-v3.epicon.in/explore/hindi" tabindex="0">
-                                    <img src="https://mum-epicon-source.s3.ap-south-1.amazonaws.com/EPICON/EpiconRevampCreatives/genreLanguage-1.png">
+
+                                @foreach ($result['data']['languages'] as $key => $value)
+
+                                <?php
+                                $cover_img = '';
+                                if(isset($value['images']) ){
+                                    $cover_img = isset($value['images']['small']) ? $value['images']['small'] : '';
+                                }
+                                
+                                ?>
+
+                                <a href="{{ getUrl('explore/' . @$value['slug']) }}" tabindex="0">
+                                    <img src="{{ $cover_img }}">
                                 </a>
-                                <a href="http://devepicon-v3.epicon.in/explore/hindi" tabindex="0">
-                                    <img src="https://mum-epicon-source.s3.ap-south-1.amazonaws.com/EPICON/EpiconRevampCreatives/genreLanguage-1.png">
-                                </a>
-                                <a href="http://devepicon-v3.epicon.in/explore/hindi" tabindex="0">
-                                    <img src="https://mum-epicon-source.s3.ap-south-1.amazonaws.com/EPICON/EpiconRevampCreatives/genreLanguage-1.png">
-                                </a>
-                                <a href="http://devepicon-v3.epicon.in/explore/hindi" tabindex="0">
-                                    <img src="https://mum-epicon-source.s3.ap-south-1.amazonaws.com/EPICON/EpiconRevampCreatives/genreLanguage-1.png">
-                                </a>
-                                <a href="http://devepicon-v3.epicon.in/explore/hindi" tabindex="0">
-                                    <img src="https://mum-epicon-source.s3.ap-south-1.amazonaws.com/EPICON/EpiconRevampCreatives/genreLanguage-1.png">
-                                </a>
-                                <a href="http://devepicon-v3.epicon.in/explore/hindi" tabindex="0">
-                                    <img src="https://mum-epicon-source.s3.ap-south-1.amazonaws.com/EPICON/EpiconRevampCreatives/genreLanguage-1.png">
-                                </a>
-                                <a href="http://devepicon-v3.epicon.in/explore/hindi" tabindex="0">
-                                    <img src="https://mum-epicon-source.s3.ap-south-1.amazonaws.com/EPICON/EpiconRevampCreatives/genreLanguage-1.png">
-                                </a>
-                                <a href="http://devepicon-v3.epicon.in/explore/hindi" tabindex="0">
-                                    <img src="https://mum-epicon-source.s3.ap-south-1.amazonaws.com/EPICON/EpiconRevampCreatives/genreLanguage-1.png">
-                                </a>
+                                @endforeach
+
                             </div>
                         </div>
+                        @endif
+
                     </div>
                 </div>
             </div>

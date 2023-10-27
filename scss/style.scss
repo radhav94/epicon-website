@@ -2061,6 +2061,11 @@ input {
   }
   .swiper-slide.tranding-slide.swiper-slide-prev{
     transform: translate3d(540px, 0px, -200px) rotateX(0deg) rotateY(0deg) scale(1)!important;
+    .carousel-items-content{
+        h1,h2,ul{
+            display: none!important;
+        }
+    }
   }
   .swiper-slide.tranding-slide.swiper-slide-next{
     transform: translate3d(-540px, 0px, -200px) rotateX(0deg) rotateY(0deg) scale(1)!important;
@@ -2608,8 +2613,12 @@ input {
             @include flex(row,center,center);
 
             img{
-                width: 100%;
+                width: 50%;
                 height: auto;
+
+                @media (max-width:767px) {
+                    width: 100%;
+                }
             }
         }
     }
@@ -2629,7 +2638,8 @@ input {
 
     .genere-fiesta-title{
         color: $bg-white;
-        width: 400px;
+        white-space: nowrap;
+        padding-right: 30px;
         // @media (max-width:768px) {
         //     margin-bottom: 20px;
         // }
@@ -3673,7 +3683,9 @@ input {
 
 .better-solution{
     @include flex(row,flex-start,space-between);
-    flex-wrap: wrap;
+    @media (max-width:767px) {
+        flex-wrap: wrap;
+    }
     & .bs-right{
         padding: 10px;
         width: 60%;
@@ -3699,8 +3711,8 @@ input {
             position: relative;
             margin-bottom: 10px;
 
-            @media (max-width:700px) {
-                width: 100%;         
+            @media (max-width:768px) {
+                width: 48%;         
             }
 
             img{
@@ -3818,7 +3830,7 @@ input {
 
         @media (max-width:768px) {
             width: 100%;  
-            margin-top: 20px;          
+            margin-top: 0px;          
         }
         h4{
             color: $bg-white;
