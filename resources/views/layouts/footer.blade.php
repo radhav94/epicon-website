@@ -114,30 +114,30 @@
     }
     ?>
         <nav class="mob-nav">
-            <a href="{{route('homepage')}}" @if ($current_route == '/') class="active" @endif>
+            <a class="footer-home {{ ($current_route == '/' || $current_route == 'kids') ? 'active' : '' }}" href="{{ !isKidsPage() ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
                 <p></p>
                 <span>Home</span>
             </a>
-            @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
-            <a href="{{getUrl('premium')}}" @if ($current_route == 'premium') class="active" @endif>
+            @if (!kidsMode())
+            <a class="footer-premium {{ ($current_route == 'premium') ? 'active' : '' }}" href="{{getUrl('premium')}}">
                 <p></p>
                 <span>Premium</span>
             </a>
-            <a href="{{getUrl('explore')}}" @if ($current_route == 'explore') class="active" @endif>
+            <a class="footer-explore {{ ($current_route == 'explore') ? 'active' : '' }}" href="{{getUrl('explore')}}">
                 <p></p>
                 <span>Explore</span>
             </a>
             @endif
-            @if (session()->has('kidsMode') && session()->get('kidsMode') == true)
-            <a href="{{ getUrl('kids/search') }}" @if ($current_route == 'kids/search') class="active" @endif>
+            @if (kidsMode())
+            <a class="footer-search {{ ($current_route == 'kids/search') ? 'active' : '' }}" href="{{ getUrl('kids/search') }}">
             @else
-            <a href="{{ getUrl('search') }}" @if ($current_route == 'search') class="active" @endif>
+            <a class="footer-search {{ ($current_route == 'search') ? 'active' : '' }}" href="{{ getUrl('search') }}">
             @endif
                 <p></p>
                <span>Search</span> 
             </a>
-            @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
-            <a href="javascript:void(0)">
+            @if (!kidsMode())
+            <a class="footer-spotlight {{ ($current_route == 'spotlight') ? 'active' : '' }}" href="{{ getUrl('spotlight') }}">
                 <p></p>
                 <span>Spotlight</span>
             </a>

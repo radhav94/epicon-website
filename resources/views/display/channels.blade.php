@@ -14,9 +14,9 @@
     <div class="gaming-galore-main">
         <div class="epic-channel">
             @foreach ($value['content'] as $key => $val)
-            <?php @$val['slug'] = urldecode(@$val['slug']); ?>
+            <?php $slug = urldecode(@$val['slug']); ?>
                 <div>
-                    <a href="{{ getUrl('channels/'.@$val['slug']) }}">
+                    <a href="{{ getUrl('channels/'.$slug) }}">
                     <!-- <a href="{{ isset($val['path']) ? getUrl(@$val['path']) : @$val['url'] }}"> -->
                         <img src="{{ @$val['image'] }}" alt="{{ @$val['name'] }}">
                     </a>

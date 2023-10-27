@@ -55,9 +55,9 @@
             user_mob_email = isInput;
             var type = $.isNumeric(isInput);
             if (type == true) {
-                $("#signup_method").val('MOBILE');
+                $(".signup_method").val('MOBILE');
             } else {
-                $("#signup_method").val('EMAIL');
+                $(".signup_method").val('EMAIL');
             }
 
             if (isValidContact(isInput) == true) {

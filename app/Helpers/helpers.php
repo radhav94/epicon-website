@@ -1017,3 +1017,7 @@ function isKidsPage(){
     $segment = getFirstSegment();
     return $segment == 'kids' ? true : false;
 }
+
+function kidsMode(){
+    return session()->has('kidsMode') && session()->get('kidsMode') == true ? true : false;
+}
