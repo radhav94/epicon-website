@@ -59,7 +59,7 @@
                                 <div class="input-field w-100 mb-3">
                                     <input class="form-control" id="mobile_number" name="mobile_number"
                                         placeholder="Email or Mobile Number">
-                                    <input type="hidden" name="signup_method" id="signup_method" value="">
+                                    <input type="hidden" name="signup_method" class="signup_method" value="">
                                     <span class="text-start text-white d-flex mt-1" style="font-size: 12px;">We’ll send
                                         you an OTP to verify your account</span>
                                     <span class="text-danger text-start d-flex mt-1 get-otp-message"
@@ -244,7 +244,7 @@
                                 <div class="input-field w-100 mb-3">
                                     <input class="form-control" id="mobilenumber" name="mobilenumber"
                                         placeholder="Email or Mobile Number" value="<?php if(isset($_COOKIE["user_id"])) { echo $_COOKIE["user_id"]; } ?>">
-                                    <input type="hidden" name="signup_method" id="signup_method" value="">
+                                    <input type="hidden" name="signup_method" class="signup_method" value="">
                                     <span class="text-danger text-start d-flex mt-1 error" id="mobile-error"
                                         style="font-size: 12px;"></span>
                                 </div>

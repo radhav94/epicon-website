@@ -12,8 +12,11 @@ $(document).ready(function () {
   });
 
   $(".subscription").on("click", function () {
+    var rediUrl = window.location.href;
+    localStorage.setItem("redirectURL", rediUrl);
     var subUrllink = $(".subUrl").val();
     window.location.href = subUrllink;
+    
    
   });
 

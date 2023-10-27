@@ -9,10 +9,10 @@ $card = getItemCardData($val, 'ENGLISH');
 <li>
     @include('components.item-hover-card')
     @if(@$val['asset_type'] == 'PLAY')
-    {!! getplayanchorhtml($val) !!}
+        {!! getplayanchorhtml($val) !!}
     @else
-    <a href="{{ getContentUrl($val) }}" class="main-card">
-        @endif
+        <a href="{{ getContentUrl($val) }}" class="main-card">
+    @endif
         {!! freePremiumDiv($val) !!}
         {!! topTenDiv($val) !!}
         <div class="main-img {{$getTitle['cls']}}">
