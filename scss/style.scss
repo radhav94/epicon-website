@@ -641,7 +641,7 @@ input {
         padding-top: 1rem;
     }
 }
-.banner-carousel, .premium-carousel,.explore-details,.banner-carousel-1{
+.banner-carousel, .premium-carousel,.explore-details{
     & .carousel-card.slick-slide.slick-active.slick-center .carousel-items{
         transform: scale(1.1);
         z-index: 10;
@@ -2084,6 +2084,11 @@ input {
   }
   .swiper-slide.tranding-slide.swiper-slide-next{
     transform: translate3d(-540px, 0px, -200px) rotateX(0deg) rotateY(0deg) scale(1)!important;
+    .carousel-items-content{
+        h1,h2,ul{
+            display: none!important;
+        }
+    }
   }
   .tranding-slide{
     width: 829px;
