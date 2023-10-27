@@ -196,10 +196,16 @@ var start = new Date;
     //     var total_seconds = (new Date - start) / 1000;
     //     var seconds = Math.floor(total_seconds);
     //     var currentTimeString = seconds;
-    //     $('.Timer').text("We will redirect on account page in "+currentTimeString+ " Seconds"); 
+    //    // $('.Timer').text("We will redirect on account page in "+currentTimeString+ " Seconds"); 
     // }, 1000);
-    //     window.setTimeout(function() {
-    //     window.location.href = APP_URL+'/my-account';
-    // }, 5000);
+        window.setTimeout(function() {
+            var chekUrl = localStorage.getItem("redirectURL");
+            if(chekUrl != "" && chekUrl !=null &&  chekUrl!=undefined){
+                localStorage.removeItem("redirectURL");
+                window.location.href = chekUrl;
+            }else{
+             window.location.href = APP_URL+'/my-account';
+            }
+    }, 5000);
 </script>    
 @stop

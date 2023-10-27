@@ -55,9 +55,9 @@
             user_mob_email = isInput;
             var type = $.isNumeric(isInput);
             if (type == true) {
-                $("#signup_method").val('MOBILE');
+                $(".signup_method").val('MOBILE');
             } else {
-                $("#signup_method").val('EMAIL');
+                $(".signup_method").val('EMAIL');
             }
 
             if (isValidContact(isInput) == true) {
@@ -75,7 +75,7 @@
                     },
                     success: function(response) {
                         // console.log(response.payload.user_id+'success me aaya');
-                        var mobile = response.payload.user_id;
+                        var mobile = hideMiddleCharacters(response.payload.user_id);
                         $('.mobileno').html(mobile);
                         $("#user_id").val(response.payload.user_id);
                         $("#signupmethod").val(response.payload.user_signup_method);
@@ -109,7 +109,7 @@
                 },
                 success: function(response) {
                     // console.log(response.payload.user_id+'success me aaya');
-                    var mobile = response.payload.user_id;
+                    var mobile = hideMiddleCharacters(response.payload.user_id);
                     $('.mobileno').html(mobile);
                     $("#user_id").val(response.payload.user_id);
                     $("#signupmethod").val(response.payload.user_signup_method);
@@ -174,7 +174,7 @@
                     },
                     success: function(response) {
                         // console.log(response.payload.user_id+'success me aaya');
-                        var mobile = response.payload.user_id;
+                        var mobile = hideMiddleCharacters(response.payload.user_id);
                         $('.mobile_no').html(mobile);
                         $("#userid_no").val(response.payload.user_id);
                         $("#usersignupmethod").val(response.payload.user_signup_method);
@@ -209,7 +209,8 @@
                 },
                 success: function(response) {
                     // console.log(response.payload.user_id+'success me aaya');
-                    var mobile = response.payload.user_id;
+                    var mobile = hideMiddleCharacters(response.payload.user_id);
+
                     $('.mobile_no').html(mobile);
                     $("#userid_no").val(response.payload.user_id);
                     $("#usersignupmethod").val(response.payload.user_signup_method);
@@ -482,12 +483,15 @@
                             setTimeout(function() {
                                 if (queryParams.get('profile') == "kids" ) {
                                     window.location.href = $("input[name='kidsUrl']").val();
+                                    return false;
                                 }else if(queryParams.get('ref') == "subscription"){
                                     
                                     window.location.href = APP_URL+'/subscription';
+                                    return false;
 
                                 } else {
                                     window.location.href = response.payload.redirect;
+                                    return false;
                                 }
                             }, 3000);
                             return false;
