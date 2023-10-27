@@ -2,6 +2,13 @@
 <script>
     var user_mob_email = '';
     $(document).ready(function() {
+        $(function() { 
+            $( ".date_picker" ).datepicker({
+                dateFormat: 'MM dd, yy',
+                maxDate: '-1d',
+            }); 
+        });
+
         $('.login').click(function(event) {
             if (!event.isTrigger) {
                 window.history.replaceState({}, document.title, "/" );
