@@ -44,7 +44,7 @@ $cover_img = getCardImage($content, 'banner_image', 'large');
     <?php
    $subplan = checkSubscription();
     if(isKidsPage()){
-        $addClass = "allAccessBtn";
+        $addClass = "allAccessBtn-sub";
     }else{
         $addClass = "subscription";
     }
