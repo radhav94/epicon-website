@@ -473,8 +473,9 @@ class SubscriptionController extends Controller
                 }
             }
             if (!empty($sessionData)) {
-                $request->session()->put('plandata', $sessionData);
+                 $storeSessionData = $request->session()->put('plandata', $sessionData);
             }
+            $listResponseData['planSessionData'] = $storeSessionData;
             return response()->json($listResponseData, 200)->header('Content-Type', 'application/json');
         } else {
             return response()->json('Coupan not found.', 201)->header('Content-Type', 'application/json');
