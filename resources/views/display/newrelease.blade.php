@@ -42,7 +42,9 @@
                      {!! freePremiumDiv($val) !!}
 
                      <div class="carousel-items position-relative w-100">
-                         <img src="{{ $banner_img }}" alt="">
+                        <a href="{{ getContentUrl($val) }}">
+                            <img src="{{ $banner_img }}" alt="">
+                        </a>
                          <div class="carousel-items-content position-absolute">
                              <h1 class="banner-movie-tittle">{{ $card['title'] }}</h1>
                              <h2 class="mb-3">{{ $card['sub_text'] }}</h2>

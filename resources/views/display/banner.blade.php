@@ -7,11 +7,13 @@
             <div class="carousel-card">
                 {!! freePremiumDiv($val) !!}
                 <div class="carousel-items position-relative w-100">
-                    <img src="{{ $card['banner_img'] }}" alt="">
+                    <a href="{{ getContentUrl($val) }}">
+                        <img src="{{ $card['banner_img'] }}" alt="">
+                    </a>
                     <div class="carousel-items-content position-absolute">
                         <h2>{{ $card['sub_text'] }}</h2>
                         <p> {{ $card['short_desc'] }} </p>
-                        <ul class="w-100 d-flex justify-content-between align-items-center list-unstyled mb-0">
+                        <ul class="d-flex justify-content-between align-items-center list-unstyled mb-0">
                             <li class="d-flex">
                                 @if(@$val['asset_type'] == 'PLAY')
                                 {!! getplayanchorhtml($val) !!}

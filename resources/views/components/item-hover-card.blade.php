@@ -7,10 +7,12 @@ $banner_img = getCardImage($val, 'banner_image', 'small');
         @if (@$extra['hide_top10'] != 1)
             {!! topTenDiv($val) !!}
         @endif
-        <img src="{{ $banner_img }}" alt="">
+        <a href="{{ getContentUrl($val) }}">
+            <img src="{{ $banner_img }}" alt="">
+        </a>
     </div>
     <div class="bottom-card-content">
-        <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-2">
             <div class="w-100 d-flex justify-content-between align-items-center"> 
                 @if(@$val['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($val) !!}

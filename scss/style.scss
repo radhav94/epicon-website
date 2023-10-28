@@ -218,7 +218,11 @@ input {
         width: 14% !important;
         margin-right: 10px;
     }
-
+    @media (max-width:768px) {
+        &{
+            padding: 5px 20px;
+        }
+    }
     @media (max-width:700px) {
         &{
             height: 26px;
@@ -749,6 +753,26 @@ input {
             border-radius: 1rem;
             padding: 30px 25px 0;
             position: relative;
+            & > a{
+                display: block;
+                width: 100%;
+                height: 100%;
+                position: relative;
+                border-radius: 23px;
+                overflow: hidden;
+                &::before{
+                    content: "";
+                    position: absolute;
+                    height: 50%;
+                    width: 100%;
+                    left: 0;
+                    bottom: 0;
+                    background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.77) 100%);
+                }
+                @media screen and (max-width: 767px) {
+                    border-radius: 12px;
+                }
+            }
             @media screen and (max-width: 1650px) {
                 height: auto;
             }
@@ -775,17 +799,9 @@ input {
             }
             .carousel-items-content{
                 bottom: 0;
-                left: 0;
-                right: 0;
+                width: 50%;
                 padding: 0rem 2rem 2rem 2rem;
-                width: calc(100% - 50px);
-                height: 50%;
                 @include flex(column,flex-start,flex-end);
-                margin: 0 auto;
-                transition: 0.3s;
-                background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.77) 100%);
-                border-radius: 23px;
-                // display: none;
                 
                 @media (max-width:768px){
                     width: calc(100% - 31px);
@@ -793,6 +809,7 @@ input {
                 }
                 @media (max-width:700px){
                     width: calc(100% - 15px);
+                    height: 260px;
                     padding: 0.5rem;
                     border-radius: 12px;
                     background-image: url("../img/main-banner-mobile-bg.svg");
@@ -813,7 +830,7 @@ input {
                     }
                 }
                 p{
-                    width: 50%;
+                    // width: 50%;
                     font-size: 20px;
                     color: $bg-white;
                     font-weight: 500;
@@ -835,6 +852,28 @@ input {
         .carousel-items{
             padding: 0;
             border-radius: 0;
+
+            & > a{
+                display: block;
+                width: 100%;
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.77) 100%);
+                height: 100%;
+                position: relative;
+                border-radius: 23px;
+                overflow: hidden;
+                &::before{
+                    content: "";
+                    position: absolute;
+                    height: 50%;
+                    width: 100%;
+                    left: 0;
+                    bottom: 0;
+                    background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.77) 100%);
+                }
+                @media screen and (max-width: 767px) {
+                    border-radius: 12px;
+                }
+            }
 
             img{
                 border-radius: 0;
@@ -951,6 +990,27 @@ input {
             border-radius: 1rem;
             padding: 30px 25px 0;
             position: relative;
+            & > a{
+                display: block;
+                width: 100%;
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.77) 100%);
+                height: 100%;
+                position: relative;
+                border-radius: 23px;
+                overflow: hidden;
+                &::before{
+                    content: "";
+                    position: absolute;
+                    height: 50%;
+                    width: 100%;
+                    left: 0;
+                    bottom: 0;
+                    background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.77) 100%);
+                }
+                @media screen and (max-width: 767px) {
+                    border-radius: 12px;
+                }
+            }
             @media screen and (max-width: 768px) {
                 padding: 15px 15px 0;
             }
@@ -967,35 +1027,27 @@ input {
                 }
             }
             .carousel-items-content{
-                bottom: 10px;
-                left: 0;
-                right: 0;
-                padding: 0rem 1rem 1rem 1rem;
-                width: calc(100% - 70px);
-                height: 50%;
+                bottom: 0;
+                // width: 50%;
+                padding: 0rem 2rem 2rem 2rem;
                 @include flex(column,flex-start,flex-end);
-                margin: 0 auto;
-                transition: .3s;
-                background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.77) 100%);
-                border-radius: 13px;
                 display: none;
 
                 @media (max-width:1025px){
-                    width: calc(100% - 50px);
-                    padding: 1rem;
+                    // width: calc(100% - 50px);
                     bottom: 10px;
                     border-radius: 10px;
                 }
                 
                 @media (max-width:768px){
-                    width: calc(100% - 50px);
-                    padding: 1rem;
+                    // width: calc(100% - 50px);
+                    padding: 1.3rem;
                     bottom: 10px;
                     border-radius: 10px;
                 }
                 @media (max-width:700px){
-                    width: calc(100% - 35px);
-                    padding: 0.5rem;
+                    // width: calc(100% - 35px);
+                    padding: 0.5rem 0.5rem 0.9rem 1.5rem;
                     border-radius: 5px;
                 }
                 h2{
@@ -1008,7 +1060,7 @@ input {
                     }
                 }
                 p{
-                    width: 50%;
+                    width: 100%;
                     font-size: 16px;
                     color: $bg-white;
                     @media (max-width:768px){
@@ -1300,6 +1352,27 @@ input {
             border-radius: 1rem;
             position: relative;
             padding: 0;
+            & > a{
+                display: block;
+                width: 100%;
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.77) 100%);
+                height: 100%;
+                position: relative;
+                border-radius: 23px;
+                overflow: hidden;
+                &::before{
+                    content: "";
+                    position: absolute;
+                    height: 50%;
+                    width: 100%;
+                    left: 0;
+                    bottom: 0;
+                    background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.77) 100%);
+                }
+                @media screen and (max-width: 767px) {
+                    border-radius: 12px;
+                }
+            }
             @media (max-width:1024px) {
                 height: 450px;
             }
@@ -1318,14 +1391,8 @@ input {
             }
             .carousel-items-content{
                 bottom: 0;
-                left: 0;
-                right: 0;
-                width: 100%;
-                height: 50%;
-                padding: 50px;
-                margin: 0 auto;
-                transition: 0.3s;
-                background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.77) 100%);
+                width: 50%;
+                padding: 0rem 2rem 2rem 2rem;
                 @include flex(column,flex-start,flex-end);
 
                 @media (max-width:768px) {
@@ -1343,7 +1410,7 @@ input {
                     }
                 }
                 p{
-                    width: 50%;
+                    width: 100%;
                     font-size: 20px;
                     color: $bg-white;
                     @include line-clamp(2);
@@ -1362,7 +1429,6 @@ input {
 }
 .carousel-main,.library,.seeall-main-page{
     margin-block: 25px;
-    box-sizing: content-box;
     height: 100%;
     position: relative;
     max-width:100%;
@@ -1409,12 +1475,12 @@ input {
         transform-origin: center;
         transition: 1.2s;
         display: block;
-        top:50%; 
+        top:40%; 
         left:50%; 
         transform:translate(-50%, -50%); 
         -ms-transform:translate(-50%, -50%); 
         width: 330px;
-        height: 350px;
+        height: 315px;
        
     }
 
@@ -1425,12 +1491,12 @@ input {
         transform-origin: center;
         transition: 1.2s;
         display: block;
-        top:50%; 
+        top:40%; 
         left:50%; 
         transform:translate(-50%, -50%); 
         -ms-transform:translate(-50%, -50%); 
         width: 330px;
-        height: 350px;
+        height: 315px;
        
     }
    
@@ -1811,6 +1877,7 @@ input {
             margin-top: -15px;
             position: relative;
             box-shadow: -3px -20px 69px rgba($color: #000000, $alpha: 0.7);
+            height: 170px;
             ul{
                 color: $bg-grey;
                 font-size: 12px;
@@ -1914,9 +1981,11 @@ input {
 }
 .seeall-main-page ul{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 10px;
-
+    @media (max-width:1024px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
     @media (max-width:767px) {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -2100,9 +2169,22 @@ input {
   .tranding-slide .tranding-slide-img{
     width: 900px;
     height: 400px;
-    a{
+    & > a{
         height: 100%;
         display: flex;
+        position: relative;
+        &::after{
+            content: "";
+            position: absolute;
+            height: 50%;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.77) 100%);
+        }
+        @media screen and (max-width: 767px) {
+            border-radius: 12px;
+        }
         img{
             width: 100%;
             height: 100%;
@@ -2112,13 +2194,10 @@ input {
     }
     .carousel-items-content{
         bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 2rem;
-        width: calc(100% - 0px);
-        margin: 0 auto;
-        transition: 0.3s;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.77) 100%);
+        padding: 0rem 2rem 2rem 2rem;
+        @include flex(column,flex-start,flex-end);
+        z-index: 2;
+
         @media (max-width:700px){
             padding: 10px;
         }
@@ -2137,7 +2216,7 @@ input {
             margin-bottom: 15px;
         }
         p{
-            width: 50%;
+            width: 100%;
             font-size: 16px;
             color: $bg-white;
             @media (max-width:768px){
@@ -2237,6 +2316,23 @@ input {
       .tranding-slide-img {
         border-radius: 8px;
     }
+  }
+
+  @media (max-width:600px){
+    .tranding-slide.podcast-height{
+        width: 340px;
+        height: 280px;
+      }
+      #tranding .tranding-slider{
+        width: 340px;
+        height: 280px;
+        padding: 0;
+        position: relative;
+      }
+      .tranding-slide .tranding-slide-img{
+        width: 280px;
+        height: 280px;
+      }
   }
 
 //   SPINER CSS START
@@ -2661,9 +2757,9 @@ input {
         color: $bg-white;
         white-space: nowrap;
         padding-right: 30px;
-        // @media (max-width:768px) {
-        //     margin-bottom: 20px;
-        // }
+        @media (max-width:768px) {
+            white-space: normal;
+        }
         h1{
             font-size: 22px;
             font-weight: 700;
@@ -5319,10 +5415,10 @@ input {
         }
     }
     & .main-card{
-        width: 230px;
+        width: 170px;
 
         @media (max-width:700px) {
-            width: 200px;
+            width: 120px;
         }
     }
     @media (max-width:1024px) {
@@ -6293,8 +6389,8 @@ input {
 .livetv-wrapper .livetv-wrap .livetv .livetc-right img {height: 60px;margin: 0 auto;height: 70px;width: auto;margin: 5px auto 10px;}
 .livetv-wrapper .livetv-wrap .livetv .livetv-img-container {height: 250px;margin-bottom: 0;}
 .livetv-wrapper .livetv-wrap .livetv .livetv-img-container img {width: 80%}
-.livetv-wrapper .livetv-wrap .livetv .play-btn {background: linear-gradient(82.26deg, #fd3fa6 -4.95%, #efc600 91.86%);color: #fff;text-decoration: none;padding: 8px 19px;border-radius: 20px;font-size: 14px;font-weight: 500;position: relative;margin: 0 auto;left: 0;right: 0;width: 180px;top: 21px;}
-.livetv-wrap .livetv-box .livetv a.btn-control.autowidth {width: 160px;height: 55px;border-radius: 27.5px;background-image: linear-gradient(to right, #c8265d, #c15a2d);font-size: 17px !important;padding: 0 !important;line-height: 55px;position: absolute;bottom: -27px;left: calc(50% - 80px);border: none;}
+.livetv-wrapper .livetv-wrap .livetv .play-btn {background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);color: #fff;text-decoration: none;padding: 8px 19px;border-radius: 20px;font-size: 14px;font-weight: 500;position: relative;margin: 0 auto;left: 0;right: 0;width: 180px;top: 21px;}
+.livetv-wrap .livetv-box .livetv a.btn-control.autowidth {width: 160px;height: 55px;border-radius: 27.5px;background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);font-size: 17px !important;padding: 0 !important;line-height: 55px;position: absolute;bottom: -27px;left: calc(50% - 80px);border: none;}
 .livetv-wrapper .livetv-wrap .livetv-box .livetv .livetc-right .btn-control {line-height: 45px;font-size: 18px;}
 @media screen and (max-width: 767px) {
     .livetv-wrapper .livetv-wrap .livetv-box .livetv .livetc-right img {height: 60px;margin: 0 auto;}
@@ -6402,11 +6498,12 @@ input {
     position: relative;
 
     & span{
-        position: absolute;
+        // position: absolute;
         color: #fff;
         font-weight: 600;
         font-size: 14px;
         bottom: -22px;
+        margin-left: 2px;
     }
 }
 
