@@ -5,7 +5,6 @@
 
 @stop
 @section('content')
-<?php $request = Request(); ?>    
 <section class="container-fluid mt-4">
         <div class="row">
             <div class="col-12">
@@ -267,11 +266,10 @@
             }
             
         $(".coupan-msg").html("");
-        var sessionID = '{{ Session::getId() }}';
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content'),
-                'X-XSRF-TOKEN': sessionID,
+                
             }
         });
         e.preventDefault();

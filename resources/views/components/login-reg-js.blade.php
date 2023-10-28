@@ -493,7 +493,7 @@
                                     window.location.href = response.payload.redirect;
                                     return false;
                                 }
-                            }, 10000);
+                            }, 3000);
                             return false;
 
                         } else {
