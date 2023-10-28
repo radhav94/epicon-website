@@ -12,7 +12,8 @@ class SubscriptionController extends Controller
     public function subscription(Request $request)
     {
         $sessionData = $request->session()->get('user_token');
-        $userData = $request->session()->get('user');
+        $userData = $request->session()->get('plandata');
+        //$request->session()->forget('plandata');
         $subscriptionPurchases = $allPurchasedPlans = $activePlan = $futurePlan = $result = [];
         $offerCount = 0;
         $today = date("Y-m-d") . "T" . date("H:i:s") . "Z";
@@ -119,7 +120,6 @@ class SubscriptionController extends Controller
         $data = $request->all();
         //dd($data);
         $sessionPlanData = $request->session()->get('plandata');
-
         $userData = $request->session()->get('user');
         if ($sessionPlanData[$data['amountid']]) {
             $result = ($sessionPlanData[$data['amountid']]);

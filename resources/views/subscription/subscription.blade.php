@@ -4,7 +4,8 @@
 @section('style')
 
 @stop
-@section('content')    
+@section('content')
+<?php $request = Request(); ?>    
 <section class="container-fluid mt-4">
         <div class="row">
             <div class="col-12">
@@ -170,16 +171,9 @@
 @section('script')
 <script>
     $(document).ready(function(){
-        console.log(localStorage.getItem("redirectURL"));
+        $(".promocode").val('');
         $(".planid").click(function (e) {
-            var planid =$(this).attr('data-id');
-            if(planid == 'epic_in_pl_1'){
-                $(".coupan-div").hide();
-                 return false;
-            }else{
-                $(".coupan-div").show();
-                 return false;
-            }
+            var planid =$(this).attr('data-id');  
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
@@ -194,17 +188,9 @@
             dataType: 'json',
             success: function (data) {
                 console.log(data.pname);
-                //console.log(plan[0].vendor_image);
-                // $.each(plan, function (e, t) {
-                //     //console.log(t.vendor_image);
-                //     $('.off-image').append('<img src="'+t.vendor_image+'"  alt=""></span>');
-                //     $('#vname').text(t.vendor_name);
-                // });
-
                 $(".offer-data").html(data.html);
                 $('#count').text(data.count);
                 $("#plan_name").text(data.pname);
-
 
                 $('.additional-carousel').not('.slick-initialized').slick({
                 dots: false,
@@ -262,10 +248,13 @@
 
     $(".CoupanApply").click(function (e) {
             var promo = $(".promocode").val();
-                if(promo == ''){
-                    showToaster('Please enter coupan code.', 2);
-                    return false;
-                }
+            if(promo == ''){
+                showToaster('Please enter coupan code.', 2);
+                return false;
+            }
+            else{
+                $('.payment').prop('disabled', true);
+            }
 
             var btnval =$(this).text();
             if(btnval =="{{__('Remove')}}"){
@@ -278,9 +267,11 @@
             }
             
         $(".coupan-msg").html("");
+        var sessionID = '{{ Session::getId() }}';
         $.ajaxSetup({
             headers: {
-                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content'),
+                'X-XSRF-TOKEN': sessionID,
             }
         });
         e.preventDefault();
@@ -293,6 +284,7 @@
             success: function (e, t, n) {
                 var r = e.message;
                 //console.log(r.);
+                $('.payment').prop('disabled', false);
                 if(e.success == false){
                     $(".coupan-msg").text(r);
                 }
@@ -321,19 +313,25 @@
     });
 
     $(".payment").click(function(){
-     if($("#amountid").val() == ""){
-        showToaster('please select you plan', 2);
-     }else{
+        $(".promocode").val('');
+        if($("#amountid").val() == ""){
+            showToaster('please select you plan', 2);
+        }else{
 
-        $(".paymentForm").submit();
-        
-     }
-        
+            $(".paymentForm").submit();
+            
+        }
     });
-
+    
     $(".planid").click(function(){
-        let price = $(this).attr('data-id');
-        $("#amountid").val(price);
+        let planid = $(this).attr('data-id');
+        $("#amountid").val(planid);
+            if(planid == 'epic_in_pl_1'){
+                $(".coupan-div").hide();
+                //$(".promocode").val('');
+            }else{
+                $(".coupan-div").show();   
+            }
        
     });
    
