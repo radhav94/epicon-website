@@ -2319,7 +2319,7 @@ input {
   }
 
   @media (max-width:600px){
-    .tranding-slide.podcast-height{
+    .tranding-slider.podcast-height{
         width: 340px;
         height: 280px;
       }
@@ -6545,5 +6545,11 @@ input {
         @media (max-width:768px) {
             min-width: 54px;
         }
+    }
+}
+.socialJS{
+    a{
+        display: flex;
+        text-decoration: none;
     }
 }
