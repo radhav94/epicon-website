@@ -641,7 +641,7 @@ input {
         padding-top: 1rem;
     }
 }
-.banner-carousel, .premium-carousel,.explore-details,.banner-carousel-1{
+.banner-carousel, .premium-carousel,.explore-details{
     & .carousel-card.slick-slide.slick-active.slick-center .carousel-items{
         transform: scale(1.1);
         z-index: 10;
@@ -666,7 +666,7 @@ input {
     }
     & .carousel-card.slick-slide.slick-active.slick-center{
         .crown,.mute-btn{
-            display: block;
+            display: none;
         }
         .carousel-items-content{
             display: flex;
@@ -871,7 +871,7 @@ input {
     }
     & .carousel-card.slick-slide.slick-active.slick-center{
         .crown,.mute-btn{
-            display: block;
+            display: none;
         }
         .carousel-items-content{
             display: flex;
@@ -2008,6 +2008,7 @@ input {
         right: 0;
         bottom: 25px;
         width: fit-content;
+        z-index: 1;
 
         &::after{
             content: "";
@@ -2084,6 +2085,11 @@ input {
   }
   .swiper-slide.tranding-slide.swiper-slide-next{
     transform: translate3d(-540px, 0px, -200px) rotateX(0deg) rotateY(0deg) scale(1)!important;
+    .carousel-items-content{
+        h1,h2,ul{
+            display: none!important;
+        }
+    }
   }
   .tranding-slide{
     width: 829px;
@@ -5297,14 +5303,14 @@ input {
         }
     }
     li{
-        >::after{
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 20%;
-            background: linear-gradient(180deg, rgb(0, 0, 0) -28%, rgba(0, 0, 0, 0) 100%) !important;
-            top: 0;
-        }
+        // >::after{
+        //     content: "";
+        //     position: absolute;
+        //     width: 100%;
+        //     height: 20%;
+        //     background: linear-gradient(180deg, rgb(0, 0, 0) -28%, rgba(0, 0, 0, 0) 100%) !important;
+        //     top: 0;
+        // }
         padding: 0!important;
         a{
             .crown{
@@ -5313,10 +5319,10 @@ input {
         }
     }
     & .main-card{
-        width: 170px;
+        width: 230px;
 
         @media (max-width:700px) {
-            width: 150px;
+            width: 200px;
         }
     }
     @media (max-width:1024px) {
