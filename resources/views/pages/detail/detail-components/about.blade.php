@@ -55,29 +55,7 @@
                  </div>
                  @endforeach
 
-                 {{--
-                         <ul class="list-unstyled p-0">
-                             <li class="pik">
-                                 <div class="celebrity-pik mb-3"><img src="{{ asset('assets/img/cast-pik.png') }}"
-                 alt="pik">
-             </div>
-             <span>Sharukh Khan</span>
-             </li>
-             <li class="pik">
-                 <div class="celebrity-pik mb-3"><img src="{{ asset('assets/img/cast-pik.png') }}" alt="pik"></div>
-                 <span>Sharukh Khan</span>
-             </li>
-             <li class="pik">
-                 <div class="celebrity-pik mb-3"><img src="{{ asset('assets/img/cast-pik.png') }}" alt="pik"></div>
-                 <span>Sharukh Khan</span>
-             </li>
-             <li class="pik">
-                 <div class="celebrity-pik mb-3"><img src="{{ asset('assets/img/cast-pik.png') }}" alt="pik"></div>
-                 <span>Sharukh Khan</span>
-             </li>
-
-             </ul>
-             --}}
+                
 
          </div>
      </div>

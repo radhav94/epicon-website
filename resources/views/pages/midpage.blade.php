@@ -5,11 +5,11 @@
 @stop
 <?php //dd($epicwebArr); ?>
 @section('content')
-    <div class="container mt-5">
+    <div class="container mt-4">
         <div class="row">
             <h1 class="text-white fs-5">{{ucwords(str_replace('-', ' ', $pageslug))}}</h1>
             <div class="seeall-main-page">
-            <ul class="p-0" id="showmore_load">
+            <ul class="p-0 list-unstyled mb-0" id="showmore_load">
             @foreach ($epicwebArr as $key => $val)
 
              <?php
@@ -51,7 +51,7 @@
                             <img src="{{ $cover_img }}" alt="">
                         </div>
                         <div class="bottom-card-content">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
                                 <div class="w-100 d-flex justify-content-between align-items-center">
                                     @if(@$val['asset_type'] == 'PLAY')
                                     {!! getplayanchorhtml($val) !!}

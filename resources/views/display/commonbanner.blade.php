@@ -8,7 +8,9 @@
             <div class="carousel-card">
                 {!! freePremiumDiv($val) !!}
                 <div class="carousel-items position-relative w-100">
-                    <img src="{{ $card['banner_img'] }}" alt="">
+                    <a href="{{ getContentUrl($val) }}">
+                        <img src="{{ $card['banner_img'] }}" alt="">
+                    </a>
                     <div class="carousel-items-content position-absolute">
                         <h2>{{ $card['sub_text'] }}</h2>
                         <p>{{ $card['short_desc'] }}</p>

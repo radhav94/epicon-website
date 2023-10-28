@@ -29,7 +29,7 @@ function initSliders() {
         slidesToShow: 1,
         arrows: true,
         dots: true,
-        autoplay: true,
+        autoplay: false,
         appendDots: $(".slide-m-dots"),
         prevArrow: $(".slide-m-prev"),
         nextArrow: $(".slide-m-next"),
