@@ -39,6 +39,7 @@
 </div>
 
 <script>
+    var queryParams = new URLSearchParams(window.location.search);
     $(document).ready(function() {
         $("#verifyChildPin").click(function() {
             $("#childPinForm #error-msg").html("");
@@ -54,7 +55,13 @@
                 success: function(response) {
                     console.log(response);
                     if (response.payload.success == true) {
-                        window.location.href = response.payload.redirect;
+                        if(queryParams.get('ref') == "subscription"){
+                            window.location.href = APP_URL+'/subscription';
+                            return false;
+                        }else{
+                            window.location.href = response.payload.redirect;
+                            return false;
+                        }
                     } else {
                         $("#childPinForm #error-msg").html(response.payload.message);
                     }
