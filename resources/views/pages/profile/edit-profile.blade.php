@@ -88,7 +88,8 @@
                                 value="{{ $profile['date_of_birth'] ?? '' }}">
                         </div>
 
-                        @if (@$profile['is_default'] == true && @$profile['kids'] == false && @$profile['kidSection'] == false)
+                        {{-- @if (@$profile['is_default'] == true && @$profile['kids'] == false && @$profile['kidSection'] == false) --}} 
+                        @if ( @$profile['kidSection'] == false)
                             <div
                                 class="input-field sel-bor justify-content-between align-items-center w-100 mb-3 setpinWrapper">
                                 <label for="exampleDataList" class="form-label text-white mb-0" style="font-size: 14px;">
@@ -131,7 +132,7 @@
 
     </section>
 
-    @if (@$profile['is_default'] == true && @$profile['kids'] == false && @$profile['kidSection'] == false)
+    @if ( @$profile['kidSection'] == false )
         @include('components.setpin-modal')
     @endif
 
