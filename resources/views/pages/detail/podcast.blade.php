@@ -41,8 +41,9 @@ if (array_key_exists('season', $content)) {
 $episode_json = json_encode($episode_list);
 ?>
 <?php
+    $subplan = checkSubscription();
     if(isKidsPage()){
-        $addClass = "allAccessBtn";
+        $addClass = "allAccessBtn-sub";
     }else{
         $addClass = "subscription";
     }
@@ -52,16 +53,17 @@ $episode_json = json_encode($episode_list);
         $href = "javascript:void(0);";
 
         if (!isUserLoggedIn()) {
-            $watchClass = @$content['free_premium'] == true ? "login" : "";
+            $watchClass = @$content['free_premium'] == true ? "login-with-subscription" : "";
             $watchid = @$content['free_premium'] != true ? "watchVideo" : "";
-            $addToList = "login";
+            $addToList = "login-with-subscription";
         } else {
             $addToList = "addToList";
             // for play Video 
             $watchClass = @$content['free_premium'] == true && @$subplan['status'] != 'active' ? $addClass : "";
             $watchid = @$content['free_premium'] != true || (@$content['free_premium'] == true && @$subplan['status'] == 'active') ? "watchVideo" : "";
         }
-
+        //var_dump($content['free_premium']);exit();
+        //var_dump($subplan['status']);exit;
 ?>
 
 <div class="podcast-background w-100">
@@ -77,6 +79,7 @@ $episode_json = json_encode($episode_list);
                         <img class="podcast-top-icon" src="{{ asset('assets/img/podcast-top-icon.svg') }}" alt="podcast icon">
                     </div>
                     <input type="hidden" name="subUrl" class="subUrl" id="subUrl" value="{{ getUrl('subscription') }}">
+                    <input type="hidden" name="sitemode" class="sitemode" id="sitemode" value="{{ $addClass }}">
                     <div class="thumb-detail text-white">
                         <h1>{{ @$content['title'] }}</h1>
 
@@ -137,17 +140,13 @@ $episode_json = json_encode($episode_list);
                                 </svg> &nbsp;
                                 Listen
                             </button>
-                            @loggedin
+                           
                             @if (@$content['free_premium'] == true && !isActiveSubscription())
-                            <a href="{{ getUrl('subscription') }}" class="subcription-btn m-0">
+                            <a href="{{ $href }}" class="subcription-btn m-0 {{$watchClass}}">
                                 <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> Subscribe Now
                                 </a>
                             @endif
-                            @elseloggedin
-                            <a href="javascript:void(0);" class="subcription-btn m-0 login">
-                                <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> Subscribe Now
-                                </a>
-                            @endloggedin
+                           
 
                             <?php
                             $wishlist = getWishlist();
@@ -349,10 +348,17 @@ $episode_json = json_encode($episode_list);
     }
 
     async function onPlayerError(xhr) {
+        var siteMode = $(".sitemode").val();
         try {
             $res = JSON.parse(xhr.responseText);
             if ($res.message != undefined && $res.message != 'failed') {
-                showToaster($res.message, 2);
+                //showToaster($res.message, 2);
+                if(siteMode == 'allAccessBtn-sub'){
+                    $(".allAccessBtn-sub").trigger('click');
+                }else{
+                    $(".subscription").trigger('click'); 
+                }
+                
             }
         } catch (err) {}
     }

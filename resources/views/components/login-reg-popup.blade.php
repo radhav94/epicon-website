@@ -535,7 +535,7 @@
                         </h4>
                         <div class="no-subscription-user">
                         <button class="no-active-subscription mt-4 mb-4">No Active Subscription</button>
-                        <button class="login-btn subscription-btn mt-4" style="width: 280px;">
+                        <a href="{{ getUrl('subscription') }}" class="login-btn subscription-btn mt-4" style="width: 280px;">
                             Buy Subscription
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none">
@@ -546,7 +546,7 @@
                                     d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z"
                                     fill="#070707" />
                             </svg>
-                        </button>
+                        </a>
                         <button class="login-btn skip-btn mt-0 bg-transparent text-white" class="btn-close"
                             style="width: 280px;">Skip for now</button>
                         </div>
