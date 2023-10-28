@@ -154,7 +154,7 @@ $(document).on('click', '.shareThis', function () {
 
     console.log(title);
 
-    $('#shareDiv').html('<div class="socialJS"><a href="javascript:void(0)" data-url="'+url+'" id="linkCopy" data-toggle="tooltip" title="Copy" class="my-tool-tip"><i class="fas fa-copy" style="color:#b9b9b9"></i></a><a data-action="social-share" href="https://www.facebook.com/sharer.php?u='+url+'" target="_blank"><i class="fab fa-facebook" style="color:#4267B2"></i></a><a data-action="social-share" href="https://twitter.com/share?url='+url+'" target="_blank"><i class="fab fa-twitter" style="color:#00acee"></i></a></div>');
+    $('#shareDiv').html('<div class="socialJS"><a href="javascript:void(0)" data-url="'+url+'" id="linkCopy" data-toggle="tooltip" title="Copy" class="my-tool-tip"><i class="fas fa-copy" style="color:#b9b9b9"></i></a><a data-action="social-share" href="https://www.facebook.com/sharer.php?u='+url+'" target="_blank"><i class="fab fa-facebook" style="color:#4267B2"></i></a><a data-action="social-share" href="https://twitter.com/share?url='+url+'" target="_blank"><img src="../assets/img/share-x.svg"></a></div>');
 
     // $('#shareDiv').empty();
     // $('#shareDiv').socialSharingPlugin({
