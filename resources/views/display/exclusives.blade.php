@@ -12,7 +12,7 @@
                 </a>
             @endif
         </div>
-        <div class="tranding-slider podcast-height">
+        <div class="tranding-slider {{ getFirstSegment() == 'podcast' ? 'podcast-height' : '' }}">
             <div class="swiper-wrapper">
 
                 @foreach ($value['content'] as $key => $val)
