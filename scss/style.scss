@@ -1769,7 +1769,7 @@ input {
             background-size: 100% 100%;
             top: 3px;
             right: 2px;
-            z-index: 9;
+            z-index: 5;
             @media (max-width:767px){
                 width: 30px;
                 height: 43px;
@@ -1826,7 +1826,7 @@ input {
             background-repeat: no-repeat;
             top: -7px;
             right: 12px;
-            z-index: 9;
+            z-index: 5;
             ul {
                 padding-left: 0px;
                 padding-right: 5px;
@@ -2883,35 +2883,42 @@ input {
         }
     }
 
-    &.ttl{
+    &.ttl li{
+        -webkit-mask-image: url("../assets/img/travel-bg.png");
+        mask-image: url("../img/assets/travel-bg.png");
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;    
+        -webkit-mask-size: 100%;
+        mask-size: 100%;
+        height: 146px;
+        margin-top: 10px;
+        @media (max-width:768px) {
+            height: 98px;
+        }
         .main-card{
-            border-radius: 30px;
-            transform: skew(-18deg, 0deg);
             position: relative;
+            margin: 0;
+            border-radius: 0;
 
-            &::after{
-                content: "";
-                width: 100%;
-                height: 100%;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                position: absolute;
-                background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 20%);
-            }
+            // &::after{
+            //     content: "";
+            //     width: 100%;
+            //     height: 100%;
+            //     left: 0;
+            //     right: 0;
+            //     bottom: 0;
+            //     position: absolute;
+            //     background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 20%);
+            // }
 
             img{
-                height: auto;
-                transform: skew(359deg, 0deg);
+                height: 100%;
+                // transform: skew(359deg, 0deg);
                 top: 0px;
-                border-radius: 20px;
-                width: 160px;
+                // border-radius: 20px;
+                width: 100%;
                 object-fit: cover;
                 object-position: top;
-
-                @media (max-width:768px) {
-                    width: 110px;
-                }
             }
         }
     }
