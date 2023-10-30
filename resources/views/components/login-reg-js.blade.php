@@ -3,12 +3,26 @@
     var user_mob_email = '';
     var interval = "";
     $(document).ready(function() {
-        $(function() { 
-            $( ".date_picker" ).datepicker({
-                dateFormat: 'MM dd, yy',
-                maxDate: '-1d',
-            }); 
+        $( ".date_picker" ).datepicker({
+            dateFormat: 'MM dd, yy',
+            maxDate: '-1d',
         });
+
+        $(".emailText").on("keyup", function (e) {
+            var t = $(this).val();
+            $(".emailText").val(t);
+            t.length >= 7 && Number.isInteger(+t)
+                ? (
+                    $(".stdisdcode").css({ display: "block" }),
+                    $(".emailText").css({ "text-indent": "115px" }),
+                    $(".signup_method").val('MOBILE')
+                  )
+                : (
+                    $(".stdisdcode").css({ display: "none" }),
+                    $(".emailText").css({ "text-indent": "0px" }),
+                    $(".signup_method").val('EMAIL')
+                );
+        }),
 
         $('.login').click(function(event) {
             if (!event.isTrigger) {
@@ -61,12 +75,6 @@
             e.preventDefault();
             var isInput = $("#mobile_number").val();
             user_mob_email = isInput;
-            var type = $.isNumeric(isInput);
-            if (type == true) {
-                $(".signup_method").val('MOBILE');
-            } else {
-                $(".signup_method").val('EMAIL');
-            }
 
             if (isValidContact(isInput) == true) {
 
@@ -503,8 +511,13 @@
                                     return false;
 
                                 } else {
-                                    window.location.href = response.payload.redirect;
-                                    return false;
+                                    if($("#redi-val").val() == "subscription"){
+                                        window.location.href = APP_URL+'/subscription';
+                                        return false;
+                                    }else{
+                                        window.location.href = response.payload.redirect;
+                                        return false;
+                                    }
                                 }
                             }, 3000);
                             return false;
@@ -699,6 +712,9 @@
             }
         });
         
+        $(".redi-subs").click(function() {
+          $("#redi-val").val("subscription");
+         });
 
     });
 
@@ -738,21 +754,20 @@
     }
 
     function genreSelect(thiss) {
-            var genreCount = 0;
-            
-            $("input[name='chooseGenre[]']").each(function() {
-                if (this.checked) {
-                    genreCount++;
-                }
-            });
-            if (genreCount > 5) {
-                console.log(thiss);
-                if (thiss.checked) {
-                    thiss.checked = false;                        
-                }
-            } else {
-                $("#genre-select-count").text(genreCount+" of 5");
+        var genreCount = 0;
+        
+        $("input[name='chooseGenre[]']").each(function() {
+            if (this.checked) {
+                genreCount++;
             }
+        });
+        if (genreCount > 5) {
+            console.log(thiss);
+            if (thiss.checked) {
+                thiss.checked = false;                        
+            }
+        } else {
+            $("#genre-select-count").text(genreCount+" of 5");
         }
-   
+    }
 </script>

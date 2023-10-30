@@ -58,14 +58,14 @@
                             </button>
                         </div>
                         <div class="input-field w-100 mb-3">
-                            <label for="exampleDataList" class="form-label text-white">{{__('Date of Birth')}}</label>
-                            <input class="form-control" type="date" id="exampleDataList" name="dob">
+                            <label for="exampleDataList1" class="form-label text-white">{{__('Date of Birth')}}</label>
+                            <input class="form-control" type="date" id="exampleDataList1" name="dob">
                         </div>
 
                         @if ( @$data['result']['user_data']['kidSection'] == false)
                             <div
                                 class="input-field sel-bor justify-content-between align-items-center w-100 mb-3 setpinWrapper">
-                                <label for="exampleDataList" class="form-label text-white mb-0" style="font-size: 14px;">
+                                <label for="exampleDataList3" class="form-label text-white mb-0" style="font-size: 14px;">
                                     {{__('Set Child PIN')}}</label>
                                 <button class="setchildpin" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                                     type="button">

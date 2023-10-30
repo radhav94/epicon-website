@@ -6,7 +6,7 @@
                 <?php
                 $card = getItemCardData($val, $displayLanguageParam);
                 
-                $banner_img = getCardImage($val, 'banner_img', 'large', ['cover_image']);
+                $banner_img = getCardImage($val, 'banner_image', 'large', ['cover_image']);
                 ?>
                 <div class="carousel-card">
                     {{ freePremiumDiv($val) }}
