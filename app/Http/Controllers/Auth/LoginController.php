@@ -97,7 +97,7 @@ class LoginController extends Controller
             'user_signup_method' => $signup_method,
             'name' => $username,
             'password' => $password,
-            'date_of_birth' => $date_of_birth,
+            'date_of_birth' => $date_of_birth != "" ? date("Y-m-d", strtotime($date_of_birth)) : "",
             'gender' => $gender,
         );
         $registerResponseData = CurlAPI("users/register", 'POST', $postData, 2);
