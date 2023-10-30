@@ -13,6 +13,9 @@ class LoginController extends Controller
     {
         $mobile_number = $request->post('mobile_number');
         $signup_method = $request->post('signup_method');
+        if ($signup_method == 'MOBILE' && !empty($request->post('stdisdcode'))) {
+            $mobile_number = str_replace("+", "", $request->post('stdisdcode')) . $mobile_number;
+        }
         if (!empty($mobile_number)) {
             $SendotpRequestData = array(
                 'user_id' => $mobile_number,
@@ -121,7 +124,11 @@ class LoginController extends Controller
         // dd($request->all());
         $userid = $request->post('mobilenumber');
         $password = $request->post('login_pwd');
+        $signup_method = $request->post('signup_method');
         // $userAgent = $request->post('userAgent');
+        if ($signup_method == 'MOBILE' && !empty($request->post('stdisdcode'))) {
+            $userid = str_replace("+", "", $request->post('stdisdcode')) . $userid;
+        }
         $postedData = [
             'user_id' => $userid,
             'password' => $password,
