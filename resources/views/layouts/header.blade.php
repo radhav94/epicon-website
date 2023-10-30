@@ -291,7 +291,7 @@ if (request()->path() == "hi") {
                                     ?>
 
                                     <a href="{{ getUrlWithPrefix('profile.myProfile', $value['id']) }}" class="{{ $isActiveProfile }}">
-                                        <div class="profile-pik girl-bg active">
+                                        <div class="profile-pik girl-bg {{ $isActiveProfile }}">
                                             <img src="{{ $profile_img }}" alt="">
                                         </div>
                                         <span class="pro-name">{{ ucfirst(@$value['name']) }}</span>
