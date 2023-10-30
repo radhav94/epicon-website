@@ -67,9 +67,9 @@
          <?php if (($count_card_detail == 1) || ($count_card_detail % 5 === 0)) { ?> <div class="card-details"> <?php } ?>
              <div class="card-body">
                  {!! freePremiumDiv($val) !!}
-                 <h6 class="popular-head text-white">
+                 <!-- <h6 class="popular-head text-white">
                      {{__('Most Popular')}}
-                 </h6>
+                 </h6> -->
                  <a class="upper-img" href="{{ getContentUrl($val) }}">
                      <img src="{{ $cover_img }}" alt="">
                  </a>
