@@ -194,6 +194,15 @@ if (request()->path() == "hi") {
                 <li><a href="{{ getUrl($key) }}"
                         @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
             @endforeach
+            @loggedin
+            <li>
+                <a href="{{url('/my-rewards')}}" @if ($current_route == "my-rewards") class="active" @endif>Reward Store</a>
+            </li>
+            @elseloggedin
+            <li class="nav-item">
+                <a href="javascript:void(0)" class="login">Reward Store</a>
+            </li>
+            @endloggedin
 
         </ul>
                 <div class="main-header-right d-flex align-items-center">
