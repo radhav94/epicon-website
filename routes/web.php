@@ -22,6 +22,7 @@ use App\Http\Controllers\UpcomingController;
 use App\Http\Controllers\PopularController;
 use App\Http\Controllers\LiveTvController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\AndroidPaymentController;
 use Illuminate\Support\Facades\Route;
 
 $lang = ['hi', 'en'];
@@ -163,6 +164,8 @@ foreach ($lang as $val) {
     Route::group(['prefix' => $prefix, 'as' => $prefix_name, 'middleware' => 'checkUserAuthToken'], function () {
         Route::get('/', [PageController::class, 'index'])->name('homepage');
         Route::get('/kids/{slug?}', [KidsController::class, 'index'])->name('kidsIndex');
+        Route::get('payu/androidtransaction', [AndroidPaymentController::class, 'androidPayuUsingWeb'])->name('androidPayuUsingWeb');
+        Route::post('androidPayuresponse', [AndroidPaymentController::class, 'androidPayuresponse'])->name('androidPayuresponse');
     });
 
     Route::group(['prefix' => $prefix, 'middleware' => 'checkUserAuthToken'], function () {
@@ -195,3 +198,4 @@ foreach ($lang as $val) {
 
 Route::post('/player', [PlayerController::class, 'getVideoUrl']);
 Route::post('/setplayTracking', [PlayerController::class, 'setplayTracking']);
+
