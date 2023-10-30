@@ -333,6 +333,7 @@
                     },
                     success: function(response) {
                         if (response.payload.success == true) {
+                            $(".child-box").val('');
                             queryParams = new URLSearchParams(window.location.search);
                             $("#userid").val(response.payload.user_id);
                             $("#sign_method").val(response.payload.user_signup_method);

@@ -10,7 +10,18 @@ use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
+use UAParser\Parser;
 
+if (!function_exists('JSONResponse')) {
+    function getUserAgent() {
+        $userAgent = $_SERVER['HTTP_USER_AGENT'];
+        $parser = Parser::create();
+        $client = $parser->parse($userAgent);
+        $o_system = $client->os->family . "X" . time();
+        $browser = $client->ua->family;
+        return "$browser ($o_system)";
+    }
+}
 if (!function_exists('JSONResponse')) {
     function JSONResponse(int $statusCode, string $message, array $data = []): JsonResponse
     {
