@@ -194,12 +194,14 @@ class PageController extends Controller
 
     public function channelsmidpagedetail($slug)
     {
+        $title = $slug; 
+        $slug = "live|".$slug;
         $page = 1;
         $epicwebArr = CurlAPI("pages/midpageData", "POST", ['slug' => $slug, 'page' => 1,'limit' => 48], 1);
         
         if (isset($epicwebArr) && $epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
-            return view('pages.chanel.channelmidpage', compact('epicwebArr', 'slug', 'page'));
+            return view('pages.chanel.channelmidpage', compact('epicwebArr','title', 'slug', 'page'));
         } else {
             return view('pages.error.data-error');
         }
