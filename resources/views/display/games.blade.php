@@ -45,14 +45,14 @@ if (!isUserLoggedIn()) {
 
      {{-- <ul class="carousel-initilize p-0"> --}}
 
-     <ul class="carousel-initilize p-0 mb-0">
+     <ul class="games p-0 mb-0">
          @foreach ($value['content'] as $key => $val)
              <?php
             //  print_r($val);
              $card = getItemCardData($val, $displayLanguageParam);
              $cover_img = isset($val['cover_image']) ? $val['cover_image']['small'] : $card['banner_img'];
              ?>
-             <li>
+             <li class="me-3">
 
                  <a href="{{ isset($val['game_url']) ? 'javascript:void(0)' : $val['url'] }}" data-url="{{ isset($val['game_url']) ? @$val['game_url'] : $val['url'] }}" data-premium="{{ @$val['free_premium'] }}" data-activesubscriber="{{ isActiveSubscription() }}" check-login="{{$loginclass}}" class="main-card {{ isset($val['game_url']) ? 'check-content-url' : '' }}">
                      {!! freePremiumDiv($val) !!}
