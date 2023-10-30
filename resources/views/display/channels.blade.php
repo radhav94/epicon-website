@@ -18,8 +18,6 @@
              $slug = explode("|", $slug);
                 if (count($slug) >= 2) {
                     $slug = $slug[1];
-                } else {
-
                 }
             ?>
                 <div>
