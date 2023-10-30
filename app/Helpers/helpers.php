@@ -12,7 +12,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 use UAParser\Parser;
 
-if (!function_exists('JSONResponse')) {
+if (!function_exists('getUserAgent')) {
     function getUserAgent() {
         $userAgent = $_SERVER['HTTP_USER_AGENT'];
         $parser = Parser::create();
