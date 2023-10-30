@@ -40,8 +40,9 @@
                     }    
                     ?>
                     <li class="nav-item" role="presentation">
-                        {!! $bestv !!}
+                        
                         <button class="nav-link {{$classActive}} planid" id="pills-starter-tab" data-bs-toggle="pill" data-bs-target="#pills-starter" type="button" role="tab" aria-controls="pills-starter" aria-selected="true" data-id="{{$val['id']}}">
+                        {!! $bestv !!}
                             <div>
                                 <h6>
                                     <p class="small mb-0">{{$val['name']}}</p>
