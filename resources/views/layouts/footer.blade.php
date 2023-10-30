@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <a href="#/"><img width="150" src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
+                <a href="{{ getUrlWithPrefix('homepage') }}"><img width="150" src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
             </div>
         </div>
         <div class="row middle-footer">

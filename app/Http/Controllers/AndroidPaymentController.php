@@ -27,7 +27,7 @@ class AndroidPaymentController extends Controller
         $mobile = $request->get('mobile');
         $email = $request->get('email');
         // test amount logic
-        if (env('DEV_AMT') == true || $userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid="9819208025") {
+        if (env('DEV_AMT') == true || $userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025') {
             $totalamount = "1";
         }
 
