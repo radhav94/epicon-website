@@ -17,7 +17,8 @@ class PageDetailController extends Controller
         } else if ($season) {
             $url .= "/{$season}";
         }
-        if (isUserLoggedIn()) {
+        // && !empty(getProfileId()) -> handle for old user
+        if (isUserLoggedIn() && !empty(getProfileId())) {
             $params['user_id'] = getUserId();
             $params['profile_id'] = getProfileId();
         }

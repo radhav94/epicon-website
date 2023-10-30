@@ -10,6 +10,21 @@
     input[type=number] {
         -moz-appearance: textfield;
     }
+    .stdisdcode {
+        display: none;  
+    }
+    .input-field select{
+        width: auto!important;
+        padding-right: 40px;
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        color:#000;
+        background-image: url("../img/drop-down-arrow-select.svg")!important;
+        background-repeat: no-repeat;
+        background-position: center right 15px;
+    }
+
 </style>
 <!-- login model -->
 <div class="modal fade" id="login-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -56,8 +71,11 @@
                             <form method="POST" name="mobile-number-form" id="mobile-number-form-id">
                                 @csrf
                                 <h5 class="mb-4 text-white">Login or Register</h5>
-                                <div class="input-field w-100 mb-3">
-                                    <input class="form-control" id="mobile_number" name="mobile_number"
+                                <div class="input-field w-100 mb-3 position-relative">
+                                    <select class="uk-select select-control input__field stdisdcode" name="stdisdcode">
+                                        {!! getCountryStateDataInHtml() !!}
+                                    </select>
+                                    <input class="form-control emailText" id="mobile_number" name="mobile_number"
                                         placeholder="Email or Mobile Number">
                                     <input type="hidden" name="signup_method" class="signup_method" value="">
                                     <span class="text-start text-white d-flex mt-1" style="font-size: 12px;">We’ll send
@@ -241,7 +259,10 @@
                             <form method="POST" name="login-form" id="login-form-id">
                                 <h5 class="mb-4 text-white">Login with Password</h5>
                                 <div class="input-field w-100 mb-3">
-                                    <input class="form-control" id="mobilenumber" name="mobilenumber"
+                                    <select class="uk-select select-control input__field stdisdcode" name="stdisdcode">
+                                        {!! getCountryStateDataInHtml() !!}
+                                    </select>
+                                    <input class="form-control emailText" id="mobilenumber" name="mobilenumber"
                                         placeholder="Email or Mobile Number" value="<?php if(isset($_COOKIE["user_id"])) { echo $_COOKIE["user_id"]; } ?>">
                                     <input type="hidden" name="signup_method" class="signup_method" value="">
                                     <span class="text-danger text-start d-flex mt-1 error" id="mobile-error"
@@ -311,8 +332,11 @@
                             <form method="POST" name="forgot-pwd-form-id" id="forgot-pwd-form-id">
                                 <h5 class="mb-4 text-white">Forgot Password</h5>
                                 <div class="input-field w-100 mb-3">
-                                    <input class="form-control" id="forgot-name" name="forgot-name"
-                                        placeholder="Email">
+                                    <select class="uk-select select-control input__field stdisdcode" name="stdisdcode">
+                                        {!! getCountryStateDataInHtml() !!}
+                                    </select>
+                                    <input class="form-control emailText" id="forgot-name" name="forgot-name"
+                                        placeholder="Email or Mobile Number">
                                     <input type="hidden" name="signin_method" id="signin_method" value="">
                                     <span class="text-start text-white d-flex mt-1" style="font-size: 12px;">We’ll
                                         send you an OTP to verify your account. You’ll then be able to create a new

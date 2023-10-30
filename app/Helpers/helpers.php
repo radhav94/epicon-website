@@ -1022,3 +1022,33 @@ function isKidsPage(){
 function kidsMode(){
     return session()->has('kidsMode') && session()->get('kidsMode') == true ? true : false;
 }
+
+function getJsonDataFromFile($filepath)
+{
+	$jsonData = file_get_contents($filepath);
+	$arrayData = json_decode($jsonData, true);
+	return $arrayData;
+}
+
+function getCountryStateData()
+{
+	$filepath = asset('json/countrystate.json');
+	$countrystate = getJsonDataFromFile($filepath);
+	return $countrystate;
+}
+
+function getCountryStateDataInHtml()
+{
+    $countrycode = (!empty($_SERVER['HTTP_X_CC']) ? $_SERVER['HTTP_X_CC'] : 'IN');
+    $countrystate = getCountryStateData();
+    $countryisdhtml = "";
+    foreach ($countrystate['countries'] as $i => $value) {
+        if ($countrycode == $value['code'] || $countrycode == $value['countryisdcode']) {
+            $selectvar = "selected";
+        } else {
+            $selectvar = "";
+        }
+        $countryisdhtml .= '<option value="' . $value['countryisdcode'] . '" ' . $selectvar . '>' . $value['displayisdcode'] . '</option>';
+    }
+    return $countryisdhtml;
+}
