@@ -511,8 +511,13 @@
                                     return false;
 
                                 } else {
-                                    window.location.href = response.payload.redirect;
-                                    return false;
+                                    if($("#redi-val").val() == "subscription"){
+                                        window.location.href = APP_URL+'/subscription';
+                                        return false;
+                                    }else{
+                                        window.location.href = response.payload.redirect;
+                                        return false;
+                                    }
                                 }
                             }, 3000);
                             return false;
@@ -707,6 +712,9 @@
             }
         });
         
+        $(".redi-subs").click(function() {
+          $("#redi-val").val("subscription");
+         });
 
     });
 
