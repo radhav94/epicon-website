@@ -14,7 +14,14 @@
     <div class="gaming-galore-main">
         <div class="epic-channel">
             @foreach ($value['content'] as $key => $val)
-            <?php $slug = urldecode(@$val['slug']); ?>
+            <?php $slug = urldecode(@$val['slug']);
+             $slug = explode("|", $slug);
+                if (count($slug) >= 2) {
+                    $slug = $slug[1];
+                } else {
+
+                }
+            ?>
                 <div>
                     <a href="{{ getUrl('channels/'.$slug) }}">
                     <!-- <a href="{{ isset($val['path']) ? getUrl(@$val['path']) : @$val['url'] }}"> -->
