@@ -128,6 +128,51 @@ function initSliders() {
             }
         ]
     });
+    $('.games').not('.slick-initialized').slick({
+        dots: false,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 7.8,
+        slidesToScroll: 1,
+        accessibility: true,
+        responsive: [
+            {
+                breakpoint: 1367,
+                settings: {
+                    slidesToShow: 7.8,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 1025,
+                settings: {
+                    slidesToShow: 4.8,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 769,
+                settings: {
+                    slidesToShow: 4.5,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2.5,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 2.5,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
     $('.vertical-carousel-initilize').not('.slick-initialized').slick({
         dots: false,
         infinite: false,

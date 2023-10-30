@@ -4,6 +4,7 @@ $(document).ready(function () {
     });
 
     $("#profileAdd").validate({
+        focusInvalid: false,
         rules: {
             name: {
                 required: true,
