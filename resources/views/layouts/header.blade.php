@@ -7,11 +7,12 @@ if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
 $kids_page = $segment == 'kids' ? true : false;
 
 $action = app('request')->route()->getAction();
-$subplan = checkSubscription();
+$subplan = [];
 //print_r($action);
 //session()->flush();
 if (isUserLoggedIn()) {
     $profile = getProfileData();
+    $subplan = checkSubscription();
 }
 ?>
 <!-- Side Menu Start-->
