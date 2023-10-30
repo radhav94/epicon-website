@@ -206,7 +206,7 @@ input {
 }
 .big-add-list{
     padding: 10px 20px;
-    background: linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%);
+    background: #272727;
     color: $bg-white;
     @include flex(row,center,center);
     border-radius: 100px;
@@ -6575,7 +6575,7 @@ input {
     font-weight: 500;
     line-height: 12px;
     background-image: (linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%));
-    padding: 6px;
+    padding: 6px 10px;
     border-top-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
