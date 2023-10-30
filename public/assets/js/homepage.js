@@ -544,14 +544,14 @@ function initSliders() {
         dots: false,
         infinite: false,
         speed: 300,
-        slidesToShow: 7.5,
+        slidesToShow: 7.1,
         slidesToScroll: 1,
         adaptiveHeight: true,
         responsive: [
             {
                 breakpoint: 1367,
                 settings: {
-                    slidesToShow: 7.5,
+                    slidesToShow: 7.1,
                     slidesToScroll: 1,
                 }
             },
