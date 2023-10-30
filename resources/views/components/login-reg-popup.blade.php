@@ -208,8 +208,7 @@
                                         style="font-size: 12px;"></span>
                                 </div>
                                 <div class="input-field w-100 mb-3">
-                                    <input class="form-control" type="date" id="dob" name="dob"
-                                        required>
+                                    <input class="form-control date_picker" type="text" id="dob" name="dob" placeholder="D.O.B" required>
                                 </div>
                                 <div class="input-field w-100 mb-3">
                                     <select id="gender" name="gender">
@@ -234,7 +233,7 @@
                                             fill="#070707"></path>
                                     </svg>
                                 </button>
-
+                                <p class="get-help mt-5 small">By clicking on Register, you agree to our <a href="{{ route('terms-of-use') }}">Terms & Conditions</a> and <a href="{{ route('privacy') }}">Privacy Policy</a></p>
                             </form>
                         </div>
 

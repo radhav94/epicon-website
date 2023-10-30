@@ -1,7 +1,15 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script>
     var user_mob_email = '';
+    var interval = "";
     $(document).ready(function() {
+        $(function() { 
+            $( ".date_picker" ).datepicker({
+                dateFormat: 'MM dd, yy',
+                maxDate: '-1d',
+            }); 
+        });
+
         $('.login').click(function(event) {
             if (!event.isTrigger) {
                 window.history.replaceState({}, document.title, "/" );
@@ -108,16 +116,22 @@
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
                 success: function(response) {
-                    // console.log(response.payload.user_id+'success me aaya');
-                    var mobile = hideMiddleCharacters(response.payload.user_id);
-                    $('.mobileno').html(mobile);
-                    $("#user_id").val(response.payload.user_id);
-                    $("#signupmethod").val(response.payload.user_signup_method);
-                    $('.screen-login,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                        .hide();
-                    $('.screen-verify').show();
-                    // var response = JSON.parse(response);
-                    // $('#dynamic-content').html(response.content);
+                    if (response.payload.success == true) {
+                        // console.log(response.payload.user_id+'success me aaya');
+                        var mobile = hideMiddleCharacters(response.payload.user_id);
+                        $('.mobileno').html(mobile);
+                        $("#user_id").val(response.payload.user_id);
+                        $("#signupmethod").val(response.payload.user_signup_method);
+                        $('.screen-login,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
+                            .hide();
+                        $('.screen-verify').show();
+                        // var response = JSON.parse(response);
+                        // $('#dynamic-content').html(response.content);
+                    } else {
+                        $("#verifyotp-result").html(response.payload.response.meassage);
+                        clearInterval(interval);
+                        $('#resendBtn').prop('disabled', true);
+                    }
                 },
                 error: function(xhr, status, error) {
                     console.log('error me aaya');
@@ -135,7 +149,7 @@
             var countdown = 30;
             var countdownDiv = $('.resend-otp');
 
-            var interval = setInterval(function() {
+            interval = setInterval(function() {
                 countdownDiv.text('Resend OTP in ' + countdown + ' seconds');
                 countdown--;
 
@@ -237,7 +251,7 @@
             var countdown = 30;
             var countdownDiv = $('.resend-forgot-otp');
 
-            var interval = setInterval(function() {
+            interval = setInterval(function() {
                 countdownDiv.text('Resend OTP in ' + countdown + ' seconds');
                 countdown--;
 
@@ -277,6 +291,7 @@
         }
 
         $('.verify-btn').click(function(e) {
+            $('#verifyotp-result').html('');
             // alert("true");
             e.preventDefault();
             var mobile = $("#user_id").val();
@@ -309,10 +324,8 @@
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
                     success: function(response) {
-                        // alert(response);
                         if (response.payload.success == true) {
                             queryParams = new URLSearchParams(window.location.search);
-                            $('#verifyotp-result').html('');
                             $("#userid").val(response.payload.user_id);
                             $("#sign_method").val(response.payload.user_signup_method);
                             $('.screen-login,.screen-verify,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
@@ -725,7 +738,6 @@
     }
 
     function genreSelect(thiss) {
-        console.log('scsadcs')
             var genreCount = 0;
             
             $("input[name='chooseGenre[]']").each(function() {
