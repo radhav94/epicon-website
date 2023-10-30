@@ -12,7 +12,7 @@
                 </a>
             @endif
         </div>
-        <div class="tranding-slider">
+        <div class="tranding-slider {{ getFirstSegment() == 'podcast' ? 'podcast-height' : '' }}">
             <div class="swiper-wrapper">
 
                 @foreach ($value['content'] as $key => $val)
@@ -23,7 +23,7 @@
                     ?>
                     <div class="swiper-slide tranding-slide">
                         <div class="tranding-slide-img position-relative">
-                            <a href="#/">
+                            <a href="{{ getContentUrl($val) }}">
                                 <img src="{{ $card['banner_img'] }}" />
                             </a>
                             <div class="carousel-items-content position-absolute">

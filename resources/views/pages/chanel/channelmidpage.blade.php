@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-4">
     <div class="row">
         <h1 class="text-white fs-5">{{ucwords(str_replace('-', ' ', $slug))}}</h1>
         <div class="seeall-main-page">

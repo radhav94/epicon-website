@@ -128,8 +128,14 @@ if (isUserLoggedIn()) {
                 </svg>
             </a>
             @endif
+            
             <a class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}"
                     alt=""></a>
+                    
+                @if($kids_page)
+                    <a class="subscribe-btn allAccessBtn-sub" href="javascript:void(0);">{{__('Subscribe')}}</a>
+                @endif
+
             @if(!$kids_page)
             @loggedin
 

@@ -44,7 +44,7 @@ $cover_img = getCardImage($content, 'banner_image', 'large');
     <?php
    $subplan = checkSubscription();
     if(isKidsPage()){
-        $addClass = "allAccessBtn";
+        $addClass = "allAccessBtn-sub";
     }else{
         $addClass = "subscription";
     }
@@ -79,11 +79,13 @@ $cover_img = getCardImage($content, 'banner_image', 'large');
                             <button class="bg-transparent text-white border-0 ps-0 py-3 small readmore-less">Read More</button>
                         </div>
                         @if (@$content['cast'])
+                        <div class="seemore">
                                 <p class="text-white mb-3">Cast:
                                     @foreach ($content['cast'] as $key => $value)
                                         {{ $value }}
                                     @endforeach
                                 </p>
+                        </div>
                             @endif
                     </div>
                     <div class="col-sm-6 col-lg-6 col-md-12 my-3">

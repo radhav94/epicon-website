@@ -54,9 +54,9 @@ class ProfileController extends Controller
 
     public function add()
     {
-        $data = session()->get('profile_data');
+        $data = $this->getProfileData();
 
-        if (count($data['profiles']) < $this->profile_limit){
+        if ($data && count($data['profiles']) < $this->profile_limit){
             return view('pages.profile.add-profile', compact('data'));
         }
         return view('pages.error.404');

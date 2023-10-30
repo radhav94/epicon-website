@@ -40,7 +40,7 @@
                             <img src="{{ $cover_img }}" alt="">
                         </div>
                         <div class="bottom-card-content">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
                                 <div class="w-100 d-flex justify-content-between align-items-center">
                                     @if(@$val['asset_type'] == 'PLAY')
                                     {!! getplayanchorhtml($val) !!}
