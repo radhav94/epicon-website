@@ -11,6 +11,41 @@ use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 
+if (!function_exists('getUserAgent')) {
+    function getUserAgent()
+    {
+        $u_agent = $_SERVER['HTTP_USER_AGENT'];
+        $ub = 'Unknown';
+        $platform = 'Unknown';
+
+        // First get the platform?
+        if (preg_match('/linux/i', $u_agent)) {
+            $platform = 'linux';
+        } elseif (preg_match('/macintosh|mac os x/i', $u_agent)) {
+            $platform = 'mac';
+        } elseif (preg_match('/windows|win32/i', $u_agent)) {
+            $platform = 'windows';
+        }
+
+        // Next get the name of the useragent yes seperately and for good reason
+        if (preg_match('/MSIE/i', $u_agent) && !preg_match('/Opera/i', $u_agent)) {
+            $ub = "MSIE";
+        } elseif (preg_match('/Firefox/i', $u_agent)) {
+            $ub = "Firefox";
+        } elseif (preg_match('/Chrome/i', $u_agent)) {
+            $ub = "Chrome";
+        } elseif (preg_match('/Safari/i', $u_agent)) {
+            $ub = "Safari";
+        } elseif (preg_match('/Opera/i', $u_agent)) {
+            $ub = "Opera";
+        } elseif (preg_match('/Netscape/i', $u_agent)) {
+            $ub = "Netscape";
+        }
+        $o_system = $platform . " X" . time();
+        return "$ub ($o_system)";
+    }
+}
+
 if (!function_exists('JSONResponse')) {
     function JSONResponse(int $statusCode, string $message, array $data = []): JsonResponse
     {
@@ -173,7 +208,8 @@ function getContentLanguage()
     return $listLanguage;
 }
 
-function getPlayText($value){
+function getPlayText($value)
+{
     return 'PLAY';
     // return $value['asset_type'] ?? 'WATCH';
 }
@@ -248,12 +284,12 @@ function getWishListAction($val, $wishlist, $type = 1)
     if (!in_array(@$val['asset_type'], ['WATCH', 'LISTEN'])) {
         return '';
     }
-    if(!isUserLoggedIn()){
+    if (!isUserLoggedIn()) {
         $logClass = "loginwish";
         $addToList = "";
-    }else{
+    } else {
         $logClass = "";
-        $addToList ="addToList";
+        $addToList = "addToList";
     }
 
     $wishlist_ids = $wishlist['ids'] ?? [];
@@ -267,10 +303,10 @@ function getWishListAction($val, $wishlist, $type = 1)
             $icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.1422 11.1919H11.1898C11.1898 11.1919 10.6541 11.1919 9.99934 11.1919C9.34458 11.1919 8.80887 11.1919 8.80887 11.1919H2.85649C2.20173 11.1919 1.66602 10.6562 1.66602 10.0014C1.66602 9.34665 2.20173 8.81094 2.85649 8.81094H8.80887C8.80887 8.81094 9.34458 8.81096 9.99934 8.81096C10.6541 8.81096 11.1898 8.81094 11.1898 8.81094H17.1422C17.797 8.81094 18.3327 9.34665 18.3327 10.0014C18.3327 10.6562 17.797 11.1919 17.1422 11.1919Z" fill="white"/></svg>';
         }
         // return '<button class="big-add-list addToList ' . $wishAction . '-icon" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="1"> </button>';
-        return '<button class="big-add-list ' .$logClass. $addToList.'" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="1">  ' . $icon . '</button>';
+        return '<button class="big-add-list ' . $logClass . $addToList . '" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="1">  ' . $icon . '</button>';
     } else {
         // $icon = ($wishAction == 'add') ? 'delete-icon' : 'add-icon';
-        return '<button class="small-btn ' . $wishAction . '-icon mx-2 ' .$logClass. $addToList.'" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="2"></button>';
+        return '<button class="small-btn ' . $wishAction . '-icon mx-2 ' . $logClass . $addToList . '" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="2"></button>';
     }
 }
 
@@ -326,19 +362,20 @@ function getWishlist()
     // }
 }
 
-function isMobliDevice() {
+function isMobliDevice()
+{
     $ua = strtolower($_SERVER["HTTP_USER_AGENT"]);
     $isMob = is_numeric(strpos($ua, "mobile"));
     $isIPhone = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "iphone"));
-    return (isset($isMob) && $isMob==true) || (isset($isIPhone) && $isIPhone==true) ? true : false;
+    return (isset($isMob) && $isMob == true) || (isset($isIPhone) && $isIPhone == true) ? true : false;
 }
 
 function getItemCardData($val, $language)
 {
     $title = getDispLangContent($val, $language, 'title');
     $shortdescription = getDispLangContent($val, $language, 'shortdesc');
-    
-    if(isMobliDevice()){
+
+    if (isMobliDevice()) {
         $bannerimagcond = getDispLangContent($val, $language, 'bannerimg-vertical');
     } else {
         $bannerimagcond = getDispLangContent($val, $language, 'bannerimg');
@@ -485,7 +522,7 @@ function getSeasonEpisodeNum($val)
 
 function isUserLoggedIn()
 {
-    return Session::has('user_id') && Session::has('user_token') ? true : false; 
+    return Session::has('user_id') && Session::has('user_token') ? true : false;
 }
 
 function getUserId()
@@ -505,17 +542,18 @@ function getContentUrl($value)
         $prefix = '/kids/';
     }
     if (isset($value['url'])) {
-        return getUrl($prefix.$value['url']);
+        return getUrl($prefix . $value['url']);
     }
 
     return getUrl($prefix);
 }
 
-function getplayanchorhtml($value){
-   $loginclass = isKidsPage() && !isActiveSubscription() ? "allAccessBtn" : "";
-   $data_url = (isActiveSubscription() && $value['free_premium']) || !$value['free_premium'] ? $value['game_url'] : '';
-   $html = '<a href="javascript:void(0)" target="_blank" data-url="'. $data_url .'" data-premium="'.$value['free_premium'].'" data-activesubscriber="'. isActiveSubscription().'" check-login="'.$loginclass.'" class="main-card check-content-url">';
-   return $html;
+function getplayanchorhtml($value)
+{
+    $loginclass = isKidsPage() && !isActiveSubscription() ? "allAccessBtn" : "";
+    $data_url = (isActiveSubscription() && $value['free_premium']) || !$value['free_premium'] ? $value['game_url'] : '';
+    $html = '<a href="javascript:void(0)" target="_blank" data-url="' . $data_url . '" data-premium="' . $value['free_premium'] . '" data-activesubscriber="' . isActiveSubscription() . '" check-login="' . $loginclass . '" class="main-card check-content-url">';
+    return $html;
 }
 
 function getMidPageUrl($value)
@@ -539,39 +577,41 @@ function getProfileData()
 
 function getDays($startDate, $endDate, $timezone = '')
 {
-	$startTimeStamp = strtotime($startDate);
-	//echo date("d-m-Y H:i:s",$startTimeStamp)."<br>";
-	$endTimeStamp = strtotime($endDate);
-	//echo date("d-m-Y H:i:s",$endTimeStamp)."<br>";echo "<br>";
+    $startTimeStamp = strtotime($startDate);
+    //echo date("d-m-Y H:i:s",$startTimeStamp)."<br>";
+    $endTimeStamp = strtotime($endDate);
+    //echo date("d-m-Y H:i:s",$endTimeStamp)."<br>";echo "<br>";
 
-	if ($timezone == 'IST' && function_exists('date_default_timezone_set')) {
-		date_default_timezone_set("Asia/Kolkata");
-	}
-	$startTimeStamp = strtotime($startDate);
-	//echo date("d-m-Y H:i:s",$startTimeStamp)."<br>";
-	$endTimeStamp = strtotime($endDate);
-	//echo date("d-m-Y H:i:s",$endTimeStamp)."<br>";echo "<br>";
+    if ($timezone == 'IST' && function_exists('date_default_timezone_set')) {
+        date_default_timezone_set("Asia/Kolkata");
+    }
+    $startTimeStamp = strtotime($startDate);
+    //echo date("d-m-Y H:i:s",$startTimeStamp)."<br>";
+    $endTimeStamp = strtotime($endDate);
+    //echo date("d-m-Y H:i:s",$endTimeStamp)."<br>";echo "<br>";
 
-	$timeDiff = abs($endTimeStamp - $startTimeStamp);
-	//echo $timeDiff."<br>";
-	$numberDays = $timeDiff / 86400;  // 86400 seconds in one day
-	//echo $numberDays."<br>";
-	// and you might want to convert to integer
-	//$numberDays = intval($numberDays);
-	$numberDays = round($numberDays);
-	return $numberDays;
+    $timeDiff = abs($endTimeStamp - $startTimeStamp);
+    //echo $timeDiff."<br>";
+    $numberDays = $timeDiff / 86400;  // 86400 seconds in one day
+    //echo $numberDays."<br>";
+    // and you might want to convert to integer
+    //$numberDays = intval($numberDays);
+    $numberDays = round($numberDays);
+    return $numberDays;
 }
 
-function generateTransactionID(){
+function generateTransactionID()
+{
     return substr(hash('sha256', mt_rand() . microtime()), 0, 20);
 }
 
-function getConvertedPrice($source_currency,$destination_currency,$amount=''){
+function getConvertedPrice($source_currency, $destination_currency, $amount = '')
+{
     return false;
-    if($source_currency!='' && $destination_currency!=''){
+    if ($source_currency != '' && $destination_currency != '') {
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.exchangeratesapi.io/latest?base=".$source_currency."&symbols=".$destination_currency,
+            CURLOPT_URL => "https://api.exchangeratesapi.io/latest?base=" . $source_currency . "&symbols=" . $destination_currency,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -601,7 +641,7 @@ function getConvertedPrice($source_currency,$destination_currency,$amount=''){
             return false;
         } else {
             //return json_decode($response,true);
-            $rates = json_decode($response,true);
+            $rates = json_decode($response, true);
             return $rates['rates'][$destination_currency];
         }
     } else {
@@ -609,134 +649,133 @@ function getConvertedPrice($source_currency,$destination_currency,$amount=''){
     }
 }
 
-function si_transaction($url,$data = null)
+function si_transaction($url, $data = null)
 {
     //dd($url);
 
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	$headers = array( "Content-Type: application/x-www-form-urlencoded", ); 
-	curl_setopt($ch, CURLOPT_POSTFIELDS,$data);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-	curl_setopt($ch, CURLOPT_POST, 1);
-	$resp = curl_exec($ch);
-	curl_close($ch);
-	return $resp;
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $headers = array("Content-Type: application/x-www-form-urlencoded",);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    $resp = curl_exec($ch);
+    curl_close($ch);
+    return $resp;
 
     $curl = curl_init();
-
 }
 function EventPush($user_id, $eventName, $properties, $is_moengage = true, $is_clevertap = true)
 {
-	$properties['Source'] = @$_GET['utm_source'];
-	$properties['Medium'] = @$_GET['utm_medium'];
-	$properties['Campaign'] = @$_GET['utm_campaign'];
-	if (!empty($user_id)) {
+    $properties['Source'] = @$_GET['utm_source'];
+    $properties['Medium'] = @$_GET['utm_medium'];
+    $properties['Campaign'] = @$_GET['utm_campaign'];
+    if (!empty($user_id)) {
 
-		if ((empty(env('CLEVERTAP')) || strtoupper(env("CLEVERTAP")) == "ON") && $is_clevertap == true) {
+        if ((empty(env('CLEVERTAP')) || strtoupper(env("CLEVERTAP")) == "ON") && $is_clevertap == true) {
 
-			$txn_url = config('epicconfig.CLEVERTAP.CLEVERTAP_TXN_URL');
+            $txn_url = config('epicconfig.CLEVERTAP.CLEVERTAP_TXN_URL');
 
-			$postData['identity'] = $user_id;
-			$postData['evtName'] = $eventName;	/* Data type String */
-			$postData['evtData'] = $properties; /* Data type array */
-			$postData['type'] = 'event';
-			$postData['ts'] = time();
+            $postData['identity'] = $user_id;
+            $postData['evtName'] = $eventName;    /* Data type String */
+            $postData['evtData'] = $properties; /* Data type array */
+            $postData['type'] = 'event';
+            $postData['ts'] = time();
 
-			/* Log::info("-----CLEVERTAP CURL Parameters: ".$txn_url."----\n");
+            /* Log::info("-----CLEVERTAP CURL Parameters: ".$txn_url."----\n");
 			Log::debug(json_encode($postData));
 			Log::info("-----END----------------------");*/
 
-			$responseClevertap = CURLFOREVENTPUSH($txn_url, $postData, 'CLEVERTAP');
+            $responseClevertap = CURLFOREVENTPUSH($txn_url, $postData, 'CLEVERTAP');
 
-			/*Log::info("-----CLEVERTAP CURL response");
+            /*Log::info("-----CLEVERTAP CURL response");
 			Log::debug($responseClevertap);
 			Log::info("-----END----------------------");*/
-		}
+        }
 
-		if ((empty(env('MOENGAGE')) || strtoupper(env("MOENGAGE")) == "ON") && $is_moengage == true) {
-			$txn_url = config('epicconfig.moengage.EVENT_TXN_URL') . '' . config('epicconfig.moengage.APP_ID_API');
+        if ((empty(env('MOENGAGE')) || strtoupper(env("MOENGAGE")) == "ON") && $is_moengage == true) {
+            $txn_url = config('epicconfig.moengage.EVENT_TXN_URL') . '' . config('epicconfig.moengage.APP_ID_API');
 
-			$postDataMoengage['type'] = 'event';
-			$postDataMoengage['customer_id'] = $user_id;
-			$postDataMoengage['actions'][0]['action'] = $eventName;	/* Data type String */
-			$postDataMoengage['actions'][0]['attributes'] = $properties;   /* Data type List */
+            $postDataMoengage['type'] = 'event';
+            $postDataMoengage['customer_id'] = $user_id;
+            $postDataMoengage['actions'][0]['action'] = $eventName;    /* Data type String */
+            $postDataMoengage['actions'][0]['attributes'] = $properties;   /* Data type List */
 
-			/*			Log::info("-----MOENGAGE CURL Parameters: ".$txn_url."----\n");
+            /*			Log::info("-----MOENGAGE CURL Parameters: ".$txn_url."----\n");
 			Log::debug(json_encode($postDataMoengage));
 			Log::info("-----END----------------------");*/
 
-			$responseMoengage = CURLFOREVENTPUSH($txn_url, $postDataMoengage, 'MOENGAGE');
+            $responseMoengage = CURLFOREVENTPUSH($txn_url, $postDataMoengage, 'MOENGAGE');
 
-			/*			Log::info("-----MOENGAGE CURL response");
+            /*			Log::info("-----MOENGAGE CURL response");
 			Log::debug($responseMoengage);
 			Log::info("-----END----------------------");*/
-		}
+        }
 
-		if (empty(env('MOENGAGE')) || strtoupper(env("MOENGAGE")) == "ON") {
-			$return = @$responseMoengage;
-		} else if (empty(env('CLEVERTAP')) || strtoupper(env("CLEVERTAP")) == "ON") {
-			$return = @$responseClevertap;
-		} else if (!empty(env('CLEVERTAP')) && strtoupper(env("CLEVERTAP")) == "ON" && !empty(env('MOENGAGE')) && strtoupper(env("MOENGAGE")) == "ON") {
-			$return = array_merge($responseClevertap, $responseMoengage);
-		}
+        if (empty(env('MOENGAGE')) || strtoupper(env("MOENGAGE")) == "ON") {
+            $return = @$responseMoengage;
+        } else if (empty(env('CLEVERTAP')) || strtoupper(env("CLEVERTAP")) == "ON") {
+            $return = @$responseClevertap;
+        } else if (!empty(env('CLEVERTAP')) && strtoupper(env("CLEVERTAP")) == "ON" && !empty(env('MOENGAGE')) && strtoupper(env("MOENGAGE")) == "ON") {
+            $return = array_merge($responseClevertap, $responseMoengage);
+        }
 
-		return $return;
-	}
-    
+        return $return;
+    }
 }
 
 function CURLFOREVENTPUSH($txn_url, $postData, $headerType)
 {
 
-	$ch = curl_init();
+    $ch = curl_init();
 
-	curl_setopt($ch, CURLOPT_URL, $txn_url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_URL, $txn_url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-	$headers = array();
-	$headers[] = 'Content-Type: application/json; charset=utf-8';
+    $headers = array();
+    $headers[] = 'Content-Type: application/json; charset=utf-8';
 
 
-	if ($headerType == 'CLEVERTAP') {
+    if ($headerType == 'CLEVERTAP') {
 
-		$headers[] = 'X-CleverTap-Account-Id: ' . config('epicconfig.CLEVERTAP.CLEVERTAP_ACCOUNT_ID');
-		$headers[] = 'X-CleverTap-Passcode: ' . config('epicconfig.CLEVERTAP.CLEVERTAP_PASSCODE');
+        $headers[] = 'X-CleverTap-Account-Id: ' . config('epicconfig.CLEVERTAP.CLEVERTAP_ACCOUNT_ID');
+        $headers[] = 'X-CleverTap-Passcode: ' . config('epicconfig.CLEVERTAP.CLEVERTAP_PASSCODE');
 
-		curl_setopt($ch, CURLOPT_POSTFIELDS, "{ \"d\": [ " . json_encode($postData, JSON_PRETTY_PRINT) . " ] }");
-	}
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "{ \"d\": [ " . json_encode($postData, JSON_PRETTY_PRINT) . " ] }");
+    }
 
-	if ($headerType == 'MOENGAGE') {
+    if ($headerType == 'MOENGAGE') {
 
-		$headers[] = 'Authorization: Basic ' . base64_encode(config('epicconfig.moengage.APP_ID_API') . ':' . config('epicconfig.moengage.APP_KEY'));
-		$headers[] = 'MOE-APPKEY: ' . config('epicconfig.moengage.APP_KEY');
+        $headers[] = 'Authorization: Basic ' . base64_encode(config('epicconfig.moengage.APP_ID_API') . ':' . config('epicconfig.moengage.APP_KEY'));
+        $headers[] = 'MOE-APPKEY: ' . config('epicconfig.moengage.APP_KEY');
 
-		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData, JSON_PRETTY_PRINT));
-	}
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData, JSON_PRETTY_PRINT));
+    }
 
-	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-	Log::info("----- CURL Header: ----\n");
-	Log::debug(json_encode($headers));
-	Log::info("-----END----------------------");
+    Log::info("----- CURL Header: ----\n");
+    Log::debug(json_encode($headers));
+    Log::info("-----END----------------------");
 
-	curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POST, 1);
 
-	$response = curl_exec($ch);
+    $response = curl_exec($ch);
 
-	return $response;
+    return $response;
 }
 
-function checkSubscription(){
+function checkSubscription()
+{
 
     $offerCount = 0;
-    $result['status']=[];
+    $result['status'] = [];
     $today = date("Y-m-d") . "T" . date("H:i:s") . "Z";
     $todayStrToTime = strtotime($today);
     $usedDays = 0;
-    $activePlan=[];
-    $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2,true);
+    $activePlan = [];
+    $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2, true);
     if (!empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['success'] == true) {
         foreach ($subscriptionPurchases['data'] as $k => $item) {
             if (!isset($item['plan_name'])) {
@@ -756,14 +795,14 @@ function checkSubscription(){
                 $activePlan['remainingDays'] = $remainingDays;
             }
         }
-        if(isset($activePlan['remainingDays']) && $activePlan['remainingDays'] > 1){
+        if (isset($activePlan['remainingDays']) && $activePlan['remainingDays'] > 1) {
             $result['status'] = 'active';
         }
 
-      
+
         return $result;
     }
-}   
+}
 function formatDate($date, $format = 'd F Y')
 {
     return date($format, strtotime($date));
@@ -772,14 +811,14 @@ function formatDate($date, $format = 'd F Y')
 function getCardImage($content, $key, $size = 'medium', $fallback = [])
 {
     // if (empty($fallback)) {
-        $fallback = [
-            'banner_image' => 'default-830x400.png', 
-            'cover_image' => 'default-830x400.png', 
-            'cover_image_special'=> 'default-200x200.png', 
-            'spotlight_epic_shorts_image'=> 'default-200x200.png', 
-            'epic_shorts_image'=> 'default-200x200.png', 
-            'vertical_cover_image'=> 'default-200x300.png'
-        ];
+    $fallback = [
+        'banner_image' => 'default-830x400.png',
+        'cover_image' => 'default-830x400.png',
+        'cover_image_special' => 'default-200x200.png',
+        'spotlight_epic_shorts_image' => 'default-200x200.png',
+        'epic_shorts_image' => 'default-200x200.png',
+        'vertical_cover_image' => 'default-200x300.png'
+    ];
     // }
     $img_url = '';
     if ($content) {
@@ -789,7 +828,7 @@ function getCardImage($content, $key, $size = 'medium', $fallback = [])
 
         if (empty($img_url)) {
 
-            $img_url = isset($fallback[$key]) ? asset('assets/img/'.$fallback[$key]) : asset('assets/img/default-200x200.png');
+            $img_url = isset($fallback[$key]) ? asset('assets/img/' . $fallback[$key]) : asset('assets/img/default-200x200.png');
 
             /*foreach ($fallback as $k => $img_key) {
                 if (isset($content[$img_key]) && !empty($content[$img_key])) {
@@ -906,28 +945,31 @@ if (!function_exists("update_user_session")) {
         return true;
     }
 }
-function checkLang($lang){
-    if($lang == 'en'){
+function checkLang($lang)
+{
+    if ($lang == 'en') {
         $res = 'ENGLISH';
-    }else if($lang == 'hi'){
+    } else if ($lang == 'hi') {
         $res = 'HINDI';
-    }else{
+    } else {
         $res = 'ALL';
     }
 
     return $res;
 }
 
-function checkNumDays($date){
+function checkNumDays($date)
+{
     $today = date_create(date('Y-m-d'));
     $enddate = date_create(date('Y-m-d', strtotime($date)));
     //$dateDiff = date_diff($enddate,$today);
-    $dateDiff = date_diff($today,$enddate);
+    $dateDiff = date_diff($today, $enddate);
     $numOfDays = $dateDiff->format('%r%a');
     return $numOfDays;
 }
 
-function getNewTitle($value){
+function getNewTitle($value)
+{
     $html = '';
     $cls = '';
 
@@ -952,7 +994,7 @@ function getNewTitle($value){
         //     }
         // }
     }
-    
+
     return ['cls' => $cls, 'html' => $html];
 }
 
@@ -1014,8 +1056,9 @@ if (!function_exists('isKidsProfile')) {
     }
 }
 
-function getFirstSegment(){
-    
+function getFirstSegment()
+{
+
     if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
         $segment = request()->segment(2);
     } else {
@@ -1024,27 +1067,29 @@ function getFirstSegment(){
     return $segment;
 }
 
-function isKidsPage(){
+function isKidsPage()
+{
     $segment = getFirstSegment();
     return $segment == 'kids' ? true : false;
 }
 
-function kidsMode(){
+function kidsMode()
+{
     return session()->has('kidsMode') && session()->get('kidsMode') == true ? true : false;
 }
 
 function getJsonDataFromFile($filepath)
 {
-	$jsonData = file_get_contents($filepath);
-	$arrayData = json_decode($jsonData, true);
-	return $arrayData;
+    $jsonData = file_get_contents($filepath);
+    $arrayData = json_decode($jsonData, true);
+    return $arrayData;
 }
 
 function getCountryStateData()
 {
-	$filepath = asset('json/countrystate.json');
-	$countrystate = getJsonDataFromFile($filepath);
-	return $countrystate;
+    $filepath = asset('json/countrystate.json');
+    $countrystate = getJsonDataFromFile($filepath);
+    return $countrystate;
 }
 
 function getCountryStateDataInHtml()

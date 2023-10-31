@@ -44,14 +44,13 @@ class LoginController extends Controller
         // dd($request->all());
         $userid = $request->post('user_id');
         $signup_method = $request->post('signupmethod');
-        $user_agent = $request->post('user_agent');
         $otp_pin = $request->post('otp_pin');
         if (!empty($otp_pin)) {
             $verifyotpRequestData = array(
                 'user_id' => $userid,
                 'user_signup_method' => $signup_method,
                 'otp' => $otp_pin,
-                'user_agent' => $user_agent,
+                'user_agent' => getUserAgent(),
             );
             $verifyotpResponseData = [
                 "success" => true,
@@ -132,7 +131,7 @@ class LoginController extends Controller
         $postedData = [
             'user_id' => $userid,
             'password' => $password,
-            'user_agent' => 'WEB'
+            'user_agent' => getUserAgent(),
         ];
 
         $loginResponseData = CurlAPI("users/loginWithPassword", 'POST', $postedData, 2);
@@ -189,7 +188,6 @@ class LoginController extends Controller
         // dd($request->all());
         $userid = $request->post('userid_no');
         $signup_method = $request->post('usersignupmethod');
-        // $user_agent = $request->post('user_agent');
         $otp_pin = $request->post('otppin');
         if (!empty($otp_pin)) {
             $verifyotpRequestData = array(
