@@ -97,8 +97,7 @@ class PageDetailController extends Controller
         $result = CurlAPI("pages/clap", "POST", $params);
 
         if ($result && @$result['success'] ==  true) {
-
-            return JSONResponse(200, 'Success');
+            return JSONResponse(200, 'Success', ['claps' => @$result['claps']]);
         } else {
             return JSONResponse(400, 'Some error occured');
         }

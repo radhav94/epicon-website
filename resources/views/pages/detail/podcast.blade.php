@@ -119,7 +119,7 @@ $episode_json = json_encode($episode_list);
                                             </clipPath>
                                         </defs>
                                     </svg>&nbsp;&nbsp;
-                                    <span class="claps_num">{{ @$content['claps'] }}</span></button>
+                                    <span class="claps_num">{{ countConvert(@$content['claps']) }}</span></button>
 
                                 @if (@$content['is_popular'])
                                 <button class="border-btn my-0">

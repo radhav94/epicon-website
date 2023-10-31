@@ -13,9 +13,10 @@ $(document).ready(function () {
 
         function onClapSuccess(response) {
             showToaster(response?.message, 1);
+            let claps = response.payload.claps;
 
             if (cardType != 'list') {
-                $('.claps_num').text(parseInt($('.claps_num').text()) + 1);
+                $('.claps_num').text(countConvert(parseInt(claps) + 1));
             }
         }
 
