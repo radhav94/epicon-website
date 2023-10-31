@@ -133,9 +133,9 @@ $cover_img = getCardImage($content, 'banner_image', 'large');
                                         @if ($wishAction == 'add') style="display: none" @endif>
                                 </button>
                                 @if(isset($content['catalog_slug']) && $content['catalog_slug'] != 'live-tv')
-                                <button class="rounded-transparent-btn clapButton" data-id="{{ @$content['ID'] }}">
+                                <button class="rounded-transparent-btn clapButton" data-id="{{ @$content['ID'] }}" data-clapCount="{{ @$content['claps'] }}">
                                     <img src="{{ asset('assets/img/clap-icon.svg') }}" alt="icon">
-                                    <span class="claps_num">{{ @$content['claps'] }}</span>
+                                    <span class="claps_num">{{ countConvert(@$content['claps']) }}</span>
                                 </button>
                                 @endif
                                 <button class="rounded-transparent-btn shareThis" data-url="{{ getContentUrl($content) }}"

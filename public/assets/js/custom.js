@@ -106,10 +106,11 @@ if (notificationElement) {
     $(".profile").hover(function () {
       var profileDiv = document.querySelector(".profile-drop-down");
       if (profileDiv != '' && profileDiv != null && profileDiv != 'undefined') {
-        if (profileDiv.css('display') == 'block')
-          profileDiv.css('display', 'none');
-        else
-          profileDiv.css('display', 'block');
+        if (profileDiv.style.display == 'block') {
+          profileDiv.style.display == 'none';
+        } else {
+          profileDiv.style.display = 'block';
+        }
       }
     });
   }
