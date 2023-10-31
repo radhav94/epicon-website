@@ -1,4 +1,4 @@
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="{{ asset('assets/js/vendor/jquery.validate.min.js') }}"></script>
 <script>
     var user_mob_email = '';
     var interval = "";
@@ -332,13 +332,15 @@
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
                     success: function(response) {
-                        if (response.payload.success == true) {
+                                                if (response.payload.success == true) {
+                            $(".child-box").val('');
                             queryParams = new URLSearchParams(window.location.search);
                             $("#userid").val(response.payload.user_id);
                             $("#sign_method").val(response.payload.user_signup_method);
-                            $('.screen-login,.screen-verify,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                                .hide();
+                            
                             if (response.payload.response.is_verified == false) {
+                                $('.screen-login,.screen-verify,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
+                                .hide();
                                 $('.screen-register').show();
                                 $('.screen-login-with-pwd').hide();
                             } else {
@@ -493,9 +495,9 @@
                             // $('#register-result').html('');
                             // $("#username").text(response.payload.name);
                             // $("#sign_method").val(response.payload.user_signup_method);
+                            $('.screen-sucess-logged').show();
                             $('.screen-login,.screen-verify,.screen-register,.left-side,.right-side,.screen-sucess-register,.screen-login-with-pwd,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
                                 .hide();
-                            $('.screen-sucess-logged').show();
                             if(response.payload.subplan_status == 'active'){
                                 $('.no-subscription-user').hide();
                             }else{
@@ -662,6 +664,7 @@
 
         //choose genre section
         $('.better-suggestion-nxtBtn').click(function() {
+            $("#error-meg-for-genre-select").html("");
             var genreCount = 0;                
             $("input[name='chooseGenre[]']").each(function() {
                 if (this.checked) {

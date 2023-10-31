@@ -4,12 +4,14 @@
         @foreach ($value['content'] as $key => $val)
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
+            $banner_img = getCardImage($val, 'banner_image', 'large');
+
             ?>
             <div class="carousel-card">
                 {!! freePremiumDiv($val) !!}
                 <div class="carousel-items position-relative w-100">
                     <a href="{{ getContentUrl($val) }}">
-                        <img src="{{ $card['banner_img'] }}" alt="">
+                        <img src="{{ $banner_img }}" alt="">
                     </a>
                     <div class="carousel-items-content position-absolute">
                         <h2>{{ $card['sub_text'] }}</h2>
