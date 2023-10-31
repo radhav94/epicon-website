@@ -200,7 +200,7 @@ class PageController extends Controller
         
         if (isset($epicwebArr) && $epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
-            return view('pages.chanel.channelmidpage', compact('epicwebArr', 'slug', 'page'));
+            return view('pages.chanel.channelmidpage', compact('epicwebArr','title', 'slug', 'page'));
         } else {
             return view('pages.error.data-error');
         }
