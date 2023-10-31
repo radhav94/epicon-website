@@ -29,7 +29,7 @@ function initSliders() {
         slidesToShow: 1,
         arrows: true,
         dots: true,
-        autoplay: true,
+        autoplay: false,
         appendDots: $(".slide-m-dots"),
         prevArrow: $(".slide-m-prev"),
         nextArrow: $(".slide-m-next"),
@@ -58,20 +58,20 @@ function initSliders() {
                     slidesToShow: 1
                 }
             },
-            {
-                breakpoint: 600,
-                settings: {
-                    centerMode: true,
-                    centerPadding: '60px',
-                    slidesToShow: 1,
-                    dots: false,
-                }
-            },
+            // {
+            //     breakpoint: 600,
+            //     settings: {
+            //         centerMode: true,
+            //         centerPadding: '10px',
+            //         slidesToShow: 1,
+            //         dots: false,
+            //     }
+            // },
             {
                 breakpoint: 480,
                 settings: {
                     centerMode: true,
-                    centerPadding: '40px',
+                    centerPadding: '60px',
                     slidesToShow: 1,
                     dots: false,
                 }
@@ -92,11 +92,11 @@ function initSliders() {
     $('.banner-carousel-1').not('.slick-initialized').slick({
         slidesToShow: 1,
         arrows: true,
-        // dots: true,
+        dots: true,
         autoplay: true,
-        // appendDots: $(".slide-sl-dots"),
-        // prevArrow: $(".slide-sl-prev"),
-        // nextArrow: $(".slide-sl-next"),
+        appendDots: $(".slide-sl-dots"),
+        prevArrow: $(".slide-sl-prev"),
+        nextArrow: $(".slide-sl-next"),
     });
 
     $('.carousel-initilize').not('.slick-initialized').slick({

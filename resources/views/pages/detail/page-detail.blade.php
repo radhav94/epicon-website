@@ -76,7 +76,7 @@ $cover_img = getCardImage($content, 'banner_image', 'large');
                         </p>
                         <div class="seemore">
                             <p class="text-white mb-0">{{ @$content['description'] }}</p>
-                            <button class="bg-transparent text-white border-0 ps-0 py-3 small readmore-less">Read More</button>
+                            <button class="bg-transparent text-white small readmore-less">Read More</button>
                         </div>
                         @if (@$content['cast'])
                         <div class="seemore">
