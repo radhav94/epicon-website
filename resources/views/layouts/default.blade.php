@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"
         integrity="sha512-6S2HWzVFxruDlZxI3sXOZZ4/eJ8AcxkQH1+JjSe/ONCEqR9L4Ysq5JdT5ipqtzU7WHalNwzwBv+iE51gNHJNqQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     {{-- End header common styles --}}
 
 
@@ -123,22 +124,17 @@
 
     {{-- Start footer common scripts --}}
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/jquery-ui.js') }}"></script>
+    <script src="{{ asset('assets/js/custom.js') }}?v={{ assetTime() }}"></script>
     <script src="{{ asset('assets/js/swiper.js') }}"></script>
     <script src="{{ asset('assets/js/spiner.js') }}"></script>
     <script src="{{ asset('assets/js/slick.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"
-        integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
+    <script src="{{ asset('assets/js/vendor/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/toastr.min.js') }}"></script>
 
     <script src="{{ asset('assets/js/epic.js') }}"></script>
-    <script src="{{ asset('assets/js/common.js') }}"></script>
+    <script src="{{ asset('assets/js/common.js') }}?v={{ assetTime() }}"></script>
     {{-- End footer common scripts --}}
 
 

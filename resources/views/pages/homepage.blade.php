@@ -2,7 +2,6 @@
 @section('title', $meta_title)
 
 @section('style')
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <style>
     #epicShots video {
         width: 340px;
@@ -48,11 +47,10 @@
 @stop
 
 @section('script')
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="{{ asset('assets/js/homepage.js') }}"></script>
 <script src="{{ asset('assets/js/epic-story.js') }}"></script>
-<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
-<script src="https://cdn.rawgit.com/video-dev/hls.js/18bb552/dist/hls.min.js"></script>
+<script src="{{ asset('assets/js/vendor/plyr.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/hls.min.js') }}"></script>
 <script src="{{ asset('assets/js/webvtt-subtitler.js') }}"></script>
 <script src="{{ asset('assets/js/supermix.js') }}"></script>
 

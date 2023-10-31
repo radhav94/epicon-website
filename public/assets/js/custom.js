@@ -104,11 +104,11 @@ if (notificationElement) {
   }
   else {
     $(".profile").hover(function () {
-      var e = document.querySelector(".profile-drop-down");
-      if (e.style.display == 'block')
-        e.style.display = 'none';
+      var profileDiv = document.querySelector(".profile-drop-down");
+      if (profileDiv.css('display') == 'block')
+        profileDiv.css('display', 'none');
       else
-        e.style.display = 'block';
+        profileDiv.css('display', 'block');
     });
   }
   if ($(window).width() < 1025) {
@@ -144,7 +144,8 @@ function getNotification(){
             data.forEach(function(item, index) {
               // console.log('Item at index ' + index + ':');
               // console.log(item.big_picture);
-              html += '<li class="content active mb-3"><a href="'+item.data.customkey+'" class="notif-img"><img src="'+item.big_picture+'" alt=""></a><div><h3>'+item.headings.en+'</h3><h4>'+item.contents.en+'</h4></div></li>';
+              html += '<li class="content active mb-3"><a href="'+item.data.customkey+'"><div class="notif-img"><img src="'+item.big_picture+'" alt=""></div><div><h3>'+item.headings.en+'</h3><h4>'+item.contents.en+'</h4></div></a></li>';
+              // html += '<li class="content active mb-3"><a href="'+item.data.customkey+'" class="notif-img"><img src="'+item.big_picture+'" alt=""></a><div><h3>'+item.headings.en+'</h3><h4>'+item.contents.en+'</h4></div></li>';
               // You can access properties of the item like item.adm_big_picture, item.adm_group, etc.
             });
             // console.log(html+"HTML Response");

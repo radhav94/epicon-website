@@ -84,8 +84,8 @@
                         </div>
                         <div class="input-field w-100 mb-3">
                             <label for="exampleDataList1" class="form-label text-white">{{__('Date of Birth')}}</label>
-                            <input class="form-control" type="date" id="exampleDataList1" name="dob"
-                                value="{{ $profile['date_of_birth'] ?? '' }}">
+                            <input class="form-control profile_date_picker" type="text" id="exampleDataList1" name="dob"
+                                value="{{ $profile['date_of_birth'] ? date('d-M-Y', strtotime($profile['date_of_birth'])) : '' }}">
                         </div>
 
                         {{-- @if (@$profile['is_default'] == true && @$profile['kids'] == false && @$profile['kidSection'] == false) --}} 
@@ -140,7 +140,6 @@
 @stop
 
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-
+    <script src="{{ asset('assets/js/vendor/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('assets/js/profile.js') }}"></script>
 @stop

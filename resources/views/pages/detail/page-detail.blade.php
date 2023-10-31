@@ -233,8 +233,8 @@ $cover_img = getCardImage($content, 'banner_image', 'large');
     <script src="{{ asset('assets/js/common.js') }}"></script>
 
     @if ($loadPlayer)
-        <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
-        <script src="https://cdn.rawgit.com/video-dev/hls.js/18bb552/dist/hls.min.js"></script>
+        <script src="{{ asset('assets/js/vendor/plyr.js') }}"></script>
+        <script src="{{ asset('assets/js/vendor/hls.min.js') }}"></script>
         <script src="{{ asset('assets/js/webvtt-subtitler.js') }}"></script>
         <script src="{{ asset('assets/js/video-player.js') }}"></script>
     @endif

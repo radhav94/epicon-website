@@ -194,7 +194,7 @@ if (request()->path() == "hi") {
                 <li><a href="{{ getUrl($key) }}"
                         @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
             @endforeach
-            @loggedin
+@loggedin
             <li>
                 <a href="{{url('/my-rewards')}}" @if ($current_route == "my-rewards") class="active" @endif>Reward Store</a>
             </li>
@@ -278,7 +278,7 @@ if (request()->path() == "hi") {
                 <ul class="profile-drop-down list-unstyled">
 
                         <li class="profile-main p-3">
-                            @if (isset($profile))
+                            @if (isset($profile) && $profile)
                             <?php 
                                 $gender = @$profile['result']['user_data']['gender'] ?? 'Male';
                                 $default_img = ($gender == 'Female') ? asset('assets/img/edit-profile-pik.png') : asset('assets/img/profile-boy.png')

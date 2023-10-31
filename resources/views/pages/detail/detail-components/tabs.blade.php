@@ -1,9 +1,8 @@
    <?php
-    $ep_season_data = $season_episode_data = [];
+    $season_episode_data = [];
     $temp = $seasonList = [];
-
     $tab1_title = $lastSeason = '';
-    // dd($content);
+
     if ($content['content_type'] == 'SHOW') {
         $seasons = $content['season'] ?? [];
         $tab1_title = 'Seasons';
@@ -21,20 +20,14 @@
     } elseif ($content['content_type'] == 'SEASON') {
         $temp = $content['episodes'] ?? [];
         $tab1_title = 'Episodes';
-    }
-
-    if ($temp) {
-        foreach ($temp as $k => $v) {
-            if (isset($v['ID'])) {
-                $ep_season_data[] = $v;
-            }
-        }
+        $lastSeason = @$content['slug'];
+        $season_episode_data[$lastSeason] = $temp;
     }
 
     $active_tab = '';
     $tabs = [];
 
-    if ($ep_season_data) {
+    if ($season_episode_data) {
         $tabs[] = ['key' => "episode", 'title' => $tab1_title];
     }
     if ($morelike) {

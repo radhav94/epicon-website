@@ -1423,7 +1423,7 @@
                         }
                     },
                     error: function(xhr, status, error) {
-                        console.log('error me aaya');
+                        onError(xhr); 
                     }
                 });
             } else {
