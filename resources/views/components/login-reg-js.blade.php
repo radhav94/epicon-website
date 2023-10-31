@@ -664,6 +664,7 @@
 
         //choose genre section
         $('.better-suggestion-nxtBtn').click(function() {
+            $("#error-meg-for-genre-select").html("");
             var genreCount = 0;                
             $("input[name='chooseGenre[]']").each(function() {
                 if (this.checked) {
