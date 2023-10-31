@@ -2,7 +2,6 @@
 @section('title', $meta_title)
 
 @section('style')
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <style>
     #epicShots video {
         width: 340px;
@@ -48,7 +47,6 @@
 @stop
 
 @section('script')
-<script src="{{ asset('assets/js/vendor/jquery-ui.js') }}"></script>
 <script src="{{ asset('assets/js/homepage.js') }}"></script>
 <script src="{{ asset('assets/js/epic-story.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/plyr.js') }}"></script>

@@ -194,15 +194,6 @@ if (request()->path() == "hi") {
                 <li><a href="{{ getUrl($key) }}"
                         @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
             @endforeach
-            @loggedin
-            <li>
-                <a href="{{url('/my-rewards')}}" @if ($current_route == "my-rewards") class="active" @endif>Reward Store</a>
-            </li>
-            @elseloggedin
-            <li class="nav-item">
-                <a href="javascript:void(0)" class="login">Reward Store</a>
-            </li>
-            @endloggedin
 
         </ul>
                 <div class="main-header-right d-flex align-items-center">
@@ -278,7 +269,7 @@ if (request()->path() == "hi") {
                 <ul class="profile-drop-down list-unstyled">
 
                         <li class="profile-main p-3">
-                            @if (isset($profile))
+                            @if (isset($profile) && $profile)
                             <?php 
                                 $gender = @$profile['result']['user_data']['gender'] ?? 'Male';
                                 $default_img = ($gender == 'Female') ? asset('assets/img/edit-profile-pik.png') : asset('assets/img/profile-boy.png')
@@ -291,7 +282,7 @@ if (request()->path() == "hi") {
                                     ?>
 
                                     <a href="{{ getUrlWithPrefix('profile.myProfile', $value['id']) }}" class="{{ $isActiveProfile }}">
-                                        <div class="profile-pik girl-bg {{ $isActiveProfile }}">
+                                        <div class="profile-pik girl-bg active">
                                             <img src="{{ $profile_img }}" alt="">
                                         </div>
                                         <span class="pro-name">{{ ucfirst(@$value['name']) }}</span>

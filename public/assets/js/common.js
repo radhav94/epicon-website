@@ -2,6 +2,11 @@
 var queryParams = new URLSearchParams(window.location.search);
 
 $(document).ready(function () {
+    $( ".profile_date_picker" ).datepicker({
+        dateFormat: 'dd-M-yy',
+        maxDate: '-1d',
+    });
+
     $("#seasonSelect").change(function () {
         var slug = $(this).val();
         if (slug != "" && slug != 0) {
@@ -114,8 +119,18 @@ $(window).on('load', function () {
 
     /*logout if token not found*/
     if (queryParams.get('type') == "logout") {
-        showToaster("Your token has been expired.", 2, 5000)
+        showToaster("Your have been logged out. Kindly relogin to continue.", 2, 5000)
         window.history.replaceState({}, document.title, "/");
+    }
+})
+
+$(document).on("click", ".interest-suggetion", function(e){
+    e.preventDefault();
+    var interest = $(this).find("input[type='checkbox']");
+    if (interest.is(":checked")) {
+        interest.prop("checked", false);
+    } else {
+        interest.prop("checked", true);
     }
 })
 
