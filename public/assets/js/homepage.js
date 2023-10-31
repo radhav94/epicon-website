@@ -35,10 +35,26 @@ function initSliders() {
         nextArrow: $(".slide-m-next"),
         responsive: [
             {
+                breakpoint: 1366,
+                settings: {
+                    centerMode: true,
+                    centerPadding: '180px',
+                    slidesToShow: 1
+                }
+            },
+            {
+                breakpoint: 1024,
+                settings: {
+                    centerMode: true,
+                    centerPadding: '160px',
+                    slidesToShow: 1
+                }
+            },
+            {
                 breakpoint: 960,
                 settings: {
                     centerMode: true,
-                    centerPadding: '120px',
+                    centerPadding: '180px',
                     slidesToShow: 1
                 }
             },
@@ -75,7 +91,7 @@ function initSliders() {
 
     $('.banner-carousel-1').not('.slick-initialized').slick({
         slidesToShow: 1,
-        // arrows: true,
+        arrows: true,
         // dots: true,
         autoplay: true,
         // appendDots: $(".slide-sl-dots"),

@@ -178,7 +178,7 @@ input {
 // switch to kids end
 
 .big-play{
-    padding: 10px 30px;
+    padding: 6px 20px;
     background: $bg-white;
     color: $bg-dark-gray;
     @include flex(row,center,center);
@@ -187,12 +187,17 @@ input {
     border: none;
     margin-right: 10px;
     font-weight: 600;
+    font-size: 14px;
+
+    svg{
+        width: 20px;
+    }
     @media (max-width:768px) {
         padding: 5px 15px;
     }
     @media (max-width:700px) {
         &{
-           height: 26px;
+           height: 30px;
            padding: 2px 10px;
             font-size: 14px;
         }
@@ -205,7 +210,7 @@ input {
     }
 }
 .big-add-list{
-    padding: 10px 20px;
+    padding: 6px 20px;
     background: linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%);
     color: $bg-white;
     @include flex(row,center,center);
@@ -225,7 +230,7 @@ input {
     }
     @media (max-width:700px) {
         &{
-            height: 26px;
+            height: 30px;
             padding: 4px 10px;
             font-size: 10px;
         }
@@ -777,17 +782,23 @@ input {
             @media screen and (max-width: 1650px) {
                 height: auto;
             }
-            @media screen and (max-width: 1336px) {
-                height: 415px;
-            }
-            @media screen and (max-width: 768px) {
-                padding: 15px 15px 0;
-                height: 480px;
-            }
-            @media screen and (max-width: 767px) {
-                padding: 18px 8px 0;
-                height: 394px;
-            }
+            // @media screen and (max-width: 1366px) {
+            //     height: auto;
+            // }
+            // @media screen and (max-width: 1024px) {
+            //     height: 480px;
+            // }
+            // @media screen and (max-width: 960px) {
+            //     height: 480px;
+            // }
+            // @media screen and (max-width: 768px) {
+            //     padding: 15px 15px 0;
+            //     height: 480px;
+            // }
+            // @media screen and (max-width: 767px) {
+            //     padding: 18px 8px 0;
+            //     height: 394px;
+            // }
             img{
                 width: 100%;
                 height: 100%;
@@ -801,7 +812,7 @@ input {
             .carousel-items-content{
                 bottom: 0;
                 width: 50%;
-                padding: 0rem 2rem 2rem 2rem;
+                padding: 0rem 1.5rem 1.5rem 1.5rem;
                 @include flex(column,flex-start,flex-end);
                 
                 @media (max-width:768px){
@@ -837,6 +848,7 @@ input {
                     font-weight: 500;
                     @include line-clamp(2);
                     line-height: 24px;
+                    // display: none;
                     @media (max-width:768px){
                         width: 100%;
                         font-size: 16px;
@@ -1030,7 +1042,7 @@ input {
             .carousel-items-content{
                 bottom: 0;
                 // width: 50%;
-                padding: 0rem 2rem 2rem 2rem;
+                padding: 0rem 1.5rem 1.5rem 1.5rem;
                 @include flex(column,flex-start,flex-end);
                 display: none;
 
@@ -1141,7 +1153,7 @@ input {
         height: 4px;
         padding: 0;
         border-radius: 20px;
-        background: #272727;
+        background: rgba($color: rgb(255 255 255), $alpha: 0.5);
         transition: .3s all;
     }
     & .slick-dots li.slick-active button{
@@ -1221,7 +1233,7 @@ input {
         height: 4px;
         padding: 0;
         border-radius: 20px;
-        background: #272727;
+        background: rgba($color: rgb(255 255 255), $alpha: 0.5);
         transition: .3s all;
     }
     & .slick-dots li.slick-active button{
@@ -1378,7 +1390,7 @@ input {
                 height: 450px;
             }
             @media (max-width:767px) {
-                height: 200px;
+                height: auto;
             }
             img{
                 width: 100%;
@@ -1393,7 +1405,7 @@ input {
             .carousel-items-content{
                 bottom: 0;
                 width: 50%;
-                padding: 0rem 2rem 2rem 2rem;
+                padding: 0rem 1.5rem 1.5rem 1.5rem;
                 @include flex(column,flex-start,flex-end);
 
                 @media (max-width:768px) {
@@ -1511,7 +1523,7 @@ input {
             right: 0;
             width: 100%;
             bottom: 0;
-            padding: 15px;
+            padding: 25px 15px 7px 15px;
             background: linear-gradient(180deg, rgba(0,0,0,0) 34%, rgba(0,0,0,1) 120%);
             .title{
                 width: calc(100% - 50px);
@@ -1521,8 +1533,8 @@ input {
                 color: $bg-white;
             }
             .play-btn{
-                width: 34px;
-                height: 34px;
+                width: 30px;
+                height: 30px;
                 background: $bg-white;
                 border-radius: 50px;
                 border: none;
@@ -1619,7 +1631,7 @@ input {
         margin-left: 10px;
     }
     .top-ten .main-card .crown{
-        top:10px;
+        top:5px;
     }
     .main-card{
         position: relative;
@@ -1636,10 +1648,11 @@ input {
 
             img{
                 width: auto !important;
-                height: 95px!important;
+                height: 60px!important;
                 float: right;
-                margin-right: -15px;
+                margin-right: -11px;
                 margin-bottom: 15px;
+                opacity: 0.8;
             }
         }
         .play-btn-rounded{
@@ -1713,15 +1726,15 @@ input {
                 width: 100%;
                 height: auto;
                 background: #9a43d3;
-                padding: 16px 10px 2px 10px;
+                padding: 16px 10px 0px 10px;
                 color: #fff;
                 text-align: center;
-                font-size: 12px;
+                font-size: 16px;
                 position: absolute;
                 z-index: -1;
                 left: 0;
                 right: 0;
-                bottom: 0px;
+                bottom: -2px;
 
                 img{
                     width: 94px;
@@ -1761,6 +1774,12 @@ input {
             top: 13px;
             left: 5px;
             filter: drop-shadow(0px 3.462646484375px 6.92529296875px rgba(0, 0, 0, 0.25));
+            width: 20px;
+            height: 20px;
+            img{
+                width: 20px;
+                height: 20px;
+            }
         }
         .top-ten{
             width: 45px;
@@ -1819,6 +1838,12 @@ input {
             top: 10px;
             left: 10px;
             filter: drop-shadow(0px 3.462646484375px 6.92529296875px rgba(0, 0, 0, 0.25));
+            width: 20px;
+            height: 20px;
+            img{
+                width: 20px;
+                height: 20px;
+            }
         }
         .top-ten{
             width: 45px;
@@ -2026,16 +2051,16 @@ input {
 }
 
 .top-ten .slick-list li:nth-child(1n+1) .main-card .top-10-number{
-    background: linear-gradient(340deg, #F03D83 7.29%, rgba(240, 61, 131, 0.00) 99.99%, rgba(240, 61, 131, 0.00) 100%);
+    background: linear-gradient(340deg, rgba(240, 61, 131, 0.2) 7.29%, rgba(240, 61, 131, 0.00) 99.99%, rgba(240, 61, 131, 0.00) 100%);
 }
 .top-ten .slick-list li:nth-child(2n+1) .main-card .top-10-number{
-    background: linear-gradient(340deg, #FF7817 0%, rgba(255, 120, 23, 0.00) 100%);
+    background: linear-gradient(340deg, rgba(255, 120, 23, 0.2) 0%, rgba(255, 120, 23, 0.00) 100%);
 }
 .top-ten .slick-list li:nth-child(3n+1) .main-card .top-10-number{
-    background: linear-gradient(340deg, #B04CF1 0%, rgba(176, 76, 241, 0.00) 99.99%);
+    background: linear-gradient(340deg, rgba(176, 76, 241, 0.2) 0%, rgba(176, 76, 241, 0.00) 99.99%);
 }
 .top-ten .slick-list li:nth-child(4n+1) .main-card .top-10-number{
-    background: linear-gradient(340deg, rgba(255, 68, 68, 0.85) 0%, rgba(255, 68, 68, 0.00) 100%);
+    background: linear-gradient(340deg, rgba(255, 68, 68, 0.2) 0%, rgba(255, 68, 68, 0.00) 100%);
 }
 
 .slick-next.slick-disabled:before, .slick-prev.slick-disabled:before {
@@ -2123,7 +2148,7 @@ input {
                 height: 4px;
                 padding: 0;
                 border-radius: 20px;
-                background: #272727;
+                background: rgba($color: rgb(255 255 255), $alpha: 0.5);
                 transition: .3s all;
                 opacity: 1;
                 @media (max-width:767px) {
@@ -2196,7 +2221,7 @@ input {
     }
     .carousel-items-content{
         bottom: 0;
-        padding: 0rem 2rem 2rem 2rem;
+        padding: 0rem 1.5rem 1.5rem 1.5rem;
         @include flex(column,flex-start,flex-end);
         z-index: 2;
 
@@ -3794,7 +3819,7 @@ input {
         height: 4px;
         padding: 0;
         border-radius: 20px;
-        background: #272727;
+        background: rgba($color: rgb(255 255 255), $alpha: 0.5);
         transition: .3s all;
     }
     & .slick-dots li.slick-active button{
