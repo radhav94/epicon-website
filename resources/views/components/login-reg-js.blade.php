@@ -1,4 +1,4 @@
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="{{ asset('assets/js/vendor/jquery.validate.min.js') }}"></script>
 <script>
     var user_mob_email = '';
     var interval = "";
