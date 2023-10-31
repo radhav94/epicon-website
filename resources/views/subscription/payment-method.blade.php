@@ -14,7 +14,7 @@ $userData = $request->session()->get('user');
 
 //dd($userData);
 $subscribData = ''; $id = ''; $name = ''; $plan = ''; $actual_price = ''; $epic_price = ''; $save = '';
-//dd($result);
+
 if(isset($result) && !empty($result)){
     $id = $result['id'];
     $name = $result['name'];
@@ -151,10 +151,18 @@ $(document).ready(function(){
             
     });
 });
+
+perfEntries = performance.getEntriesByType("navigation");
+if (perfEntries[0].type === "back_forward") {
+    window.location.reload(true);
+}
+
 </script>
+
 @if(empty($userData['mobile']) && $userData['mobile']=='' || empty($userData['email']) && $userData['email']=='')
 <script>
 $(document).ready(function(){
+
     $('#update_user_modal').modal('show');
     //$('#verifyotpmodal').modal('show');
     $(".updateProfile").click(function (e) {

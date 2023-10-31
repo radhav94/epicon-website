@@ -28,7 +28,7 @@
                         </a>
                           <div class="carousel-items-content position-absolute">
                               <h2>{{ $card['sub_text'] }}</h2>
-                              <p>{{ $card['short_desc'] }}</p>
+                              <p>{{ @$val['title'] }}</p>
                               <ul class="w-100 d-flex justify-content-between align-items-center list-unstyled mb-0">
                                   <li class="d-flex">
 

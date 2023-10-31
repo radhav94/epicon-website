@@ -13,6 +13,7 @@ $(document).ready(function () {
 	});*/
 
 	$(document).on('click', '#watchVideo', function () {
+		$('.content-detail-banner').hide();
 		if (vidPlaying) {
 
 			window.player.play();
@@ -210,6 +211,7 @@ $(document).ready(function () {
 		closePlayer.addEventListener('click', () => {
 			player.pause();
 			$('.videoContainer').hide();
+			$('.content-detail-banner').show();
 		});
 
 		function updateQuality(newQuality) {
