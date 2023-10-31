@@ -104,11 +104,11 @@ if (notificationElement) {
   }
   else {
     $(".profile").hover(function () {
-      var e = document.querySelector(".profile-drop-down");
-      if (e.style.display == 'block')
-        e.style.display = 'none';
+      var profileDiv = document.querySelector(".profile-drop-down");
+      if (profileDiv.css('display') == 'block')
+        profileDiv.css('display', 'none');
       else
-        e.style.display = 'block';
+        profileDiv.css('display', 'block');
     });
   }
   if ($(window).width() < 1025) {
