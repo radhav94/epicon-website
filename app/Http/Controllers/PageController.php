@@ -103,7 +103,7 @@ class PageController extends Controller
     public function explore_details($slug)
     {
         $page = 1;
-        $limit = 18;
+        $limit = 20;
         $params = [
             'limit' => $limit,
             'page' => $page,
@@ -249,10 +249,10 @@ class PageController extends Controller
         // dd($request->all());
         $page = $request->page;
         $slug = $request->slug;
-        $limit = 18;
+        $limit = 20;
         $params = [
             'page' => $page,
-            'limit' => 18,
+            'limit' => $limit,
         ];
         $dataCount = 0;
         $result = CurlAPI("pages/midpage/" . $slug, "GET", $params, 1);
