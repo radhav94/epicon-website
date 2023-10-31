@@ -123,6 +123,7 @@
                             </ul>
                         </div>
                         <div class="tab-pane fade" id="pills-redeem" role="tabpanel" aria-labelledby="my-list">
+                            <?php if(isset($walletArr['redeem']) && !empty($walletArr['redeem'])){ ?>
                             <ul class="redeem list-unstyled p-0 mb-0 mt-4">
                                <?php foreach ($walletArr['redeem'] as $offercontent) { 
                                 $vendor_image = isset($offercontent['vendor_image']) ? $offercontent['vendor_image'] : '';
@@ -136,7 +137,7 @@
                                  ?>
                                 <li>
                                     <div class="redeem-top Redeembtn">
-                                        <input type="hidden" name="redeem_coupon" id="redeem_coupon" value="{{$offercontent['coupon_code']}}">
+                                        <input type="hidden" name="redeem_coupon" id="redeem_coupon" data-coupon="{{$offercontent['coupon_code']}}" value="{{$offercontent['coupon_code']}}">
                                         <div class="logo-coin">
                                             <img src="{{ $offer_image }}" alt="logo">
                                             <h4><img src="{{ asset('/img/coin.svg') }}" alt="">{{ isset($offercontent['epicoins']) ? $offercontent['epicoins'] : '' }}</h4>
@@ -209,12 +210,16 @@
                                     </div>
                                 </li> -->
                             </ul>
+                        <?php }else{ ?>
+                                    <h6 class="mt-4" style="color:white;">No Data Found</h6>
+                        <?php } ?>
                         </div>
                         <div class="tab-pane fade" id="pills-summary" role="tabpanel" aria-labelledby="my-list">
             
                             <div class="trasaction-table table-responsive w-100">
                                 <table class="table">
                                     <tbody>
+                                        <?php if(isset($walletArr['summary']) && !empty($walletArr['summary'])){ ?>
                                         <?php foreach ($walletArr['summary'] as $offersummary) {
                                             $offer_image = isset($offersummary['offer_image']) ? $offersummary['offer_image'] : $offersummary['vendor_image'];
                                             $redeemOn = isset($offersummary['redeem_on']) && !empty($offersummary['redeem_on']) ? date('d F Y', strtotime($offersummary['redeem_on'])) : '';
@@ -240,6 +245,9 @@
                                         <td style="color:#B7B7B7">Claimed on 03/08/2023</td>
                                         <td class="text-end"><img width="15" src="{{ asset('/img/coin.svg') }}" alt="">&nbsp; 499</td>
                                     </tr> -->
+                                <?php }else{ ?>
+                                    <h6 class="mt-4" style="color:white;">No summary to show</h6>
+                                <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -261,9 +269,9 @@
        $("#redeem-popup").hide();
       $(".Redeembtn").click(function(e) {
             e.preventDefault();
-            // alert("clicked on redeem");
-            
-            var formData = $('#redeem_coupon').val();
+            var couponValue = $(this).find('#redeem_coupon').data('coupon');
+            var formData = couponValue;
+            // var formData = $('#redeem_coupon').val();
             $('.redeem-code').html(formData);
             var requestData = {
                 coupon_code: formData
