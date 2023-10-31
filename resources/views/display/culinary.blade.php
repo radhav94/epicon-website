@@ -15,7 +15,7 @@
         @foreach ($value['content'] as $key => $val)
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
-            $cover_img = getCardImage($val, 'epic_shorts_image', 'small', ['cover_image', 'banner_image']);
+            $cover_img = getCardImage($val, 'epic_shorts_image', 'medium', ['cover_image', 'banner_image']);
             ?>
             <div>
                 @if(@$val['asset_type'] == 'PLAY')

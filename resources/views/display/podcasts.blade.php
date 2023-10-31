@@ -15,7 +15,7 @@
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
             
-            $cover_img = getCardImage($val, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
+            $cover_img = getCardImage($val, 'cover_image', 'medium', ['epic_shorts_image', 'banner_image']);
             
             ?>
             <li>

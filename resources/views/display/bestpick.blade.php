@@ -9,7 +9,7 @@
             <?php
             //dd($val);
             $card = getItemCardData($val, $displayLanguageParam);
-            $cover_img = getCardImage($val, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
+            $cover_img = getCardImage($val, 'cover_image', 'medium', ['epic_shorts_image', 'banner_image']);
             ?>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link <?php if($key == 0){ echo 'active';} ?>" id="pills-home-tab-{{$key}}" data-bs-toggle="pill"
@@ -33,7 +33,7 @@
                 @foreach ($val['episodes'] as $key => $data) 
                 <?php //dd($data); 
                 $child_card = getItemCardData($data, $displayLanguageParam);
-                $child_cover_img = getCardImage($data, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
+                $child_cover_img = getCardImage($data, 'cover_image', 'medium', ['epic_shorts_image', 'banner_image']);
                 ?>   
                     <li>
                         <a href="{{ getContentUrl($data) }}" class="main-card">
