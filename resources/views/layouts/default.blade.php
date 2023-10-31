@@ -125,7 +125,7 @@
     {{-- Start footer common scripts --}}
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-ui.js') }}"></script>
-    <script src="{{ asset('assets/js/custom.js') }}?v={{ time() }}"></script>
+    <script src="{{ asset('assets/js/custom.js') }}?v={{ assetTime() }}"></script>
     <script src="{{ asset('assets/js/swiper.js') }}"></script>
     <script src="{{ asset('assets/js/spiner.js') }}"></script>
     <script src="{{ asset('assets/js/slick.min.js') }}"></script>
@@ -134,7 +134,7 @@
     <script src="{{ asset('assets/js/vendor/toastr.min.js') }}"></script>
 
     <script src="{{ asset('assets/js/epic.js') }}"></script>
-    <script src="{{ asset('assets/js/common.js') }}?v={{ time() }}"></script>
+    <script src="{{ asset('assets/js/common.js') }}?v={{ assetTime() }}"></script>
     {{-- End footer common scripts --}}
 
 
