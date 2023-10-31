@@ -14,7 +14,7 @@ class PageController extends Controller
         $this->limit = 10;
     }
 
-    public function index($slug = 'home-v2')
+    public function index($slug = 'home-v2')    
     {
         $pageslug = strtolower($slug);
 
@@ -201,7 +201,7 @@ class PageController extends Controller
         
         if (isset($epicwebArr) && $epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
-            return view('pages.chanel.channelmidpage', compact('epicwebArr','title', 'slug', 'page'));
+            return view('pages.chanel.channelmidpage', compact('epicwebArr', 'slug', 'page'));
         } else {
             return view('pages.error.data-error');
         }
