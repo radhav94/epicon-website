@@ -66,7 +66,7 @@ class ProfileController extends Controller
     {
         $param = [
             'name' => $request->name,
-            'date_of_birth' => $request->dob,
+            'date_of_birth' => $request->dob ? date('Y-m-d', strtotime($request->dob)) : '',
         ];
         if(!empty($request->dob) && $request->dob >= date('Y-m-d')){
             return JSONResponse(400, 'Date of birth must be less than today.');
@@ -119,7 +119,7 @@ class ProfileController extends Controller
         $param = [
             'profile_id' => $request->profile_id,
             'name' => $request->name,
-            'date_of_birth' => $request->dob,
+            'date_of_birth' => $request->dob ? date('Y-m-d', strtotime($request->dob)) : '',
         ];
 
         if(!empty($request->dob) && $request->dob >= date('Y-m-d')){

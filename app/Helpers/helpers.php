@@ -1107,3 +1107,9 @@ function getCountryStateDataInHtml()
     }
     return $countryisdhtml;
 }
+
+if (!function_exists('assetTime')) {
+    function assetTime() {
+        return time();
+    }
+}
