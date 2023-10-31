@@ -4,7 +4,7 @@
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
             
-            if(isMobliDevice()){
+            if(!isMobliDevice()){
                 $banner_img = getCardImage($val, 'banner_image', 'large');
             }else{
                 $banner_img = getCardImage($val, 'vertical_cover_image', 'medium');
