@@ -4,8 +4,11 @@
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
             
-            $banner_img = getCardImage($val, 'banner_image', 'large', ['cover_image']);
-            
+            if(!isMobliDevice()){
+                $banner_img = getCardImage($val, 'banner_image', 'large');
+            }else{
+                $banner_img = getCardImage($val, 'vertical_cover_image', 'medium');
+            }
             ?>
             <div class="carousel-card">
                 <button class="mute-btn">
