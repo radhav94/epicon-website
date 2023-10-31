@@ -105,10 +105,12 @@ if (notificationElement) {
   else {
     $(".profile").hover(function () {
       var profileDiv = document.querySelector(".profile-drop-down");
-      if (profileDiv.css('display') == 'block')
-        profileDiv.css('display', 'none');
-      else
-        profileDiv.css('display', 'block');
+      if (profileDiv != '' && profileDiv != null && profileDiv != 'undefined') {
+        if (profileDiv.css('display') == 'block')
+          profileDiv.css('display', 'none');
+        else
+          profileDiv.css('display', 'block');
+      }
     });
   }
   if ($(window).width() < 1025) {
