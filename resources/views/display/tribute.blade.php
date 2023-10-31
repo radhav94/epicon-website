@@ -14,7 +14,7 @@
         @foreach ($value['content'] as $key => $val)
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
-            $banner_img = getCardImage($val, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
+            $banner_img = getCardImage($val, 'cover_image', 'medium', ['epic_shorts_image', 'banner_image']);
             
             ?>
             <li>

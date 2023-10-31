@@ -19,7 +19,7 @@
                  $card = getItemCardData($val, $displayLanguageParam);
                  
                  $banner_img = getCardImage($val, 'banner_image', 'large', ['cover_image']);
-                 $cover_img = getCardImage($val, 'vertical_cover_image', 'small', ['cover_image', 'banner_image']);
+                 $cover_img = getCardImage($val, 'vertical_cover_image', 'medium', ['cover_image', 'banner_image']);
                  
                  $li = '';
                  if (@$val['duration']) {
@@ -106,7 +106,7 @@
                              if ($s_txt) {
                                  $s_txt = $s_txt;
                              }
-                             $child_cover_img = getCardImage($data, 'cover_image', 'small', ['epic_shorts_image', 'banner_image']);
+                             $child_cover_img = getCardImage($data, 'cover_image', 'medium', ['epic_shorts_image', 'banner_image']);
                              ?>
                             @if (isset($data['url']) && !empty($data['url']))
                              <div class="new-release-card new-release-card-{{ $key }}"><a
