@@ -33,7 +33,6 @@ class PageController extends Controller
             }
             dd($result);
         }
-        // dd($result);
         $pagetitle = @$result['data']['name'];
         $pagetype = ($routenamed == 'homepage' || $routenamed == 'home' || $routenamed == 'home-v2') ? 'HOME' : "CATALOG";
         if ($result && @$result['success'] ==  true) {
