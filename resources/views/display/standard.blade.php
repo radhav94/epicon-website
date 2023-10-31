@@ -15,7 +15,7 @@
              <?php
              $card = getItemCardData($val, $displayLanguageParam);
              
-             $cover_img = getCardImage($val, 'vertical_cover_image', 'small', ['cover_image', 'banner_image']);
+             $cover_img = getCardImage($val, 'vertical_cover_image', 'medium', ['cover_image', 'banner_image']);
              
              $getTitle = getNewTitle($val);
              ?>

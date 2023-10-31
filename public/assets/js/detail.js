@@ -4,7 +4,6 @@ $(document).ready(function () {
 
         let cardType = $(this).data('cardtype');
         let cont_id = $(this).data('id');
-        let $this = $(this);
         let requestData = {
             content_id: cont_id
         };
@@ -18,7 +17,6 @@ $(document).ready(function () {
 
             if (cardType != 'list') {
                 $('.claps_num').text(countConvert(parseInt(claps) + 1));
-                $this.attr('data-clapcount', (parseInt(claps) + 1));
             }
         }
 

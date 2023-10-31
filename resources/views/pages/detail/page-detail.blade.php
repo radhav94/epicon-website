@@ -76,7 +76,7 @@ $cover_img = getCardImage($content, 'banner_image', 'large');
                         </p>
                         <div class="seemore">
                             <p class="text-white mb-0">{{ @$content['description'] }}</p>
-                            <button class="bg-transparent text-white border-0 ps-0 py-3 small readmore-less">Read More</button>
+                            <button class="bg-transparent text-white small readmore-less">Read More</button>
                         </div>
                         @if (@$content['cast'])
                         <div class="seemore">
@@ -133,7 +133,7 @@ $cover_img = getCardImage($content, 'banner_image', 'large');
                                         @if ($wishAction == 'add') style="display: none" @endif>
                                 </button>
                                 @if(isset($content['catalog_slug']) && $content['catalog_slug'] != 'live-tv')
-                                <button class="rounded-transparent-btn clapButton" data-id="{{ @$content['ID'] }}" data-clapCount="{{ @$content['claps'] }}">
+                                <button class="rounded-transparent-btn clapButton" data-id="{{ @$content['ID'] }}">
                                     <img src="{{ asset('assets/img/clap-icon.svg') }}" alt="icon">
                                     <span class="claps_num">{{ countConvert(@$content['claps']) }}</span>
                                 </button>

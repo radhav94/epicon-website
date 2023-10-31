@@ -178,7 +178,7 @@ input {
 // switch to kids end
 
 .big-play{
-    padding: 10px 30px;
+    padding: 6px 20px;
     background: $bg-white;
     color: $bg-dark-gray;
     @include flex(row,center,center);
@@ -187,12 +187,17 @@ input {
     border: none;
     margin-right: 10px;
     font-weight: 600;
+    font-size: 14px;
+
+    svg{
+        width: 20px;
+    }
     @media (max-width:768px) {
         padding: 5px 15px;
     }
     @media (max-width:700px) {
         &{
-           height: 26px;
+           height: 30px;
            padding: 2px 10px;
             font-size: 14px;
         }
@@ -205,7 +210,7 @@ input {
     }
 }
 .big-add-list{
-    padding: 10px 20px;
+    padding: 6px 20px;
     background: linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%);
     color: $bg-white;
     @include flex(row,center,center);
@@ -225,7 +230,7 @@ input {
     }
     @media (max-width:700px) {
         &{
-            height: 26px;
+            height: 30px;
             padding: 4px 10px;
             font-size: 10px;
         }
@@ -754,6 +759,9 @@ input {
             border-radius: 1rem;
             padding: 30px 25px 0;
             position: relative;
+            @media (max-width:767px) {
+                padding: 30px 0px 0;
+            }
             & > a{
                 display: block;
                 width: 100%;
@@ -777,17 +785,23 @@ input {
             @media screen and (max-width: 1650px) {
                 height: auto;
             }
-            @media screen and (max-width: 1336px) {
-                height: 415px;
-            }
-            @media screen and (max-width: 768px) {
-                padding: 15px 15px 0;
-                height: 480px;
-            }
-            @media screen and (max-width: 767px) {
-                padding: 18px 8px 0;
-                height: 394px;
-            }
+            // @media screen and (max-width: 1366px) {
+            //     height: auto;
+            // }
+            // @media screen and (max-width: 1024px) {
+            //     height: 480px;
+            // }
+            // @media screen and (max-width: 960px) {
+            //     height: 480px;
+            // }
+            // @media screen and (max-width: 768px) {
+            //     padding: 15px 15px 0;
+            //     height: 480px;
+            // }
+            // @media screen and (max-width: 767px) {
+            //     padding: 18px 8px 0;
+            //     height: 394px;
+            // }
             img{
                 width: 100%;
                 height: 100%;
@@ -801,15 +815,15 @@ input {
             .carousel-items-content{
                 bottom: 0;
                 width: 50%;
-                padding: 0rem 2rem 2rem 2rem;
+                padding: 0rem 1.5rem 1.5rem 1.5rem;
                 @include flex(column,flex-start,flex-end);
                 
                 @media (max-width:768px){
-                    width: calc(100% - 31px);
+                    width: calc(100% - 0px);
                     padding: 1rem;
                 }
                 @media (max-width:700px){
-                    width: calc(100% - 15px);
+                    width: calc(100% - 0px);
                     height: 260px;
                     padding: 0.5rem;
                     border-radius: 12px;
@@ -822,12 +836,12 @@ input {
                     text-decoration: none;
                 }
                 h2{
-                    font-size: 14px;
+                    font-size: 12px;
                     color: $bg-white;
                     margin-bottom: 10px;
 
                     @media (max-width:768px){
-                        margin-bottom: 10px;
+                        margin-bottom: 0px;
                     }
                 }
                 p{
@@ -837,11 +851,14 @@ input {
                     font-weight: 500;
                     @include line-clamp(2);
                     line-height: 24px;
+                    // display: none;
                     @media (max-width:768px){
                         width: 100%;
-                        font-size: 16px;
+                        font-size: 14px;
                         color: $bg-white;
-                        display: none;
+                        @include line-clamp(1);
+                        margin-bottom: 5px;
+                        // display: none;
                     }
                 }
             }
@@ -1030,7 +1047,7 @@ input {
             .carousel-items-content{
                 bottom: 0;
                 // width: 50%;
-                padding: 0rem 2rem 2rem 2rem;
+                padding: 0rem 1.5rem 1.5rem 1.5rem;
                 @include flex(column,flex-start,flex-end);
                 display: none;
 
@@ -1112,6 +1129,9 @@ input {
         height: 40px;
         font-size: 0;
         opacity: 1;
+        @media (max-width:700px) {
+            margin-inline: 20px;
+        }
     }
     & .slide-m-prev {
         right: 20px;
@@ -1141,7 +1161,7 @@ input {
         height: 4px;
         padding: 0;
         border-radius: 20px;
-        background: #272727;
+        background: rgba($color: rgb(255 255 255), $alpha: 0.5);
         transition: .3s all;
     }
     & .slick-dots li.slick-active button{
@@ -1221,7 +1241,7 @@ input {
         height: 4px;
         padding: 0;
         border-radius: 20px;
-        background: #272727;
+        background: rgba($color: rgb(255 255 255), $alpha: 0.5);
         transition: .3s all;
     }
     & .slick-dots li.slick-active button{
@@ -1378,7 +1398,7 @@ input {
                 height: 450px;
             }
             @media (max-width:767px) {
-                height: 200px;
+                height: auto;
             }
             img{
                 width: 100%;
@@ -1393,7 +1413,7 @@ input {
             .carousel-items-content{
                 bottom: 0;
                 width: 50%;
-                padding: 0rem 2rem 2rem 2rem;
+                padding: 0rem 1.5rem 1.5rem 1.5rem;
                 @include flex(column,flex-start,flex-end);
 
                 @media (max-width:768px) {
@@ -1427,6 +1447,85 @@ input {
         }
     }
     
+}
+.spotlight-control{
+    & .slider-controls{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin-top: 50px;
+
+        &::after{
+            content: "";
+            position: absolute;
+            width: 80%;
+            height: 300px;
+            background: url("../img/nav-bg.svg") no-repeat;
+            background-position: center center;
+            background-size: 100% 100%;
+            pointer-events: none;
+            z-index: -1;
+
+            @media (max-width:700px) {
+                width: 100%;
+            }
+        }
+    }
+    & .slide-sl-dots{
+        @media (max-width:767px) {
+            display: none;
+        }
+    }
+    & .slide-sl-next, & .slide-sl-prev {
+        background-color: transparent;
+        outline: 0;
+        border: none;
+        height: 40px;
+        font-size: 0;
+        opacity: 1;
+        @media (max-width:767px) {
+            margin-inline:20px;
+        }
+    }
+    & .slide-sl-prev {
+        right: 20px;
+        left: unset;
+    }
+    & .slide-sl-next::before {
+        content: url(../img/hero-right-arrow.svg);
+    }
+    & .slide-sl-prev::before {
+        content: url(../img/hero-left-arrow.svg);
+    }
+    .slick-dotted.slick-slider{
+        margin-bottom: -40px;
+
+        @media (max-width:700px) {
+            margin-bottom: -50px;
+        }
+    }
+    & .slick-dots{
+        position: unset;
+    }
+    & .slick-dots li {
+        width: fit-content;
+    }
+    & .slick-dots li button {
+        width: 10px;
+        height: 4px;
+        padding: 0;
+        border-radius: 20px;
+        background: rgba($color: rgb(255 255 255), $alpha: 0.5);
+        transition: .3s all;
+    }
+    & .slick-dots li.slick-active button{
+        width: 26px;
+        background: #FFD102;
+    }
+    & .slick-dots li button::before{
+        content: unset;
+    }
 }
 .carousel-main,.library,.seeall-main-page{
     margin-block: 25px;
@@ -1511,7 +1610,7 @@ input {
             right: 0;
             width: 100%;
             bottom: 0;
-            padding: 15px;
+            padding: 25px 15px 7px 15px;
             background: linear-gradient(180deg, rgba(0,0,0,0) 34%, rgba(0,0,0,1) 120%);
             .title{
                 width: calc(100% - 50px);
@@ -1521,8 +1620,8 @@ input {
                 color: $bg-white;
             }
             .play-btn{
-                width: 34px;
-                height: 34px;
+                width: 30px;
+                height: 30px;
                 background: $bg-white;
                 border-radius: 50px;
                 border: none;
@@ -1619,7 +1718,7 @@ input {
         margin-left: 10px;
     }
     .top-ten .main-card .crown{
-        top:10px;
+        top:5px;
     }
     .main-card{
         position: relative;
@@ -1636,10 +1735,11 @@ input {
 
             img{
                 width: auto !important;
-                height: 95px!important;
+                height: 60px!important;
                 float: right;
-                margin-right: -15px;
+                margin-right: -11px;
                 margin-bottom: 15px;
+                opacity: 0.8;
             }
         }
         .play-btn-rounded{
@@ -1713,15 +1813,15 @@ input {
                 width: 100%;
                 height: auto;
                 background: #9a43d3;
-                padding: 16px 10px 2px 10px;
+                padding: 16px 10px 0px 10px;
                 color: #fff;
                 text-align: center;
-                font-size: 12px;
+                font-size: 16px;
                 position: absolute;
                 z-index: -1;
                 left: 0;
                 right: 0;
-                bottom: 0px;
+                bottom: -2px;
 
                 img{
                     width: 94px;
@@ -1761,6 +1861,12 @@ input {
             top: 13px;
             left: 5px;
             filter: drop-shadow(0px 3.462646484375px 6.92529296875px rgba(0, 0, 0, 0.25));
+            width: 20px;
+            height: 20px;
+            img{
+                width: 20px;
+                height: 20px;
+            }
         }
         .top-ten{
             width: 45px;
@@ -1819,6 +1925,12 @@ input {
             top: 10px;
             left: 10px;
             filter: drop-shadow(0px 3.462646484375px 6.92529296875px rgba(0, 0, 0, 0.25));
+            width: 20px;
+            height: 20px;
+            img{
+                width: 20px;
+                height: 20px;
+            }
         }
         .top-ten{
             width: 45px;
@@ -2026,16 +2138,16 @@ input {
 }
 
 .top-ten .slick-list li:nth-child(1n+1) .main-card .top-10-number{
-    background: linear-gradient(340deg, #F03D83 7.29%, rgba(240, 61, 131, 0.00) 99.99%, rgba(240, 61, 131, 0.00) 100%);
+    background: linear-gradient(340deg, rgba(240, 61, 131, 0.2) 7.29%, rgba(240, 61, 131, 0.00) 99.99%, rgba(240, 61, 131, 0.00) 100%);
 }
 .top-ten .slick-list li:nth-child(2n+1) .main-card .top-10-number{
-    background: linear-gradient(340deg, #FF7817 0%, rgba(255, 120, 23, 0.00) 100%);
+    background: linear-gradient(340deg, rgba(255, 120, 23, 0.2) 0%, rgba(255, 120, 23, 0.00) 100%);
 }
 .top-ten .slick-list li:nth-child(3n+1) .main-card .top-10-number{
-    background: linear-gradient(340deg, #B04CF1 0%, rgba(176, 76, 241, 0.00) 99.99%);
+    background: linear-gradient(340deg, rgba(176, 76, 241, 0.2) 0%, rgba(176, 76, 241, 0.00) 99.99%);
 }
 .top-ten .slick-list li:nth-child(4n+1) .main-card .top-10-number{
-    background: linear-gradient(340deg, rgba(255, 68, 68, 0.85) 0%, rgba(255, 68, 68, 0.00) 100%);
+    background: linear-gradient(340deg, rgba(255, 68, 68, 0.2) 0%, rgba(255, 68, 68, 0.00) 100%);
 }
 
 .slick-next.slick-disabled:before, .slick-prev.slick-disabled:before {
@@ -2123,7 +2235,7 @@ input {
                 height: 4px;
                 padding: 0;
                 border-radius: 20px;
-                background: #272727;
+                background: rgba($color: rgb(255 255 255), $alpha: 0.5);
                 transition: .3s all;
                 opacity: 1;
                 @media (max-width:767px) {
@@ -2196,7 +2308,7 @@ input {
     }
     .carousel-items-content{
         bottom: 0;
-        padding: 0rem 2rem 2rem 2rem;
+        padding: 0rem 1.5rem 1.5rem 1.5rem;
         @include flex(column,flex-start,flex-end);
         z-index: 2;
 
@@ -2345,7 +2457,7 @@ input {
 
     &::after{
         content: "";
-        width: 1540px;
+        width: 3000px;
         height: 1000px;
         left: -50px;
         right: 0;
@@ -2376,7 +2488,7 @@ input {
     }
 
     .cant-decide{
-        width: 25%;
+        width: 26%;
         @media (max-width:1024px) {
             width: 100%;
             margin-bottom: 60px;
@@ -2402,14 +2514,11 @@ input {
         }
     }
     .trigger-data-img{
-        width: 124px;
+        width: 180px;
         height: auto;
         border-radius: 8px;
         overflow: hidden;
         margin: 0 5px;
-        @media (max-width:767px){
-            width: 160px;
-        }
         img{
             width: 100%;
         }
@@ -3794,7 +3903,7 @@ input {
         height: 4px;
         padding: 0;
         border-radius: 20px;
-        background: #272727;
+        background: rgba($color: rgb(255 255 255), $alpha: 0.5);
         transition: .3s all;
     }
     & .slick-dots li.slick-active button{
@@ -5301,12 +5410,13 @@ input {
     .banner-content{
         height: 100%;
         width: 100%;
-        @include flex(row,flex-start,space-between);
+        @include flex(row,flex-end,space-between);
 
         & .all-btn{
             display: flex;
             width: 100%;
             gap:10px;
+            margin-bottom: 15px;
             @media (max-width:700px){
                 flex-wrap: wrap;
                 justify-content: center;
@@ -5834,20 +5944,22 @@ input {
 }
 .podcast-top{
     @include flex(row,center,center);
-    gap: 20px;
+    gap: 40px;
     
     @media (max-width:700px) {
         flex-direction: column;
+        gap: 20px;
     }
     .thumb{
         width: 300px;
         height: 300px;
         position: relative;
         overflow: hidden;
-        border-radius: 30px;
+        // border-radius: 30px;
         flex-shrink: 0;
         @media (max-width:700px) {
-            width: 100%;
+            width: 250px;
+            height: 250px;
         }
         img{
             width: 100%;
@@ -6491,8 +6603,7 @@ input {
     .banner-main{
         padding: 30px;
         overflow: hidden;
-        height: auto;
-
+        height: 80vh;
         @media (max-width:768px){
             padding: 0px;
             height: auto;
@@ -6545,6 +6656,7 @@ input {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    justify-content: center;
     padding-top: 30px;
     margin-top: 30px;
     border-top: 1px solid rgba($color: rgb(255 255 255), $alpha: 0.1);
@@ -6554,7 +6666,7 @@ input {
         height: 54px;
         border-radius: 100px;
         flex-shrink: 0;
-        min-width: 90px;
+        min-width: 70px;
         @media (max-width:768px) {
             min-width: 54px;
         }
@@ -6578,4 +6690,21 @@ input {
     padding: 6px;
     border-top-left-radius: 15px;
     border-bottom-right-radius: 15px;
+}
+.readmore-less{
+    border: 1px solid #fff;
+    border-radius: 3px;
+    margin-block: 15px;
+}
+#volumeUpButton {
+    .fa-volume-up{
+        font-size: 25px;
+    }
+}
+
+#audioPlayer{
+    width: 50%;
+    @media (max-width:768px) {
+        width: 100%;
+    }
 }

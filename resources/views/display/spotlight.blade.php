@@ -1,4 +1,4 @@
-<section class="carousel-main">
+<section class="carousel-main spotlight-control">
     <div class="container-fluid">
         <div class="banner-carousel-1">
 
@@ -40,5 +40,10 @@
                 </div>
         @endforeach
     </div>
+</div>
+<div class="slider-controls">
+    <button type="button" class="slide-sl-prev">prev</button>
+    <div class="slide-sl-dots"></div>
+    <button type="button" class="slide-sl-next">next</button>
 </div>
 </section>
