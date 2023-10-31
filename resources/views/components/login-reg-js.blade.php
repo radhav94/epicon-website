@@ -337,9 +337,10 @@
                             queryParams = new URLSearchParams(window.location.search);
                             $("#userid").val(response.payload.user_id);
                             $("#sign_method").val(response.payload.user_signup_method);
-                            $('.screen-login,.screen-verify,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                                .hide();
+                            
                             if (response.payload.response.is_verified == false) {
+                                $('.screen-login,.screen-verify,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
+                                .hide();
                                 $('.screen-register').show();
                                 $('.screen-login-with-pwd').hide();
                             } else {
@@ -494,9 +495,9 @@
                             // $('#register-result').html('');
                             // $("#username").text(response.payload.name);
                             // $("#sign_method").val(response.payload.user_signup_method);
+                            $('.screen-sucess-logged').show();
                             $('.screen-login,.screen-verify,.screen-register,.left-side,.right-side,.screen-sucess-register,.screen-login-with-pwd,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
                                 .hide();
-                            $('.screen-sucess-logged').show();
                             if(response.payload.subplan_status == 'active'){
                                 $('.no-subscription-user').hide();
                             }else{

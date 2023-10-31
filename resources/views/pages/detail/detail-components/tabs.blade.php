@@ -1,9 +1,8 @@
    <?php
     $season_episode_data = [];
     $temp = $seasonList = [];
-
     $tab1_title = $lastSeason = '';
-    // dd($content);
+
     if ($content['content_type'] == 'SHOW') {
         $seasons = $content['season'] ?? [];
         $tab1_title = 'Seasons';
@@ -24,16 +23,6 @@
         $lastSeason = @$content['slug'];
         $season_episode_data[$lastSeason] = $temp;
     }
-  
-    // if ($temp) {
-    //     foreach ($temp as $k => $v) {
-    //         if (isset($v['ID'])) {
-    //             $ep_season_data[] = $v;
-    //         }
-    //     }
-    //     $slug = @$content['slug'];
-    //     $season_episode_data[$slug] = $ep_season_data;
-    // }
 
     $active_tab = '';
     $tabs = [];
