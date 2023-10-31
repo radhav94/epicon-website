@@ -15,6 +15,7 @@ class VerifyCsrfToken extends Middleware
         "payusuccess",
         "payufail",
         "hi/payusuccess",
-        "hi/payufail",    
+        "hi/payufail",
+        "androidPayuresponse",    
     ];
 }

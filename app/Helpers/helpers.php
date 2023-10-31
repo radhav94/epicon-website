@@ -771,9 +771,16 @@ function formatDate($date, $format = 'd F Y')
 
 function getCardImage($content, $key, $size = 'medium', $fallback = [])
 {
-    if (empty($fallback)) {
-        $fallback = ['banner_image', 'cover_image', 'cover_image_special', 'spotlight_epic_shorts_image', 'epic_shorts_image', 'vertical_cover_image'];
-    }
+    // if (empty($fallback)) {
+        $fallback = [
+            'banner_image' => 'default-830x400.png', 
+            'cover_image' => 'default-830x400.png', 
+            'cover_image_special'=> 'default-200x200.png', 
+            'spotlight_epic_shorts_image'=> 'default-200x200.png', 
+            'epic_shorts_image'=> 'default-200x200.png', 
+            'vertical_cover_image'=> 'default-200x300.png'
+        ];
+    // }
     $img_url = '';
     if ($content) {
         if (isset($content[$key]) && !empty($content[$key])) {
@@ -781,19 +788,22 @@ function getCardImage($content, $key, $size = 'medium', $fallback = [])
         }
 
         if (empty($img_url)) {
-            foreach ($fallback as $k => $img_key) {
+
+            $img_url = isset($fallback[$key]) ? asset('assets/img/'.$fallback[$key]) : asset('assets/img/default-200x200.png');
+
+            /*foreach ($fallback as $k => $img_key) {
                 if (isset($content[$img_key]) && !empty($content[$img_key])) {
                     $img_url = $content[$img_key][$size] ?? '';
                 }
                 if (!empty($img_url)) {
                     break;
                 }
-            }
+            }*/
         }
     }
-    $match = 'st2.epicon.epicchannel.com';
-    $replaceWith = 'st2.epicon.in';
-    $img_url = str_replace($match, $replaceWith, $img_url);
+    // $match = 'st2.epicon.epicchannel.com';
+    // $replaceWith = 'st2.epicon.in';
+    // $img_url = str_replace($match, $replaceWith, $img_url);
     return $img_url;
 }
 
@@ -1021,4 +1031,34 @@ function isKidsPage(){
 
 function kidsMode(){
     return session()->has('kidsMode') && session()->get('kidsMode') == true ? true : false;
+}
+
+function getJsonDataFromFile($filepath)
+{
+	$jsonData = file_get_contents($filepath);
+	$arrayData = json_decode($jsonData, true);
+	return $arrayData;
+}
+
+function getCountryStateData()
+{
+	$filepath = asset('json/countrystate.json');
+	$countrystate = getJsonDataFromFile($filepath);
+	return $countrystate;
+}
+
+function getCountryStateDataInHtml()
+{
+    $countrycode = (!empty($_SERVER['HTTP_X_CC']) ? $_SERVER['HTTP_X_CC'] : 'IN');
+    $countrystate = getCountryStateData();
+    $countryisdhtml = "";
+    foreach ($countrystate['countries'] as $i => $value) {
+        if ($countrycode == $value['code'] || $countrycode == $value['countryisdcode']) {
+            $selectvar = "selected";
+        } else {
+            $selectvar = "";
+        }
+        $countryisdhtml .= '<option value="' . $value['countryisdcode'] . '" ' . $selectvar . '>' . $value['displayisdcode'] . '</option>';
+    }
+    return $countryisdhtml;
 }

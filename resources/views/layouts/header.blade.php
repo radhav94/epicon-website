@@ -7,11 +7,12 @@ if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
 $kids_page = $segment == 'kids' ? true : false;
 
 $action = app('request')->route()->getAction();
-$subplan = checkSubscription();
+$subplan = [];
 //print_r($action);
 //session()->flush();
 if (isUserLoggedIn()) {
     $profile = getProfileData();
+    $subplan = checkSubscription();
 }
 ?>
 <!-- Side Menu Start-->
@@ -193,6 +194,15 @@ if (request()->path() == "hi") {
                 <li><a href="{{ getUrl($key) }}"
                         @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
             @endforeach
+            @loggedin
+            <li>
+                <a href="{{url('/my-rewards')}}" @if ($current_route == "my-rewards") class="active" @endif>Reward Store</a>
+            </li>
+            @elseloggedin
+            <li class="nav-item">
+                <a href="javascript:void(0)" class="login">Reward Store</a>
+            </li>
+            @endloggedin
 
         </ul>
                 <div class="main-header-right d-flex align-items-center">
@@ -281,7 +291,7 @@ if (request()->path() == "hi") {
                                     ?>
 
                                     <a href="{{ getUrlWithPrefix('profile.myProfile', $value['id']) }}" class="{{ $isActiveProfile }}">
-                                        <div class="profile-pik girl-bg active">
+                                        <div class="profile-pik girl-bg {{ $isActiveProfile }}">
                                             <img src="{{ $profile_img }}" alt="">
                                         </div>
                                         <span class="pro-name">{{ ucfirst(@$value['name']) }}</span>
