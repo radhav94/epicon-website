@@ -70,7 +70,7 @@ $(document).ready(function () {
     $(".allAccessBtn-sub").click(function() {
         window.history.pushState({},'',"?ref=subscription");
         $("#child-pin-modal").modal('show');
-    })
+    });
 
     $('.goBackButton').click(function() {
         // Go back to the previous page
