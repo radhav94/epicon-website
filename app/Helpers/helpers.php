@@ -1120,3 +1120,9 @@ if (!function_exists('assetTime')) {
         return time();
     }
 }
+
+if (!function_exists('countConvert')) {
+    function countConvert($count = 0) {
+        return $count >= 1000 ? ceil($count/1000) . "K" : $count;
+    }
+}
