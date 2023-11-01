@@ -200,7 +200,7 @@ if (request()->path() == "hi") {
             </li>
             @elseloggedin
             <li class="nav-item">
-                <a href="javascript:void(0)" class="login">Reward Store</a>
+                <a href="javascript:void(0)" class="login-with-rewards">Reward Store</a>
             </li>
             @endloggedin
 
