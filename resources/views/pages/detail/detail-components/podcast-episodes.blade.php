@@ -8,7 +8,9 @@
                     continue;
                 }
                 $card = getItemCardData($value, $displayLanguageParam);
-                $cover_img = isset($value['cover_image']) ? @$value['cover_image']['medium'] : $card['banner_img'];
+                //$cover_img = isset($value['cover_image']) ? @$value['cover_image']['medium'] : $card['banner_img'];
+
+                $cover_img = getCardImage($value, 'cover_image', 'medium');
 
                 ?>
 
