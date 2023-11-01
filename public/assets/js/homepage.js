@@ -94,9 +94,9 @@ function initSliders() {
         arrows: true,
         dots: true,
         autoplay: true,
-        appendDots: $(".slide-sl-dots"),
-        prevArrow: $(".slide-sl-prev"),
-        nextArrow: $(".slide-sl-next"),
+        // appendDots: $(".slide-sl-dots"),
+        // prevArrow: $(".slide-sl-prev"),
+        // nextArrow: $(".slide-sl-next"),
     });
 
     $('.carousel-initilize').not('.slick-initialized').slick({
