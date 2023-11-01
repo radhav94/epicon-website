@@ -119,7 +119,7 @@ $(window).on('load', function () {
 
     /*logout if token not found*/
     if (queryParams.get('type') == "logout") {
-        showToaster("Your have been logged out. Kindly relogin to continue.", 2, 5000)
+        showToaster("You have been logged out. Kindly relogin to continue.", 2, 5000)
         window.history.replaceState({}, document.title, "/");
     }
 })

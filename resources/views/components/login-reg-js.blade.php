@@ -92,6 +92,7 @@
                     },
                     success: function(response) {
                         // console.log(response.payload.user_id+'success me aaya');
+                    if(response.payload.success == true){
                         var mobile = hideMiddleCharacters(response.payload.user_id);
                         $('.mobileno').html(mobile);
                         $("#user_id").val(response.payload.user_id);
@@ -100,6 +101,9 @@
                             .hide();
                         $('.screen-verify').show();
                         resendOTP();
+                    }else{
+                        $('.get-otp-message').html(response.payload.response.meassage);
+                    }
                         // var response = JSON.parse(response);
                         // $('#dynamic-content').html(response.content);
                     },
