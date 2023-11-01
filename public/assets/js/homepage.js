@@ -936,7 +936,6 @@ function initSliders() {
     // distro tv
 
 
-    public/css/custom.min.css
 $(".distrotv-slide-inner").slick({
     autoplay: !1,
     slidesToShow: 6,
@@ -956,7 +955,7 @@ $(".distrotv-slide-inner").slick({
     }, {
         breakpoint: 1600,
         settings: {
-            slidesToShow: 5.3,
+            slidesToShow: 4.3,
             slidesToScroll: 1
         }
     }, {
@@ -980,7 +979,7 @@ $(".distrotv-slide-inner").slick({
     }, {
         breakpoint: 480,
         settings: {
-            slidesToShow: 2.2,
+            slidesToShow: 1.2,
             slidesToScroll: 1
         }
     }]

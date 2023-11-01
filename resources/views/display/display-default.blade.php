@@ -58,66 +58,66 @@
             <div class="distrotv-slide-inner distrotv-slide-show">
                 <div class="slide">
                     <figure>
-                        <div class="slide-img-wrap">
+                        <div class="slide-img-wrap me-3">
                             <img class="slide-img lazyload" src="{{asset('img/sampleimg.png')}}" alt="">
                         </div>
-                        <div class="play-button"><img src="{{asset('img/play-white.svg')}}" alt=""></div>
+                        <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
                     </figure>               
                 </div>
                 <div class="slide">
                     <figure>
-                        <div class="slide-img-wrap">
+                        <div class="slide-img-wrap me-3">
                             <img class="slide-img lazyload" src="{{asset('img/sampleimg.png')}}" alt="">
                         </div>
-                        <div class="play-button"><img src="{{asset('img/play-white.svg')}}" alt=""></div>
+                        <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
                     </figure>               
                 </div>
                 <div class="slide">
                     <figure>
-                        <div class="slide-img-wrap">
+                        <div class="slide-img-wrap me-3">
                             <img class="slide-img lazyload" src="{{asset('img/sampleimg.png')}}" alt="">
                         </div>
-                        <div class="play-button"><img src="{{asset('img/play-white.svg')}}" alt=""></div>
+                        <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
                     </figure>               
                 </div>
                 <div class="slide">
                     <figure>
-                        <div class="slide-img-wrap">
+                        <div class="slide-img-wrap me-3">
                             <img class="slide-img lazyload" src="{{asset('img/sampleimg.png')}}" alt="">
                         </div>
-                        <div class="play-button"><img src="{{asset('img/play-white.svg')}}" alt=""></div>
+                        <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
                     </figure>               
                 </div>
                 <div class="slide">
                     <figure>
-                        <div class="slide-img-wrap">
+                        <div class="slide-img-wrap me-3">
                             <img class="slide-img lazyload" src="{{asset('img/sampleimg.png')}}" alt="">
                         </div>
-                        <div class="play-button"><img src="{{asset('img/play-white.svg')}}" alt=""></div>
+                        <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
                     </figure>               
                 </div>
                 <div class="slide">
                     <figure>
-                        <div class="slide-img-wrap">
+                        <div class="slide-img-wrap me-3">
                             <img class="slide-img lazyload" src="{{asset('img/sampleimg.png')}}" alt="">
                         </div>
-                        <div class="play-button"><img src="{{asset('img/play-white.svg')}}" alt=""></div>
+                        <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
                     </figure>               
                 </div>
                 <div class="slide">
                     <figure>
-                        <div class="slide-img-wrap">
+                        <div class="slide-img-wrap me-3">
                             <img class="slide-img lazyload" src="{{asset('img/sampleimg.png')}}" alt="">
                         </div>
-                        <div class="play-button"><img src="{{asset('img/play-white.svg')}}" alt=""></div>
+                        <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
                     </figure>               
                 </div>
                 <div class="slide">
                     <figure>
-                        <div class="slide-img-wrap">
+                        <div class="slide-img-wrap me-3">
                             <img class="slide-img lazyload" src="{{asset('img/sampleimg.png')}}" alt="">
                         </div>
-                        <div class="play-button"><img src="{{asset('img/play-white.svg')}}" alt=""></div>
+                        <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
                     </figure>               
                 </div>
             </div>
