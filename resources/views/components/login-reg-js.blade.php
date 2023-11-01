@@ -40,6 +40,7 @@
                 slidesToScroll: 1,
                 arrows: false,
                 dots: true,
+                autoplay: true,
             });
         });
 
