@@ -396,8 +396,8 @@
                 $('#confirm-password-error').text('Passwords do not match');
             }
 
-            var gender = $('#gender').val();
-            if (gender.trim() === '') {
+            var gender = $.trim($('#gender').val());
+            if (gender == '') {
                 $('#gender-error').text('Gender is required');
             }
 
