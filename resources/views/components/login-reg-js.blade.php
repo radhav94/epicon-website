@@ -396,6 +396,11 @@
                 $('#confirm-password-error').text('Passwords do not match');
             }
 
+            var gender = $('#gender').val();
+            if (gender.trim() === '') {
+                $('#gender-error').text('Gender is required');
+            }
+
             var formData = $('#register-form-id').serialize();
             // alert(formData);
             if (name != '' && password != '' && confirmPassword != '') {
