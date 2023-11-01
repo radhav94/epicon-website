@@ -3,7 +3,13 @@
         @foreach ($value['content'] as $key => $val)
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
-            $banner_img = getCardImage($val, 'banner_image', 'large');
+
+            if(!isMobliDevice()){
+                $banner_img = getCardImage($val, 'banner_image', 'large');
+            }else{
+                $banner_img = getCardImage($val, 'vertical_cover_image', 'medium');
+            }
+            
             ?>
             <div class="carousel-card">
                 {!! freePremiumDiv($val) !!}
