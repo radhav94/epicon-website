@@ -82,42 +82,42 @@
                                     <img class="mt-5" src="{{ asset('/img/coin.svg') }}" alt="coin">
                                     <h5 class="my-4 text-white">1 EpicOn Coins</h5>
                                     <span class="earn-bottom">
-                                        Engage & Earn <br>for 20 min
+                                        {{__('text.coins-condition1')}} <br>for 20 mins
                                     </span>
                                 </li>
                                 <li>
                                     <img class="mt-5" src="{{ asset('/img/coin-10.svg') }}" alt="coin">
                                     <h5 class="my-4 text-white">10 EpicOn Coins</h5>
                                     <span class="earn-bottom">
-                                        Engage & Earn <br>for 20 min
+                                        {{__('text.coins-condition2')}}
                                     </span>
                                 </li>
                                 <li>
                                     <img class="mt-5" src="{{ asset('/img/coin-50.svg') }}" alt="coin">
                                     <h5 class="my-4 text-white">50 EpicOn Coins</h5>
                                     <span class="earn-bottom">
-                                        Engage & Earn <br>for 20 min
+                                        {{__('text.coins-condition4')}}
                                     </span>
                                 </li>
                                 <li>
                                     <img class="mt-5" src="{{ asset('/img/coin-150.svg') }}" alt="coin">
                                     <h5 class="my-4 text-white">150 EpicOn Coins</h5>
                                     <span class="earn-bottom">
-                                        Engage & Earn <br>for 20 min
+                                        {{__('text.coins-condition5')}}
                                     </span>
                                 </li>
                                 <li>
                                     <img class="mt-5" src="{{ asset('/img/coin-300.svg') }}" alt="coin">
                                     <h5 class="my-4 text-white">300 EpicOn Coins</h5>
                                     <span class="earn-bottom">
-                                        Engage & Earn <br>for 20 min
+                                        {{__('text.coins-condition6')}}
                                     </span>
                                 </li>
                                 <li>
                                     <img class="mt-5" src="{{ asset('/img/coin-600.svg') }}" alt="coin">
                                     <h5 class="my-4 text-white">600 EpicOn Coins</h5>
                                     <span class="earn-bottom">
-                                        Engage & Earn <br>for 20 min
+                                        {{__('text.coins-condition7')}}
                                     </span>
                                 </li>
                             </ul>
