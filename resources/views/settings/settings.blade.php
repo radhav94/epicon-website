@@ -1003,6 +1003,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                 console.log(response);
                 if (response.payload.success == true) {
                     $("div[data-id='" + params + "']").remove();
+                    showToaster('Device logout successfully.', 1);
                 } else {
                     $("#updateInterestForm #error-meg-for-genre-select").html(response.payload.message);
                 }

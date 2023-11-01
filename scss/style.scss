@@ -277,12 +277,13 @@ input {
             margin: 0 auto;
             justify-content: center;
             z-index: 1;
+            padding-inline: 10px;
         }
         @media screen and (max-width: 768px) {
             .menu-item{
                 position: unset;
                 width: 100%;
-                justify-content: center;
+                justify-content: flex-start;
                 overflow: auto;
                 padding-block: 5px;
             }
@@ -314,9 +315,10 @@ input {
         }
         @media screen and (max-width: 768px) {
             padding: 8px 8px;
+            white-space: nowrap;
         }
         @media screen and (max-width: 700px) {
-            padding: 6px 12px;
+            padding: 6px 8px;
             font-size: 12px;
         }
     }
@@ -747,7 +749,7 @@ input {
             }
             @media (max-width:700px){
                 width: calc(100% - 16px);
-                height: calc(100% - 18px);
+                height: calc(100% - 29px);
                 border-radius: 12px;
             }
         }
@@ -1454,7 +1456,7 @@ input {
         align-items: center;
         justify-content: center;
         position: relative;
-        margin-top: 50px;
+        // margin-top: 50px;
 
         &::after{
             content: "";
@@ -1470,11 +1472,6 @@ input {
             @media (max-width:700px) {
                 width: 100%;
             }
-        }
-    }
-    & .slide-sl-dots{
-        @media (max-width:767px) {
-            display: none;
         }
     }
     & .slide-sl-next, & .slide-sl-prev {
@@ -1498,34 +1495,42 @@ input {
     & .slide-sl-prev::before {
         content: url(../img/hero-left-arrow.svg);
     }
-    .slick-dotted.slick-slider{
-        margin-bottom: -40px;
 
-        @media (max-width:700px) {
-            margin-bottom: -50px;
+    & .slide-sl-dots{
+        @media (max-width:767px) {
+            display: none;
+        }
+
+        & .slick-dots{
+            position: unset;
+        }
+        & .slick-dots li {
+            width: fit-content;
+        }
+        & .slick-dots li button {
+            width: 10px;
+            height: 4px;
+            padding: 0;
+            border-radius: 20px;
+            background: rgba($color: rgb(255 255 255), $alpha: 0.5);
+            transition: .3s all;
+        }
+        & .slick-dots li.slick-active button{
+            width: 26px;
+            background: #FFD102;
+        }
+        & .slick-dots li button::before{
+            content: unset;
         }
     }
-    & .slick-dots{
-        position: unset;
+    .slick-dotted.slick-slider{
+        // margin-bottom: -40px;
+
+        @media (max-width:700px) {
+            // margin-bottom: -50px;
+        }
     }
-    & .slick-dots li {
-        width: fit-content;
-    }
-    & .slick-dots li button {
-        width: 10px;
-        height: 4px;
-        padding: 0;
-        border-radius: 20px;
-        background: rgba($color: rgb(255 255 255), $alpha: 0.5);
-        transition: .3s all;
-    }
-    & .slick-dots li.slick-active button{
-        width: 26px;
-        background: #FFD102;
-    }
-    & .slick-dots li button::before{
-        content: unset;
-    }
+    
 }
 .carousel-main,.library,.seeall-main-page{
     margin-block: 25px;
@@ -1780,6 +1785,12 @@ input {
             overflow: hidden;
             border-radius: 10px;
             position: relative;
+
+            &:has(.new-show-title){
+                .upcoming-title-play-btn{
+                    bottom: 20px;
+                }
+            }
 
             & img{
                 width: 100%;
@@ -2093,6 +2104,11 @@ input {
         padding-left: 12px;
     }
 }
+.main-card .main-img:has(.new-show-title)~.upcoming-title-play-btn{
+    bottom: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
 .seeall-main-page ul{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -2217,6 +2233,10 @@ input {
         .swiper-button-next, .swiper-button-prev{
             position: unset;
             margin: 0;
+
+            @media (max-width:700px){
+                margin-inline: 20px;
+            }
         }
         .swiper-button-next::after, .swiper-button-prev::after{
             content: unset;
@@ -2324,10 +2344,13 @@ input {
             }
         }
         h2{
-            font-size: 12px;
+            font-size: 16px;
             color: $bg-white;
             font-weight: 400;
             margin-bottom: 15px;
+            @media (max-width:700px){
+                font-size: 14px;
+            }
         }
         p{
             width: 100%;
@@ -2508,7 +2531,7 @@ input {
         height: auto;
         margin-left: -30px;
         position: relative;
-        z-index: 99;
+        z-index: 1;
         img{
             width: 100%;
         }
@@ -2547,6 +2570,7 @@ input {
     & svg{
         width: 100%;
         height: auto;
+        cursor: pointer;
         .chartholder{
             .slice path{
                 stroke-width: 1px;
@@ -2581,14 +2605,14 @@ input {
     #question{
         position: relative;
         height:auto;
-        .spin-img::after{
-            content: "";
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            right: 0;
-            // background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8562018557) 100%);
-        }
+        // .spin-img::after{
+        //     content: "";
+        //     height: 100%;
+        //     width: 100%;
+        //     position: absolute;
+        //     right: 0;
+        //     background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8562018557) 100%);
+        // }
     }
     #question h1{
         font-size: 50px;
@@ -5682,7 +5706,7 @@ input {
 .search-bg{
     position: relative;
     backdrop-filter: blur(50px);
-    height: 100%;
+    height: 100vh;
     overflow: hidden;
     padding-bottom: 50px;
     >::after{
@@ -6707,4 +6731,7 @@ input {
     @media (max-width:768px) {
         width: 100%;
     }
+}
+.supermix-main{
+    padding-inline: 10px;
 }
