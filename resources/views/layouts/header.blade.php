@@ -191,7 +191,7 @@ if (request()->path() == "hi") {
 ?>
         <ul class="menu-item list-unstyled d-flex mb-0">
             @foreach ($links as $key => $value)
-                <li><a href="{{ getUrl($key) }}"
+                <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a href="{{ getUrl($key) }}"
                         @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
             @endforeach
 @loggedin
