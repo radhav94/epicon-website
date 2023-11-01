@@ -230,11 +230,14 @@
                                 </div>
                                 <div class="input-field w-100 mb-3">
                                     <select id="gender" name="gender">
+                                        <option value="">Gender</option>
                                         <option value="Female">Female</option>
                                         <option value="Male">Male</option>
                                         <option value="Transgender">Transgender</option>
                                         <option value="Shemale">Shemale</option>
                                     </select>
+                                    <span class="text-danger text-start d-flex mt-1 error" id="gender-error"
+                                        style="font-size: 12px;"></span>
                                 </div>
                                 <div id="register-result" style="color: red;">
                                     <!-- Display validation result here -->
