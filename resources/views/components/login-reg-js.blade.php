@@ -354,7 +354,10 @@
 
                                     window.location.href = APP_URL+'/subscription';
 
-                                } else {
+                                }else if(queryParams.get('ref') == "rewards"){
+
+                                    window.location.href = APP_URL+'/my-rewards'; 
+                                }else {
                                     location.reload();
                                 }
                                 return false;
@@ -521,7 +524,10 @@
                                     window.location.href = APP_URL+'/subscription';
                                     return false;
 
-                                } else {
+                                }else if(queryParams.get('ref') == "rewards"){
+
+                                        window.location.href = APP_URL+'/my-rewards'; 
+                                }else {
                                     if($("#redi-val").val() == "subscription"){
                                         window.location.href = APP_URL+'/subscription';
                                         return false;
