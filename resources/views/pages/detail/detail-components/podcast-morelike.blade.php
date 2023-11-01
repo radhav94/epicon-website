@@ -11,7 +11,7 @@
                 
                 $card = getItemCardData($value, $displayLanguageParam);
                 
-                $cover_img = getCardImage($value, 'vertical_cover_image', 'small');
+                $cover_img = getCardImage($value, 'cover_image', 'medium');
                 ?>
 
                 <li>
