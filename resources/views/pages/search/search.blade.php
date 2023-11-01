@@ -6,6 +6,12 @@
 @stop
 
 @section('content')
+<style>
+    .main-header,.footer,.footer-mobile{
+        display:none;
+    }
+</style>
+
 <?php
 
 ?>
