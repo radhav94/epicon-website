@@ -933,6 +933,59 @@ function initSliders() {
         ]
     });
 
+    // distro tv
+
+
+    public/css/custom.min.css
+$(".distrotv-slide-inner").slick({
+    autoplay: !1,
+    slidesToShow: 6,
+    centerMode: !1,
+    slidesToScroll: 6,
+    dots: !1,
+    infinite: !1,
+    cssEase: "linear",
+    rtl: !1,
+    responsive: [
+        {
+        breakpoint: 3e3,
+        settings: {
+            slidesToShow: 6.3,
+            slidesToScroll: 1
+        }
+    }, {
+        breakpoint: 1600,
+        settings: {
+            slidesToShow: 5.3,
+            slidesToScroll: 1
+        }
+    }, {
+        breakpoint: 1200,
+        settings: {
+            slidesToShow: 3.3,
+            slidesToScroll: 1
+        }
+    }, {
+        breakpoint: 900,
+        settings: {
+            slidesToShow: 3.3,
+            slidesToScroll: 1
+        }
+    }, {
+        breakpoint: 600,
+        settings: {
+            slidesToShow: 4.3,
+            slidesToScroll: 1
+        }
+    }, {
+        breakpoint: 480,
+        settings: {
+            slidesToShow: 2.2,
+            slidesToScroll: 1
+        }
+    }]
+})
+
     //start supermix
     const getSupermixData = function () {
         sendAjaxRequest(APP_URL + '/supermix', 'POST', null,
