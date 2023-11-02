@@ -226,7 +226,7 @@
                                         style="font-size: 12px;"></span>
                                 </div>
                                 <div class="input-field w-100 mb-3">
-                                    <input class="form-control date_picker" type="text" id="dob" name="dob" placeholder="Date Of Birth" required>
+                                    <input class="form-control date_picker" type="text" id="dob" name="dob" placeholder="Date Of Birth" required readonly>
                                 </div>
                                 <div class="input-field w-100 mb-3">
                                     <select id="gender" name="gender">
@@ -532,7 +532,7 @@
                                         <span><img src="{{ asset('img/welcom.jpeg')}}" alt=""></span>
                                         <span><img src="{{ asset('img/dhamal.jpeg')}}" alt=""></span>
                                         <span><img src="{{ asset('img/welcom.jpeg')}}" alt=""></span>
-                                        <span class="span-text-3" id="genre-select-count">0 of 5</span>
+                                        <span class="span-text-3 genre-select-count">0 of 5</span>
                                     </div>
                                     <button type="button" class="better-suggestion-nxtBtn">Next
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
