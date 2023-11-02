@@ -3358,8 +3358,8 @@ input {
                 margin-bottom: -43px;
             }
             @media (max-width:768px){
-                height: 154px;
-                margin-bottom: -34px;
+                height: 184px;
+                margin-bottom: -25px;
             }
             @media (max-width:767px){
                 height: 142px;
@@ -3380,6 +3380,10 @@ input {
                 top: 0;
                 padding: 8px 20px 40px 10px;
                 @include flex(column,unset,space-between);
+
+                @media (max-width:767px){
+                    padding: 8px 20px 26px 10px;
+                }
 
                 &::after{
                     content: "";
