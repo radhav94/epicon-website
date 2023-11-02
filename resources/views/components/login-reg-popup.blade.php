@@ -20,7 +20,7 @@
         bottom: 0;
         top: 0;
         color:#000;
-        background-image: url("../img/drop-down-arrow-select.svg")!important;
+        background-image: url("../img/drop-down-arrow-select-white.svg");
         background-repeat: no-repeat;
         background-position: center right 15px;
     }

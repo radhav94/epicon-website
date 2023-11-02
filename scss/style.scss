@@ -611,6 +611,9 @@ input {
         }
     }
 }
+.profile:hover .profile-drop-down{
+    display: block;
+}
 .hamburger{
     height: 1.2rem;
     width: 1.5rem;
@@ -2063,19 +2066,19 @@ input {
                 border: none;
                 outline: none;
                 &.add-icon{
-                    background-image: url("../img/add-icon.svg");
+                    background-image: url("../public/img/add-icon.svg");
                 }
                 &.add-icon-toggle{
-                    background-image: url("../img/subs-icon.svg");
+                    background-image: url("../public/img/subs-icon.svg");
                 }
                 &.like-icon{
-                    background-image: url("../img/clap-icon.svg");
+                    background-image: url("../public/img/clap-icon.svg");
                 }
                 &.like-icon-toggle{
-                    background-image: url("../img/clap-on-click.svg");
+                    background-image: url("../public/img/clap-on-click.svg");
                 }
                 &.share-icon{
-                    background-image: url("../img/share-icon.svg");
+                    background-image: url("../public/img/share-icon.svg");
                 }
                 &.circle-icon{
                     background-image: url("../img/circle-minus.svg");
@@ -3695,6 +3698,16 @@ input {
             width: calc(100% - 100px);
             left: 10px;            
         }
+    }
+}
+#gender{
+    width: 100% !important;
+    left: 0;
+    color: #fff !important;
+    position: unset;
+
+    option{
+        background-color: #000;
     }
 }
 .input-field{
