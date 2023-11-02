@@ -15,7 +15,7 @@
 
                 }
                 else{
-                    $banner_img = getCardImage($val, 'banner_image', 'test');
+                    $banner_img = asset('assets/img/default-1920x548.png');
                 }
                 ?>
                 <div class="carousel-card">

@@ -161,7 +161,7 @@
                      container.on("click", spin);
                  });
          }
-         // spin();
+         spin();
          // window.globalSpin = spin;
          //make arrow
          // svg.append("g")
