@@ -9,7 +9,7 @@
                 if(isset($val['airtel_feature_imageHD']) && !empty($val['airtel_feature_imageHD'])){
                     $banner_img = $val['airtel_feature_imageHD'];
                 }else{
-                    $banner_img = getCardImage($val, 'banner_image', 'test');
+                    $banner_img = asset('assets/img/default-1920x548.png');
                 }
                 ?>
                 <div class="carousel-card">
