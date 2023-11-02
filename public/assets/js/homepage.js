@@ -94,6 +94,7 @@ function initSliders() {
         arrows: true,
         dots: true,
         autoplay: true,
+        autoplaySpeed: 1000,
         // appendDots: $(".slide-sl-dots"),
         // prevArrow: $(".slide-sl-prev"),
         // nextArrow: $(".slide-sl-next"),
@@ -820,7 +821,7 @@ function initSliders() {
             {
                 breakpoint: 769,
                 settings: {
-                    slidesToShow: 1.6,
+                    slidesToShow: 1.9,
                     slidesToScroll: 1,
                 }
             },
@@ -936,54 +937,54 @@ function initSliders() {
     // distro tv
 
 
-$(".distrotv-slide-inner").slick({
-    autoplay: !1,
-    slidesToShow: 6,
-    centerMode: !1,
-    slidesToScroll: 6,
-    dots: !1,
-    infinite: !1,
-    cssEase: "linear",
-    rtl: !1,
-    responsive: [
-        {
-        breakpoint: 3e3,
-        settings: {
-            slidesToShow: 6.3,
-            slidesToScroll: 1
-        }
-    }, {
-        breakpoint: 1600,
-        settings: {
-            slidesToShow: 4.3,
-            slidesToScroll: 1
-        }
-    }, {
-        breakpoint: 1200,
-        settings: {
-            slidesToShow: 3.3,
-            slidesToScroll: 1
-        }
-    }, {
-        breakpoint: 900,
-        settings: {
-            slidesToShow: 3.3,
-            slidesToScroll: 1
-        }
-    }, {
-        breakpoint: 600,
-        settings: {
-            slidesToShow: 4.3,
-            slidesToScroll: 1
-        }
-    }, {
-        breakpoint: 480,
-        settings: {
-            slidesToShow: 1.2,
-            slidesToScroll: 1
-        }
-    }]
-})
+    $(".distrotv-slide-inner").not('.slick-initialized').slick({
+        autoplay: !1,
+        slidesToShow: 6,
+        centerMode: !1,
+        slidesToScroll: 6,
+        dots: !1,
+        infinite: !1,
+        cssEase: "linear",
+        rtl: !1,
+        responsive: [
+            {
+            breakpoint: 3e3,
+            settings: {
+                slidesToShow: 6.3,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 1600,
+            settings: {
+                slidesToShow: 4.3,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 1200,
+            settings: {
+                slidesToShow: 3.3,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 900,
+            settings: {
+                slidesToShow: 3.3,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 4.3,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1.2,
+                slidesToScroll: 1
+            }
+        }]
+    });
 
     //start supermix
     const getSupermixData = function () {
