@@ -1,0 +1,14 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_b_3071_3720)">
+<rect x="-1.5" y="1.5" width="29" height="29" rx="14.5" transform="matrix(-1 0 0 1 29 0)" stroke="white" stroke-width="3"/>
+</g>
+<path d="M12.7139 15.0523C12.3243 15.4429 12.3247 16.0753 12.7149 16.4655L18.0186 21.7692C18.3814 22.132 18.9695 22.132 19.3323 21.7692C19.6955 21.406 19.695 20.817 19.3311 20.4544L15.3294 16.4665C14.9377 16.0761 14.9372 15.442 15.3282 15.051L19.3148 11.0644C19.6776 10.7016 19.6776 10.1134 19.3148 9.75055C18.9516 9.38737 18.3626 9.38778 18 9.75147L12.7139 15.0523Z" fill="white" stroke="white" stroke-opacity="0.25"/>
+<defs>
+<filter id="filter0_b_3071_3720" x="-24" y="-24" width="80" height="80" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImageFix" stdDeviation="12"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_3071_3720"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_3071_3720" result="shape"/>
+</filter>
+</defs>
+</svg>

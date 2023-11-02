@@ -40,7 +40,7 @@
      function onSpinnerSuccess(response) {
          $html = '<a href="' + response['payload']['url'] + '"><img src="' + response['payload']['image'] + '"></a>';
          $('.trigger-data-img').html($html);
-         console.log('Spinner Success:', responseData);
+         // console.log('Spinner Success:', responseData);
      }
 
      function getSpinnerContent($genre) {
@@ -113,15 +113,15 @@
              .text(function(d, i) {
                  return data[i].label;
              });
+
          container.on("click", spin);
 
          function spin(d) {
 
              container.on("click", null);
              //all slices have been seen, all done
-             console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
+             // console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
              if (oldpick.length == data.length) {
-                 console.log("done");
                  container.on("click", null);
                  return;
              }
@@ -153,7 +153,7 @@
                      oldrotation = rotation;
 
                      /* Get the result value from object "data" */
-                     console.log(data[picked].value)
+                     // console.log(data[picked].value)
                      // get result
                      getSpinnerContent(data[picked].value);
 
@@ -161,6 +161,8 @@
                      container.on("click", spin);
                  });
          }
+         spin();
+         // window.globalSpin = spin;
          //make arrow
          // svg.append("g")
          //     .attr("transform", "translate(" + (w + padding.left + padding.right) + "," + ((h/2)+padding.top) + ")")
