@@ -47,6 +47,32 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
 @stop
 
 @section('content')
+<!-- childpin model -->
+<div class="modal fade" id="childpin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered px-3">
+        <div class="modal-content">
+            <div class="modal-body text-center py-5">
+                <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="img">
+                <h4 class="text-white mt-4">{{__('Child PIN has been created successfully!')}}</h4>
+                <p class="w-75 text-white small m-auto mb-4">{{__('You can change it again any time from the settings tab.')}}</p>
+                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- changed childpin model -->
+<div class="modal fade" id="changed-childpin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered px-3">
+        <div class="modal-content">
+            <div class="modal-body text-center py-5">
+                <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="img">
+                <h4 class="text-white mt-4">{{__('Child PIN has been updated successfully!')}}</h4>
+                <p class="w-75 text-white small m-auto mb-4">{{__('You can change it again any time from the settings tab.')}}</p>
+                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- changed password model -->
 <div class="modal fade" id="changed-pass" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
