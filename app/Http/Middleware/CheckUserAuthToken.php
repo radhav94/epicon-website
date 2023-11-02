@@ -19,10 +19,12 @@ class CheckUserAuthToken
         $kidsmode = session()->get('kidsMode') ?? false;
         if (isUserLoggedIn()) {
             /* check authrization token expired start */
-            $response = update_user_session();
-            if (!$response) {
-                session()->flush();
-                return redirect(route('homepage') . "?type=logout");
+            if (getFirstSegment() != "assets" && !$request->ajax()) {
+                $response = update_user_session();
+                if (!$response) {
+                    session()->flush();
+                    return redirect(route('homepage') . "?type=logout");
+                }
             }
             /* check authrization token end */
             if ($segment != 'kids' && $kidsmode && !$request->ajax()) {
