@@ -226,7 +226,7 @@
                                         style="font-size: 12px;"></span>
                                 </div>
                                 <div class="input-field w-100 mb-3">
-                                    <input class="form-control date_picker" type="text" id="dob" name="dob" placeholder="Date Of Birth" required>
+                                    <input class="form-control date_picker" type="text" id="dob" name="dob" placeholder="Date Of Birth" required readonly>
                                 </div>
                                 <div class="input-field w-100 mb-3">
                                     <select id="gender" name="gender">
