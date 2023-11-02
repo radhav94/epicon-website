@@ -6,6 +6,8 @@
         $( ".date_picker" ).datepicker({
             dateFormat: 'MM dd, yy',
             maxDate: '-1d',
+            changeMonth: true,
+            changeYear: true
         });
 
         $(".emailText").on("keyup", function (e) {

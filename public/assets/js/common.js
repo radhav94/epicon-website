@@ -5,6 +5,8 @@ $(document).ready(function () {
     $( ".profile_date_picker" ).datepicker({
         dateFormat: 'dd-M-yy',
         maxDate: '-1d',
+        changeMonth: true,
+        changeYear: true
     });
 
     $("#seasonSelect").change(function () {
