@@ -288,9 +288,7 @@ class LoginController extends Controller
 
     public function saveGenreForUser() {
         $request = Request();
-        //echo $request->session()->get('user_token');
-        //dd($request->session()->all());
-        $genre = $request->post('chooseGenre') ? $request->post('chooseGenre') : [];
+        $genre = $request->post('genreInterest') ? $request->post('genreInterest') : [];
         $user_token = $request->post('user_token') ? $request->post('user_token') : '';
         $request->session()->put('user_token', $user_token);
         $curlData = ["genre" => $genre];

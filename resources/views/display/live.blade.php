@@ -13,7 +13,7 @@
         @endif
     </div>
     <div class="gaming-galore-main">
-        <div class="epic-channel">
+        <div class="gaming-galore">
             @foreach ($value['content'] as $key => $val)
 
             <?php 

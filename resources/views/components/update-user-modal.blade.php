@@ -13,7 +13,10 @@ if(empty($userData['mobile']) && $userData['mobile']==''){
 
 ?>
 <style>
-    .inputCenter{margin-left: 180px;}
+        .inputCenter{margin-left: 180px;}
+    @media (max-width:767px) {
+        .inputCenter{margin-left: 0px;}
+    }
 </style>
 <div class="modal fade" id="update_user_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">

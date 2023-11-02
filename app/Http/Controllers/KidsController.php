@@ -69,7 +69,7 @@ class KidsController extends Controller
             }
             return view('pages.error.404');
         } else {
-            return redirect('/settings');
+            return redirect(getUrl('settings?status=ispin'));
         }
     }
 

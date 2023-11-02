@@ -15,11 +15,11 @@ class CheckUserAuthToken
      */
     public function handle(Request $request, Closure $next)
     {
-        $segment = $request->segment(1) != 'hi' ? $request->segment(1) : $request->segment(2);
+        $segment = getFirstSegment();
         $kidsmode = session()->get('kidsMode') ?? false;
         if (isUserLoggedIn()) {
             /* check authrization token expired start */
-            if (getFirstSegment() != "assets" && !$request->ajax()) {
+            if ($segment != "assets" && !$request->ajax()) {
                 $response = update_user_session();
                 if (!$response) {
                     session()->flush();
