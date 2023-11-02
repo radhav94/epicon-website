@@ -128,12 +128,24 @@ $(window).on('load', function () {
 
 $(document).on("click", ".interest-suggetion", function(e){
     e.preventDefault();
+    var genreCount = 0;
+    $("input[name='genreInterest[]']").each(function(key, value) {
+        if (value.checked) {
+            genreCount++;
+        }
+    });
+
     var interest = $(this).find("input[type='checkbox']");
     if (interest.is(":checked")) {
         interest.prop("checked", false);
+        genreCount--;
     } else {
-        interest.prop("checked", true);
+        if (genreCount < 5) {
+            interest.prop("checked", true);
+            genreCount++;
+        }
     }
+    $(".genre-select-count").text(genreCount + " of 5");
 })
 
 function getCookie(cname) {

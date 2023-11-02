@@ -532,7 +532,7 @@
                                         <span><img src="{{ asset('img/welcom.jpeg')}}" alt=""></span>
                                         <span><img src="{{ asset('img/dhamal.jpeg')}}" alt=""></span>
                                         <span><img src="{{ asset('img/welcom.jpeg')}}" alt=""></span>
-                                        <span class="span-text-3" id="genre-select-count">0 of 5</span>
+                                        <span class="span-text-3 genre-select-count">0 of 5</span>
                                     </div>
                                     <button type="button" class="better-suggestion-nxtBtn">Next
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
