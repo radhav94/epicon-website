@@ -39,6 +39,17 @@ $lang = ['hi', 'en'];
  */
 
 Route::get('test', [TestController::class, 'index']);
+////////// TEST Routes /////////////////
+Route::get('distro-landing', function () {
+    return view('distro-landing');
+});
+Route::get('distro-video', function () {
+    return view('distro-video');
+});
+////////// END TEST Routes /////////////////
+
+
+
 
 Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.loadmore');
 Route::GET('ajaxStoryData', [PageController::class, 'ajaxStoryData'])->name('ajaxStoryData');

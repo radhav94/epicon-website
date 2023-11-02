@@ -6,7 +6,11 @@
                 <?php
                 $card = getItemCardData($val, $displayLanguageParam);
                 
-                $banner_img = getCardImage($val, 'airtel_feature_imageHD', 'large', ['cover_image']);
+                if(isset($val['airtel_feature_imageHD']) && !empty($val['airtel_feature_imageHD'])){
+                    $banner_img = $val['airtel_feature_imageHD'];
+                }else{
+                    $banner_img = getCardImage($val, 'banner_image', 'test');
+                }
                 ?>
                 <div class="carousel-card">
                     {{ freePremiumDiv($val) }}
