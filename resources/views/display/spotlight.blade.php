@@ -10,9 +10,7 @@
                     $banner_img = $val['airtel_feature_imageHD'];
                 }
                 else if(isset($val['trending_movie_buzz_image']) && !empty($val['trending_movie_buzz_image'])){
-
                     $banner_img = getCardImage($val, 'trending_movie_buzz_image', 'large');
-
                 }
                 else{
                     $banner_img = asset('assets/img/default-1920x548.png');

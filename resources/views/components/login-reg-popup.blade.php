@@ -20,7 +20,7 @@
         bottom: 0;
         top: 0;
         color:#000;
-        background-image: url("../img/drop-down-arrow-select.svg")!important;
+        background-image: url("../img/drop-down-arrow-select-white.svg");
         background-repeat: no-repeat;
         background-position: center right 15px;
     }
@@ -115,7 +115,7 @@
                             <form method="POST" name="verify-number-form" id="verify-number-form-id">
                                 @csrf
                                 <h5 class="mb-2 text-white">Enter the OTP sent to</h5>
-                                <h5 class="mb-4 text-white small mobileno">+91 823****641</h5>
+                                <h5 class="mb-4 text-white mobileno">+91 823****641</h5>
                                 <input type="hidden" name="user_id" id="user_id" value="">
                                 <input type="hidden" name="signupmethod" id="signupmethod" value="">
                                 <input type="hidden" name="user_agent" id="user_agent" value="WEB">
@@ -145,7 +145,7 @@
                                 <div id="verifyotp-result" style="color: red;">
                                     <!-- Display validation result here -->
                                 </div>
-                                <button class="btn btn-primary" id="resendBtn" onclick="resendOTP()">Resend OTP</button>
+                                <button class="btn btn-primary bg-transparent" id="resendBtn" onclick="resendOTP()">Resend OTP</button>
                                 <button class="login-btn verify-btn mt-4" style="width: 280px;">
                                     Verify Number
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -228,7 +228,7 @@
                                 <div class="input-field w-100 mb-3">
                                     <input class="form-control date_picker" type="text" id="dob" name="dob" placeholder="Date Of Birth" required readonly>
                                 </div>
-                                <div class="input-field w-100 mb-3">
+                                <div class="input-field text-white w-100 mb-3">
                                     <select id="gender" name="gender">
                                         <option value="">Gender</option>
                                         <option value="Female">Female</option>
@@ -401,7 +401,7 @@
                                 <div id="verifyotp-forgot-result" style="color: red;">
                                     <!-- Display validation result here -->
                                 </div>
-                                <button id="resendForgotBtn" onclick="resendForgotOTP()">Resend OTP</button>
+                                <button class="bg-transparent rounded text-white" id="resendForgotBtn" onclick="resendForgotOTP()">Resend OTP</button>
                                 <button class="login-btn verify-forgot-btn mt-4" style="width: 280px;">
                                     Verify Email/Number
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
