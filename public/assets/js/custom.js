@@ -103,23 +103,23 @@ if (notificationElement) {
 
 
   // on profile hover and click effect 
-  if ($(window).width() < 1025) {
-    $(".profile").on('click', function () {
-      $(".profile-drop-down").toggleClass("prof-open");
-    });
-  }
-  else {
-    $(".profile").hover(function () {
-      var profileDiv = document.querySelector(".profile-drop-down");
-      if (profileDiv != '' && profileDiv != null && profileDiv != 'undefined') {
-        if (profileDiv.style.display == 'block') {
-          profileDiv.style.display == 'none';
-        } else {
-          profileDiv.style.display = 'block';
-        }
-      }
-    });
-  }
+  // if ($(window).width() < 1025) {
+  //   $(".profile").on('click', function () {
+  //     $(".profile-drop-down").toggleClass("prof-open");
+  //   });
+  // }
+  // else {
+  //   $(".profile").hover(function () {
+  //     var profileDiv = document.querySelector(".profile-drop-down");
+  //     if (profileDiv != '' && profileDiv != null && profileDiv != 'undefined') {
+  //       if (profileDiv.style.display == 'block') {
+  //         profileDiv.style.display == 'none';
+  //       } else {
+  //         profileDiv.style.display = 'block';
+  //       }
+  //     }
+  //   });
+  // }
   if ($(window).width() < 1025) {
     $(".notification").on('click', function () {
       $(".notification-drop-down").toggleClass("prof-open");
