@@ -1563,7 +1563,7 @@ input {
         align-items: center;
         justify-content: center;
         height: 100%;
-        border-radius: 16px;
+        border-radius: 10px;
         overflow: hidden;
         text-decoration: none;
     }
@@ -1589,7 +1589,7 @@ input {
         transform:translate(-50%, -50%); 
         -ms-transform:translate(-50%, -50%); 
         width: 330px;
-        height: 315px;
+        height: auto;
        
     }
 
@@ -1605,7 +1605,7 @@ input {
         transform:translate(-50%, -50%); 
         -ms-transform:translate(-50%, -50%); 
         width: 330px;
-        height: 315px;
+        height: auto;
        
     }
    
@@ -1828,7 +1828,7 @@ input {
                 width: 100%;
                 height: auto;
                 background: #9a43d3;
-                padding: 16px 10px 0px 10px;
+                padding: 16px 10px 1px 10px;
                 color: #fff;
                 text-align: center;
                 font-size: 16px;
@@ -1840,7 +1840,7 @@ input {
 
                 img{
                     width: 94px;
-                    margin: 0 auto;
+                    margin: 0 auto 4px auto;
                 }
             }
 
@@ -1928,9 +1928,12 @@ input {
         width: 0px;
         height: 0px;
         border-radius: 16px;
-        box-shadow: 16px 16px 24px 0px rgba(0, 0, 0, 0.25), -16px -16px 24px 0px rgba(0, 0, 0, 0.25);
         transform: scale(0);
         z-index: 9;
+        box-shadow: -3px -20px 69px rgba($color: #000000, $alpha: 0.7);
+        // border: 5px solid #fff;
+        background-color: #fff;
+        padding: 5px;
 
         @media (max-width:768px) {
             display: none!important;
@@ -1985,7 +1988,7 @@ input {
             .mute-btn{
                 width: 40px;
                 height: 40px;
-                border-radius: 40px;
+                border-radius: 20px;
                 position: absolute;
                 bottom: 30px;
                 right: 15px;
@@ -1996,17 +1999,21 @@ input {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                border-radius: 16px 16px 0 0;
+                border-radius: 3px 3px 0 0;
             }
         }
         .bottom-card-content{
-            background: #211F26;
-            border-radius: 16px;
+            // background: #211F26;
+            // border-radius: 16px;
             padding: 12px;
-            margin-top: -15px;
+            // margin-top: -15px;
             position: relative;
-            box-shadow: -3px -20px 69px rgba($color: #000000, $alpha: 0.7);
-            height: 170px;
+            // height: 170px;
+
+            .upper-img{
+                border: 1px solid #211F26;
+                border-radius: 5px;
+            }
             ul{
                 color: $bg-grey;
                 font-size: 12px;
@@ -2015,6 +2022,7 @@ input {
                 padding-left: 0;
                 list-style-position: outside;
                 padding-block: 5px;
+                display: none;
                 & li:first-child{
                     list-style: none;
                 }
@@ -2041,11 +2049,14 @@ input {
                 }
             }
             & h1{
-                font-size: 16px;
+                font-size: 20px;
                 font-weight: 500;
-                color: $bg-white;
+                color: #211F26;
                 margin-bottom: 3px;
                 @include line-clamp(1);
+                // display: none;
+                margin-bottom: 20px;
+                margin-top: 5px;
             }
             & p{
                 font-size: 14px;
@@ -2053,18 +2064,20 @@ input {
                 line-height: 20px;
                 @include line-clamp(2);
                 margin-bottom: 12px;
+                display: none;
             }
             .small-btn{
-                width: 20px;
-                height: 20px;
+                width: 18px;
+                height: 18px;
                 padding: 20px;
-                border-radius: 50px;
+                // border-radius: 50px;
                 background: #272727;
                 background-repeat: no-repeat;
                 background-position: center;
                 background-size: 20px 20px;
                 border: none;
                 outline: none;
+                border-radius: 5px;
                 &.add-icon{
                     background-image: url("../public/img/add-icon.svg");
                 }
@@ -2126,7 +2139,7 @@ input {
 }
 
 .carousel-initilize,.vertical-carousel-initilize,.gaming-galore-main,.popular-language,.blockbuster-mm
-    ,.punjab-carousel,.discover-next-watch,.new-release-bottom,.imdb,.delights-display,.wildlife,.cust-collection,.short-sweet-carousel,.vertical-carousel-retro{
+    ,.punjab-carousel,.discover-next-watch,.new-release-bottom,.imdb,.delights-display,.wildlife,.cust-collection,.short-sweet-carousel,.vertical-carousel-retro,.ar-vr{
         .slick-next, .slick-prev{
             z-index: 1;
             right: 0px;
@@ -2283,7 +2296,7 @@ input {
     margin: 0 auto;
   }
   .swiper-slide.tranding-slide.swiper-slide-prev{
-    transform: translate3d(540px, 0px, -200px) rotateX(0deg) rotateY(0deg) scale(1)!important;
+    transform: translate3d(480px, 0px, -200px) rotateX(0deg) rotateY(0deg) scale(1)!important;
     .carousel-items-content{
         h1,h2,ul{
             display: none!important;
@@ -2291,7 +2304,7 @@ input {
     }
   }
   .swiper-slide.tranding-slide.swiper-slide-next{
-    transform: translate3d(-540px, 0px, -200px) rotateX(0deg) rotateY(0deg) scale(1)!important;
+    transform: translate3d(-480px, 0px, -200px) rotateX(0deg) rotateY(0deg) scale(1)!important;
     .carousel-items-content{
         h1,h2,ul{
             display: none!important;
@@ -3081,6 +3094,14 @@ input {
         .punjab-title{
             @include flex(column,center,center);
             position: relative;
+            &.arvr-text{
+                @media (max-width:767px) {
+                    height: 100px;
+                }
+                .text{
+                    bottom: unset;
+                }
+            }
             .text{
                 position: absolute;
                 bottom: -28px;
@@ -3126,7 +3147,7 @@ input {
                 }
         }
     }
-    .punjab-carousel{
+    .punjab-carousel,.ar-vr{
         width: 100%;
         padding: 0;
         overflow-x: clip;
