@@ -9,20 +9,20 @@ use Illuminate\Support\Facades\Session;
 
 class LiveTvController extends Controller
 {
-    public function livetv(){
-        $request = Request();
+    public function livetv(Request $request){
+
         $routenamed = Route::currentRouteName();
         if (empty($routenamed)) {
             $routenamed = "live-tv";
         }
         $livetvArr = CurlAPI("contents/livetv", 'GET', '' , 3, true);
-        // dd($livetvArr);
+
         $pagetitle = "LIVETV";
         $pagetype = ($routenamed == 'home') ? 'HOME' : "LIVETV";
         if($livetvArr && @$livetvArr['success'] == true){
             $response = $livetvArr['content'];
             $displayLanguageParam = setLanguageParameter();
-            // dd($displayLanguageParam);
+
             $meta = $this->getMeta($routenamed);
             $meta_title = $meta['title'];
             return view('pages.livetv.live-tv', compact('response','meta_title', 'displayLanguageParam'));
