@@ -18,6 +18,14 @@ class CheckUserAuthToken
         $segment = $request->segment(1) != 'hi' ? $request->segment(1) : $request->segment(2);
         $kidsmode = session()->get('kidsMode') ?? false;
         if (isUserLoggedIn()) {
+            /* check authrization token expired start */
+            if (getFirstSegment() != "assets" && !$request->ajax()) {
+                $response = update_user_session();
+                if (!$response) {
+                    session()->flush();
+                    return redirect(route('homepage') . "?type=logout");
+                }
+            }
             /* check authrization token end */
             if ($segment != 'kids' && $kidsmode && !$request->ajax()) {
                 return redirect(route('kidsIndex'));

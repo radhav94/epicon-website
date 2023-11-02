@@ -1,16 +1,5 @@
 <?php
-if (isUserLoggedIn()) {
-    /* check authrization token expired start */
-    if (getFirstSegment() != "assets") {
-        $response = update_user_session();
-        if (!$response) {
-            session()->flush();
-            return redirect(route('homepage') . "?type=logout");
-        }
-    }
-    /* check authrization token expired end */
-}
-$kids_page = getFirstSegment() == 'kids' ? true : false;
+$kids_page = isKidsPage();
 
 $action = app('request')->route()->getAction();
 $subplan = [];
