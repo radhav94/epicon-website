@@ -39,6 +39,17 @@ $lang = ['hi', 'en'];
  */
 
 Route::get('test', [TestController::class, 'index']);
+////////// TEST Routes /////////////////
+Route::get('distro-landing', function () {
+    return view('distro-landing');
+});
+Route::get('distro-video', function () {
+    return view('distro-video');
+});
+////////// END TEST Routes /////////////////
+
+
+
 
 Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.loadmore');
 Route::GET('ajaxStoryData', [PageController::class, 'ajaxStoryData'])->name('ajaxStoryData');
@@ -174,9 +185,7 @@ foreach ($lang as $val) {
             return view('static.about');
         })->name('about');
 
-        Route::get('explore/{slug}/', function ($slug) {
-            return App::call('\App\Http\Controllers\PageController@explore_details', ['slug' => $slug]);
-        });
+        Route::get('explore/{slug}', [PageController::class, 'explore_details']);
 
         Route::get('live-tv', [LiveTvController::class, 'livetv'])->name('live-tv');
         Route::get('upcoming-epicon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');

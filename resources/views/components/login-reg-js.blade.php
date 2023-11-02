@@ -91,7 +91,7 @@
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
                     success: function(response) {
-                        // console.log(response.payload.user_id+'success me aaya');
+                        if(response.payload.success == true){
                         var mobile = hideMiddleCharacters(response.payload.user_id);
                         $('.mobileno').html(mobile);
                         $("#user_id").val(response.payload.user_id);
@@ -102,6 +102,9 @@
                         resendOTP();
                         // var response = JSON.parse(response);
                         // $('#dynamic-content').html(response.content);
+                        }else{
+                            showToaster(response.payload.response.meassage, 2);
+                        }
                     },
                     error: function(xhr, status, error) {
                         console.log('in error');
@@ -351,7 +354,10 @@
 
                                     window.location.href = APP_URL+'/subscription';
 
-                                } else {
+                                }else if(queryParams.get('ref') == "rewards"){
+
+                                    window.location.href = APP_URL+'/my-rewards'; 
+                                }else {
                                     location.reload();
                                 }
                                 return false;
@@ -518,7 +524,10 @@
                                     window.location.href = APP_URL+'/subscription';
                                     return false;
 
-                                } else {
+                                }else if(queryParams.get('ref') == "rewards"){
+
+                                        window.location.href = APP_URL+'/my-rewards'; 
+                                }else {
                                     if($("#redi-val").val() == "subscription"){
                                         window.location.href = APP_URL+'/subscription';
                                         return false;

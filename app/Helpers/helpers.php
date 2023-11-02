@@ -405,7 +405,11 @@ function getItemCardData($val, $language)
     $sub_points = (@$val['age_limit']) ? '<li class="ps-1">' . @$val['age_limit'] . '</li>' : '';
 
     if ($generes) {
+        $count = 1;
         foreach ($generes as $key => $genre) {
+            if ($count++ > 2) {
+                break;
+            }
             $sub_points .= '<li>' . $genre . '</li>';
         }
     }
@@ -768,41 +772,13 @@ function CURLFOREVENTPUSH($txn_url, $postData, $headerType)
 
 function checkSubscription()
 {
-
-    $offerCount = 0;
-    $result['status'] = [];
-    $today = date("Y-m-d") . "T" . date("H:i:s") . "Z";
-    $todayStrToTime = strtotime($today);
-    $usedDays = 0;
-    $activePlan = [];
-    $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2, true);
-    if (!empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['success'] == true) {
-        foreach ($subscriptionPurchases['data'] as $k => $item) {
-            if (!isset($item['plan_name'])) {
-                $item['plan_name'] = '';
-            }
-            $allPurchasedPlans[@$item['plan_id']] = $item;
-            // now based on plan status from API
-            $planstartdate = @$item['subscription_start_date'];
-            $planstartdate = date("Y-m-d", strtotime($planstartdate));
-            if ($item['plan_status'] == "current") {
-                $remainingDays = getDays($today, @$item['subscription_end_date'], 'IST');
-                $activePlan = $item;
-                $activePlan['remainingDays'] = $remainingDays;
-            } else if ($item['plan_status'] == 'future' && date("Y-m-d") == $planstartdate) {
-                $remainingDays = getDays($today, @$item['subscription_end_date'], 'IST');
-                $activePlan = $item;
-                $activePlan['remainingDays'] = $remainingDays;
-            }
-        }
-        if (isset($activePlan['remainingDays']) && $activePlan['remainingDays'] > 1) {
-            $result['status'] = 'active';
-        }
-
-
-        return $result;
-    }
+    $userDetail = session()->get('user') ?? [];
+    $sub_plan = $userDetail['subscriptions'] ?? [];
+    $subscription_end_date = $sub_plan['subscription_end_date'] ?? '';
+    $result['status'] = !empty($subscription_end_date) && $subscription_end_date > date("Y-m-d") ? 'active' : '';
+    return $result;
 }
+
 function formatDate($date, $format = 'd F Y')
 {
     return date($format, strtotime($date));
