@@ -3868,7 +3868,7 @@ input {
 }
 
 .get-help{
-    @include flex(row,center,flex-start);
+    // @include flex(row,center,flex-start);
     color: $bg-white;
     a{
         color: #FFC906;
@@ -6768,4 +6768,8 @@ input {
 }
 .supermix-main{
     padding-inline: 10px;
+}
+#resendBtn,#resendForgotBtn{
+    border: none;
+    border-bottom: 2px solid #fff;
 }
