@@ -185,9 +185,7 @@ foreach ($lang as $val) {
             return view('static.about');
         })->name('about');
 
-        Route::get('explore/{slug}/', function ($slug) {
-            return App::call('\App\Http\Controllers\PageController@explore_details', ['slug' => $slug]);
-        });
+        Route::get('explore/{slug}', [PageController::class, 'explore_details']);
 
         Route::get('live-tv', [LiveTvController::class, 'livetv'])->name('live-tv');
         Route::get('upcoming-epicon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');

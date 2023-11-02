@@ -38,5 +38,3 @@
          @endif
      @endforeach
  @endif
-
-
