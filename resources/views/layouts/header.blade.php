@@ -1,10 +1,16 @@
 <?php
-if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
-    $segment = Request::segment(2);
-} else {
-    $segment = Request::segment(1);
+if (isUserLoggedIn()) {
+    /* check authrization token expired start */
+    if (getFirstSegment() != "assets") {
+        $response = update_user_session();
+        if (!$response) {
+            session()->flush();
+            return redirect(route('homepage') . "?type=logout");
+        }
+    }
+    /* check authrization token expired end */
 }
-$kids_page = $segment == 'kids' ? true : false;
+$kids_page = getFirstSegment() == 'kids' ? true : false;
 
 $action = app('request')->route()->getAction();
 $subplan = [];
@@ -12,16 +18,6 @@ $subplan = [];
 if (isUserLoggedIn()) {
     $profile = getProfileData();
     $subplan = checkSubscription();
-    /* check authrization token expired start */
-    if (getFirstSegment() != "assets") {
-        $response = update_user_session();
-        echo getFirstSegment()."<br>";
-        if (!$response) {
-            session()->flush();
-            return redirect(route('homepage') . "?type=logout");
-        }
-    }
-    /* check authrization token expired end */
 }
 ?>
 <!-- Side Menu Start-->
