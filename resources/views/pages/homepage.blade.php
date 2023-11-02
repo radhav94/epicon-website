@@ -59,6 +59,8 @@
     var spinnerAdded = false;
 
     $(document).ready(function() {
+        $('#pageval').val('1');
+        
         if (typeof activateSpinner === 'function') {
             activateSpinner();
         }
