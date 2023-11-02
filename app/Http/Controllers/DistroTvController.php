@@ -90,6 +90,20 @@ class DistroTvController extends Controller
         ];
     }
 
+    public function distrotvvideo(Request $request){   
+        $resultArr = CurlAPI("pages/distrotv/page/".$request->id, "GET", '', 1);
+     
+        //dd($resultArr);exit();
+         if ($resultArr && @$resultArr['success'] ==  true) {
+             $result = $resultArr['pageData'] ?? '';
+            return view('display-distro.distro-details', compact('result'));
+        }else{
+
+            return view('pages.error.404');
+        }
+        
+    }
+
     public function loadMore(Request $request)
     {
         $slug = ($request->route == '/' || $request->route == 'hi') ? 'home-v2' : $request->route;

@@ -1,11 +1,3 @@
-@extends('layouts.default')
-@section('title','About')
-
-@section('style')
-
-@stop
-
-@section('content')
 
 <style>
 
@@ -84,7 +76,7 @@
         <div class="slide-dist-dots"></div>
     </div>
 </section>
-@stop
+
 @section('script')
 <script src="{{ asset('assets/js/homepage.js') }}"></script>
 <script>
