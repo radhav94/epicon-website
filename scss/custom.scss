@@ -722,3 +722,294 @@
         background-image: unset !important;
     }
 }
+
+// distro tv
+
+    .distrohead-row .view-all-div{
+        text-align: end;
+        font-size: 15px;
+        color: #fff;
+        padding-right: 22px;
+    }
+    
+    .distrohead-row .view-all-div a{
+        text-decoration: none;
+        color: #fff;
+    }
+    
+    .play-button{
+        width: 28px;
+        height: 28px;
+        position: absolute;
+        /* top: 45px; */
+        /* left: 85px; */
+        background-color:black;
+        border: 1px solid #fff;
+        border-radius:50%;
+        cursor: pointer;
+        opacity: 0;
+    }
+    .play-button img{
+        width:16px !important;
+        height: 16px !important;
+        margin: 5px auto;
+    }
+
+    .distro-main .slider-controls .slide-m-prev,.distro-main .slider-controls .slide-m-next{
+        z-index: 9;
+        left: 0;
+        background: transparent;
+        width: 30px;
+        height: 30px;
+        outline: none;
+        border: none;
+        background-image: url("../img/distro-arrow-left.svg");
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+    .distro-main .slider-controls .slide-m-next{
+        right: 0;
+        left: unset;
+        background-image: url("../img/distro-arrow-right.svg");
+        background-repeat: no-repeat;
+    }
+    
+    .distro-main .slider-controls-dots .slick-dots li {
+        position: relative;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin: 0 5px;
+        padding: 0;
+        cursor: pointer;
+    }
+    .distro-main .slider-controls-dots .slick-dots li.slick-active button {
+        width: 26px;
+        background: #ffd102;
+    }
+    .distro-main .slider-controls-dots .slick-dots li button {
+        width: 12px;
+        height: 4px;
+        padding: 0;
+        border-radius: 20px;
+        background: #272727;
+        transition: .3s all;
+    }
+    .distro-main .slider-controls-dots .slick-dots li {
+        width: fit-content;
+    }
+    .card-row .slide:hover,.distrotv-slide-inner .slide:hover {
+        transform: scale(1.02);
+        transform-origin: center;
+        position: relative;
+        transition: 0.3s ease-in-out;
+        z-index: 9;
+    }
+    .card-row .slide:hover .play-icon {
+        transform: scale(1.2, 1.2);
+    }
+    .distrotv-slide-inner .slick-list{
+        padding: 15px 0;
+    }
+
+    .distrotv-slide-inner .slide-img-wrap img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .ds-logo-text {
+        width: 300px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+    }
+
+    .ds-logo-text ul li {
+        padding: 0;
+        margin: 0 10px;
+        color: #fff;
+    }
+
+    .ds-logo-text p, .ds-logo-text span {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 24px;
+        color: #fff;
+        margin: 5px 0;
+        text-align: center;
+    }
+
+    .header-info img {
+        width: 100px;
+        height: 29px;
+    }
+
+    .header-info h2{
+        font-size: 26px;
+    }
+    .ds-logo-text a {
+        padding: 10px 16px;
+        color: #272727;
+        font-size: 14px;
+        font-weight: 600;
+        background: #fff;
+        border-radius: 100px;
+        width: 150px;
+        text-align: center;
+        text-decoration: none;
+    }
+    
+    .distrotv-slide-show button.slick-prev,.distrotv-slide-show button.slick-next,.distro-slider button.slick-next,.distro-slider button.slick-prev {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        right: 0;
+    }
+
+    .distrotv-slide-show button.slick-next::before,.distrotv-slide-show button.slick-prev::before ,.distro-slider button.slick-prev::before{
+        content: "";
+        background: url("../img/hero-left-arrow.svg") center no-repeat;
+        width: 32px;
+        height: 32px;
+        float: left;
+        /* transform: rotate(180deg); */    
+        outline: 0;
+    }
+
+    .distrotv-slide-show button.slick-next::before,.distrotv-slide-show button.slick-prev::before ,.distro-slider button.slick-next::before {
+        background: url("../img/hero-right-arrow.svg") center no-repeat;
+        width: 32px;
+        height: 32px;
+        content: "";
+        float: left;
+        outline: 0;
+    } 
+    
+
+    .distrotv-slide-show button.slick-prev,.distro-slider button.slick-prev {
+        position: absolute;
+        top: calc(50% - 10px);
+        z-index: 1;
+        left: 0;
+        box-shadow: none;
+        border: none;
+        outline: 0;
+        border-radius: 40px;
+    }
+
+    .distro-slider .sample_img img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .distro-slider .sample_img a{
+        display: block;
+        width: 100%;
+    }
+    .distro-banner-item{
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .distro-banner-item img{
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    .distro-title{
+        margin-bottom: 0;
+        margin-left: 14px;
+        padding: 0;
+        font-weight: 700;
+        font-size: 16px;
+        color: #dfdfdf;
+        text-transform: uppercase;
+    }
+
+    .distro-slider .sample_img{
+        transition: 0.3s ease-in-out;
+    }
+    .distro-overlay{
+        top: 0;
+        left: 0;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(33, 33, 33, 0.00) 0%, #212121 100%);
+        /*padding: 20px;*/
+        z-index: 1;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .distro-main .slider-controls{
+        z-index: 9;
+        bottom: 0px;
+        right: 40px;
+        width: 80px;
+        top: 220px;
+    }
+
+    .distro-banner{
+        height: 300px;
+    }
+    
+    .distro-banner-item img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
+    .distro-tray{
+        padding-left: 15px;
+    }
+    .distro-tray img{
+        width: 100%;
+    }
+        
+
+    @media (max-width: 768px) {
+        .play-button{
+            display: none;
+        }
+        .distrohead-row .view-all-div a h6{
+            margin-bottom: 0;
+            padding-bottom: 0;
+            padding-top: 10px;
+        }
+    }
+    @media screen and (max-width: 767px) {
+    
+        .ds-logo-text {
+            margin-top: 90px;
+        }
+        .distro-main .slider-controls{
+            display: none !important;
+        }
+        .distro-title{
+            font-size: 12px;
+            position: absolute;
+        }
+        .distro-tray {
+            margin: 0px;
+            text-align: center;
+        }
+        .distro-tray img {
+            width: 100%;
+        }
+    }
+    @media (max-width: 700px) {
+        .distrohead-row{
+            padding:0 0 0 0 !important;
+        }
+        .distrotv-slide-inner .slick-list {
+            padding: 15px 0 0px 0;
+        }
+    }
