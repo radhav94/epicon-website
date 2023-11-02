@@ -6,6 +6,8 @@
         $( ".date_picker" ).datepicker({
             dateFormat: 'MM dd, yy',
             maxDate: '-1d',
+            changeMonth: true,
+            changeYear: true
         });
 
         $(".emailText").on("keyup", function (e) {
@@ -681,7 +683,7 @@
         $('.better-suggestion-nxtBtn').click(function() {
             $("#error-meg-for-genre-select").html("");
             var genreCount = 0;                
-            $("input[name='chooseGenre[]']").each(function() {
+            $("input[name='genreInterest[]']").each(function() {
                 if (this.checked) {
                     genreCount++;
                 }
@@ -753,7 +755,7 @@
                     for (var i = 0; i < lists.length; i++) {
                         content = '<div class="interest-suggetion">'
                                 +'<label class="is-checkbox">'
-                                    +'<input type="checkbox" name="chooseGenre[]" onclick="genreSelect(this)" value="'+lists[i]['genre']+'">'
+                                    +'<input type="checkbox" name="genreInterest[]" value="'+lists[i]['genre']+'">'
                                     +'<span class="checkmark"></span>'
                                 +'</label>'
                                 +'<img src="'+lists[i]['banner_image']['medium']+'" alt="img">'
@@ -769,23 +771,5 @@
                 console.log('error me aaya');
             }
         });
-    }
-
-    function genreSelect(thiss) {
-        var genreCount = 0;
-        
-        $("input[name='chooseGenre[]']").each(function() {
-            if (this.checked) {
-                genreCount++;
-            }
-        });
-        if (genreCount > 5) {
-            console.log(thiss);
-            if (thiss.checked) {
-                thiss.checked = false;                        
-            }
-        } else {
-            $("#genre-select-count").text(genreCount+" of 5");
-        }
     }
 </script>

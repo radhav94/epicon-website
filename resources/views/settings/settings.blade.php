@@ -621,7 +621,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
 <script>
     $(document).ready(function() {
         var checkpin = $("#ispin").val();
-        if(checkpin !="ispin"){
+        if(checkpin == "ispin"){
             $("#v-pills-childpin-tab").trigger('click');
         }
         var searchHistory = "{{ $hasSearchHistory }}";
@@ -756,6 +756,9 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                     if (response.payload.success == true) {
                         $("#childPinForm input").val("");
                         if (command == "createKidsPin") {
+                            if (checkpin == "ispin") {
+                                window.location.href = "{{ getUrlWithPrefix('kidsIndex') }}";
+                            }
                             $("#childpin").modal('show');
                         } else {
                             $("#changed-childpin").modal('show');
