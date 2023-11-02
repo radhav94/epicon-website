@@ -405,7 +405,11 @@ function getItemCardData($val, $language)
     $sub_points = (@$val['age_limit']) ? '<li class="ps-1">' . @$val['age_limit'] . '</li>' : '';
 
     if ($generes) {
+        $count = 1;
         foreach ($generes as $key => $genre) {
+            if ($count++ > 2) {
+                break;
+            }
             $sub_points .= '<li>' . $genre . '</li>';
         }
     }

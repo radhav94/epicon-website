@@ -164,7 +164,7 @@ if (isUserLoggedIn()) {
             ];
         } else {
             $links = [
-                '/' => 'Home',
+                '' => 'Home',
                 'movies' => 'Movies',
                 'tv-shows' => 'Shows',
                 'podcast' => 'Podcasts',
@@ -172,26 +172,11 @@ if (isUserLoggedIn()) {
                 'premium' => 'Premium',
             ];
         }
-
-
-if (request()->path() == "hi") {
-    $current_route = "/";
-} else {
-    $path = explode("/", request()->path());
-    $finalPath = [];
-    foreach ($path as $value) {
-        if ($value == "hi") {
-            continue;
-        } else {
-            $finalPath[] = $value;
-        }
-    }
-    $current_route = implode("/", $finalPath);
-}
+    $current_route = getFirstSegment();
 ?>
         <ul class="menu-item list-unstyled d-flex mb-0">
             @foreach ($links as $key => $value)
-                <li><a href="{{ getUrl($key) }}"
+                <li class="{{ $key == 'explore' ? 'explore-menu' : '' }}"><a href="{{ getUrl($key) }}"
                         @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
             @endforeach
 @loggedin
