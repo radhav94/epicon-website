@@ -1084,9 +1084,13 @@ function kidsMode()
 
 function getJsonDataFromFile($filepath)
 {
-    $jsonData = file_get_contents($filepath);
-    $arrayData = json_decode($jsonData, true);
-    return $arrayData;
+    try {
+        $jsonData = file_get_contents($filepath);
+	    $arrayData = json_decode($jsonData, true);
+    } catch (\Throwable $th) {
+        $arrayData = [];
+    }
+        return $arrayData;
 }
 
 function getCountryStateData()
@@ -1101,14 +1105,17 @@ function getCountryStateDataInHtml()
     $countrycode = (!empty($_SERVER['HTTP_X_CC']) ? $_SERVER['HTTP_X_CC'] : 'IN');
     $countrystate = getCountryStateData();
     $countryisdhtml = "";
-    foreach ($countrystate['countries'] as $i => $value) {
-        if ($countrycode == $value['code'] || $countrycode == $value['countryisdcode']) {
-            $selectvar = "selected";
-        } else {
-            $selectvar = "";
+
+    if( $countrystate){
+            foreach ($countrystate['countries'] as $i => $value) {
+                if ($countrycode == $value['code'] || $countrycode == $value['countryisdcode']) {
+                    $selectvar = "selected";
+                } else {
+                    $selectvar = "";
+                }
+                $countryisdhtml .= '<option value="' . $value['countryisdcode'] . '" ' . $selectvar . '>' . $value['displayisdcode'] . '</option>';
+            }
         }
-        $countryisdhtml .= '<option value="' . $value['countryisdcode'] . '" ' . $selectvar . '>' . $value['displayisdcode'] . '</option>';
-    }
     return $countryisdhtml;
 }
 
