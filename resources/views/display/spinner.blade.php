@@ -10,10 +10,10 @@
              <div class="spin-trigger"><img src="{{ asset('assets/img/spin-trigger.svg') }}" alt=""></div>
          </div>
          <div id="question">
-             <!-- <h1>Result is shown here</h1> -->
+
              <div class="spin-img d-flex">
                  <div class="trigger-data-img d-flex">
-                     <img src="{{ asset('assets/img/dhamal.jpeg') }}" alt="">
+                     <img src="{{ asset('assets/img/default-200x300.png') }}" alt="">
                  </div>
              </div>
 
@@ -161,7 +161,7 @@
                      container.on("click", spin);
                  });
          }
-         spin();
+         // spin();
          // window.globalSpin = spin;
          //make arrow
          // svg.append("g")
