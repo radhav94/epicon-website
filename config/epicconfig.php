@@ -313,8 +313,8 @@ if($environment=='PRODUCTION'){
 		],*/
 		//PRODUCTION
         'PAYUMONEY'=>[
-            'PAYUMONEY_MERCHANT_KEY'=>'gtKFFx', // MERCHABT_ID 117245
-            'PAYUMONEY_SALT'=>'4R38IvwiV57FwVpsgOvTXBdLE4tHUXFW',
+            'PAYUMONEY_MERCHANT_KEY'=>'lp1BOz', // MERCHABT_ID 117245 // gtKFFx
+            'PAYUMONEY_SALT'=>'Vv7fqdW7VdtV9DxJyunZ2BLsXPnwaBax',//4R38IvwiV57FwVpsgOvTXBdLE4tHUXFW
             'ANDROID_RESPONSE_URL'=>'https://dev.epicon.in/payumoney/androidresponse',
             'TESTMODE'=>true,
             'SUBSCRIPTION_URL'=>'https://test.payu.in/_payment',

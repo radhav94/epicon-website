@@ -29,7 +29,8 @@
                     <img src="{{ $banner_img }}" alt="">
                 </a>
                 <div class="bottom-card-content">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h1>{{ $card['title'] }}</h1>
+                    <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex justify-content-between align-items-center">
                         @if(@$val['asset_type'] == 'PLAY')
                             {!! getplayanchorhtml($val) !!}
@@ -46,7 +47,6 @@
                             {!! getWishListAction($val, $wishlist, 2) !!}
                         </div>
                     </div>
-                    <h1>{{ $card['title'] }}</h1>
 
                     <ul>
                         {!! $card['sub_points'] !!}
