@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', $meta_title)
+@section('title', "meta_title")
 
 @section('style')
 
@@ -14,10 +14,11 @@
 
     <?php
          $wishlist = getWishlist();
+         //dd($result['pageData']);
          ?>
 
-         @if (@$result['data']['list'])
-             @foreach ($result['data']['list'] as $key => $value)
+         @if (@$result['pageData']['list'])
+             @foreach ($result['pageData']['list'] as $key => $value)
                  @if (isset($value['display_type']) && isset($value['content']) && !empty($value['content']))
                      @php
                          $template = 'display-distro.' . $value['display_type'];

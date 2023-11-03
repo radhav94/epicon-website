@@ -817,6 +817,12 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: 10px;
+    }
+    .distrotv-slide-inner figure{
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .ds-logo-text {
