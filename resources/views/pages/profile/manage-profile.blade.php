@@ -34,6 +34,7 @@
                             <a href="{{ getUrlWithPrefix('profile.add') }}">
                                 <img src="{{ asset('assets/img/mn-add.png') }}" alt="img">
                             </a>
+                            <p class="mt-2">Add</p>
                         </li>
                     @endif
                 </ul>

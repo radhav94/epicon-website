@@ -1,8 +1,48 @@
 @extends('layouts.default')
-@section('title', $meta_title)
+@section('title', "meta_title")
 
 @section('style')
 
+@stop
+
+@section('style')
+<style>
+
+    .play-button{
+        width: 35px;
+        height: 35px;
+        position: absolute;
+        background-color:black;
+        border: 1px solid #fff;
+        border-radius:50%;
+        cursor: pointer;
+        opacity: 0;
+    }
+    .play-button img{
+        width: 9px !important;
+        height: 14px !important;
+        margin: 10px auto;
+    }
+    .distro-slider .sample_img{
+        border-radius:15px;
+        overflow:hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .sample_img:hover{
+        transform: scale(1.3, 1.3);
+        transform-origin: center;
+        position: relative;
+        z-index: 9;
+    }
+    .sample_img:hover .play-button{
+        opacity: 1;
+    }
+    .distro-slider .slick-list{
+        padding: 15px 0;
+    }
+</style>
 @stop
 
 @section('content')
@@ -14,10 +54,11 @@
 
     <?php
          $wishlist = getWishlist();
+         //dd($result['pageData']);
          ?>
 
-         @if (@$result['data']['list'])
-             @foreach ($result['data']['list'] as $key => $value)
+         @if (@$result['pageData']['list'])
+             @foreach ($result['pageData']['list'] as $key => $value)
                  @if (isset($value['display_type']) && isset($value['content']) && !empty($value['content']))
                      @php
                          $template = 'display-distro.' . $value['display_type'];
@@ -53,4 +94,20 @@
 
 @section('script')
 <script src="{{ asset('assets/js/homepage.js') }}"></script>
+
+<script>
+    var processing;
+    var spinnerAdded = false;
+
+    $(document).ready(function() {
+        $('#pageval').val('1');
+        
+        if (typeof activateSpinner === 'function') {
+            activateSpinner();
+        }
+        initSliders();
+
+        });
+    </script>
+
 @stop
