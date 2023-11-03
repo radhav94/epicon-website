@@ -33,7 +33,7 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {   
-        $searchText = $request->get('searchinput');
+        $searchText = $request->post('searchinput');
         $kidsMode = session()->has('kidsMode') ? session()->get('kidsMode') : false;
         if ($kidsMode == true) {
             $postData = [
