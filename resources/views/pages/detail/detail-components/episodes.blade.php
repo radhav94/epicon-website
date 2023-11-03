@@ -39,7 +39,7 @@
                                 {{ convertSecondsToReadable($value['duration']) }}
                             @endif
                         </span>
-                        <p class="mt-2"><?php echo nl2br(str_replace("\\r\\n", "\r\n", @$value['short_description'])); ?></p>
+                        <p class="mt-2">{!! sanitizeData(@$value['short_description']) !!}</p>
                     </div>
                 </li>
             @endforeach

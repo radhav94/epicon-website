@@ -115,7 +115,7 @@ class SearchController extends Controller
             . '<div class="episode-text-details">'
             . '<h6>' . @$topResult['title'] . '</h6>'
             . '<span>' . @$dateText . ' | ' . @$topResult['duration'] . '</span>'
-            . '<p class="search-top mt-2">' . @$topResult['description'] . '</p>'
+            . '<p class="search-top mt-2">' . sanitizeData(@$topResult['description']) . '</p>'
             . '<div class="d-flex align-items-center"> '.$anchorHtml.' <button class="fill-btn em ms-0">' . __('Watch') . '</button></a>' . $wishlistAction . '</div></div>'
             . '</li>';
         $htmlContent .= $list . '</ul>';
