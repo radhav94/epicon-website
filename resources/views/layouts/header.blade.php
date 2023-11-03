@@ -127,7 +127,7 @@ if (isUserLoggedIn()) {
             <a class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}"
                     alt=""></a>
                     
-                @if($kids_page)
+                @if($kids_page && @$subplan['status'] != 'active')
                     <a class="subscribe-btn allAccessBtn-sub" href="javascript:void(0);">{{__('Subscribe')}}</a>
                 @endif
 
@@ -156,6 +156,7 @@ if (isUserLoggedIn()) {
                 'kids/podcast' => 'Podcasts',
                 'kids/games' => 'Games'
             ];
+            $current_route = request()->path();
         } else {
             $links = [
                 '' => 'Home',
@@ -165,8 +166,9 @@ if (isUserLoggedIn()) {
                 'explore' => 'Explore',
                 'premium' => 'Premium',
             ];
+            $current_route = getFirstSegment();
         }
-    $current_route = getFirstSegment();
+    
 ?>
         <ul class="menu-item list-unstyled d-flex mb-0">
             @foreach ($links as $key => $value)

@@ -179,7 +179,7 @@ foreach ($lang as $val) {
         Route::get('payu/androidtransaction', [AndroidPaymentController::class, 'androidPayuUsingWeb'])->name('androidPayuUsingWeb');
         Route::post('androidPayuresponse', [AndroidPaymentController::class, 'androidPayuresponse'])->name('androidPayuresponse');
         Route::get('distro-tv', [DistroTvController::class, 'index'])->name('distro-tv');
-        Route::get('distrotvvideo/{id}', [DistroTvController::class, 'distrotvvideo'])->name('distrotvvideo');
+        Route::get('distro-tv/{id}', [DistroTvController::class, 'distrotvvideo'])->name('distrotvvideo');
     });
 
     Route::group(['prefix' => $prefix, 'middleware' => 'checkUserAuthToken'], function () {
@@ -202,8 +202,8 @@ foreach ($lang as $val) {
         });
         Route::get('channels/{slug}', [PageController::class, 'channelsmidpagedetail']);
         Route::get('explore', [PageController::class, 'explore'])->name('explore');
-        Route::get('{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
         Route::get('retro-rewind/{slug}', [RetroRewindController::class, 'retroRewindList'])->name('retro-list');
+        Route::get('{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
         Route::get('{slug}', [PageController::class, 'index']);
     });
 }

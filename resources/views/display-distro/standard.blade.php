@@ -6,7 +6,7 @@
     @foreach ($value['content'] as $key => $val)
     <?php //dd($val);  ?>
         <div class="sample_img position-relative me-3">
-            <a href="{{ url('distrotvvideo') }}/{{$val['ID']}}">
+            <a href="{{ getUrl('distro-tv') }}/{{@$val['ID']}}">
                 <img src="{{@$val['episodes_img_thumbh']}}" alt="">
             </a>
             <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>

@@ -295,7 +295,7 @@ class PageController extends Controller
             'list_language' => checkLang($listlang),
             'display_language' => checkLang($displang),
             'page' => $page,
-            'limit' => $this->limit,
+            'limit' => (request()->v == 2 || request()->v == 1) ? 100 : $this->limit,
         ];
 
         if (isUserLoggedIn()) {
@@ -304,7 +304,7 @@ class PageController extends Controller
         }
 
         $result = CurlAPI("pages/homepage", "GET", $params, 1);
-
+        //dd($result);
         if ($result && @$result['success'] ==  true) {
             $data = $result['data'] ?? [];
             $lists = $data['list'] ?? [];
@@ -312,7 +312,7 @@ class PageController extends Controller
                 if (@$list['slug'] == "short-and-sweet") {
                     $stories = $this->epicShots();
                     break;
-                }
+                }   
                 continue;
             }
         }
@@ -320,7 +320,7 @@ class PageController extends Controller
         return [
             'result' => $result,
             'displayLanguageParam' => $displayLanguageParam,
-            'stories' => $stories
+            'stories' => $stories,
         ];
     }
 

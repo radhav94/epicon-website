@@ -982,6 +982,68 @@ function initSliders() {
 
     // distro tv
 
+    $('.distro-banner').not('.slick-initialized').slick({ 
+        dots: false,
+        arrows: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: true,
+        prevArrow: $(".slide-m-prev"),
+        nextArrow: $(".slide-m-next"),
+        appendDots: $(".slide-dist-dots"),
+      });
+    
+      $(".distro-slider").not('.slick-initialized').slick({
+        autoplay: !1,
+        slidesToShow: 6,
+        centerMode: !1,
+        arrow:true,
+        slidesToScroll: 6,
+        dots: !1,
+        infinite: !1,
+        cssEase: "linear",
+        rtl: !1,
+        responsive: [
+            {
+            breakpoint: 3e3,
+            settings: {
+                slidesToShow: 7.3,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 1600,
+            settings: {
+                slidesToShow: 6.3,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 1200,
+            settings: {
+                slidesToShow: 7.3,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 900,
+            settings: {
+                slidesToShow: 5.3,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 4.3,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 2.2,
+                slidesToScroll: 1
+            }
+        }]
+    });
+
 
     $(".distrotv-slide-inner").not('.slick-initialized').slick({
         autoplay: !1,
