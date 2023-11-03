@@ -79,7 +79,7 @@ function onError(xhr) {
 }
 
 const showToaster = (message, type = 1, timeout = 4000) => {
-    toastr.clear();
+    toastr.remove();
     if (type == 1) {
         toastr.success(message, "Success", {
             timeOut: timeout
