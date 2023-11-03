@@ -26,7 +26,7 @@
                     @include($template, [
                         'value' => $value,
                         'title' => $title,
-                        'shortdescription' => $shortdescription,
+                        'shortdescription' => sanitizeData($shortdescription),
                     ])
                 @endif
              @else

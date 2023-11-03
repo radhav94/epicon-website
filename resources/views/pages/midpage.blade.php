@@ -113,7 +113,7 @@
                                 <li>Mind Game</li>
                                 <li>5 Seasons</li> -->
                             </ul>
-                            <p class="text-white mb-0">{{$val['description']}}</p>
+                            <p class="text-white mb-0">{!! sanitizeData($val['description']) !!}</p>
                         </div>
                     </div>
                     @if(@$val['asset_type'] == 'PLAY')

@@ -521,7 +521,7 @@
                     </div>
 
                     <!-- better suggetion start -->
-                    <div class="better-solution choose-interests">
+                    <div class="login-popup-modal better-solution choose-interests">
                         <form id="interestsSuggestions" class="better-solution">                            <
                             <div class="bs-left">
                                 <h4>
@@ -578,6 +578,8 @@
                             style="width: 280px;">Skip for now</button>
                         </div>
                     </div>
+
+                    @include('auth.setChildPin')
 
                 </div>
             </div>

@@ -69,6 +69,8 @@
             </div>
     </div>
     <div class="distro-banner">
+
+    
         <div class="distro-banner-item"><img src="{{asset('img/Desktop-Page-Blocks.png')}}" alt=""></div>
         <div class="distro-banner-item"><img src="{{asset('img/Desktop-Page-Blocks.png')}}" alt=""></div>
         <div class="distro-banner-item"><img src="{{asset('img/Desktop-Page-Blocks.png')}}" alt=""></div>
