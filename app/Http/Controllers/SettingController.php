@@ -85,9 +85,11 @@ class SettingController extends Controller
             $curlData = ["pin" => $kidsPin];
             $response = CurlAPI("users/setChildPin", "POST", $curlData, 2, true);
             if ($response && @$response['success']) {
-                $profile_data = $request->session()->get('profile_data');
-                $profile_data['result']['user_data']['kidSection'] = true;
-                $request->session()->put('profile_data', $profile_data);
+                $profile_data = session()->get('profile_data') ?? [];
+                if (!$profile_data) {
+                    $profile_data['result']['user_data']['kidSection'] = true;
+                    $request->session()->put('profile_data', $profile_data);
+                }
             }
         } else {
             $curlData = ["pin" => $newKidsPin, "old_pin" => $oldKidsPin];
