@@ -173,10 +173,12 @@ if (isUserLoggedIn()) {
                 <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a href="{{ getUrl($key) }}"
                         @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
             @endforeach
-@loggedin
+            @loggedin
+            @if(!kidsMode())
             <li>
                 <a href="{{url('/my-rewards')}}" @if ($current_route == "my-rewards") class="active" @endif>Reward Store</a>
             </li>
+            @endif
             @elseloggedin
             <li class="nav-item">
                 <a href="javascript:void(0)" class="login-with-rewards">Reward Store</a>
