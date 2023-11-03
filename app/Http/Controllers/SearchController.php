@@ -32,8 +32,8 @@ class SearchController extends Controller
     }
 
     public function search(Request $request)
-    {
-        $searchText = $request->post('searchinput');
+    {   
+        $searchText = $request->get('searchinput');
         $kidsMode = session()->has('kidsMode') ? session()->get('kidsMode') : false;
         if ($kidsMode == true) {
             $postData = [
@@ -47,6 +47,7 @@ class SearchController extends Controller
         }
         
         $searchResult = CurlAPI("pages/search", 'POST', $postData, 1);
+        // dd($searchResult);
         if ($searchResult) {
             $data = [];
 
@@ -94,18 +95,28 @@ class SearchController extends Controller
         $dateText = isset($topResult['release_date']) ? date('Y-m-d', strtotime($topResult['release_date'])) : '';
         $wishlist = getWishlist();
         $wishlistAction = getWishListAction($topResult, $wishlist, 2);
-        $url = getContentUrl($topResult);
+        
 
         $htmlContent = '<h5 class="text-white">Top Result</h5>'
             . '<ul class="list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4">';
 
+        $cover_img = getCardImage($topResult, 'cover_image', 'medium');
+
+
+        if(@$topResult['asset_type'] == 'PLAY'){
+            $anchorHtml = getplayanchorhtml($topResult);
+        }else{
+            $anchorHtml = '<a href="'.getContentUrl($topResult).'" >';
+        }
+        
+
         $list = '<li class="episode-main mb-4">'
-            . '<div class="pik"><img src="' . @$topResult['cover_image']['medium'] . '" alt="img">' . $premium . '</div>'
+            . '<div class="pik"><img src="' . $cover_img . '" alt="img">' . $premium . '</div>'
             . '<div class="episode-text-details">'
             . '<h6>' . @$topResult['title'] . '</h6>'
             . '<span>' . @$dateText . ' | ' . @$topResult['duration'] . '</span>'
             . '<p class="search-top mt-2">' . @$topResult['description'] . '</p>'
-            . '<div class="d-flex align-items-center"><a href="' . $url . '"><button class="fill-btn em ms-0">' . __('Watch') . '</button></a>' . $wishlistAction . '</div></div>'
+            . '<div class="d-flex align-items-center"> '.$anchorHtml.' <button class="fill-btn em ms-0">' . __('Watch') . '</button></a>' . $wishlistAction . '</div></div>'
             . '</li>';
         $htmlContent .= $list . '</ul>';
         $this->addHistorySession($list, @$topResult['title']);
@@ -151,10 +162,16 @@ class SearchController extends Controller
                             <h5 class="text-white">Other Results</h5>
                             <ul class="more-like-this carousel-initilize p-0">';
             foreach ($contents as $content) {
-                $cover_img = getCardImage($content, 'cover_image', 'small');
-                $url = getContentUrl($content);
+                $cover_img = getCardImage($content, 'cover_image', 'medium');
+
+                if(@$content['asset_type'] == 'PLAY'){
+                    $anchorHtml = getplayanchorhtml($content);
+                }else{
+                    $anchorHtml = '<a href="'.getContentUrl($content).'" class="main-card mt-0">';
+                }
+                
                 $htmlContent .= '<li>
-                                <a href="' . $url . '" class="main-card mt-0">
+                                '.$anchorHtml.'
                                     <div class="main-img mt-0">
                                         <img src="' . $cover_img . '" alt="">
                                     </div>

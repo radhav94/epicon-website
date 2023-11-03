@@ -295,7 +295,7 @@ class PageController extends Controller
             'list_language' => checkLang($listlang),
             'display_language' => checkLang($displang),
             'page' => $page,
-            'limit' => $this->limit,
+            'limit' => (request()->v == 2 || request()->v == 1) ? 100 : $this->limit,
         ];
 
         if (isUserLoggedIn()) {
