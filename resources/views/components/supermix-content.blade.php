@@ -27,7 +27,7 @@
                     ])
                 </span>
                 <p class="col-sm-8 col-md-10 mt-2">
-                    {{ @$value['short_description'] }}
+                    {!! sanitizeData(@$value['short_description']) !!}
                 </p>
             </div>
             <button class="reorder-icon handle">

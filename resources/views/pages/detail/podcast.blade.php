@@ -132,7 +132,7 @@ $episode_json = json_encode($episode_list);
                                 @endif
                             </div>
                         </div>
-                        <p class="pod-detail-text mt-3">{{ @$content['description'] }}</p>
+                        <p class="pod-detail-text mt-3">{!! sanitizeData(@$content['description']) !!}</p>
                         <div class="podcast-btns d-flex align-items-center" data-id="{{ @$content['ID'] }}">
                             <button class="fill-btn ms-0 px-4 {{$watchClass}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28" viewBox="0 0 29 28" fill="none">
