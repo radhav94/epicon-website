@@ -91,6 +91,7 @@ class DistroTvController extends Controller
     }
 
     public function distrotvvideo(Request $request){   
+        
         $resultArr = CurlAPI("pages/distrotv/page/".$request->id, "GET", '', 1);
      
         //dd($resultArr);exit();
