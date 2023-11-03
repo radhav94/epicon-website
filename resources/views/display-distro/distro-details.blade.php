@@ -59,10 +59,12 @@
 
 
 </style>
-
+<?php //dd($result);exit; ?>
 
 <section class="distro-main-video w-100 position-relative">
     <div class="distro-banner-video">
+    <source src="{{$result['episodes_content']['url']}}" type="application/x-mpegURL" />
+    <p class="vjs-no-js">
         <div class="distro-banner-item"><img src="{{$result['episodes_img_thumbh'] ?? ''}}" alt=""></div>
      
     </div>
