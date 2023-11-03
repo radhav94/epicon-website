@@ -12,7 +12,8 @@ $banner_img = getCardImage($val, 'banner_image', 'small');
         </a>
     </div>
     <div class="bottom-card-content">
-        <div class="d-flex justify-content-between align-items-center mb-2">
+    <h1>{{ $card['title'] }}</h1>
+        <div class="d-flex justify-content-between align-items-center">
             <div class="w-100 d-flex justify-content-between align-items-center"> 
                 @if(@$val['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($val) !!}
@@ -75,7 +76,7 @@ $banner_img = getCardImage($val, 'banner_image', 'small');
 
             </div>
         </div>
-        <h1>{{ $card['title'] }}</h1>
+        
         <ul>
             @if ($card['sub_points'])
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"

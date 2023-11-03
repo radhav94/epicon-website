@@ -1,7 +1,7 @@
    <section class="carousel-main mt-0">
        <div class="punjab">
            <div class="punjab-da-swaad">
-               <div class="punjab-title">
+               <div class="punjab-title arvr-text">
                    @if (@$value['background_image'])
                        <img src="{{ $value['background_image'] }}" alt="">
                    @endif
@@ -15,7 +15,7 @@
                    </div>
                </div>
            </div>
-           <ul class="punjab-carousel p-0 mb-0">
+           <ul class="ar-vr p-0 mb-0">
                @foreach ($value['content'] as $key => $val)
                    <?php
                    $card = getItemCardData($val, $displayLanguageParam);
@@ -23,7 +23,7 @@
                    
                    ?>
                    <li>
-                       @include('components.item-hover-card')
+                       <!-- @include('components.item-hover-card') -->
                        @if(@$val['asset_type'] == 'PLAY')
                             {!! getplayanchorhtml($val) !!}
                         @else
