@@ -4632,7 +4632,7 @@ input {
 }
 
 .border-btn,.fill-btn,.subcription-btn{
-    padding: 10px 60px;
+    padding: 10px 15px;
     border-radius: 38px;
     border: 1px solid #FFF;
     background: transparent;
@@ -4774,7 +4774,7 @@ input {
     height: 50px;
     @include flex(row,center,center);
     img{
-        width: 18px!important;
+        width: 17px!important;
     }
 }
 .pos-btn{
@@ -6709,7 +6709,7 @@ input {
         // position: absolute;
         color: #fff;
         font-weight: 600;
-        font-size: 14px;
+        font-size: 12px;
         bottom: -22px;
         margin-left: 2px;
     }

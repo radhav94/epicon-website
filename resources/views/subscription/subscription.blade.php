@@ -99,11 +99,11 @@
                                    
                                     <li>
                                         <a href="javascript:void(0)">
-                                            <img src="{{ asset($bnval['vendor_image'])}}" alt="">
+                                            <img src="{{asset('img/coupon.svg')}}" alt="">
                                             <div class="ac-content">
                                                 <div class="left">
                                                     <div class="circle-logo">
-                                                        <img src="{{ asset('/img/kfc-logo.png')}}" alt="">
+                                                        <img src="{{ asset($bnval['vendor_image'])}}" alt="">
                                                     </div>
                                                     <span>Exc. Offer</span>
                                                 </div>
