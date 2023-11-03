@@ -127,7 +127,7 @@ if (isUserLoggedIn()) {
             <a class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}"
                     alt=""></a>
                     
-                @if($kids_page)
+                @if($kids_page && @$subplan['status'] != 'active')
                     <a class="subscribe-btn allAccessBtn-sub" href="javascript:void(0);">{{__('Subscribe')}}</a>
                 @endif
 
