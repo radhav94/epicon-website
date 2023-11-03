@@ -70,7 +70,7 @@ class DistroTvController extends Controller
         }
 
         $result = CurlAPI("pages/distrotv/page", "GET", '', 1);
-        //dd($result);
+
         if ($result && @$result['success'] ==  true) {
             $data = $result['data'] ?? [];
             $lists = $data['list'] ?? [];
@@ -100,27 +100,4 @@ class DistroTvController extends Controller
             return view('pages.error.data-error');
         }
     }
-
-    public function loadMore(Request $request)
-    {
-        $slug = ($request->route == '/' || $request->route == 'hi') ? 'home-v2' : $request->route;
-        $data = $this->homepageData($slug, $request->page);
-        $result = $data['result'];
-        if ($result && @$result['success'] ==  true) {
-            $displayLanguageParam = $data['displayLanguageParam'];
-            $stories = $data['stories'];
-
-            $view = view('display.display-default', compact('result', 'displayLanguageParam', 'stories'))->render();
-
-            return JSONResponse(
-                200,
-                'Success.',
-                [
-                    'html' => $view,
-                ]
-            );
-        }
-    }
-    
- 
 }
