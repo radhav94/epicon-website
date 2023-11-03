@@ -30,14 +30,15 @@ $(document).ready(function () {
             $(this).next(".mx-1").focus();
         }
     });
-
-    $(".backpress").keydown(function(event) {
+       
+      $(".childpin-input .backpress").keydown(function(event) {
         if (event.keyCode == 8 && $(this).val().length == 0) {
-          if ($(this).prev('.mx-1')) {
-            $(this).prev('.mx-1').focus();
+          if ($(this).prev('.childpin-input .backpress')) {
+            $(this).prev('.childpin-input .backpress').focus();
           }
         }
       });
+
 
       $(".login-with-subscription").click(function(){
         window.history.pushState({},'',"?ref=subscription");
