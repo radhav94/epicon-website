@@ -91,7 +91,7 @@ $content_list = $story_list['content_list'] ?? [];
                     </span>
                 </div>
             </div>
-            <span class="small">{!! @$value['short_description'] !!}</span>
+            <span class="small">{!! sanitizeData(@$value['short_description']) !!}</span>
         </div>
         <!-- <video-js id="myPlayersStories" data-account="3588749423001" data-video-id="{{ @$value['ID'] }}" data-player="default" data-embed="default" controls="true" autoplay data-tracker-type="{{ @$value['content_type'] }}" data-tracker-action="VIEW" data-application-id="" class="vjs-fluid"></video-js> -->
         <!-- </div> -->

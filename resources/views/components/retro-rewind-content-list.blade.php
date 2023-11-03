@@ -35,7 +35,7 @@
                  ])
              </h2>
 
-             <p>{{ @$val['description'] }}</p>
+             <p>{!! sanitizeData(@$val['description']) !!}</p>
              <ul class="w-100 d-flex justify-content-between align-items-center list-unstyled mb-0 explore-main">
                  <li class="d-flex">
                     @if(@$val['asset_type'] == 'PLAY')

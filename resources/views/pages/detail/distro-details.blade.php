@@ -90,7 +90,7 @@
         </div>
         <div class="para-info">
            {{--<h4>Catch Distro TV Channel, and Mastiii Channel Live Online on MX Player!</h4>--}}
-            <p>{{ @$content['episodes_description'] }}</p>
+            <p>{!! sanitizeData(@$content['episodes_description']) !!}</p>
         </div>
 
     </div>
