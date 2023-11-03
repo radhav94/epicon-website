@@ -983,7 +983,7 @@ function initSliders() {
     // distro tv
 
     $('.distro-banner').not('.slick-initialized').slick({ 
-        dots: true,
+        dots: false,
         arrows: true,
         infinite: true,
         speed: 300,

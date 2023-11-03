@@ -418,7 +418,7 @@ function getItemCardData($val, $language)
 
     return [
         'title' => $title,
-        'short_desc' => $shortdescription,
+        'short_desc' => sanitizeData($shortdescription),
         'banner_img' => $bannerimage,
         'sub_text' => implode(" . ", $sub_text),
         'sub_points' => $sub_points,
@@ -557,7 +557,7 @@ function getContentUrl($value)
 function getplayanchorhtml($value)
 {
     $loginclass = isKidsPage() && !isActiveSubscription() ? "allAccessBtn" : "";
-    $data_url = (isActiveSubscription() && $value['free_premium']) || !$value['free_premium'] ? $value['game_url'] : '';
+    $data_url = (isActiveSubscription() && $value['free_premium']) || !$value['free_premium'] ? @$value['game_url'] : '';
     $html = '<a href="javascript:void(0)" target="_blank" data-url="' . $data_url . '" data-premium="' . $value['free_premium'] . '" data-activesubscriber="' . isActiveSubscription() . '" check-login="' . $loginclass . '" class="main-card check-content-url">';
     return $html;
 }
@@ -1102,5 +1102,12 @@ if (!function_exists('assetTime')) {
 if (!function_exists('countConvert')) {
     function countConvert($count = 0) {
         return $count >= 1000 ? ceil($count/1000) . "K" : $count;
+    }
+}
+
+if (!function_exists('sanitizeData')) {
+    function sanitizeData($data = "")
+    {
+        return !empty($data) ? nl2br(str_replace("\\r\\n", "\r\n", $data)) : '';
     }
 }

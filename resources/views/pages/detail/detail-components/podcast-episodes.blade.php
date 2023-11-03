@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="col-sm-8 col-md-10 mt-2">{{ @$value['short_description'] }}</p>
+                            <p class="col-sm-8 col-md-10 mt-2">{!! sanitizeData(@$value['short_description']) !!}</p>
 
                             <div class="pod-grey-btn-list">
 

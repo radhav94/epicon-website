@@ -1,3 +1,4 @@
+
 <div class="distrohead-row row mb-4 mt-4 me-0 pt-4 pb-2 position-relative" style="background-image: url('../img/distrotvbg-new.png')">
         {{--<div class="view-all-div">
             <a href="{{ url('distro-landing') }}"><h6>View All</h6></a>
@@ -20,12 +21,12 @@
       
         <div class="col-8 col-md-9" style="margin: auto 0">
             <div class="distrotv-slide-inner distrotv-slide-show">
-            @foreach ($value['content'] as $key => $val)
+            @foreach ($distroArr as $key => $val)
                 <div class="slide">
                     <figure>
                         <div class="slide-img-wrap me-3">
-                            <a href="{{ getUrl('distro-tv') }}/{{$val['id']}}">
-                            <img class="slide-img lazyload" src="{{ $val['episodes_img_thumbh'] ?? ''; }}" alt=""></a>
+                            <a href="{{ getUrl('distro-tv') }}/{{@$val['id']}}">
+                            <img class="slide-img lazyload" src="{{@$val['img_url']}}" alt=""></a>
                         </div>
                         <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
                     </figure>               
