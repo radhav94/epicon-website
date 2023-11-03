@@ -139,7 +139,14 @@
                         </div>
                         
                         <div class="subscribe-bottom mt-4">
-                        <form method="post" action="{{getUrl('paymentMethod')}}" class="paymentForm">
+                        
+                            <div class="tc mt-3">
+                                <a href="{{route('terms-of-use')}}">{{__('Terms of Use')}}</a>
+                                <b>•</b>
+                                <a href="{{route('privacy')}}">{{__('Privacy Policy')}}</a>
+                            </div>
+
+                            <form method="post" action="{{getUrl('paymentMethod')}}" class="paymentForm">
                             @csrf
                             <input type="hidden" name="amountid" id="amountid" value="{{$result['plans'][0]['id']}}">
                             <input type="hidden" name="currency" id="currency" value="{{$val['currency']}}">
@@ -153,11 +160,6 @@
                                   </svg>
                             </button>
                             </form>
-                            <div class="tc mt-3">
-                                <a href="{{route('terms-of-use')}}">{{__('Terms of Use')}}</a>
-                                <b>•</b>
-                                <a href="{{route('privacy')}}">{{__('Privacy Policy')}}</a>
-                            </div>
                             
                         </div>
                     </div>

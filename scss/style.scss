@@ -3703,12 +3703,17 @@ input {
 #gender{
     width: 100% !important;
     left: 0;
-    color: #fff !important;
+    color: #BBBBBB !important;
     position: unset;
 
     option{
         background-color: #000;
     }
+}
+#dob{
+    background-image: url("../img/calendar.svg");
+    background-position: center right 7px;
+    background-repeat: no-repeat;
 }
 .input-field{
     position: relative;
@@ -4606,7 +4611,7 @@ input {
 }
 
 .border-btn,.fill-btn,.subcription-btn{
-    padding: 10px 15px;
+    padding: 10px 60px;
     border-radius: 38px;
     border: 1px solid #FFF;
     background: transparent;
@@ -4637,6 +4642,7 @@ input {
     color: $bg-dark-gray;
     background: $bg-white;
     margin-left: 10px;
+    margin-top: 20px;
 
     @media (max-width:700px) {
         &.mobile-width{
@@ -5083,7 +5089,7 @@ input {
                 color: $bg-white;
                 width: fit-content;
                 padding: 0 2px 15px 10px;
-                font-size: 16px;
+                font-size: 15px;
 
                 @media (max-width:700px) {
                     font-size: 14px;
@@ -5179,7 +5185,7 @@ input {
     }
 }
 .use-code{
-    width: 90%;
+    width: 100%;
     height: auto;
     margin: 0 auto;
     gap: 20px;
@@ -5198,13 +5204,12 @@ input {
         width: 60%;
         margin-bottom: 0;
         color: #B7B7B7;
-        font-size: 14px;
+        font-size: 16px;
         @media (max-width:700px) {
             width: 100%;
         }
     }
     div{
-        width: 40%;
         @media (max-width:700px) {
             width: 100%;
         }
@@ -5234,11 +5239,11 @@ input {
     @include flex(column,center,center);
     .tc{
         font-size: 14px;
-        color: $bg-white;
+        color: #FFC906;
         a{
-            color: $bg-white;
+            color: #FFC906;
             padding: 0 10px;
-            text-decoration: none;
+            text-decoration: underline;
         }
         a:hover{
             text-decoration: underline;
