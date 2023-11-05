@@ -385,14 +385,14 @@
     }
 }
 
-.new-popular-main,.explore-details {
+.new-popular-main.explore-details {
     position: relative;
 
     span {
-        left: 10px;
-        top: 10px;
-        svg{
-            width: 100%;
+        left: 5px;
+        top: 1px;
+        img{
+            width: 20px;
         }
     }
 
@@ -410,7 +410,7 @@
         }
 
         @media (max-width:700px) {
-            grid-template-columns: auto;
+            grid-template-columns: auto auto;
         }
 
         .card-body {

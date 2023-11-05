@@ -143,7 +143,7 @@
                     @if(@$val['asset_type'] == 'PLAY')
                         {!! getplayanchorhtml($val) !!}
                     @else
-                        <a href="{{ getContentUrl($val) }}" class="main-card">
+                        <a href="{{ getContentUrl($val) }}" class="main-card seeallm">
                     @endif
                         {!! freePremiumDiv($val) !!}
                         {!! topTenDiv($val) !!}
