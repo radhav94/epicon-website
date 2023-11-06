@@ -47,7 +47,7 @@
                             <div class="carousel-main">
                                 <ul class="vertical-carousel-initilize p-0">
                                     <?php foreach($listdata as $datalist){ 
-                                    $cover_img = isset($datalist['cover_image']) ? @$datalist['cover_image']['medium'] : $datalist['cover_image_special']['medium'];
+                                        $cover_img = getCardImage($datalist, 'cover_image');
                                      ?>
                                     <li>
                                         <a href="{{ url($datalist['url'] ?? '/library') }}" class="main-card">
@@ -68,7 +68,7 @@
                             <div class="carousel-main">
                                 <ul class="vertical-carousel-initilize p-0">
                                     <?php foreach($historydata as $historydatalist){ 
-                                    $cover_image = isset($historydatalist['vertical_cover_image']) ? @$historydatalist['vertical_cover_image']['medium'] : @$historydatalist['banner_image']['medium'];
+                                        $cover_image = getCardImage($historydatalist, 'vertical_cover_image');
                                      ?>
                                     <li>
                                         <a href="{{ url($historydatalist['url'] ?? '/library') }}" class="main-card">
