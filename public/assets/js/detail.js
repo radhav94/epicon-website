@@ -16,7 +16,7 @@ $(document).ready(function () {
             let claps = response.payload.claps;
 
             if (cardType != 'list') {
-                $('.claps_num').text(countConvert(parseInt(claps) + 1));
+                $('.claps_num').text(claps);
             }
         }
 
