@@ -173,7 +173,6 @@
 @section('script')
 <script>
     $(document).ready(function(){
-        $(".promocode").val('');
         $(".planid").click(function (e) {
             var planid =$(this).attr('data-id');  
         $.ajaxSetup({
@@ -314,7 +313,6 @@
     });
 
     $(".payment").click(function(){
-        $(".promocode").val('');
         if($("#amountid").val() == ""){
             showToaster('please select you plan', 2);
         }else{
@@ -329,7 +327,6 @@
         $("#amountid").val(planid);
             if(planid == 'epic_in_pl_1'){
                 $(".coupan-div").hide();
-                //$(".promocode").val('');
             }else{
                 $(".coupan-div").show();   
             }
