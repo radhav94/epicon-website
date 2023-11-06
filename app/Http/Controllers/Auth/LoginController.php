@@ -274,12 +274,6 @@ class LoginController extends Controller
         }
     }
 
-    public function choose_interests() {
-        $request = Request();
-        $request->session()->put('test', 'test');
-        return view('components.choose-interests');            
-    }
-
     public function getGenreList() {
         $request = Request();
         $genrelist = CurlAPI("v2profilecontent/genrelist", 'GET', [], 1);
@@ -289,8 +283,7 @@ class LoginController extends Controller
     public function saveGenreForUser() {
         $request = Request();
         $genre = $request->post('genreInterest') ? $request->post('genreInterest') : [];
-        $user_token = $request->post('user_token') ? $request->post('user_token') : '';
-        $request->session()->put('user_token', $user_token);
+        $user_token = $request->session()->get('user_token');
         $curlData = ["genre" => $genre];
         $genrelist = postCurlApicall("v2profilecontent/savegenrelist", $curlData, 1, $user_token);
         return JSONResponse(200, '', ['message' => $genrelist['message'], 'success' => $genrelist['success']]);
