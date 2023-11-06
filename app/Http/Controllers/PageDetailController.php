@@ -83,7 +83,7 @@ class PageDetailController extends Controller
                 $template = 'pages.detail.podcast';
             }
 
-            return view($template, compact('content', 'displayLanguageParam', 'trailers', 'morelike', 'about'));
+            return view($template, compact('content', 'displayLanguageParam', 'trailers', 'morelike', 'about', 'pageslug'));
         }
 
         return view('pages.error.404');
@@ -97,7 +97,7 @@ class PageDetailController extends Controller
         $result = CurlAPI("pages/clap", "POST", $params);
 
         if ($result && @$result['success'] ==  true) {
-            return JSONResponse(200, 'Success', ['claps' => @$result['claps']]);
+            return JSONResponse(200, 'Success', ['claps' => countConvert(@$result['claps'])]);
         } else {
             return JSONResponse(400, 'Some error occured');
         }

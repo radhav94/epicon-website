@@ -1105,7 +1105,17 @@ if (!function_exists('assetTime')) {
 
 if (!function_exists('countConvert')) {
     function countConvert($count = 0) {
-        return $count >= 1000 ? ceil($count/1000) . "K" : $count;
+        return $count >= 1000 ?
+                    (
+                        $count >= 1000000 ?
+                        (
+                            $count >= 1000000000 ? 
+                            round($count/1000000000) . "B" 
+                            : round($count/1000000) . "M"
+                        )
+                        : round($count/1000) . "K"
+                    ) 
+                : $count;
     }
 }
 
