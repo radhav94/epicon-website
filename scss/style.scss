@@ -1536,6 +1536,13 @@ input {
     }
     
 }
+.lib-reward{
+    @media (max-width:767px) {
+        ul{
+            justify-content: center;
+        }
+    }
+}
 .carousel-main,.library,.seeall-main-page{
     margin-block: 25px;
     height: 100%;
