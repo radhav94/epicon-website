@@ -7,7 +7,7 @@
 @section('content')
 <div class="container mt-4">
     <div class="row">
-        <h1 class="text-white fs-5">{{ucwords(str_replace('-', ' ', $title))}}</h1>
+        <h1 class="text-white fs-5">{{ucwords(str_replace('-', ' ', $title))}} Tv</h1>
         <div class="seeall-main-page">
             <ul class="p-0" id="showmore_load">
             @include('pages.chanel.channelpaginatecontent')
