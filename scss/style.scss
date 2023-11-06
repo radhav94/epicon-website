@@ -283,7 +283,7 @@ input {
             .menu-item{
                 position: unset;
                 width: 100%;
-                justify-content: flex-start;
+                justify-content: center;
                 overflow: auto;
                 padding-block: 5px;
             }
@@ -1536,6 +1536,13 @@ input {
         }
     }
     
+}
+.lib-reward{
+    @media (max-width:767px) {
+        ul{
+            justify-content: center;
+        }
+    }
 }
 .carousel-main,.library,.seeall-main-page{
     margin-block: 25px;
@@ -3777,17 +3784,23 @@ input {
 #gender{
     width: 100% !important;
     left: 0;
-    color: #fff !important;
+    color: #BBBBBB !important;
     position: unset;
 
     option{
         background-color: #000;
     }
 }
+#dob{
+    background-image: url("../img/calendar.svg");
+    background-position: center right 7px;
+    background-repeat: no-repeat;
+}
 .input-field{
     position: relative;
     label{
         font-size: 14px;
+        color: #c65142;
     }
     input{
         border-radius: 10px;
@@ -4711,6 +4724,7 @@ input {
     color: $bg-dark-gray;
     background: $bg-white;
     margin-left: 10px;
+    margin-top: 20px;
 
     @media (max-width:700px) {
         &.mobile-width{
@@ -4826,7 +4840,7 @@ input {
     height: 50px;
     @include flex(row,center,center);
     img{
-        width: 18px!important;
+        width: 17px!important;
     }
 }
 .pos-btn{
@@ -5162,7 +5176,7 @@ input {
                 color: $bg-white;
                 width: fit-content;
                 padding: 0 2px 15px 10px;
-                font-size: 16px;
+                font-size: 15px;
 
                 @media (max-width:700px) {
                     font-size: 14px;
@@ -5258,7 +5272,7 @@ input {
     }
 }
 .use-code{
-    width: 90%;
+    width: 100%;
     height: auto;
     margin: 0 auto;
     gap: 20px;
@@ -5277,13 +5291,12 @@ input {
         width: 60%;
         margin-bottom: 0;
         color: #B7B7B7;
-        font-size: 14px;
+        font-size: 16px;
         @media (max-width:700px) {
             width: 100%;
         }
     }
     div{
-        width: 40%;
         @media (max-width:700px) {
             width: 100%;
         }
@@ -5313,11 +5326,11 @@ input {
     @include flex(column,center,center);
     .tc{
         font-size: 14px;
-        color: $bg-white;
+        color: #FFC906;
         a{
-            color: $bg-white;
+            color: #FFC906;
             padding: 0 10px;
-            text-decoration: none;
+            text-decoration: underline;
         }
         a:hover{
             text-decoration: underline;
@@ -6250,6 +6263,7 @@ input {
     padding-top: 100px;
     @media (max-width:768px) {
         padding-bottom: 80px;
+        padding-top: 40px;
     }
     .middle-footer{
         padding-bottom: 30px;
@@ -6786,7 +6800,7 @@ input {
         // position: absolute;
         color: #fff;
         font-weight: 600;
-        font-size: 14px;
+        font-size: 12px;
         bottom: -22px;
         margin-left: 2px;
     }
@@ -6896,4 +6910,12 @@ input {
 
 .library .main-card .top-ten{
     top:0;
+}
+
+.plyr__video-wrapper{
+    height: 500px !important;
+
+    @media (max-width: 700px) {
+        height: 250px !important;
+    }
 }

@@ -42,7 +42,7 @@
             </button>
 
             <div class="modal-body">
-                <div class="login-register text-center pt-4">
+                <div class="login-register text-center">
                     <div class="left-side">
                         <div class="w-100">
                             <img class="w-100" src="{{ asset('/img/login-register-bg.png') }}" alt="">
@@ -500,7 +500,7 @@
                     </div>
 
                     <!-- successfully and interest  start-->
-                    <div class="login-popup-modal successfully-loged w-100 screen-sucess-register">
+                    <div class="login-popup-modal successfully-loged screen-sucess-register py-5">
                         <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="">
                         <h4 class="text-center text-white mt-3">Hey <span id="username"></span>, you have
                             successfully registered with Epic On!</h4>
