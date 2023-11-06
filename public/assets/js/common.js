@@ -163,9 +163,3 @@ function getCookie(cname) {
     }
     return "";
 }
-
-function countConvert(count = 0)
-{
-    console.log(count);
-    return count >= 1000 ? Math.ceil(count/1000) + "K" : count; 
-}
