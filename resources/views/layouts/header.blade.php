@@ -127,7 +127,7 @@ if (isUserLoggedIn()) {
             <a class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}"
                     alt=""></a>
                     
-                @if($kids_page)
+                @if($kids_page && @$subplan['status'] != 'active')
                     <a class="subscribe-btn allAccessBtn-sub" href="javascript:void(0);">{{__('Subscribe')}}</a>
                 @endif
 
@@ -175,10 +175,12 @@ if (isUserLoggedIn()) {
                 <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a href="{{ getUrl($key) }}"
                         @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
             @endforeach
-@loggedin
+            @loggedin
+            @if(!kidsMode())
             <li>
                 <a href="{{url('/my-rewards')}}" @if ($current_route == "my-rewards") class="active" @endif>Reward Store</a>
             </li>
+            @endif
             @elseloggedin
             <li class="nav-item">
                 <a href="javascript:void(0)" class="login-with-rewards">Reward Store</a>

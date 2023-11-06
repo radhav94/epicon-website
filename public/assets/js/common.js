@@ -30,14 +30,15 @@ $(document).ready(function () {
             $(this).next(".mx-1").focus();
         }
     });
-
-    $(".backpress").keydown(function(event) {
+       
+      $(".childpin-input .backpress").keydown(function(event) {
         if (event.keyCode == 8 && $(this).val().length == 0) {
-          if ($(this).prev('.mx-1')) {
-            $(this).prev('.mx-1').focus();
+          if ($(this).prev('.childpin-input .backpress')) {
+            $(this).prev('.childpin-input .backpress').focus();
           }
         }
       });
+
 
       $(".login-with-subscription").click(function(){
         window.history.pushState({},'',"?ref=subscription");
@@ -162,10 +163,4 @@ function getCookie(cname) {
         }
     }
     return "";
-}
-
-function countConvert(count = 0)
-{
-    console.log(count);
-    return count >= 1000 ? Math.ceil(count/1000) + "K" : count; 
 }

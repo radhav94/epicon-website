@@ -202,8 +202,8 @@ foreach ($lang as $val) {
         });
         Route::get('channels/{slug}', [PageController::class, 'channelsmidpagedetail']);
         Route::get('explore', [PageController::class, 'explore'])->name('explore');
-        Route::get('{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
         Route::get('retro-rewind/{slug}', [RetroRewindController::class, 'retroRewindList'])->name('retro-list');
+        Route::get('{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
         Route::get('{slug}', [PageController::class, 'index']);
     });
 }

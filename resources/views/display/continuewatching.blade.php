@@ -30,7 +30,10 @@
                 </a>
                 <div class="bottom-card-content">
                     <h1>{{ $card['title'] }}</h1>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <ul>
+                        {!! $card['sub_points'] !!}
+                    </ul>
+                    <div class="d-flex justify-content-between">
                         <div class="d-flex justify-content-between align-items-center">
                         @if(@$val['asset_type'] == 'PLAY')
                             {!! getplayanchorhtml($val) !!}
@@ -47,10 +50,6 @@
                             {!! getWishListAction($val, $wishlist, 2) !!}
                         </div>
                     </div>
-
-                    <ul>
-                        {!! $card['sub_points'] !!}
-                    </ul>
                     <div class="progress-main">
                         <?php $progress_duration = (@$val['user_duration'] * 100)/($val['duration'] ?? 1).'%'; ?>
                         <div class="progress">
