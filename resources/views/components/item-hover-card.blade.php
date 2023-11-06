@@ -1,5 +1,5 @@
 <?php
-if($value['display_type'] == 'standard'){
+if($val['display_type'] == 'standard'){
     $banner_img = getCardImage($val, 'vertical_cover_image', 'medium');
 
 }else{
