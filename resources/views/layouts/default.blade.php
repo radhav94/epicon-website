@@ -61,7 +61,7 @@
     {{-- End page specific scripts --}}
 
     @notloggedin
-        @include('components.login-reg-js')
+        @include('auth.login-reg-js')
     @endnotloggedin
 
     @if (session()->has('kidsMode') && session()->get('kidsMode'))

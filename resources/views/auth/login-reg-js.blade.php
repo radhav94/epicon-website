@@ -30,12 +30,13 @@
             if (!event.isTrigger) {
                 window.history.replaceState({}, document.title, "/" );
             }
-            $('.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd,.choose-interests').hide();
+            $('.login-popup-modal').hide();
 
             $('.left-side,.right-side,.screen-login').show();
             $('#login-modal').show();
             $('#login-modal').addClass("show");
             $(".child-box").val('');
+            $(".text-danger").html('');
 
             $('.login-carousel').not('.slick-initialized').slick({
                 infinite: true,
@@ -70,9 +71,8 @@
 
         $(".login-btn-otp").click(function(e) {
             e.preventDefault();
+            $('.login-popup-modal').hide();
             $('.screen-login,.left-side,.right-side').show();
-            $('.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                .hide();
         });
 
         $(".login-get-otp").click(function(e) {
@@ -99,8 +99,7 @@
                         $('.mobileno').html(mobile);
                         $("#user_id").val(response.payload.user_id);
                         $("#signupmethod").val(response.payload.user_signup_method);
-                        $('.screen-login,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                            .hide();
+                        $('.login-popup-modal').hide();
                         $('.screen-verify').show();
                         resendOTP();
                         // var response = JSON.parse(response);
@@ -137,8 +136,7 @@
                         $('.mobileno').html(mobile);
                         $("#user_id").val(response.payload.user_id);
                         $("#signupmethod").val(response.payload.user_signup_method);
-                        $('.screen-login,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                            .hide();
+                        $('.login-popup-modal').hide();
                         $('.screen-verify').show();
                         // var response = JSON.parse(response);
                         // $('#dynamic-content').html(response.content);
@@ -207,8 +205,7 @@
                         $('.mobile_no').html(mobile);
                         $("#userid_no").val(response.payload.user_id);
                         $("#usersignupmethod").val(response.payload.user_signup_method);
-                        $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-set-pwd')
-                            .hide();
+                        $('.login-popup-modal').hide();
                         $('.left-side,.right-side').show();
                         if (response.payload.success == true) {
                             $('.screen-forgot-otp').show();
@@ -243,8 +240,7 @@
                     $('.mobile_no').html(mobile);
                     $("#userid_no").val(response.payload.user_id);
                     $("#usersignupmethod").val(response.payload.user_signup_method);
-                    $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-set-pwd')
-                        .hide();
+                    $('.login-popup-modal').hide();
                     $('.left-side,.right-side').show();
                     if (response.payload.success == true) {
                         $('.screen-forgot-otp').show();
@@ -345,8 +341,7 @@
                             $("#sign_method").val(response.payload.user_signup_method);
                             
                             if (response.payload.response.is_verified == false) {
-                                $('.screen-login,.screen-verify,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                                .hide();
+                                $('.login-popup-modal').hide();
                                 $('.screen-register').show();
                                 $('.screen-login-with-pwd').hide();
                             } else {
@@ -425,15 +420,18 @@
                         // alert(response);
                         if (response.payload.success == true) {
                             // $('#register-result').html('');
-                            $("#username").text(response.payload.name);
+                            // $("#username").text(response.payload.name);
                             // $("#sign_method").val(response.payload.user_signup_method);
-                            $('.screen-login,.screen-verify,.screen-register,.left-side,.right-side,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd,.better-solution')
-                                .hide();
+                            // $('.login-popup-modal').hide();
+                            // $('.screen-sucess-register').show();
+                            // $("#interestsSuggestions input[name='user_token']").val(response.payload.user_token);
                             $('.screen-sucess-register').show();
-                            $("#interestsSuggestions input[name='user_token']").val(response.payload.user_token);
+                            setTimeout(function(){
+                                window.location.href = "?type=register";
+                            },2000);
                         } else {
                             $('#register-result').html(response.payload.response.message);
-                            // return false;
+                            return false;
                         }
                     },
                     error: function(xhr, status, error) {
@@ -447,7 +445,7 @@
 
         $('.interest-btn').click(function(e) {
             e.preventDefault();
-            $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd.screen-sucess-register').hide();
+            $('.login-popup-modal').hide();
             $('.choose-interests').show();
             $('.better-solution').show();
         });
@@ -456,16 +454,14 @@
             e.preventDefault();
             $("#login-form-id #mobilenumber").val(user_mob_email);
             // alert("btn clicked");
-            $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                .hide();
+            $('.login-popup-modal').hide();
             $('.left-side,.right-side,.screen-login-with-pwd').show();
         });
 
         $('.forgot-pwd-btn').click(function(e) {
             e.preventDefault();
             // alert("btn clicked");
-            $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-otp,.screen-set-pwd')
-                .hide();
+            $('.login-popup-modal').hide();
             $('.left-side,.right-side,.screen-forgot-pwd').show();
         });
 
@@ -510,8 +506,7 @@
                             // $("#username").text(response.payload.name);
                             // $("#sign_method").val(response.payload.user_signup_method);
                             $('.screen-sucess-logged').show();
-                            $('.screen-login,.screen-verify,.screen-register,.left-side,.right-side,.screen-sucess-register,.screen-login-with-pwd,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                                .hide();
+                            $('.login-popup-modal').hide();
                             if(response.payload.subplan_status == 'active'){
                                 $('.no-subscription-user').hide();
                             }else{
@@ -592,8 +587,7 @@
                         if (response.payload.success == true) {
                             $("#userid_detail").val(response.payload.user_id);
                             $("#user_sign_method").val(response.payload.user_signup_method);
-                            $('.screen-login,.screen-verify,.screen-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp')
-                                .hide();
+                            $('.login-popup-modal').hide();
                             $('.left-side,.right-side,.screen-set-pwd').show();
                         } else {
                             $('#verifyotp-forgot-result').html(
@@ -649,8 +643,7 @@
                             // $('#verifyotp-result').html('');
                             // $("#userid_no").val(response.payload.user_id);
                             // $("#usersignupmethod").val(response.payload.user_signup_method);
-                            $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd,.modal-content')
-                                .hide();
+                            $('.login-popup-modal').hide();
                             // location.reload(true);
                         } else {
                             $('#reset-forgot-result').html(response.payload.response

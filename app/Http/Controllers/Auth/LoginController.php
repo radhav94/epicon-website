@@ -274,12 +274,6 @@ class LoginController extends Controller
         }
     }
 
-    public function choose_interests() {
-        $request = Request();
-        $request->session()->put('test', 'test');
-        return view('components.choose-interests');            
-    }
-
     public function getGenreList() {
         $request = Request();
         $genrelist = CurlAPI("v2profilecontent/genrelist", 'GET', [], 1);
