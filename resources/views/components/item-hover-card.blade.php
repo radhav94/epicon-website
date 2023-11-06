@@ -1,5 +1,10 @@
 <?php
-$banner_img = getCardImage($val, 'banner_image', 'small');
+if($value['display_type'] == 'standard'){
+    $banner_img = getCardImage($val, 'vertical_cover_image', 'medium');
+
+}else{
+    $banner_img = getCardImage($val, 'banner_image', 'medium');
+}
 ?>
 <div class="play-card">
     <div class="top-card-img">
