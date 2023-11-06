@@ -165,6 +165,7 @@ if (isUserLoggedIn()) {
                 'podcast' => 'Podcasts',
                 'explore' => 'Explore',
                 'premium' => 'Premium',
+                'distro-tv' => 'Distro TV'
             ];
             $current_route = getFirstSegment();
         }
