@@ -922,7 +922,7 @@ if (!function_exists("update_user_session")) {
                     $user_data = @$profile_detail['user_data'];
                     session()->put('user', $user_data);
                 }
-            } else if (!$profile_detail['success'] && array_key_exists('errorcode', $profile_detail) && $profile_detail['errorcode'] == 2012) {
+            } else {
                 return false;
             }
         }
