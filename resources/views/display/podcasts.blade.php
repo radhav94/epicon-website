@@ -25,6 +25,7 @@
                 <a href="{{ getContentUrl($val) }}" class="main-card">
                 @endif
                     <div class="main-img eod-darlings">
+                        {!! freePremiumDiv($val) !!}
                         <img src="{{ $cover_img }}" alt="">
                         <div class="new-show-title"><img src="{{ asset('img/sound-equalizer.svg') }}" alt="">
                         </div>
