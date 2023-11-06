@@ -6,7 +6,10 @@ $(document).ready(function () {
         dateFormat: 'dd-M-yy',
         maxDate: '-1d',
         changeMonth: true,
-        changeYear: true
+        changeYear: true,
+        maxDate: "-1Y",
+        minDate: "-100Y",
+        yearRange: "-100:-1"
     });
 
     $("#seasonSelect").change(function () {
@@ -164,3 +167,4 @@ function getCookie(cname) {
     }
     return "";
 }
+

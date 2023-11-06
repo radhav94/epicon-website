@@ -283,7 +283,7 @@ input {
             .menu-item{
                 position: unset;
                 width: 100%;
-                justify-content: flex-start;
+                justify-content: center;
                 overflow: auto;
                 padding-block: 5px;
             }
@@ -3800,6 +3800,7 @@ input {
     position: relative;
     label{
         font-size: 14px;
+        color: #c65142;
     }
     input{
         border-radius: 10px;
@@ -6262,6 +6263,7 @@ input {
     padding-top: 100px;
     @media (max-width:768px) {
         padding-bottom: 80px;
+        padding-top: 40px;
     }
     .middle-footer{
         padding-bottom: 30px;
@@ -6908,4 +6910,12 @@ input {
 
 .library .main-card .top-ten{
     top:0;
+}
+
+.plyr__video-wrapper{
+    height: 500px !important;
+
+    @media (max-width: 700px) {
+        height: 250px !important;
+    }
 }

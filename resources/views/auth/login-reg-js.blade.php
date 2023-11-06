@@ -7,7 +7,10 @@
             dateFormat: 'MM dd, yy',
             maxDate: '-1d',
             changeMonth: true,
-            changeYear: true
+            changeYear: true,
+            maxDate: "-1Y",
+            minDate: "-100Y",
+            yearRange: "-100:-1"
         });
 
         $(".emailText").on("keyup", function (e) {
@@ -30,12 +33,13 @@
             if (!event.isTrigger) {
                 window.history.replaceState({}, document.title, "/" );
             }
-            $('.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd,.choose-interests').hide();
+            $('.login-popup-modal').hide();
 
             $('.left-side,.right-side,.screen-login').show();
             $('#login-modal').show();
             $('#login-modal').addClass("show");
             $(".child-box").val('');
+            $(".text-danger").html('');
 
             $('.login-carousel').not('.slick-initialized').slick({
                 infinite: true,
@@ -70,9 +74,8 @@
 
         $(".login-btn-otp").click(function(e) {
             e.preventDefault();
+            $('.login-popup-modal').hide();
             $('.screen-login,.left-side,.right-side').show();
-            $('.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                .hide();
         });
 
         $(".login-get-otp").click(function(e) {
@@ -99,8 +102,7 @@
                         $('.mobileno').html(mobile);
                         $("#user_id").val(response.payload.user_id);
                         $("#signupmethod").val(response.payload.user_signup_method);
-                        $('.screen-login,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                            .hide();
+                        $('.login-popup-modal').hide();
                         $('.screen-verify').show();
                         resendOTP();
                         // var response = JSON.parse(response);
@@ -137,8 +139,7 @@
                         $('.mobileno').html(mobile);
                         $("#user_id").val(response.payload.user_id);
                         $("#signupmethod").val(response.payload.user_signup_method);
-                        $('.screen-login,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                            .hide();
+                        $('.login-popup-modal').hide();
                         $('.screen-verify').show();
                         // var response = JSON.parse(response);
                         // $('#dynamic-content').html(response.content);
@@ -207,8 +208,7 @@
                         $('.mobile_no').html(mobile);
                         $("#userid_no").val(response.payload.user_id);
                         $("#usersignupmethod").val(response.payload.user_signup_method);
-                        $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-set-pwd')
-                            .hide();
+                        $('.login-popup-modal').hide();
                         $('.left-side,.right-side').show();
                         if (response.payload.success == true) {
                             $('.screen-forgot-otp').show();
@@ -243,8 +243,7 @@
                     $('.mobile_no').html(mobile);
                     $("#userid_no").val(response.payload.user_id);
                     $("#usersignupmethod").val(response.payload.user_signup_method);
-                    $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-set-pwd')
-                        .hide();
+                    $('.login-popup-modal').hide();
                     $('.left-side,.right-side').show();
                     if (response.payload.success == true) {
                         $('.screen-forgot-otp').show();
@@ -345,8 +344,7 @@
                             $("#sign_method").val(response.payload.user_signup_method);
                             
                             if (response.payload.response.is_verified == false) {
-                                $('.screen-login,.screen-verify,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                                .hide();
+                                $('.login-popup-modal').hide();
                                 $('.screen-register').show();
                                 $('.screen-login-with-pwd').hide();
                             } else {
@@ -382,7 +380,7 @@
 
         $('.register-btn').click(function(e) {
             e.preventDefault();
-            getGenreList();
+            // getGenreList();
             // Clear previous errors
             $('.error').text('');
             // Validate Name
@@ -425,15 +423,19 @@
                         // alert(response);
                         if (response.payload.success == true) {
                             // $('#register-result').html('');
-                            $("#username").text(response.payload.name);
+                            // $("#username").text(response.payload.name);
                             // $("#sign_method").val(response.payload.user_signup_method);
-                            $('.screen-login,.screen-verify,.screen-register,.left-side,.right-side,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd,.better-solution')
-                                .hide();
+                            // $('.login-popup-modal').hide();
+                            // $('.screen-sucess-register').show();
+                            // $("#interestsSuggestions input[name='user_token']").val(response.payload.user_token);
+                            $('.left-side, .login-popup-modal').hide();
                             $('.screen-sucess-register').show();
-                            $("#interestsSuggestions input[name='user_token']").val(response.payload.user_token);
+                            setTimeout(function(){
+                                window.location.href = "?type=register";
+                            },1000);
                         } else {
                             $('#register-result').html(response.payload.response.message);
-                            // return false;
+                            return false;
                         }
                     },
                     error: function(xhr, status, error) {
@@ -447,7 +449,7 @@
 
         $('.interest-btn').click(function(e) {
             e.preventDefault();
-            $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd.screen-sucess-register').hide();
+            $('.login-popup-modal').hide();
             $('.choose-interests').show();
             $('.better-solution').show();
         });
@@ -456,16 +458,14 @@
             e.preventDefault();
             $("#login-form-id #mobilenumber").val(user_mob_email);
             // alert("btn clicked");
-            $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                .hide();
+            $('.login-popup-modal').hide();
             $('.left-side,.right-side,.screen-login-with-pwd').show();
         });
 
         $('.forgot-pwd-btn').click(function(e) {
             e.preventDefault();
             // alert("btn clicked");
-            $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-otp,.screen-set-pwd')
-                .hide();
+            $('.login-popup-modal').hide();
             $('.left-side,.right-side,.screen-forgot-pwd').show();
         });
 
@@ -510,8 +510,7 @@
                             // $("#username").text(response.payload.name);
                             // $("#sign_method").val(response.payload.user_signup_method);
                             $('.screen-sucess-logged').show();
-                            $('.screen-login,.screen-verify,.screen-register,.left-side,.right-side,.screen-sucess-register,.screen-login-with-pwd,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd')
-                                .hide();
+                            $('.login-popup-modal').hide();
                             if(response.payload.subplan_status == 'active'){
                                 $('.no-subscription-user').hide();
                             }else{
@@ -592,8 +591,7 @@
                         if (response.payload.success == true) {
                             $("#userid_detail").val(response.payload.user_id);
                             $("#user_sign_method").val(response.payload.user_signup_method);
-                            $('.screen-login,.screen-verify,.screen-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp')
-                                .hide();
+                            $('.login-popup-modal').hide();
                             $('.left-side,.right-side,.screen-set-pwd').show();
                         } else {
                             $('#verifyotp-forgot-result').html(
@@ -649,8 +647,7 @@
                             // $('#verifyotp-result').html('');
                             // $("#userid_no").val(response.payload.user_id);
                             // $("#usersignupmethod").val(response.payload.user_signup_method);
-                            $('.screen-login,.screen-verify,.screen-register,.screen-sucess-register,.screen-login-with-pwd,.screen-sucess-logged,.screen-forgot-pwd,.screen-forgot-otp,.screen-set-pwd,.modal-content')
-                                .hide();
+                            $('.login-popup-modal').hide();
                             // location.reload(true);
                         } else {
                             $('#reset-forgot-result').html(response.payload.response
@@ -679,49 +676,6 @@
             }
         });
 
-        //choose genre section
-        $('.better-suggestion-nxtBtn').click(function() {
-            $("#error-meg-for-genre-select").html("");
-            var genreCount = 0;                
-            $("input[name='genreInterest[]']").each(function() {
-                if (this.checked) {
-                    genreCount++;
-                }
-            });
-            if (genreCount > 0 && genreCount != 5) {
-                $("#error-meg-for-genre-select").html("Selected genre list should be 5");
-            }
-
-            var formData = $('#interestsSuggestions').serialize();
-            if (formData != '') {
-                $.ajax({
-                    url: "{{ route('saveGenre') }}",
-                    type: 'POST',
-                    data: formData,
-                    dataType: 'json',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        console.log(response);
-                        if (response.payload.success == true) {
-                            // $(".login-popup-modal").hide();
-                            // $(".set-child-pin").show();
-                            location.reload();
-                        } else {
-                            $("#error-meg-for-genre-select").html(response.payload.message);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.log('error me aaya');
-                    }
-                });
-            } else {
-                $('#login-modal').hide();
-                $('#login-modal').removeClass("show");
-            }
-        })
-
         $("input.child-box").keydown(function(event) {
             if (event.keyCode == 8 && $(this).val().length == 0) {
             if ($(this).prev('input.child-box')) {
@@ -734,66 +688,6 @@
           $("#redi-val").val("subscription");
          });
 
-        $(".login-register #setChildPin").click(function() {
-            $("#childPinForm #error-msg").html("");
-            var formData = $('#childPinForm').serialize();
-            var command = $('#childPinForm input[name="command"]').val();
-            $.ajax({
-                url: "{{ route('set-kidsPin') }}",
-                type: 'POST',
-                data: formData,
-                dataType: 'json',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    console.log(response);
-                    if (response.payload.success == true) {
-                        location.reload();
-                    } else {
-                        $("#childPinForm #error-msg").html(response.payload.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    onError(xhr);
-                }
-            });
-        });
-
     });
-
-    function getGenreList() {
-        $('#interest-suggetion').html("")
-        $.ajax({
-            url: "{{ route('getGenre') }}",
-            type: 'POST',
-            dataType: 'json',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            success: function(response) {
-                console.log(response);
-                if (response.payload.success) {
-                    var lists = response.payload.response.data;
-                    var content = '';
-                    for (var i = 0; i < lists.length; i++) {
-                        content = '<div class="interest-suggetion">'
-                                +'<label class="is-checkbox">'
-                                    +'<input type="checkbox" name="genreInterest[]" value="'+lists[i]['genre']+'">'
-                                    +'<span class="checkmark"></span>'
-                                +'</label>'
-                                +'<img src="'+lists[i]['banner_image']['medium']+'" alt="img">'
-                                +'<div class="is-overlay">'
-                                    +'<h1>'+lists[i]['genre']+'</h1>'
-                                +'</div>'
-                            +'</div>';
-                        $('#interest-suggetion').append(content);
-                    }
-                }
-            },
-            error: function(xhr, status, error) {
-                console.log('error me aaya');
-            }
-        });
-    }
+    
 </script>

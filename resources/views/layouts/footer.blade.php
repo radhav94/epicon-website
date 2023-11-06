@@ -145,6 +145,7 @@
             <div class="animation start-home"></div>
         </nav>
 </section>
+
 @notloggedin
-    @include('components.login-reg-popup')
+    @include('auth.login-reg-popup')
 @endnotloggedin
