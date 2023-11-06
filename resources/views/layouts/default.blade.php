@@ -54,6 +54,9 @@
     <script src="{{ asset('assets/js/common.js') }}?v={{ assetTime() }}"></script>
     {{-- End footer common scripts --}}
 
+    @if(request()->get('type') == 'register')
+        @include('auth.after-register-popup')
+    @endif
 
 
     {{-- Start page specific scripts --}}

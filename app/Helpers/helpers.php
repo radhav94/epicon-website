@@ -42,7 +42,9 @@ if (!function_exists('getUserAgent')) {
             $ub = "Netscape";
         }
         $o_system = $platform . " X" . time();
-        return "$ub ($o_system)";
+        $deviceDetail = "$ub ($o_system)";
+        session()->put('device-detail', $deviceDetail);
+        return $deviceDetail;
     }
 }
 

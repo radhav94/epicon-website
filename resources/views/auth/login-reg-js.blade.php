@@ -7,7 +7,10 @@
             dateFormat: 'MM dd, yy',
             maxDate: '-1d',
             changeMonth: true,
-            changeYear: true
+            changeYear: true,
+            maxDate: "-1Y",
+            minDate: "-100Y",
+            yearRange: "-100:-1"
         });
 
         $(".emailText").on("keyup", function (e) {
@@ -377,7 +380,7 @@
 
         $('.register-btn').click(function(e) {
             e.preventDefault();
-            getGenreList();
+            // getGenreList();
             // Clear previous errors
             $('.error').text('');
             // Validate Name
@@ -425,10 +428,11 @@
                             // $('.login-popup-modal').hide();
                             // $('.screen-sucess-register').show();
                             // $("#interestsSuggestions input[name='user_token']").val(response.payload.user_token);
+                            $('.left-side, .login-popup-modal').hide();
                             $('.screen-sucess-register').show();
                             setTimeout(function(){
                                 window.location.href = "?type=register";
-                            },2000);
+                            },1000);
                         } else {
                             $('#register-result').html(response.payload.response.message);
                             return false;
@@ -672,49 +676,6 @@
             }
         });
 
-        //choose genre section
-        $('.better-suggestion-nxtBtn').click(function() {
-            $("#error-meg-for-genre-select").html("");
-            var genreCount = 0;                
-            $("input[name='genreInterest[]']").each(function() {
-                if (this.checked) {
-                    genreCount++;
-                }
-            });
-            if (genreCount > 0 && genreCount != 5) {
-                $("#error-meg-for-genre-select").html("Selected genre list should be 5");
-            }
-
-            var formData = $('#interestsSuggestions').serialize();
-            if (formData != '') {
-                $.ajax({
-                    url: "{{ route('saveGenre') }}",
-                    type: 'POST',
-                    data: formData,
-                    dataType: 'json',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        console.log(response);
-                        if (response.payload.success == true) {
-                            // $(".login-popup-modal").hide();
-                            // $(".set-child-pin").show();
-                            location.reload();
-                        } else {
-                            $("#error-meg-for-genre-select").html(response.payload.message);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.log('error me aaya');
-                    }
-                });
-            } else {
-                $('#login-modal').hide();
-                $('#login-modal').removeClass("show");
-            }
-        })
-
         $("input.child-box").keydown(function(event) {
             if (event.keyCode == 8 && $(this).val().length == 0) {
             if ($(this).prev('input.child-box')) {
@@ -727,66 +688,6 @@
           $("#redi-val").val("subscription");
          });
 
-        $(".login-register #setChildPin").click(function() {
-            $("#childPinForm #error-msg").html("");
-            var formData = $('#childPinForm').serialize();
-            var command = $('#childPinForm input[name="command"]').val();
-            $.ajax({
-                url: "{{ route('set-kidsPin') }}",
-                type: 'POST',
-                data: formData,
-                dataType: 'json',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    console.log(response);
-                    if (response.payload.success == true) {
-                        location.reload();
-                    } else {
-                        $("#childPinForm #error-msg").html(response.payload.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    onError(xhr);
-                }
-            });
-        });
-
     });
-
-    function getGenreList() {
-        $('#interest-suggetion').html("")
-        $.ajax({
-            url: "{{ route('getGenre') }}",
-            type: 'POST',
-            dataType: 'json',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            success: function(response) {
-                console.log(response);
-                if (response.payload.success) {
-                    var lists = response.payload.response.data;
-                    var content = '';
-                    for (var i = 0; i < lists.length; i++) {
-                        content = '<div class="interest-suggetion">'
-                                +'<label class="is-checkbox">'
-                                    +'<input type="checkbox" name="genreInterest[]" value="'+lists[i]['genre']+'">'
-                                    +'<span class="checkmark"></span>'
-                                +'</label>'
-                                +'<img src="'+lists[i]['banner_image']['medium']+'" alt="img">'
-                                +'<div class="is-overlay">'
-                                    +'<h1>'+lists[i]['genre']+'</h1>'
-                                +'</div>'
-                            +'</div>';
-                        $('#interest-suggetion').append(content);
-                    }
-                }
-            },
-            error: function(xhr, status, error) {
-                console.log('error me aaya');
-            }
-        });
-    }
+    
 </script>
