@@ -23,7 +23,7 @@ $(document).ready(function () {
     });
     //end clap
 
-    $('#trailors').click(function () {
+    function initTrailerCarousel(){
         $('.carousel-initilize').not('.slick-initialized').slick({
             dots: false,
             infinite: false,
@@ -68,6 +68,10 @@ $(document).ready(function () {
             }
             ]
         });
-    });
+    }
 
+    $('#trailors').click(function () {
+        initTrailerCarousel();
+    });
+    initTrailerCarousel();
 });
