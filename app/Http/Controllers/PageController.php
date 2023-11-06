@@ -38,7 +38,6 @@ class PageController extends Controller
         if ($result && @$result['success'] ==  true) {
             $displayLanguageParam = $data['displayLanguageParam'];
             $stories = $data['stories'];
-            $distroArr = $data['distroTv']; 
             if ($displayLanguageParam == 'HINDI') {
                 $meta = $this->getHindiMeta($pagetype, $pagetitle, $routenamed);
             } else {
@@ -47,7 +46,7 @@ class PageController extends Controller
             $meta_title = $meta['title'];
             // dd($meta);
             // $meta_title = strtoupper($slug);
-            return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta_title','distroArr'));
+            return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta_title'));
                     }
         return view('pages.error.404');
     }
@@ -60,9 +59,8 @@ class PageController extends Controller
         if ($result && @$result['success'] ==  true) {
             $displayLanguageParam = $data['displayLanguageParam'];
             $stories = $data['stories'];
-            $distroArr = $data['distroTv'];
 
-            $view = view('display.display-default', compact('result', 'displayLanguageParam', 'stories','distroArr'))->render();
+            $view = view('display.display-default', compact('result', 'displayLanguageParam', 'stories'))->render();
 
             return JSONResponse(
                 200,
@@ -290,7 +288,6 @@ class PageController extends Controller
     private function homepageData($slug = 'home-v2', $page = 1)
     {
         $stories = [];
-        $distroTv = [];
         $listlang = Session::has('listLanguage') ? Session::get('listLanguage') : 'all';
         $displang = Session::has('displayLanguage') ? Session::get('displayLanguage') : 'en';
         $params = [
@@ -314,9 +311,7 @@ class PageController extends Controller
             foreach ($lists as $list) {
                 if (@$list['slug'] == "short-and-sweet") {
                     $stories = $this->epicShots();
-                    
-                }if(@$list['slug'] == "distro-tv"){
-                    $distroTv = $this->distroTv();
+                    break;
                 }   
                 continue;
             }
@@ -326,28 +321,8 @@ class PageController extends Controller
             'result' => $result,
             'displayLanguageParam' => $displayLanguageParam,
             'stories' => $stories,
-            'distroTv'=>$distroTv
         ];
     }
-
-    private function distroTv($story_id = "")
-    {
-        $distro_arr = [];
-        $response = CurlAPI("pages/distrotv/distro-homepage", "GET", null, 1);
-        if ($response && @$response['success'] == true) {
-            $data = $response['pageData'] ?? [];
-            
-            foreach ($data as $val) {       
-                            $distro_arr[] = [
-                                'id' => @$val['ID'],
-                                'img_url' => @$val['episodes_img_thumbh']
-                            ];
-                
-            }
-        }
-        return $distro_arr;
-    }
-
 
     private function epicShots($story_id = "")
     {
