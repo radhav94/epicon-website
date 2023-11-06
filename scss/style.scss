@@ -6911,3 +6911,11 @@ input {
 .library .main-card .top-ten{
     top:0;
 }
+
+.plyr__video-wrapper{
+    height: 500px !important;
+
+    @media (max-width: 700px) {
+        height: 250px !important;
+    }
+}

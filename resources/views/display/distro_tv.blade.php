@@ -11,7 +11,7 @@
                  </svg>
              </a> -->
              <div class="view-all-div">
-            <a href="{{ url('distro-landing') }}"><h6>View All</h6></a>
+            <a href="{{ Route('distro-tv') }}"><h6>View All</h6></a>
         </div>
          @endif
 
