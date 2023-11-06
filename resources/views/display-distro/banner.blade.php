@@ -30,9 +30,9 @@
             </div>
          </div>  
           @if(isMobliDevice())
-                <img src="{{@$val['banner_image_app']}}" alt="Testing">
+                <img src="{{@$val['banner_image_app']}}" alt="">
             @else
-                <img src="{{@$val['banner_image_web']}}" alt="Testing">
+                <img src="{{@$val['banner_image_web']}}" alt="">
             @endif
         </div>
         @endforeach
