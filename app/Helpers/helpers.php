@@ -556,7 +556,7 @@ function getplayanchorhtml($value)
 {
     $loginclass = isKidsPage() && !isActiveSubscription() ? "allAccessBtn" : "";
     $data_url = (isActiveSubscription() && $value['free_premium']) || !$value['free_premium'] ? $value['game_url'] : '';
-    $html = '<a href="javascript:void(0)" target="_blank" data-url="' . $data_url . '" data-premium="' . $value['free_premium'] . '" data-activesubscriber="' . isActiveSubscription() . '" check-login="' . $loginclass . '" class="main-card check-content-url">';
+    $html = '<a  onclick="click_tile(this)" data-title="'.$value['title'].'" data-type="'.$value['content_type'].'" href="javascript:void(0)" target="_blank" data-url="' . $data_url . '" data-premium="' . $value['free_premium'] . '" data-activesubscriber="' . isActiveSubscription() . '" check-login="' . $loginclass . '" class="main-card check-content-url">';
     return $html;
 }
 

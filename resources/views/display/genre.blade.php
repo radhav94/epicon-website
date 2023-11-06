@@ -4,7 +4,7 @@
             <h1>{{ $title }}</h1>
 
             @if (@$value['show_more'])
-                <a href="{{ getMidPageUrl($value) }}">
+                <a onclick="click_cta(this)" data-event_context="{{ @$title }}" data-element_text="SEE ALL" href="{{ getMidPageUrl($value) }}">
                     <button>Explore More
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
                             fill="none">
@@ -23,7 +23,7 @@
                     <?php
                     $card = getItemCardData($val, $displayLanguageParam);
                     ?>
-                    <a href="{{ url('explore/' . @$val['slug']) }}">
+                    <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}" href="{{ url('explore/' . @$val['slug']) }}">
                         <button>
                             <img src="{{ $val['fiesta_image'] ?? '' }}">
                             {{ $val['name'] }}

@@ -3,7 +3,7 @@
          <div class="galore-title">
              <h1>{{ $title }}</h1>
              @if (@$value['show_more'])
-                 <a href="{{ getMidPageUrl($value) }}">
+                 <a onclick="click_cta(this)" data-event_context="{{ @$title }}" data-element_text="SEE ALL" href="{{ getMidPageUrl($value) }}">
                      <button>Explore More</button>
                  </a>
              @endif
@@ -21,7 +21,7 @@
                     @if(@$val['asset_type'] == 'PLAY')
                                 {!! getplayanchorhtml($val) !!}
                     @else
-                    <a href="{{ getContentUrl($val) }}">
+                    <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}" href="{{ getContentUrl($val) }}">
                     @endif
                          <img src="{{ $cover_img }}" alt="{{ $val['title'] }}">
                      </a>

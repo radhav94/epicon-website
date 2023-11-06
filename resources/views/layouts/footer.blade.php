@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <a href="{{ getUrlWithPrefix('homepage') }}"><img width="150" src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
+                <a onclick="click_menu(this)" data-event_context="footer" data-element_text="Home" href="{{ getUrlWithPrefix('homepage') }}"><img width="150" src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
             </div>
         </div>
         <div class="row middle-footer">
@@ -10,7 +10,7 @@
                 <div class="connect-with">
                     <h1>{{__('Connect With Us')}}</h1>
                     <div class="w-100 f-share-icons">
-                        <a target="_blank" href="https://www.facebook.com/theepicon">
+                        <a onclick="click_social(this)" data-title="facebook" data-event_context="Epic on" target="_blank" href="https://www.facebook.com/theepicon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
                                 fill="none">
                                 <circle cx="20" cy="20" r="20" fill="white"
@@ -20,7 +20,7 @@
                                     fill="white" />
                             </svg>
                         </a>
-                        <a target="_blank" href="https://twitter.com/theepicon">
+                        <a  onclick="click_social(this)" data-title="twitter" data-event_context="Epic on" target="_blank" href="https://twitter.com/theepicon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
                                 fill="none">
                                 <circle cx="20" cy="20" r="20" fill="white"
@@ -30,7 +30,7 @@
                                     fill="white" />
                             </svg>
                         </a>
-                        <a target="_blank" href="https://www.linkedin.com/company/theepicon">
+                        <a  onclick="click_social(this)" data-title="linkedin" data-event_context="Epic on" target="_blank" href="https://www.linkedin.com/company/theepicon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
                                 fill="none">
                                 <circle cx="20" cy="20" r="20" fill="white"
@@ -40,7 +40,7 @@
                                     fill="white" />
                             </svg>
                         </a>
-                        <a target="_blank" href="https://www.youtube.com/channel/UC6TRCmHt1MZeArqN0efBhWQ">
+                        <a  onclick="click_social(this)" data-title="youtube" data-event_context="Epic on" target="_blank" href="https://www.youtube.com/channel/UC6TRCmHt1MZeArqN0efBhWQ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
                                 fill="none">
                                 <circle cx="20" cy="20" r="20" fill="white"
@@ -50,7 +50,7 @@
                                     fill="white" />
                             </svg>
                         </a>
-                        <a target="_blank" href="https://www.instagram.com/theepicon">
+                        <a  onclick="click_social(this)" data-title="instagram" data-event_context="Epic on" target="_blank" href="https://www.instagram.com/theepicon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
                                 fill="none">
                                 <circle cx="20" cy="20" r="20" fill="white"
@@ -66,10 +66,10 @@
             <div class="col-lg-6 link-pos">
                 <div class="f-link">
                     <ul class="d-flex mb-0">
-                        <li><a href="{{getUrl('about')}}">{{__('About Us')}}</a></li>
-                        <li><a href="{{route('terms-of-use')}}">{{__('Terms of Use')}}</a></li>
-                        <li><a href="{{route('privacy')}}">{{__('Privacy Policy')}}</a></li>
-                        <li><a href="{{getUrl('feedback')}}">{{__('Help Centre')}}</a></li>
+                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('About Us')}}" href="{{getUrl('about')}}">{{__('About Us')}}</a></li>
+                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Terms of Use')}}" href="{{route('terms-of-use')}}">{{__('Terms of Use')}}</a></li>
+                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Privacy Policy')}}" href="{{route('privacy')}}">{{__('Privacy Policy')}}</a></li>
+                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Help Centre')}}" href="{{getUrl('feedback')}}">{{__('Help Centre')}}</a></li>
                     </ul>
                 </div>
             </div>
@@ -77,9 +77,9 @@
                 <div class="download-store">
                     <h1>{{__('Download App')}}</h1>
                     <div class="w-100 download-store-logo">
-                        <a href="https://play.google.com/store/apps/details?id=com.epicchannel.epicon&amp;hl=en" target="_blank"><img class="me-3" src="{{ asset('assets/img/google-logo.png') }}"
+                        <a onclick="outbound_click(this)" data-event_context="app" data-element_text="android"  href="https://play.google.com/store/apps/details?id=com.epicchannel.epicon&amp;hl=en" target="_blank"><img class="me-3" src="{{ asset('assets/img/google-logo.png') }}"
                                 alt=""></a>
-                        <a href="https://apps.apple.com/in/app/epic-on/id1252513341" target="_blank"><img src="{{ asset('assets/img/apple-logo.png') }}" alt=""></a>
+                        <a onclick="outbound_click(this)" data-event_context="app" data-element_text="ios"  href="https://apps.apple.com/in/app/epic-on/id1252513341" target="_blank"><img src="{{ asset('assets/img/apple-logo.png') }}" alt=""></a>
                     </div>
                 </div>
             </div>
