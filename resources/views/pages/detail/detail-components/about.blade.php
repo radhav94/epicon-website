@@ -46,7 +46,7 @@
          @if (@$about['cast'])
          <div class="col-sm-12 mt-4">
              <div class="cast">
-                 <h6 class="text-white mb-4">{{__('Cast')}}</h6>
+                {{-- <h6 class="text-white mb-4">{{__('Cast')}}</h6> --}}
 
                  @foreach ($about['cast'] as $k => $val)
                  <div class="content-detail-about">

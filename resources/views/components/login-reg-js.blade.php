@@ -35,6 +35,7 @@
             $('.left-side,.right-side,.screen-login').show();
             $('#login-modal').show();
             $('#login-modal').addClass("show");
+            $(".child-box").val('');
 
             $('.login-carousel').not('.slick-initialized').slick({
                 infinite: true,
@@ -338,8 +339,7 @@
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
                     success: function(response) {
-                                                if (response.payload.success == true) {
-                            $(".child-box").val('');
+                            if (response.payload.success == true) {
                             queryParams = new URLSearchParams(window.location.search);
                             $("#userid").val(response.payload.user_id);
                             $("#sign_method").val(response.payload.user_signup_method);
@@ -705,11 +705,9 @@
                     success: function(response) {
                         console.log(response);
                         if (response.payload.success == true) {
-                            $('#login-modal').hide();
-                            $('#login-modal').removeClass("show");
-                            setTimeout(function() {
-                                location.reload();
-                            }, 3000);
+                            // $(".login-popup-modal").hide();
+                            // $(".set-child-pin").show();
+                            location.reload();
                         } else {
                             $("#error-meg-for-genre-select").html(response.payload.message);
                         }
@@ -735,6 +733,32 @@
         $(".redi-subs").click(function() {
           $("#redi-val").val("subscription");
          });
+
+        $(".login-register #setChildPin").click(function() {
+            $("#childPinForm #error-msg").html("");
+            var formData = $('#childPinForm').serialize();
+            var command = $('#childPinForm input[name="command"]').val();
+            $.ajax({
+                url: "{{ route('set-kidsPin') }}",
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.payload.success == true) {
+                        location.reload();
+                    } else {
+                        $("#childPinForm #error-msg").html(response.payload.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    onError(xhr);
+                }
+            });
+        });
 
     });
 

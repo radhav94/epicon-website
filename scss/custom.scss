@@ -336,6 +336,7 @@
             background-color: transparent;
             border: 1px solid var(--Input-Field-Stroke, #494949);
             border-radius: 6px;
+            color: #fff;
 
             @media (max-width:768px) {
                 width: 100%;
@@ -384,14 +385,14 @@
     }
 }
 
-.new-popular-main,.explore-details {
+.new-popular-main.explore-details {
     position: relative;
 
     span {
-        left: 10px;
-        top: 10px;
-        svg{
-            width: 100%;
+        left: 5px;
+        top: 1px;
+        img{
+            width: 20px;
         }
     }
 
@@ -409,7 +410,7 @@
         }
 
         @media (max-width:700px) {
-            grid-template-columns: auto;
+            grid-template-columns: auto auto;
         }
 
         .card-body {
@@ -466,15 +467,20 @@
             }
 
             .bottom-text {
+                & .left-text{
+                    width: calc(100% - 56px);
+                }
                 h4 {
                     font-size: 16px;
                     margin-top: 8px;
+                    @include line-clamp(1);
                 }
 
                 ul {
                     display: flex;
                     margin: 0;
                     padding: 0;
+                    overflow: auto;
 
                     li {
                         list-style: none;
@@ -484,6 +490,7 @@
                         font-style: normal;
                         font-weight: 400;
                         margin-right: 8px;
+                        white-space: nowrap;
                     }
                 }
 
@@ -816,6 +823,12 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: 10px;
+    }
+    .distrotv-slide-inner figure{
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .ds-logo-text {
@@ -1012,4 +1025,85 @@
         .distrotv-slide-inner .slick-list {
             padding: 15px 0 0px 0;
         }
+    }
+
+    .add-icon {
+        background-image: url(../public/img/add-icon.svg) !important;
+    }
+
+    .delete-icon {
+        background-image: url(../public/img/subs-icon.svg) !important;
+    }
+
+    .search-main .add-icon {
+        background: center no-repeat #272727;
+        border: 0.5px solid #545454;
+        border-radius: 50%;
+        padding: 20px;
+        margin: 12px 0 auto;
+    }
+
+    .search-main .delete-icon {
+        background: center no-repeat #272727;
+        border: 0.5px solid #545454;
+        border-radius: 50%;
+        padding: 20px;
+        margin: 12px 0 auto;
+    }
+
+    .seeall-main-page .add-icon {
+        background: center no-repeat #272727;
+        border: 0.5px solid #545454;
+        border-radius: 50%;
+        padding: 20px;
+        margin: 12px 0 auto;
+    }
+
+    .socialJS a {
+        padding: 10px;
+        font-size: 31px;
+    }
+
+    .genresexplore .card-body img {
+        width: 100%;
+    }
+
+    .genere-fiesta-content img {
+        height: 30px;
+    }
+
+    a.autowidth.catalog-showmore {
+        font-size: 16px;
+        font-weight: 500;
+        color: #fff;
+        width: 200px;
+        height: 55px;
+        line-height: 52px;
+        border-radius: 32px;
+        border: solid 1px #fff;
+        background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%); 
+        text-transform: uppercase;
+        display: inline-block;
+        padding: 0 25px;
+        margin-top: 35px;
+        transition: all linear 0.4s;
+        text-decoration:none;
+    }
+
+    a.autowidth.channel-showmore {
+        font-size: 16px;
+        font-weight: 500;
+        color: #fff;
+        width: 200px;
+        height: 55px;
+        line-height: 52px;
+        border-radius: 32px;
+        border: solid 1px #fff;
+        background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%); 
+        text-transform: uppercase;
+        display: inline-block;
+        padding: 0 25px;
+        margin-top: 35px;
+        transition: all linear 0.4s;
+        text-decoration:none;
     }

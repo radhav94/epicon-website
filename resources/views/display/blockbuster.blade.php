@@ -9,11 +9,14 @@
              @endif
          </div>
          <div class="gaming-galore">
-
+    
              @foreach ($value['content'] as $key => $val)
                  <?php
+
+                 $imgKey = (@$val['asset_type'] == 'PLAY') ? 'cover_image' : 'vertical_cover_image'; 
+
                  $card = getItemCardData($val, $displayLanguageParam);
-                 $cover_img = getCardImage($val, 'vertical_cover_image', 'medium', ['cover_image', 'banner_image']);
+                 $cover_img = getCardImage($val, $imgKey, 'medium');
                  
                  ?>
 

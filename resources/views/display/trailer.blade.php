@@ -17,6 +17,13 @@
               @foreach ($value['content'] as $key => $val)
                   <?php
                   $card = getItemCardData($val, $displayLanguageParam);
+                  
+                  if(isset($val['airtel_feature_imageHD']) && !empty($val['airtel_feature_imageHD'])){
+                      $banner_img = $val['airtel_feature_imageHD'];
+                  }
+                  else{
+                      $banner_img = asset('assets/img/default-1920x548.png');
+                  }
                   ?>
 
                   <div class="carousel-card">
@@ -24,7 +31,7 @@
 
                       <div class="carousel-items position-relative w-100">
                         <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}" href="{{ getContentUrl($val) }}">
-                          <img src="{{ $card['banner_img'] }}" alt="">
+                          <img src="{{ $banner_img }}" alt="">
                         </a>
                           <div class="carousel-items-content position-absolute">
                               <h2>{{ $card['sub_text'] }}</h2>

@@ -127,8 +127,8 @@ if (isUserLoggedIn()) {
             <a onclick="click_menu(this)" data-event_context="header" data-element_text="Home" class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}"
                     alt=""></a>
                     
-                @if($kids_page)
-                    <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe"  class="subscribe-btn allAccessBtn-sub" href="javascript:void(0);">{{__('Subscribe')}}</a>
+                @if($kids_page && @$subplan['status'] != 'active')
+                    <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn allAccessBtn-sub" href="javascript:void(0);">{{__('Subscribe')}}</a>
                 @endif
 
             @if(!$kids_page)
@@ -156,6 +156,7 @@ if (isUserLoggedIn()) {
                 'kids/podcast' => 'Podcasts',
                 'kids/games' => 'Games'
             ];
+            $current_route = request()->path();
         } else {
             $links = [
                 '' => 'Home',
@@ -165,18 +166,21 @@ if (isUserLoggedIn()) {
                 'explore' => 'Explore',
                 'premium' => 'Premium',
             ];
+            $current_route = getFirstSegment();
         }
-    $current_route = getFirstSegment();
+    
 ?>
         <ul class="menu-item list-unstyled d-flex mb-0">
             @foreach ($links as $key => $value)
                 <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a onclick="click_menu(this)" data-event_context="header" data-element_text="{{ __($value) }}" href="{{ getUrl($key) }}"
                         @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
             @endforeach
-@loggedin
+            @loggedin
+            @if(!kidsMode())
             <li>
                 <a onclick="click_menu(this)" data-event_context="header" data-element_text="Reward Store" href="{{url('/my-rewards')}}" @if ($current_route == "my-rewards") class="active" @endif>Reward Store</a>
             </li>
+            @endif
             @elseloggedin
             <li class="nav-item">
                 <a onclick="click_menu(this)" data-event_context="header" data-element_text="Reward Store" href="javascript:void(0)" class="login-with-rewards">Reward Store</a>

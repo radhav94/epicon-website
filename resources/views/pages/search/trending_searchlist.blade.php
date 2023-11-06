@@ -4,7 +4,8 @@
     </div>
     <ul class="more-like-this px-0">
         <?php foreach ($trendingData as $val) {
-            $cover_img = isset($val['cover_image']) ? @$val['cover_image']['medium'] : '';
+
+            $cover_img = getCardImage($val, 'cover_image', 'medium');
         ?>
             <li>
                 @if(@$val['asset_type'] == 'PLAY')

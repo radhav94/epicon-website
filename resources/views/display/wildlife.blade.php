@@ -22,7 +22,7 @@
                     <?php
                     $card = getItemCardData($v, $displayLanguageParam);
                     
-                    $cover_img = getCardImage($v, 'vertical_cover_image', 'medium', ['cover_image', 'banner_image']);
+                    $cover_img = getCardImage($v, 'wildlife_image', 'medium');
                     ?>
                     <div>
                         @if(@$v['asset_type'] == 'PLAY')

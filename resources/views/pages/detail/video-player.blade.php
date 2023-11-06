@@ -12,7 +12,9 @@
         width: 100%;
         height: 100%;
     }
-
+    .plyr:fullscreen video {
+        height: 100%!important;
+    }
     #vidPlayer.hide {
         display: none !important;
     }
@@ -43,9 +45,15 @@
         font-weight: bold;
         cursor: pointer;
     }
+    .live-tv-vidPlayer button[data-plyr="fast-forward"], 
+    .live-tv-vidPlayer button[data-plyr="rewind"], 
+    .live-tv-vidPlayer button[data-plyr="pip"].plyr__control, 
+    .live-tv-vidPlayer .plyr__progress__container{
+        display: none;
+    }
 </style>
 
-<div class="container videoContainer" style="display: none">
+<div class="container videoContainer {{ getFirstSegment() == 'live-tv' ? 'live-tv-vidPlayer' : '' }}" style="display: none">
     <p id="closePlayer">Close</p>
     <div id="playVideo" data-id="{{ $content['ID'] }}" data-type="{{ $content['content_type'] }}"
         data-lg="{{ isUserLoggedIn() }}" data-title="{{ $content['title'] }}">
@@ -53,7 +61,7 @@
     </div>
 
 
-    <video id="vidPlayer" class="videocont" data-id="{{ $content['ID'] }}" controls crossorigin playsinline
+    <video id="vidPlayer" class="videocont " data-id="{{ $content['ID'] }}" controls crossorigin playsinline
         poster="{{ $cover_img }}">
         <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> -->
 
