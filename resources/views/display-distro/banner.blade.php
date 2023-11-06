@@ -1,7 +1,3 @@
-<?php 
-$ua = strtolower($_SERVER["HTTP_USER_AGENT"]);
-$isMob = is_numeric(strpos($ua, "mobile"));
-?>
 <section class="distro-main w-100 position-relative">
     
     <div class="distro-banner">
@@ -10,7 +6,10 @@ $isMob = is_numeric(strpos($ua, "mobile"));
         <div class="distro-banner-item">
             <div class="distro-overlay w-100 position-absolute">
             <div class="center-content ds-logo-text position-relative">
-            <img src="{{@$val['root_img_logo']}}" alt="">
+            @if(!isMobliDevice())
+                <img src="{{@$val['root_img_logo']}}" alt="">
+            @endif
+
             <span>{{@$val['root_title']}}</span>
             <ul class="d-flex pl-0 list-unstyled">
                 <li>{{@$val['root_type']}}</li>
@@ -30,9 +29,11 @@ $isMob = is_numeric(strpos($ua, "mobile"));
                 <button type="button" class="slide-m-next"></button>
             </div>
          </div>  
-        
-        <img src="{{@$val['episodes_img_thumbh']}}" alt="">
-    
+          @if(isMobliDevice())
+                <img src="{{@$val['banner_image_app']}}" alt="Testing">
+            @else
+                <img src="{{@$val['banner_image_web']}}" alt="Testing">
+            @endif
         </div>
         @endforeach
 
