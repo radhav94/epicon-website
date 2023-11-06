@@ -61,7 +61,6 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $("#pageid").val(1);
 
             $(document).on("click", ".explore-showmore", function() {
 

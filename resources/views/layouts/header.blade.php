@@ -175,17 +175,6 @@ if (isUserLoggedIn()) {
                 <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a href="{{ getUrl($key) }}"
                         @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
             @endforeach
-            @loggedin
-            @if(!kidsMode())
-            <li>
-                <a href="{{url('/my-rewards')}}" @if ($current_route == "my-rewards") class="active" @endif>Reward Store</a>
-            </li>
-            @endif
-            @elseloggedin
-            <li class="nav-item">
-                <a href="javascript:void(0)" class="login-with-rewards">Reward Store</a>
-            </li>
-            @endloggedin
 
         </ul>
                 <div class="main-header-right d-flex align-items-center">
@@ -309,6 +298,9 @@ if (isUserLoggedIn()) {
                         <li class="subc-text"><a href="{{ getUrl('library') }}">{{__('Library')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('my-account') }}">{{__('My Account')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('my-rewards') }}">{{__('My Rewards')}}</a></li>
+                        @if(!kidsMode())
+                        <li class="subc-text"><a href="{{url('/my-rewards')}}">{{__('Reward Store')}}</a></li>
+                        @endif
                         <li class="subc-text"><a href="{{ getUrl('settings') }}">{{__('Settings')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('feedback') }}">{{__('Help & Feedback')}}</a></li>
                         <li class="subc-text logout"><a href="javascript:void(0);">{{__('Log out')}}</a></li>

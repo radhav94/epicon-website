@@ -10,7 +10,7 @@
                 }
                 $card = getItemCardData($value, $displayLanguageParam);
                 $img_type = "vertical_cover_image";
-                if ($pageslug == "live-tv") {
+                if (in_array($pageslug, ["live-tv", "podcast"])) {
                     $img_type = "cover_image";
                 }
                 $cover_img = getCardImage($value, $img_type, 'medium');

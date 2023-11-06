@@ -11,7 +11,7 @@ class RetroRewindController extends Controller
     private  $limit;
     public function  __construct()
     {
-        $this->limit = 9;
+        $this->limit = 20;
     }
 
     public function retroRewindList($slug)
