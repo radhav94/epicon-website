@@ -1,5 +1,14 @@
+<?php 
+    $title = ucfirst($slug);
+
+    if (is_numeric($title) && strlen($title) === 4) {
+        $lastTwoDigits = substr($title, 2); // Get the last two digits
+        $title = $lastTwoDigits . "'s";
+    }
+?>
+
 @extends('layouts.default')
-@section('title', $meta_title)
+@section('title', $title )
 
 
 @section('style')
@@ -40,10 +49,10 @@
 @stop
 
 @section('content')
-
+    
     <section class="container">
         <div class="new-popular-main explore-details" id="showmore_load">
-            <h4 class="new-popularheading text-white mb-3">{{ ucfirst($slug) }}</h4>
+            <h4 class="new-popularheading text-white mb-3">{{ $title }}</h4>
 
             @include('components.retro-rewind-content-list')
         </div>
