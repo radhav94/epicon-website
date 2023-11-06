@@ -9,8 +9,11 @@
                     continue;
                 }
                 $card = getItemCardData($value, $displayLanguageParam);
-                
-                $cover_img = getCardImage($value, 'vertical_cover_image', 'medium');
+                $img_type = "vertical_cover_image";
+                if (in_array($pageslug, ["live-tv", "podcast"])) {
+                    $img_type = "cover_image";
+                }
+                $cover_img = getCardImage($value, $img_type, 'medium');
                 ?>
                 <li>
                     @if(@$value['asset_type'] == 'PLAY')

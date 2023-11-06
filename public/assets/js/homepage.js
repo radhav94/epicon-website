@@ -29,7 +29,7 @@ function initSliders() {
         slidesToShow: 1,
         arrows: true,
         dots: true,
-        autoplay: false,
+        autoplay: true,
         appendDots: $(".slide-m-dots"),
         prevArrow: $(".slide-m-prev"),
         nextArrow: $(".slide-m-next"),
@@ -1058,7 +1058,7 @@ function initSliders() {
             {
             breakpoint: 3e3,
             settings: {
-                slidesToShow: 6.3,
+                slidesToShow: 4.3,
                 slidesToScroll: 1
             }
         }, {
