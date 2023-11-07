@@ -26,10 +26,10 @@
                     @if (@$extra['hide_top10'] != 1)
                     {!! topTenDiv($val) !!}
                     @endif
-                    <img src="{{ $banner_img }}" alt="">
+                    <img src="{{ $cover_img }}" alt="">
                 </a>
                 <div class="bottom-card-content">
-                    <h1>{{ $card['title'] }}</h1>
+                    <h1><a href="{{ getContentUrl($val) }}">{{ $card['title'] }}</a></h1>
                     <ul>
                         {!! $card['sub_points'] !!}
                     </ul>

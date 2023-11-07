@@ -13,11 +13,11 @@ if(@$val['display_type'] == 'standard'){
             {!! topTenDiv($val) !!}
         @endif
         <a href="{{ getContentUrl($val) }}">
-            <img src="{{ $banner_img }}" alt="">
+            <img src="{{ $cover_img }}" alt="">
         </a>
     </div>
     <div class="bottom-card-content">
-        <h1>{{ $card['title'] }}</h1>
+        <a href="{{ getContentUrl($val) }}"><h1>{{ $card['title'] }}</h1></a>
         <ul>
             @if ($card['sub_points'])
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
