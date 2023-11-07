@@ -10,10 +10,10 @@
                         <h6 class="mb-3">{{__('Create a 4-digit Child PIN')}}</h6>
                         <p class="small mb-4">{{__('This PIN will be used to switch from kids profile to all adult profiles')}}</p>
                         <div class="childpin-input pt-3">
-                            <input class="mx-1 child-box onlydigit" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
-                            <input class="mx-1 child-box onlydigit" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
-                            <input class="mx-1 child-box onlydigit" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
-                            <input class="mx-1 child-box onlydigit" type="text" min="0" max="9" name="kidsPin[]" maxlength="1">
+                            <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="kidsPin[]" maxlength="1">
+                            <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="kidsPin[]" maxlength="1">
+                            <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="kidsPin[]" maxlength="1">
+                            <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="kidsPin[]" maxlength="1">
                         </div>
                         <button type="button" class="login-btn mt-5 ms-0" id="setChildPin" style="width: 280px;">
                             Done
@@ -30,19 +30,19 @@
                         <div class="d-flex align-items-center mb-4">
                             <p class="small" style="width: 150px;">{{__('Current PIN')}}</p>
                             <div class="childpin-input">
-                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="oldKidsPin[]" maxlength="1">
-                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="oldKidsPin[]" maxlength="1">
-                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="oldKidsPin[]" maxlength="1">
-                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="oldKidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="oldKidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="oldKidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="oldKidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="oldKidsPin[]" maxlength="1">
                             </div>
                         </div>
                         <div class="d-flex align-items-center">
                             <p class="small" style="width: 150px;">{{__('New PIN')}}</p>
                             <div class="childpin-input">
-                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="newKidsPin[]" maxlength="1">
-                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="newKidsPin[]" maxlength="1">
-                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="newKidsPin[]" maxlength="1">
-                                <input class="mx-1 child-box onlydigit backpress" type="text" min="0" max="9" name="newKidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="newKidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="newKidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="newKidsPin[]" maxlength="1">
+                                <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="newKidsPin[]" maxlength="1">
                             </div>
                         </div>
                         <button type="button" class="login-btn mt-5 ms-0" id="setChildPin" style="width: 280px;">
