@@ -147,11 +147,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                             <?php 
                             $pinText = __('Enter the 4-digit code sent to');
                             $user_id = " <span class='mobileno'> $userId </span> ";
-                            if ($displayLanguage == 'en') {
-                                $pinText .= $user_id;
-                            } else {
-                                $pinText = $user_id.$pinText;
-                            }
+                            $pinText = $displayLanguage == 'en' ? $pinText . $user_id : $user_id . $pinText;
                             ?>
                             <label class="text-white text-start w-100 mb-1" for=""><?php echo $pinText; ?></label>
                             <div class="childpin">
