@@ -106,7 +106,7 @@
 
 
 @section('script')
-
+<script defer src="{{ asset('assets/js/distro-tv.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/plyr.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/hls.min.js') }}"></script>
 

@@ -91,58 +91,79 @@
 </section>
 <section class="footer-mobile">
     <?php
-    // $links = [
-    //             '/' => 'Home',
-    //             'premium' => 'Premium',
-    //             'explore' => 'Explore',
-    //             'search' => 'Search',
-    //             'premium' => 'Spotlight',
-    //         ];
-    if (request()->path() == "hi") {
-    $current_route = "/";
-    } else {
-        $path = explode("/", request()->path());
-        $finalPath = [];
-        foreach ($path as $value) {
-            if ($value == "hi") {
-                continue;
-            } else {
-                $finalPath[] = $value;
-            }
-        }
-        $current_route = implode("/", $finalPath);
-    }
-    ?>
+    $kids_page = isKidsPage();
+   if ($kids_page) {
+       $links = [
+            [   'name'=>'Home',
+                'url'=>'kids',
+                'logoimg'=>'',
+                'class'=>'home'  
+            ],
+           [    'name'=>'Movies',
+                'url'=>'kids/movies',
+                'logoimg'=>'',
+                'class'=>'home'  
+            ],
+            [   'name'=>'Shows',
+                'url'=>'kids/shows',
+                'logoimg'=>'',
+                'class'=>'home'  
+                    ],
+            [   'name'=>'Podcasts',
+                'url'=>'kids/podcast',
+                'logoimg'=>'',
+                'class'=>'home'  
+            ],
+            [   'name'=>'Games',
+                'url'=>'kids/games',
+                'logoimg'=>'',
+                'class'=>'home'  
+            ],
+       ];
+       $current_route = request()->path();
+   } else {
+       $links = [
+         [  'name'=>'Home',
+            'url'=>'',
+            'logoimg'=>'',
+            'class'=>'home'  
+         ],
+         [ 'name'=>'Premium',
+         'url'=>'premium',
+         'logoimg'=>'',
+         'class'=>'premium'  
+          ],
+        
+         [  'name'=>'Explore',
+            'url'=>'explore',
+            'logoimg'=>'',
+            'class'=>'explore'  
+         ],
+        
+         [  'name'=>'Search',
+            'url'=>'search',
+            'logoimg'=>'',
+            'class'=>'search'  
+         ],
+         [  'name'=>'Spotlight',
+            'url'=>'spotlight',
+            'logoimg'=>'',
+            'class'=>'spotlight'  
+         ],
+    ];
+       $current_route = getFirstSegment();
+   }
+
+?>
         <nav class="mob-nav">
-            <a class="footer-home {{ ($current_route == '/' || $current_route == 'kids') ? 'active' : '' }}" href="{{ !isKidsPage() ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
+        @foreach ($links as $key => $value)
+       
+            <a class="footer-{{@$value['class']}} {{ $current_route == @$value['url'] ? 'active' : '' }}" href="{{getUrl(@$value['url'])}}">
                 <p></p>
-                <span>Home</span>
+                <span>{{@$value['name']}}</span>
             </a>
-            @if (!kidsMode())
-            <a class="footer-premium {{ ($current_route == 'premium') ? 'active' : '' }}" href="{{getUrl('premium')}}">
-                <p></p>
-                <span>Premium</span>
-            </a>
-            <a class="footer-explore {{ ($current_route == 'explore') ? 'active' : '' }}" href="{{getUrl('explore')}}">
-                <p></p>
-                <span>Explore</span>
-            </a>
-            @endif
-            @if (kidsMode())
-            <a class="footer-search {{ ($current_route == 'kids/search') ? 'active' : '' }}" href="{{ getUrl('kids/search') }}">
-            @else
-            <a class="footer-search {{ ($current_route == 'search') ? 'active' : '' }}" href="{{ getUrl('search') }}">
-            @endif
-                <p></p>
-               <span>Search</span> 
-            </a>
-            @if (!kidsMode())
-            <a class="footer-spotlight {{ ($current_route == 'spotlight') ? 'active' : '' }}" href="{{ getUrl('spotlight') }}">
-                <p></p>
-                <span>Spotlight</span>
-            </a>
-            @endif
-            <div class="animation start-home"></div>
+           
+        @endforeach
         </nav>
 </section>
 
