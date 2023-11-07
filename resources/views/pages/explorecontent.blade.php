@@ -6,7 +6,7 @@
         
         echo '<div class="card-details">';
         foreach ($chunk as $key => $val) {
-            $cover_img = getCardImage($val, 'cover_image', 'small', ['cover_image', 'banner_image']);
+            $cover_img = getCardImage($val, 'cover_image', 'medium');
             $banner_img = getCardImage($val, 'banner_image', 'medium', ['cover_image', 'banner_image']);
             $generes = array_column($val['genres_assign'] ?? [], 'name');
 
