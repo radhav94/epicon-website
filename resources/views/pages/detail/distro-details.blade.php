@@ -32,6 +32,7 @@
         height: 70px;
         border-radius: 80px;
         line-height: 70px;
+        pointer-events: none;
     }
 
     .live-tv-vidPlayer button[data-plyr="fast-forward"], 

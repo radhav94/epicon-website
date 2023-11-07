@@ -17,6 +17,7 @@
         border-radius:50%;
         cursor: pointer;
         opacity: 0;
+        pointer-events: none;
     }
     .play-button img{
         width: 9px !important;
