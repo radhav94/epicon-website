@@ -51,7 +51,10 @@ $(document).ready(function () {
 
       });
 
-    $(".allAccessBtn").click(function() {
+    $(".allAccessBtn").unbind().click(function(event) {
+        if (!event.isTrigger) {
+            window.history.replaceState({}, document.title, "?" );
+        }
         var checkstaus = $(this).is(':checked');
         var kidsUrl= $("input#kidsUrl").val();
         var isLoggedIn = $(this).data('log');
@@ -69,8 +72,8 @@ $(document).ready(function () {
         }else{
             $(".allAccessBtn").prop( "checked", true );
             $("#child-pin-modal").modal('show');
+            return false;
         }
-        
     })
 
     $(".allAccessBtn-sub").click(function() {
