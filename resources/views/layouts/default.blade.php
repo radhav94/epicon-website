@@ -52,6 +52,7 @@
 
     <script src="{{ asset('assets/js/epic.js') }}"></script>
     <script src="{{ asset('assets/js/common.js') }}?v={{ assetTime() }}"></script>
+    
     {{-- End footer common scripts --}}
 
     @if(request()->get('type') == 'register')
@@ -78,6 +79,28 @@
                     onSuccess, onError);
             });
         });
+        if (!localStorage.getItem('deviceId')) {
+          storedDeviceId = generateDeviceId();
+          localStorage.setItem('deviceId', storedDeviceId);
+        }
+
+        function generateDeviceId() {
+          // Use a combination of available information
+          var navigatorInfo = [
+            navigator.userAgent,
+            navigator.language,
+            navigator.platform,
+            screen.width,
+            screen.height,
+            new Date().getTimezoneOffset(),
+          ];
+
+          // Combine and hash the information to create a unique identifier
+          var deviceId = JSON.stringify(navigatorInfo);
+          deviceId = btoa(deviceId);
+
+          return deviceId;
+        }
     </script>
 </body>
 

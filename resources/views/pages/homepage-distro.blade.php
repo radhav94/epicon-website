@@ -17,6 +17,7 @@
         border-radius:50%;
         cursor: pointer;
         opacity: 0;
+        pointer-events: none;
     }
     .play-button img{
         width: 9px !important;
@@ -92,8 +93,11 @@
 
 @section('script')
 <script src="{{ asset('assets/js/homepage.js') }}"></script>
-
+<script defer src="{{ asset('assets/js/distro-tv.js') }}"></script>
 <script>
+    window.onload = function() {
+        eventAfterDistroLoad();
+    }
     var processing;
     var spinnerAdded = false;
 
