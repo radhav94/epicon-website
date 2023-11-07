@@ -105,7 +105,7 @@ $(document).ready(function () {
 		const closePlayer = document.getElementById('closePlayer');
 		const watchVideo = document.getElementById('watchVideo');
 		// const customPlayButton = document.getElementById('customPlayButton');
-
+		video.currentTime = parseInt(user_duration);
 		const defaultOptions = {
 			seekTime: 10,
 			controls: ['rewind', 'play', 'fast-forward', 'progress', 'current-time', 'volume', 'captions', 'settings', 'pip', 'fullscreen'],

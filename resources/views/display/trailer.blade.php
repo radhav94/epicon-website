@@ -13,7 +13,6 @@
               @endif
           </div>
           <div class="banner-carousel-1">
-
               @foreach ($value['content'] as $key => $val)
                   <?php
                   $card = getItemCardData($val, $displayLanguageParam);
@@ -58,7 +57,7 @@
                           </div>
                       </div>
                   </div>
-              @break;
+              
           @endforeach
       </div>
   </div>
