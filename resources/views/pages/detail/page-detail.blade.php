@@ -122,19 +122,6 @@ else{
                                 'v_content' => $content,
                             ])
                         </p>
-                        <div class="seemore">
-                            <p class="text-white mb-0">{!! sanitizeData(@$content['description']) !!}</p>
-                            <button class="bg-transparent text-white small readmore-less">Read More</button>
-                        </div>
-                        @if (@$content['cast'])
-                        <div class="seemore">
-                                <p class="text-white mb-3">Cast:
-                                    @foreach ($content['cast'] as $key => $value)
-                                        {{ $value }}
-                                    @endforeach
-                                </p>
-                        </div>
-                            @endif
                     </div>
                     <div class="col-sm-6 col-lg-6 col-md-12 my-3">
                         <div class="d-flex">
@@ -181,8 +168,7 @@ else{
                                         data-title="{{ $share_title }}">
                                         <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
                                     </button>
-                                </div>
-                                @if (@$content['is_popular'])
+                                    @if (@$content['is_popular'])
                                         <button class="border-btn most-pop">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none">
@@ -196,8 +182,25 @@ else{
                                             {{__('Most Popular')}}
                                         </button>
                                     @endif
+                                </div>
+                                
                             </div>
                             </div>
+                    </div>
+                    <div class="col-12">
+                    <div class="seemore">
+                            <p class="text-white mb-0">{!! sanitizeData(@$content['description']) !!}</p>
+                            <button class="bg-transparent text-white small readmore-less">Read More</button>
+                        </div>
+                        @if (@$content['cast'])
+                        <div class="seemore">
+                                <p class="text-white mb-3">Cast:
+                                    @foreach ($content['cast'] as $key => $value)
+                                        {{ $value }}
+                                    @endforeach
+                                </p>
+                        </div>
+                            @endif
                     </div>
                 </div>
             </div>
