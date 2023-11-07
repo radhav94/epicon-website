@@ -52,7 +52,7 @@
 
     <script src="{{ asset('assets/js/epic.js') }}"></script>
     <script src="{{ asset('assets/js/common.js') }}?v={{ assetTime() }}"></script>
-    <script defer src="{{ asset('assets/js/distro-tv.js') }}"></script>
+    
     {{-- End footer common scripts --}}
 
     @if(request()->get('type') == 'register')

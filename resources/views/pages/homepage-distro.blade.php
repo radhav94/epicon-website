@@ -93,7 +93,7 @@
 
 @section('script')
 <script src="{{ asset('assets/js/homepage.js') }}"></script>
-
+<script defer src="{{ asset('assets/js/distro-tv.js') }}"></script>
 <script>
     window.onload = function() {
         eventAfterDistroLoad();
