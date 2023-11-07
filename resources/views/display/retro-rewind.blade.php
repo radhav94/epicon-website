@@ -4,7 +4,7 @@
              <div class="punjab-title">
                  <img class="w-100 mb-4" src="{{ asset('assets/img/retro-rewind.svg') }}" alt="">
                  @if (@$value['show_more'])
-                     <a href="{{ getMidPageUrl($value) }}">
+                     <a onclick="click_cta(this)" data-event_context="Retro Rewind" data-element_text="Explore More" href="{{ getMidPageUrl($value) }}">
                          <button>Explore More</button>
                      </a>
                  @endif
@@ -19,7 +19,7 @@
                  
                  ?>
                  <li>
-                     <a href="{{ route('retro-list', $val['slug']) }}" class="main-card">
+                     <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}"  href="{{ route('retro-list', $val['slug']) }}" class="main-card">
                          <div class="main-img mt-0">
                              <img src="{{ $cover_img }}" alt="retro">
                          </div>

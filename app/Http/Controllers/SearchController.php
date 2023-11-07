@@ -106,7 +106,7 @@ class SearchController extends Controller
         if(@$topResult['asset_type'] == 'PLAY'){
             $anchorHtml = getplayanchorhtml($topResult);
         }else{
-            $anchorHtml = '<a href="'.getContentUrl($topResult).'" >';
+            $anchorHtml = '<a  onclick="click_search_results(this)" data-element_text="'.@$topResult['title'].'" href="'.getContentUrl($topResult).'" >';
         }
         
 
@@ -167,7 +167,7 @@ class SearchController extends Controller
                 if(@$content['asset_type'] == 'PLAY'){
                     $anchorHtml = getplayanchorhtml($content);
                 }else{
-                    $anchorHtml = '<a href="'.getContentUrl($content).'" class="main-card mt-0">';
+                    $anchorHtml = '<a onclick="click_search_results(this)" data-element_text="'.@$content['title'].'" href="'.getContentUrl($content).'" class="main-card mt-0">';
                 }
                 
                 $htmlContent .= '<li>

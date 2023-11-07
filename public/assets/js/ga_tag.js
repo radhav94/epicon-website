@@ -17,7 +17,6 @@ function click_social(e) {
 function click_carousel(e) {
     window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
     var a = $(e).data("title");
-    alert(a);
     dataLayer.push({ event: "click_carousel", element_text: a, time_on_page: time_on_page() });
 }
 function share(e) {
@@ -31,9 +30,13 @@ function click_tile(e) {
     window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
     var a = $(e).data("title"),
         t = $(e).data("type");
-        alert(a);
-        alert(t);
     dataLayer.push({ event: "click_tile", content_name: a, event_context: t, time_on_page: time_on_page() });
+}
+function click_explore(e) {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
+    var a = $(e).data("title"),
+        t = "explore";
+    dataLayer.push({ event: "click_explore", content_name: a, event_context: t, time_on_page: time_on_page() });
 }
 function click_teams(e) {
     window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
@@ -49,19 +52,17 @@ function outbound_click(e) {
     dataLayer.push({ event: "outbound_click", event_context: a, element_text: t, time_on_page: time_on_page() });
 }
 function searchEvent(e) {
-    if ($("#searchInputForHeader").val().trim()) {
+    if ($('input[name="search"]').val().trim()) {
         window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
-        var a = $("#content_type option:selected").val(),
-            t = $("#searchInputForHeader").val().trim();
-        dataLayer.push({ event: "search", search_type: a, search_term: t.toLowerCase() });
+        var t = $('input[name="search"]').val().trim();
+        dataLayer.push({ event: "search",search_term: t.toLowerCase() });
     }
 }
 function click_search_results(e) {
     window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
-    var a = $("#content_type option:selected").val(),
-        t = $("#searchInputForHeader").val(),
+    var t = $('input[name="search"]').val(),
         n = $(e).data("element_text");
-    dataLayer.push({ event: "click_search_results", search_type: a, search_term: t, element_text: n, time_on_page: time_on_page() });
+    dataLayer.push({ event: "click_search_results", search_term: t, element_text: n, time_on_page: time_on_page() });
 }
 function click_menu(e) {
     window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
@@ -82,7 +83,6 @@ function click_cta(e) {
     window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
     var a = $(e).data("event_context"),
         t = $(e).data("element_text");
-        alert(a);
     dataLayer.push({ event: "click_cta", event_context: a, element_text: t, time_on_page: time_on_page() });
 }
 function click_player(e) {

@@ -45,7 +45,7 @@
                                 <div class="card-details">
 
                                     @foreach ($result['data']['genres'] as $key => $value)
-                                    <a href="{{ getUrl('explore/' . @$value['slug']) }}" class="card-body">
+                                    <a onclick="click_explore(this)" data-title ="{{ @$value['name'] }}" href="{{ getUrl('explore/' . @$value['slug']) }}" class="card-body">
                                         {{-- <h4 class="action">{{ @$value['name'] }}</h4> --}}
                                         <img src="{{ @$value['images']['small'] }}" alt="">
                                     </a>
@@ -70,7 +70,7 @@
                                 
                                 ?>
 
-                                <a href="{{ getUrl('explore/' . @$value['slug']) }}" tabindex="0">
+                                <a onclick="click_tile(this)" data-title="{{@$value['name']}}" data-type="Languages" href="{{ getUrl('explore/' . @$value['slug']) }}" tabindex="0">
                                     <img src="{{ $cover_img }}">
                                 </a>
                                 @endforeach

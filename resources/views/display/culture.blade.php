@@ -8,7 +8,7 @@
                    <div class="text">
                        <h1>{{ $title }}</h1>
                        @if (@$value['show_more'])
-                           <a href="{{ getMidPageUrl($value) }}">
+                           <a onclick="click_cta(this)" data-event_context="{{ @$title }}" data-element_text="Explore More" href="{{ getMidPageUrl($value) }}">
                                <button>Explore More</button>
                            </a>
                        @endif
@@ -27,7 +27,7 @@
                        @if(@$val['asset_type'] == 'PLAY')
                             {!! getplayanchorhtml($val) !!}
                         @else
-                            <a href="{{ getContentUrl($val) }}" class="main-card">
+                            <a  onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}" href="{{ getContentUrl($val) }}" class="main-card">
                         @endif
                            {!! freePremiumDiv($val) !!}
                            {!! topTenDiv($val) !!}
