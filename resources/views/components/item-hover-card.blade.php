@@ -13,7 +13,7 @@ if(@$val['display_type'] == 'standard'){
             {!! topTenDiv($val) !!}
         @endif
         <a href="{{ getContentUrl($val) }}">
-            <img src="{{ $banner_img }}" alt="">
+            <img src="{{ $cover_img }}" alt="">
         </a>
     </div>
     <div class="bottom-card-content">
