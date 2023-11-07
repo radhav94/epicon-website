@@ -72,6 +72,9 @@
     <script src="{{ asset('assets/js/ga_tag.js') }}?v={{ assetTime() }}"></script>
     {{-- End footer common scripts --}}
 
+    @if(request()->get('type') == 'register')
+        @include('auth.after-register-popup')
+    @endif
 
 
     {{-- Start page specific scripts --}}
@@ -79,7 +82,7 @@
     {{-- End page specific scripts --}}
 
     @notloggedin
-        @include('components.login-reg-js')
+        @include('auth.login-reg-js')
     @endnotloggedin
 
     @if (session()->has('kidsMode') && session()->get('kidsMode'))

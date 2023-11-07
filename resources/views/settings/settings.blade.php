@@ -6,6 +6,7 @@ $kidSection     = array_key_exists("kidSection", $user_data) ? $user_data['kidSe
 $activeDevices  = @$activeDevice['success'] && array_key_exists('data', $activeDevice) ? $activeDevice['data'] : [];
 $request        = Request();
 $ispin          = $request->input('status') ?? '';
+$device_detail  = session()->get("device-detail");
 
 /* search history start */
 $profileSearchHistory = [];

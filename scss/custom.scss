@@ -361,9 +361,10 @@
         margin-top: 50px;
         font-weight: 600;
         font-size: 16px;
+        color: #0000007a;
 
         @media (max-width:768px) {
-            width: 150px;
+            width: 366px;
         }
     }
 
@@ -473,7 +474,6 @@
                 h4 {
                     font-size: 16px;
                     margin-top: 8px;
-                    @include line-clamp(1);
                 }
 
                 ul {
@@ -833,11 +833,12 @@
 
     .ds-logo-text {
         width: 300px;
-        height: auto;
+        height: 200px;
         display: flex;
         flex-direction: column;
         align-items: center;
         position: absolute;
+        margin-top: 60px;
     }
 
     .ds-logo-text ul li {
@@ -932,10 +933,8 @@
     .distro-banner-item img{
         width: 100%;
         height: auto;
-        position: relative;
-        top: 0;
-        left: 0;
-        z-index: -1;
+        object-fit: cover;
+        object-position: top;
     }
 
     .distro-title{
@@ -1106,4 +1105,9 @@
         margin-top: 35px;
         transition: all linear 0.4s;
         text-decoration:none;
+    }
+
+    .successfully-loged{
+        width: 500px;
+        margin: 0 auto;
     }

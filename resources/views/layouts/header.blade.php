@@ -165,6 +165,7 @@ if (isUserLoggedIn()) {
                 'podcast' => 'Podcasts',
                 'explore' => 'Explore',
                 'premium' => 'Premium',
+                'distro-tv' => 'Distro TV'
             ];
             $current_route = getFirstSegment();
         }
@@ -309,6 +310,9 @@ if (isUserLoggedIn()) {
                         <li class="subc-text"><a href="{{ getUrl('library') }}">{{__('Library')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('my-account') }}">{{__('My Account')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('my-rewards') }}">{{__('My Rewards')}}</a></li>
+                        @if(!kidsMode())
+                        <li class="subc-text"><a href="{{url('/my-rewards')}}">{{__('Reward Store')}}</a></li>
+                        @endif
                         <li class="subc-text"><a href="{{ getUrl('settings') }}">{{__('Settings')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('feedback') }}">{{__('Help & Feedback')}}</a></li>
                         <li class="subc-text logout"><a href="javascript:void(0);">{{__('Log out')}}</a></li>

@@ -2,6 +2,7 @@
     <div class="language-setting">
         <h4 class="pb-4 border-bot">{{__('Manage the active devices')}}</h4>
 
+
         <div class="container-fluid">
             <?php if (count($activeDevices) > 0) {
                 foreach ($activeDevices as $device) {

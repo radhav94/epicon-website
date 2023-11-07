@@ -63,7 +63,7 @@
             </div>
 
             <div class="col-sm-12">
-                <div class="w-100 library">
+                <div class="w-100 library lib-reward">
                     <ul class="nav nav-pills border-bot pb-3" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="my-list" data-bs-toggle="pill" data-bs-target="#pills-earn" type="button" role="tab" aria-controls="pills-earn" aria-selected="true">{{__('Earn')}}</button>

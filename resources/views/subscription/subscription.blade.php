@@ -99,11 +99,11 @@
                                    
                                     <li>
                                         <a href="javascript:void(0)">
-                                            <img src="{{ asset($bnval['vendor_image'])}}" alt="">
+                                            <img src="{{asset('img/coupon.svg')}}" alt="">
                                             <div class="ac-content">
                                                 <div class="left">
                                                     <div class="circle-logo">
-                                                        <img src="{{ asset('/img/kfc-logo.png')}}" alt="">
+                                                        <img src="{{ asset($bnval['vendor_image'])}}" alt="">
                                                     </div>
                                                     <span>Exc. Offer</span>
                                                 </div>
@@ -139,7 +139,14 @@
                         </div>
                         
                         <div class="subscribe-bottom mt-4">
-                        <form method="post" action="{{getUrl('paymentMethod')}}" class="paymentForm">
+                        
+                            <div class="tc mt-3">
+                                <a href="{{route('terms-of-use')}}">{{__('Terms of Use')}}</a>
+                                <b>•</b>
+                                <a href="{{route('privacy')}}">{{__('Privacy Policy')}}</a>
+                            </div>
+
+                            <form method="post" action="{{getUrl('paymentMethod')}}" class="paymentForm">
                             @csrf
                             <input type="hidden" name="amountid" id="amountid" value="{{$result['plans'][0]['id']}}">
                             <input type="hidden" name="currency" id="currency" value="{{$val['currency']}}">
@@ -153,11 +160,6 @@
                                   </svg>
                             </button>
                             </form>
-                            <div class="tc mt-3">
-                                <a href="{{route('terms-of-use')}}">{{__('Terms of Use')}}</a>
-                                <b>•</b>
-                                <a href="{{route('privacy')}}">{{__('Privacy Policy')}}</a>
-                            </div>
                             
                         </div>
                     </div>
@@ -171,7 +173,6 @@
 @section('script')
 <script>
     $(document).ready(function(){
-        $(".promocode").val('');
         $(".planid").click(function (e) {
             var planid =$(this).attr('data-id');  
         $.ajaxSetup({
@@ -312,7 +313,6 @@
     });
 
     $(".payment").click(function(){
-        $(".promocode").val('');
         if($("#amountid").val() == ""){
             showToaster('please select you plan', 2);
         }else{
@@ -327,7 +327,6 @@
         $("#amountid").val(planid);
             if(planid == 'epic_in_pl_1'){
                 $(".coupan-div").hide();
-                //$(".promocode").val('');
             }else{
                 $(".coupan-div").show();   
             }
