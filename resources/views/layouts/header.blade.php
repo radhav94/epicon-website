@@ -169,8 +169,8 @@ if (isUserLoggedIn()) {
             ];
             $current_route = getFirstSegment();
         }
-    
 ?>
+       @if($kids_page == true && isMobliDevice()==false || $kids_page == false)  
         <ul class="menu-item list-unstyled d-flex mb-0">
             @foreach ($links as $key => $value)
                 <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a href="{{ getUrl($key) }}"
@@ -178,6 +178,8 @@ if (isUserLoggedIn()) {
             @endforeach
 
         </ul>
+        @endif
+
                 <div class="main-header-right d-flex align-items-center">
             @php $isactive = ""; @endphp
             @if (kidsMode())
