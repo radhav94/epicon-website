@@ -110,3 +110,6 @@
            </div>
        </div>
    </section>
+   <script>
+    var user_duration = "{{ $content['user_duration'] ?? 0}}";
+   </script>
