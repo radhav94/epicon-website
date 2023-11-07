@@ -67,7 +67,7 @@
                     </div>
                     <!-- login or register start -->
                     <div class="right-side">
-                        <div class="screen-login">
+                        <div class="login-popup-modal screen-login">
                             <form method="POST" name="mobile-number-form" id="mobile-number-form-id">
                                 @csrf
                                 <h5 class="mb-4 text-white">Login or Register</h5>
@@ -111,7 +111,7 @@
                                 </p>
                             </form>
                         </div>
-                        <div class="screen-verify">
+                        <div class="login-popup-modal screen-verify">
                             <form method="POST" name="verify-number-form" id="verify-number-form-id">
                                 @csrf
                                 <h5 class="mb-2 text-white">Enter the OTP sent to</h5>
@@ -162,7 +162,7 @@
                                     class="btn-close" style="width: 280px;">Login with password</button>
                             </form>
                         </div>
-                        <div class="screen-register">
+                        <div class="login-popup-modal screen-register">
                             <form method="POST" name="register-form" id="register-form-id">
                                 <h5 class="mb-4 text-white"> Register</h5>
                                 <input type="hidden" id="userid" name="userid" value="">
@@ -258,7 +258,7 @@
                             </form>
                         </div>
 
-                        <div class="screen-login-with-pwd">
+                        <div class="login-popup-modal screen-login-with-pwd">
                             <form method="POST" name="login-form" id="login-form-id">
                                 <h5 class="mb-4 text-white">Login with Password</h5>
                                 <div class="input-field w-100 mb-3">
@@ -331,7 +331,7 @@
                             </form>
                         </div>
                         <!-- forgot password start -->
-                        <div class="screen-forgot-pwd">
+                        <div class="login-popup-modal screen-forgot-pwd">
                             <form method="POST" name="forgot-pwd-form-id" id="forgot-pwd-form-id">
                                 <h5 class="mb-4 text-white">Forgot Password</h5>
                                 <div class="input-field w-100 mb-3">
@@ -366,7 +366,7 @@
                         </div>
                         <!-- forgot password end -->
 
-                        <div class="screen-forgot-otp">
+                        <div class="login-popup-modal screen-forgot-otp">
                             <form method="POST" name="verify-forgot-number-form" id="verify-forgot-number-form-id">
                                 @csrf
                                 <h5 class="mb-2 text-white">Forgot Password</h5>
@@ -419,7 +419,7 @@
                         </div>
 
                         <!-- Screen 55 Start -->
-                        <div class="screen-set-pwd">
+                        <div class="login-popup-modal screen-set-pwd">
                             <form method="POST" name="set-password-form" id="set-password-form-id">
                                 <h5 class="mb-4 text-white"> Set New Password</h5>
                                 <input type="hidden" id="userid_detail" name="userid_detail" value="">
@@ -500,13 +500,13 @@
                     </div>
 
                     <!-- successfully and interest  start-->
-                    <div class="successfully-loged screen-sucess-register py-5">
+                    <div class="login-popup-modal successfully-loged screen-sucess-register py-5">
                         <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="">
                         <h4 class="text-center text-white mt-3">Hey <span id="username"></span>, you have
                             successfully registered with Epic On!</h4>
                         <p class="small text-white">Tell us what you’re interested in and we’ll do our best to give you
                             better recommendations </p>
-                        <button class="login-btn interest-btn mt-4" style="width: 280px;">
+                        {{--<button class="login-btn interest-btn mt-4" style="width: 280px;">
                             Choose Interests
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none">
@@ -517,44 +517,11 @@
                                     d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z"
                                     fill="#070707" />
                             </svg>
-                        </button>
+                        </button> --}}
                     </div>
-
-                    <!-- better suggetion start -->
-                    <div class="login-popup-modal better-solution choose-interests">
-                        <form id="interestsSuggestions" class="better-solution">                            <
-                            <div class="bs-left">
-                                <h4>
-                                    Choose 5 interests for better suggestions
-                                </h4>
-                                <div class="choose">
-                                    <div class="three">
-                                        <span><img src="{{ asset('img/welcom.jpeg')}}" alt=""></span>
-                                        <span><img src="{{ asset('img/dhamal.jpeg')}}" alt=""></span>
-                                        <span><img src="{{ asset('img/welcom.jpeg')}}" alt=""></span>
-                                        <span class="span-text-3 genre-select-count">0 of 5</span>
-                                    </div>
-                                    <button type="button" class="better-suggestion-nxtBtn">Next
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <path d="M5 12H19" stroke="#161616" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                            <path d="M12 5L19 12L12 19" stroke="#161616" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </button> 
-                                    <input type="hidden" name="user_token">                                   
-                                </div>
-                                <div id="error-meg-for-genre-select" style="color: red;"></div>
-                            </div>
-                            <div class="bs-right" id="interest-suggetion">
-                            </div>
-                        </form>
-                    </div>
-                    <!-- better suggetion end -->
 
                     <!-- successfully logged  start-->
-                    <div class="successfully-loged w-100 screen-sucess-logged 12345">
+                    <div class="login-popup-modal successfully-loged w-100 screen-sucess-logged 12345">
 
                         <img width="100" class="{{@$subplan['status']}}" src="{{ asset('/img/success-tick.png') }}" alt="">
                         <h4 class="text-center text-white mt-3">Awesome! You have successfully logged in to Epic ON {{@$subplan_status}}
@@ -578,9 +545,6 @@
                             style="width: 280px;">Skip for now</button>
                         </div>
                     </div>
-
-                    @include('auth.setChildPin')
-
                 </div>
             </div>
         </div>

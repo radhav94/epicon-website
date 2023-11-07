@@ -163,14 +163,14 @@ $subplan = checkSubscription();
                         </a>
                     </p>
                     @if(@$subplan['status'] == 'active')
-                    <p class="position-relative border-bot pb-4 can_memb"> 
+                    {{--<p class="position-relative border-bot pb-4 can_memb"> 
                         {{__('Cancel Membership')}}
                         <button class="edit-icon bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#cancelMembership">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="20" viewBox="0 0 14 20" fill="none">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M1.31843 0.422975C1.83708 -0.108049 2.7162 -0.143922 3.282 0.34285L13.3894 9.0385C13.6766 9.28555 13.8401 9.63438 13.8401 10C13.8401 10.3656 13.6766 10.7144 13.3894 10.9615L3.282 19.6572C2.7162 20.1439 1.83708 20.1081 1.31843 19.577C0.799777 19.046 0.838 18.2209 1.4038 17.7341L10.3936 10L1.4038 2.26586C0.838 1.77909 0.799777 0.954 1.31843 0.422975Z" fill="white"/>
                               </svg>
                         </button>
-                    </p>
+                    </p>--}}
                     @endif
                 </div>
             </div>
