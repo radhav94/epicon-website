@@ -94,6 +94,9 @@
 <script src="{{ asset('assets/js/homepage.js') }}"></script>
 
 <script>
+    window.onload = function() {
+        eventAfterDistroLoad();
+    }
     var processing;
     var spinnerAdded = false;
 
