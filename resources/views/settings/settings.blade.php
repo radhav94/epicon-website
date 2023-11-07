@@ -7,6 +7,7 @@ $activeDevices  = @$activeDevice['success'] && array_key_exists('data', $activeD
 $request        = Request();
 $ispin          = $request->input('status') ?? '';
 $device_detail  = session()->get("device-detail");
+$userId         = getUserId();
 
 /* search history start */
 $profileSearchHistory = [];
@@ -143,11 +144,18 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                 <form id="verifyOTPDeleteAccountForm">
                     <div class="col-sm-12 col-md-12 col-lg-7 m-auto">
                         <div class="mb-5">
-                            <label class="text-white text-start w-100 mb-1" for="">{{__('Enter the 4-digit code sent to +9186******41')}}</label>
+                            <?php 
+                            $pinText = __('Enter the 4-digit code sent to');
+                            $user_id = " <span class='mobileno'> $userId </span> ";
+                            if ($displayLanguage == 'en') {
+                                $pinText .= $user_id;
+                            } else {
+                                $pinText = $user_id.$pinText;
+                            }
+                            ?>
+                            <label class="text-white text-start w-100 mb-1" for=""><?php echo $pinText; ?></label>
                             <div class="childpin">
                                 <div class="childpin-input d-flex justify-content-between pt-3">
-                                    <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
-                                    <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
                                     <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
                                     <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
                                     <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
@@ -256,6 +264,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
 @stop
 @section('script')
 <script>
+    var userId = "{{ $userId }}"
     $(document).ready(function() {
         var checkpin = $("#ispin").val();
         if(checkpin == "ispin"){
@@ -485,6 +494,8 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                     console.log(response);
                     if (response.payload.success == true) {
                         if (!resendOtp) {
+                            var mobileno = hideMiddleCharacters(userId);
+                            $('.mobileno').html(mobileno);
                             $("#delete-account .modal-body").hide();
                             $("#verifyOTP").show();
                         }

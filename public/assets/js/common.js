@@ -54,6 +54,7 @@ $(document).ready(function () {
     $(".allAccessBtn").unbind().click(function(event) {
         if (!event.isTrigger) {
             window.history.replaceState({}, document.title, "?" );
+            localStorage.setItem("redirectURL", "");
         }
         var checkstaus = $(this).is(':checked');
         var kidsUrl= $("input#kidsUrl").val();
