@@ -18,10 +18,7 @@ class SettingController extends Controller
             return view('pages.404');
         }
 
-        $user_data = @$profile_data['success'] &&
-            array_key_exists("user_data", $profile_data)
-            ? $profile_data['user_data']
-            : [];
+        $user_data = session()->get('user') ?? [];
 
         $genrelist = CurlAPI("v2profilecontent/genrelist", 'GET', [], 1);
         if (!$genrelist) {
@@ -128,6 +125,7 @@ class SettingController extends Controller
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
         }
+        $response = $response['payload'] ?? [];
         $error_code = array_key_exists("errorcode", $response) ? $response['errorcode'] : '';
         return JSONResponse(200, '', ['message' => @$response['message'], 'success' => @$response['success'], 'errorcode' => $error_code]);
     }
