@@ -11,7 +11,7 @@
             <div class="modal-body">
                 {{--<h4 class="pb-4 border-bot">{{__('Create a 4-digit Child PIN')}}</h4>--}}
 
-                <div class="childpin text-start py-4">
+                <div class="childpin text-start pt-4">
                     <form id="childPinForm">
                         <div class="text-center">
                             <p class="small mb-4">{{__('This PIN will be used to switch from kids profile to all adult profiles')}}</p>
@@ -29,8 +29,8 @@
                                 </svg>
                             </button>
                         </div>
-                        <div id="error-msg" style="color: red;"></div>
-                        <div id="success-msg" style="color: green;"></div>
+                        <div id="error-msg" class="text-center text-danger pt-2"></div>
+                        <div id="success-msg" class="text-center text-success pt-2"></div>
                     </form>
                 </div>
             </div>
