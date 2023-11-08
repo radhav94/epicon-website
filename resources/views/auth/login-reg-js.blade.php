@@ -491,6 +491,8 @@
                 $("#customCheck").val(false);
             }
 
+            // $('.screen-login-with-pwd').show();
+
             var formData = $('#login-form-id').serialize();
             // alert(formData);
             if (name != '' && password != '') {
@@ -509,8 +511,9 @@
                             // $('#register-result').html('');
                             // $("#username").text(response.payload.name);
                             // $("#sign_method").val(response.payload.user_signup_method);
+                            $('.left-side, .login-popup-modal').hide();
                             $('.screen-sucess-logged').show();
-                            $('.login-popup-modal').hide();
+                            
                             if(response.payload.subplan_status == 'active'){
                                 $('.no-subscription-user').hide();
                             }else{
