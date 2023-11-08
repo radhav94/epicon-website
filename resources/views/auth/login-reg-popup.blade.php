@@ -139,7 +139,7 @@
                                 <div id="validation-result" style="color: red;">
                                     <!-- Display validation result here -->
                                 </div>
-                                <div class="resend-otp text-start text-white mt-4" style="font-size: 12px;">
+                                <div class="resend-otp text-center text-white mt-4" style="font-size: 12px;">
                                     <!-- Resend OTP in:0.30 -->
                                 </div>
                                 <div id="verifyotp-result" style="color: red;">
