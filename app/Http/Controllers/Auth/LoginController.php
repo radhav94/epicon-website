@@ -57,6 +57,7 @@ class LoginController extends Controller
                 "message" => "OTP verified successfully."
             ];
             $verifyotpResponseData = CurlAPI("users/verifyOTP", 'POST', $verifyotpRequestData, 2);
+
             if (isset($verifyotpResponseData['user_data'])) {
                 $is_verified = true;
             } else {
@@ -71,6 +72,7 @@ class LoginController extends Controller
                 $request->session()->put('user_id', $userid);
                 $request->session()->put('user', $user_data);
                 $request->session()->put('user_token', $verifyotpResponseData['token']);
+                $request->session()->put('device_id', @$verifyotpResponseData['user_data']['device_id']);
                 // $viewname = 'homepage';
                 return JSONResponse(200, 'OTP verified successfully.', ['user_id' => $userid, 'user_signup_method' => $signup_method, 'otp_pin' => $otp_pin, 'response' => $response, 'user_data' => $user_data, 'success' => true]);
             } elseif ((@$verifyotpResponseData['success'] == 'true' || @$verifyotpResponseData['success'] == true) && $is_verified == false) {
@@ -111,6 +113,7 @@ class LoginController extends Controller
             session()->put('user', $userdata);
             session()->put('user_id', $userid);
             session()->put('user_token', $registerResponseData['token']);
+            $request->session()->put('device_id', @$registerResponseData['user_data']['device_id']);
             return JSONResponse(200, 'User Registered Successfully.', ['user_id' => $userid, 'user_signup_method' => $signup_method, 'name' => $username, 'password' => $password, 'date_of_birth' => $date_of_birth, 'gender' => $gender, 'response' => $response, 'success' => true, 'user_token' => $registerResponseData['token']]);
         } else {
             return JSONResponse(200, 'User Registeration Failed.', ['response' => $response, 'success' => false]);
@@ -143,6 +146,7 @@ class LoginController extends Controller
             $request->session()->put('user', $userdata);
             $request->session()->put('user_id', $userid);
             $request->session()->put('user_token', $loginResponseData['token']);
+            $request->session()->put('device_id', @$loginResponseData['user_data']['device_id']);
 
             if (!empty($request->post('rememberme'))) {
                 setcookie("user_id", strtolower($userid), time() + 60 * 60 * 24 * 30);
