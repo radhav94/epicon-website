@@ -80,7 +80,7 @@ else{
         <div class="overlay mt-4">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6 col-lg-6 col-md-12">
+                    <div class="col-sm-6 col-lg-6 col-md-6">
                         <div class="banner-content">
                             <div class="all-btn">
                                 <input type="hidden" name="subUrl" class="subUrl" id="subUrl" value="{{ getUrl('subscription') }}">
@@ -118,7 +118,7 @@ else{
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-lg-6 col-md-12">
+                    <div class="col-sm-6 col-lg-6 col-md-6">
                         <div class="d-flex">
                             <div class="banner-content flex-wrap">
                                 <div class="all-btn w-100">

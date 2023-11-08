@@ -260,7 +260,8 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
 @stop
 @section('script')
 <script>
-    var userId = "{{ $userId }}"
+    var userId = "{{ $userId }}";
+    var deviceId = "{{ getDeviceId() }}";
     $(document).ready(function() {
         var checkpin = $("#ispin").val();
         if(checkpin == "ispin"){
@@ -638,6 +639,12 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                 if (response.payload.success == true) {
                     $("div[data-id='" + params + "']").remove();
                     showToaster('Device logout successfully.', 1);
+                    if ($('#otherDevice').html() == '') {
+                        $('#otherDevice').parent().remove();
+                    }
+                    if (deviceId == params) {
+                        location.reload();
+                    }
                 } else {
                     $("#updateInterestForm #error-meg-for-genre-select").html(response.payload.message);
                 }
