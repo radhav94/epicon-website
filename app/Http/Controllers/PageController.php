@@ -309,7 +309,7 @@ class PageController extends Controller
             $data = $result['data'] ?? [];
             $lists = $data['list'] ?? [];
             foreach ($lists as $list) {
-                if (@$list['slug'] == "short-and-sweet") {
+                if ($list['display_type'] == "shortandsweet") {
                     $stories = $this->epicShots();
                     break;
                 }   
