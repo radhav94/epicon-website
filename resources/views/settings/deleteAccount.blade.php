@@ -9,7 +9,7 @@
                     <p class="delete-text my-3">{{__('Deleting your account will delete all your saved content. You will also lose any subscription linked to your account. You can chose to log out instead. This will allow you to come back any time you wish.')}}</p>
                     <div class="d-flex mt-4">
                         <button class="border-btn" id="delete_user_account">{{__('Delete Acc')}}</button>
-                        <button class="fill-btn logout">{{__('Log Out')}}</button>
+                        <button class="fill-btn logout mt-0">{{__('Log Out')}}</button>
                     </div>
                 </div>
                 <img class="mb-4" width="150" src="{{ asset('/img/delete-account-icon.svg') }}" alt="icon">

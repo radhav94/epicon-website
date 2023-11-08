@@ -77,10 +77,10 @@ else{
         }
 
 ?>
-        <div class="overlay mt-3">
+        <div class="overlay mt-4">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6 col-lg-6 col-md-12 mt-3">
+                    <div class="col-sm-6 col-lg-6 col-md-6">
                         <div class="banner-content">
                             <div class="all-btn">
                                 <input type="hidden" name="subUrl" class="subUrl" id="subUrl" value="{{ getUrl('subscription') }}">
@@ -117,26 +117,8 @@ else{
                                     ?>
                             </div>
                         </div>
-                        <p class="ua small mb-2 b7-color">
-                            @include('pages.detail.detail-components.sub-bullets', [
-                                'v_content' => $content,
-                            ])
-                        </p>
-                        <div class="seemore">
-                            <p class="text-white mb-0">{!! sanitizeData(@$content['description']) !!}</p>
-                            <button class="bg-transparent text-white small readmore-less">Read More</button>
-                        </div>
-                        @if (@$content['cast'])
-                        <div class="seemore">
-                                <p class="text-white mb-3">Cast:
-                                    @foreach ($content['cast'] as $key => $value)
-                                        {{ $value }}
-                                    @endforeach
-                                </p>
-                        </div>
-                            @endif
                     </div>
-                    <div class="col-sm-6 col-lg-6 col-md-12 my-3">
+                    <div class="col-sm-6 col-lg-6 col-md-6">
                         <div class="d-flex">
                             <div class="banner-content flex-wrap">
                                 <div class="all-btn w-100">
@@ -181,8 +163,7 @@ else{
                                         data-title="{{ $share_title }}">
                                         <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
                                     </button>
-                                </div>
-                                @if (@$content['is_popular'])
+                                    @if (@$content['is_popular'])
                                         <button class="border-btn most-pop">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none">
@@ -196,8 +177,30 @@ else{
                                             {{__('Most Popular')}}
                                         </button>
                                     @endif
+                                </div>
+                                
                             </div>
                             </div>
+                    </div>
+                    <div class="col-12">
+                    <p class="ua small mb-2 b7-color">
+                            @include('pages.detail.detail-components.sub-bullets', [
+                                'v_content' => $content,
+                            ])
+                        </p>
+                    <div class="seemore">
+                            <p class="text-white mb-0">{!! sanitizeData(@$content['description']) !!}</p>
+                            <button class="bg-transparent text-white small readmore-less">Read More</button>
+                        </div>
+                        @if (@$content['cast'])
+                        <div class="seemore">
+                                <p class="text-white mb-3">Cast:
+                                    @foreach ($content['cast'] as $key => $value)
+                                        {{ $value }}
+                                    @endforeach
+                                </p>
+                        </div>
+                            @endif
                     </div>
                 </div>
             </div>

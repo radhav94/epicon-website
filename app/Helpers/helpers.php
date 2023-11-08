@@ -798,7 +798,7 @@ function getCardImage($content, $key, $size = 'medium', $fallback = [])
         'spotlight_epic_shorts_image' => 'default-200x200.png',
         'epic_shorts_image' => 'default-200x200.png',
         'vertical_cover_image' => 'default-200x300.png',
-        'culinary_delights_image' => 'default-290x365.png',
+        'culinary_delights_image' => 'default-290.5x365.png',
         'wildlife_image' => 'default-288x324.png',
         'sports_image' => 'default-198x284.png',
         'travel_image' => 'default-297x197.png',
@@ -1126,4 +1126,29 @@ if (!function_exists('sanitizeData')) {
     {
         return !empty($data) ? nl2br(str_replace("\\r\\n", "\r\n", $data)) : '';
     }
+}
+
+if (!function_exists('lastActiveTime')) {
+    function lastActiveTime($date = "")
+    {
+        if (empty($date))
+            return false;
+        $date = date('Y-m-d', strtotime($date));
+        $current_date = date("Y-m-d");
+        $previous_date = date("Y-m-d", strtotime('-1 day', strtotime($current_date)));
+        $activeDate = '';
+        if ($date == $current_date) {
+            $activeDate = 'Today';
+        } else if ($date == $previous_date) {
+            $activeDate = 'Yesturday';
+        } else {
+            $activeDate = date("j M, Y", strtotime($date));
+        }
+        return $activeDate;
+    }
+}
+
+
+function getDeviceId() {
+    return session()->get('device_id') ?? '';
 }
