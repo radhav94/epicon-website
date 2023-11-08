@@ -753,8 +753,8 @@ input {
             }
             @media (max-width:700px){
                 width: calc(100% - 16px);
-                height: calc(100% - 29px);
-                border-radius: 12px;
+                height: calc(100% - 20px);
+                border-radius: 6px;
             }
         }
         .carousel-items{
@@ -766,7 +766,7 @@ input {
             padding: 30px 25px 0;
             position: relative;
             @media (max-width:767px) {
-                padding: 30px 0px 0;
+                padding: 20px 0px 0;
             }
             & > a{
                 display: block;
@@ -2225,6 +2225,10 @@ input {
         @media (max-width:767px) {
             width: 20px;
             height: 20px;
+            svg{
+                width: 10px;
+                height: 10px;
+            }
         }
     }
 }
@@ -4732,9 +4736,16 @@ input {
     margin-left: 10px;
     margin-top: 20px;
 
+    @media (max-width:768px) {
+        &.mobile-width{
+            width: 150px!important;
+            text-decoration: none;
+        }
+    }
+
     @media (max-width:700px) {
         &.mobile-width{
-            width: 100%!important;
+            width: 150px!important;
             text-decoration: none;
         }
     }
@@ -4752,6 +4763,7 @@ input {
     @media (max-width:700px){
         margin: 0 auto;
         padding: 8px 10px;
+        height: 45px;
     }
 }
 .subcription-btn{
@@ -4766,9 +4778,9 @@ input {
             margin-right: 14px;
         }
     }
-    @media (max-width:700px) {
+    @media (max-width:1024px) {
         margin-right: 0!important;
-        width: 100%!important;
+        width: 150px!important;
         text-decoration: none;
     }
 }
@@ -4845,6 +4857,7 @@ input {
     width: 50px;
     height: 50px;
     @include flex(row,center,center);
+    border: 0.5px solid #373737;
     img{
         width: 17px!important;
     }
@@ -6783,7 +6796,7 @@ input {
         height: auto;
         @media (max-width:768px){
             padding: 0px;
-            // height: 160px;
+            height: 115px;
 
             img{
                 width: 100%;
@@ -6796,7 +6809,7 @@ input {
         img{
             border-radius: 20px;
             @media (max-width:767px){
-                border-radius: 0px;
+                border-radius: 10px;
             }
         }
     }
