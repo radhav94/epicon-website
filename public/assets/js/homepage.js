@@ -71,7 +71,7 @@ function initSliders() {
                 breakpoint: 480,
                 settings: {
                     centerMode: true,
-                    centerPadding: '60px',
+                    centerPadding: '70px',
                     slidesToShow: 1,
                     dots: false,
                 }
