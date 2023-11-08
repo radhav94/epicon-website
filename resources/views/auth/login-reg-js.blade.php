@@ -648,6 +648,8 @@
                             // $("#userid_no").val(response.payload.user_id);
                             // $("#usersignupmethod").val(response.payload.user_signup_method);
                             $('.login-popup-modal').hide();
+                            $('#login-modal').hide();
+                            $('.loginBtn.login').trigger('click');
                             // location.reload(true);
                         } else {
                             $('#reset-forgot-result').html(response.payload.response
