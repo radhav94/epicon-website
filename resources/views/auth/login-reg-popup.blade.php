@@ -136,13 +136,13 @@
                                             maxlength="1" id="childpin6" name="childpin6">
                                     </div>
                                 </div>
-                                <div id="validation-result" style="color: red;">
+                                <div class="text-danger" id="validation-result" style="color: red;">
                                     <!-- Display validation result here -->
                                 </div>
                                 <div class="resend-otp text-center text-white mt-4" style="font-size: 12px;">
                                     <!-- Resend OTP in:0.30 -->
                                 </div>
-                                <div id="verifyotp-result" style="color: red;">
+                                <div class="text-danger" id="verifyotp-result" style="color: red;">
                                     <!-- Display validation result here -->
                                 </div>
                                 <button class="btn btn-primary bg-transparent" id="resendBtn" onclick="resendOTP()">Resend OTP</button>
@@ -239,7 +239,7 @@
                                     <span class="text-danger text-start d-flex mt-1 error" id="gender-error"
                                         style="font-size: 12px;"></span>
                                 </div>
-                                <div id="register-result" style="color: red;">
+                                <div class="text-danger" id="register-result" style="color: red;">
                                     <!-- Display validation result here -->
                                 </div>
                                 <button class="login-btn register-btn w-100 mt-5">
@@ -297,7 +297,7 @@
                                     <span class="text-danger text-start d-flex mt-1 error" id="login-pwd-error"
                                         style="font-size: 12px;"></span>
                                 </div>
-                                <div id="login-result" style="color: red;">
+                                <div class="text-danger" id="login-result" style="color: red;">
                                     <!-- Display validation result here -->
                                 </div>
                                 <div class="w-100 d-flex justify-content-between">
@@ -359,7 +359,7 @@
                                             fill="#070707"></path>
                                     </svg>
                                 </button>
-                                <div id="forgot-otp-result" style="color: red;">
+                                <div class="text-danger" id="forgot-otp-result" style="color: red;">
                                     <!-- Display validation result here -->
                                 </div>
                             </form>
@@ -392,13 +392,13 @@
                                             maxlength="1" id="childpin66" name="childpin66">
                                     </div>
                                 </div>
-                                <div id="validation-forgot-result" style="color: red;">
+                                <div class="text-danger" id="validation-forgot-result" style="color: red;">
                                     <!-- Child Pin Input Validation -->
                                 </div>
                                 <div class="resend-forgot-otp text-start text-white mt-4" style="font-size: 12px;">
                                     <!-- Resend OTP in:0.30 -->
                                 </div>
-                                <div id="verifyotp-forgot-result" style="color: red;">
+                                <div class="text-danger" id="verifyotp-forgot-result" style="color: red;">
                                     <!-- Display validation result here -->
                                 </div>
                                 <button class="bg-transparent rounded text-white" id="resendForgotBtn" onclick="resendForgotOTP()">Resend OTP</button>
@@ -478,7 +478,7 @@
                                         style="font-size: 12px;"></span>
                                 </div>
 
-                                <div id="reset-result" style="color: red;">
+                                <div class="text-danger" id="reset-result" style="color: red;">
                                     <!-- Display validation result here -->
                                 </div>
                                 <button class="login-btn reset-pwd-btn w-100 mt-5">
