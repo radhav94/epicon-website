@@ -15,7 +15,7 @@
         @foreach ($value['content'] as $key => $val)
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
-            $cover_img = getCardImage($val, 'culinary_delights_image', 'medium');
+            $cover_img = getCardImage($val, 'culinary_delights_image', 'large');
             ?>
             <div>
                 @if(@$val['asset_type'] == 'PLAY')

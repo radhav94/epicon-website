@@ -18,7 +18,7 @@
 ?>
 <!-- page blocker start -->
 @if(env('ENABLE_PAGEBLOCKER') == 1)
-<div class="modal modal-backdrop page-blocker" tabindex="-1">
+<div class="modal page-blocker" tabindex="-1">
   <div class="modal-dialog page-dialog modal-dialog-centered modal-lg">
     <div class="modal-content blocker-content">
     <button class="close-button page-close" onclick="closeModal()">&times;</button>

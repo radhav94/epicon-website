@@ -2,7 +2,7 @@
     <div class="language-setting">
         <h4 class="pb-4 border-bot">{{__('Control kids’ access')}}</h4>
 
-        <div class="childpin text-start py-4">
+        <div class="childpin text-start pt-4">
             <form id="childPinForm">
                 <?php if (!$kidSection) { ?>
                     <div>
@@ -54,8 +54,8 @@
                         </button>
                     </div>
                 <?php } ?>
-                <div id="error-msg" style="color: red;"></div>
-                <div id="success-msg" style="color: green;"></div>
+                <div id="error-msg" class="text-center text-danger pt-2"></div>
+                <div id="success-msg" class="text-center text-success pt-2"></div>
             </form>
         </div>
 

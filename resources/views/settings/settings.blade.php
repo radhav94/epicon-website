@@ -158,7 +158,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                                     <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
                                 </div>
                             </div>
-                            <p class="text-start w-100 text-white small mt-2 resend-otp">{{__('Resend OTP in 0:30')}}</p>
+                            <p class="text-center w-100 text-white small mt-2 resend-otp">{{__('Resend OTP in 0:30')}}</p>
                             <button class="btn btn-primary" id="resendOTPBtn" onclick="resendVerifyOTP()" style="display:none">{{__('Resend OTP')}}</button>
                         </div>
                     </div>
@@ -221,13 +221,13 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                         <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">{{__('Account')}}</button>
                         <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">{{__('Language')}}</button>
 
-                        <button class="nav-link bg-transparent d-flex justify-content-between">
+                        <button class="nav-link bg-transparent d-flex justify-content-between d-none">
                             <span>{{__('Privacy & Policy')}}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path d="M12.0677 13.3139L17.0177 8.36388C17.11 8.26837 17.2203 8.19219 17.3423 8.13978C17.4643 8.08737 17.5955 8.05979 17.7283 8.05863C17.8611 8.05748 17.9928 8.08278 18.1157 8.13306C18.2386 8.18334 18.3502 8.25759 18.4441 8.35149C18.538 8.44538 18.6123 8.55703 18.6625 8.67993C18.7128 8.80282 18.7381 8.9345 18.737 9.06728C18.7358 9.20006 18.7082 9.33128 18.6558 9.45329C18.6034 9.57529 18.5272 9.68564 18.4317 9.77788L12.7747 15.4349C12.5872 15.6224 12.3329 15.7277 12.0677 15.7277C11.8026 15.7277 11.5483 15.6224 11.3607 15.4349L5.70373 9.77788C5.60822 9.68564 5.53203 9.57529 5.47962 9.45329C5.42722 9.33128 5.39963 9.20006 5.39848 9.06728C5.39732 8.9345 5.42262 8.80282 5.4729 8.67993C5.52318 8.55703 5.59744 8.44538 5.69133 8.35149C5.78522 8.25759 5.89688 8.18334 6.01977 8.13306C6.14267 8.08278 6.27435 8.05748 6.40713 8.05863C6.53991 8.05979 6.67113 8.08737 6.79313 8.13978C6.91513 8.19219 7.02548 8.26837 7.11773 8.36388L12.0677 13.3139Z" fill="white" />
                             </svg>
                         </button>
-
+                    
                         <button class="nav-link" id="v-pills-sync-tab" data-bs-toggle="pill" data-bs-target="#v-pills-sync" type="button" role="tab" aria-controls="v-pills-sync" aria-selected="true">{{__('Sync Device')}}</button>
                         <button class="nav-link" id="v-pills-active-device-tab" data-bs-toggle="pill" data-bs-target="#v-pills-active-device" type="button" role="tab" aria-controls="v-pills-active-device" aria-selected="true">{{__('Active Devices')}}</button>
                         <button class="nav-link" id="v-pills-childpin-tab" data-bs-toggle="pill" data-bs-target="#v-pills-childpin" type="button" role="tab" aria-controls="v-pills-childpin" aria-selected="true">{{__('Set/Change Child PIN')}}</button>

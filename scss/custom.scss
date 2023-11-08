@@ -905,13 +905,15 @@
 
     .distrotv-slide-show button.slick-prev,.distro-slider button.slick-prev {
         position: absolute;
-        top: calc(50% - 10px);
         z-index: 1;
         left: 0;
         box-shadow: none;
         border: none;
         outline: 0;
         border-radius: 40px;
+    }
+    .distrotv-slide-show button.slick-prev{
+        transform: rotate(180deg);
     }
 
     .distro-slider .sample_img img{

@@ -311,7 +311,7 @@ input {
         letter-spacing: 0.28px;
 
         @media screen and (max-width: 1024px) {
-            padding: 8px 14px;
+            padding: 8px 8px;
         }
         @media screen and (max-width: 768px) {
             padding: 8px 8px;
@@ -437,12 +437,13 @@ input {
                     }
 
                     & .notif-img{
-                        width: calc(100% - 145px);
+                        width: calc(100% - 190px);
                         height: 63px;
                         overflow: hidden;
                         border-radius: 10px;
                         margin-right: 8px;
                         border: 0.345px solid #636363;
+                        flex-shrink: 0;
 
                         img{
                             width: 100%;
@@ -752,8 +753,8 @@ input {
             }
             @media (max-width:700px){
                 width: calc(100% - 16px);
-                height: calc(100% - 29px);
-                border-radius: 12px;
+                height: calc(100% - 20px);
+                border-radius: 6px;
             }
         }
         .carousel-items{
@@ -765,7 +766,7 @@ input {
             padding: 30px 25px 0;
             position: relative;
             @media (max-width:767px) {
-                padding: 30px 0px 0;
+                padding: 20px 0px 0;
             }
             & > a{
                 display: block;
@@ -829,8 +830,8 @@ input {
                 }
                 @media (max-width:700px){
                     width: calc(100% - 0px);
-                    height: 260px;
-                    padding: 0.5rem;
+                    height: 108px;
+                    padding: 0rem 0.5rem 0.5rem 0.5rem;
                     border-radius: 12px;
                     background-image: url("../img/main-banner-mobile-bg.svg");
                     background-repeat: no-repeat;
@@ -1569,7 +1570,7 @@ input {
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         height: 100%;
         border-radius: 7px 7px 0 0;
         overflow: hidden;
@@ -1653,7 +1654,7 @@ input {
                 background: $bg-white;
                 border-radius: 50px;
                 border: none;
-                @include flex(row,center,center);
+                @include flex(column,center,center);
             }
         }
     }
@@ -2153,6 +2154,10 @@ input {
     height: 177px;
     overflow: hidden;
     border-radius: 10px;
+
+    @media (max-width:767px) {
+        height: auto;
+    }
     img{
         width: 100%;
         height: 100%;
@@ -2211,7 +2216,7 @@ input {
         background: $bg-white;
         border-radius: 50px;
         border: none;
-        @include flex(row,center,center);
+        @include flex(column,center,center);
         position: absolute;
         left: 5px;
         bottom: 10px;
@@ -2220,6 +2225,10 @@ input {
         @media (max-width:767px) {
             width: 20px;
             height: 20px;
+            svg{
+                width: 10px;
+                height: 10px;
+            }
         }
     }
 }
@@ -2582,7 +2591,7 @@ input {
     }
 
     .cant-decide{
-        width: 26%;
+        width: 32%;
         @media (max-width:1024px) {
             width: 100%;
             margin-bottom: 60px;
@@ -2690,7 +2699,7 @@ input {
         font-weight: bold;
     }
     .chart-trigger{
-        width: calc(100% - 28%);
+        width: calc(100% - 35%);
         @media (max-width:700px) {
             left: -170px;
             transform: scale(0.7);
@@ -4705,6 +4714,7 @@ input {
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    white-space: nowrap;
 
     svg{
         width: 20px;
@@ -4726,9 +4736,16 @@ input {
     margin-left: 10px;
     margin-top: 20px;
 
+    @media (max-width:768px) {
+        &.mobile-width{
+            width: 150px!important;
+            text-decoration: none;
+        }
+    }
+
     @media (max-width:700px) {
         &.mobile-width{
-            width: 100%!important;
+            width: 150px!important;
             text-decoration: none;
         }
     }
@@ -4746,6 +4763,7 @@ input {
     @media (max-width:700px){
         margin: 0 auto;
         padding: 8px 10px;
+        height: 45px;
     }
 }
 .subcription-btn{
@@ -4760,9 +4778,9 @@ input {
             margin-right: 14px;
         }
     }
-    @media (max-width:700px) {
+    @media (max-width:1024px) {
         margin-right: 0!important;
-        width: 100%!important;
+        width: 150px!important;
         text-decoration: none;
     }
 }
@@ -4839,6 +4857,7 @@ input {
     width: 50px;
     height: 50px;
     @include flex(row,center,center);
+    border: 0.5px solid #373737;
     img{
         width: 17px!important;
     }
@@ -6716,6 +6735,11 @@ input {
                 align-items: center;
                 padding: 0;
                 overflow: hidden;
+
+                @media (max-width:767px) {
+                    right: 0px;
+                    top: -18px;
+                }
             }
             .blocker-body{
                 img{
@@ -6772,7 +6796,7 @@ input {
         height: auto;
         @media (max-width:768px){
             padding: 0px;
-            height: 160px;
+            height: 115px;
 
             img{
                 width: 100%;
@@ -6785,7 +6809,7 @@ input {
         img{
             border-radius: 20px;
             @media (max-width:767px){
-                border-radius: 0px;
+                border-radius: 10px;
             }
         }
     }
@@ -6915,7 +6939,11 @@ input {
 .plyr__video-wrapper{
     height: 500px !important;
 
+    video{
+        height: 100%!important;
+    }
+
     @media (max-width: 700px) {
-        height: 250px !important;
+        height: auto !important;
     }
 }
