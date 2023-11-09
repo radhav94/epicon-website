@@ -142,6 +142,7 @@ function playnextcontent() {
 }
 
 function storyProgress() {
+    player.speed = 1;
     let duration = player.duration;
     let currentTime = player.currentTime;
     let progress = Math.round((currentTime / duration) * 100);
@@ -161,7 +162,7 @@ function loadStoryVideoPlayer (source, subtitles, customData = false) {
 
     const defaultOptions = {
         seekTime: 10,
-        controls: ['rewind', 'play', 'fast-forward', 'progress', 'current-time', 'volume', 'captions', 'settings', 'pip'],
+        controls: ['rewind', 'play', 'fast-forward', 'progress', 'current-time', 'volume', 'captions', 'settings'],
         customData: customData
     };
 

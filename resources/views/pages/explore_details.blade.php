@@ -44,7 +44,7 @@
         <div class="new-popular-main explore-details" id="showmore_load">
             <h4 class="new-popularheading text-white mb-3">{{ __(ucfirst($slug)) }}</h4>
 
-            @include('pages.explorecontent');
+            @include('pages.explorecontent')
         </div>
 
         <!-- Load More Btn Start -->
