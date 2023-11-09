@@ -521,7 +521,7 @@
                     </div>
 
                     <!-- successfully logged  start-->
-                    <div class="login-popup-modal successfully-loged w-100 screen-sucess-logged 12345">
+                    <div class="login-popup-modal successfully-loged w-100 screen-sucess-logged">
 
                         <img width="100" class="{{@$subplan['status']}}" src="{{ asset('/img/success-tick.png') }}" alt="">
                         <h4 class="text-center text-white mt-3">Awesome! You have successfully logged in to Epic ON {{@$subplan_status}}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 
 class PageController extends Controller
@@ -180,14 +181,32 @@ class PageController extends Controller
         }
     }
 
-    public function showmidpagedetail($pageslug, $catalog)
+    public function showmidpagedetail(Request $request,$pageslug, $catalog=null)
     {
         $page = 1;
         $slug = $pageslug;
-        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 48, 'page' => 1], 1);
+        $hybidData ="";
+        $hybidData = $request->all();
+        if($request->is_hybrid){
+            $hybrid = $request->is_hybrid;
+            $genre_viewall = json_encode(explode(",",$request->genre_viewall));
+            $catalog_viewall = json_encode(explode(",",$request->catalog_viewall));
+            $list_language_viewall = json_encode(["All","Hindi"]);
+            $params = [
+                'is_hybrid' =>'true',
+                'catalog_viewall' => $catalog_viewall,
+                'genre_viewall' => $genre_viewall,
+                'list_language_viewall' => $list_language_viewall, 
+                'limit' => 48, 
+                'page' => 1
+            ];
+            $epicwebArr = $this->hybridCurl($params); 
+        }else{
+            $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 48, 'page' => 1], 1);
+        }
         if (isset($epicwebArr) && $epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
-            return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page'));
+            return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page','hybidData'));
         } else {
             return view('pages.error.data-error');
         }
@@ -212,9 +231,28 @@ class PageController extends Controller
     {
         $request = Request();
         $page = $request->page;
+        $catalog ="";
         $limit = 48;
+        $dataCount = "";
+        if($request->is_hybrid){
+            $hybrid = $request->is_hybrid;
+            $genre_viewall = json_encode(explode(",",$request->genre_viewall));
+            $catalog_viewall = json_encode(explode(",",$request->catalog_viewall));
+            $list_language_viewall =json_encode(["All","Hindi"]);
+            $params = [
+                'is_hybrid' =>'true',
+                'catalog_viewall' => $catalog_viewall,
+                'genre_viewall' => $genre_viewall,
+                'list_language_viewall' => $list_language_viewall, 
+                'limit' => 48, 
+                'page' => $page
+            ];
+            $epicwebArr = $this->hybridCurl($params);
+            
+        }else{
         $catalog = $request->catalogid;
         $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 48, 'page' => $page], 1);
+        }
         $catalogue_blade = "paginatecontent";
         if ($epicwebArr && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
@@ -491,5 +529,33 @@ class PageController extends Controller
         return $meta;
     }
 
+    public function hybridCurl($param){
+       
+        $data = http_build_query($param);
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'http://contentapi-njsapi.epicon.in/index/pages/midpageData',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => $data,
+        CURLOPT_HTTPHEADER => array(
+            'x-access-auth-token: szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH',
+            'Content-Type: application/x-www-form-urlencoded'
+        ),
+        ));
+    
+        $response = curl_exec($curl);
+    
+        curl_close($curl);
+        return json_decode($response, true);
+    
+    
+    }
 
 }
+
