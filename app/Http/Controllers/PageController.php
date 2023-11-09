@@ -12,7 +12,7 @@ class PageController extends Controller
     private  $limit;
     public function  __construct()
     {
-        $this->limit = 10;
+        $this->limit = 100;
     }
 
     public function index($slug = 'home-v2')    
@@ -185,12 +185,13 @@ class PageController extends Controller
     {
         $page = 1;
         $slug = $pageslug;
-        $data = $request->all();
+        $hybidData ="";
+        $hybidData = $request->all();
         if($request->is_hybrid){
             $hybrid = $request->is_hybrid;
-            $genre_viewall = json_encode(['history']);//explode(",",$request->genre_viewall);
-            $catalog_viewall = json_encode([10]);//explode(",",$request->catalog_viewall);
-            $list_language_viewall =json_encode(["Hindi"]);//explode(",",$request->list_language_viewall);
+            $genre_viewall = json_encode(explode(",",$request->genre_viewall));
+            $catalog_viewall = json_encode(explode(",",$request->catalog_viewall));
+            $list_language_viewall = json_encode(["All","Hindi"]);
             $params = [
                 'is_hybrid' =>'true',
                 'catalog_viewall' => $catalog_viewall,
@@ -199,15 +200,13 @@ class PageController extends Controller
                 'limit' => 48, 
                 'page' => 1
             ];
-
             $epicwebArr = $this->hybridCurl($params); 
-            //dd($epicwebArr);
         }else{
             $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 48, 'page' => 1], 1);
         }
         if (isset($epicwebArr) && $epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
-            return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page'));
+            return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page','hybidData'));
         } else {
             return view('pages.error.data-error');
         }
@@ -232,9 +231,28 @@ class PageController extends Controller
     {
         $request = Request();
         $page = $request->page;
+        $catalog ="";
         $limit = 48;
+        $dataCount = "";
+        if($request->is_hybrid){
+            $hybrid = $request->is_hybrid;
+            $genre_viewall = json_encode(explode(",",$request->genre_viewall));
+            $catalog_viewall = json_encode(explode(",",$request->catalog_viewall));
+            $list_language_viewall =json_encode(["All","Hindi"]);
+            $params = [
+                'is_hybrid' =>'true',
+                'catalog_viewall' => $catalog_viewall,
+                'genre_viewall' => $genre_viewall,
+                'list_language_viewall' => $list_language_viewall, 
+                'limit' => 48, 
+                'page' => $page
+            ];
+            $epicwebArr = $this->hybridCurl($params);
+            
+        }else{
         $catalog = $request->catalogid;
         $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 48, 'page' => $page], 1);
+        }
         $catalogue_blade = "paginatecontent";
         if ($epicwebArr && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
