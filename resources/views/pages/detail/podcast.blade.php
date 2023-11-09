@@ -131,9 +131,11 @@ $episode_json = json_encode($episode_list);
                             </div>
                         </div>
                         <div class="seemore">
-                        <p class="pod-detail-text mt-3">{!! sanitizeData(@$content['description']) !!}</p>
+                        <p class="pod-detail-text mt-3 descText">{!! sanitizeData(@$content['description']) !!}</p>
+                        <?php //echo strlen(@$content['description']); exit; ?>
+                        <span class="read-button"> </span>
                         @if(strlen(@$content['description']) > 300 )
-                            <button class="bg-transparent text-white small readmore-less">Read More</button>
+                             <!-- <button class="bg-transparent text-white small read-more">Read More</button> -->
                         @endif
                         </div>
                         <div class="podcast-btns d-flex align-items-center" data-id="{{ @$content['ID'] }}">

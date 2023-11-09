@@ -189,9 +189,10 @@ else{
                             ])
                         </p>
                     <div class="seemore">
-                            <p class="text-white mb-0">{!! sanitizeData(@$content['description']) !!}</p>
+                            <p class="text-white mb-0 descText">{!! sanitizeData(@$content['description']) !!}</p>
+                            <span class="read-button"> </span>
                             @if(strlen(@$content['description']) > 300 )
-                                <button class="bg-transparent text-white small readmore-less">Read More</button>
+                                <!-- <button class="bg-transparent text-white small readmore-less">Read More</button> -->
                             @endif
                         </div>
                         @if (@$content['cast'])
