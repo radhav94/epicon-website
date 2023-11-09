@@ -109,12 +109,17 @@ class SearchController extends Controller
             $anchorHtml = '<a href="'.getContentUrl($topResult).'" >';
         }
         
+        if( ($dateText && $topResult['duration']) != ''){
+            $pipe = '|';
+        }else{
+            $pipe = '';
+        }
 
-        $list = '<li class="episode-main mb-4">'
-            . '<div class="pik"><img src="' . $cover_img . '" alt="img">' . $premium . '</div>'
+        $list = '<li class="episode-main mb-4">' 
+            . '<div class="pik">'.$anchorHtml.'<img src="' . $cover_img . '" alt="img">' . $premium . '</a></div>'
             . '<div class="episode-text-details">'
-            . '<h6>' . @$topResult['title'] . '</h6>'
-            . '<span>' . @$dateText . ' | ' . @$topResult['duration'] . '</span>'
+            . '<h6>'.$anchorHtml . @$topResult['title'] . '</a></h6>'
+            . '<span>' . @$dateText . $pipe . convertSecondsToReadable(@$topResult['duration'])  . '</span>'
             . '<p class="search-top mt-2">' . sanitizeData(@$topResult['description']) . '</p>'
             . '<div class="d-flex align-items-center"> '.$anchorHtml.' <button class="fill-btn em ms-0">' . __('Watch') . '</button></a>' . $wishlistAction . '</div></div>'
             . '</li>';
