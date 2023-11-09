@@ -28,7 +28,7 @@
                         <input type="hidden" name="command" value="changeKidsPin">
                         <h6 class="mb-3">{{__('Change Child PIN')}}</h6>
                         <div class="d-flex align-items-center mb-4">
-                            <p class="small" style="width: 150px;">{{__('Current PIN')}}</p>
+                            <p class="small child-pin-width">{{__('Current PIN')}}</p>
                             <div class="childpin-input">
                                 <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="oldKidsPin[]" maxlength="1">
                                 <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="oldKidsPin[]" maxlength="1">
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center">
-                            <p class="small" style="width: 150px;">{{__('New PIN')}}</p>
+                            <p class="small child-pin-width">{{__('New PIN')}}</p>
                             <div class="childpin-input">
                                 <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="newKidsPin[]" maxlength="1">
                                 <input class="mx-1 child-box onlydigit backpress" type="password" min="0" max="9" name="newKidsPin[]" maxlength="1">
