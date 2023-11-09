@@ -13,7 +13,7 @@
   <div class="container" style="max-width:100%;">
     <div class="livetv-wrap" style="flex-wrap:inherit;">
       <div class="row">
-        <?php if (env('IS_ISHARA_LIVE_TV_SHOW') == true) { ?>
+        <?php //if (env('IS_ISHARA_LIVE_TV_SHOW') == true) { ?>
         <div class="col-md-6 col-lg-4 col-xl-3 col-xxl-3 mb-5">
           <div class="livetv-box premium all text-center">
             <div class="livetv">
@@ -36,7 +36,7 @@
             </div>
           </div>
         </div>
-        <?php } ?>
+        <?php //} ?>
         <div class="col-md-6 col-lg-4 col-xl-3 col-xxl-3 mb-5">
           <div class="livetv-box premium all text-center">
             <div class="livetv">
@@ -114,7 +114,7 @@
             </div>
           </div>
         </div>
-        <?php if (env('IS_GUBBARE_LIVE_TV_SHOW') == true) { ?>
+        <?php //if (env('IS_GUBBARE_LIVE_TV_SHOW') == true) { ?>
         <div class="col-md-6 col-lg-4 col-xl-3 col-xxl-3 mb-5">
           <div class="livetv-box premium all text-center">
             <div class="livetv">
@@ -136,8 +136,8 @@
             </div>
           </div>
         </div>
-        <?php } ?>
-        <?php if (env('IS_NAZARA_LIVE_TV_SHOW') == true) { ?>
+        <?php //} ?>
+        <?php //if (env('IS_NAZARA_LIVE_TV_SHOW') == true) { ?>
           <div class="col-md-6 col-lg-4 col-xl-3 col-xxl-3 mb-5">
             <div class="livetv-box premium all text-center">
               <div class="livetv">
@@ -160,7 +160,7 @@
               </div>
             </div>
           </div>
-        <?php } ?>
+        <?php //} ?>
       </div>
     </div>
   </div>
