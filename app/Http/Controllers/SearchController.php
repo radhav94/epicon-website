@@ -95,7 +95,7 @@ class SearchController extends Controller
         $dateText = isset($topResult['release_date']) ? date('Y-m-d', strtotime($topResult['release_date'])) : '';
         $wishlist = getWishlist();
         $wishlistAction = getWishListAction($topResult, $wishlist, 2);
-        
+
 
         $htmlContent = '<h5 class="text-white">Top Result</h5>'
             . '<ul class="list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4">';
@@ -116,7 +116,7 @@ class SearchController extends Controller
             . '<h6>' . @$topResult['title'] . '</h6>'
             . '<span>' . @$dateText . ' | ' . @$topResult['duration'] . '</span>'
             . '<p class="search-top mt-2">' . sanitizeData(@$topResult['description']) . '</p>'
-            . '<div class="d-flex align-items-center"> '.$anchorHtml.' <button class="fill-btn em ms-0">' . __('Watch') . '</button></a>' . $wishlistAction . '</div></div>'
+            . '<div class="d-flex align-items-center"> '.$anchorHtml.' <button class="fill-btn em ms-0 mt-0">' . __('Watch') . '</button></a>' . $wishlistAction . '</div></div>'
             . '</li>';
         $htmlContent .= $list . '</ul>';
         $this->addHistorySession($list, @$topResult['title']);

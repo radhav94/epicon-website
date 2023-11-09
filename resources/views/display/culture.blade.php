@@ -1,4 +1,4 @@
-   <section class="carousel-main mt-0">
+   <section class="carousel-main mt-5">
        <div class="punjab">
            <div class="punjab-da-swaad">
                <div class="punjab-title arvr-text">
@@ -6,7 +6,7 @@
                        <img src="{{ $value['background_image'] }}" alt="">
                    @endif
                    <div class="text">
-                       <h1>{{ $title }}</h1>
+                       <!-- <h1>{{ $title }}</h1> -->
                        @if (@$value['show_more'])
                            <a href="{{ getMidPageUrl($value) }}">
                                <button>Explore More</button>
