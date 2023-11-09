@@ -6813,9 +6813,9 @@ input {
     }
 }
 
-.seemore p{
-    @include line-clamp(2);
-}
+// .seemore p{
+//     @include line-clamp(2);
+// }
 .readmore-toggle{
     -webkit-line-clamp: unset!important;
 }
