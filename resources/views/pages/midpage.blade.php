@@ -3,10 +3,17 @@
 
 @section('style')
 @stop
-<?php //dd($epicwebArr); ?>
+<?php //dd($hybidData); ?>
 @section('content')
     <div class="container mt-4">
         <div class="row">
+        @if($hybidData)
+            <input type="hidden" name ="is_hybrid" id="is_hybrid" value="{{@$hybidData['is_hybrid']}}">
+            <input type="hidden" name ="genre_viewall" id="genre_viewall" value="{{ $hybidData['genre_viewall']}}">
+            <input type="hidden" name ="catalog_viewall" id="catalog_viewall" value="{{$hybidData['catalog_viewall']}}">
+            <input type="hidden" name ="list_language_viewall" id="list_language_viewall" value="{{ $hybidData['list_language_viewall']}}">
+        @endif
+
             <h1 class="text-white fs-5">{{ucwords(str_replace('-', ' ', $pageslug))}}</h1>
             <div class="seeall-main-page">
             <ul class="p-0 list-unstyled mb-0" id="showmore_load">
@@ -174,14 +181,29 @@
 @section('script')
 <script>
     $(document).on("click", ".catalog-showmore", function () {
+
+        var is_hybrid =$('#is_hybrid').val();
+        var page = $("#pageid").val(); 
+        if(is_hybrid == 1 ){
+            var genre_viewall =$('#genre_viewall').val();
+            var catalog_viewall =$('#catalog_viewall').val(); 
+            var list_language_viewall =$('#list_language_viewall').val(); 
+            
+            var postData = {page:page,is_hybrid:is_hybrid,genre_viewall:genre_viewall,catalog_viewall:catalog_viewall,list_language_viewall:list_language_viewall};
+        }else{
+           var catalogid = $(this).attr("catalog-id");
+           var postData = {page:page,catalogid:catalogid};
+        }
+        var dataSend = postData;
         // var page = $("#pageid").val(parseInt($("#pageid").val()) + 1);
             $.ajax({
             url: '/paginatecontent',
             type: 'POST',
-            data: {
-                    page: $("#pageid").val(),
-                    catalogid: $(this).attr("catalog-id"),
-                  },
+            // data: {
+            //         page: $("#pageid").val(),
+            //         catalogid: $(this).attr("catalog-id"),
+            //       },
+            data : dataSend, 
             contentType: "application/x-www-form-urlencoded",
             dataType: "json",
             headers: {
