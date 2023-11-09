@@ -63,8 +63,8 @@ function playerSuccess(response) {
     console.log('vid', video_url);
 
     if (video_url) {
-        $('.supermix-banner video').show();
-        $('.supermix-banner img').hide();
+        $('#supermix-banner-video').show();
+        $('#supermix-banner-img').hide();
         loadSupermixVideo(video_url, response.payload.html, customData);
     }
 }
