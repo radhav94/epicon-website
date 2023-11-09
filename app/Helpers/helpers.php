@@ -792,16 +792,17 @@ function getCardImage($content, $key, $size = 'medium', $fallback = [])
 {
     // if (empty($fallback)) {
     $fallback = [
-        'banner_image' => 'default-830x400.png',
-        'cover_image' => 'default-830x400.png',
-        'cover_image_special' => 'default-200x200.png',
-        'spotlight_epic_shorts_image' => 'default-200x200.png',
-        'epic_shorts_image' => 'default-200x200.png',
-        'vertical_cover_image' => 'default-200x300.png',
-        'culinary_delights_image' => 'default-290.5x365.png',
-        'wildlife_image' => 'default-288x324.png',
-        'sports_image' => 'default-198x284.png',
-        'travel_image' => 'default-297x197.png',
+        'banner_image'                  => 'default-830x400.png',
+        'cover_image'                   => 'default-830x400.png',
+        'cover_image_special'           => 'default-200x200.png',
+        'spotlight_epic_shorts_image'   => 'default-200x200.png',
+        'epic_shorts_image'             => 'default-200x200.png',
+        'vertical_cover_image'          => 'default-200x300.png',
+        'culinary_delights_image'       => 'default-290.5x365.png',
+        'wildlife_image'                => 'default-288x324.png',
+        'sports_image'                  => 'default-198x284.png',
+        'travel_image'                  => 'default-297x197.png',
+        'imageUrl'                      => 'default-200x200.png',
     ];
     // }
     $img_url = '';

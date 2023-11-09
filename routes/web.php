@@ -195,7 +195,13 @@ foreach ($lang as $val) {
         Route::get('new-popular', [PopularController::class, 'NewsPopular'])->name('new-popular');
         Route::get('search', [SearchController::class, 'trendingsearch'])->name('search');
         Route::post('get-search', [SearchController::class, 'search'])->name('get-search');
-        Route::get('midpage/{pageslug}/{catalog}', function ($pageslug, $catalog) {
+        // Route::get('midpage/{pageslug}/{catalog}', function ($pageslug, $catalog) {
+        //     if ($pageslug != 'live-tv') {
+        //         return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog]);
+        //     }
+        // });
+
+        Route::any('midpage/{pageslug}/{catalog?}', function ($pageslug, $catalog=null) {
             if ($pageslug != 'live-tv') {
                 return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog]);
             }
