@@ -1205,16 +1205,6 @@ function initSliders() {
 
 }
 
-// $(".readmore-less").on("click",function(){
-//     $(".seemore p").toggleClass("readmore-toggle");
-
-//     if ($(this).text() == "Read More") {
-//         $(this).text("Read Less")
-//       } else {
-//         $(this).text("Read More")
-//       }
-// });
-
 jQuery(function($) {
     var show_char = 300;
     var ellipses = "... ";
