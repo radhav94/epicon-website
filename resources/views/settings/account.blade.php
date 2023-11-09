@@ -35,7 +35,7 @@
                                                                             } ?> value="{{ $genre['genre'] }}">
                             <span class="checkmark"></span>
                         </label>
-                        <img src="{{ $genre['cover_image']['medium'] }}" alt="{{ $genre['genre'] }}">
+                        <img src="{{ @$genre['cover_image']['medium'] }}" alt="{{ @$genre['genre'] }}">
                         <div class="is-overlay">
                             <h1>{{ $genre['genre'] }}</h1>
                         </div>
