@@ -2,15 +2,21 @@
 @section('title', $meta_title)
 
 @section('style')
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
 <style>
     #epicShots video {
         width: 340px;
         height: 500px;
     }
 
-    #supermixModal .plyr__controls__item {
+    #supermixModal .plyr__control[data-plyr="settings"], 
+    .plyr__time--current.plyr__time, 
+    .plyr__controls__item.plyr__volume,
+    #supermixModal .plyr__controls__item[data-plyr="fullscreen"], 
+    #supermixModal .plyr__controls__item[data-plyr="pip"] {
         display: none;
     }
+    
 
     #supermixModal button:disabled,
     #supermixModal button[disabled] {
