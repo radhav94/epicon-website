@@ -195,10 +195,8 @@ $loadPlayer = true;
                             ])
                         </p>
                     <div class="seemore">
-                            <p class="text-white mb-0">{!! sanitizeData(@$content['description']) !!}</p>
-                            @if(strlen(@$content['description']) > 300 )
-                                <button class="bg-transparent text-white small readmore-less">Read More</button>
-                            @endif
+                            <p class="text-white mb-0 descText">{!! sanitizeData(@$content['description']) !!}</p>
+                            <span class="read-button"> </span>
                         </div>
                         @if (@$content['cast'])
                         <div class="seemore">

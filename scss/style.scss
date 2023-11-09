@@ -2027,14 +2027,25 @@ input {
         .bottom-card-content{
             // background: #211F26;
             // border-radius: 16px;
-            padding: 10px 0 4px 0;
+            // padding: 10px 0 4px 0;
             // margin-top: -15px;
-            position: relative;
+            // position: relative;
             // height: 170px;
+
+            padding: 10px 0 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            left: 0;
+            background: #fff;
+            padding-inline: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
 
             .upper-img{
                 border: 1px solid #211F26;
                 border-radius: 5px;
+                height: 30px;
             }
             ul{
                 color: $bg-grey;
@@ -2079,6 +2090,9 @@ input {
                 // display: none;
                 margin-bottom: 0px;
                 margin-top: 0px;
+                a{
+                    color: #211f26;
+                }
             }
             & p{
                 font-size: 14px;
@@ -2122,8 +2136,9 @@ input {
             }
             .progress-main{
                 @include flex(row, center, space-between);
+                margin-top: 5px;
                 .progress{
-                    width: 66%;
+                    width: 55%;
                     height: 4px;
                     background: #494949;
                     .progress-bar{
@@ -2131,8 +2146,8 @@ input {
                     }
                 }
                 .left-time{
-                    color: $bg-white;
-                    font-size: 12px;
+                    color: #272727;
+                    font-size: 10px;
                 }
             }
         }
@@ -2726,7 +2741,7 @@ input {
         }
         img{
             width: 100%;
-            height: 400px;
+            height: 350px;
             overflow: hidden;
             border-radius: 10px;
             margin-bottom: 24px;
@@ -3159,8 +3174,9 @@ input {
         .punjab-title{
             @include flex(column,center,center);
             position: relative;
+            height: 130px;
             @media (max-width:767px) {
-                height: auto!important;
+                height: 100px!important;
             }
             &.arvr-text{
                 @media (max-width:767px) {
@@ -4888,6 +4904,19 @@ input {
 }
 .delete-text{
     width: 70%;
+    @media (max-width:768px) {
+        width: 100%;
+    }
+}
+.child-pin-width{
+    width: 150px;
+    height: auto;
+    margin-top: 5px;
+    margin-bottom: 0;
+    @media (max-width:767px) {
+        width: 120px;
+        margin-top: 3px;
+    }
 }
 .my-reward{
     ul{
@@ -5063,9 +5092,10 @@ input {
         overflow: hidden;
         
         .redeem-top{
-            width: 100%;
+            width: 50%;
             height: 81%;
             padding: 15px;
+            margin: 0 auto;
 
             .logo-coin{
                 background: #FF7817;
@@ -5863,7 +5893,7 @@ input {
     position: relative;
     backdrop-filter: blur(50px);
     height: 100vh;
-    overflow: hidden;
+    overflow: auto;
     padding-bottom: 50px;
     >::after{
         content: "";
@@ -5872,7 +5902,6 @@ input {
         height: 100%;
         left: 0;
         top: 0;
-        background: rgba($color: rgb(0 0 0), $alpha: 0.4);
         z-index: -1;
     }
 }
@@ -6095,8 +6124,9 @@ input {
     border-radius: 40px;
     flex-shrink: 0;
     border: none;
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 74px;
     img{
         width: 20px;
@@ -6783,9 +6813,9 @@ input {
     }
 }
 
-.seemore p{
-    @include line-clamp(2);
-}
+// .seemore p{
+//     @include line-clamp(2);
+// }
 .readmore-toggle{
     -webkit-line-clamp: unset!important;
 }

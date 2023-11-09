@@ -1205,12 +1205,21 @@ function initSliders() {
 
 }
 
-$(".readmore-less").on("click",function(){
-    $(".seemore p").toggleClass("readmore-toggle");
-
-    if ($(this).text() == "Read More") {
-        $(this).text("Read Less")
-      } else {
-        $(this).text("Read More")
-      }
-});
+jQuery(function($) {
+    var show_char = 300;
+    var ellipses = "... ";
+    var content = $(".descText").text();
+    if (content.length > show_char) {
+      var a = content.substr(0, show_char);
+      var b = content.substr(show_char - content.length);
+      var html = a + "<span class='truncated'>" + ellipses + "</span><span class='truncated' style='display:none'>" + b + "</span>"; //move read more outside
+      $(".descText").html(html);
+      $(".read-button").html("<button class='bg-transparent text-white small read-more readmore-less'>Read More</button>");
+    }
+  
+    $(".read-more").click(function(e) {
+      e.preventDefault();
+      $(".read-more").text() == "Read More" ? $(".read-more").text("Read Less") : $(".read-more").text("Read More") //change here..
+      $(".descText .truncated ").toggle();
+    });
+  });

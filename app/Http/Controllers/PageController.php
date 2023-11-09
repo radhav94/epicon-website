@@ -191,7 +191,7 @@ class PageController extends Controller
             $hybrid = $request->is_hybrid;
             $genre_viewall = json_encode(explode(",",$request->genre_viewall));
             $catalog_viewall = json_encode(explode(",",$request->catalog_viewall));
-            $list_language_viewall = json_encode(["All","Hindi"]);
+            $list_language_viewall = json_encode(explode(",",$request->list_language_viewall));
             $params = [
                 'is_hybrid' =>'true',
                 'catalog_viewall' => $catalog_viewall,
@@ -238,7 +238,7 @@ class PageController extends Controller
             $hybrid = $request->is_hybrid;
             $genre_viewall = json_encode(explode(",",$request->genre_viewall));
             $catalog_viewall = json_encode(explode(",",$request->catalog_viewall));
-            $list_language_viewall =json_encode(["All","Hindi"]);
+            $list_language_viewall =json_encode(explode(",",$request->list_language_viewall));
             $params = [
                 'is_hybrid' =>'true',
                 'catalog_viewall' => $catalog_viewall,
