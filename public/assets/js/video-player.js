@@ -1,7 +1,7 @@
 var dummyPlayer;
-
+var is_trailer = false;
+var vidPlaying = false;
 $(document).ready(function () {
-	var vidPlaying = false;
 	/*dummyPlayer = new Plyr('#vidPlayer');
 	var dummyInit = false;
 
@@ -13,8 +13,9 @@ $(document).ready(function () {
 	});*/
 
 	$(document).on('click', '#watchVideo', function () {
+		
 		$('.content-detail-banner').hide();
-		if (vidPlaying) {
+		if (vidPlaying && !is_trailer) {
 
 			window.player.play();
 
@@ -27,7 +28,7 @@ $(document).ready(function () {
 			}, 1000);
 			return false;
 		}
-
+		is_trailer = false;
 		$('#playVideo').trigger('click');
 	});
 
@@ -89,8 +90,8 @@ $(document).ready(function () {
 	})
 
 
-	loadVideoPlayer = function (source, subtitles, customData = false) {
-
+	loadVideoPlayer = function (source, subtitles = '', customData = false) {
+		console.log("source: "+source);
 		// if (dummyPlayer) {
 		// 	dummyPlayer.destroy();
 		// }
@@ -209,7 +210,9 @@ $(document).ready(function () {
 			player.currentTime -= 10;
 		});
 		closePlayer.addEventListener('click', () => {
-			player.pause();
+			if (player) {
+				player.pause();
+			}
 			$('.videoContainer').hide();
 			$('.content-detail-banner').show();
 		});
@@ -258,7 +261,7 @@ $(document).ready(function () {
 			requestData.completed = true;
 		}
 
-		if (requestData.lg == 1) {
+		if (requestData.lg == 1 && !is_trailer) {
 			sendAjaxRequest(APP_URL + '/setplayTracking', 'POST', JSON.stringify(requestData),
 				onTrackSuccess, onTrackError, 'application/json');
 
@@ -282,3 +285,38 @@ $(document).ready(function () {
 		window.addEventListener('resize', setPlayerHeight);
 		*/
 });
+
+function playTrailer(cid) {
+	var promo_url = "";
+	is_trailer = true;
+	console.log("promo_url: "+promo_url);
+	let requestData = {
+		cid: cid
+	};
+	sendAjaxRequest(APP_URL + '/player', 'POST', JSON.stringify(requestData),
+		function (response) {
+			console.log(response);
+		
+			let promo_url;
+			if (response.payload.promo_url != "") {
+				promo_url = response.payload.promo_url;
+			}
+		
+			if (promo_url) {
+				$('.content-detail-banner').hide();
+				$('html, body').animate({
+					scrollTop: 0
+				}, 1000);
+				$('.videoContainer').show();
+				$('html, body').animate({
+					scrollTop: 0
+				}, 1000);
+				loadVideoPlayer(promo_url, response.payload.html);
+			}
+		},
+		function (){
+
+		}, 
+		'application/json'
+	);
+}
