@@ -475,6 +475,8 @@ input {
             .no-notification{
                 width: 100%;
                 @include flex(column,center,center);
+                position: absolute;
+                top: 100px;
                 img{
                     width: 100%;
                 }
@@ -612,9 +614,9 @@ input {
         }
     }
 }
-.profile:hover .profile-drop-down{
-    display: block;
-}
+// .profile:hover .profile-drop-down{
+//     display: block;
+// }
 .hamburger{
     height: 1.2rem;
     width: 1.5rem;
@@ -1544,6 +1546,9 @@ input {
             justify-content: center;
         }
     }
+}
+.seeall-main-page{
+    overflow-x: initial !important;
 }
 .carousel-main,.library,.seeall-main-page{
     margin-block: 25px;
@@ -2557,13 +2562,13 @@ input {
       }
       #tranding .tranding-slider{
         width: 340px;
-        height: 280px;
+        height: auto;
         padding: 0;
         position: relative;
       }
       .tranding-slide .tranding-slide-img{
         width: 280px;
-        height: 280px;
+        height: auto;
       }
   }
 
@@ -3821,6 +3826,11 @@ input {
     background-position: center right 7px;
     background-repeat: no-repeat;
 }
+#exampleDataList1{
+    background-image: url("../img/calendar.svg");
+    background-position: center right 7px;
+    background-repeat: no-repeat; 
+}
 .input-field{
     position: relative;
     label{
@@ -4100,11 +4110,30 @@ input {
     & .bs-right{
         padding: 10px;
         width: 60%;
-        height: auto;
+        height: 100%;
         max-height: 500px;
         overflow-y: auto;
         flex-wrap: wrap;
         @include flex(row,flex-start,space-between);
+
+        &::-webkit-scrollbar {
+            display: block !important;
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent; 
+          }
+           
+          /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #494949; 
+          }
+          
+          /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+          }
 
         @media (max-width:768px) {
             width: 100%;    
@@ -6976,4 +7005,21 @@ input {
     @media (max-width: 700px) {
         height: auto !important;
     }
+}
+
+.kids-navbar{
+    @media (max-width:767px) {
+        height: 70px !important;
+    }
+    .main-header-right {
+        @media (max-width:767px) {
+            position: unset;
+        }
+    }
+    .main-header-left {
+        @media (max-width:767px) {
+            margin-top: 0;
+        }
+    }
+
 }
