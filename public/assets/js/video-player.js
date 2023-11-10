@@ -91,7 +91,6 @@ $(document).ready(function () {
 
 
 	loadVideoPlayer = function (source, subtitles = '', customData = false) {
-		console.log("source: "+source);
 		// if (dummyPlayer) {
 		// 	dummyPlayer.destroy();
 		// }
@@ -289,7 +288,6 @@ $(document).ready(function () {
 function playTrailer(cid) {
 	var promo_url = "";
 	is_trailer = true;
-	console.log("promo_url: "+promo_url);
 	let requestData = {
 		cid: cid
 	};
