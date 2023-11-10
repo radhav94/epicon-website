@@ -79,7 +79,7 @@
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" style="width: {{ $progress_duration }};" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <div class="left-time">{{ convertSecondsToReadable(@$val['duration'] - @$val['user_duration']) }} of {{ convertSecondsToReadable(@$val['duration']) }} left</div>
+                        <div class="left-time">{{ convertSecondsToReadable(@$val['duration'] - @$val['user_duration']) }} remaining</div>
                     </div>
                 </div>
             </div>
