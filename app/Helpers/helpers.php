@@ -212,6 +212,9 @@ function getContentLanguage()
 
 function getPlayText($value)
 {
+    if (isset($value['user_duration']) && $value['user_duration'] > 0) {
+        return 'RESUME';
+    }
     return 'PLAY';
     // return $value['asset_type'] ?? 'WATCH';
 }
