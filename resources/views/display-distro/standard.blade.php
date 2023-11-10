@@ -1,4 +1,4 @@
-<section class="container-fluid top-slider addarrow pe-0 me-0 ps-4">
+<section class="container-fluid top-slider addarrow me-0">
     <div class="row me-0 my-2">
         <div class="distro-title heading ps-0">{{ $title }}</div>
     </div>
