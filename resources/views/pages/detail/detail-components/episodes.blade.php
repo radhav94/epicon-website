@@ -3,9 +3,24 @@
         aria-labelledby="my-list">
         @foreach ($season_episode_data as $skey => $ep_season_data)
         <ul class="season-episode-main list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4 {{ $skey == $lastSeason ? '' : 'hide' }}"  id="pills-episode-{{$skey ?? ''}}">
-
+            <?php  $subplan = checkSubscription(); ?>
             @foreach ($ep_season_data as $key => $value)
                 <?php
+                 if(isKidsPage()){
+                    $addClass = "allAccessBtn-sub";
+                }else{
+                    $addClass = "subscription";
+                }
+                   if (!isUserLoggedIn()) {
+                    $watchClass = @$content['free_premium'] == true ? "login-with-subscription" : "";
+                    $href = "javascript:void(0);"; 
+                } else {
+                    $hreflink = getContentUrl($value);
+                    $watchClass = @$value['free_premium'] == true && @$subplan['status'] != 'active' ? $addClass : "";
+                    $href = @$value['free_premium'] == true && @$subplan['status'] != 'active' ? 'javascript:void(0);' : $hreflink;
+                    
+                }   
+
                 if (!isset($value['ID']) || $value['ID'] == $content['ID']) {
                     continue;
                 }
@@ -17,7 +32,7 @@
                     @if(@$value['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($value) !!}
                     @else
-                    <a href="{{ getContentUrl($value) }}" class="pik">
+                    <a href="{{ $href }}" class="pik {{$watchClass}}">
                     @endif
                         <img src="{{ $cover_img }}" alt="img">
 

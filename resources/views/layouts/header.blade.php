@@ -8,6 +8,11 @@ if (isUserLoggedIn()) {
     $profile = getProfileData();
     $subplan = checkSubscription();
 }
+$request = Request();
+$webview = "";
+if ($request->has('type')) {
+    $webview = $request->input('type');
+ }
 ?>
 <!-- Side Menu Start-->
 <div class="side-menu-main" id="side-menu">
@@ -110,7 +115,7 @@ if (isUserLoggedIn()) {
     </div>
 </div>
 <!-- Side Menu End-->
-
+@if($webview !='webview')
 <div class="main-header">
     <nav id="navbar_top" class="navbar navbar-expand-lg justify-content-between px-3 py-0">
         <div class="main-header-left d-flex">
@@ -170,6 +175,8 @@ if (isUserLoggedIn()) {
             $current_route = getFirstSegment();
         }
 ?>
+
+   
        @if($kids_page == true && isMobliDevice()==false || $kids_page == false)  
         <ul class="menu-item list-unstyled d-flex mb-0">
             @foreach ($links as $key => $value)
@@ -179,7 +186,7 @@ if (isUserLoggedIn()) {
 
         </ul>
         @endif
-
+      
                 <div class="main-header-right d-flex align-items-center">
             @php $isactive = ""; @endphp
             @if (kidsMode())
@@ -214,7 +221,7 @@ if (isUserLoggedIn()) {
             </a>
             @if (!kidsMode())
             @loggedin
-            <div class="notification p-2">
+            <div class="notification p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">
                     <path
@@ -332,3 +339,4 @@ if (isUserLoggedIn()) {
 
     </nav>
 </div>
+@endif 
