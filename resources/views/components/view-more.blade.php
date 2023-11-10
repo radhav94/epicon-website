@@ -6,7 +6,7 @@
             <input type="hidden" name ="genre_viewall" value="{{implode(",", $value['genre_viewall'])}}">
             <input type="hidden" name ="catalog_viewall" value="{{implode(",", $value['catalog_viewall'])}}">
             <input type="hidden" name ="list_language_viewall" value="{{implode(",", $value['list_language_viewall'])}}">
-            <button type="submit">
+            <button type="submit" class="bg-transparent border-0">
                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                      <path d="M14.0533 11.2933L18.7466 16L14.0533 20.7067" stroke="white" stroke-width="1.5"
                          stroke-linecap="round" stroke-linejoin="round" />

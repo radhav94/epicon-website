@@ -474,7 +474,7 @@
                 h4 {
                     font-size: 16px;
                     margin-top: 8px;
-                    @include line-clamp(1);
+                    // @include line-clamp(1);
                 }
 
                 ul {
@@ -737,7 +737,7 @@
         text-align: end;
         font-size: 15px;
         color: #fff;
-        padding-right: 22px;
+        padding-top: 10px;
     }
     
     .distrohead-row .view-all-div a{
@@ -948,6 +948,7 @@
         font-size: 16px;
         color: #dfdfdf;
         text-transform: uppercase;
+        position: relative;
     }
 
     .distro-slider .sample_img{
