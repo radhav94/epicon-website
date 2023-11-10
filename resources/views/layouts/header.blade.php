@@ -165,17 +165,35 @@ if (isUserLoggedIn()) {
                 'podcast' => 'Podcasts',
                 'explore' => 'Explore',
                 'premium' => 'Premium',
-                'distro-tv' => 'DistroTV'
+                'distro-tv' => 'DistroTV',
+                // 'games' => 'Games'
             ];
             $current_route = getFirstSegment();
+            $moblinks = [
+                // '' => 'Home',
+                'movies' => 'Movies',
+                'tv-shows' => 'Shows',
+                'podcast' => 'Podcasts',
+                'explore' => 'Explore',
+                'premium' => 'Premium',
+                'distro-tv' => 'DistroTV',
+                'games' => 'Games'
+            ];
         }
 ?>
        @if($kids_page == true && isMobliDevice()==false || $kids_page == false)  
         <ul class="menu-item list-unstyled d-flex mb-0">
+            @if(isMobliDevice()==false)
             @foreach ($links as $key => $value)
                 <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a href="{{ getUrl($key) }}"
                         @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
             @endforeach
+            @else
+            @foreach ($moblinks as $key => $value)
+                <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a href="{{ getUrl($key) }}"
+                        @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
+            @endforeach
+            @endif
 
         </ul>
         @endif
