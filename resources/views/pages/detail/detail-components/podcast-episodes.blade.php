@@ -40,7 +40,7 @@
                                     @if (@$value['release_date'])
                                     |
                                     @endif
-                                    {{ convertSecondsToReadable($value['duration']) }}
+                                    {{ convertSecondsToReadable($value['duration'], true) }}
                                     @endif
                                 </span>
                                 <div class="progress-main">
