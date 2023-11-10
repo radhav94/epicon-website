@@ -53,7 +53,7 @@ class SearchController extends Controller
 
             // Define a mapping of category titles to response keys
             $categoryMapping = [
-                'All'       => 'AllResult',
+                // 'All'       => 'AllResult',
                 'Movies'    => 'MoviesResult',
                 'Shows'     => 'ShowsResult',
                 'Podcasts'  => 'PodcastsResult',
@@ -163,8 +163,8 @@ class SearchController extends Controller
         $contents = @$content['content'];
         $htmlContent = "";
         if ($contents) {
-            $htmlContent = '<div class="carousel-main">
-                            <h5 class="text-white">Other Results</h5>
+            $htmlContent = '<h5 class="text-white">Other Results</h5>
+                            <div class="carousel-main">
                             <ul class="more-like-this carousel-initilize p-0">';
             foreach ($contents as $content) {
                 $cover_img = getCardImage($content, 'cover_image', 'medium');
