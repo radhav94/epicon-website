@@ -1,9 +1,8 @@
-
 <?php 
-$firstSegment   = getFirstSegment(); 
+$firstSegment   = getFirstSegmentWithKids(); 
 $isMoblile      = isMobliDevice();
 ?>
-<section class="hero-banner w-100 {{ in_array($firstSegment, ['podcast','games']) ? 'podcast-banner' : '' }}">
+<section class=" hero-banner w-100 {{ in_array($firstSegment, ['podcast','games']) ? 'podcast-banner' : '' }}">
     <div class="banner-carousel">
         @foreach ($value['content'] as $key => $val)
             <?php

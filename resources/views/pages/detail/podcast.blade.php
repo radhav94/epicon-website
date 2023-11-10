@@ -371,14 +371,12 @@ $episode_json = json_encode($episode_list);
         try {
             $res = JSON.parse(xhr.responseText);
             if ($res.message != undefined && $res.message != 'failed') {
-                // showToaster($res.message, 2);
-                // if(siteMode == 'allAccessBtn-sub'){
-                //     $(".allAccessBtn-sub").trigger('click');
-                //     return false;
-                // }else{
-                //     $(".subscription").trigger('click'); 
-                //     return false;
-                // }
+                //showToaster($res.message, 2);
+                /*if(siteMode == 'allAccessBtn-sub'){
+                    $(".allAccessBtn-sub").trigger('click');
+                }else{
+                    $(".subscription").trigger('click'); 
+                }*/
                 
             }
         } catch (err) {}
