@@ -2051,6 +2051,7 @@ input {
                 border: 1px solid #211F26;
                 border-radius: 5px;
                 height: 30px;
+                width: 70px;
             }
             ul{
                 color: $bg-grey;
@@ -2060,6 +2061,7 @@ input {
                 padding-left: 0;
                 list-style-position: outside;
                 padding: 3px 0 5px 0;
+                overflow: auto;
                 
                 & li:first-child{
                     list-style: none;
@@ -2069,6 +2071,7 @@ input {
                     margin-right: 16px;
                     margin-left: 2px;
                     font-size: 10px;
+                    white-space: nowrap;
                 }
             }
             .play-btn{
@@ -2097,6 +2100,7 @@ input {
                 margin-top: 0px;
                 a{
                     color: #211f26;
+                    @include line-clamp(1);
                 }
             }
             & p{
@@ -2152,7 +2156,7 @@ input {
                 }
                 .left-time{
                     color: #272727;
-                    font-size: 10px;
+                    font-size: 7px;
                 }
             }
         }
@@ -7043,7 +7047,11 @@ input {
     position: absolute;
     left: 72px;
     padding-top: 10px;
-    bottom: 10px;
+    bottom: 0px;
+
+    & .upper-img{
+        width: 30px!important;
+    }
 }
 .share-hover:hover{
     .share-open{
