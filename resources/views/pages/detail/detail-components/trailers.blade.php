@@ -14,12 +14,13 @@
                             <?php
                             $card = getItemCardData($value, $displayLanguageParam);
                             $cover_img = isset($value['cover_image']) ? $value['cover_image']['medium'] : $card['banner_img'];
+                            $trailer_id = $value['ID'] ?? '';
                             ?>
                             <li>
                                 @if(@$value['asset_type'] == 'PLAY')
                                 {!! getplayanchorhtml($value) !!}
                                 @else
-                                <a href="{{ getContentUrl($value) }}" class="main-card">
+                                <a href="javascript:playTrailer('{{ $trailer_id }}')" class="main-card">
                                 @endif
                                     {!! freePremiumDiv($value) !!}
                                     <div class="main-img">

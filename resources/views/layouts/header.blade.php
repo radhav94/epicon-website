@@ -112,7 +112,7 @@ if (isUserLoggedIn()) {
 <!-- Side Menu End-->
 
 <div class="main-header">
-    <nav id="navbar_top" class="navbar navbar-expand-lg justify-content-between px-3 py-0">
+    <nav id="navbar_top" class="navbar kids-navbar navbar-expand-lg justify-content-between px-3 py-0">
         <div class="main-header-left d-flex">
             @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
             <a class="hamburger" href="javascript:void(0)">
