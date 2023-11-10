@@ -117,7 +117,7 @@ if ($request->has('type')) {
 <!-- Side Menu End-->
 @if($webview !='webview')
 <div class="main-header">
-    <nav id="navbar_top" class="navbar navbar-expand-lg justify-content-between px-3 py-0">
+    <nav id="navbar_top" class="navbar kids-navbar navbar-expand-lg justify-content-between px-3 py-0">
         <div class="main-header-left d-flex">
             @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
             <a class="hamburger" href="javascript:void(0)">
@@ -170,19 +170,37 @@ if ($request->has('type')) {
                 'podcast' => 'Podcasts',
                 'explore' => 'Explore',
                 'premium' => 'Premium',
-                'distro-tv' => 'DistroTV'
+                'distro-tv' => 'DistroTV',
+                // 'games' => 'Games'
             ];
             $current_route = getFirstSegment();
+            $moblinks = [
+                // '' => 'Home',
+                'movies' => 'Movies',
+                'tv-shows' => 'Shows',
+                'podcast' => 'Podcasts',
+                'explore' => 'Explore',
+                'premium' => 'Premium',
+                'distro-tv' => 'DistroTV',
+                'games' => 'Games'
+            ];
         }
 ?>
 
    
        @if($kids_page == true && isMobliDevice()==false || $kids_page == false)  
         <ul class="menu-item list-unstyled d-flex mb-0">
+            @if(isMobliDevice()==false)
             @foreach ($links as $key => $value)
                 <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a href="{{ getUrl($key) }}"
                         @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
             @endforeach
+            @else
+            @foreach ($moblinks as $key => $value)
+                <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a href="{{ getUrl($key) }}"
+                        @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
+            @endforeach
+            @endif
 
         </ul>
         @endif
