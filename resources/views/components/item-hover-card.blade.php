@@ -42,7 +42,7 @@ if(@$val['display_type'] == 'standard'){
             @endif
         </ul>
         <div class="d-flex justify-content-between">
-            <div class="w-100 d-flex justify-content-between align-items-center"> 
+            <div class="w-100 d-flex justify-content-between align-items-center position-relative"> 
                 <div class="d-flex justify-content-start">
                 @if(@$val['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($val) !!}
