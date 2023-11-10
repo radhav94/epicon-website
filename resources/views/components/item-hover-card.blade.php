@@ -121,7 +121,7 @@ if(@$val['display_type'] == 'standard'){
                                     <a href="https://twitter.com/share?url={{ getContentUrl($val) }}" data-title="{{ $share_title }}" target="_blank">
                                         <img src="{{asset('img/share-tweeter-icon.svg')}}" alt="share">
                                     </a>
-                                    <a href="javascript:void(0)" class="copyUrl" data-url="{{ getContentUrl($val) }}" id="linkCopy" data-toggle="tooltip" title="Copy" class="my-tool-tip"><i class="fas fa-copy" style="color:#b9b9b9"></i></a>
+                                    <a href="javascript:void(0)" class="copyUrl" data-url="{{ getContentUrl($val) }}" id="linkCopy" data-toggle="tooltip" title="Copy" class="my-tool-tip"><img src="{{asset('img/share-copy-icon.svg')}}" alt="share"></a>
                                     <!-- <a data-method="Copy link" href="javascript:void(0)" class="copyUrl1 ctc" data-shareurl="{{ getContentUrl($val) }}">
                                         <img src="{{asset('img/share-copy-icon.svg')}}" alt="share">
                                     </a> -->

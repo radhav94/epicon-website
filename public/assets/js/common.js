@@ -36,12 +36,12 @@ $(document).ready(function () {
             dummy.focus();
             document.execCommand('copy');            
             document.body.removeChild(dummy); 
-            $('#linkCopy').attr("title", "Copied!").tooltip("_fixTitle")
+            $(this).attr("title", "Copied!").tooltip("_fixTitle")
            .tooltip("show").attr("title", "Copied!").tooltip("_fixTitle");       
       });
 
         $('.copyUrl').hover(function(){
-          $('#linkCopy').attr("title", "Copy").tooltip("_fixTitle")
+          $(this).attr("title", "Copy").tooltip("_fixTitle")
             .tooltip("show").attr("title", "Copy").tooltip("_fixTitle");
         });
 
