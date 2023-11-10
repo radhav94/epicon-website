@@ -1,4 +1,4 @@
-<div class="distrohead-row row mb-4 mt-4 me-0 position-relative" style="background-image: url('../img/distrotvbg-new-up.png')">
+<div class="distrohead-row row mb-4 mt-4 me-0 position-relative cl1" style="background-image: url('../img/distrotvbg-new-up.png')">
         {{--<div class="view-all-div">
             <a href="{{ url('distro-landing') }}"><h6>View All</h6></a>
         </div> --}}
