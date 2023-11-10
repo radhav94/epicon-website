@@ -108,16 +108,23 @@ if(@$val['display_type'] == 'standard'){
                                     </svg>
                                 </button>
                             </a>
+                            <?php
+                            $share_title = @$val['title'];
+                                        if ($val['content_type'] == 'SEASON') {
+                                            $share_title = @$val['parent_name'] . ' - ' . @$val['title'];
+                                        }
+                            ?>
                             <div class="share-open">
-                                    <a href="">
+                                    <a href="https://www.facebook.com/sharer.php?u={{ getContentUrl($val) }}" data-title="{{ $share_title }}" target="_blank">
                                         <img src="{{asset('img/share-facebook-icon.svg')}}" alt="share">
                                     </a>
-                                    <a href="">
+                                    <a href="https://twitter.com/share?url={{ getContentUrl($val) }}" data-title="{{ $share_title }}" target="_blank">
                                         <img src="{{asset('img/share-tweeter-icon.svg')}}" alt="share">
                                     </a>
-                                    <a href="">
+                                    <a href="javascript:void(0)" class="copyUrl" data-url="{{ getContentUrl($val) }}" id="linkCopy" data-toggle="tooltip" title="Copy" class="my-tool-tip"><i class="fas fa-copy" style="color:#b9b9b9"></i></a>
+                                    <!-- <a data-method="Copy link" href="javascript:void(0)" class="copyUrl1 ctc" data-shareurl="{{ getContentUrl($val) }}">
                                         <img src="{{asset('img/share-copy-icon.svg')}}" alt="share">
-                                    </a>
+                                    </a> -->
                             </div>
                     </div>
                     <!-- share end -->

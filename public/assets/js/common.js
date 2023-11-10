@@ -22,6 +22,42 @@ $(document).ready(function () {
         }
     })
 
+    $('.copyUrl').on('click', function(){
+        // alert("true click");
+            // $('#linkCopy').attr("title", "Copied!").tooltip("_fixTitle")
+            // .tooltip("show").attr("title", "Copied!").tooltip("_fixTitle");
+            var shareurl = $(this).attr('data-url');
+            // alert(shareurl);
+            // var dummy = $('<input id="test">').val(shareurl);//.appendTo('body').select();
+            var dummy = document.createElement("input");
+            dummy.value = shareurl;
+            document.body.appendChild(dummy);
+            dummy.select();
+            dummy.focus();
+            document.execCommand('copy');            
+            document.body.removeChild(dummy); 
+            $('#linkCopy').attr("title", "Copied!").tooltip("_fixTitle")
+           .tooltip("show").attr("title", "Copied!").tooltip("_fixTitle");       
+      });
+
+        $('.copyUrl').hover(function(){
+          $('#linkCopy').attr("title", "Copy").tooltip("_fixTitle")
+            .tooltip("show").attr("title", "Copy").tooltip("_fixTitle");
+        });
+
+    // $('#linkCopy').click(function() {
+    //     alert("true linkcopy");
+    //     var textToCopy = $('#linkCopy').attr('data-url');
+    //     var tempTextarea = $('<textarea>');
+    //     $('#shareDiv').append(tempTextarea);
+    //     tempTextarea.val(textToCopy).select();
+    //     document.execCommand('copy');
+    //     tempTextarea.remove();
+    //     $('#linkCopy').attr("title", "Copied!").tooltip("_fixTitle")
+    //     .tooltip("show").attr("title", "Copied!").tooltip("_fixTitle");
+       
+    //   });
+
     //focus otp input
     $(".mx-1").on("input", function () {
         const maxLength = parseInt($(this).attr("maxlength"));
