@@ -1,4 +1,3 @@
-
 <div class="distrohead-row row mb-4 mt-4 me-0 position-relative">
         {{--<div class="view-all-div">
             <a href="{{ url('distro-landing') }}"><h6>View All</h6></a>
