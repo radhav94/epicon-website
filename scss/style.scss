@@ -7002,3 +7002,49 @@ input {
         }
     }
 }
+.distro-slider{
+    overflow: hidden;
+}
+.distrohead-row{
+    background-image: url("../img/distrotvbg-new-img.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.share-hover{
+    position: absolute;
+    left: 72px;
+    padding-top: 10px;
+    bottom: 10px;
+}
+.share-hover:hover{
+    .share-open{
+        display: flex;
+    }
+}
+.share-open{
+    position: absolute;
+    display: flex;
+    top: -15px;
+    right: -18px;
+    border: 1px solid #272727;
+    border-radius: 3px;
+    display: none;
+    & > a{
+        width: 20px;
+        height: 20px!important;
+        border-radius: 0!important;
+        border-right: 1px solid #272727;
+        background-color: #fff;
+        display: flex!important;
+        align-items: center!important;
+        justify-content: center!important;
+        &:last-child{
+            border-right: none;
+        }
+
+        img{
+            width: auto!important;
+            height: 12px!important;
+        }
+    }
+}
