@@ -201,7 +201,7 @@ function initSliders() {
             {
                 breakpoint: 1367,
                 settings: {
-                    slidesToShow: 8.4,
+                    slidesToShow: 7.4,
                     slidesToScroll: 1,
                 }
             },

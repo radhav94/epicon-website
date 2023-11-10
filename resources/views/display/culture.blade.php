@@ -23,7 +23,7 @@
                    
                    ?>
                    <li>
-                       <!-- @include('components.item-hover-card') -->
+                       {{-- @include('components.item-hover-card') --}}
                        @if(@$val['asset_type'] == 'PLAY')
                             {!! getplayanchorhtml($val) !!}
                         @else
