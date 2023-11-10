@@ -121,7 +121,7 @@ class SearchController extends Controller
             . '<h6>'.$anchorHtml . @$topResult['title'] . '</a></h6>'
             . '<span>' . @$dateText . $pipe . convertSecondsToReadable(@$topResult['duration'])  . '</span>'
             . '<p class="search-top mt-2">' . sanitizeData(@$topResult['description']) . '</p>'
-            . '<div class="d-flex align-items-center"> '.$anchorHtml.' <button class="fill-btn em ms-0 mt-0">' . __('Watch') . '</button></a>' . $wishlistAction . '</div></div>'
+            . '<div class="d-flex align-items-center"> '.$anchorHtml.' <button class="fill-btn em ms-0 mt-0 11">' . __('PLAY') . '</button></a>' . $wishlistAction . '</div></div>'
             . '</li>';
         $htmlContent .= $list . '</ul>';
         $this->addHistorySession($list, @$topResult['title']);
