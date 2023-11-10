@@ -475,6 +475,8 @@ input {
             .no-notification{
                 width: 100%;
                 @include flex(column,center,center);
+                position: absolute;
+                top: 100px;
                 img{
                     width: 100%;
                 }
@@ -612,9 +614,9 @@ input {
         }
     }
 }
-.profile:hover .profile-drop-down{
-    display: block;
-}
+// .profile:hover .profile-drop-down{
+//     display: block;
+// }
 .hamburger{
     height: 1.2rem;
     width: 1.5rem;
@@ -1545,6 +1547,9 @@ input {
         }
     }
 }
+.seeall-main-page{
+    overflow-x: initial !important;
+}
 .carousel-main,.library,.seeall-main-page{
     margin-block: 25px;
     height: 100%;
@@ -2046,6 +2051,7 @@ input {
                 border: 1px solid #211F26;
                 border-radius: 5px;
                 height: 30px;
+                width: 70px;
             }
             ul{
                 color: $bg-grey;
@@ -2055,6 +2061,7 @@ input {
                 padding-left: 0;
                 list-style-position: outside;
                 padding: 3px 0 5px 0;
+                overflow: auto;
                 
                 & li:first-child{
                     list-style: none;
@@ -2064,6 +2071,7 @@ input {
                     margin-right: 16px;
                     margin-left: 2px;
                     font-size: 10px;
+                    white-space: nowrap;
                 }
             }
             .play-btn{
@@ -2092,6 +2100,7 @@ input {
                 margin-top: 0px;
                 a{
                     color: #211f26;
+                    @include line-clamp(1);
                 }
             }
             & p{
@@ -2147,7 +2156,7 @@ input {
                 }
                 .left-time{
                     color: #272727;
-                    font-size: 10px;
+                    font-size: 7px;
                 }
             }
         }
@@ -2557,13 +2566,13 @@ input {
       }
       #tranding .tranding-slider{
         width: 340px;
-        height: 280px;
+        height: auto;
         padding: 0;
         position: relative;
       }
       .tranding-slide .tranding-slide-img{
         width: 280px;
-        height: 280px;
+        height: auto;
       }
   }
 
@@ -3823,6 +3832,11 @@ input {
     background-position: center right 7px;
     background-repeat: no-repeat;
 }
+#exampleDataList1{
+    background-image: url("../img/calendar.svg");
+    background-position: center right 7px;
+    background-repeat: no-repeat; 
+}
 .input-field{
     position: relative;
     label{
@@ -4102,11 +4116,30 @@ input {
     & .bs-right{
         padding: 10px;
         width: 60%;
-        height: auto;
+        height: 100%;
         max-height: 500px;
         overflow-y: auto;
         flex-wrap: wrap;
         @include flex(row,flex-start,space-between);
+
+        &::-webkit-scrollbar {
+            display: block !important;
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent; 
+          }
+           
+          /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #494949; 
+          }
+          
+          /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+          }
 
         @media (max-width:768px) {
             width: 100%;    
@@ -6999,6 +7032,72 @@ input {
         padding-top: 4px;
         h1{
             margin-bottom: 0px;
+        }
+    }
+}
+.distro-slider{
+    overflow: hidden;
+}
+.distrohead-row{
+    background-image: url("../img/distrotvbg-new-img.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.share-hover{
+    position: absolute;
+    left: 72px;
+    padding-top: 10px;
+    bottom: 0px;
+
+    & .upper-img{
+        width: 30px!important;
+    }
+}
+.share-hover:hover{
+    .share-open{
+        display: flex;
+    }
+}
+.share-open{
+    position: absolute;
+    display: flex;
+    top: -15px;
+    right: -18px;
+    border: 1px solid #272727;
+    border-radius: 3px;
+    display: none;
+    & > a{
+        width: 20px;
+        height: 20px!important;
+        border-radius: 0!important;
+        border-right: 1px solid #272727;
+        background-color: #fff;
+        display: flex!important;
+        align-items: center!important;
+        justify-content: center!important;
+        &:last-child{
+            border-right: none;
+        }
+
+        img{
+            width: auto!important;
+            height: 12px!important;
+        }
+    }
+}
+
+.kids-navbar{
+    @media (max-width:767px) {
+        height: 70px !important;
+    }
+    .main-header-right {
+        @media (max-width:767px) {
+            position: unset;
+        }
+    }
+    .main-header-left {
+        @media (max-width:767px) {
+            margin-top: 0;
         }
     }
 }

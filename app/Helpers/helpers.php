@@ -1059,6 +1059,18 @@ function getFirstSegment()
     return $segment;
 }
 
+function getFirstSegmentWithKids()
+{
+    $kids_mode = kidsMode();
+    if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
+        $segment = $kids_mode ? request()->segment(3) : request()->segment(2);
+    } else {
+        $segment = $kids_mode ? request()->segment(2) : request()->segment(1);
+    }
+    return $segment;
+}
+
+
 function isKidsPage()
 {
     $segment = getFirstSegment();
