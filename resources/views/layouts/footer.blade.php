@@ -1,3 +1,11 @@
+<?php
+$request = Request();
+$webview = "";
+if ($request->has('type')) {
+    $webview = $request->input('type');
+ }
+ ?>
+@if($webview !='webview')
 <section class="footer w-100">
     <div class="container">
         <div class="row">
@@ -155,6 +163,7 @@
    }
 
 ?>
+    
         <nav class="mob-nav">
         @foreach ($links as $key => $value)
        
@@ -165,8 +174,9 @@
            
         @endforeach
         </nav>
+   
 </section>
-
+@endif
 @notloggedin
     @include('auth.login-reg-popup')
 @endnotloggedin
