@@ -1,4 +1,6 @@
-<?php
+<?php 
+$isMoblile      = isMobliDevice();
+
 $loadPlayer = @$content['free_premium'] == false || isActiveSubscription() ? true : false;
 
 if (@$content['content_type'] == 'SHOW' || $content['content_type'] == 'SEASON') {
@@ -30,17 +32,21 @@ $loadPlayer = true;
 @section('content')
 <?php
 
+    if($isMoblile){
+        $cover_img = getCardImage($content, 'banner_image', 'medium');
+    }else{
 
-if(isset($content['airtel_feature_imageHD']) && !empty($content['airtel_feature_imageHD'])){
-    $cover_img = $content['airtel_feature_imageHD'];
-}
-else if(isset($content['trending_movie_buzz_image']) && !empty($content['trending_movie_buzz_image'])){
+        if(isset($content['airtel_feature_imageHD']) && !empty($content['airtel_feature_imageHD'])){
+            $cover_img = $content['airtel_feature_imageHD'];
+        }
+        else if(isset($content['trending_movie_buzz_image']) && !empty($content['trending_movie_buzz_image'])){
 
-    $cover_img = getCardImage($content, 'trending_movie_buzz_image', 'large');
-}
-else{
-    $cover_img = getCardImage($content, 'banner_image', 'large');
-}
+            $cover_img = getCardImage($content, 'trending_movie_buzz_image', 'large');
+        }
+        else{
+            $cover_img = getCardImage($content, 'banner_image', 'large');
+        }
+    }
 
 ?>
     <input type="hidden" id="cont_id" value="{{ $content['ID'] }}">
@@ -189,10 +195,8 @@ else{
                             ])
                         </p>
                     <div class="seemore">
-                            <p class="text-white mb-0">{!! sanitizeData(@$content['description']) !!}</p>
-                            @if(strlen(@$content['description']) > 300 )
-                                <button class="bg-transparent text-white small readmore-less">Read More</button>
-                            @endif
+                            <p class="text-white mb-0 descText">{!! sanitizeData(@$content['description']) !!}</p>
+                            <span class="read-button"> </span>
                         </div>
                         @if (@$content['cast'])
                         <div class="seemore">

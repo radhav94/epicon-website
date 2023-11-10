@@ -1,11 +1,6 @@
- <?php
-        
-        $chunks = array_chunk($result, 4);
-
-        foreach ($chunks as $k => $chunk) {
-        
+ <?php        
         echo '<div class="card-details">';
-        foreach ($chunk as $key => $val) {
+        foreach ($result as $key => $val) {
             $cover_img = getCardImage($val, 'cover_image', 'medium');
             $banner_img = getCardImage($val, 'banner_image', 'medium', ['cover_image', 'banner_image']);
             $generes = array_column($val['genres_assign'] ?? [], 'name');
@@ -50,4 +45,4 @@
         <?php 
         }
         echo '</div>';
-        } ?>
+        ?>
