@@ -62,6 +62,12 @@ $episode_json = json_encode($episode_list);
             $watchClass = @$content['free_premium'] == true && @$subplan['status'] != 'active' ? $addClass : "";
             $watchid = @$content['free_premium'] != true || (@$content['free_premium'] == true && @$subplan['status'] == 'active') ? "playButton" : "";
         }
+
+        if($watchClass == ""){
+            $playBtn = "playBtn";
+        }else{
+            $playBtn = "";
+        }
 ?>
 
 <div class="podcast-background w-100">
