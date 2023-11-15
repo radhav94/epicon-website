@@ -135,7 +135,6 @@ $subplan = checkSubscription();
 
                 </div>
             </div>
-            <?php //dd ($viewprofile); ?>
             @if(!empty($viewprofile))
             <div class="col-sm-6 col-md-5 d-flex align-items-center">
                 <div class="billing-details w-100 text-white">
