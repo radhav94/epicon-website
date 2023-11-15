@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', 'Midpage')
+@section('title', ucwords(str_replace('-', ' ', $pageslug)))
 
 @section('style')
 @stop

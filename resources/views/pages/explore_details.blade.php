@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', $meta_title)
+@section('title', ucfirst($slug))
 
 @section('style')
     <style>
