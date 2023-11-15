@@ -169,7 +169,6 @@ $loadPlayer = true;
                                         data-title="{{ $share_title }}">
                                         <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
                                     </button>
-                                    <input type="hidden" id="assetPath" value="{{ asset('assets/img/share-x.svg') }}">
                                     @if (@$content['is_popular'])
                                         <button class="border-btn most-pop">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

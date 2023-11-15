@@ -176,7 +176,6 @@ $episode_json = json_encode($episode_list);
                             <button class="rounded-grey-btn shareThis" data-url="{{ getContentUrl($content) }}" data-title="{{ $share_title }}">
                                 <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
                             </button>
-                            <input type="hidden" id="assetPath" value="{{ asset('assets/img/share-x.svg') }}">
                         </div>
 
                         @if (count($episode_list) > 0) {{-- && (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription()))) --}}
