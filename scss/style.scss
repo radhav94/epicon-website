@@ -7398,3 +7398,6 @@ input {
         margin-top: 5px!important;
      }
 }
+audio::-webkit-media-controls-play-button {
+    display: none;
+  }
