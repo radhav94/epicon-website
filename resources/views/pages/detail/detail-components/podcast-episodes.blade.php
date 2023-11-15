@@ -73,6 +73,7 @@
                                 <button class="rounded-grey-btn shareThis" data-url="{{ getContentUrl($value) }}" data-title="{{ $share_title }}">
                                     <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
                                 </button>
+                                <input type="hidden" id="assetPath" value="{{ asset('assets/img/share-x.svg') }}">
                             </div>
                         </div>
                         <button class="pod-play playBtn {{$watchClass}}" data-id="{{ @$value['ID'] }}" data-url="{{ getContentUrl($value) }}"> <img src="{{ asset('assets/img/play-icon.svg') }}" alt="">
