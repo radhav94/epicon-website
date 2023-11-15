@@ -6028,7 +6028,7 @@ input {
     }
     @media (max-width:700px) {
         align-items: flex-start;
-        height: 203px;
+        height: 200px;
     }
     .pik{
         position: relative;
@@ -6038,8 +6038,8 @@ input {
         overflow: hidden;
         flex-shrink: 0;
         @media (max-width:700px) {
-            width: 120px;
-            height: 120px;
+            width: 96px;
+            height: 96px;
         }
         .pik-img{
             width: 100%;
