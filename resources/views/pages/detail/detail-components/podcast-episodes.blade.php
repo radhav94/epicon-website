@@ -20,7 +20,8 @@
                             @if(@$value['asset_type'] == 'PLAY')
                             {!! getplayanchorhtml($value) !!}
                             @else
-                            <a href="{{ getContentUrl($value) }}" class="pik-img">
+                            <a href="javascript:void(0)" class="pik-img">
+                                <!-- {{ getContentUrl($value) }} -->
                                 @endif
                                 <img src="{{ $cover_img }}" alt="img">
                             </a>
