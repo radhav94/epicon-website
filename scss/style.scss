@@ -17,13 +17,10 @@ body{
 *::-webkit-scrollbar {
     display: none;
   }
-.form-control{
-    background: 0 0 !important;
+  input:-webkit-autofill { 
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #ffffff;
 }
-input {
-    background: transparent;
-  }
-  
 .banner-carousel{
     opacity: 0;
     visibility: hidden;
@@ -1923,7 +1920,7 @@ input {
             background-size: 100% 100%;
             top: 3px;
             right: 2px;
-            z-index: 5;
+            z-index: 2;
             @media (max-width:767px){
                 width: 30px;
                 height: 43px;
