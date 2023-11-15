@@ -97,7 +97,7 @@ if ($request->has('type')) {
             Limited. All Rights Reserved.</div>
     </div>
 </section>
-<section class="footer-mobile">
+<section class="footer-mobile kids">
     <?php
     $kids_page = isKidsPage();
    if ($kids_page) {
