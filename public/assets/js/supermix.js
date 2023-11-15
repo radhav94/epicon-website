@@ -4,32 +4,33 @@ var contentType;
 
 $(document).ready(function () {
     $("#supermixWatchBtn").click(function () {
-        alert('1');
         let cid = $("#supermixData ul li .supermixPlay").data('id');
         let title = $("#supermixData ul li .supermixPlay").data('title');
         let duration = $("#supermixData ul li .supermixPlay").data('duration');
-        alert(title);
-        alert(duration);
         $('#supermixData ul li:first-child').addClass('active');
         contentType = 'supermix';
+        customData = {
+			title: title,
+			duration:duration
+		};
         getPlayData(cid);
         $(this).prop("disabled", true);
     });
 
     $(document).on("click", ".supermixPlay", function (e) {
-        alert('2');
         $("#supermixData ul li").removeClass('active');
         // e.preventDefault();
         $(this).parent('li').addClass('active');
         let cid = $(this).data('id');
-        alert(cid);
         let title;
         let duration;
-         title = $(this).data('title');
-         duration = $(this).data('duration');
-        alert(title);
-        alert(duration);
+        title = $(this).data('title');
+        duration = $(this).data('duration');
         contentType = 'supermix';
+        customData = {
+			title: title,
+			duration:duration
+		};
         getPlayData(cid);
         $('#supermixModal').animate({
             scrollTop: 0
@@ -217,35 +218,33 @@ function stopPlayer() {
 
 
 const attactPlayerEvents = function (videoPayer) {
+    console.log("attactPlayerEvents : "+customData.title);
     player.on('play', event => {
-        alert(videoPayer.duration);
-        alert(videoPayer.currentTime);
-
-        // video_play(customData.duration, customData.title);
+        video_play(customData.duration, customData.title);
     });
 
-    player.on('pause', event => {
+    videoPayer.on('pause', event => {
         var e = Math.round(videoPayer.currentTime),
         a = Math.round(videoPayer.duration),
         r = parseInt((videoPayer.currentTime / videoPayer.duration) * 100) + "%";
-        // o = customData.title;
-        // video_pause(e, a, r, o);
+        o = customData.title;
+        video_pause(e, a, r, o);
 
     });
 
-    player.on('seeked', event => {
-        var e = Math.round(player.currentTime),
-        a = Math.round(player.duration);
-        // o = customData.title;
-        // video_seek(a, e, o);
+    videoPayer.on('seeked', event => {
+        var e = Math.round(videoPayer.currentTime),
+        a = Math.round(videoPayer.duration);
+        o = customData.title;
+        video_seek(a, e, o);
 
     });
 
-    player.on('ended', event => {
-        var e = Math.round(player.currentTime),
-        a = Math.round(player.duration);
-        // o = customData.title;
-        // video_ended(a, e, o);
+    videoPayer.on('ended', event => {
+        var e = Math.round(videoPayer.currentTime),
+        a = Math.round(videoPayer.duration);
+        o = customData.title;
+        video_ended(a, e, o);
     });
 
 }

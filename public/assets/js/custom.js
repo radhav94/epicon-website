@@ -123,11 +123,32 @@ if (notificationElement) {
   if ($(window).width() < 1025) {
     $(".notification").on('click', function () {
       $(".notification-drop-down").toggleClass("prof-open");
+      if ( $(".notification-drop-down").hasClass("prof-open") &&  $(".profile-drop-down").hasClass("prof-open") ){
+      $(".profile-drop-down").removeClass("prof-open");
+      }
     });
   }
   else {
     $(".notification").hover(function () {
       var e = document.querySelector(".notification-drop-down");
+      if (e.style.display == 'block')
+        e.style.display = 'none';
+      else
+        e.style.display = 'block';
+    });
+  }
+
+  if ($(window).width() < 1025) {
+    $(".profile").on('click', function () {
+      $(".profile-drop-down").toggleClass("prof-open");
+      if ( $(".notification-drop-down").hasClass("prof-open") &&  $(".profile-drop-down").hasClass("prof-open") ){
+        $(".notification-drop-down").removeClass("prof-open");
+        }
+    });
+  }
+  else {
+    $(".profile").hover(function () {
+      var e = document.querySelector(".profile-drop-down");
       if (e.style.display == 'block')
         e.style.display = 'none';
       else

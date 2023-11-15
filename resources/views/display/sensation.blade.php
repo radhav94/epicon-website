@@ -33,7 +33,7 @@
                     ?>
                     <div class="swiper-slide tranding-slide">
                         <div class="tranding-slide-img position-relative">
-                            <a href="{{ getContentUrl($val) }}" onclick="click_carousel(this)(this)" data-title ="{{ @$val['title'] }}">
+                            <a href="{{ getContentUrl($val) }}" onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}">
                                 <img src="{{ $cover_img }}" />
                             </a>
                             <div class="carousel-items-content position-absolute">
@@ -44,7 +44,7 @@
                                         @if(@$val['asset_type'] == 'PLAY')
                                         {!! getplayanchorhtml($val) !!}
                                         @else
-                                        <a onclick="click_carousel(this)(this)" data-title ="{{ @$val['title'] }}" href="{{ getContentUrl($val) }}">
+                                        <a onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}" href="{{ getContentUrl($val) }}">
                                         @endif
                                             <button class="big-play d-flex align-items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"

@@ -212,6 +212,9 @@ function getContentLanguage()
 
 function getPlayText($value)
 {
+    if (isset($value['user_duration']) && $value['user_duration'] > 0) {
+        return 'RESUME';
+    }
     return 'PLAY';
     // return $value['asset_type'] ?? 'WATCH';
 }
@@ -476,18 +479,22 @@ if (!function_exists('timestamp_to_date_format')) {
 
 
 
-function convertSecondsToReadable($seconds)
+function convertSecondsToReadable($seconds, $show_seconds = false)
 {
     if ($seconds > 0) {
         $day = floor($seconds / 86400);
         $hours = floor(($seconds - ($day * 86400)) / 3600);
         $minutes = floor(($seconds / 60) % 60);
         $seconds = $seconds % 60;
+        $sec = '';
+        if ($show_seconds && $seconds) {
+            $sec = $seconds . ' sec ';
+        }
 
         if ($hours) {
-            return $hours . ' hr ' . $minutes . ' min ';
+            return $hours . ' hr ' . $minutes . ' min ' . $sec;
         } elseif ($minutes) {
-            return $minutes . ' min ';
+            return $minutes . ' min ' . $sec;
         }
     }
     // return Carbon::now()->addSeconds($seconds)->diffForHumans(null, true, true, 2);
@@ -1051,6 +1058,18 @@ function getFirstSegment()
     }
     return $segment;
 }
+
+function getFirstSegmentWithKids()
+{
+    $kids_mode = kidsMode();
+    if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
+        $segment = $kids_mode ? request()->segment(3) : request()->segment(2);
+    } else {
+        $segment = $kids_mode ? request()->segment(2) : request()->segment(1);
+    }
+    return $segment;
+}
+
 
 function isKidsPage()
 {

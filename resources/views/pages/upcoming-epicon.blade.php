@@ -82,7 +82,7 @@ krsort($output);
                                 <div class="card-body">
                                     {!! freePremiumDiv($val) !!}
 
-                                    <a class="upper-img upcomingVid" href="javascript:void(0)" data-id="{{ $id }}" data-type="{{ $content_type }}" data-title="{{ $title }}">
+                                    <a onclick="click_tile(this)" class="upper-img upcomingVid" href="javascript:void(0)" data-id="{{ $id }}" data-type="{{ $content_type }}" data-title="{{ $title }}">
                                         <img src="{{ $cover_img }}" alt="">
                                     </a>
                                     <div class="bottom-text d-flex mt-2">
@@ -194,6 +194,7 @@ krsort($output);
 <script src="{{ asset('assets/js/video-player.js') }}"></script>
 
 <script>
+    var user_duration = 0;
     var TrandingSlider = new Swiper('.tranding-slider', {
         effect: 'coverflow',
         grabCursor: true,

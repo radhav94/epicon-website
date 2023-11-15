@@ -8,6 +8,11 @@ if (isUserLoggedIn()) {
     $profile = getProfileData();
     $subplan = checkSubscription();
 }
+$request = Request();
+$webview = "";
+if ($request->has('type')) {
+    $webview = $request->input('type');
+ }
 ?>
 <!-- Side Menu Start-->
 <div class="side-menu-main" id="side-menu">
@@ -110,9 +115,9 @@ if (isUserLoggedIn()) {
     </div>
 </div>
 <!-- Side Menu End-->
-
+@if($webview !='webview')
 <div class="main-header">
-    <nav id="navbar_top" class="navbar navbar-expand-lg justify-content-between px-3 py-0">
+    <nav id="navbar_top" class="navbar @if(kidsMode() && isMobliDevice()) kids-navbar @endif navbar-expand-lg justify-content-between px-3 py-0">
         <div class="main-header-left d-flex">
             @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
             <a class="hamburger" href="javascript:void(0)">
@@ -165,32 +170,41 @@ if (isUserLoggedIn()) {
                 'podcast' => 'Podcasts',
                 'explore' => 'Explore',
                 'premium' => 'Premium',
-                'distro-tv' => 'DistroTV'
+                'distro-tv' => 'DistroTV',
+                // 'games' => 'Games'
             ];
             $current_route = getFirstSegment();
+            $moblinks = [
+                // '' => 'Home',
+                'movies' => 'Movies',
+                'tv-shows' => 'Shows',
+                'podcast' => 'Podcasts',
+                'explore' => 'Explore',
+                'premium' => 'Premium',
+                'distro-tv' => 'DistroTV',
+                'games' => 'Games'
+            ];
         }
 ?>
+
+   
        @if($kids_page == true && isMobliDevice()==false || $kids_page == false)  
         <ul class="menu-item list-unstyled d-flex mb-0">
+            @if(isMobliDevice()==false)
             @foreach ($links as $key => $value)
                 <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a onclick="click_menu(this)" data-event_context="header" data-element_text="{{ __($value) }}" href="{{ getUrl($key) }}"
                         @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
             @endforeach
-            @loggedin
-            @if(!kidsMode())
-            <li>
-                <a onclick="click_menu(this)" data-event_context="header" data-element_text="Reward Store" href="{{url('/my-rewards')}}" @if ($current_route == "my-rewards") class="active" @endif>Reward Store</a>
-            </li>
+            @else
+            @foreach ($moblinks as $key => $value)
+                <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a onclick="click_menu(this)" data-event_context="header" data-element_text="Reward Store" href="{{ getUrl($key) }}"
+                        @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
+            @endforeach
             @endif
-            @elseloggedin
-            <li class="nav-item">
-                <a onclick="click_menu(this)" data-event_context="header" data-element_text="Reward Store" href="javascript:void(0)" class="login-with-rewards">Reward Store</a>
-            </li>
-            @endloggedin
 
         </ul>
         @endif
-
+      
                 <div class="main-header-right d-flex align-items-center">
             @php $isactive = ""; @endphp
             @if (kidsMode())
@@ -225,7 +239,7 @@ if (isUserLoggedIn()) {
             </a>
             @if (!kidsMode())
             @loggedin
-            <div class="notification p-2">
+            <div class="notification p-2 me-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">
                     <path
@@ -343,3 +357,4 @@ if (isUserLoggedIn()) {
 
     </nav>
 </div>
+@endif 

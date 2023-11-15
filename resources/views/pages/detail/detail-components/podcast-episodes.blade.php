@@ -20,7 +20,7 @@
                             @if(@$value['asset_type'] == 'PLAY')
                             {!! getplayanchorhtml($value) !!}
                             @else
-                            <a href="{{ getContentUrl($value) }}" class="pik-img">
+                            <a onclick="click_tile(this)" data-title ="{{ @$value['title'] }}" data-type="{{@$value['catalog_name']}}" href="{{ getContentUrl($value) }}" class="pik-img">
                                 @endif
                                 <img src="{{ $cover_img }}" alt="img">
                             </a>
@@ -40,7 +40,7 @@
                                     @if (@$value['release_date'])
                                     |
                                     @endif
-                                    {{ convertSecondsToReadable($value['duration']) }}
+                                    {{ convertSecondsToReadable($value['duration'], true) }}
                                     @endif
                                 </span>
                                 <div class="progress-main">

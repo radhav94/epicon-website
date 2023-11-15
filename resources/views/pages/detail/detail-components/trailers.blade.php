@@ -2,7 +2,6 @@
 
     <div class="tab-pane fade {{ $active_tab == 'trailors' ? 'show active' : '' }}" id="pills-trailors" role="tabpanel"
         aria-labelledby="my-list">
-
         @foreach ($trailers['list'] as $list_key => $list)
             <div class="carousel-main mb-4">
                 <div class="carousel-title-n-arrow px-2 mb-2">
@@ -14,12 +13,13 @@
                             <?php
                             $card = getItemCardData($value, $displayLanguageParam);
                             $cover_img = isset($value['cover_image']) ? $value['cover_image']['medium'] : $card['banner_img'];
+                            $trailer_id = $value['ID'] ?? '';
                             ?>
                             <li>
                                 @if(@$value['asset_type'] == 'PLAY')
                                 {!! getplayanchorhtml($value) !!}
                                 @else
-                                <a href="{{ getContentUrl($value) }}" class="main-card">
+                                <a onclick="click_tile(this)" data-title="{{@$value['title']}}" data-type="{{@$value['catalog_slug']}}" href="javascript:playTrailer('{{ $trailer_id }}')" class="main-card">
                                 @endif
                                     {!! freePremiumDiv($value) !!}
                                     <div class="main-img">

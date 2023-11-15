@@ -423,12 +423,13 @@
                         // alert(response);
                         if (response.payload.success == true) {
                             // $('#register-result').html('');
-                            // $("#username").text(response.payload.name);
+                            $("#username").text(response.payload.name);
                             // $("#sign_method").val(response.payload.user_signup_method);
                             // $('.login-popup-modal').hide();
                             // $('.screen-sucess-register').show();
                             // $("#interestsSuggestions input[name='user_token']").val(response.payload.user_token);
-                            $('.left-side, .login-popup-modal').hide();
+                            // $('.left-side, .login-popup-modal').hide();
+                            $('.left-side, .right-side').hide();
                             $('.screen-sucess-register').show();
                             setTimeout(function(){
                                 window.location.href = "?type=register";

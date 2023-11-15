@@ -54,7 +54,6 @@
         display: none;
     }
 </style>
-
 <div class="container videoContainer {{ getFirstSegment() == 'live-tv' ? 'live-tv-vidPlayer' : '' }}" style="display: none">
     <p id="closePlayer">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -68,8 +67,8 @@
             </defs>
         </svg>
     </p>
-    <div id="playVideo" data-id="{{ $content['ID'] }}" data-type="{{ $content['content_type'] }}"
-        data-lg="{{ isUserLoggedIn() }}" data-title="{{ $content['title'] }}" data-duration="{{ $content['duration'] }}">
+    <div id="playVideo" data-id="{{ @$content['ID'] }}" data-type="{{ @$content['content_type'] }}"
+        data-lg="{{ isUserLoggedIn() }}" data-title="{{ @$content['title'] }}" data-duration="{{ @$content['duration'] ?? @$content['season'][0]['duration'] }}">
     </div>
 
 
