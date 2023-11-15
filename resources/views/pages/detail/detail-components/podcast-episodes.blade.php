@@ -75,7 +75,7 @@
                                 </button>
                             </div>
                         </div>
-                        <button class="pod-play playBtn {{$watchClass}}" data-id="{{ @$value['ID'] }}" data-url="{{ getContentUrl($value) }}"> <img src="{{ asset('assets/img/play-icon.svg') }}" alt="">
+                        <button class="pod-play {{$playBtn}} {{$watchClass}}" data-id="{{ @$value['ID'] }}" data-url="{{ getContentUrl($value) }}"> <img src="{{ asset('assets/img/play-icon.svg') }}" alt="">
                             </a>
 
                     </div>

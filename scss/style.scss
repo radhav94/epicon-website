@@ -6751,6 +6751,108 @@ input {
         display: block;
     }
 }
+.footer-mobile.kids{
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    z-index: 999;
+    display: none;
+    background-color: #313131;
+
+
+    nav {
+        position: relative;
+        width: 100%;
+        height: 70px;
+        font-size: 0;
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
+        bottom: 15px;
+        a {
+            height: 100%;
+            font-size: 10px;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+            text-align: center;
+            color: #8392A0;
+            cursor: pointer;
+            padding-top: 20px;
+            span{
+                display: block;
+                margin-top: 5px;
+            }
+            p{
+                width: 100%;
+                height: 24px;
+                margin-bottom: 3px;
+            }
+        }
+        a:nth-child(1) p{
+            background: url("../img/footer-mob-home.svg") no-repeat center center;
+        }
+        a:nth-child(1):hover p,a:nth-child(1).active p{
+            background: url("../img/footer-mob-home-hover.svg") no-repeat center center;
+        }
+        a:nth-child(2) p{
+            background: url("../img/movies.svg") no-repeat center center;
+        }
+        a:nth-child(2):hover p,a:nth-child(2).active p{
+            background: url("../img/movies-hover.svg") no-repeat center center;
+        }
+        a:nth-child(3) p{
+            background: url("../img/shows.svg") no-repeat center center;
+        }
+        a:nth-child(3):hover p,a:nth-child(3).active p{
+            background: url("../img/shows-hover.svg") no-repeat center center;
+        }
+        a:nth-child(4) p{
+            background: url("../img/podcast.svg") no-repeat center center;
+        }
+        a:nth-child(4):hover p,a:nth-child(4).active p{
+            background: url("../img/podcast-hover.svg") no-repeat center center;
+        }
+        a:nth-child(5) p{
+            background: url("../img/games.png") no-repeat center center;
+        }
+        a:nth-child(5):hover p,a:nth-child(5).active p{
+            background: url("../img/games-hover.svg") no-repeat center center;
+        }
+        .animation {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            z-index: 0;
+            transition: all .5s ease 0s;
+        }
+        a:hover span,a.active span,a:hover svg{
+            color: $bg-white;
+        }
+        a:hover~.animation,a.active~.animation {
+            width: 20%;
+            left: 0;
+            background-image: url("../img/mob-active-img.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        a:nth-child(2):hover~.animation,a:nth-child(2).active~.animation {
+            left: 20%;
+        }
+        a:nth-child(3):hover~.animation,a:nth-child(3).active~.animation {
+            left: 40%;
+        }
+        a:nth-child(4):hover~.animation,a:nth-child(4).active~.animation {
+            left: 60%;
+        }
+        a:nth-child(5):hover~.animation,a:nth-child(5).active~.animation {
+            left: 80%;
+        }
+    }
+    @media (max-width:768px) {
+        display: block;
+    }
+}
 .explore-main{
     position: relative;
     z-index: 9;
