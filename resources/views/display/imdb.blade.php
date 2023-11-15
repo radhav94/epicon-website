@@ -22,10 +22,10 @@
             <div class="imdb-cards">
                 @foreach ($val as $k => $v)
                     <?php
-                    // d($v);
+                    //dd($v);
                     $card = getItemCardData($v, $displayLanguageParam);
                     
-                    $cover_img = getCardImage($v, 'banner_image', 'medium', ['cover_image', 'banner_image']);
+                    $cover_img = getCardImage($v, 'banner_image', 'medium');
                     
                     ?>
 
@@ -35,7 +35,7 @@
                         @else
                         <a href="{{ getContentUrl($v) }}">
                         @endif
-                            <img src="{{ $card['banner_img'] }}" alt="img">
+                            <img src="{{ $cover_img }}" alt="img">
                             <div class="content">
                                 @if (@$v['free_premium'] == true)
                                     <img class="crown" src="{{ asset('assets/img/crown.svg') }}" alt="">
