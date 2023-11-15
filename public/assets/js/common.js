@@ -22,8 +22,7 @@ $(document).ready(function () {
         }
     })
 
-    $('.copyUrl').on('click', function(){
-        // alert("true click");
+    $(document).on("click", ".copyUrl", function () {
             // $('#linkCopy').attr("title", "Copied!").tooltip("_fixTitle")
             // .tooltip("show").attr("title", "Copied!").tooltip("_fixTitle");
             var shareurl = $(this).attr('data-url');
@@ -40,10 +39,10 @@ $(document).ready(function () {
            .tooltip("show").attr("title", "Copied!").tooltip("_fixTitle");       
       });
 
-        $('.copyUrl').hover(function(){
-          $(this).attr("title", "Copy").tooltip("_fixTitle")
-            .tooltip("show").attr("title", "Copy").tooltip("_fixTitle");
-        });
+    $(document).on("mouseover", ".copyUrl", function () {
+      $(this).attr("title", "Copy").tooltip("_fixTitle")
+        .tooltip("show").attr("title", "Copy").tooltip("_fixTitle");
+    });
 
     // $('#linkCopy').click(function() {
     //     alert("true linkcopy");

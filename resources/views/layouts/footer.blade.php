@@ -181,3 +181,4 @@ if ($request->has('type')) {
 @notloggedin
     @include('auth.login-reg-popup')
 @endnotloggedin
+
