@@ -207,7 +207,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
 </div>
 
 
-<section class="w-100 mt-4">
+<section class="w-100 mt-4 tb-margin-mobile">
     <div class="container-fluid">
         <div class="row">
 
@@ -215,7 +215,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                 <div class="sidenav-setting">
                     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <input type="hidden" name="ispin" value="{{$ispin}}" id="ispin">
-                        <button class="nav-link bg-transparent">
+                        <button class="nav-link bg-transparent setting-tittle-text">
                             <h4>{{__('Settings')}}</h4>
                         </button>
                         <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">{{__('Account')}}</button>
