@@ -1916,7 +1916,7 @@ input {
             background-size: 100% 100%;
             top: 3px;
             right: 2px;
-            z-index: 5;
+            z-index: 2;
             @media (max-width:767px){
                 width: 30px;
                 height: 43px;
@@ -2066,9 +2066,9 @@ input {
                 }
                 li{
                     padding: 0;
-                    margin-right: 16px;
-                    margin-left: 2px;
-                    font-size: 10px;
+                    margin-right: 6px;
+                    margin-left: 0px;
+                    font-size: 9px;
                 }
             }
             .play-btn{
