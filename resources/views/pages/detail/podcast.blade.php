@@ -372,11 +372,11 @@ $episode_json = json_encode($episode_list);
             $res = JSON.parse(xhr.responseText);
             if ($res.message != undefined && $res.message != 'failed') {
                 //showToaster($res.message, 2);
-                if(siteMode == 'allAccessBtn-sub'){
+                /*if(siteMode == 'allAccessBtn-sub'){
                     $(".allAccessBtn-sub").trigger('click');
                 }else{
                     $(".subscription").trigger('click'); 
-                }
+                }*/
                 
             }
         } catch (err) {}
