@@ -36,7 +36,7 @@ $(document).ready(function () {
 		let ctype = $(this).data('type');
 		let title = $(this).data('title');
 		let lg = $(this).data('lg');
-
+		let duration = $(this).data('duration');
 		let requestData = {
 			cid: cid
 		};
@@ -44,7 +44,8 @@ $(document).ready(function () {
 			cid: cid,
 			tp: ctype,
 			title: title,
-			lg: lg
+			lg: lg,
+			duration:duration
 		};
 
 		sendAjaxRequest(APP_URL + '/player', 'POST', JSON.stringify(requestData),
@@ -105,7 +106,7 @@ $(document).ready(function () {
 		const closePlayer = document.getElementById('closePlayer');
 		const watchVideo = document.getElementById('watchVideo');
 		// const customPlayButton = document.getElementById('customPlayButton');
-
+		video.currentTime = parseInt(user_duration);
 		const defaultOptions = {
 			seekTime: 10,
 			controls: ['rewind', 'play', 'fast-forward', 'progress', 'current-time', 'volume', 'captions', 'settings', 'pip', 'fullscreen'],
@@ -190,7 +191,7 @@ $(document).ready(function () {
 
 				// video.style.height = $('#vidPlayer').height() + 'px';
 
-				attactPlayerEvents(player);
+				attactPlayerEvents(player,customData);
 
 				// customPlayButton.style.display = 'none';
 			});
@@ -228,22 +229,38 @@ $(document).ready(function () {
 		}
 	}
 
-	const attactPlayerEvents = function (player) {
+	const attactPlayerEvents = function (player,customData) {
 		player.on('play', event => {
 			vidPlaying = true;
 			setplaytracking(player);
+			video_play(customData.duration, customData.title);
 		});
 
 		player.on('pause', event => {
+			var e = Math.round(player.currentTime),
+			a = Math.round(player.duration),
+			r = parseInt((player.currentTime / player.duration) * 100) + "%",
+			o = customData.title;
 			setplaytracking(player);
+			video_pause(e, a, r, o);
+
 		});
 
 		player.on('seeked', event => {
 			setplaytracking(player);
+			var e = Math.round(player.currentTime),
+			a = Math.round(player.duration),
+			o = customData.title;
+			video_seek(a, e, o);
+
 		});
 
 		player.on('ended', event => {
 			setplaytracking(player);
+			var e = Math.round(player.currentTime),
+			a = Math.round(player.duration),
+			o = customData.title;
+			video_ended(a, e, o);
 		});
 
 	}

@@ -1,14 +1,19 @@
 
+<?php 
+$firstSegment   = getFirstSegment(); 
+$isMoblile      = isMobliDevice();
+?>
 <section class="hero-banner w-100 {{ getFirstSegment() == 'podcast' ? 'podcast-banner' : '' }}">
     <div class="banner-carousel">
         @foreach ($value['content'] as $key => $val)
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
 
-            if(!isMobliDevice()){
+            if (!$isMoblile) {
                 $banner_img = getCardImage($val, 'banner_image', 'large');
-            }else{
-                $banner_img = getCardImage($val, 'vertical_cover_image', 'medium');
+            } else {
+                $img = $firstSegment == 'podcast' ? 'cover_image' : 'vertical_cover_image';
+                $banner_img = getCardImage($val, $img, 'medium');
             }
             ?>
             <div class="carousel-card">

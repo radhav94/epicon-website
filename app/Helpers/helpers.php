@@ -310,7 +310,7 @@ function getWishListAction($val, $wishlist, $type = 1)
         return '<button class="big-add-list ' . $logClass . $addToList . '" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="1">  ' . $icon . '</button>';
     } else {
         // $icon = ($wishAction == 'add') ? 'delete-icon' : 'add-icon';
-        return '<button class="small-btn ' . $wishAction . '-icon mx-2 ' . $logClass . $addToList . '" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="2"></button>';
+        return '<button class="small-btn ' . $wishAction . '-icon mx-2 mt-0 ' . $logClass . $addToList . '" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="2"></button>';
     }
 }
 
@@ -792,16 +792,17 @@ function getCardImage($content, $key, $size = 'medium', $fallback = [])
 {
     // if (empty($fallback)) {
     $fallback = [
-        'banner_image' => 'default-830x400.png',
-        'cover_image' => 'default-830x400.png',
-        'cover_image_special' => 'default-200x200.png',
-        'spotlight_epic_shorts_image' => 'default-200x200.png',
-        'epic_shorts_image' => 'default-200x200.png',
-        'vertical_cover_image' => 'default-200x300.png',
-        'culinary_delights_image' => 'default-200x300.png',
-        'wildlife_image' => 'default-200x300.png',
-        'sports_image' => 'default-200x300.png',
-        'travel_image' => 'default-200x300.png',
+        'banner_image'                  => 'default-830x400.png',
+        'cover_image'                   => 'default-830x400.png',
+        'cover_image_special'           => 'default-200x200.png',
+        'spotlight_epic_shorts_image'   => 'default-200x200.png',
+        'epic_shorts_image'             => 'default-200x200.png',
+        'vertical_cover_image'          => 'default-200x300.png',
+        'culinary_delights_image'       => 'default-290.5x365.png',
+        'wildlife_image'                => 'default-288x324.png',
+        'sports_image'                  => 'default-198x284.png',
+        'travel_image'                  => 'default-297x197.png',
+        'imageUrl'                      => 'default-200x200.png',
     ];
     // }
     $img_url = '';
@@ -1126,4 +1127,29 @@ if (!function_exists('sanitizeData')) {
     {
         return !empty($data) ? nl2br(str_replace("\\r\\n", "\r\n", $data)) : '';
     }
+}
+
+if (!function_exists('lastActiveTime')) {
+    function lastActiveTime($date = "")
+    {
+        if (empty($date))
+            return false;
+        $date = date('Y-m-d', strtotime($date));
+        $current_date = date("Y-m-d");
+        $previous_date = date("Y-m-d", strtotime('-1 day', strtotime($current_date)));
+        $activeDate = '';
+        if ($date == $current_date) {
+            $activeDate = 'Today';
+        } else if ($date == $previous_date) {
+            $activeDate = 'Yesturday';
+        } else {
+            $activeDate = date("j M, Y", strtotime($date));
+        }
+        return $activeDate;
+    }
+}
+
+
+function getDeviceId() {
+    return session()->get('device_id') ?? '';
 }

@@ -71,7 +71,7 @@ function initSliders() {
                 breakpoint: 480,
                 settings: {
                     centerMode: true,
-                    centerPadding: '60px',
+                    centerPadding: '70px',
                     slidesToShow: 1,
                     dots: false,
                 }
@@ -1110,22 +1110,24 @@ function initSliders() {
         }
     }
 
-    $(document).on('click', '.shuffleContent', function (e) {
+    $(document).off('click.shuffleContent').on('click.shuffleContent', '.shuffleContent', function (e) {
         stopPlayer();
         e.preventDefault();
+
         $("#supermixWatchBtn").prop("disabled", false);
         getSupermixData();
-        $('.supermix-banner video').hide();
-        $('.supermix-banner img').show();
+        $('#supermix-banner-video').hide();
+        $('#supermix-banner-img').show();
     });
 
-    $(document).on('click', '.superMixButton', function (e) {
+    $(document).off('click.superMixButton').on('click.superMixButton', '.superMixButton', function (e) {
         e.preventDefault();
+
         $("#supermixWatchBtn").prop("disabled", false);
         let img = $(this).parents('.super-mix').find('.supImg').attr('src');
         $('#supermixModal .supermix-banner img').attr('src', img);
-        $('.supermix-banner video').hide();
-        $('.supermix-banner img').show();
+        $('#supermix-banner-video').hide();
+        $('#supermix-banner-img').show();
         $('#supermixModal').modal('show');
         getSupermixData();
     });
@@ -1203,12 +1205,21 @@ function initSliders() {
 
 }
 
-$(".readmore-less").on("click",function(){
-    $(".seemore p").toggleClass("readmore-toggle");
-
-    if ($(this).text() == "Read More") {
-        $(this).text("Read Less")
-      } else {
-        $(this).text("Read More")
-      }
-});
+jQuery(function($) {
+    var show_char = 300;
+    var ellipses = "... ";
+    var content = $(".descText").text();
+    if (content.length > show_char) {
+      var a = content.substr(0, show_char);
+      var b = content.substr(show_char - content.length);
+      var html = a + "<span class='truncated'>" + ellipses + "</span><span class='truncated' style='display:none'>" + b + "</span>"; //move read more outside
+      $(".descText").html(html);
+      $(".read-button").html("<button class='bg-transparent text-white small read-more readmore-less'>Read More</button>");
+    }
+  
+    $(".read-more").click(function(e) {
+      e.preventDefault();
+      $(".read-more").text() == "Read More" ? $(".read-more").text("Read Less") : $(".read-more").text("Read More") //change here..
+      $(".descText .truncated ").toggle();
+    });
+  });

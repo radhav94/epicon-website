@@ -13,17 +13,21 @@
               @endif
           </div>
           <div class="banner-carousel-1">
-
               @foreach ($value['content'] as $key => $val)
                   <?php
                   $card = getItemCardData($val, $displayLanguageParam);
                   
-                  if(isset($val['airtel_feature_imageHD']) && !empty($val['airtel_feature_imageHD'])){
-                      $banner_img = $val['airtel_feature_imageHD'];
+                  if(isMobliDevice()){
+                      $banner_img = getCardImage($val, 'banner_image', 'medium');
+                  }else{
+                      if(isset($val['airtel_feature_imageHD']) && !empty($val['airtel_feature_imageHD'])){
+                          $banner_img = $val['airtel_feature_imageHD'];
+                      }
+                      else{
+                          $banner_img = asset('assets/img/default-1920x548.png');
+                      }
                   }
-                  else{
-                      $banner_img = asset('assets/img/default-1920x548.png');
-                  }
+                  
                   ?>
 
                   <div class="carousel-card">
@@ -58,7 +62,7 @@
                           </div>
                       </div>
                   </div>
-              @break;
+              
           @endforeach
       </div>
   </div>

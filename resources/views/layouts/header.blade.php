@@ -165,12 +165,12 @@ if (isUserLoggedIn()) {
                 'podcast' => 'Podcasts',
                 'explore' => 'Explore',
                 'premium' => 'Premium',
-                'distro-tv' => 'Distro TV'
+                'distro-tv' => 'DistroTV'
             ];
             $current_route = getFirstSegment();
         }
-    
 ?>
+       @if($kids_page == true && isMobliDevice()==false || $kids_page == false)  
         <ul class="menu-item list-unstyled d-flex mb-0">
             @foreach ($links as $key => $value)
                 <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a onclick="click_menu(this)" data-event_context="header" data-element_text="{{ __($value) }}" href="{{ getUrl($key) }}"
@@ -189,6 +189,8 @@ if (isUserLoggedIn()) {
             @endloggedin
 
         </ul>
+        @endif
+
                 <div class="main-header-right d-flex align-items-center">
             @php $isactive = ""; @endphp
             @if (kidsMode())
@@ -223,7 +225,7 @@ if (isUserLoggedIn()) {
             </a>
             @if (!kidsMode())
             @loggedin
-            <div class="notification p-2 me-2">
+            <div class="notification p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">
                     <path

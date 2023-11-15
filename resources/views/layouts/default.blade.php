@@ -27,6 +27,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "hj6mot5z97");
+    </script>
+    
+    <script type="text/javascript">
         var APP_URL = "{{ url('/') }}";
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8JER642T3Z"></script> <script>
@@ -96,6 +104,28 @@
                     onSuccess, onError);
             });
         });
+        if (!localStorage.getItem('deviceId')) {
+          storedDeviceId = generateDeviceId();
+          localStorage.setItem('deviceId', storedDeviceId);
+        }
+
+        function generateDeviceId() {
+          // Use a combination of available information
+          var navigatorInfo = [
+            navigator.userAgent,
+            navigator.language,
+            navigator.platform,
+            screen.width,
+            screen.height,
+            new Date().getTimezoneOffset(),
+          ];
+
+          // Combine and hash the information to create a unique identifier
+          var deviceId = JSON.stringify(navigatorInfo);
+          deviceId = btoa(deviceId);
+
+          return deviceId;
+        }
     </script>
 </body>
 

@@ -53,7 +53,7 @@ class SearchController extends Controller
 
             // Define a mapping of category titles to response keys
             $categoryMapping = [
-                'All'       => 'AllResult',
+                // 'All'       => 'AllResult',
                 'Movies'    => 'MoviesResult',
                 'Shows'     => 'ShowsResult',
                 'Podcasts'  => 'PodcastsResult',
@@ -95,7 +95,7 @@ class SearchController extends Controller
         $dateText = isset($topResult['release_date']) ? date('Y-m-d', strtotime($topResult['release_date'])) : '';
         $wishlist = getWishlist();
         $wishlistAction = getWishListAction($topResult, $wishlist, 2);
-        
+
 
         $htmlContent = '<h5 class="text-white">Top Result</h5>'
             . '<ul class="list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4">';
@@ -109,14 +109,19 @@ class SearchController extends Controller
             $anchorHtml = '<a  onclick="click_search_results(this)" data-element_text="'.@$topResult['title'].'" href="'.getContentUrl($topResult).'" >';
         }
         
+        if( ($dateText && $topResult['duration']) != ''){
+            $pipe = '|';
+        }else{
+            $pipe = '';
+        }
 
-        $list = '<li class="episode-main mb-4">'
-            . '<div class="pik"><img src="' . $cover_img . '" alt="img">' . $premium . '</div>'
+        $list = '<li class="episode-main mb-4">' 
+            . '<div class="pik">'.$anchorHtml.'<img src="' . $cover_img . '" alt="img">' . $premium . '</a></div>'
             . '<div class="episode-text-details">'
-            . '<h6>' . @$topResult['title'] . '</h6>'
-            . '<span>' . @$dateText . ' | ' . @$topResult['duration'] . '</span>'
+            . '<h6>'.$anchorHtml . @$topResult['title'] . '</a></h6>'
+            . '<span>' . @$dateText . $pipe . convertSecondsToReadable(@$topResult['duration'])  . '</span>'
             . '<p class="search-top mt-2">' . sanitizeData(@$topResult['description']) . '</p>'
-            . '<div class="d-flex align-items-center"> '.$anchorHtml.' <button class="fill-btn em ms-0">' . __('Watch') . '</button></a>' . $wishlistAction . '</div></div>'
+            . '<div class="d-flex align-items-center"> '.$anchorHtml.' <button class="fill-btn em ms-0 mt-0">' . __('Watch') . '</button></a>' . $wishlistAction . '</div></div>'
             . '</li>';
         $htmlContent .= $list . '</ul>';
         $this->addHistorySession($list, @$topResult['title']);
@@ -158,8 +163,8 @@ class SearchController extends Controller
         $contents = @$content['content'];
         $htmlContent = "";
         if ($contents) {
-            $htmlContent = '<div class="carousel-main">
-                            <h5 class="text-white">Other Results</h5>
+            $htmlContent = '<h5 class="text-white">Other Results</h5>
+                            <div class="carousel-main">
                             <ul class="more-like-this carousel-initilize p-0">';
             foreach ($contents as $content) {
                 $cover_img = getCardImage($content, 'cover_image', 'medium');

@@ -17,7 +17,7 @@
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
             
-            $cover_img = getCardImage($val, 'sports_image', 'medium');
+            $cover_img = getCardImage($val, 'sports_image', 'large');
             $getTitle = getNewTitle($val);
             ?>
             <li>

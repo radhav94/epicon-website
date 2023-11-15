@@ -70,14 +70,17 @@ function click_menu(e) {
         t = $(e).data("element_text");
     dataLayer.push({ event: "click_menu", event_context: a, element_text: t, time_on_page: time_on_page() }), window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset();
 }
-function video_start(e, a) {
-    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "video_start", video_duration: e, video_name: a });
+function video_play(e, a) {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "video_play", video_duration: e, video_name: a });
 }
 function video_pause(e, a, t, n) {
     window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "video_pause", video_duration: a, video_name: n, video_percent_viewed: t, video_seconds_viewed: e });
 }
-function video_complete(e, a, t) {
-    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "video_complete", video_duration: a, video_name: t, video_seconds_viewed: e });
+function video_seek(a, e, o) {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "video_seek", video_duration: a, video_name: o, video_seconds_viewed: e });
+}
+function video_ended(a, e, o) {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "video_ended", video_duration: a, video_name: o, video_seconds_viewed: e });
 }
 function click_cta(e) {
     window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();

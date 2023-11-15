@@ -4,7 +4,7 @@
 
  @if (@$result['data']['list'])
      @foreach ($result['data']['list'] as $key => $value)
-         @if (isset($value['display_type']) && isset($value['content']) && !empty($value['content']))
+         @if (isset($value['display_type']) && ((isset($value['content']) && !empty($value['content'])) || $value['display_type'] == "shortandsweet"))
              @php
                  $template = 'display.' . $value['display_type'];
              @endphp
@@ -20,7 +20,7 @@
                      <h1>{{ $value['display_type'] }}</h1>
                  @endif
 
-                @if (isset($stories) && @$value['slug'] == "short-and-sweet")
+                @if (isset($stories) && $value['display_type'] == "shortandsweet")
                     @include('display.epicshots', ['stories' => $stories])
                 @else
                     @include($template, [

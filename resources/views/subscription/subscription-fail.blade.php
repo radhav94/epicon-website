@@ -6,7 +6,7 @@
 <section class="container-fluid mt-4">
         <div class="row">
             <div class="col-12">
-         <p class="text-white text-center">{{$message}}</p>
+         <p class="text-white text-center">Transaction unsuccessful: {{$message}}</p>
             </div>
         </div>
     </section>

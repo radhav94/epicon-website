@@ -120,11 +120,12 @@
 
              container.on("click", null);
              //all slices have been seen, all done
-             // console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
-             if (oldpick.length == data.length) {
+             console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
+             //uncomment for uniqueness
+            /* if (oldpick.length == data.length) {
                  container.on("click", null);
                  return;
-             }
+             }*/
              var ps = 360 / data.length,
                  pieslice = Math.round(1440 / data.length),
                  rng = Math.floor((Math.random() * 1440) + 360);
@@ -133,12 +134,19 @@
 
              picked = Math.round(data.length - (rotation % 360) / ps);
              picked = picked >= data.length ? (picked % data.length) : picked;
-             if (oldpick.indexOf(picked) !== -1) {
+
+             //uncomment for uniqueness
+             /*if (oldpick.indexOf(picked) !== -1) {
+                console.log('this')
                  d3.select(this).call(spin);
                  return;
              } else {
+                console.log(picked)
                  oldpick.push(picked);
-             }
+             }*/
+
+             oldpick.push(picked);
+
              rotation += 90 - Math.round(ps / 2);
              vis.transition()
                  .duration(3000)

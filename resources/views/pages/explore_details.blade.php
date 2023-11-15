@@ -27,7 +27,7 @@
             height: 55px;
             line-height: 52px;
             border-radius: 32px;
-            border: solid 1px #fff;
+            /* border: solid 1px #fff; */
             background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
             text-transform: uppercase;
             display: inline-block;
@@ -44,7 +44,7 @@
         <div class="new-popular-main explore-details" id="showmore_load">
             <h4 class="new-popularheading text-white mb-3">{{ __(ucfirst($slug)) }}</h4>
 
-            @include('pages.explorecontent');
+            @include('pages.explorecontent')
         </div>
 
         <!-- Load More Btn Start -->

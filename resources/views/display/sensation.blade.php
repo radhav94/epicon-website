@@ -1,3 +1,7 @@
+<?php 
+    $isMoblile      = isMobliDevice();
+?>
+
 <section class="carousel-main pt-0 mb-0" id="tranding">
     <div class="container-fluid">
         <div class="carousel-title-n-arrow mb-3">
@@ -19,13 +23,18 @@
                     <?php
                     $card = getItemCardData($val, $displayLanguageParam);
                     
-                    $cover_img = getCardImage($val, 'banner_image', 'large', ['cover_image']);
+                    if( $isMoblile ){
+                        $cover_img = getCardImage($val, 'vertical_cover_image', 'medium');
+                    }else{
+                        $cover_img = getCardImage($val, 'banner_image', 'large', ['cover_image']);
+                    }
+                    
                     
                     ?>
                     <div class="swiper-slide tranding-slide">
                         <div class="tranding-slide-img position-relative">
-                            <a onclick="click_carousel(this)(this)" data-title ="{{ @$val['title'] }}" href="{{ getContentUrl($val) }}">
-                                <img src="{{ $card['banner_img'] }}" />
+                            <a href="{{ getContentUrl($val) }}" onclick="click_carousel(this)(this)" data-title ="{{ @$val['title'] }}">
+                                <img src="{{ $cover_img }}" />
                             </a>
                             <div class="carousel-items-content position-absolute">
                                 <h1>{{ @$val['title'] }}</h1>
