@@ -149,7 +149,9 @@ $subplan = checkSubscription();
                         </button> -->
                     </p>
                     <p>
-                        <img src="{{ asset('/img/mobile.svg') }}" alt="">&nbsp; {{ isset($viewprofile['user_id']) ? $viewprofile['user_id'] : '' }}
+                    @if(!empty($viewprofile['mobile']))
+                        <img src="{{ asset('/img/mobile.svg') }}" alt="">&nbsp; {{ isset($viewprofile['mobile']) ? $viewprofile['mobile'] : '' }}
+                    @endif
                     </p>
                     {{--<p class="border-bot pb-4">
                         <img src="{{ asset('/img/visa.svg') }}" alt=""> &nbsp; visa **** **** **** 1823
