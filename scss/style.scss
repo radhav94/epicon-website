@@ -1403,8 +1403,8 @@ input {
                     background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.77) 100%);
                 }
                 @media screen and (max-width: 767px) {
-                    border-radius: 12px;
-                    height: 155px;
+                    border-radius: 10px;
+                    height: auto;
                 }
             }
             @media (max-width:1024px) {
@@ -2179,7 +2179,7 @@ input {
 }
 .card-body .upper-img{
     display: block;
-    height: 177px;
+    height: 164px;
     overflow: hidden;
     border-radius: 10px;
 
@@ -4075,6 +4075,10 @@ input {
     top: 18px;
     z-index: 9;
     border: none;
+    @media (max-width:767px) {
+        right: 2px;
+        top: 2px;
+    }
 }
 .login-carousel{
     &.slick-dotted.slick-slider{
@@ -7074,8 +7078,8 @@ input {
     gap: 10px;
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 30px;
-    margin-top: 30px;
+    padding-top: 10px;
+    margin-top: 10px;
     border-top: 1px solid rgba($color: rgb(255 255 255), $alpha: 0.1);
 
     button{
@@ -7120,7 +7124,8 @@ input {
 }
 
 #audioPlayer{
-    width: 50%;
+    width: 100%;
+    height: 30px;
     @media (max-width:768px) {
         width: 100%;
     }
@@ -7194,11 +7199,11 @@ input {
         width: 30px!important;
     }
 }
-.share-hover:hover{
-    .share-open{
-        display: flex;
-    }
-}
+// .share-hover:hover{
+//     .share-open{
+//         display: flex;
+//     }
+// }
 .share-open{
     position: absolute;
     display: flex;
@@ -7410,4 +7415,10 @@ audio::-webkit-media-controls-play-button {
         color: #fff;
         font-size: 14px;
     }
+  }
+  .plyr--video .plyr__controls{
+    padding: 10px 0px 15px 10px!important;
+  }
+  #playVideo{
+    width: auto!important;
   }

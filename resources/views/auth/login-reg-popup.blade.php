@@ -74,7 +74,7 @@
                         <div class="login-popup-modal screen-login">
                             <form method="POST" name="mobile-number-form" id="mobile-number-form-id">
                                 @csrf
-                                <h5 class="mb-4 text-white">Login or Register</h5>
+                                <h5 class="mb-4 text-white">Login or Password</h5>
                                 <div class="input-field w-100 mb-3 position-relative">
                                     <select class="uk-select select-control input__field stdisdcode" name="stdisdcode">
                                         {!! getCountryStateDataInHtml() !!}
