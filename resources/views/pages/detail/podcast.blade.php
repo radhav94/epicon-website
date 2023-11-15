@@ -68,7 +68,7 @@ $episode_json = json_encode($episode_list);
     <section class="container w-100 mt-2">
         <div class="row justify-content-center">
             <div class="col-sm-12">
-                <div class="podcast-top w-100">
+                <div class="podcast-top w-100 align-items-lg-start">
                     <div class="thumb">
                         {{-- <h6 class="pod-title">EPIC ON ORIGINAL</h6> --}}
                         {{-- <h5 class="pod-series">CASO.63</h5> --}}
@@ -131,12 +131,12 @@ $episode_json = json_encode($episode_list);
                             </div>
                         </div>
                         <div class="seemore">
-                        <p class="pod-detail-text mt-3 descText">{!! sanitizeData(@$content['description']) !!}</p>
+                        <p class="pod-detail-text mt-3 descText mb-0">{!! sanitizeData(@$content['description']) !!}</p>
                         <?php //echo strlen(@$content['description']); exit; ?>
-                        <span class="read-button"> </span>
+                        <span class="read-button d-block mb-3"> </span>
                         </div>
                         <div class="podcast-btns d-flex align-items-center" data-id="{{ @$content['ID'] }}">
-                            <button class="fill-btn ms-0 px-4 {{$watchClass}}" id="{{ $watchid }}">
+                            <button class="fill-btn ms-0 mt-0 {{$watchClass}}" id="{{ $watchid }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28" viewBox="0 0 29 28" fill="none">
                                     <path d="M26.75 14.0005C26.7507 14.2976 26.6745 14.5899 26.5289 14.8488C26.3832 15.1077 26.173 15.3246 25.9188 15.4782L10.16 25.1185C9.89431 25.2812 9.59001 25.37 9.27852 25.3758C8.96703 25.3816 8.65965 25.3041 8.38813 25.1513C8.11918 25.001 7.89515 24.7817 7.73905 24.516C7.58296 24.2503 7.50045 23.9479 7.5 23.6398V4.36133C7.50045 4.0532 7.58296 3.75076 7.73905 3.48509C7.89515 3.21943 8.11918 3.00014 8.38813 2.84976C8.65965 2.69702 8.96703 2.61953 9.27852 2.6253C9.59001 2.63107 9.89431 2.71989 10.16 2.88258L25.9188 12.5229C26.173 12.6765 26.3832 12.8934 26.5289 13.1523C26.6745 13.4112 26.7507 13.7035 26.75 14.0005Z" fill="#272727" />
                                 </svg> &nbsp;
@@ -223,6 +223,60 @@ $episode_json = json_encode($episode_list);
     @include('pages.detail.detail-components.tabs')
     {{-- @endif --}}
 
+</div>
+
+<div class="podcast-bottom-player">
+    <div class="container m-auto">
+        <div class="podcast-wrapper-main">
+            <div class="pod-cast-wrapper d-flex">
+                <div class="pod-main">
+                    <div class="pik position-relative">
+                        <a href="https://epicon-revamp.test/podcast/rahim-ke-dohe/season-1/introduction" class="pik-img">
+                            <img src="https://st2.epicon.in/featured-images/1682076637-image-360x360.jpg" alt="img">
+                        </a>
+                        <img class="podcast-top-icon" src="https://epicon-revamp.test/assets/img/podcast-top-icon.svg" alt="podcast icon">
+                    </div>
+                </div>
+                <div class="pod-pik-detals d-flex align-items-center">
+                    <div class="w-100">
+                        <h5>S1 E1 Lorem ipsum dolor sit amet, consectetur</h5>
+                        <p>Unstoppable Women with Shailja Saraswati</p>
+                        <div class="podcast-bottom-progress d-flex">
+                            <span class="me-3">05:00</span>
+                            <div class="progress-main">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <span class="ms-3">30:08</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="podcast-controls">
+                <div class="controll-inner">
+                    <button class="tenx-prev">
+                        <img src="{{asset('img/10x-prev.svg')}}" alt="icons">
+                    </button>
+                    <!-- <button class="podcast-play">
+                        <img src="{{asset('img/podcast-play.svg')}}" alt="icons">
+                    </button> -->
+                    <button class="podcast-pause">
+                        <img src="{{asset('img/podcast-pause.svg')}}" alt="icons">
+                    </button>
+                    <button class="tenx-next">
+                        <img src="{{asset('img/10x-next.svg')}}" alt="icons">
+                    </button>
+                    <button class="tenx-next">
+                        <img src="{{asset('img/podcast-add.svg')}}" alt="icons">
+                    </button>
+                </div>
+                <button class="podcast-close">
+                    <img src="{{asset('img/podcast-close.svg')}}" alt="icons">
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 
 @include('components.share-modal')
