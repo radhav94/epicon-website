@@ -17,6 +17,13 @@ body{
 *::-webkit-scrollbar {
     display: none;
   }
+
+  input:-webkit-autofill { 
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #ffffff;
+}
+
+
 .banner-carousel{
     opacity: 0;
     visibility: hidden;
