@@ -432,7 +432,7 @@ class SubscriptionController extends Controller
                 $res['html'] = '<ul class="additional-carousel mb-0 mt-3 p-0">' . $html . '</ul>';
                 $res['count'] = $i;
                 $res['pname'] = ucfirst(strtolower($pname));
-                return response()->json($res, 201)->header('Content-Type', 'application/json');
+                return response()->json($res, 200)->header('Content-Type', 'application/json');
             } else {
                 return response()->json($message, 201)->header('Content-Type', 'application/json');
             }
