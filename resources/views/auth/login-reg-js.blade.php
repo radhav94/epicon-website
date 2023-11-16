@@ -35,7 +35,7 @@
             }
             $('.login-popup-modal').hide();
 
-            $('.left-side,.right-side,.screen-login').show();
+            $('.left-side,.right-side,.screen-login-with-pwd').show();
             $('#login-modal').show();
             $('#login-modal').addClass("show");
             $(".child-box").val('');
@@ -160,7 +160,7 @@
             // alert("resend btn");
             // Disable the resend button
             $('#resendBtn').prop('disabled', true);
-
+            $('.childpin-input .child-box').val('');
             // Set a countdown of 30 seconds
             var countdown = 30;
             var countdownDiv = $('.resend-otp');
@@ -512,7 +512,7 @@
                             // $('#register-result').html('');
                             // $("#username").text(response.payload.name);
                             // $("#sign_method").val(response.payload.user_signup_method);
-                            $('.left-side, .login-popup-modal').hide();
+                            $('.left-side, .right-side, .login-popup-modal').hide();
                             $('.screen-sucess-logged').show();
                             
                             if(response.payload.subplan_status == 'active'){
