@@ -3959,6 +3959,9 @@ input {
 
     .left-side{
         width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         img{
             height: 400px;
             object-fit: contain;
@@ -7250,11 +7253,18 @@ input {
         width: 30px!important;
     }
 }
-// .share-hover:hover{
-//     .share-open{
-//         display: flex;
-//     }
-// }
+.share-hover:hover{
+    .share-open{
+        display: flex;
+    }
+}
+.tooltip { 
+    pointer-events: none;
+}
+.copyUrl{
+    width: 50px;
+    height: 50px;
+}
 .share-open{
     position: absolute;
     display: flex;

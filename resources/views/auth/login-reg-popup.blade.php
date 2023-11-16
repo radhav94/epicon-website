@@ -309,8 +309,8 @@
                                     <!-- Display validation result here -->
                                 </div>
                                 <div class="w-100 d-flex justify-content-between">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck"
+                                    <div class="form-check ps-0 d-flex align-items-center">
+                                        <input type="checkbox" class="custom-control-input me-2" id="customCheck"
                                             name="rememberme" value="false">
                                         <label class="form-check-label small text-white" for="flexCheckDefault1">
                                             Remember me
