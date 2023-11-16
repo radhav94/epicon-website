@@ -53,19 +53,25 @@
                         </div>
                         <div class="login-carousel px-2">
                             <div>
-                                <h5 class="text-white text-start">Get much more than just OTT</h5>
-                                <p class="text-white text-start">Watch TV Shows, Movies, Live TV, Listen to Podcasts &
+                                <h5 class="text-white text-start">Get much more than just an App</h5>
+                                <p class="text-white text-start">Watch Enthralling Shows, Movies, Live TV, Listen to Podcasts &
                                     Play Games</p>
                             </div>
                             <div>
-                                <h5 class="text-white text-start">Watch on any device</h5>
-                                <p class="text-white text-start">Stream on your phone, tablet, laptop and TV without
-                                    paying more </p>
+                                <h5 class="text-white text-start">One Subscription multiple devices</h5>
+                                <p class="text-white text-start">Stream on smartphone,tab,Smart TV effortlessly with one subscription</p>
                             </div>
                             <div>
-                                <h5 class="text-white text-start">Fam-Tastic Watch</h5>
-                                <p class="text-white text-start">Stream on your phone, tablet, laptop and TV without
-                                    paying more </p>
+                                <h5 class="text-white text-start">Kids Safe  Content </h5>
+                                <p class="text-white text-start">Kids content control in your hands with Pin-Based logins</p>
+                            </div>
+                            <div>
+                                <h5 class="text-white text-start">Exclusive EPIC ON Originals  </h5>
+                                <p class="text-white text-start">Exclusive Originals only Available on the App & Web , groove to the tunes of Tatlubaaz and many more</p>
+                            </div>
+                            <div>
+                                <h5 class="text-white text-start">Jaw-dropping Reward Store </h5>
+                                <p class="text-white text-start">More than 500+ brands listed on the platform for you to win every-second</p>
                             </div>
                         </div>
                     </div>
