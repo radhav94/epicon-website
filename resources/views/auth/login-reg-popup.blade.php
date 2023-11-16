@@ -154,7 +154,7 @@
                                     <!-- Display validation result here -->
                                 </div>
                                 <button class="btn btn-primary bg-transparent" id="resendBtn" onclick="resendOTP()">Resend OTP</button>
-                                <button class="login-btn verify-btn mt-4" style="width: 280px;">
+                                <button class="login-btn verify-btn mt-4">
                                     Verify Number
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none">
@@ -320,7 +320,7 @@
                                         class="bg-transparent text-white p-0 small w-auto border-0 forgot-pwd-btn">Forgot
                                         Password?</button>
                                 </div>
-                                <button class="login-btn continue-login-btn mt-4" style="width: 280px;">
+                                <button class="login-btn continue-login-btn mt-4">
                                     Continue to Login
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none">
@@ -332,9 +332,8 @@
                                             fill="#070707"></path>
                                     </svg>
                                 </button>
-                                <button class="login-btn login-btn-otp mt-0 bg-transparent text-white"
-                                    style="width: 280px;">Login using OTP</button>
-                                <h6 class="mb-4 text-white text-start mt-4">or Continue with</h6>
+                                <button class="login-btn login-btn-otp mt-0 bg-transparent text-white">Login using OTP</button>
+                                <h6 class="mb-4 text-white text-center mt-4 small">or Continue with</h6>
                                 <div class="lg-social">
                                     <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
                                             alt=""></a>
