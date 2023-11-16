@@ -151,10 +151,11 @@ $(document).on('keydown', '.onlydigit', function (e) {
 $(document).on('click', '.shareThis', function () {
     let url = $(this).data('url');
     let title = $(this).data('title') || 'Epic On';
+    let data_type = $(this).data('type');
 
     console.log(title);
 
-    $('#shareDiv').html('<div class="socialJS"><a href="javascript:void(0)" data-url="'+url+'" id="linkCopy" data-toggle="tooltip" title="Copy" class="my-tool-tip"><i class="fas fa-copy" style="color:#b9b9b9"></i></a><a data-action="social-share" href="https://www.facebook.com/sharer.php?u='+url+'" target="_blank"><i class="fab fa-facebook" style="color:#4267B2"></i></a><a data-action="social-share" href="https://twitter.com/share?url='+url+'" target="_blank"><img src="../assets/img/share-x.svg"></a></div>');
+    $('#shareDiv').html('<div class="socialJS"><a onclick="share(this)" data-title="'+title+'" data-type="'+data_type+'" data-method="Link Copy"  href="javascript:void(0)" data-url="'+url+'" id="linkCopy" data-toggle="tooltip" title="Copy" class="my-tool-tip"><i class="fas fa-copy" style="color:#b9b9b9"></i></a><a onclick="share(this)" data-title="'+title+'" data-type="'+data_type+'" data-method="facebook" data-action="social-share" href="https://www.facebook.com/sharer.php?u='+url+'" target="_blank"><i class="fab fa-facebook" style="color:#4267B2"></i></a><a onclick="share(this)" data-title="'+title+'" data-type="'+data_type+'" data-method="twitter" data-action="social-share" href="https://twitter.com/share?url='+url+'" target="_blank"><img src="../assets/img/share-x.svg"></a></div>');
 
     // $('#shareDiv').empty();
     // $('#shareDiv').socialSharingPlugin({
