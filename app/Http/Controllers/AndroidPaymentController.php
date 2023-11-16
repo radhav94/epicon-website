@@ -196,7 +196,10 @@ class AndroidPaymentController extends Controller
         Log::info("-----End------");
         $paymtentStatus = strtolower($paymentresponse['status']);
         $final_result = ['message' => 'The transaction has been declined.',
-        'orderData'=>$paymentresponse ];
+        'status'=>@$paymtentStatus,
+        'payu_err_message'=>@$paymentresponse['error_Message'],
+        'mode'=>@$paymentresponse['mode']
+        ];
         $result = json_encode($final_result);
         if ($paymentresponse['status'] == 'success') {
             $orderData = $request->session()->get('payuParams');
@@ -291,8 +294,10 @@ class AndroidPaymentController extends Controller
                 Log::info("-----END----------------------");
 
                 $final_result = ['message' => 'You have successfully purchased a subscription plan.',
-                'orderData'=>$orderData,
-                'payresponse'=>$paymentresponse
+                'txnid'=>@$paymentresponse['txnid'],
+                'bank_ref_num'=>@$paymentresponse['bank_ref_num'],
+                'mode'=>@$paymentresponse['mode'],
+                'status'=>@$paymtentStatus,
             ];
             $result = json_encode($final_result);
                 return view('subscription.android-json', compact('result'));
