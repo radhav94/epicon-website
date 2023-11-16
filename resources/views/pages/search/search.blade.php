@@ -71,16 +71,16 @@
                             <button class="nav-link ep active" id="episode" data-bs-toggle="pill" data-bs-target="#pills-episode" type="button" role="tab" aria-controls="pills-episode" aria-selected="true">{{__('All')}}</button>
                         </li>--}}
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link ep active" id="morelike" data-bs-toggle="pill" data-bs-target="#pills-morelike" type="button" role="tab" aria-controls="pills-morelike" aria-selected="false">{{__('Movies')}}</button>
+                            <button class="nav-link ep active" id="kids" data-bs-toggle="pill" data-bs-target="#pills-kids" type="button" role="tab" aria-controls="pills-kids" aria-selected="false">{{__('Kids')}}</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="morelike" data-bs-toggle="pill" data-bs-target="#pills-morelike" type="button" role="tab" aria-controls="pills-morelike" aria-selected="false">{{__('Movies')}}</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="trailors" data-bs-toggle="pill" data-bs-target="#pills-trailors" type="button" role="tab" aria-controls="pills-trailors" aria-selected="false">{{__('Shows')}}</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="history" data-bs-toggle="pill" data-bs-target="#pills-about" type="button" role="tab" aria-controls="pills-about" aria-selected="false">{{__('Podcasts')}}</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="kids" data-bs-toggle="pill" data-bs-target="#pills-kids" type="button" role="tab" aria-controls="pills-kids" aria-selected="false">{{__('Kids')}}</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="games" data-bs-toggle="pill" data-bs-target="#pills-games" type="button" role="tab" aria-controls="pills-games" aria-selected="false">{{__('Games')}}</button>
@@ -92,7 +92,11 @@
                             <div class="topResult" id="Alltopresult"></div>
                             <div class="otherResult" id="AllOtherResult"></div>
                         </div>--}}
-                        <div class="tab-pane fade show active" id="pills-morelike" role="tabpanel" aria-labelledby="my-list">
+                        <div class="tab-pane fade show active" id="pills-kids" role="tabpanel" aria-labelledby="my-list">
+                            <div class="topResult" id="Kidstopresult"></div>
+                            <div class="otherResult" id="KidsOtherResult"></div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-morelike" role="tabpanel" aria-labelledby="my-list">
                             <div class="topResult" id="Moviestopresult"></div>
                             <div class="otherResult" id="MoviesOtherResult"></div>
                         </div>
@@ -103,10 +107,6 @@
                         <div class="tab-pane fade" id="pills-about" role="tabpanel" aria-labelledby="my-list">
                             <div class="topResult" id="Podcasttopresult"></div>
                             <div class="otherResult" id="PodcastOtherResult"></div>
-                        </div>
-                        <div class="tab-pane fade" id="pills-kids" role="tabpanel" aria-labelledby="my-list">
-                            <div class="topResult" id="Kidstopresult"></div>
-                            <div class="otherResult" id="KidsOtherResult"></div>
                         </div>
                         <div class="tab-pane fade" id="pills-games" role="tabpanel" aria-labelledby="my-list">
                             <div class="topResult" id="Gamestopresult"></div>
