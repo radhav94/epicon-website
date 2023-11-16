@@ -3,7 +3,7 @@
     <title>Paymoney</title>
 </head>
 <body>
-    <?php //dd($parameters); ?>
+ 
     <form method="post" name="redirect" action="{{$parameters['payuUrl']}}">
         <input type=hidden name="key" value="{{ $parameters['key'] }}">
         <input type=hidden name="hash" value="{{ $parameters['hash'] }}">
