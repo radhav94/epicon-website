@@ -11,7 +11,10 @@ class AndroidPaymentController extends Controller
     public function androidPayuUsingWeb(){
 
         $request = Request();
-        //dd($request->all());exit();
+        Log::info("-----Android Request Data------");
+        Log::debug(json_encode($request->all()));
+        Log::info("-----End------");
+
         $userid = $request->get('user_id');
         $firstname = $request->get('firstname');
         $order_number = $request->get('order_id');
@@ -26,7 +29,6 @@ class AndroidPaymentController extends Controller
         $payment_type = $request->get('pg');
         $mobile = $request->get('mobile');
         $email = $request->get('email');
-        // test amount logic
         if (env('DEV_AMT') == true || $userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025') {
             $totalamount = "1";
         }
@@ -182,8 +184,6 @@ class AndroidPaymentController extends Controller
         Log::debug(json_encode($parameters));
         Log::info("-----End------");
         $orderData = $request->session()->get('payuParams');
-        //dd($orderData);exit();
-        //dd($orderData);
         return view('subscription.payumoney', compact('parameters'));
         }
     }
@@ -191,15 +191,18 @@ class AndroidPaymentController extends Controller
     public function androidPayuresponse(Request $request){
 
         $paymentresponse = $request->all();
+        Log::info("-----Android payment Response Data------");
+        Log::debug(json_encode($paymentresponse));
+        Log::info("-----End------");
         $paymtentStatus = strtolower($paymentresponse['status']);
         $final_result = ['message' => 'The transaction has been declined.',
-        'orderData'=>$paymentresponse ];
+        'status'=>@$paymtentStatus,
+        'payu_err_message'=>@$paymentresponse['error_Message'],
+        'mode'=>@$paymentresponse['mode']
+        ];
         $result = json_encode($final_result);
-        //$getOnlyDate = date('Y-m-d', strtotime(@$orderdata['subscription_end_date']));
         if ($paymentresponse['status'] == 'success') {
             $orderData = $request->session()->get('payuParams');
-            //dd($orderData);
-            //$orderValue = $request->session()->get('create_order');
             $getOnlyDate = date('Y-m-d', strtotime(@$orderData['subscription_end_date']));
 
             $updateOrderData = [
@@ -223,8 +226,7 @@ class AndroidPaymentController extends Controller
             ];
 
             $planValue = $orderData['epic_price'] ?? '';
-            ///////////---*** Verify Payment Start ***---///////////
-
+           
             $parameters_verify_payment['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
             $parameters_verify_payment['command'] = 'verify_payment';
             $parameters_verify_payment['var1'] = $paymentresponse['txnid'];
@@ -238,29 +240,16 @@ class AndroidPaymentController extends Controller
             Log::debug(json_encode($parameters_verify_payment));
             Log::debug($verify_payment);
             Log::info("-----END----------------------");
-            ///////////---*** Verify Payment End ***---///////////
 
             $verifyDetails = json_decode($verify_payment);
             if ($verifyDetails->status) {
-
-                ///---------***Prchase order api***-------///
-                // Log::info("-----createupdateorder----------------------");
-                // Log::debug(json_encode($orderData));
-                // $updateData = CurlAPI("subscriptions/createupdateorder", 'POST', $orderData, 2);
-                // //dd($updateData);
-                // Log::info("-----update Subscription Status after payment verify.");
-                // Log::debug(json_encode($updateData));
-                // Log::info("-----END----------------------");
-                ///---------***End Prchase order api***-------///
                 Log::info("-----updateOrderData----------------------");
                 Log::debug(json_encode($updateOrderData));
-                ///------***Update create order with payment details***--------///
                 $updatePayment = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2);
 
                 Log::info("-----update Subscription Payment details after payment verify.");
                 Log::debug(json_encode($updatePayment));
                 Log::info("-----END----------------------");
-                ///------***End payment details***--------///
 
                 $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
                 $parameters['command'] = 'pre_debit_SI';
@@ -283,7 +272,6 @@ class AndroidPaymentController extends Controller
                 Log::debug(json_encode($parameters));
                 Log::debug($pre_debit);
                 Log::info("-----END----------------------");
-                ///////////////---*** Recurring Payment Transaction ***---//////////
                 $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
                 $parameters['command'] = 'si_transaction';
                 $parameters['var1'] = json_encode([
@@ -305,15 +293,15 @@ class AndroidPaymentController extends Controller
                 Log::debug($recurring_payment);
                 Log::info("-----END----------------------");
 
-                //$this->EventPushData($paymtentStatus);
                 $final_result = ['message' => 'You have successfully purchased a subscription plan.',
-                'orderData'=>$orderData,
-                'payresponse'=>$paymentresponse
+                'txnid'=>@$paymentresponse['txnid'],
+                'bank_ref_num'=>@$paymentresponse['bank_ref_num'],
+                'mode'=>@$paymentresponse['mode'],
+                'status'=>@$paymtentStatus,
             ];
             $result = json_encode($final_result);
                 return view('subscription.android-json', compact('result'));
             } else {
-                ///---*** if payment not verify ***---///
                 return view('subscription.android-json', compact('result'));
             }
         } else {

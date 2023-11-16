@@ -19,14 +19,10 @@
         position: absolute;
         bottom: 0;
         top: 0;
-        color:#fff;
+        color:#000;
         background-image: url("../img/drop-down-arrow-select-white.svg");
         background-repeat: no-repeat;
         background-position: center right 15px;
-        background-color: #000;
-    }
-
-    .input-field select option{
         background-color: #000;
     }
 
@@ -63,15 +59,15 @@
                                 <p class="text-white text-start">Stream on smartphone,tab,Smart TV effortlessly with one subscription</p>
                             </div>
                             <div>
-                                <h5 class="text-white text-start">Kids Safe Content</h5>
+                                <h5 class="text-white text-start">Kids Safe  Content </h5>
                                 <p class="text-white text-start">Kids content control in your hands with Pin-Based logins</p>
                             </div>
                             <div>
-                                <h5 class="text-white text-start">Exclusive EPIC ON Originals</h5>
+                                <h5 class="text-white text-start">Exclusive EPIC ON Originals  </h5>
                                 <p class="text-white text-start">Exclusive Originals only Available on the App & Web , groove to the tunes of Tatlubaaz and many more</p>
                             </div>
                             <div>
-                                <h5 class="text-white text-start">Jaw-dropping Reward Store</h5>
+                                <h5 class="text-white text-start">Jaw-dropping Reward Store </h5>
                                 <p class="text-white text-start">More than 500+ brands listed on the platform for you to win every-second</p>
                             </div>
                         </div>
@@ -107,6 +103,8 @@
                                             fill="#070707"></path>
                                     </svg>
                                 </button>
+                                <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white"
+                                class="btn-close" style="width: 280px;">Login with password</button>
                                 <h6 class="mb-4 text-white text-start mt-4">or Continue with</h6>
                                 <div class="lg-social">
                                     <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
@@ -274,7 +272,7 @@
                                 <h5 class="mb-4 text-white">Login with Password</h5>
                                 <div class="input-field w-100 mb-3">
                                     <select class="uk-select select-control input__field stdisdcode" name="stdisdcode">
-                                        {!! getCountryStateDataInHtml()!!}
+                                        {!! getCountryStateDataInHtml() !!}
                                     </select>
                                     <input class="form-control emailText" id="mobilenumber" name="mobilenumber"
                                         placeholder="Email or Mobile Number" value="<?php if(isset($_COOKIE["user_id"])) { echo $_COOKIE["user_id"]; } ?>">
@@ -312,8 +310,8 @@
                                     <!-- Display validation result here -->
                                 </div>
                                 <div class="w-100 d-flex justify-content-between">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck"
+                                    <div class="form-check ps-0 d-flex align-items-center">
+                                        <input type="checkbox" class="custom-control-input me-2" id="customCheck"
                                             name="rememberme" value="false">
                                         <label class="form-check-label small text-white" for="flexCheckDefault1">
                                             Remember me
@@ -337,6 +335,17 @@
                                 </button>
                                 <button class="login-btn login-btn-otp mt-0 bg-transparent text-white"
                                     style="width: 280px;">Login using OTP</button>
+                                <h6 class="mb-4 text-white text-start mt-4">or Continue with</h6>
+                                <div class="lg-social">
+                                    <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
+                                            alt=""></a>
+                                    <a href="{{route('login.twitter')}}"><img src="{{ asset('/img/lg-twitter-icon.svg') }}"
+                                            alt=""></a>
+                                    <a href="{{route('login.google')}}"><img src="{{ asset('/img/lg-google-icon.svg') }}"
+                                            alt=""></a>
+                                    <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
+                                            alt=""></a> -->
+                                </div>
                                 <p class="get-help mt-5 small">Having trouble signing in? <a href="">Get
                                         Help</a></p>
                             </form>
