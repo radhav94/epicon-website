@@ -62,13 +62,15 @@ $episode_json = json_encode($episode_list);
             $watchClass = @$content['free_premium'] == true && @$subplan['status'] != 'active' ? $addClass : "";
             $watchid = @$content['free_premium'] != true || (@$content['free_premium'] == true && @$subplan['status'] == 'active') ? "playButton" : "";
         }
+
+        $playBtn = $watchClass == "" ? "playBtn" : "";
 ?>
 
 <div class="podcast-background w-100">
     <section class="container w-100 mt-2">
         <div class="row justify-content-center">
             <div class="col-sm-12">
-                <div class="podcast-top w-100">
+                <div class="podcast-top w-100 align-items-lg-start">
                     <div class="thumb">
                         {{-- <h6 class="pod-title">EPIC ON ORIGINAL</h6> --}}
                         {{-- <h5 class="pod-series">CASO.63</h5> --}}
@@ -131,24 +133,25 @@ $episode_json = json_encode($episode_list);
                             </div>
                         </div>
                         <div class="seemore">
-                        <p class="pod-detail-text mt-3 descText">{!! sanitizeData(@$content['description']) !!}</p>
+                        <p class="pod-detail-text mt-3 descText mb-0">{!! sanitizeData(@$content['description']) !!}</p>
                         <?php //echo strlen(@$content['description']); exit; ?>
-                        <span class="read-button"> </span>
+                        <span class="read-button d-block mb-3"> </span>
                         </div>
                         <div class="podcast-btns d-flex align-items-center" data-id="{{ @$content['ID'] }}">
-                            <button class="fill-btn ms-0 px-4 {{$watchClass}}" id="{{ $watchid }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28" viewBox="0 0 29 28" fill="none">
-                                    <path d="M26.75 14.0005C26.7507 14.2976 26.6745 14.5899 26.5289 14.8488C26.3832 15.1077 26.173 15.3246 25.9188 15.4782L10.16 25.1185C9.89431 25.2812 9.59001 25.37 9.27852 25.3758C8.96703 25.3816 8.65965 25.3041 8.38813 25.1513C8.11918 25.001 7.89515 24.7817 7.73905 24.516C7.58296 24.2503 7.50045 23.9479 7.5 23.6398V4.36133C7.50045 4.0532 7.58296 3.75076 7.73905 3.48509C7.89515 3.21943 8.11918 3.00014 8.38813 2.84976C8.65965 2.69702 8.96703 2.61953 9.27852 2.6253C9.59001 2.63107 9.89431 2.71989 10.16 2.88258L25.9188 12.5229C26.173 12.6765 26.3832 12.8934 26.5289 13.1523C26.6745 13.4112 26.7507 13.7035 26.75 14.0005Z" fill="#272727" />
-                                </svg> &nbsp;
-                                Listen
-                            </button>
+                            <div class="pod-btns">
+                                <button class="fill-btn ms-0 mt-0 {{$watchClass}}" id="{{ $watchid }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28" viewBox="0 0 29 28" fill="none">
+                                        <path d="M26.75 14.0005C26.7507 14.2976 26.6745 14.5899 26.5289 14.8488C26.3832 15.1077 26.173 15.3246 25.9188 15.4782L10.16 25.1185C9.89431 25.2812 9.59001 25.37 9.27852 25.3758C8.96703 25.3816 8.65965 25.3041 8.38813 25.1513C8.11918 25.001 7.89515 24.7817 7.73905 24.516C7.58296 24.2503 7.50045 23.9479 7.5 23.6398V4.36133C7.50045 4.0532 7.58296 3.75076 7.73905 3.48509C7.89515 3.21943 8.11918 3.00014 8.38813 2.84976C8.65965 2.69702 8.96703 2.61953 9.27852 2.6253C9.59001 2.63107 9.89431 2.71989 10.16 2.88258L25.9188 12.5229C26.173 12.6765 26.3832 12.8934 26.5289 13.1523C26.6745 13.4112 26.7507 13.7035 26.75 14.0005Z" fill="#272727" />
+                                    </svg> &nbsp;
+                                    Listen
+                                </button>
                            
-                            @if (@$content['free_premium'] == true && !isActiveSubscription())
-                            <a href="{{ $href }}" class="subcription-btn m-0 {{$watchClass}}">
-                                <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> Subscribe Now
-                                </a>
-                            @endif
-                           
+                                @if (@$content['free_premium'] == true && !isActiveSubscription())
+                                <a href="{{ $href }}" class="subcription-btn m-0 {{$watchClass}}">
+                                    <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> Subscribe Now
+                                    </a>
+                                @endif
+                            </div>
 
                             <?php
                             $wishlist = getWishlist();
@@ -176,41 +179,7 @@ $episode_json = json_encode($episode_list);
                             </button>
                         </div>
 
-                        @if (count($episode_list) > 0) {{-- && (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription()))) --}}
                         
-                        <div class="audio-player">
-                            <audio id="audioPlayer" controls>
-                                <source id="audioSource" src="" type="audio/mpeg">
-                            </audio>
-                            {{-- <div id="episodeControls">
-                                @if (count($episode_list) > 1)
-                                <button id="prevEpisode">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 54 54" fill="none">
-                                        <path d="M9.96423 43.7151C9.96423 44.1413 9.79491 44.5501 9.49351 44.8515C9.19211 45.1529 8.78333 45.3222 8.35709 45.3222C7.93085 45.3222 7.52207 45.1529 7.22067 44.8515C6.91927 44.5501 6.74995 44.1413 6.74995 43.7151L6.74995 8.35798C6.74995 7.93173 6.91927 7.52295 7.22067 7.22155C7.52207 6.92016 7.93085 6.75083 8.35709 6.75083C8.78333 6.75083 9.19212 6.92016 9.49351 7.22155C9.79491 7.52295 9.96423 7.93173 9.96423 8.35798L9.96423 43.7151ZM45.3262 41.298C45.3262 44.5155 41.7326 46.428 39.0631 44.6296L16.5583 29.471C16.0146 29.1044 15.5688 28.6103 15.26 28.0318C14.9511 27.4533 14.7886 26.808 14.7865 26.1522C14.7844 25.4964 14.9429 24.85 15.2481 24.2696C15.5533 23.6892 15.996 23.1923 16.5374 22.8223L39.0423 7.45798C41.7101 5.6387 45.3262 7.54798 45.3262 10.7783L45.3262 41.2947L45.3262 41.298ZM40.8583 41.9633C40.9792 42.045 41.1199 42.0922 41.2656 42.1C41.4112 42.1078 41.5562 42.0757 41.6851 42.0073C41.8139 41.939 41.9217 41.8368 41.9969 41.7119C42.0721 41.5869 42.1118 41.4438 42.1119 41.298L42.1119 10.7751C42.1116 10.629 42.0716 10.4858 41.996 10.3608C41.9204 10.2357 41.8121 10.1337 41.6829 10.0656C41.5536 9.99751 41.4083 9.96594 41.2624 9.97429C41.1166 9.98263 40.9757 10.0306 40.8551 10.113L18.3503 25.4756C18.2418 25.5495 18.153 25.6489 18.0917 25.765C18.0305 25.8812 17.9986 26.0106 17.9989 26.1419C17.9992 26.2732 18.0317 26.4024 18.0935 26.5182C18.1554 26.6341 18.2446 26.733 18.3535 26.8064L40.8583 41.9633Z" fill="black"/>
-                                    </svg>
-                                </button>
-                                <button id="nextEpisode">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 88 88" fill="none">
-                                        <path d="M19.7656 72.9475V15.6493C19.7656 14.1599 21.4099 13.2573 22.6665 14.0569L67.6865 42.706C68.852 43.4477 68.852 45.1491 67.6865 45.8909L22.6665 74.5399C21.4099 75.3396 19.7656 74.4369 19.7656 72.9475Z" fill="black" stroke="black" stroke-width="3.775" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>  
-                                </button>
-                                @endif
-                                <button id="playButton">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 54 54" fill="none">
-                                        <path d="M42.1119 8.35717C42.1119 7.93093 42.2813 7.52214 42.5827 7.22075C42.8841 6.91935 43.2928 6.75002 43.7191 6.75002C44.1453 6.75002 44.5541 6.91935 44.8555 7.22075C45.1569 7.52214 45.3262 7.93093 45.3262 8.35717V43.7143C45.3262 44.1405 45.1569 44.5493 44.8555 44.8507C44.5541 45.1521 44.1453 45.3214 43.7191 45.3214C43.2928 45.3214 42.8841 45.1521 42.5827 44.8507C42.2813 44.5493 42.1119 44.1405 42.1119 43.7143V8.35717ZM6.75 10.7743C6.75 7.55681 10.3436 5.64431 13.013 7.4427L35.5178 22.6013C36.0616 22.9679 36.5074 23.462 36.8162 24.0405C37.1251 24.619 37.2876 25.2643 37.2897 25.9201C37.2917 26.5759 37.1332 27.2222 36.828 27.8027C36.5228 28.3831 36.0802 28.88 35.5387 29.25L13.0339 44.6143C10.3661 46.4336 6.75 44.5243 6.75 41.2939V10.7775V10.7743ZM11.2179 10.109C11.097 10.0273 10.9562 9.98003 10.8106 9.97227C10.665 9.96451 10.5199 9.99654 10.3911 10.0649C10.2623 10.1333 10.1545 10.2354 10.0793 10.3604C10.0041 10.4854 9.96436 10.6285 9.96428 10.7743V41.2971C9.96454 41.4432 10.0046 41.5865 10.0802 41.7115C10.1558 41.8365 10.264 41.9386 10.3933 42.0067C10.5225 42.0748 10.6679 42.1063 10.8138 42.098C10.9596 42.0896 11.1004 42.0417 11.2211 41.9593L33.7259 26.5966C33.8344 26.5227 33.9232 26.4234 33.9845 26.3072C34.0457 26.1911 34.0776 26.0617 34.0773 25.9304C34.0769 25.7991 34.0445 25.6699 33.9826 25.554C33.9208 25.4382 33.8316 25.3393 33.7227 25.2659L11.2179 10.109Z" fill="black"/>
-                                    </svg>
-                                </button>
-                                <button id="pauseButton" style="display: none;">pause</button>
-                                <button id="volumeUpButton"><i class='fa fa-volume-up'></i></button>
-                                <button id="volumeDownButton">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 54 54" fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M30.9494 7.19104C31.6351 7.51334 32.0713 8.19149 32.0713 8.9355V45.0645C32.0713 45.8085 31.6351 46.4867 30.9494 46.809C30.2636 47.1313 29.4496 47.0406 28.8555 46.5759L16.2022 36.6774H8.97931C7.88617 36.6774 7 35.8109 7 34.7419V19.2581C7 18.1891 7.88617 17.3226 8.97931 17.3226H16.2022L28.8555 7.42414C29.4496 6.95936 30.2636 6.86875 30.9494 7.19104ZM28.1126 12.9625L18.133 20.7694C17.7821 21.044 17.346 21.1936 16.8966 21.1936H10.9586V32.8064H16.8966C17.346 32.8064 17.7821 32.956 18.133 33.2306L28.1126 41.0375V12.9625Z" fill="black"/>
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M39.2487 15.3088C40.0217 14.553 41.2749 14.553 42.0479 15.3089C45.2187 18.4096 47 22.615 47 27C47 31.385 45.2187 35.5904 42.0479 38.6911C41.2749 39.447 40.0217 39.447 39.2487 38.6912C38.4757 37.9354 38.4757 36.7099 39.2487 35.954C41.6771 33.5792 43.0414 30.3584 43.0414 27C43.0414 23.6416 41.6771 20.4208 39.2487 18.046C38.4757 17.2901 38.4757 16.0646 39.2487 15.3088Z" fill="black"/>
-                                    </svg>
-                                </button>
-                            </div> --}}
-                        </div>
-                        @endif
 
 
                     </div>
@@ -223,6 +192,98 @@ $episode_json = json_encode($episode_list);
     @include('pages.detail.detail-components.tabs')
     {{-- @endif --}}
 
+</div>
+
+<div class="podcast-bottom-player">
+    <div class="container m-auto">
+        <div class="podcast-wrapper-main">
+            <div class="pod-cast-wrapper d-flex">
+                <div class="pod-main">
+                    <div class="pik position-relative">
+                        <a href="{{asset('podcast/rahim-ke-dohe/season-1/introduction')}}" class="pik-img">
+                            <img src="{{ $cover_img }}" alt="img">
+                        </a>
+                        <img class="podcast-top-icon" src="{{asset('assets/img/podcast-top-icon.svg')}}" alt="podcast icon">
+                    </div>
+                </div>
+                <div class="pod-pik-detals d-flex align-items-center w-100">
+                    <div class="w-100">
+                        <h5>{{ @$content['title'] }}</h5>
+                        @if (count($episode_list) > 0) {{-- && (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription()))) --}}
+                        
+                        <div class="audio-player">
+                            <audio id="audioPlayer" w-100 controls>
+                                <source id="audioSource" src="" type="audio/mpeg">
+                            </audio>
+                            {{-- <div id="episodeControls">
+                                @if (count($episode_list) > 1)
+                                <button id="prevEpisode1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 54 54" fill="none">
+                                        <path d="M9.96423 43.7151C9.96423 44.1413 9.79491 44.5501 9.49351 44.8515C9.19211 45.1529 8.78333 45.3222 8.35709 45.3222C7.93085 45.3222 7.52207 45.1529 7.22067 44.8515C6.91927 44.5501 6.74995 44.1413 6.74995 43.7151L6.74995 8.35798C6.74995 7.93173 6.91927 7.52295 7.22067 7.22155C7.52207 6.92016 7.93085 6.75083 8.35709 6.75083C8.78333 6.75083 9.19212 6.92016 9.49351 7.22155C9.79491 7.52295 9.96423 7.93173 9.96423 8.35798L9.96423 43.7151ZM45.3262 41.298C45.3262 44.5155 41.7326 46.428 39.0631 44.6296L16.5583 29.471C16.0146 29.1044 15.5688 28.6103 15.26 28.0318C14.9511 27.4533 14.7886 26.808 14.7865 26.1522C14.7844 25.4964 14.9429 24.85 15.2481 24.2696C15.5533 23.6892 15.996 23.1923 16.5374 22.8223L39.0423 7.45798C41.7101 5.6387 45.3262 7.54798 45.3262 10.7783L45.3262 41.2947L45.3262 41.298ZM40.8583 41.9633C40.9792 42.045 41.1199 42.0922 41.2656 42.1C41.4112 42.1078 41.5562 42.0757 41.6851 42.0073C41.8139 41.939 41.9217 41.8368 41.9969 41.7119C42.0721 41.5869 42.1118 41.4438 42.1119 41.298L42.1119 10.7751C42.1116 10.629 42.0716 10.4858 41.996 10.3608C41.9204 10.2357 41.8121 10.1337 41.6829 10.0656C41.5536 9.99751 41.4083 9.96594 41.2624 9.97429C41.1166 9.98263 40.9757 10.0306 40.8551 10.113L18.3503 25.4756C18.2418 25.5495 18.153 25.6489 18.0917 25.765C18.0305 25.8812 17.9986 26.0106 17.9989 26.1419C17.9992 26.2732 18.0317 26.4024 18.0935 26.5182C18.1554 26.6341 18.2446 26.733 18.3535 26.8064L40.8583 41.9633Z" fill="black"/>
+                                    </svg>
+                                </button>
+                                <button id="nextEpisode1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 88 88" fill="none">
+                                        <path d="M19.7656 72.9475V15.6493C19.7656 14.1599 21.4099 13.2573 22.6665 14.0569L67.6865 42.706C68.852 43.4477 68.852 45.1491 67.6865 45.8909L22.6665 74.5399C21.4099 75.3396 19.7656 74.4369 19.7656 72.9475Z" fill="black" stroke="black" stroke-width="3.775" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>  
+                                </button>
+                                @endif
+                               <!--  <button id="playButton1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 54 54" fill="none">
+                                        <path d="M42.1119 8.35717C42.1119 7.93093 42.2813 7.52214 42.5827 7.22075C42.8841 6.91935 43.2928 6.75002 43.7191 6.75002C44.1453 6.75002 44.5541 6.91935 44.8555 7.22075C45.1569 7.52214 45.3262 7.93093 45.3262 8.35717V43.7143C45.3262 44.1405 45.1569 44.5493 44.8555 44.8507C44.5541 45.1521 44.1453 45.3214 43.7191 45.3214C43.2928 45.3214 42.8841 45.1521 42.5827 44.8507C42.2813 44.5493 42.1119 44.1405 42.1119 43.7143V8.35717ZM6.75 10.7743C6.75 7.55681 10.3436 5.64431 13.013 7.4427L35.5178 22.6013C36.0616 22.9679 36.5074 23.462 36.8162 24.0405C37.1251 24.619 37.2876 25.2643 37.2897 25.9201C37.2917 26.5759 37.1332 27.2222 36.828 27.8027C36.5228 28.3831 36.0802 28.88 35.5387 29.25L13.0339 44.6143C10.3661 46.4336 6.75 44.5243 6.75 41.2939V10.7775V10.7743ZM11.2179 10.109C11.097 10.0273 10.9562 9.98003 10.8106 9.97227C10.665 9.96451 10.5199 9.99654 10.3911 10.0649C10.2623 10.1333 10.1545 10.2354 10.0793 10.3604C10.0041 10.4854 9.96436 10.6285 9.96428 10.7743V41.2971C9.96454 41.4432 10.0046 41.5865 10.0802 41.7115C10.1558 41.8365 10.264 41.9386 10.3933 42.0067C10.5225 42.0748 10.6679 42.1063 10.8138 42.098C10.9596 42.0896 11.1004 42.0417 11.2211 41.9593L33.7259 26.5966C33.8344 26.5227 33.9232 26.4234 33.9845 26.3072C34.0457 26.1911 34.0776 26.0617 34.0773 25.9304C34.0769 25.7991 34.0445 25.6699 33.9826 25.554C33.9208 25.4382 33.8316 25.3393 33.7227 25.2659L11.2179 10.109Z" fill="black"/>
+                                    </svg>
+                                </button>
+                                <button id="pauseButton1" style="display: none;">pause</button> -->
+                                <button id="volumeUpButton"><i class='fa fa-volume-up'></i></button>
+                                <button id="volumeDownButton">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 54 54" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M30.9494 7.19104C31.6351 7.51334 32.0713 8.19149 32.0713 8.9355V45.0645C32.0713 45.8085 31.6351 46.4867 30.9494 46.809C30.2636 47.1313 29.4496 47.0406 28.8555 46.5759L16.2022 36.6774H8.97931C7.88617 36.6774 7 35.8109 7 34.7419V19.2581C7 18.1891 7.88617 17.3226 8.97931 17.3226H16.2022L28.8555 7.42414C29.4496 6.95936 30.2636 6.86875 30.9494 7.19104ZM28.1126 12.9625L18.133 20.7694C17.7821 21.044 17.346 21.1936 16.8966 21.1936H10.9586V32.8064H16.8966C17.346 32.8064 17.7821 32.956 18.133 33.2306L28.1126 41.0375V12.9625Z" fill="black"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M39.2487 15.3088C40.0217 14.553 41.2749 14.553 42.0479 15.3089C45.2187 18.4096 47 22.615 47 27C47 31.385 45.2187 35.5904 42.0479 38.6911C41.2749 39.447 40.0217 39.447 39.2487 38.6912C38.4757 37.9354 38.4757 36.7099 39.2487 35.954C41.6771 33.5792 43.0414 30.3584 43.0414 27C43.0414 23.6416 41.6771 20.4208 39.2487 18.046C38.4757 17.2901 38.4757 16.0646 39.2487 15.3088Z" fill="black"/>
+                                    </svg>
+                                </button>
+                            </div> --}}
+                        </div>
+                        @endif
+                        <!-- <div class="podcast-bottom-progress d-flex">
+                            <span class="me-3">05:00</span>
+                            <div class="progress-main">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <span class="ms-3">30:08</span>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="podcast-controls">
+                <div class="controll-inner">
+                    <button class="tenx-prev">
+                        <img src="{{asset('img/10x-prev.svg')}}" alt="icons">
+                    </button>
+                    <button class="podcast-play"  style="display:none">
+                        <img src="{{asset('img/podcast-play.svg')}}" alt="icons">
+                    </button>
+                    <button class="podcast-pause" >
+                        <img src="{{asset('img/podcast-pause.svg')}}" alt="icons">
+                    </button>
+                    <button class="tenx-next" >
+                        <img src="{{asset('img/10x-next.svg')}}" alt="icons">
+                    </button>
+                   <!--  <button class="wl_add">
+                        <img src="{{asset('img/podcast-add.svg')}}" alt="icons">
+                    </button> -->
+                      <button class="tenx-next m-0 addToList" data-id="{{ $content['ID'] }}" data-action="{{ $wishAction }}">
+                        <img class="wl_add" src="{{ asset('img/podcast-add.svg') }}" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
+                        <img class="wl_remove" src="{{ asset('/img/bottom-podcast-add.svg') }}" alt="icon" @if ($wishAction=='add' ) style="display: none" @endif>
+                    </button>
+                </div>
+                <button class="podcast-close">
+                    <img src="{{asset('img/podcast-close.svg')}}" alt="icons">
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 
 @include('components.share-modal')
@@ -257,7 +318,7 @@ $episode_json = json_encode($episode_list);
         }
 
         // Next episode button click handler
-        $("#nextEpisode").click(function() {
+        $("#nextEpisode,.tenx-next").click(function() {
             currentEpisodeIndex++;
             if (currentEpisodeIndex >= episodes.length) {
                 currentEpisodeIndex = 0; // Loop back to the first episode
@@ -266,7 +327,7 @@ $episode_json = json_encode($episode_list);
         });
 
         // Previous episode button click handler
-        $("#prevEpisode").click(function() {
+        $("#prevEpisode,.tenx-prev").click(function() {
             currentEpisodeIndex--;
             if (currentEpisodeIndex < 0) {
                 currentEpisodeIndex = episodes.length - 1; // Loop to the last episode
@@ -274,7 +335,10 @@ $episode_json = json_encode($episode_list);
             playCurrentEpisode();
         });
 
-        $("#playButton").click(function() {
+        $("#playButton,.podcast-pause").click(function() {
+            $('.podcast-bottom-player').show();
+            $(".podcast-pause").hide();
+            $('.podcast-play').show();
             isPlayed = true;
             if (audio.currentSrc == '') {
                 playCurrentEpisode();
@@ -288,13 +352,15 @@ $episode_json = json_encode($episode_list);
                 .catch(error => {
                     console.error('Failed to play audio:', error);
                 });
-            $("#pauseButton").show();
+            $("#pauseButton").show();            
             $(this).hide();
         });
 
-        $("#pauseButton").click(function() {
-            audio.pause();
-            $("#playButton").show();
+        $("#pauseButton,.podcast-play").click(function() {
+             audio.pause();
+             $('.podcast-play').hide();
+             $(".podcast-pause").show();
+            $("#playButton").show();            
             $(this).hide();
         });
 
@@ -316,6 +382,7 @@ $episode_json = json_encode($episode_list);
         });
 
         $('.playBtn').click(function() {
+            $('.podcast-bottom-player').show();
             isPlayed = true;
             if (episodes == "") {
                 var data_url = $(this).attr("data-url");
@@ -353,9 +420,9 @@ $episode_json = json_encode($episode_list);
         if (isPlayed) {
             audio.play().then(() => {
                     console.log('Audio is playing');
-                    $('html, body').animate({
-                        scrollTop: 0
-                    }, 1000);
+                    // $('html, body').animate({
+                    //     scrollTop: 0
+                    // }, 1000);
                     audioEvents();
                 })
                 .catch(error => {
@@ -382,12 +449,18 @@ $episode_json = json_encode($episode_list);
         } catch (err) {}
     }
 
+    $('.podcast-close').click(function(){    
+        audio.pause();
+        $('.podcast-bottom-player').hide();
+    });
+
     function podcastProgress() {
         let episodeID = episodes[currentEpisodeIndex];
         let duration = audio.duration;
         let currentTime = audio.currentTime;
         let progress = Math.round((currentTime / duration) * 100) + "%";
         $("li.pod-main[data-id='" + episodeID + "'] .progress-bar").css("width", progress);
+        $('.podcast-bottom-player .progress-bar').css("width", progress);
     }
 
     function audioEvents() {

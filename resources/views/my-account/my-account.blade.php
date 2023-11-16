@@ -140,16 +140,18 @@ $subplan = checkSubscription();
                 <div class="billing-details w-100 text-white">
                     <h4>{{__('Billing Details')}}</h4>
                     <p class="position-relative"> 
-                        @if(!empty($viewprofile['email']))
+                        @if(!empty(@$viewprofile['email']))
                         <img src="{{ asset('/img/email.svg') }}" alt="">
-                        {{ isset($viewprofile['email']) ? $viewprofile['email'] : '' }} &nbsp;
+                        {{ $viewprofile['email'] }} &nbsp;
                         @endif
                         <!-- <button class="edit-icon bg-transparent border-0">
                             <img src="{{ asset('/img/edit-icon.svg') }}" alt="">
                         </button> -->
                     </p>
                     <p>
-                        <img src="{{ asset('/img/mobile.svg') }}" alt="">&nbsp; {{ isset($viewprofile['user_id']) ? $viewprofile['user_id'] : '' }}
+                    @if(!empty(@$viewprofile['mobile']))
+                        <img src="{{ asset('/img/mobile.svg') }}" alt="">&nbsp; {{ $viewprofile['mobile'] }}
+                    @endif
                     </p>
                     {{--<p class="border-bot pb-4">
                         <img src="{{ asset('/img/visa.svg') }}" alt=""> &nbsp; visa **** **** **** 1823

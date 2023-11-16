@@ -97,7 +97,6 @@ if ($request->has('type')) {
             Limited. All Rights Reserved.</div>
     </div>
 </section>
-<section class="footer-mobile kids">
     <?php
     $kids_page = isKidsPage();
    if ($kids_page) {
@@ -129,6 +128,7 @@ if ($request->has('type')) {
             ],
        ];
        $current_route = request()->path();
+       $kidsClass = "kids";
    } else {
        $links = [
          [  'name'=>'Home',
@@ -160,10 +160,11 @@ if ($request->has('type')) {
          ],
     ];
        $current_route = getFirstSegment();
+       $kidsClass = "";
    }
 
 ?>
-    
+    <section class="footer-mobile {{$kidsClass}}">
         <nav class="mob-nav">
         @foreach ($links as $key => $value)
        

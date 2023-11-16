@@ -101,24 +101,14 @@ if(@$val['display_type'] == 'standard'){
                 </a>
                 <!-- share start -->
                     <div class="share-hover">
-                            <a href="javascript:void(0)" class="upper-img ms-1 position-relative">
+                            <a href="javascript:void(0)" class="copyUrl upper-img ms-1 position-relative" data-url="{{ getContentUrl($val) }}" data-toggle="tooltip" title="Copy" class="my-tool-tip">
                                 <button class="play-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
                                         <path d="M13.6944 12.4523C13.0259 12.4523 12.4278 12.7033 11.9704 13.0966L5.69861 9.62435C5.74259 9.43191 5.77778 9.23948 5.77778 9.03868C5.77778 8.83787 5.74259 8.64544 5.69861 8.453L11.9 5.01424C12.375 5.43258 12.9995 5.69196 13.6944 5.69196C15.1546 5.69196 16.3333 4.5708 16.3333 3.18192C16.3333 1.79303 15.1546 0.671875 13.6944 0.671875C12.2343 0.671875 11.0556 1.79303 11.0556 3.18192C11.0556 3.38272 11.0907 3.57515 11.1347 3.76759L4.93333 7.20635C4.45833 6.78801 3.8338 6.52864 3.13889 6.52864C1.6787 6.52864 0.5 7.64979 0.5 9.03868C0.5 10.4276 1.6787 11.5487 3.13889 11.5487C3.8338 11.5487 4.45833 11.2893 4.93333 10.871L11.1963 14.3516C11.1523 14.5273 11.1259 14.7114 11.1259 14.8954C11.1259 16.2425 12.2782 17.3385 13.6944 17.3385C15.1106 17.3385 16.263 16.2425 16.263 14.8954C16.263 13.5484 15.1106 12.4523 13.6944 12.4523Z" fill="#272727"/>
-                                    </svg>
+                                    </svg> -->
+                                    <img class="popup-share-icon" src="{{asset('img/share-copy-icon.svg')}}" alt="share">
                                 </button>
                             </a>
-                            <div class="share-open">
-                                    <a href="">
-                                        <img src="{{asset('img/share-facebook-icon.svg')}}" alt="share">
-                                    </a>
-                                    <a href="">
-                                        <img src="{{asset('img/share-tweeter-icon.svg')}}" alt="share">
-                                    </a>
-                                    <a href="">
-                                        <img src="{{asset('img/share-copy-icon.svg')}}" alt="share">
-                                    </a>
-                            </div>
                     </div>
                     <!-- share end -->
                 </div>
