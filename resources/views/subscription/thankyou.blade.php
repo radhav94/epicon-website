@@ -192,12 +192,7 @@
 
 <script>
 var start = new Date;
-    // setInterval(function() {
-    //     var total_seconds = (new Date - start) / 1000;
-    //     var seconds = Math.floor(total_seconds);
-    //     var currentTimeString = seconds;
-    //    // $('.Timer').text("We will redirect on account page in "+currentTimeString+ " Seconds"); 
-    // }, 1000);
+    showToaster('You have successfully purchased a subscription plan.', 1);
         window.setTimeout(function() {
             var chekUrl = localStorage.getItem("redirectURL");
             if(chekUrl != "" && chekUrl !=null &&  chekUrl!=undefined){
@@ -206,6 +201,6 @@ var start = new Date;
             }else{
              window.location.href = APP_URL+'/my-account';
             }
-    }, 5000);
+    }, 2000);
 </script>    
 @stop
