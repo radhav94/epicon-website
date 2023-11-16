@@ -189,9 +189,9 @@
             </div>--}}
         </div>
     </section>
-
+@stop
+@section('script')
 <script>
-var start = new Date;
     showToaster('You have successfully purchased a subscription plan.', 1);
         window.setTimeout(function() {
             var chekUrl = localStorage.getItem("redirectURL");
