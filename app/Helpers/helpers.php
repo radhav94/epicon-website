@@ -1132,8 +1132,8 @@ if (!function_exists('countConvert')) {
                         $count >= 1000000 ?
                         (
                             $count >= 1000000000 ? 
-                            round($count/1000000000) . "B" 
-                            : round($count/1000000) . "M"
+                            round($count/1000000000, 2) . "B" 
+                            : round($count/1000000, 2) . "M"
                         )
                         : round($count/1000) . "K"
                     ) 
