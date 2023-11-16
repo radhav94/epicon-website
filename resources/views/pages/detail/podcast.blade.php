@@ -273,9 +273,9 @@ $episode_json = json_encode($episode_list);
                    <!--  <button class="wl_add">
                         <img src="{{asset('img/podcast-add.svg')}}" alt="icons">
                     </button> -->
-                      <button class="m-0 addToList" data-id="{{ $content['ID'] }}" data-action="{{ $wishAction }}">
+                      <button class="tenx-next m-0 addToList" data-id="{{ $content['ID'] }}" data-action="{{ $wishAction }}">
                         <img class="wl_add" src="{{ asset('img/podcast-add.svg') }}" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
-                        <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon" @if ($wishAction=='add' ) style="display: none" @endif>
+                        <img class="wl_remove" src="{{ asset('/img/bottom-podcast-add.svg') }}" alt="icon" @if ($wishAction=='add' ) style="display: none" @endif>
                     </button>
                 </div>
                 <button class="podcast-close">
@@ -420,9 +420,9 @@ $episode_json = json_encode($episode_list);
         if (isPlayed) {
             audio.play().then(() => {
                     console.log('Audio is playing');
-                    $('html, body').animate({
-                        scrollTop: 0
-                    }, 1000);
+                    // $('html, body').animate({
+                    //     scrollTop: 0
+                    // }, 1000);
                     audioEvents();
                 })
                 .catch(error => {
