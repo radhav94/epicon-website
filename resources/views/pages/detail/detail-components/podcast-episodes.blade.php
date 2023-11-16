@@ -20,7 +20,8 @@
                             @if(@$value['asset_type'] == 'PLAY')
                             {!! getplayanchorhtml($value) !!}
                             @else
-                            <a href="{{ getContentUrl($value) }}" class="pik-img">
+                            <a href="javascript:void(0)" class="pik-img">
+                                <!-- {{ getContentUrl($value) }} -->
                                 @endif
                                 <img src="{{ $cover_img }}" alt="img">
                             </a>
@@ -40,7 +41,7 @@
                                     @if (@$value['release_date'])
                                     |
                                     @endif
-                                    {{ convertSecondsToReadable($value['duration']) }}
+                                    {{ convertSecondsToReadable($value['duration'], true) }}
                                     @endif
                                 </span>
                                 <div class="progress-main">
@@ -75,7 +76,7 @@
                                 </button>
                             </div>
                         </div>
-                        <button class="pod-play playBtn {{$watchClass}}" data-id="{{ @$value['ID'] }}" data-url="{{ getContentUrl($value) }}"> <img src="{{ asset('assets/img/play-icon.svg') }}" alt="">
+                        <button class="pod-play {{$playBtn}} {{$watchClass}}" data-id="{{ @$value['ID'] }}" data-url="{{ getContentUrl($value) }}"> <img src="{{ asset('assets/img/play-icon.svg') }}" alt="">
                             </a>
 
                     </div>

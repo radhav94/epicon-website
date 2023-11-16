@@ -19,10 +19,14 @@
         position: absolute;
         bottom: 0;
         top: 0;
-        color:#000;
+        color:#fff;
         background-image: url("../img/drop-down-arrow-select-white.svg");
         background-repeat: no-repeat;
         background-position: center right 15px;
+    }
+
+    .input-field select option{
+        background-color: #000;
     }
 
 </style>
@@ -263,7 +267,7 @@
                                 <h5 class="mb-4 text-white">Login with Password</h5>
                                 <div class="input-field w-100 mb-3">
                                     <select class="uk-select select-control input__field stdisdcode" name="stdisdcode">
-                                        {!! getCountryStateDataInHtml() !!}
+                                        {!! getCountryStateDataInHtml()!!}
                                     </select>
                                     <input class="form-control emailText" id="mobilenumber" name="mobilenumber"
                                         placeholder="Email or Mobile Number" value="<?php if(isset($_COOKIE["user_id"])) { echo $_COOKIE["user_id"]; } ?>">

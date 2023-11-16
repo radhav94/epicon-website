@@ -39,9 +39,9 @@
 </div>
 
 <script>
-    var queryParams = new URLSearchParams(window.location.search);
     $(document).ready(function() {
         $("#verifyChildPin").click(function() {
+            var queryParams = new URLSearchParams(window.location.search);
             $("#childPinForm #error-msg").html("");
             var formData = $('#childPinForm').serialize();
             $.ajax({

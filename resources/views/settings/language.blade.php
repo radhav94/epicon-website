@@ -2,7 +2,7 @@
     <div class="language-setting">
         <h4 class="pb-4 border-bot">{{ __('Manage your language preferences') }} </h4>
 
-        <div class="display-language border-bot">
+        <div class="display-language">
             <p>{{ __('Display Language') }}</p>
             <div>
                 <div class="form-check mb-4">
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div class="display-language pb-0">
+       {{-- <div class="display-language pb-0">
             <p>{{ __('Content Language') }}</p>
             <div>
                 <div class="form-check mb-4">
@@ -52,6 +52,6 @@
                     </label>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>

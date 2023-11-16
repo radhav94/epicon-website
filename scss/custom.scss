@@ -1,3 +1,5 @@
+@import "_base";
+
 .gaming-galore-main.gfmpodcast {
     .galore-title {
         width: 250px;
@@ -524,7 +526,7 @@
 
         .date-upperline {
             position: absolute;
-            bottom: 209px;
+            top: 11px;
             background-color: #201f31;
             fill: var(--Separator-Gradient, linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%));
             width: 86%;
@@ -737,7 +739,7 @@
         text-align: end;
         font-size: 15px;
         color: #fff;
-        padding-right: 22px;
+        padding-top: 10px;
     }
     
     .distrohead-row .view-all-div a{
@@ -948,6 +950,7 @@
         font-size: 16px;
         color: #dfdfdf;
         text-transform: uppercase;
+        position: relative;
     }
 
     .distro-slider .sample_img{
@@ -1003,7 +1006,7 @@
     @media screen and (max-width: 767px) {
     
         .ds-logo-text {
-            margin-top: 90px;
+            margin-top: 120px;
         }
         .distro-main .slider-controls{
             display: none !important;

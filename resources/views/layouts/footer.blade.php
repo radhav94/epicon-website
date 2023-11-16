@@ -1,3 +1,11 @@
+<?php
+$request = Request();
+$webview = "";
+if ($request->has('type')) {
+    $webview = $request->input('type');
+ }
+ ?>
+@if($webview !='webview')
 <section class="footer w-100">
     <div class="container">
         <div class="row">
@@ -89,7 +97,6 @@
             Limited. All Rights Reserved.</div>
     </div>
 </section>
-<section class="footer-mobile">
     <?php
     $kids_page = isKidsPage();
    if ($kids_page) {
@@ -121,6 +128,7 @@
             ],
        ];
        $current_route = request()->path();
+       $kidsClass = "kids";
    } else {
        $links = [
          [  'name'=>'Home',
@@ -152,9 +160,11 @@
          ],
     ];
        $current_route = getFirstSegment();
+       $kidsClass = "";
    }
 
 ?>
+    <section class="footer-mobile {{$kidsClass}}">
         <nav class="mob-nav">
         @foreach ($links as $key => $value)
        
@@ -165,8 +175,9 @@
            
         @endforeach
         </nav>
+   
 </section>
-
+@endif
 @notloggedin
     @include('auth.login-reg-popup')
 @endnotloggedin

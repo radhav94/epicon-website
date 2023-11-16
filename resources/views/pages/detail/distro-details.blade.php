@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','DistroTV')
+@section('title',@$content['episodes_title'])
 
 @section('style')
 <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />

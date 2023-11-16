@@ -194,6 +194,7 @@ krsort($output);
 <script src="{{ asset('assets/js/video-player.js') }}"></script>
 
 <script>
+    var user_duration = 0;
     var TrandingSlider = new Swiper('.tranding-slider', {
         effect: 'coverflow',
         grabCursor: true,
