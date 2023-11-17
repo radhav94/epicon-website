@@ -1,5 +1,6 @@
 var dummyPlayer;
 var is_trailer = false;
+var is_episode = false;
 var vidPlaying = false;
 $(document).ready(function () {
 	/*dummyPlayer = new Plyr('#vidPlayer');
@@ -15,7 +16,7 @@ $(document).ready(function () {
 	$(document).on('click', '#watchVideo', function () {
 		
 		$('.content-detail-banner').hide();
-		if (vidPlaying && !is_trailer) {
+		if (vidPlaying && !is_trailer && !is_episode) {
 
 			window.player.play();
 
@@ -29,6 +30,7 @@ $(document).ready(function () {
 			return false;
 		}
 		is_trailer = false;
+		is_episode = false;
 		$('#playVideo').trigger('click');
 	});
 
@@ -285,9 +287,17 @@ $(document).ready(function () {
 		*/
 });
 
-function playTrailer(cid) {
+function playContentVideo(cid,c_type,element) {
+
 	var promo_url = "";
-	is_trailer = true;
+	var video_url = "";
+
+	if(c_type == 'trailer'){
+		is_trailer = true;
+	}else if(c_type == 'episode'){
+		is_episode = true;
+	}
+	
 	let requestData = {
 		cid: cid
 	};
@@ -295,12 +305,15 @@ function playTrailer(cid) {
 		function (response) {
 			console.log(response);
 		
-			let promo_url;
-			if (response.payload.promo_url != "") {
-				promo_url = response.payload.promo_url;
+			let playurl;
+			if (c_type == 'trailer' && response.payload.promo_url != "") {
+				playurl = response.payload.promo_url;
+			}
+			if (c_type == 'episode' && response.payload.video_url != "") {
+				playurl = response.payload.video_url;
 			}
 		
-			if (promo_url) {
+			if (playurl) {
 				$('.content-detail-banner').hide();
 				$('html, body').animate({
 					scrollTop: 0
@@ -309,7 +322,7 @@ function playTrailer(cid) {
 				$('html, body').animate({
 					scrollTop: 0
 				}, 1000);
-				loadVideoPlayer(promo_url, response.payload.html);
+				loadVideoPlayer(playurl, response.payload.html);
 			}
 		},
 		function (){
