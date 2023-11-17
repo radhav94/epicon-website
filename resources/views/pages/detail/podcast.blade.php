@@ -195,21 +195,21 @@ $episode_json = json_encode($episode_list);
 
 </div>
 
-<div class="podcast-bottom-player">
+<div class="podcast-bottom-player" style="display:none">
     <div class="container m-auto">
         <div class="podcast-wrapper-main">
             <div class="pod-cast-wrapper d-flex">
                 <div class="pod-main">
                     <div class="pik position-relative">
-                        <a href="{{asset('podcast/rahim-ke-dohe/season-1/introduction')}}" class="pik-img">
-                            <img src="{{ $cover_img }}" alt="img">
+                        <a href="javascript:void(0)" class="pik-img">
+                            <img class="play-converimg" src="{{ $cover_img }}" alt="img">
                         </a>
                         <img class="podcast-top-icon" src="{{asset('assets/img/podcast-top-icon.svg')}}" alt="podcast icon">
                     </div>
                 </div>
                 <div class="pod-pik-detals d-flex align-items-center w-100">
                     <div class="w-100">
-                        <h5>{{ @$content['title'] }}</h5>
+                        <h5 class="play-title">{{ @$content['title'] }}</h5>
                         @if (count($episode_list) > 0) {{-- && (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription()))) --}}
                         
                         <div class="audio-player">
@@ -258,6 +258,7 @@ $episode_json = json_encode($episode_list);
                 </div>
             </div>
             <div class="podcast-controls">
+                <input type="hidden" id="play-id" name="">
                 <div class="controll-inner">
                     <button class="tenx-prev">
                         <img src="{{asset('img/10x-prev.svg')}}" alt="icons">
@@ -340,12 +341,19 @@ $episode_json = json_encode($episode_list);
             $('.podcast-bottom-player').show();
             $(".podcast-pause").hide();
             $('.podcast-play').show();
+            $('.pod-pause').hide(); 
+            $('.pod-play').show(); 
+            $('#pod-play-'+$('#play-id').val()).hide();
+            $('#pod-pause-'+$('#play-id').val()).show();
             isPlayed = true;
             if (audio.currentSrc == '') {
                 playCurrentEpisode();
                 return false;
             }
-            audio.load();
+            if($(this).text().trim() == 'Listen')
+            {
+                 audio.load();
+            }            
             audio.play().then(() => {
                     console.log('Audio is playing');
                     audioEvents();
@@ -359,6 +367,8 @@ $episode_json = json_encode($episode_list);
 
         $("#pauseButton,.podcast-play").click(function() {
              audio.pause();
+             $('.pod-play').show();
+             $('.pod-pause').hide();
              $('.podcast-play').hide();
              $(".podcast-pause").show();
             $("#playButton").show();            
@@ -383,7 +393,18 @@ $episode_json = json_encode($episode_list);
         });
 
         $('.playBtn').click(function() {
+            var title=$(this).parent().find('.title').text();
+            var coverimg=$(this).parent().find('.pik-img').find('img').attr('src');
+            $('.play-title').html(title);
+            $('.play-converimg').attr('src',coverimg);            
             $('.podcast-bottom-player').show();
+            $(".podcast-pause").hide();
+            $('.podcast-play').show();
+            $('.pod-pause').hide(); 
+            $('.pod-play').show(); 
+            $(this).hide();  
+            $('#pod-pause-'+$(this).attr('data-id')).show();
+            $('#play-id').val($(this).attr('data-id'));
             isPlayed = true;
             if (episodes == "") {
                 var data_url = $(this).attr("data-url");
@@ -395,7 +416,18 @@ $episode_json = json_encode($episode_list);
                 currentEpisodeIndex = $.inArray(parseInt(episodeID), episodes) == -1 ? 0 : $.inArray(parseInt(episodeID), episodes);
                 playCurrentEpisode();
             }
-        })
+        });
+        $('.pod-pause').click(function(){
+             $('.pod-play').show();
+            $('.pod-pause').hide();
+            $(this).hide();           
+            $('#pod-play-'+$(this).attr('data-id')).show();
+            $('.podcast-play').hide();
+             $(".podcast-pause").show();
+            $("#playButton").show();        
+           audio.pause();
+        });
+
     });
 
     // Function to load and play the current episode
