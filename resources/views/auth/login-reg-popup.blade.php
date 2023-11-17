@@ -344,7 +344,7 @@
                                     <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
                                             alt=""></a> -->
                                 </div>
-                                <p class="get-help mt-5 small">Having trouble signing in? <a href="">Get
+                                <p class="get-help mt-5 small">Having trouble signing in? <a href="{{route('feedback')}}">Get
                                         Help</a></p>
                             </form>
                         </div>
