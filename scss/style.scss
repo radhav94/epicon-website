@@ -213,6 +213,15 @@ input {
         }
     }
 }
+.big-play:hover{
+    background: #000;
+    color: #fff;
+    transition: 0.3s;
+    svg path{
+        fill: #fff;
+        transition: 0.3s;
+    }
+}
 .big-add-list{
     padding: 6px 20px;
     background: #272727;
@@ -2859,7 +2868,7 @@ input {
             }
         }
         h1{
-            font-size: 30px;
+            font-size: 26px;
             font-weight: 700;
             margin-bottom: 20px;
             position: relative;
@@ -6342,6 +6351,9 @@ input {
         }
     }
     .thumb-detail{
+        h1{
+            font-size: 30px;
+        }
         .drama{
             display: flex;
             gap: 10px;
@@ -7377,6 +7389,7 @@ input {
             @media (max-width:767px) {
                 font-size: 14px;
                 margin-bottom: 2px;
+                width: 88%;
             }
         }
         p{
@@ -7431,6 +7444,7 @@ input {
         width: calc(100% - 50px);
         @media (max-width:767px) {
             justify-content: space-between;
+            width: calc(100% - 0px);
         }
     }
     button{
@@ -7445,6 +7459,13 @@ input {
         width: 50px;
         @media (max-width:767px) {
             width: 40px;
+        }
+    }
+    .podcast-close{
+        @media (max-width:767px) {
+            position: absolute;
+            top: 0;
+            right: 0;
         }
     }
     .podcast-play,.podcast-pause{

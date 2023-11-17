@@ -259,7 +259,7 @@ $episode_json = json_encode($episode_list);
             <div class="podcast-controls">
                 <div class="controll-inner">
                     <button class="tenx-prev">
-                        <img src="{{asset('img/10x-prev.svg')}}" alt="icons">
+                        <img src="{{asset('img/podcast-previous.svg')}}" alt="icons">
                     </button>
                     <button class="podcast-play"  style="display:none">
                         <img src="{{asset('img/podcast-play.svg')}}" alt="icons">
@@ -268,7 +268,7 @@ $episode_json = json_encode($episode_list);
                         <img src="{{asset('img/podcast-pause.svg')}}" alt="icons">
                     </button>
                     <button class="tenx-next" >
-                        <img src="{{asset('img/10x-next.svg')}}" alt="icons">
+                        <img src="{{asset('img/podcast-next.svg')}}" alt="icons">
                     </button>
                    <!--  <button class="wl_add">
                         <img src="{{asset('img/podcast-add.svg')}}" alt="icons">
