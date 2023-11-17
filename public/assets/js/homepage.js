@@ -194,7 +194,7 @@ function initSliders() {
         dots: false,
         infinite: false,
         speed: 300,
-        slidesToShow: 7.9,
+        slidesToShow: 7.4,
         slidesToScroll: 1,
         accessibility: true,
         responsive: [
