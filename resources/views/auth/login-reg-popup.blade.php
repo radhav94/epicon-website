@@ -19,10 +19,11 @@
         position: absolute;
         bottom: 0;
         top: 0;
-        color:#000;
+        color:#fff;
         background-image: url("../img/drop-down-arrow-select-white.svg");
         background-repeat: no-repeat;
         background-position: center right 15px;
+        background-color: #000;
     }
 
 </style>
