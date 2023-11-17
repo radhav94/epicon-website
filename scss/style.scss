@@ -6256,7 +6256,7 @@ input {
         }
 }
 
-.pod-play{
+.pod-play,.pod-pause{
     width: 40px;
     height: 40px;
     background: #fff;
@@ -6276,6 +6276,16 @@ input {
         height: 35px;
         margin-right: 20px;
         margin-top: 30px;
+    }
+}
+.pod-pause{
+    img{
+        width: 50px;
+        height: 50px;
+        @media (max-width:700px) {
+            width: 41px;
+            height: 41px;
+        }
     }
 }
 
@@ -7387,7 +7397,7 @@ input {
             @include line-clamp(1);
             margin-bottom: 5px;
             @media (max-width:767px) {
-                font-size: 14px;
+                font-size: 16px;
                 margin-bottom: 2px;
                 width: 88%;
             }
