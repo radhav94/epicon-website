@@ -103,7 +103,7 @@ $episode_json = json_encode($episode_list);
                                     </svg>
                                     {{ $content['percentage_match'] }}% match</button>
                                 @endif
-                                <button class="border-btn me-3 my-0">
+                                <!-- <button class="border-btn me-3 my-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                         <g clip-path="url(#clip0_474_11010)">
                                             <path d="M7.53006 5.50049C7.25662 5.0083 6.75818 4.11143 7.21912 3.51143C7.63006 2.97705 8.33318 3.14893 8.89881 3.73174L9.23006 4.09111C9.23006 4.09111 8.95037 3.06299 9.76756 2.7833C10.316 2.5958 10.7707 2.79424 11.5066 3.67705C12.8332 5.26768 15.6472 10.1224 15.6472 10.1224C15.7785 10.338 15.9082 10.5333 16.0035 10.5005C16.0801 10.4739 16.2879 9.70987 16.2879 9.70987C16.2722 8.65674 16.3488 7.4333 16.716 6.75986C17.0926 6.06924 17.7722 5.81924 18.2457 5.97236C18.6597 6.10674 18.8769 6.43174 18.7457 7.15361C18.6347 7.76612 18.6019 9.32393 18.7347 10.8442C18.841 12.0646 18.891 12.8583 18.8019 13.838C18.6316 15.6989 17.8957 17.5364 15.7769 18.6521C14.6066 19.2692 13.3519 19.3927 12.1847 19.2052C12.1832 19.2067 7.63631 5.69111 7.53006 5.50049Z" fill="#D69513" />
@@ -119,7 +119,7 @@ $episode_json = json_encode($episode_list);
                                             </clipPath>
                                         </defs>
                                     </svg>&nbsp;&nbsp;
-                                    <span class="claps_num">{{ countConvert(@$content['claps']) }}</span></button>
+                                    <span class="claps_num">{{ countConvert(@$content['claps']) }}</span></button> -->
 
                                 @if (@$content['is_popular'])
                                 <button class="border-btn my-0">
@@ -173,6 +173,7 @@ $episode_json = json_encode($episode_list);
 
                             <button class="rounded-grey-btn m-0 clapButton" data-id="{{ @$content['ID'] }}">
                                 <img src="{{ asset('assets/img/clap-icon.svg') }}" alt="icon">
+                                <span class="claps_num">0</span>
                             </button>
                             <button class="rounded-grey-btn shareThis" data-url="{{ getContentUrl($content) }}" data-title="{{ $share_title }}">
                                 <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
@@ -260,7 +261,7 @@ $episode_json = json_encode($episode_list);
                 <input type="hidden" id="play-id" name="">
                 <div class="controll-inner">
                     <button class="tenx-prev">
-                        <img src="{{asset('img/10x-prev.svg')}}" alt="icons">
+                        <img src="{{asset('img/podcast-previous.svg')}}" alt="icons">
                     </button>
                     <button class="podcast-play"  style="display:none">
                         <img src="{{asset('img/podcast-play.svg')}}" alt="icons">
@@ -269,7 +270,7 @@ $episode_json = json_encode($episode_list);
                         <img src="{{asset('img/podcast-pause.svg')}}" alt="icons">
                     </button>
                     <button class="tenx-next" >
-                        <img src="{{asset('img/10x-next.svg')}}" alt="icons">
+                        <img src="{{asset('img/podcast-next.svg')}}" alt="icons">
                     </button>
                    <!--  <button class="wl_add">
                         <img src="{{asset('img/podcast-add.svg')}}" alt="icons">
