@@ -317,7 +317,7 @@
                                             Remember me
                                         </label>
                                     </div>
-                                    <button
+                                    <button type="button" 
                                         class="bg-transparent text-white p-0 small w-auto border-0 forgot-pwd-btn">Forgot
                                         Password?</button>
                                 </div>
