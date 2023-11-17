@@ -214,6 +214,7 @@
                             $('.screen-forgot-otp').show();
                             resendForgotOTP();
                         } else {
+                            $('.screen-forgot-pwd').show();
                             $('#forgot-otp-result').html(response.payload.response
                                 .meassage);
                         }
