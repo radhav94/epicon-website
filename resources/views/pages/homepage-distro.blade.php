@@ -2,10 +2,6 @@
 @section('title', "DistroTV")
 
 @section('style')
-
-@stop
-
-@section('content')
 <style>
 
     .play-button{
@@ -44,7 +40,9 @@
         padding: 15px 0;
     }
 </style>
+@stop
 
+@section('content')
 <input type="hidden" id="routepage" value="{{ request()->path() }}">
 <input type="hidden" id="pageval" value="1">
 

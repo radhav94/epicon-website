@@ -20,7 +20,7 @@
                                 @if(@$value['asset_type'] == 'PLAY')
                                 {!! getplayanchorhtml($value) !!}
                                 @else
-                                <a href="javascript:playTrailer('{{ $trailer_id }}')" class="main-card">
+                                <a href="javascript:playContentVideo('{{ $trailer_id }}','trailer', this)" class="main-card">
                                 @endif
                                     {!! freePremiumDiv($value) !!}
                                     <div class="main-img">
