@@ -317,7 +317,7 @@
                                             Remember me
                                         </label>
                                     </div>
-                                    <button
+                                    <button type="button" 
                                         class="bg-transparent text-white p-0 small w-auto border-0 forgot-pwd-btn">Forgot
                                         Password?</button>
                                 </div>
@@ -345,7 +345,7 @@
                                     <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
                                             alt=""></a> -->
                                 </div>
-                                <p class="get-help mt-5 small">Having trouble signing in? <a href="">Get
+                                <p class="get-help mt-5 small">Having trouble signing in? <a href="{{route('feedback')}}">Get
                                         Help</a></p>
                             </form>
                         </div>
