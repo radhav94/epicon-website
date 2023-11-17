@@ -21,7 +21,7 @@
 </style>
 
 <?php
-
+$kids_page = isKidsPage();
 ?>
 <main class="search-bg w-100">
     <section class="container w-100">
@@ -70,18 +70,30 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link ep active" id="episode" data-bs-toggle="pill" data-bs-target="#pills-episode" type="button" role="tab" aria-controls="pills-episode" aria-selected="true">{{__('All')}}</button>
                         </li>--}}
+                        @if($kids_page)
                         <li class="nav-item" role="presentation">
                             <button class="nav-link ep active" id="kids" data-bs-toggle="pill" data-bs-target="#pills-kids" type="button" role="tab" aria-controls="pills-kids" aria-selected="false">{{__('Kids')}}</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="morelike" data-bs-toggle="pill" data-bs-target="#pills-morelike" type="button" role="tab" aria-controls="pills-morelike" aria-selected="false">{{__('Movies')}}</button>
                         </li>
+                        @endif
+                        @if(!$kids_page)
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link ep active" id="morelike" data-bs-toggle="pill" data-bs-target="#pills-morelike" type="button" role="tab" aria-controls="pills-morelike" aria-selected="false">{{__('Movies')}}</button>
+                        </li>
+                        @endif
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="trailors" data-bs-toggle="pill" data-bs-target="#pills-trailors" type="button" role="tab" aria-controls="pills-trailors" aria-selected="false">{{__('Shows')}}</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="history" data-bs-toggle="pill" data-bs-target="#pills-about" type="button" role="tab" aria-controls="pills-about" aria-selected="false">{{__('Podcasts')}}</button>
                         </li>
+                        @if(!$kids_page)
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="kids" data-bs-toggle="pill" data-bs-target="#pills-kids" type="button" role="tab" aria-controls="pills-kids" aria-selected="false">{{__('Kids')}}</button>
+                        </li>
+                        @endif
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="games" data-bs-toggle="pill" data-bs-target="#pills-games" type="button" role="tab" aria-controls="pills-games" aria-selected="false">{{__('Games')}}</button>
                         </li>
@@ -92,6 +104,7 @@
                             <div class="topResult" id="Alltopresult"></div>
                             <div class="otherResult" id="AllOtherResult"></div>
                         </div>--}}
+                        @if($kids_page)
                         <div class="tab-pane fade show active" id="pills-kids" role="tabpanel" aria-labelledby="my-list">
                             <div class="topResult" id="Kidstopresult"></div>
                             <div class="otherResult" id="KidsOtherResult"></div>
@@ -100,6 +113,13 @@
                             <div class="topResult" id="Moviestopresult"></div>
                             <div class="otherResult" id="MoviesOtherResult"></div>
                         </div>
+                        @endif
+                        @if(!$kids_page)
+                        <div class="tab-pane fade show active" id="pills-morelike" role="tabpanel" aria-labelledby="my-list">
+                            <div class="topResult" id="Moviestopresult"></div>
+                            <div class="otherResult" id="MoviesOtherResult"></div>
+                        </div>
+                        @endif
                         <div class="tab-pane fade" id="pills-trailors" role="tabpanel" aria-labelledby="my-list">
                             <div class="topResult" id="Showtopresult"></div>
                             <div class="otherResult" id="ShowOtherResult"></div>
@@ -108,6 +128,12 @@
                             <div class="topResult" id="Podcasttopresult"></div>
                             <div class="otherResult" id="PodcastOtherResult"></div>
                         </div>
+                        @if(!$kids_page)
+                        <div class="tab-pane fade" id="pills-kids" role="tabpanel" aria-labelledby="my-list">
+                            <div class="topResult" id="Kidstopresult"></div>
+                            <div class="otherResult" id="KidsOtherResult"></div>
+                        </div>
+                        @endif
                         <div class="tab-pane fade" id="pills-games" role="tabpanel" aria-labelledby="my-list">
                             <div class="topResult" id="Gamestopresult"></div>
                             <div class="otherResult" id="GamesOtherResult"></div>
