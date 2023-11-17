@@ -1045,10 +1045,12 @@
 
     .add-icon {
         background-image: url(../public/img/add-icon.svg) !important;
+        background-repeat: no-repeat;
     }
 
     .delete-icon {
         background-image: url(../public/img/subs-icon.svg) !important;
+        background-repeat: no-repeat;
     }
 
     .search-main .add-icon {
