@@ -32,7 +32,7 @@
                     @if(@$value['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($value) !!}
                     @else
-                    <a href="{{ $href }}" class="pik {{$watchClass}}">
+                    <a href="javascript:playContentVideo('{{ $value['ID'] }}','episode', this)" class="pik {{$watchClass}}">
                     @endif
                         <img src="{{ $cover_img }}" alt="img">
 
