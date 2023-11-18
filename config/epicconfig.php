@@ -19,6 +19,11 @@ if($environment=='PRODUCTION'){
         ],
 		'EPICAPI'=>[
 			'API_DOMAIN'=>'https://njsapi.epicon.in/',
+
+			'API_DOMAIN_1'=>'http://contentapi-njsapi.epicon.in/index/',
+			'API_DOMAIN_2' => 'http://userapi-njsapi.epicon.in/',
+			'API_DOMAIN_3' => 'https://njsapi.epicon.in/v2/',
+
 			'API_AUTH_TOKEN'=>'szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH',
 			'CONSCENT_API_URL' => 'https://api.conscent.in',
 			'CONSCENT_SDK_URL' => 'https://sdk.conscent.in',
@@ -142,7 +147,12 @@ if($environment=='PRODUCTION'){
         ],
 		'EPICAPI'=>[
 			// 'API_DOMAIN'=>'https://stg-njsapi.epicchannel.com/',
-			'API_DOMAIN'=>env('API_URL','https://stg-njsapi.epicchannel.com/'),			
+			'API_DOMAIN'=>env('API_URL','https://stg-njsapi.epicchannel.com/'),	
+
+			'API_DOMAIN_1'=>'http://contentapistg-njsapi.epicon.in/index/',
+			'API_DOMAIN_2' => 'http://userapistg-njsapi.epicon.in/',
+			'API_DOMAIN_3' => 'https://njsapi.epicon.in/v2/',
+
 			'API_AUTH_TOKEN'=>'szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH',
 			'CONSCENT_API_URL' => 'https://api.conscent.in',
 			'CONSCENT_SDK_URL' => 'https://sdk.conscent.in',
@@ -280,6 +290,8 @@ if($environment=='PRODUCTION'){
             'ASSET_URL'=>env('APP_URL')
         ],
 		'EPICAPI'=>[
+			'API_DOMAIN'=>'https://dev-njsapi.epicchannel.com/',
+
 			'API_DOMAIN_1'=>'http://contentapi-njsapi.epicon.in/index/',
 			'API_DOMAIN_2' => 'http://userapi-njsapi.epicon.in/',
 			'API_DOMAIN_3' => 'https://njsapi.epicon.in/v2/',
@@ -400,6 +412,11 @@ if($environment=='PRODUCTION'){
         ],
 		'EPICAPI'=>[
 			'API_DOMAIN'=>env('API_URL'),
+
+			'API_DOMAIN_1'=>'http://contentapi-njsapi.epicon.in/index/',
+			'API_DOMAIN_2' => 'http://userapi-njsapi.epicon.in/',
+			'API_DOMAIN_3' => 'https://njsapi.epicon.in/v2/',
+
 			//'API_DOMAIN'=>'https://dev-njsapi.epicchannel.com/',
 			'API_AUTH_TOKEN'=>'szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH',
 			'CONSCENT_API_URL' => 'https://sandbox-api.conscent.in',
@@ -500,6 +517,11 @@ if($environment=='PRODUCTION'){
 		'GACONFIG'=>['GAID'=>'UA-127230808-1'],
 		'EPICAPI'=>[
 			'API_DOMAIN'=>'https://dev-njsapi.epicchannel.com/',
+
+			'API_DOMAIN_1'=>'http://contentapi-njsapi.epicon.in/index/',
+			'API_DOMAIN_2' => 'http://userapi-njsapi.epicon.in/',
+			'API_DOMAIN_3' => 'https://njsapi.epicon.in/v2/',
+
 			'API_AUTH_TOKEN'=>'szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH',
 			'CONSCENT_API_URL' => 'https://sandbox-api.conscent.in',
 			'CONSCENT_SDK_URL' => 'https://sandbox-sdk.conscent.in',
