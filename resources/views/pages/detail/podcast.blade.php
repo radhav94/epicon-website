@@ -213,7 +213,7 @@ $episode_json = json_encode($episode_list);
                         @if (count($episode_list) > 0) {{-- && (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription()))) --}}
                         
                         <div class="audio-player">
-                            <audio id="audioPlayer" w-100 controls>
+                            <audio id="audioPlayer" controls controlsList="nodownload noplaybackrate">
                                 <source id="audioSource" src="" type="audio/mpeg">
                             </audio>
                             {{-- <div id="episodeControls">
