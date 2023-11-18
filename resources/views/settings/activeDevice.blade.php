@@ -32,7 +32,7 @@
                         </div>';
 
                     if (getDeviceId() == $deviceId) {
-                        $thisDevice = '<div class="row border-bot" data-id="' . $deviceId . '">
+                        @$thisDevice = '<div class="row border-bot" data-id="' . $deviceId . '">
                             <div class="col-sm-4 col-md-3">
                                 <p>This Device</p>
                             </div>
@@ -46,9 +46,9 @@
                         $otherDevice .= $deviceContent;
                     }
                 }
-                $otherDevice .= '</div>
+                @$otherDevice .= '</div>
                     </div>';
-                echo $thisDevice;
+                echo @$thisDevice;
                 echo $isOther ? $otherDevice : '';
             } else { ?>
                 <div class="row pt-4">

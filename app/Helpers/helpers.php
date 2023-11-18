@@ -790,6 +790,26 @@ function checkSubscription()
     return $result;
 }
 
+function isLoggedInUser()
+{
+    $request = Request();
+    // dd($request->session());
+    if ($request->session()->has('authenticated') && $request->session()->has('api_session')) {
+        return true;
+    }
+    return false;
+}
+
+function getLoggedInUser()
+{
+    $request = Request();
+    // dd($request->session()->all());
+    if (isLoggedInUser() === true) {
+        return $request->session()->get('user');
+    }
+    return false;
+}
+
 function formatDate($date, $format = 'd F Y')
 {
     return date($format, strtotime($date));
