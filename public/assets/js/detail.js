@@ -1,6 +1,5 @@
 $(document).ready(function () {
-   
-    // $('.TrailerLink').trigger('click');
+
     $(document).on('click', '.clapButton', function () {
 
         let cardType = $(this).data('cardtype');

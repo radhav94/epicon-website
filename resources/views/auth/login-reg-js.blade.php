@@ -542,7 +542,7 @@
                                         return false;
                                     }
                                 }
-                            }, 3000);
+                            }, 2000);
                             return false;
 
                         } else {
