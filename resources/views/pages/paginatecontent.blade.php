@@ -73,7 +73,7 @@
                                     @if(@$val['asset_type'] == 'PLAY')
                                     {!! getplayanchorhtml($val) !!}
                                     @else
-                                    <a href="{{ getContentUrl($val) }}">
+                                    <a class="upper-img" href="{{ getContentUrl($val) }}">
                                     @endif
                                     <button class="play-btn w-100 text-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

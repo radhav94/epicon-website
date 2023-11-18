@@ -44,6 +44,8 @@
             padding: 0 25px;
             margin-top: 35px;
             transition: all linear 0.4s;
+            text-decoration: none;
+            margin-bottom:20px;
         }
     </style>
 @stop

@@ -1,9 +1,10 @@
  <?php
     $chunks = array_chunk($result, 4);
 
-    foreach ($chunks as $k => $chunk) {
+    
 
         echo '<div class="card-details">';
+        foreach ($chunks as $k => $chunk) {
         foreach ($chunk as $key => $val) {
             $cover_img = getCardImage($val, 'cover_image', 'small', ['cover_image', 'banner_image']);
             $banner_img = getCardImage($val, 'banner_image', 'medium', ['cover_image', 'banner_image']);
@@ -47,6 +48,6 @@
 
 
  <?php
-        }
+        }}
         echo '</div>';
-    } ?>
+     ?>

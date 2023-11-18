@@ -44,7 +44,7 @@ krsort($output);
                             <h6>{{date("M", strtotime($key))}}</h6>
                             <h6>{{date("y", strtotime($key))}}</h6>
                         </div>
-
+                        <div class="upcomming-scroll">
                         <?php foreach ($releaseDate as $val) {
                             $cover_img = isset($val['cover_image']) ? @$val['cover_image']['medium'] : '';
                             $generes = array_column($val['genres_assign'] ?? [], 'name');
@@ -78,27 +78,31 @@ krsort($output);
                                 }
                             }
                         ?>
-                            <div class="card-main-body d-flex mt-4 pt-2 ms-3">
-                                <div class="card-body">
-                                    {!! freePremiumDiv($val) !!}
+                            
+                                <div class="card-main-body d-flex mt-4 pt-2 ms-3">
+                                    <div class="card-body">
+                                        {!! freePremiumDiv($val) !!}
 
-                                    <a class="upper-img upcomingVid" href="javascript:void(0)" data-id="{{ $id }}" data-type="{{ $content_type }}" data-title="{{ $title }}">
-                                        <img src="{{ $cover_img }}" alt="">
-                                    </a>
-                                    <div class="bottom-text d-flex mt-2">
-                                        <div class="left-text">
-                                            <h4 class="text-heading text-white">{{$title}}</h4>
-                                            <ul class="text-white">
-                                                <?php echo $sub_points ?>
-                                                <!--  <li>Drama</li>
-                                        <li>Comedy</li>  -->
-                                                <li>{{isset($date_text) ? $date_text : '' }}</li>
-                                            </ul>
+                                        <a class="upper-img upcomingVid" href="javascript:void(0)" data-id="{{ $id }}" data-type="{{ $content_type }}" data-title="{{ $title }}">
+                                            <img src="{{ $cover_img }}" alt="">
+                                        </a>
+                                        <div class="bottom-text d-flex mt-2">
+                                            <div class="left-text">
+                                                <h4 class="text-heading text-white upc">{{$title}}</h4>
+                                                <ul class="text-white">
+                                                    <?php echo $sub_points ?>
+                                                    <!--  <li>Drama</li>
+                                            <li>Comedy</li>  -->
+                                                    <li>{{isset($date_text) ? $date_text : '' }}</li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            
+
                         <?php } ?>
+                    </div>
                     </div>
                 </div>
             <?php } ?>
