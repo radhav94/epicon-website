@@ -17,6 +17,24 @@ body{
 *::-webkit-scrollbar {
     display: none;
   }
+
+  .more-like-this::-webkit-scrollbar {
+    -webkit-appearance: none;
+    // width: 8px;
+    height: 8px;
+    display: block;
+    background: #000;
+    @media (max-width:767px) {
+        display: none;
+    }
+  }
+  
+  .more-like-this::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #545454;
+    // -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+  }
+
   input:-webkit-autofill { 
     transition: background-color 5000s ease-in-out 0s;
     -webkit-text-fill-color: #ffffff;

@@ -1,4 +1,4 @@
-function initSliders() {
+    function initSliders() {
 
     var TrandingSlider = new Swiper('.tranding-slider', {
         effect: 'coverflow',
