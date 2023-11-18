@@ -59,11 +59,10 @@ $loadPlayer = true;
     @endif
 
     <section class="content-detail-banner position-relative">
-        @if(isActiveSubscription())
         <div class="banner-main position-relative">
             <img src="{{ $cover_img }}" alt="img">
         </div>
-        @else
+        @if(!isActiveSubscription())
         <a href="javascript:playContentVideo('{{ $trailer_id }}','trailer', this)" class="TrailerLink" style="display: none;"></a>
         @endif
     <?php
