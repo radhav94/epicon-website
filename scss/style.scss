@@ -6306,7 +6306,7 @@ input {
     }
 }
 
-.tab-content>.tab-pane{ display: block; height: 0px; overflow: hidden; }
+.tab-content>.tab-pane{ height: 0px; overflow: hidden; }
 .tab-content>.active{ height: auto;}
 .podcast-background{
     &::after{
