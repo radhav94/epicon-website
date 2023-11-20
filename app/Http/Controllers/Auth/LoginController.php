@@ -162,7 +162,8 @@ class LoginController extends Controller
 
     public function SendForgotOtp(Request $request)
     {
-        $mobile_number = $request->post('forgot-name');
+        $mob_number = $request->post('forgot-name');
+        $mobile_number = str_replace("+", "", $request->post('stdisdcode')) . $mob_number;
         $signup_method = $request->post('signin_method');
         if (!empty($mobile_number)) {
             $SendotpRequestData = array(
