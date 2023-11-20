@@ -322,7 +322,7 @@ $episode_json = json_encode($episode_list);
         // Next episode button click handler
         $("#nextEpisode,.tenx-next").click(function() {
             currentEpisodeIndex++;
-            if (currentEpisodeIndex >= episodes.length) {
+             if (currentEpisodeIndex > episodes.length) {
                 currentEpisodeIndex = 0; // Loop back to the first episode
             }
             playCurrentEpisode();
@@ -418,7 +418,7 @@ $episode_json = json_encode($episode_list);
             }
         });
         $('.pod-pause').click(function(){
-             $('.pod-play').show();
+            $('.pod-play').show();
             $('.pod-pause').hide();
             $(this).hide();           
             $('#pod-play-'+$(this).attr('data-id')).show();
@@ -426,6 +426,10 @@ $episode_json = json_encode($episode_list);
              $(".podcast-pause").show();
             $("#playButton").show();        
            audio.pause();
+        });
+
+        audio.addEventListener("ended", function(){
+            $(".tenx-next").click();
         });
 
     });
@@ -446,8 +450,13 @@ $episode_json = json_encode($episode_list);
     async function onPlayerSuccess(response) {
         console.log('response: ', response);
         var audio_url = response.payload.promo_url != "" ? response.payload.promo_url : response.payload.video_url;
+
         $("#audioSource").attr("src", audio_url);
         let episodeID = episodes[currentEpisodeIndex];
+         $('.pod-pause').hide(); 
+            $('.pod-play').show(); 
+            $('#pod-play-'+episodeID).hide();
+            $('#pod-pause-'+episodeID).show();
         audio.load();
         console.log("audio is loading")
         if (isPlayed) {
@@ -462,7 +471,11 @@ $episode_json = json_encode($episode_list);
                     console.error('Failed to play audio:', error);
                 });
         }
+        var title=$("li.pod-main[data-id='" + episodeID + "']").find('.title').text();
+        var coverimg=$("li.pod-main[data-id='" + episodeID + "']").find('.pik-img').find('img').attr('src');
         $("li.pod-main[data-id='" + episodeID + "']").addClass('episode-active');
+        $('.play-title').html(title);
+        $('.podcast-bottom-player .play-converimg').attr('src',coverimg);  
 
     }
 
