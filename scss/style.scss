@@ -7573,3 +7573,10 @@ audio::-webkit-media-controls-play-button {
         width: 190px;
     }
   }
+
+  .plyr__menu__container{
+    @media (max-width:767px) {
+        height: 100px;
+        overflow: auto;
+    }
+  }

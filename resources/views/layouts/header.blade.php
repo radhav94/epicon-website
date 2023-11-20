@@ -175,12 +175,9 @@ if ($request->has('type')) {
             ];
             $current_route = getFirstSegment();
             $moblinks = [
-                // '' => 'Home',
                 'movies' => 'Movies',
                 'tv-shows' => 'Shows',
                 'podcast' => 'Podcasts',
-                'explore' => 'Explore',
-                'premium' => 'Premium',
                 'distro-tv' => 'DistroTV',
                 'games' => 'Games'
             ];
