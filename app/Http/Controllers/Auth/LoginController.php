@@ -8,6 +8,47 @@ use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
+
+    // public function getSignin($message = '')
+    // {
+    //     // dd("Get Sign in");
+    //     if (isLoggedInUser()) {
+    //         // dd("true");
+    //         return redirect('/');
+    //     }
+    //     $countrystate = getCountryStateData();
+    //     // $pagetype = 'login';
+    //     // $menuArray = getMainMenu();
+    //     $menuArray = "";
+    //     $request = Request();
+
+    //     // redirect to
+    //     $redirectto = '/';
+    //     if (!empty($request->get('rt'))) {
+    //         $redirectto = $request->get('rt');
+    //         $request->session()->put('redirectto', $redirectto);
+
+    //         // MI TV QR
+    //         if (!empty($request->get('promotionkey'))) {
+    //             $request->session()->forget('promotionkey');
+    //             $request->session()->put('promotionkey', $request->get('promotionkey'));
+    //         }
+
+    //         // newspapaer QR
+    //         if (!empty($request->get('qrpromocodekey'))) {
+    //             $request->session()->forget('qrpromocodekey');
+    //             $request->session()->put('qrpromocodekey', $request->get('qrpromocodekey'));
+    //         }
+    //     }
+    //     // $meta = $this->getMeta($pagetype);
+    //     $authEventTrack = '';
+    //     if (!empty($message)) {
+    //         $authEventTrack = 'Login Fail';
+    //         $eventCat = 'Login';
+    //     }
+    //     return view('auth.login-reg-popup', compact('message', 'countrystate', 'menuArray', 'authEventTrack'));
+    // }
+
     // Mobile Number Update and Send OTP
     public function setSendOTP(Request $request)
     {
