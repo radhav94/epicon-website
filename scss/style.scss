@@ -5855,6 +5855,7 @@ input {
     display: flex;
     gap: 10px;
     overflow: auto;
+    list-style: none;
     &.trend li a{
         width: 280px;
         height: auto;
@@ -6380,6 +6381,9 @@ input {
     .thumb-detail{
         h1{
             font-size: 30px;
+            @media (max-width:767px) {
+                font-size: 24px;
+            }
         }
         .drama{
             display: flex;
@@ -7555,4 +7559,17 @@ audio::-webkit-media-controls-play-button {
   }
   .carousel-main.spotlight-control{
     z-index: 1;
+  }
+  .search-main .more-like-this{
+    padding-bottom: 10px;
+  }
+  .search-main .more-like-this .main-card{
+    width: 220px;
+    height: auto;
+    img{
+        object-fit: cover!important;
+    }
+    @media (max-width:767px) {
+        width: 190px;
+    }
   }
