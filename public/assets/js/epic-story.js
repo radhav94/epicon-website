@@ -84,12 +84,15 @@ $(document).on('click', '.previousStoryBtn', function () {
 });
 
 $(document).on('click', '.epic-short-close', function () {
+    $(".modal").modal('hide');
+    $('#epicShots .modal-content').html("");
+});
+
+$('#epicShots').on('hidden.bs.modal', function (e) {
     if (player) {
         player.pause();
         player.destroy();
     }
-    $(".modal").modal('hide');
-    $('#epicShots .modal-content').html("");
 });
 
 $(document).on('click', '.story-play-btn', function (e) {
