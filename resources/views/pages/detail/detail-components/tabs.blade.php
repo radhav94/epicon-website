@@ -85,7 +85,7 @@
                    </ul>
 
 
-                   <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-content" id="pills-tabContent">
 
                        @if (@$content['asset_type'] == 'LISTEN')
                        @include('pages.detail.detail-components.podcast-episodes')

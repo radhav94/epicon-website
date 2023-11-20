@@ -12,7 +12,7 @@
                     $addClass = "subscription";
                 }
                    if (!isUserLoggedIn()) {
-                    $watchClass = @$content['free_premium'] == true ? "login-with-subscription" : "";
+                    $watchClass = @$value['free_premium'] == true ? "login-with-subscription" : "";
                     $href = "javascript:void(0);"; 
                 } else {
                     $hreflink = getContentUrl($value);
@@ -20,7 +20,6 @@
                     $href = @$value['free_premium'] == true && @$subplan['status'] != 'active' ? 'javascript:void(0);' : $hreflink;
                     
                 }   
-
                 if (!isset($value['ID']) || $value['ID'] == $content['ID']) {
                     continue;
                 }
