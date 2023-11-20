@@ -24,6 +24,9 @@ class PageController extends Controller
         if (empty($routenamed)) {
             $routenamed = $pageslug;
         }
+        
+        SilentLoginFunction();
+
         profileActive();
         $data = $this->homepageData($slug);
         $result = $data['result'];
@@ -407,6 +410,10 @@ class PageController extends Controller
             $meta['title'] = 'EPIC ON | TV Shows, Movies, Podcast, Games, Rewards';
             $meta['description'] = 'EPIC ON premium OTT service where you can stream movies, tv shows, food shows, podcasts, play games, & read ebooks on multiple devices. Download EPIC ON APP and subscribe to get unlimited access.';
             $meta['keywords'] = 'movies, film, online videos, tv series, games, ebooks, podcast, tv shows, recipe shows, travel shows, historic places, mythology, festivals of India, best tv shows, best tv series, history of India';
+        } else if ($pagetype == 'login') {
+            $meta['title'] = 'EPIC ON | TV Shows, Movies, Podcast, Games, Rewards';
+            $meta['keywords'] = 'movies, film, online videos, tv series, games, ebooks, podcast, tv shows, recipe shows, travel shows, historic places, mythology, festivals of India, best tv shows, best tv series, history of India';
+            $meta['description'] = 'Enjoy the best of content across movie, tv shows, videos, podcasts, gaming & e-books on-the-go, on multiple devices. Explore, discover, and be inspired with all in one entertainment stop on EPIC ON';
         } else if ($pagetype == 'CATALOG') {
             //$meta['title'] = 'Watch EPIC On '.$pagetitle.', Episodes, Promos Online | EPIC On';
             if ($pageslug == 'watch' || $pageslug == 'tv-shows' || $pageslug == 'epic-shorts' || $pageslug == 'documentaries' || $pageslug == 'video-books' || $pageslug == 'movies' || $pageslug == 'amar-chitra-katha') {
@@ -556,6 +563,8 @@ class PageController extends Controller
     
     
     }
+
+  
 
 }
 
