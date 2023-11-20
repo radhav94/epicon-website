@@ -34,10 +34,19 @@ body{
     background-color: #545454;
     // -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
   }
-
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus,
   input:-webkit-autofill { 
+    -webkit-text-fill-color: #fff;
+    -webkit-box-shadow: 0 0 0px 1000px #000 inset;
     transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: #ffffff;
 }
 .banner-carousel,.login-carousel{
     opacity: 0;
@@ -7587,8 +7596,10 @@ input {
     }
     .tenx-prev,.tenx-next,.podcast-close{
         width: 50px;
+        height: 50px;
         @media (max-width:767px) {
             width: 40px;
+            height: 40px;
         }
     }
     .podcast-close{
