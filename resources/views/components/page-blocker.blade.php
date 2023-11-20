@@ -23,7 +23,7 @@
     <div class="modal-content blocker-content">
     <button class="close-button page-close" onclick="closeModal()">&times;</button>
         <div class="modal-body blocker-body" data-url="{{ config('epicconfig.PAGEBLOCKER.PAGEBLOCKER_URL') }}">
-            <a href="{{ @$blockerlink }}" target="_blank"><img src="<?php echo config('epicconfig.ASSET.ASSET_URL').'/img/'.@$pageblockername;?>" alt=""> </a>
+            <a href="{{ @$blockerlink }}" target="_blank"><img src="{{ asset('/img/'.@$pageblockername) }}" alt=""> </a>
         </div> 
     </div>
   </div>

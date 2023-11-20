@@ -45,7 +45,8 @@
         font-weight: bold;
         cursor: pointer;
         margin: 0 0 0 auto;
-        padding: 10px 0px 10px 10px;
+        padding: 10px;
+        width: 32px;
     }
     .live-tv-vidPlayer button[data-plyr="fast-forward"], 
     .live-tv-vidPlayer button[data-plyr="rewind"], 
