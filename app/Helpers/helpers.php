@@ -10,7 +10,6 @@ use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
-use App\Models\User;
 
 if (!function_exists('getUserAgent')) {
     function getUserAgent()
@@ -840,8 +839,7 @@ function SilentLoginFunction_old(){
 
 function SilentLoginFunction(){
     $request = Request();
-        // dd($request);
-        // $user = getLoggedInUser();
+       
         $user = isUserLoggedIn();
         $user_id = $request->get('user_id');
         $source = $request->get('source');
@@ -863,23 +861,10 @@ function silentLogin($user_id, $source)
             'user_agent' => getUserAgent(),
         ];
         $epicwebArr =  CurlAPI("users/silent-login", 'POST', $request_parameter, 2, true);
-        // Log::info("-----silent login Request");
-        // Log::debug($epicwebArr);
-        // Log::info("-----END----------------------");
-        // dd($epicwebArr);
         // if ($epicwebArr['success'] == true && isset($epicwebArr['session_id']) && !empty($epicwebArr['user_data'])) {
         if ($epicwebArr['success'] == true && !empty($epicwebArr['user_data'])) {
-            // dd("true");
             $userdata = $epicwebArr['user_data'];
-            // dd($userdata);
-            $user = new User();
-            // dd($user);
-            $user->id = $userdata['user_id'];
-            $user->ga_user_id = $epicwebArr['ga_user_id'];
-            foreach ($userdata as $k => $v) {
-                $user->$k = $v;
-            }
-            // $user->api_session_id = $epicwebArr['session_id'];
+
             $trakcingData = ['Name' => $userdata['name'], 'Identity' => $userdata['user_id'], 'Email' => $userdata['user_id'], 'MSG-email' => true, 'MSG-push' => true];
             $request->session()->put('authenticated', time());
             // $request->session()->put('api_session', $epicwebArr['session_id']);
