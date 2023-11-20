@@ -74,4 +74,7 @@ $(document).ready(function () {
         initTrailerCarousel();
     });
     initTrailerCarousel();
+
+    var link = document.querySelector('.TrailerLink'); 
+   link.click();
 });

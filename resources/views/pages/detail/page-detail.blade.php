@@ -7,7 +7,7 @@ if (@$content['content_type'] == 'SHOW' || $content['content_type'] == 'SEASON')
     $loadPlayer = true;
 }
 $loadPlayer = true;
-// dd($content['catalog_slug']);
+// dd($content);
 ?>
 
 @extends('layouts.default')
@@ -47,6 +47,9 @@ $loadPlayer = true;
             $cover_img = getCardImage($content, 'banner_image', 'large');
         }
     }
+    // dd($trailers);
+    // dd($trailers['list'][0]['content'][0]['ID']);
+    $trailer_id = @$trailers['list'][0]['content'][0]['ID'] ?? '';
 
 ?>
     <input type="hidden" id="cont_id" value="{{ $content['ID'] }}">
@@ -59,6 +62,9 @@ $loadPlayer = true;
         <div class="banner-main position-relative">
             <img src="{{ $cover_img }}" alt="img">
         </div>
+        @if(!isActiveSubscription())
+        <a href="javascript:playContentVideo('{{ $trailer_id }}','trailer', this)" class="TrailerLink" style="display: none;"></a>
+        @endif
     <?php
    $subplan = checkSubscription();
     if(isKidsPage()){
