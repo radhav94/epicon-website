@@ -15,6 +15,9 @@
     .hide {
         display: none;
     }
+    .footer{
+        padding-bottom:170px;
+    }
 </style>
 @stop
 
@@ -275,10 +278,10 @@ $episode_json = json_encode($episode_list);
                    <!--  <button class="wl_add">
                         <img src="{{asset('img/podcast-add.svg')}}" alt="icons">
                     </button> -->
-                      <button class="tenx-next m-0 addToList" data-id="{{ $content['ID'] }}" data-action="{{ $wishAction }}">
-                        <img class="wl_add" src="{{ asset('img/podcast-add.svg') }}" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
-                        <img class="wl_remove" src="{{ asset('/img/bottom-podcast-add.svg') }}" alt="icon" @if ($wishAction=='add' ) style="display: none" @endif>
-                    </button>
+                    <button class="rounded-grey-btn m-0 addToList" data-id="{{ $content['ID'] }}" data-action="{{ $wishAction }}" data-type="3">
+                                <img class="wl_add" src="{{ asset('assets/img/add-icon.svg') }}" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
+                                <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon" @if ($wishAction=='add' ) style="display: none" @endif>
+                            </button>
                 </div>
                 <button class="podcast-close">
                     <img src="{{asset('img/podcast-close.svg')}}" alt="icons">
