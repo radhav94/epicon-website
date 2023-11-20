@@ -5,7 +5,7 @@
 
 @stop
 @section('content')
-<section class="container-fluid mt-4">
+<!-- <section class="container-fluid mt-4">
         <div class="row">
             <div class="col-12">
                 <a href="javascript:void(0)" class="goBackButton">
@@ -16,10 +16,19 @@
                 </a>
             </div>
         </div>
-    </section>
-    <section class="container pb-5">
+    </section> -->
+    <section class="container pb-5 choose-margin-mobile">
         <div class="row justify-content-center">
-            <h4 class="text-white text-center mb-4">{{__('Choose Your Plan')}}</h4>
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-10 position-relative">
+            <h4 class="text-white text-center mb-4">
+            <a href="javascript:void(0)" class="goBackButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M26.3359 15.9987C26.3359 16.551 25.8882 16.9987 25.3359 16.9987L6.66927 16.9987C6.11699 16.9987 5.66927 16.551 5.66927 15.9987C5.66927 15.4464 6.11699 14.9987 6.66927 14.9987L25.3359 14.9987C25.8882 14.9987 26.3359 15.4464 26.3359 15.9987Z" fill="white"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M16.7097 26.0391C16.3192 26.4297 15.686 26.4297 15.2955 26.0391L5.96217 16.7058C5.57164 16.3153 5.57164 15.6821 5.96217 15.2916L15.2955 5.95826C15.686 5.56773 16.3192 5.56773 16.7097 5.95826C17.1002 6.34878 17.1002 6.98195 16.7097 7.37247L8.08349 15.9987L16.7097 24.6249C17.1002 25.0154 17.1002 25.6486 16.7097 26.0391Z" fill="white"/>
+                    </svg>
+            </a>
+            {{__('Choose Your Plan')}}</h4>
+            </div>
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-10 choose-plan">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     @foreach($result['plans'] as $key => $val)
@@ -48,7 +57,7 @@
                                     <p class="small mb-0">{{$val['name']}}</p>
                                     <span class="d-none save-{{$val['id']}}"></span>
                                 </h6>
-                                <h3 class="d-flex current-{{$val['id']}}">{{$currency_name}} {{$val['actual_price']}}.00 <span class="ms-1 small"> / {{$val['plan']}}</span></h3>
+                                <h3 class="d-flex current-{{$val['id']}}"><div class="val-price">{{$currency_name}} {{$val['actual_price']}}.00</div> <span class="ms-1 small"><b class="b-none"> /</b> {{$val['plan']}}</span></h3>
                                 <h5 class="d-none"> </h5><h5 class="d-none oldprice-{{$val['id']}}"></h5>
                             </div>
                         </button>
@@ -85,7 +94,7 @@
                                     </svg> &nbsp; <?php echo __('All premium content'); ?>
                                 </li>
                             </ul>
-                            <div class="additional-offer">
+                            <div class="additional-offer d-none">
                                 <div class="d-flex justify-content-between align-items-center text-white">
                                     <h6>{{__('Additional offer(s) benefits with your subscription')}}</h6>
                                     <h6>{{__('Total Coupons')}}: <span id="count">{{$offerCount}}</span></h6>
@@ -98,22 +107,44 @@
                                     @foreach($val['benifits'] as $bn=>$bnval)
                                    
                                     <li>
-                                        <a href="javascript:void(0)">
-                                            <img src="{{asset('img/coupon.svg')}}" alt="">
-                                            <div class="ac-content">
-                                                <div class="left">
-                                                    <div class="circle-logo">
-                                                        <img src="{{ asset($bnval['vendor_image'])}}" alt="">
+                                        <div class="subsciption-coupon-card">
+                                            <a href="javascript:void(0)">
+                                                <img src="{{asset('img/coupon.svg')}}" alt="">
+                                                <div class="ac-content">
+                                                    <div class="left">
+                                                        <div class="circle-logo">
+                                                            <img src="{{ asset($bnval['vendor_image'])}}" alt="">
+                                                        </div>
+                                                        <span>Exc. Offer</span>
                                                     </div>
-                                                    <span>Exc. Offer</span>
+                                                    <div class="right">
+                                                        <h5>25% OFF</h5>
+                                                        <p id="vname">{{$bnval['vendor_name']}}</p>
+                                                        <span>Valid until 03 March 2022</span>
+                                                    </div>
                                                 </div>
-                                                <div class="right">
-                                                    <h5>25% OFF</h5>
-                                                    <p id="vname">{{$bnval['vendor_name']}}</p>
-                                                    <span>Valid until 03 March 2022</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="subsciption-coupon-card">
+                                            <a href="javascript:void(0)">
+                                                <img src="{{asset('img/coupon.svg')}}" alt="">
+                                                <div class="ac-content">
+                                                    <div class="left">
+                                                        <div class="circle-logo">
+                                                            <img src="{{ asset($bnval['vendor_image'])}}" alt="">
+                                                        </div>
+                                                        <span>Exc. Offer</span>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h5>25% OFF</h5>
+                                                        <p id="vname">{{$bnval['vendor_name']}}</p>
+                                                        <span>Valid until 03 March 2022</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </a>
+                                            </a>
+                                        </div>
                                     </li>
                                    
 
@@ -125,7 +156,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="use-code mt-4 coupan-div" style="display:none">
+                        <div class="use-code mt-4 coupan-div">
                             <p>{{__('Use code GET20 and get flat 20% off on 3/6/12-month subscriptions or get extra benefits. (T&C apply*)')}}</p>
                             <div class="position-relative">
                                 <input type="text" placeholder="{{__('Enter promo code')}}" class="promocode">

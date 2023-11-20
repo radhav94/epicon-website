@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
 <style>
     #epicShots video {
-        width: 340px;
-        height: 500px;
+        width: 100%;
+        height: inherit;
     }
 
     #supermixModal button:disabled,

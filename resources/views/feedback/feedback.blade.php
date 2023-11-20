@@ -1371,8 +1371,8 @@
             <div class="col-sm-12 need-help">
                 <p class="para-help">{{__('Write your query/feedback below and we will reach out to you within 24 hours.')}}</p>
                 <textarea name="feedback" id="" cols="122" rows="5" placeholder="{{__('Type your query here...')}}"></textarea>
-                <div class="error-msg" class="text-center text-danger pt-2"></div>
-                <div class="success-msg" class="text-center text-success pt-2"></div>
+                <div class="error-msg text-center text-danger pt-2"></div>
+                <div class="success-msg text-center text-success pt-2"></div>
             </div>
             <button type="button" class="need-button">
                 {{__('Submit')}}

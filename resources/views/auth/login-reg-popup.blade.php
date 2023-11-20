@@ -23,9 +23,6 @@
         background-image: url("../img/drop-down-arrow-select-white.svg");
         background-repeat: no-repeat;
         background-position: center right 15px;
-    }
-
-    .input-field select option{
         background-color: #000;
     }
 
@@ -35,42 +32,47 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered px-3">
         <div class="modal-content">
-            <button class="x-btn bg-transparent text-white closebtn position-absolute" class="btn-close"
-                data-bs-dismiss="modal" aria-label="Close">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 31 32"
-                    fill="none">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M24.4212 8.60204C24.5304 8.48816 24.6171 8.35293 24.6763 8.20408C24.7355 8.05524 24.766 7.89568 24.7661 7.73453C24.7662 7.57338 24.7359 7.41378 24.6769 7.26486C24.6179 7.11593 24.5313 6.9806 24.4222 6.86657C24.313 6.75255 24.1834 6.66208 24.0408 6.60031C23.8982 6.53855 23.7453 6.50671 23.5908 6.50661C23.4364 6.50651 23.2834 6.53816 23.1407 6.59974C22.998 6.66132 22.8683 6.75162 22.759 6.86551L15.6668 14.266L8.57671 6.86551C8.35603 6.63523 8.05672 6.50586 7.74462 6.50586C7.43253 6.50586 7.13322 6.63523 6.91253 6.86551C6.69185 7.09579 6.56787 7.40811 6.56787 7.73377C6.56787 8.05944 6.69185 8.37176 6.91253 8.60204L14.0047 16.0004L6.91253 23.3988C6.80326 23.5129 6.71658 23.6482 6.65745 23.7972C6.59831 23.9462 6.56787 24.1059 6.56787 24.2671C6.56787 24.4284 6.59831 24.588 6.65745 24.737C6.71658 24.886 6.80326 25.0214 6.91253 25.1354C7.13322 25.3657 7.43253 25.495 7.74462 25.495C7.89916 25.495 8.05218 25.4633 8.19495 25.4016C8.33772 25.3398 8.46744 25.2494 8.57671 25.1354L15.6668 17.7348L22.759 25.1354C22.9797 25.3654 23.2789 25.4945 23.5908 25.4943C23.9027 25.4941 24.2018 25.3646 24.4222 25.1343C24.6426 24.904 24.7663 24.5918 24.7661 24.2664C24.7659 23.9409 24.6418 23.6288 24.4212 23.3988L17.329 16.0004L24.4212 8.60204Z"
-                        fill="#F8F8F8" />
-                </svg>
-            </button>
-
             <div class="modal-body">
                 <div class="login-register text-center">
                     <div class="left-side">
-                        <div class="w-100">
-                            <img class="w-100" src="{{ asset('/img/login-register-bg.png') }}" alt="">
+                        <div class="w-100 pe-5">
+                            <img class="w-100" src="{{ asset('/img/tatlubaz-bg.png') }}" alt="">
                         </div>
                         <div class="login-carousel px-2">
                             <div>
-                                <h5 class="text-white text-start">Get much more than just OTT</h5>
-                                <p class="text-white text-start">Watch TV Shows, Movies, Live TV, Listen to Podcasts &
+                                <h5 class="text-white text-start">Get much more than just an App</h5>
+                                <p class="text-white text-start">Watch Enthralling Shows, Movies, Live TV, Listen to Podcasts &
                                     Play Games</p>
                             </div>
                             <div>
-                                <h5 class="text-white text-start">Watch on any device</h5>
-                                <p class="text-white text-start">Stream on your phone, tablet, laptop and TV without
-                                    paying more </p>
+                                <h5 class="text-white text-start">One Subscription multiple devices</h5>
+                                <p class="text-white text-start">Stream on smartphone,tab,Smart TV effortlessly with one subscription</p>
                             </div>
                             <div>
-                                <h5 class="text-white text-start">Fam-Tastic Watch</h5>
-                                <p class="text-white text-start">Stream on your phone, tablet, laptop and TV without
-                                    paying more </p>
+                                <h5 class="text-white text-start">Kids Safe  Content </h5>
+                                <p class="text-white text-start">Kids content control in your hands with Pin-Based logins</p>
+                            </div>
+                            <div>
+                                <h5 class="text-white text-start">Exclusive EPIC ON Originals  </h5>
+                                <p class="text-white text-start">Exclusive Originals only Available on the App & Web , groove to the tunes of Tatlubaaz and many more</p>
+                            </div>
+                            <div>
+                                <h5 class="text-white text-start">Jaw-dropping Reward Store </h5>
+                                <p class="text-white text-start">More than 500+ brands listed on the platform for you to win every-second</p>
                             </div>
                         </div>
                     </div>
                     <!-- login or register start -->
-                    <div class="right-side">
+                    <div class="right-side position-relative">
+                        <button class="x-btn bg-transparent text-white closebtn position-absolute" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 31 32"
+                                fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M24.4212 8.60204C24.5304 8.48816 24.6171 8.35293 24.6763 8.20408C24.7355 8.05524 24.766 7.89568 24.7661 7.73453C24.7662 7.57338 24.7359 7.41378 24.6769 7.26486C24.6179 7.11593 24.5313 6.9806 24.4222 6.86657C24.313 6.75255 24.1834 6.66208 24.0408 6.60031C23.8982 6.53855 23.7453 6.50671 23.5908 6.50661C23.4364 6.50651 23.2834 6.53816 23.1407 6.59974C22.998 6.66132 22.8683 6.75162 22.759 6.86551L15.6668 14.266L8.57671 6.86551C8.35603 6.63523 8.05672 6.50586 7.74462 6.50586C7.43253 6.50586 7.13322 6.63523 6.91253 6.86551C6.69185 7.09579 6.56787 7.40811 6.56787 7.73377C6.56787 8.05944 6.69185 8.37176 6.91253 8.60204L14.0047 16.0004L6.91253 23.3988C6.80326 23.5129 6.71658 23.6482 6.65745 23.7972C6.59831 23.9462 6.56787 24.1059 6.56787 24.2671C6.56787 24.4284 6.59831 24.588 6.65745 24.737C6.71658 24.886 6.80326 25.0214 6.91253 25.1354C7.13322 25.3657 7.43253 25.495 7.74462 25.495C7.89916 25.495 8.05218 25.4633 8.19495 25.4016C8.33772 25.3398 8.46744 25.2494 8.57671 25.1354L15.6668 17.7348L22.759 25.1354C22.9797 25.3654 23.2789 25.4945 23.5908 25.4943C23.9027 25.4941 24.2018 25.3646 24.4222 25.1343C24.6426 24.904 24.7663 24.5918 24.7661 24.2664C24.7659 23.9409 24.6418 23.6288 24.4212 23.3988L17.329 16.0004L24.4212 8.60204Z"
+                                    fill="#F8F8F8" />
+                            </svg>
+                        </button>
                         <div class="login-popup-modal screen-login">
                             <form method="POST" name="mobile-number-form" id="mobile-number-form-id">
                                 @csrf
@@ -100,6 +102,8 @@
                                             fill="#070707"></path>
                                     </svg>
                                 </button>
+                                <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white"
+                                class="btn-close" style="width: 280px;">Login with password</button>
                                 <h6 class="mb-4 text-white text-start mt-4">or Continue with</h6>
                                 <div class="lg-social">
                                     <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
@@ -150,7 +154,7 @@
                                     <!-- Display validation result here -->
                                 </div>
                                 <button class="btn btn-primary bg-transparent" id="resendBtn" onclick="resendOTP()">Resend OTP</button>
-                                <button class="login-btn verify-btn mt-4" style="width: 280px;">
+                                <button class="login-btn verify-btn mt-4">
                                     Verify Number
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none">
@@ -267,7 +271,7 @@
                                 <h5 class="mb-4 text-white">Login with Password</h5>
                                 <div class="input-field w-100 mb-3">
                                     <select class="uk-select select-control input__field stdisdcode" name="stdisdcode">
-                                        {!! getCountryStateDataInHtml()!!}
+                                        {!! getCountryStateDataInHtml() !!}
                                     </select>
                                     <input class="form-control emailText" id="mobilenumber" name="mobilenumber"
                                         placeholder="Email or Mobile Number" value="<?php if(isset($_COOKIE["user_id"])) { echo $_COOKIE["user_id"]; } ?>">
@@ -305,18 +309,18 @@
                                     <!-- Display validation result here -->
                                 </div>
                                 <div class="w-100 d-flex justify-content-between">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck"
+                                    <div class="form-check ps-0 d-flex align-items-center">
+                                        <input type="checkbox" class="custom-control-input me-2" id="customCheck"
                                             name="rememberme" value="false">
                                         <label class="form-check-label small text-white" for="flexCheckDefault1">
                                             Remember me
                                         </label>
                                     </div>
-                                    <button
+                                    <button type="button" 
                                         class="bg-transparent text-white p-0 small w-auto border-0 forgot-pwd-btn">Forgot
                                         Password?</button>
                                 </div>
-                                <button class="login-btn continue-login-btn mt-4" style="width: 280px;">
+                                <button class="login-btn continue-login-btn mt-4">
                                     Continue to Login
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none">
@@ -328,9 +332,19 @@
                                             fill="#070707"></path>
                                     </svg>
                                 </button>
-                                <button class="login-btn login-btn-otp mt-0 bg-transparent text-white"
-                                    style="width: 280px;">Login using OTP</button>
-                                <p class="get-help mt-5 small">Having trouble signing in? <a href="">Get
+                                <button class="login-btn login-btn-otp mt-0 bg-transparent text-white">Login using OTP</button>
+                                <h6 class="mb-4 text-white text-center mt-4 small">or Continue with</h6>
+                                <div class="lg-social">
+                                    <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
+                                            alt=""></a>
+                                    <a href="{{route('login.twitter')}}"><img src="{{ asset('/img/lg-twitter-icon.svg') }}"
+                                            alt=""></a>
+                                    <a href="{{route('login.google')}}"><img src="{{ asset('/img/lg-google-icon.svg') }}"
+                                            alt=""></a>
+                                    <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
+                                            alt=""></a> -->
+                                </div>
+                                <p class="get-help mt-5 small">Having trouble signing in? <a href="{{route('feedback')}}">Get
                                         Help</a></p>
                             </form>
                         </div>

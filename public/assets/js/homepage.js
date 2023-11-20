@@ -1,4 +1,4 @@
-function initSliders() {
+    function initSliders() {
 
     var TrandingSlider = new Swiper('.tranding-slider', {
         effect: 'coverflow',
@@ -132,14 +132,14 @@ function initSliders() {
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 1.8,
+                    slidesToShow: 1.7,
                     slidesToScroll: 2
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1.8,
+                    slidesToShow: 1.7,
                     slidesToScroll: 1
                 }
             }
@@ -194,7 +194,7 @@ function initSliders() {
         dots: false,
         infinite: false,
         speed: 300,
-        slidesToShow: 7.9,
+        slidesToShow: 7.4,
         slidesToScroll: 1,
         accessibility: true,
         responsive: [

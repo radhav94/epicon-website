@@ -85,9 +85,9 @@ if ($request->has('type')) {
                 <div class="download-store">
                     <h1>{{__('Download App')}}</h1>
                     <div class="w-100 download-store-logo">
-                        <a onclick="outbound_click(this)" data-event_context="app" data-element_text="android"  href="https://play.google.com/store/apps/details?id=com.epicchannel.epicon&amp;hl=en" target="_blank"><img class="me-3" src="{{ asset('assets/img/google-logo.png') }}"
+                        <a onclick="outbound_click(this)" data-event_context="app" data-element_text="android" href="https://play.google.com/store/apps/details?id=com.epicchannel.epicon&amp;hl=en" target="_blank"><img class="me-3" src="{{ asset('img/google-store-logo.svg') }}"
                                 alt=""></a>
-                        <a onclick="outbound_click(this)" data-event_context="app" data-element_text="ios"  href="https://apps.apple.com/in/app/epic-on/id1252513341" target="_blank"><img src="{{ asset('assets/img/apple-logo.png') }}" alt=""></a>
+                        <a onclick="outbound_click(this)" data-event_context="app" data-element_text="ios" href="https://apps.apple.com/in/app/epic-on/id1252513341" target="_blank"><img src="{{ asset('img/apple-store-logo.svg') }}" alt=""></a>
                     </div>
                 </div>
             </div>

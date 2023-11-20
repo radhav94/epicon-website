@@ -215,6 +215,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function hideMiddleCharacters(input) {
+  console.log(input+"input field details");
+  if(input != undefined){
   if (input.includes('@')) {
     // Handle email addresses
     const atIndex = input.indexOf('@');
@@ -235,4 +237,7 @@ function hideMiddleCharacters(input) {
     }
   }
   return input; // Input is too short to hide characters
+}else{
+  return '';
+}
 }

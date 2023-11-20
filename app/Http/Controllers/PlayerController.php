@@ -28,7 +28,7 @@ class PlayerController extends Controller
         // $param = ['content_id' => 63878];
 
         $result = CurlAPI("pages/play_url", "POST", $param, 1, true);
-        // dd($result);
+       
         if ($result && @$result['success'] ==  true) {
 
             $subtitles = $result['subtitles'] ?? [];

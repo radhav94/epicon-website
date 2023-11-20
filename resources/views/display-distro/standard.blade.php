@@ -1,6 +1,6 @@
 <section class="container-fluid top-slider addarrow me-0">
-    <div class="row me-0 my-2">
-        <div class="distro-title heading ps-0">{{ $title }}</div>
+    <div class="row">
+        <div class="distro-title heading">{{ $title }}</div>
     </div>
     <div class="distro-slider mb-4">
     @foreach ($value['content'] as $key => $val)

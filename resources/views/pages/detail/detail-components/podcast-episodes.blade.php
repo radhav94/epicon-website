@@ -30,7 +30,7 @@
                             <img class="podcast-top-icon" src="{{ asset('assets/img/podcast-top-icon.svg') }}" alt="podcast icon">
                         </div>
                         <div class="middle">
-                            <h6>{{ $card['title'] }}</h6>
+                            <h6 class="title" >{{ $card['title'] }}</h6>
                             <div class="d-flex align-items-center flex-wrap">
                                 <span class="me-3">
                                     @if (@$value['release_date'])
@@ -76,7 +76,11 @@
                                 </button>
                             </div>
                         </div>
-                        <button class="pod-play {{$playBtn}} {{$watchClass}}" data-id="{{ @$value['ID'] }}" data-url="{{ getContentUrl($value) }}"> <img src="{{ asset('assets/img/play-icon.svg') }}" alt="">
+                        <button class="pod-play {{$playBtn}} {{$watchClass}}" id="pod-play-{{ @$value['ID'] }}" data-id="{{ @$value['ID'] }}" data-url="{{ getContentUrl($value) }}"><img src="{{ asset('assets/img/play-icon.svg') }}" alt=""></button>
+                       <button class="pod-pause" id="pod-pause-{{ @$value['ID'] }}" data-id="{{ @$value['ID'] }}" style="display:none">
+                        <img src="{{asset('img/podcast-play.svg')}}" alt="icons">
+                       </button>
+
                             </a>
 
                     </div>

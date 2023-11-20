@@ -76,7 +76,9 @@ $content_list = $story_list['content_list'] ?? [];
                 <?php
                 $img_url = getCardImage($value, 'banner_image', 'small', []);
                 ?>
-                <img src="{{ $img_url }}" alt="shot-img">
+                <div class="st-pik-wrapper">
+                    <img src="{{ $img_url }}" alt="shot-img">
+                </div>
                 <div>
                     <h6 class="mt-3">{{ @$value['title'] }}</h6>
                     <span class="my-1" style="font-size: 10px;">{{ timestampToDate(@$value['publish_start_date'], 'Y') }}.
