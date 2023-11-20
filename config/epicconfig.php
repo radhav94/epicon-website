@@ -20,8 +20,8 @@ if($environment=='PRODUCTION'){
 		'EPICAPI'=>[
 			'API_DOMAIN'=>'https://njsapi.epicon.in/',
 
-			'API_DOMAIN_1'=>'http://contentapistg-njsapi.epicon.in/index/',
-			'API_DOMAIN_2' => 'http://userapistg-njsapi.epicon.in/',
+			'API_DOMAIN_1'=>'https://contentapiprod-njsapi.epicon.in/index/',
+			'API_DOMAIN_2' => 'http://userapiprod-njsapi.epicon.in/',
 			'API_DOMAIN_3' => 'https://njsapi.epicon.in/v2/',
 
 			'API_AUTH_TOKEN'=>'szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH',
