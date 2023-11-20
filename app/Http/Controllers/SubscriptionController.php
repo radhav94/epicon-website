@@ -21,13 +21,11 @@ class SubscriptionController extends Controller
         $usedDays = 0;
         $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2, true);
         $result = CurlAPI("subscriptions/plans", "GET", "", 2);
-        $offerCount = count($result['plans'][0]['benifits']);
-
         if (empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['message'] == 'No subscriptions found') {
 
             //$result = CurlAPI("subscriptions/plans", "GET", "", 2);
             if ($result && @$result['success'] == true) {
-
+                $offerCount = count($result['plans'][0]['benifits']);
                 //$offerCount = count($result['plans'][0]['benifits']);
                 $plandata = [];
                 foreach ($result['plans'] as $val) {
@@ -48,6 +46,8 @@ class SubscriptionController extends Controller
                 }
 
                 return view('subscription.subscription', compact('result', 'offerCount'));
+            }else{
+                return view('pages.error.data-error');
             }
         } else {
             if (isset($subscriptionPurchases['data'])) {
