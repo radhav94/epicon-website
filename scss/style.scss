@@ -213,9 +213,11 @@ input {
     margin-right: 10px;
     font-weight: 600;
     font-size: 14px;
+    transition: 0.4s;
 
     svg{
         width: 20px;
+        transition:all 0.4s;
     }
     @media (max-width:768px) {
         padding: 5px 15px;
@@ -234,15 +236,13 @@ input {
         }
     }
 }
-.big-play:hover,.fill-btn:hover{
+.big-play:hover,.fill-btn:hover,.big-add-list:hover{
     background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
-    // background: #474747;
     color: #fff;
-    box-shadow:inset 0px 0px 0px 1px #fff;
-    transition: 0.3s;
+    transition:all 0.4s;
     svg path{
         fill: #fff;
-        transition: 0.3s;
+        transition: 0.4s;
     }
 }
 .big-add-list{
@@ -254,6 +254,7 @@ input {
     outline: none;
     border: none;
     border: 0.5px solid #474747;
+    transition:all 0.4s;
 
     img{
         width: 14% !important;
@@ -1785,6 +1786,7 @@ input {
         color: $bg-white;
         font-size: 16px;
         font-weight: 600;
+        transition:all 0.4s;
     }
     .fill-btn{
         color: $bg-dark-gray;
@@ -1999,6 +2001,7 @@ input {
         background-color: #fff;
         padding: 8px;
         opacity: 0;
+        transition: 0.3s;
 
         @media (max-width:768px) {
             display: none!important;
@@ -2091,6 +2094,17 @@ input {
                 border-radius: 5px;
                 height: 30px;
                 width: 70px;
+                transition: all 0.4s;
+                &:hover{
+                    background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
+                    transition: all 0.4s;
+                    span{
+                        color: #fff;
+                    }
+                    svg path{
+                        fill: #fff;
+                    }
+                }
             }
             ul{
                 color: $bg-grey;
@@ -2114,7 +2128,7 @@ input {
                 }
             }
             .play-btn{
-                background: #fff;
+                background: #ffffff00;
                 border: none;
                 outline: none;
                 border-radius: 50px;
@@ -4836,6 +4850,7 @@ input {
     justify-content: center;
     text-decoration: none;
     white-space: nowrap;
+    transition:all 0.4s;
 
     svg{
         width: 20px;
@@ -4856,6 +4871,7 @@ input {
     background: $bg-white;
     margin-left: 10px;
     margin-top: 20px;
+    transition:all 0.4s;
 
     @media (max-width:768px) {
         &.mobile-width{
@@ -4872,6 +4888,7 @@ input {
     }
 }
 .fill-btn{
+    transition:all 0.4s;
     &.spr-mix{
         padding-inline: 60px!important;
         @media (max-width:700px){
@@ -4982,6 +4999,12 @@ input {
     img{
         width: 17px!important;
     }
+    transition: 0.4s;
+}
+.rounded-transparent-btn:hover{
+    transition: 0.4s;
+    transform: scale(1.1);
+    background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
 }
 .pos-btn{
     position: absolute;
@@ -6628,6 +6651,9 @@ input {
                 align-items: center;
                 justify-content: center;
                 flex-wrap: wrap;
+                .plyr--video{
+                    width: 100%;
+                }
             }
             .story-iframe {
                 height: 610px;
@@ -7143,6 +7169,23 @@ input {
         bottom: -22px;
         margin-left: 2px;
     }
+    & svg{
+        transition: all 0.4s;
+        path{
+            fill: #fff;
+            transition: all 0.4s;
+        }
+    }
+}
+.clapButton:hover{
+    svg{
+        transform: scale(1.2);
+        transition: all 0.4s;
+        path{
+            // fill: #FF8D06;
+            transition: all 0.4s;
+        }
+    }
 }
 
 .colums-reverse{
@@ -7157,6 +7200,12 @@ input {
     gap: 10px;
     button,a{
         height: 50px;
+        transition: all 0.4s;
+        &:hover{
+            transition: all 0.4s;
+            transform: scale(1.1);
+            background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
+        }
     }
     @media (max-width:768px) {
         flex-wrap: wrap;
@@ -7358,6 +7407,9 @@ input {
 .share-hover:hover{
     .share-open{
         display: flex;
+    }
+    & .upper-img{
+        background: #fff!important;
     }
 }
 .tooltip { 
