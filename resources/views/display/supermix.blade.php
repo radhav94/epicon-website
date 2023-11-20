@@ -1,14 +1,24 @@
+<?php 
+    $isMoblile      = isMobliDevice();
+?>
 <div class="carousel-main supermix-main">
     <div class="container-fluid px-0">
 
         {{-- @foreach ($value['content'] as $key => $val) --}}
         <?php
         $card = getItemCardData($value, $displayLanguageParam);
+
+        if($isMoblile){
+            $tray_image = $value['supermix_tray_image_mobile'] ?? asset('assets/img/default-830x400.png');
+        }else{
+            $tray_image = $value['supermix_tray_image_web'] ?? asset('assets/img/default-830x400.png');
+        }
+
         ?>
 
         <div class="col-12">
             <div class="super-mix w-100 text-white pb-0">
-                <img src="{{ @$value['tray_image'] }}" class="supImg" alt="">
+                <img src="{{ $tray_image }}" class="supImg" alt="">
                 <div class="d-flex align-items-baseline aie supermix-bottom-text">
                     <h1 class="me-3">{{ $card['title'] }} </h1><span> {!! sanitizeData(@$value['description'] ?? '') !!} </span>
                 </div>
