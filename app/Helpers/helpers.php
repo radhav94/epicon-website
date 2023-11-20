@@ -10,6 +10,7 @@ use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 if (!function_exists('getUserAgent')) {
     function getUserAgent()
@@ -799,16 +800,109 @@ function isLoggedInUser()
     }
     return false;
 }
+// old logic
+function SilentLoginFunction_old(){
+        $request = Request();
+        $user = isUserLoggedIn();
 
-// function getLoggedInUser()
-// {
-//     $request = Request();
-//     // dd($request->session()->all());
-//     if (isLoggedInUser() === true) {
-//         return $request->session()->get('user');
-//     }
-//     return false;
-// }
+        if(!empty($request->get('source'))){
+        if (($user) != false && strtolower($request->get('source') != "dishtv")) {
+        } elseif ($user != false && strtolower($request->get('source') == "dishtv")) {
+            $request->session()->forget('user');
+            $request->session()->forget('api_session');
+            $request->session()->forget('authenticated');
+            $request->session()->forget('redirectto');
+            $request->session()->forget('utm_source');
+            $request->session()->forget('utm_campaign');
+            $request->session()->forget('utm_medium');
+            $request->session()->forget('usercounponplan');
+            $request->session()->forget('qrpromotionsselected');
+            $request->session()->forget('promotionkey');
+            $request->session()->forget('qrpromocodekey');
+            $request->session()->forget('watchVa');
+            $request->session()->forget('listenVa');
+            $request->session()->forget('playVa');
+            $request->session()->forget('readVa');
+            $request->session()->forget('homeVa');
+            $request->session()->forget('customer_hash');
+            $request->session()->forget('skip_login');
+            $request->session()->flush();
+            session_unset();
+            silentLogin($request->get('user_id'), $request->get('source'));
+        } else {
+            $user_id = $request->get('user_id');
+            $source = $request->get('source');
+            if (isset($user_id) && isset($source)) {
+                silentLogin($user_id, $source);
+            } else {
+                if (!empty($request->session()->get('skip_login')) && $request->session()->get('skip_login') == 'true') {
+                } else if (@$_POST['skip'] != 1) {
+                    $request->session()->put('skip_login', 'true');
+                    $container = app();
+                    return redirect('/');
+                    // return $container->call('App\Http\Controllers\Auth\LoginController@getSignin');
+                }
+            }
+        }
+    }
+}
+
+function SilentLoginFunction(){
+    $request = Request();
+        // dd($request);
+        // $user = getLoggedInUser();
+        $user = isUserLoggedIn();
+        $user_id = $request->get('user_id');
+        $source = $request->get('source');
+
+        if ((isUserLoggedIn()) == false) {
+            if (isset($user_id) && isset($source)) {
+                silentLogin($user_id, $source);
+            }
+        }
+}
+
+// Silent Login API
+function silentLogin($user_id, $source)
+    {
+        $request = Request();
+        $request_parameter = [
+            'user_id' =>  $user_id,
+            'source' =>   $source,
+            'user_agent' => getUserAgent(),
+        ];
+        $epicwebArr =  CurlAPI("users/silent-login", 'POST', $request_parameter, 2, true);
+        // Log::info("-----silent login Request");
+        // Log::debug($epicwebArr);
+        // Log::info("-----END----------------------");
+        // dd($epicwebArr);
+        // if ($epicwebArr['success'] == true && isset($epicwebArr['session_id']) && !empty($epicwebArr['user_data'])) {
+        if ($epicwebArr['success'] == true && !empty($epicwebArr['user_data'])) {
+            // dd("true");
+            $userdata = $epicwebArr['user_data'];
+            // dd($userdata);
+            $user = new User();
+            // dd($user);
+            $user->id = $userdata['user_id'];
+            $user->ga_user_id = $epicwebArr['ga_user_id'];
+            foreach ($userdata as $k => $v) {
+                $user->$k = $v;
+            }
+            // $user->api_session_id = $epicwebArr['session_id'];
+            $trakcingData = ['Name' => $userdata['name'], 'Identity' => $userdata['user_id'], 'Email' => $userdata['user_id'], 'MSG-email' => true, 'MSG-push' => true];
+            $request->session()->put('authenticated', time());
+            // $request->session()->put('api_session', $epicwebArr['session_id']);
+            // $request->session()->put('user', $user);
+            $request->session()->put('user_id', $userdata['user_id']);
+            $request->session()->put('user', $userdata);
+            $request->session()->put('user_token', $epicwebArr['token']);
+            $request->session()->put('device_id', @$userdata['device_id']);
+            $request->session()->put('logintracking', $trakcingData);
+            $request->session()->put('logintrackingType', "Login");
+            $request->session()->put('authEventTrack', 'Login successfull');
+            $request->session()->put('eventCat', 'Login');
+        }
+    }
 
 function formatDate($date, $format = 'd F Y')
 {

@@ -11,18 +11,7 @@ class PageDetailController extends Controller
 {
     public function detail($pageslug, $contentslug, $season = null, $episode = null)
     {
-        $request = Request();
-        // dd($request);
-        // $user = getLoggedInUser();
-        $user = isUserLoggedIn();
-        $user_id = $request->get('user_id');
-        $source = $request->get('source');
-
-        if ((isUserLoggedIn()) == false) {
-            if (isset($user_id) && isset($source)) {
-                $this->silentLogin($user_id, $source);
-            }
-        }
+        SilentLoginFunction();
 
         $url = "pages/episode/{$pageslug}/{$contentslug}";
         $params = [];
@@ -117,44 +106,4 @@ class PageDetailController extends Controller
         }
     }
 
-    public function silentLogin($user_id, $source)
-    {
-        $request = Request();
-        $request_parameter = [
-            'user_id' =>  $user_id,
-            'source' =>   $source,
-            'user_agent' => getUserAgent(),
-        ];
-        $epicwebArr =  CurlAPI("users/silent-login", 'POST', $request_parameter, 2, true);
-        // Log::info("-----silent login Request");
-        // Log::debug($epicwebArr);
-        // Log::info("-----END----------------------");
-        // dd($epicwebArr);
-        // if ($epicwebArr['success'] == true && isset($epicwebArr['session_id']) && !empty($epicwebArr['user_data'])) {
-        if ($epicwebArr['success'] == true && !empty($epicwebArr['user_data'])) {
-            // dd("true");
-            $userdata = $epicwebArr['user_data'];
-            // dd($userdata);
-            $user = new User();
-            // dd($user);
-            $user->id = $userdata['user_id'];
-            $user->ga_user_id = $epicwebArr['ga_user_id'];
-            foreach ($userdata as $k => $v) {
-                $user->$k = $v;
-            }
-            // $user->api_session_id = $epicwebArr['session_id'];
-            $trakcingData = ['Name' => $userdata['name'], 'Identity' => $userdata['user_id'], 'Email' => $userdata['user_id'], 'MSG-email' => true, 'MSG-push' => true];
-            $request->session()->put('authenticated', time());
-            // $request->session()->put('api_session', $epicwebArr['session_id']);
-            // $request->session()->put('user', $user);
-            $request->session()->put('user_id', $userdata['user_id']);
-            $request->session()->put('user', $userdata);
-            $request->session()->put('user_token', $epicwebArr['token']);
-            $request->session()->put('device_id', @$userdata['device']);
-            $request->session()->put('logintracking', $trakcingData);
-            $request->session()->put('logintrackingType', "Login");
-            $request->session()->put('authEventTrack', 'Login successfull');
-            $request->session()->put('eventCat', 'Login');
-        }
-    }
 }
