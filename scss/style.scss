@@ -60,12 +60,15 @@ body{
     margin-left: auto!important;
     margin-top: 0!important;
 }
+#login-modal .modal-content{
+    background-image: url(../img/LoginTatlubaazBackBg.png);
+}
 .modal-content{
     backdrop-filter: blur(20px);
     border-radius: 16px;
     border: 0.5px solid #494949;
     background: transparent;
-    background-image: url(../img/LoginTatlubaazBackBg.png);
+    background-image: url(../img/modal-bg.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     @media (max-width:767px) {
