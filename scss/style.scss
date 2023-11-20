@@ -6160,6 +6160,7 @@ input {
                 font-size: 14px;
                 @include line-clamp(2);
                 padding-top: 50px;
+                z-index: -1;
             }
         }
     }
@@ -6342,8 +6343,9 @@ input {
     }
 }
 
-.tab-content>.tab-pane{ height: 0px; overflow: hidden; }
+.tab-content>.tab-pane{ height: 0px; overflow: hidden;}
 .tab-content>.active{ height: auto;}
+
 .podcast-background{
     &::after{
         content: "";
