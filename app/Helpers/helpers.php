@@ -791,15 +791,6 @@ function checkSubscription()
     return $result;
 }
 
-function isLoggedInUser()
-{
-    $request = Request();
-    // dd($request->session());
-    if ($request->session()->has('authenticated') && $request->session()->has('api_session')) {
-        return true;
-    }
-    return false;
-}
 // old logic
 function SilentLoginFunction_old(){
         $request = Request();
