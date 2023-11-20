@@ -49,7 +49,7 @@ $loadPlayer = true;
     }
     // dd($trailers);
     // dd($trailers['list'][0]['content'][0]['ID']);
-    $trailer_id = $trailers['list'][0]['content'][0]['ID'] ?? '';
+    $trailer_id = @$trailers['list'][0]['content'][0]['ID'] ?? '';
 
 ?>
     <input type="hidden" id="cont_id" value="{{ $content['ID'] }}">
