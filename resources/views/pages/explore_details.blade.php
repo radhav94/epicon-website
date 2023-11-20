@@ -51,7 +51,7 @@
         <input type="hidden" name="page" id="pageid" value="<?php echo $page + 1; ?>">
         @if (count($result) >= $limit)
             <div class="text-center">
-                <a href="javascript:;" class="autowidth explore-showmore" data-currenturl="{{ route('explorecontent') }}"
+                <a onclick="click_cta(this)" data-event_context="{{ __(ucfirst($slug)) }}" data-element_text="Show More" href="javascript:;" class="autowidth explore-showmore" data-currenturl="{{ route('explorecontent') }}"
                     slug="{{ $slug }}">{{ __('Show More') }}</a>
             </div>
         @endif
