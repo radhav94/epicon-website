@@ -6633,6 +6633,7 @@ input {
                 height: 610px;
                 width: 370px;
                 position: relative;
+                display: flex;
                 @media (max-width:1367px) {
                     width: 340px;
                     height: 560px;
@@ -6660,9 +6661,9 @@ input {
                     height: 100%;
                     left: 0;
                 }
-                @media (max-width:768px) {
-                    left: 10%;
-                }
+                // @media (max-width:768px) {
+                //     left: 10%;
+                // }
                 svg{
                     @media (max-width:700px) {
                         display: none;
@@ -6676,9 +6677,9 @@ input {
                     right: 0;
                     left: unset;
                 }
-                @media (max-width:768px) {
-                    right: 10%;
-                }
+                // @media (max-width:768px) {
+                //     right: 10%;
+                // }
             }
             .stories-title {
                 width: 100%;
@@ -6696,12 +6697,21 @@ input {
                 animation: .8s storytitle;
                 border-bottom-right-radius: 20px;
                 border-bottom-left-radius: 20px;
+                h6{
+                    font-size: 14px;
+                    @include line-clamp(1);
+                }
                 .st-pik{
                     display: grid;
                     grid-template-columns: 60px auto;
                     gap: 10px;
-                    img{
-                        width: 100%;
+                    .st-pik-wrapper{
+                        width: 60px;
+                        height: 60px;
+                        img{
+                            width: 100%;
+                            height: 100%
+                        }
                     }
                 }
                 span{
@@ -7273,16 +7283,47 @@ input {
 .library .main-card .top-ten{
     top:0;
 }
-
-.plyr__video-wrapper{
+.plyr{
+    background-color: #000;
+}
+.videoContainer .plyr__video-wrapper{
     height: 500px !important;
+    width: auto;
+    display: flex;
 
     video{
         height: 100%!important;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 768px) {
         height: auto !important;
+    }
+}
+.plyr__progress__container{
+    @media (max-width: 767px) {
+        position: absolute;
+        width: 76%;
+        bottom: 50px;
+        left: 0;
+    }
+}
+.plyr__controls .plyr__controls__item.plyr__time{
+    @media (max-width: 767px) {
+        position: absolute;
+        bottom: 48px;
+        right: 10px;
+    }
+}
+
+.plyr__controls .plyr__controls__item {
+    @media (max-width: 767px) {
+        margin-left: calc(var(--plyr-control-spacing,42px)/4)!important;
+    }
+}
+.plyr__controls .plyr__controls__item:first-child{
+    @media (max-width: 767px) {
+        margin-left: 0!important;
+        margin-right: unset!important;
     }
 }
 .supermix-bottom-text{
@@ -7380,6 +7421,7 @@ input {
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 99;
+    box-shadow: 0px 0px 5px #ffffff8c;
 
     @media (max-width:767px) {
         bottom: 60px;
@@ -7477,6 +7519,7 @@ input {
         @media (max-width:767px) {
             justify-content: space-between;
             width: calc(100% - 0px);
+            gap: 5px;
         }
     }
     button{
@@ -7549,8 +7592,18 @@ audio::-webkit-media-controls-play-button {
     }
   }
   .plyr--video .plyr__controls{
-    padding: 10px 0px 15px 10px!important;
+    padding: 10px 10px 10px 10px !important;
+    justify-content: space-between;
+    @media (max-width:767px){
+        padding: 40px 10px 10px 10px !important;
+    }
   }
+  .plyr--video .plyr__control:focus-visible, .plyr--video .plyr__control:hover, .plyr--video .plyr__control[aria-expanded=true] {
+    background: #9a44cf!important;
+}
+.plyr--full-ui input[type=range]{
+    color: #9a44cf!important;
+}
   #playVideo{
     width: auto!important;
   }
@@ -7571,5 +7624,12 @@ audio::-webkit-media-controls-play-button {
     }
     @media (max-width:767px) {
         width: 190px;
+    }
+  }
+
+  .plyr__menu__container{
+    @media (max-width:767px) {
+        height: 100px;
+        overflow: auto;
     }
   }
