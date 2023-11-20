@@ -800,15 +800,15 @@ function isLoggedInUser()
     return false;
 }
 
-function getLoggedInUser()
-{
-    $request = Request();
-    // dd($request->session()->all());
-    if (isLoggedInUser() === true) {
-        return $request->session()->get('user');
-    }
-    return false;
-}
+// function getLoggedInUser()
+// {
+//     $request = Request();
+//     // dd($request->session()->all());
+//     if (isLoggedInUser() === true) {
+//         return $request->session()->get('user');
+//     }
+//     return false;
+// }
 
 function formatDate($date, $format = 'd F Y')
 {

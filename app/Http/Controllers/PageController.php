@@ -23,11 +23,12 @@ class PageController extends Controller
         $routenamed = $pageslug;
 
         $request = Request();
+        // dd(Session::get('user_token'));
 
         if (empty($routenamed)) {
             $routenamed = $pageslug;
         }
-        $user = getLoggedInUser();
+        $user = isUserLoggedIn();
 
         if (($user) != false && strtolower($request->get('source') != "dishtv")) {
         } elseif ($user != false && strtolower($request->get('source') == "dishtv")) {
@@ -610,6 +611,7 @@ class PageController extends Controller
         $request_parameter = [
             'user_id' =>  $user_id,
             'source' =>   $source,
+            'user_agent' => getUserAgent(),
         ];
         $epicwebArr =  CurlAPI("users/silent-login", 'POST', $request_parameter, 2, true);
         // Log::info("-----silent login Request");
