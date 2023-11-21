@@ -44,7 +44,7 @@ class ProfileController extends Controller
         // $res = getProfileData();
 
         $res = $this->getProfileData();
-        // dd($res);
+
         if ($res) {
             return view('pages.profile.manage-profile')->with('data', $res);
         } else {
@@ -56,7 +56,7 @@ class ProfileController extends Controller
     {
         $data = $this->getProfileData();
 
-        if ($data && count($data['profiles']) < $this->profile_limit){
+        if ($data && count(@$data['profiles']) < $this->profile_limit){
             return view('pages.profile.add-profile', compact('data'));
         }
         return view('pages.error.404');
@@ -87,18 +87,15 @@ class ProfileController extends Controller
     }
     public function edit($id)
     {
-        // $all = request()->session()->all();
-        // dd($all);
         $result = CurlAPI("users/viewProfile", "POST", null, 2, true);
-        // dd($result);
 
         $profile = '';
 
         if ($result && @$result['success'] ==  true) {
             $data = $result['user_data'] ?? [];
 
-            foreach ($result['user_data']['profiles'] as $key => $value) {
-                if ($id == $value['id']) {
+            foreach (@$result['user_data']['profiles'] as $key => $value) {
+                if ($id == @$value['id']) {
                     $value['date_of_birth'] = (isset($value['date_of_birth'])) ? timestampToDate($value['date_of_birth'], 'Y-m-d') : '';
                     $value['kidSection'] = $data['kidSection'] ?? false;
                     $profile = $value;
