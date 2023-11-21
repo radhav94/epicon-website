@@ -9,7 +9,7 @@
                     <h1 class="text-white small">{{ @$list['title'] }}</h1>
                 </div>
                 @if (@$list['content'])
-                    <ul class="carousel-initilize px-0">
+                    <ul class="more-like-this px-0 pb-4">
                         @foreach ($list['content'] as $key => $value)
                             <?php
                             $card = getItemCardData($value, $displayLanguageParam);
