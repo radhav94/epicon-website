@@ -47,7 +47,7 @@ class UserAccountController extends Controller
 
         if(isset($subscriptionPurchasesArr) && @$subscriptionPurchasesArr['success'] == true){
 
-            foreach($subscriptionPurchasesArr['data'] as $key=>$val){
+            foreach(@$subscriptionPurchasesArr['data'] as $key=>$val){
                 if( @$val['plan_status'] == 'future' ||  @$val['plan_status'] == 'current' || (@$val['plan_status'] == 'past' && $key == 0 ) )
                 {
                     $subscriptionPurchases = [
@@ -71,7 +71,7 @@ class UserAccountController extends Controller
         $viewprofile = CurlAPI("users/viewProfile", 'POST', [] , 2, true);  
         
         if(isset($viewprofile) && @$viewprofile['success'] == true){
-            $viewprofile = $viewprofile['user_data'];
+            $viewprofile = @$viewprofile['user_data'];
         }else{
             $viewprofile = [];
         }
@@ -84,7 +84,7 @@ class UserAccountController extends Controller
         $subscriptionPurchases = CurlAPI("users/purchases", 'POST', [] , 2, true);
 
         if(isset($subscriptionPurchases) && @$subscriptionPurchases['success'] == true){
-            $subscriptionPurchases = $subscriptionPurchases['data'];
+            $subscriptionPurchases = @$subscriptionPurchases['data'];
         }else{
             $subscriptionPurchases = [];
         }

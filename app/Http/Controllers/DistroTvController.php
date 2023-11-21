@@ -16,7 +16,7 @@ class DistroTvController extends Controller
     public function index($slug = 'home-v2')    
     {
         $pageslug = strtolower($slug);
-
+        SilentLoginFunction();
         profileActive();
         $data = $this->homepageData($slug);
 
@@ -71,7 +71,7 @@ class DistroTvController extends Controller
     }
 
     public function distrotvvideo(Request $request){   
-        
+        SilentLoginFunction();
         $resultArr = CurlAPI("pages/distrotv/page/".$request->id, "GET", '', 1);
      
         if ($resultArr && @$resultArr['success'] ==  true) {

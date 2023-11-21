@@ -105,14 +105,14 @@
         <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> -->
 
     </video>
-
-    <div class="w-100 d-flex justify-content-center">
     @if(@$subplan['status'] != 'active' || !isUserLoggedIn() && @$content['free_premium'] != true)
-        <a class="subcription-btn trailer-subscription" href="javascript:void(0);" style="text-decoration: none;">
-            <img src="https://epicon-revamp.test/assets/img/crown.svg" alt="crown"> Subscribe Now
+    <div class="w-100 d-flex justify-content-center">
+        <a class="subcription-btn trailer-subscription" href="javascript:void(0);" style="text-decoration: none">
+            <img src="{{asset('img/crown.svg')}}" alt="crown"> Subscribe & Watch
         </a>
-    @endif
+   
     </div>
+    @endif
 
     {{-- <div class="custom-play-button" id="customPlayButton">
         <i class="fas fa-play"></i>
