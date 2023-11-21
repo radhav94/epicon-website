@@ -128,7 +128,7 @@ if($environment=='PRODUCTION'){
 			'EVENT_TXN_URL' => 'https://api.moengage.com/v1/event/'
 		]
 	];
-} else if($environment=='STG' ){
+} else if($environment=='STAGE' ){
 	return [
 		'EPICCOIN'=>[
 			'VIDEO_WATCH_POINT_PER_MIN'=>'2',

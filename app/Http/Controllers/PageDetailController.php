@@ -29,38 +29,43 @@ class PageDetailController extends Controller
         if ($result && @$result['success'] ==  true) {
             $displayLanguageParam = setLanguageParameter();
 
-            $content = $result['content'];
+            $content = $result['content'] ?? [];
+
+            if(empty($content)){
+                return view('pages.error.404');
+            }
+
             $trailers = [];
             $morelike = [];
 
             //get trailers tab data
-            $params = ['content_id' => $content['ID']];
-            // $params = ['content_id' => 65769];
+            $params = ['content_id' => @$content['ID']];
+
             $trailers_curl = CurlAPI("pages/trailers-and-more", "POST", $params, 1);
             if ($trailers_curl && @$trailers_curl['success'] ==  true) {
-                $trailers = $trailers_curl['data'];
+                $trailers = $trailers_curl['data'] ?? [];
             }
 
             //get more like this tab  data
-            $params = ['catalog_slug' => $content['catalog_slug']];
-            $morelike_curl = CurlAPI("v2Content/related/" . $content['ID'], "GET", $params, 1);
+            $params = ['catalog_slug' => @$content['catalog_slug']];
+            $morelike_curl = CurlAPI("v2Content/related/" . @$content['ID'], "GET", $params, 1);
             if ($morelike_curl && @$morelike_curl['success'] ==  true) {
-                $contentID = $content['ID'] ?? "";
+
                 $morelike_curlID = count(@$morelike_curl['data']) == 1 && @$morelike_curl['data'][0]['ID'] ? @$morelike_curl['data'][0]['ID'] : '';
                 //check most like content and active content are same 
-                if ($morelike_curlID && $morelike_curlID == $contentID) {
+                if ($morelike_curlID && $morelike_curlID == @$content['ID']) {
                     //if most like content has only one content and is same then set empty most like content
                     $morelike = [];
                 } else {
-                    $morelike = $morelike_curl['data'];
+                    $morelike = $morelike_curl['data'] ?? [];
                 }
             }
 
             //get about tab data
-            $params = ['content_id' => $content['ID']];
+            $params = ['content_id' => @$content['ID']];
             $about_curl = CurlAPI("pages/about", "POST", $params, 1);
             if ($about_curl && @$about_curl['success'] ==  true) {
-                $about = $about_curl['data'];
+                $about = $about_curl['data'] ?? [];
             }
 
 
@@ -81,7 +86,7 @@ class PageDetailController extends Controller
             }
 
             $template = 'pages.detail.page-detail';
-            if ($content['asset_type'] == 'LISTEN') {
+            if (@$content['asset_type'] == 'LISTEN') {
                 $template = 'pages.detail.podcast';
             }
 

@@ -17,35 +17,15 @@ class DistroTvController extends Controller
     {
         $pageslug = strtolower($slug);
 
-        $routenamed = $pageslug;
-
-        if (empty($routenamed)) {
-            $routenamed = $pageslug;
-        }
         profileActive();
         $data = $this->homepageData($slug);
-        //dd($data);
+
         $result = $data['result'];
 
-        if (request()->v == 2) {
-            foreach ($result['pageData']['list'] as $key => $value) {
-                d($value);
-            }
-            dd($result);
-        }
-        $pagetitle = @$result['data']['name'];
-        $pagetype = ($routenamed == 'homepage' || $routenamed == 'home' || $routenamed == 'home-v2') ? 'HOME' : "CATALOG";
         if ($result && @$result['success'] ==  true) {
             $displayLanguageParam = $data['displayLanguageParam'];
             $stories = $data['stories'];
-            // if ($displayLanguageParam == 'HINDI') {
-            //     $meta = $this->getHindiMeta($pagetype, $pagetitle, $routenamed);
-            // } else {
-            //     $meta = $this->getMeta($pagetype, $pagetitle, $routenamed);
-            // }
-            //$meta_title = $meta['title'];
-            // dd($meta);
-            // $meta_title = strtoupper($slug);
+        
             return view('pages.homepage-distro', compact('result', 'displayLanguageParam', 'stories'));
                     }
         return view('pages.error.404');
