@@ -62,8 +62,8 @@ class SearchController extends Controller
             ];
 
             if (key_exists('contents', $searchResult)) {
-                foreach ($searchResult['contents'] as $val) {
-                    $title = $val['title'];
+                foreach (@$searchResult['contents'] as $val) {
+                    $title = @$val['title'];
 
                     if (isset($categoryMapping[$title])) {
                         $categoryKey = $categoryMapping[$title];
@@ -91,7 +91,7 @@ class SearchController extends Controller
 
         $topResult = $result['topResult'];
 
-        $premium = ($topResult['free_premium'] == true) ? '<img class="crown" src="' . asset('assets/img/crown.svg') . '" alt="icon">' : '';
+        $premium = (@$topResult['free_premium'] == true) ? '<img class="crown" src="' . asset('assets/img/crown.svg') . '" alt="icon">' : '';
         $dateText = isset($topResult['release_date']) ? date('Y-m-d', strtotime($topResult['release_date'])) : '';
         $wishlist = getWishlist();
         $wishlistAction = getWishListAction($topResult, $wishlist, 2);
@@ -109,7 +109,7 @@ class SearchController extends Controller
             $anchorHtml = '<a href="'.getContentUrl($topResult).'" >';
         }
         
-        if( ($dateText && $topResult['duration']) != ''){
+        if( ($dateText && @$topResult['duration']) != ''){
             $pipe = '|';
         }else{
             $pipe = '';
