@@ -8,26 +8,25 @@ use Illuminate\Http\Request;
 class RewardsController extends Controller
 {
     public function MyRewards(Request $request){
-        // dd($request);
+
         $walletArr = CurlAPI("rewards/rewardsInfo", 'POST', '' , 2, true);
             // dd($walletArr);
-            if($walletArr && @$walletArr['success'] == true){
-                $walletArr = $walletArr['data'];
-                return view('rewards.my-reward',compact('walletArr'));
-            }else{
-                return view('pages.error.data-error');
-            }
-            // dd($walletArr);
+        if($walletArr && @$walletArr['success'] == true){
+            $walletArr = @$walletArr['data'];
+            return view('rewards.my-reward',compact('walletArr'));
+        }else{
+            return view('pages.error.data-error');
+        }
     }
 
     public function RedeemCouponCode(Request $request){
        $coupon_code = $request->post('coupon_code'); 
-       // dd($coupon_code);
+
        $SendCouponRequestData = array(
                 'offer_coupon_code' => $coupon_code,
             );
        $redeemApi = CurlAPI("rewards/epicoinsOffersRedeem",'POST',$SendCouponRequestData,2, true);
-       $response['message'] = $redeemApi['message'];
+       $response['message'] = @$redeemApi['message'];
        if ($redeemApi && @$redeemApi['success'] == true) {
                 return JSONResponse(200, 'Offer redeemed successfully.', ['response' => $response, 'success' => true]);
             } else {

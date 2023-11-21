@@ -11,7 +11,7 @@ class PopularController extends Controller
         $PopularResponse = CurlAPI("pages/getPopularContent", 'GET', '' , 1);
         // dd($PopularResponse);
         if($PopularResponse && @$PopularResponse['success'] == true){
-            $Populardata = $PopularResponse['data'];
+            $Populardata = @$PopularResponse['data'];
             return view('pages.new-popular')->with('popular',$Populardata);
         }else{
             return view('pages.error.data-error');
