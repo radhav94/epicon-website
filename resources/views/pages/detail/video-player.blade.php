@@ -105,13 +105,15 @@
         <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> -->
 
     </video>
-    @if(@$subplan['status'] != 'active' || !isUserLoggedIn() && @$content['free_premium'] != true)
-    <div class="w-100 d-flex justify-content-center">
-        <a class="subcription-btn trailer-subscription {{$watchClass}}" href="javascript:void(0);" style="text-decoration: none">
-            <img src="{{asset('img/crown.svg')}}" alt="crown"> Subscribe & Watch
-        </a>
-   
-    </div>
+    @if ($trailers && isset($trailers['list']) && !empty($trailers['list']))
+        @if(@$subplan['status'] != 'active' || !isUserLoggedIn() && @$content['free_premium'] != true)
+        <div class="w-100 d-flex justify-content-center">
+            <a class="subcription-btn trailer-subscription {{$watchClass}}" href="javascript:void(0);" style="text-decoration: none">
+                <img src="{{asset('img/crown.svg')}}" alt="crown"> Subscribe & Watch
+            </a>
+    
+        </div>
+        @endif
     @endif
 
     {{-- <div class="custom-play-button" id="customPlayButton">
