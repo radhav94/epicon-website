@@ -176,7 +176,7 @@ krsort($output);
     </div>
 </section>
 <div class="modal" id="upcomingModal">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div id="playVideo" data-id="" data-type="promo" data-lg="{{ isUserLoggedIn() }}" data-title="">
 

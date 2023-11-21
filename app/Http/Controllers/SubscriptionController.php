@@ -25,21 +25,23 @@ class SubscriptionController extends Controller
 
             //$result = CurlAPI("subscriptions/plans", "GET", "", 2);
             if ($result && @$result['success'] == true) {
-                $offerCount = count($result['plans'][0]['benifits']);
-                //$offerCount = count($result['plans'][0]['benifits']);
+                $offerCount = count(@$result['plans'][0]['benifits']);
+
                 $plandata = [];
-                foreach ($result['plans'] as $val) {
-                    $plandata[$val['id']] = [
-                        'id' => $val['id'],
-                        'name' => $val['name'],
-                        'plan' => $val['plan'],
-                        'actual_price' => $val['actual_price'],
-                        'currency' => $val['currency'],
-                        'epic_price' => $val['actual_price'],
-                        'save' => '',
+                foreach (@$result['plans'] as $val) {
 
-                    ];
+                    if(isset($val['id'])){
+                        $plandata[$val['id']] = [
+                            'id' => $val['id'],
+                            'name' => @$val['name'],
+                            'plan' => @$val['plan'],
+                            'actual_price' => @$val['actual_price'],
+                            'currency' => @$val['currency'],
+                            'epic_price' => @$val['actual_price'],
+                            'save' => '',
 
+                        ];
+                    }
                 }
                 if (!empty($plandata)) {
                     $request->session()->put('plandata', $plandata);
@@ -59,11 +61,11 @@ class SubscriptionController extends Controller
                     // now based on plan status from API
                     $planstartdate = @$item['subscription_start_date'];
                     $planstartdate = date("Y-m-d", strtotime($planstartdate));
-                    if ($item['plan_status'] == "current") {
+                    if (@$item['plan_status'] == "current") {
                         $remainingDays = getDays($today, @$item['subscription_end_date'], 'IST');
                         $activePlan = $item;
                         $activePlan['remainingDays'] = $remainingDays;
-                    } else if ($item['plan_status'] == 'future' && date("Y-m-d") == $planstartdate) {
+                    } else if (@$item['plan_status'] == 'future' && date("Y-m-d") == $planstartdate) {
                         $remainingDays = getDays($today, @$item['subscription_end_date'], 'IST');
                         $activePlan = $item;
                         $activePlan['remainingDays'] = $remainingDays;
@@ -77,18 +79,19 @@ class SubscriptionController extends Controller
 
                     //$offerCount = count($result['plans'][0]['benifits']);
                     $plandata = [];
-                    foreach ($result['plans'] as $val) {
-                        $plandata[$val['id']] = [
-                            'id' => $val['id'],
-                            'name' => $val['name'],
-                            'plan' => $val['plan'],
-                            'actual_price' => $val['actual_price'],
-                            'currency' => $val['currency'],
-                            'epic_price' => $val['actual_price'],
-                            'save' => '',
+                    foreach (@$result['plans'] as $val) {
 
-                        ];
-
+                        if(isset($val['id'])){
+                            $plandata[$val['id']] = [
+                                'id' => $val['id'],
+                                'name' => @$val['name'],
+                                'plan' => @$val['plan'],
+                                'actual_price' => @$val['actual_price'],
+                                'currency' => @$val['currency'],
+                                'epic_price' => @$val['actual_price'],
+                                'save' => '',
+                            ];
+                        }
                     }
                     if (!empty($plandata)) {
                         $request->session()->put('plandata', $plandata);
@@ -121,7 +124,7 @@ class SubscriptionController extends Controller
         //dd($data);
         $sessionPlanData = $request->session()->get('plandata');
         $userData = $request->session()->get('user');
-        if ($sessionPlanData[$data['amountid']]) {
+        if ($sessionPlanData[@$data['amountid']]) {
             $result = ($sessionPlanData[$data['amountid']]);
         }
 
