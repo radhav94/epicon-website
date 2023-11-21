@@ -77,4 +77,9 @@ $(document).ready(function () {
 
     var link = document.querySelector('.TrailerLink'); 
    link.click();
+   $('.TrailerLink').click(function(){
+    alert("hello");
+    $('.trailer-subscription').css('display','block');
+   });
+   
 });
