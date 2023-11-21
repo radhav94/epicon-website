@@ -9,15 +9,18 @@ $(document).ready(function () {
         };
         console.log(requestData);
         sendAjaxRequest(APP_URL + '/clap', 'POST', JSON.stringify(requestData), onClapSuccess,
-            onError, 'application/json');
+            onClapError, 'application/json');
 
         function onClapSuccess(response) {
-            showToaster(response?.message, 1);
+            // showToaster(response?.message, 1);
             let claps = response.payload.claps;
 
             if (cardType != 'list') {
                 $('.claps_num').text(claps);
             }
+        }
+        function onClapError(xhr) {
+            console.log('Error:', xhr);
         }
 
     });
