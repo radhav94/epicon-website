@@ -105,8 +105,9 @@
         <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> -->
 
     </video>
-    @if ($trailers && isset($trailers['list']) && !empty($trailers['list']))
-        @if(@$subplan['status'] != 'active' || !isUserLoggedIn() && @$content['free_premium'] != true)
+       
+    @if ($trailers && isset($trailers['list']) && !empty($trailers['list'] && @$content['free_premium'] == true))
+        @if(!isUserLoggedIn() || @$subplan['status'] != 'active')
         <div class="w-100 d-flex justify-content-center">
             <a class="subcription-btn trailer-subscription {{$watchClass}}" href="javascript:void(0);" style="text-decoration: none">
                 <img src="{{asset('img/crown.svg')}}" alt="crown"> Subscribe & Watch
