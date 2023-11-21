@@ -17,17 +17,15 @@
                 @foreach ($value['content'] as $key => $val)
                     <?php
                     $card = getItemCardData($val, $displayLanguageParam);
-                    $firstSegment   = getFirstSegment();
-                    // dd($firstSegment);
+
                     if(isMobliDevice()){
-                        $img =  in_array($firstSegment, ['pages','podcast','games'])  ? 'cover_image' : 'vertical_cover_image';
-                        // dd($img);
+                        $img =  in_array($slug, ['podcast','games'])  ? 'cover_image' : 'vertical_cover_image';
                         $cover_img = getCardImage($val, $img, 'medium');
                         // $cover_img = getCardImage($val, 'vertical_cover_image', 'medium');
                     }else{
                         $cover_img = getCardImage($val, 'banner_image', 'large');
                     }
-                    // dd($cover_img);
+
                     ?>
                     <div class="swiper-slide tranding-slide">
                         <div class="tranding-slide-img position-relative">
