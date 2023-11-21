@@ -2,7 +2,7 @@
 @section('title', $meta_title)
 
 @section('style')
-<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}" />
 <style>
     #epicShots video {
         width: 100%;
