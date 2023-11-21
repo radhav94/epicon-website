@@ -1,4 +1,4 @@
- <section class="carousel-main mt-0">
+ <section class="carousel-main">
      <div class="gaming-galore-main">
          <div class="galore-title">
              <h1>{{ $title }}</h1>
