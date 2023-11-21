@@ -1674,7 +1674,7 @@ input {
        
     }
    
-    .carousel-initilize li,.vertical-carousel-initilize li,.library li,.more-like-this li,.seeall-main-page li{
+    .carousel-initilize li,.vertical-carousel-initilize li,.library li,.more-like-this li,.seeall-main-page li,.bollywood-tray li{
         padding: 0 15px 0 0px;
         position: relative;
         .upcoming-title-play-btn{
@@ -2265,7 +2265,7 @@ input {
 }
 
 .carousel-initilize,.vertical-carousel-initilize,.gaming-galore-main,.popular-language,.blockbuster-mm
-    ,.punjab-carousel,.discover-next-watch,.new-release-bottom,.imdb,.delights-display,.wildlife,.cust-collection,.short-sweet-carousel,.vertical-carousel-retro,.ar-vr,.additional-carousel{
+    ,.punjab-carousel,.discover-next-watch,.new-release-bottom,.imdb,.delights-display,.wildlife,.cust-collection,.short-sweet-carousel,.vertical-carousel-retro,.ar-vr,.additional-carousel,.bollywood-tray{
         .slick-next, .slick-prev{
             z-index: 1;
             right: 0px;
@@ -3307,7 +3307,7 @@ input {
                 }
         }
     }
-    .punjab-carousel,.ar-vr{
+    .punjab-carousel,.ar-vr,.bollywood-tray{
         width: 100%;
         padding: 0;
         overflow-x: clip;
@@ -7732,4 +7732,8 @@ audio::-webkit-media-controls-play-button {
         height: 100px;
         overflow: auto;
     }
+  }
+  .carousel-main.spinner,.carousel-main .genere-fiesta{
+    z-index: 1;
+    position: relative;
   }
