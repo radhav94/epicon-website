@@ -2,7 +2,7 @@
     $isMoblile      = isMobliDevice();
 ?>
 
-<section class="carousel-main pt-0 mb-0" id="tranding">
+<section class="carousel-main pt-3 mb-3" id="tranding">
     <div class="container-fluid">
         <div class="carousel-title-n-arrow mb-3">
             <h1 class="text-white small">{{ $title }}</h1>
