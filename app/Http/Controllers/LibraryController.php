@@ -19,15 +19,14 @@ class LibraryController extends Controller
 
         $param = ['profile_id' => $profile_id];
         $historyResponse = CurlAPI("pages/user/watch_history", 'GET', $param, 1, true);
-        if ($historyResponse['success'] == true) {
-            $historydata = $historyResponse['data'];
+        if (@$historyResponse['success'] == true) {
+            $historydata = @$historyResponse['data'];
         } else {
             $historydata = '';
         }
         if ($listResponseData && @$listResponseData['success'] == true) {
-            $data = $listResponseData['contents'];
-            // dd($data);
-            // return view('library.library')->with('data', $listResponseData);
+            $data = @$listResponseData['contents'];
+
             return view('library.library', compact('data', 'historydata'));
         } else {
             return view('pages.error.data-error');

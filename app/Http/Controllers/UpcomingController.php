@@ -10,10 +10,10 @@ class UpcomingController extends Controller
     public function UpcomingEpicon(){
          SilentLoginFunction();
          $UpcomingResponse = CurlAPI("pages/upcomingContent", 'GET', '' , 1);
-        // dd($UpcomingResponse);
+
         if($UpcomingResponse && @$UpcomingResponse['success'] == true){
-            $Upcomingdata = $UpcomingResponse['data'];
-            // dd($Upcomingdata);
+            $Upcomingdata = $UpcomingResponse['data'] ?? [];
+
             return view('pages.upcoming-epicon')->with('upcoming',$Upcomingdata);
         }else{
             return view('pages.error.data-error');

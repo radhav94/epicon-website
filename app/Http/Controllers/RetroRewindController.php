@@ -31,7 +31,7 @@ class RetroRewindController extends Controller
             $displayLanguageParam = setLanguageParameter();
 
             $meta_title = strtoupper($slug);
-            $result = $result['data'];
+            $result = $result['data'] ?? [];
 
             return view('pages.retro-list', compact('result', 'displayLanguageParam', 'meta_title', 'slug', 'page'));
         }
@@ -53,7 +53,7 @@ class RetroRewindController extends Controller
         $result = CurlAPI("pages/retroContent", "POST", $params, 1);
 
         if ($result && @$result['success'] == true) {
-            $result = $result['data'];
+            $result = $result['data'] ?? [];
             $dataCount = count($result);
             $paginateHTML = view('components.retro-rewind-content-list', compact('result', 'page'))->render();
         } else {
