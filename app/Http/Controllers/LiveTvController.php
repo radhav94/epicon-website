@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 class LiveTvController extends Controller
 {
     public function livetv(Request $request){
-
+        SilentLoginFunction();
         $routenamed = Route::currentRouteName();
         if (empty($routenamed)) {
             $routenamed = "live-tv";

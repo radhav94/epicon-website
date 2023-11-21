@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class UpcomingController extends Controller
 {
     public function UpcomingEpicon(){
-        $UpcomingResponse = CurlAPI("pages/upcomingContent", 'GET', '' , 1);
+         SilentLoginFunction();
+         $UpcomingResponse = CurlAPI("pages/upcomingContent", 'GET', '' , 1);
 
         if($UpcomingResponse && @$UpcomingResponse['success'] == true){
             $Upcomingdata = $UpcomingResponse['data'] ?? [];

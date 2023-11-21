@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class PopularController extends Controller
 {
     public function NewsPopular(){
+        SilentLoginFunction();
         $PopularResponse = CurlAPI("pages/getPopularContent", 'GET', '' , 1);
         // dd($PopularResponse);
         if($PopularResponse && @$PopularResponse['success'] == true){

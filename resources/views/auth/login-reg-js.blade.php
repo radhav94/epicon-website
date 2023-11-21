@@ -387,7 +387,7 @@
             // Validate Name
             var name = $('#name').val();
             if (name.trim() === '') {
-                $('#name-error').text('Name is required');
+                $('#name-error').text('Email or Mobile is required');
             }
 
             // Validate Password
@@ -478,7 +478,7 @@
             // Validate Name
             var name = $('#mobilenumber').val();
             if (name.trim() === '') {
-                $('#mobile-error').text('Name is required');
+                $('#mobile-error').text('Email or Mobile is required');
             }
 
             // Validate Password
