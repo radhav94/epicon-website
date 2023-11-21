@@ -1652,7 +1652,6 @@ input {
         height: 109%;
         transform: scale3d(1.2, 1.1, 1) translateZ(0px) perspective(500px);
         transition: transform 0.25s cubic-bezier(0.33, 0.04, 0.63, 0.93) 0.4s;
-        backface-visibility: hidden;
         opacity: 1;
     }
 
@@ -1671,7 +1670,6 @@ input {
         height: auto;
         transform: scale3d(1.2, 1.2, 1) translateZ(0px) perspective(500px);
         transition: transform 0.25s cubic-bezier(0.33, 0.04, 0.63, 0.93) 0.4s;
-        backface-visibility: hidden;
         opacity: 1;
        
     }
@@ -4943,6 +4941,7 @@ input {
     transition: 0.4s;
     @media (max-width:767px) {
         height: 42px;
+        width: 180px!important;
     }
 }
 .subcription-btn.trailer-subscription:hover{
@@ -5942,11 +5941,25 @@ input {
         }
     }
     & .main-card{
-        width: 200px;
+        width: 170px;
         border-radius: 10px;
 
         @media (max-width:700px) {
-            width: 200px;
+            width: 140px;
+        }
+    }
+    &.trailer-card .main-card{
+        width: 260px;
+        border-radius: 10px;
+        .main-img{
+            margin: 0;
+        }
+
+        @media (max-width:700px) {
+            width: 180px;
+        }
+        .crown{
+            top:0px!important;
         }
     }
     @media (max-width:1024px) {

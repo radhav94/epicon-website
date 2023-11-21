@@ -94,7 +94,7 @@
 
     <div class="w-100 d-flex justify-content-center">
         <a class="subcription-btn trailer-subscription" href="javascript:void(0);" style="text-decoration: none">
-            <img src="{{asset('img/crown.svg')}}" alt="crown"> Subscribe Now
+            <img src="{{asset('img/crown.svg')}}" alt="crown"> Subscribe & Watch
         </a>
     </div>
 
