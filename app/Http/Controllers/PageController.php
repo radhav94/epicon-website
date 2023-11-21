@@ -44,7 +44,7 @@ class PageController extends Controller
             }
             $meta_title = $meta['title'];
 
-            return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta_title'));
+            return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta_title','slug'));
                     }
         return view('pages.error.404');
     }
