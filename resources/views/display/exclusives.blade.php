@@ -19,7 +19,7 @@
                     $card = getItemCardData($val, $displayLanguageParam);
 
                     if(isMobliDevice()){
-                        $img =  in_array($slug, ['podcast','games'])  ? 'cover_image' : 'vertical_cover_image';
+                        $img =  in_array(@$slug, ['podcast','games'])  ? 'cover_image' : 'vertical_cover_image';
                         $cover_img = getCardImage($val, $img, 'medium');
                         // $cover_img = getCardImage($val, 'vertical_cover_image', 'medium');
                     }else{
