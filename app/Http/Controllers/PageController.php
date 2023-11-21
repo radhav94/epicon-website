@@ -528,7 +528,7 @@ class PageController extends Controller
         $data = http_build_query($param);
         $curl = curl_init();
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://contentapi-njsapi.epicon.in/index/pages/midpageData',
+        CURLOPT_URL => config('epicconfig.EPICAPI.API_DOMAIN_1').'/pages/midpageData',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
