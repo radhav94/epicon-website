@@ -466,6 +466,52 @@
         ]
     });
 
+    $('.bollywood-tray').not('.slick-initialized').slick({
+        dots: false,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 3.8,
+        slidesToScroll: 1,
+        accessibility: true,
+        responsive: [
+            {
+                breakpoint: 1367,
+                settings: {
+                    slidesToShow: 3.8,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 1025,
+                settings: {
+                    slidesToShow: 2.9,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 769,
+                settings: {
+                    slidesToShow: 2.1,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1.7,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1.7,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
+
     $('.gaming-galore').not('.slick-initialized').slick({
         dots: false,
         infinite: false,
