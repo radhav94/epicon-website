@@ -11,7 +11,6 @@ class PageDetailController extends Controller
     public function detail($pageslug, $contentslug, $season = null, $episode = null)
     {
         SilentLoginFunction();
-
         $url = "pages/episode/{$pageslug}/{$contentslug}";
         $params = [];
         if ($season && $episode) {
@@ -109,5 +108,4 @@ class PageDetailController extends Controller
             return JSONResponse(400, 'Some error occured');
         }
     }
-
 }
