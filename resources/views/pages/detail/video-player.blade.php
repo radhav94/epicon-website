@@ -107,7 +107,7 @@
     </video>
     @if(@$subplan['status'] != 'active' || !isUserLoggedIn() && @$content['free_premium'] != true)
     <div class="w-100 d-flex justify-content-center">
-        <a class="subcription-btn trailer-subscription" href="javascript:void(0);" style="text-decoration: none">
+        <a class="subcription-btn trailer-subscription {{$watchClass}}" href="javascript:void(0);" style="text-decoration: none">
             <img src="{{asset('img/crown.svg')}}" alt="crown"> Subscribe & Watch
         </a>
    
