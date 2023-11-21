@@ -4934,6 +4934,27 @@ input {
         text-decoration: none;
     }
 }
+.subcription-btn.trailer-subscription{
+    width: 200px;
+    height: 50px;
+    margin-top: 20px;
+    border: 0.5px solid #737373;
+    background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
+    transition: 0.4s;
+    @media (max-width:767px) {
+        // width: 94%!important;
+        height: 42px;
+    }
+}
+.subcription-btn.trailer-subscription:hover{
+    transform: scale(1.1);
+    transition: 0.4s;
+}
+.subcription-btn:hover{
+    border: 1px solid #fff;
+    background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
+    transition: 0.4s;
+}
 .b7-color{
     color: #b7b7b7;
 }
