@@ -14,17 +14,18 @@
         </div>
         <div class="tranding-slider {{ getFirstSegment() == 'podcast' ? 'podcast-height' : '' }}">
             <div class="swiper-wrapper">
-
                 @foreach ($value['content'] as $key => $val)
                     <?php
                     $card = getItemCardData($val, $displayLanguageParam);
-                    
+
                     if(isMobliDevice()){
-                        $cover_img = getCardImage($val, 'vertical_cover_image', 'medium');
+                        $img =  in_array($slug, ['podcast','games'])  ? 'cover_image' : 'vertical_cover_image';
+                        $cover_img = getCardImage($val, $img, 'medium');
+                        // $cover_img = getCardImage($val, 'vertical_cover_image', 'medium');
                     }else{
                         $cover_img = getCardImage($val, 'banner_image', 'large');
                     }
-                    
+
                     ?>
                     <div class="swiper-slide tranding-slide">
                         <div class="tranding-slide-img position-relative">

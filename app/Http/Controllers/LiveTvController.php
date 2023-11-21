@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 class LiveTvController extends Controller
 {
     public function livetv(Request $request){
-
+        SilentLoginFunction();
         $routenamed = Route::currentRouteName();
         if (empty($routenamed)) {
             $routenamed = "live-tv";
@@ -20,7 +20,7 @@ class LiveTvController extends Controller
         $pagetitle = "LIVETV";
         $pagetype = ($routenamed == 'home') ? 'HOME' : "LIVETV";
         if($livetvArr && @$livetvArr['success'] == true){
-            $response = $livetvArr['content'];
+            $response = @$livetvArr['content'];
             $displayLanguageParam = setLanguageParameter();
 
             $meta = $this->getMeta($routenamed);
@@ -29,12 +29,10 @@ class LiveTvController extends Controller
         }else{
             return view('pages.error.data-error');
         }
-        // dd($response);
     }
 
     public function getMeta($routenamed)
     {
-        // dd($routenamed);
         $meta = [];
         $meta['keywords'] = '';
         $meta['image'] = env('APP_URL') . '/epiconlogo.png';

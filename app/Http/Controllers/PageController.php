@@ -58,7 +58,7 @@ class PageController extends Controller
             $displayLanguageParam = $data['displayLanguageParam'];
             $stories = $data['stories'];
 
-            $view = view('display.display-default', compact('result', 'displayLanguageParam', 'stories'))->render();
+            $view = view('display.display-default', compact('result', 'displayLanguageParam', 'stories','slug'))->render();
 
             return JSONResponse(
                 200,
@@ -72,6 +72,7 @@ class PageController extends Controller
 
     public function explore()
     {
+        SilentLoginFunction();
         $result = CurlAPI("pages/explorepage", "GET", [], 1);
 
         $slug = 'explore';
@@ -98,6 +99,7 @@ class PageController extends Controller
 
     public function explore_details($slug)
     {
+        SilentLoginFunction();
         $page = 1;
         $limit = 20;
         $params = [

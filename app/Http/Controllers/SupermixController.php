@@ -22,7 +22,7 @@ class SupermixController extends Controller
 
         if ($result && @$result['success'] ==  true) {
 
-            $content = $result['data'];
+            $content = $result['data'] ?? [];
             $displayLanguageParam = setLanguageParameter();
             $view = view('components.supermix-content', compact('content', 'displayLanguageParam'))->render();
 
