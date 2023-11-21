@@ -19,12 +19,6 @@ class PageController extends Controller
     {
         $pageslug = strtolower($slug);
 
-        $routenamed = $pageslug;
-
-        if (empty($routenamed)) {
-            $routenamed = $pageslug;
-        }
-        
         SilentLoginFunction();
 
         profileActive();
@@ -38,18 +32,18 @@ class PageController extends Controller
             dd($result);
         }
         $pagetitle = @$result['data']['name'];
-        $pagetype = ($routenamed == 'homepage' || $routenamed == 'home' || $routenamed == 'home-v2') ? 'HOME' : "CATALOG";
+        $pagetype = in_array($pageslug, ['homepage', 'home', 'home-v2']) ? 'HOME' : 'CATALOG';
+
         if ($result && @$result['success'] ==  true) {
             $displayLanguageParam = $data['displayLanguageParam'];
             $stories = $data['stories'];
             if ($displayLanguageParam == 'HINDI') {
-                $meta = $this->getHindiMeta($pagetype, $pagetitle, $routenamed);
+                $meta = $this->getHindiMeta($pagetype, $pagetitle, $pageslug);
             } else {
-                $meta = $this->getMeta($pagetype, $pagetitle, $routenamed);
+                $meta = $this->getMeta($pagetype, $pagetitle, $pageslug);
             }
             $meta_title = $meta['title'];
-            // dd($meta);
-            // $meta_title = strtoupper($slug);
+
             return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta_title'));
                     }
         return view('pages.error.404');
@@ -79,24 +73,23 @@ class PageController extends Controller
     public function explore()
     {
         $result = CurlAPI("pages/explorepage", "GET", [], 1);
-        $pagetitle = @$result['data']['name'];
 
         $slug = 'explore';
 
         if ($result && @$result['success'] ==  true) {
+            $pagetitle = @$result['data']['name'];
+
             $data = $this->homepageData($slug);
             $displayLanguageParam = $data['displayLanguageParam'];
+
+            $pagetype = "CATALOG";
+
             if ($displayLanguageParam == 'HINDI') {
-                $routenamed = 'explore';
-                $pagetype = ($routenamed == 'homepage' || $routenamed == 'home' || $routenamed == 'home-v2') ? 'HOME' : "CATALOG";
-                $meta = $this->getHindiMeta($pagetype, $pagetitle, $routenamed);
+                $meta = $this->getHindiMeta($pagetype, $pagetitle, $slug);
             } else {
-                $routenamed = 'explore';
-                $pagetype = ($routenamed == 'homepage' || $routenamed == 'home' || $routenamed == 'home-v2') ? 'HOME' : "CATALOG";
-                $meta = $this->getMeta($pagetype, $pagetitle, $routenamed);
+                $meta = $this->getMeta($pagetype, $pagetitle, $slug);
             }
             $meta_title = $meta['title'];
-            // dd($meta_title);
             return view('pages.explore', compact('result','meta_title'));
         }
 
@@ -116,12 +109,10 @@ class PageController extends Controller
         $result = CurlAPI("pages/midpage/" . $slug, "GET", $params, 1);
 
         if ($result && @$result['success'] ==  true) {
-            $result = $result['data'];
-            if ($displayLanguageParam == 'HINDI') {
-                $meta_title = 'विवरण खोजें';
-            }else{
-                $meta_title = 'Explore Details';
-            }
+            $result = $result['data'] ?? [];
+            
+            $meta_title = ($displayLanguageParam == 'HINDI') ? 'विवरण खोजें' : 'Explore Details';
+
             return view('pages.explore_details', compact('result', 'slug', 'page','meta_title', 'limit'));
         } else {
             return view('pages.error.data-error');
@@ -131,8 +122,7 @@ class PageController extends Controller
     public function getSpinnerContent(Request $request)
     {
         $result = CurlAPI("pages/spinnerContent", "POST", ['genre' => $request->genre]);
-        // die($result['success']);
-        // dd($result);
+
 
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(
@@ -150,7 +140,6 @@ class PageController extends Controller
 
     public function wishlist(Request $request)
     {
-        // dd($request->all());
         $params = [
             'content_id' => $request->content_id,
             'action' => $request->action,
@@ -188,10 +177,11 @@ class PageController extends Controller
     {
         $page = 1;
         $slug = $pageslug;
-        $hybidData ="";
+        $limit = 48;
+
         $hybidData = $request->all();
         if($request->is_hybrid){
-            $hybrid = $request->is_hybrid;
+
             $genre_viewall = json_encode(explode(",",$request->genre_viewall));
             $catalog_viewall = json_encode(explode(",",$request->catalog_viewall));
             $list_language_viewall = json_encode(explode(",",$request->list_language_viewall));
@@ -200,14 +190,14 @@ class PageController extends Controller
                 'catalog_viewall' => $catalog_viewall,
                 'genre_viewall' => $genre_viewall,
                 'list_language_viewall' => $list_language_viewall, 
-                'limit' => 48, 
+                'limit' => $limit, 
                 'page' => 1
             ];
             $epicwebArr = $this->hybridCurl($params); 
         }else{
-            $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 48, 'page' => 1], 1);
+            $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => $limit, 'page' => 1], 1);
         }
-        if (isset($epicwebArr) && $epicwebArr['success'] == true) {
+        if (isset($epicwebArr) && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
             return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page','hybidData'));
         } else {
@@ -222,7 +212,7 @@ class PageController extends Controller
         $page = 1;
         $epicwebArr = CurlAPI("pages/midpageData", "POST", ['slug' => $slug, 'page' => 1,'limit' => 48], 1);
         
-        if (isset($epicwebArr) && $epicwebArr['success'] == true) {
+        if (isset($epicwebArr) && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
             return view('pages.chanel.channelmidpage', compact('epicwebArr','title', 'slug', 'page'));
         } else {
@@ -238,7 +228,7 @@ class PageController extends Controller
         $limit = 48;
         $dataCount = "";
         if($request->is_hybrid){
-            $hybrid = $request->is_hybrid;
+
             $genre_viewall = json_encode(explode(",",$request->genre_viewall));
             $catalog_viewall = json_encode(explode(",",$request->catalog_viewall));
             $list_language_viewall =json_encode(explode(",",$request->list_language_viewall));
@@ -247,14 +237,14 @@ class PageController extends Controller
                 'catalog_viewall' => $catalog_viewall,
                 'genre_viewall' => $genre_viewall,
                 'list_language_viewall' => $list_language_viewall, 
-                'limit' => 48, 
+                'limit' => $limit, 
                 'page' => $page
             ];
             $epicwebArr = $this->hybridCurl($params);
             
         }else{
         $catalog = $request->catalogid;
-        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => 48, 'page' => $page], 1);
+        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => $limit, 'page' => $page], 1);
         }
         $catalogue_blade = "paginatecontent";
         if ($epicwebArr && @$epicwebArr['success'] == true) {
@@ -273,7 +263,7 @@ class PageController extends Controller
         $page = $request->page;
         $limit = 48;
         $slug = $request->slug;
-        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['slug' => $slug, 'limit' => 48, 'page' => $page], 1);
+        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['slug' => $slug, 'limit' => $limit, 'page' => $page], 1);
         $catalogue_blade = "chanel.channelpaginatecontent";
         if ($epicwebArr && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
@@ -315,7 +305,7 @@ class PageController extends Controller
         $story_list = $this->epicShots($story_id);
 
         $view = view('components.epic-story-popup', compact('story_list'))->render();
-        // d($view);
+
         return JSONResponse(
             200,
             'Success.',
@@ -323,7 +313,6 @@ class PageController extends Controller
                 'html' => $view,
             ]
         );
-        dd($story_list);
     }
 
     private function homepageData($slug = 'home-v2', $page = 1)
@@ -373,10 +362,10 @@ class PageController extends Controller
             $data = $response['data'] ?? [];
             $list = $data['list'] ?? [];
             foreach ($list as $val) {
-                if ($val['status']) {
+                if (@$val['status']) {
                     $stories = key_exists('stories', $val) ? $val['stories'] : [];
                     foreach ($stories as $story) {
-                        if (!empty($story_id) && $story['ID'] == $story_id) {
+                        if (!empty($story_id) && @$story['ID'] == $story_id) {
                             $stories_arr = $story;
                             break;
                         } else {
@@ -395,8 +384,7 @@ class PageController extends Controller
 
     public function getMeta($pagetype, $pagetitle, $pageslug = '')
     {
-        // dd($pagetype . '====' .$pageslug);
-        // echo $pageslug;die;
+    
         $meta = [];
         $meta['keywords'] = '';
         $meta['image'] = env('APP_URL') . '/epiconlogo.png';
@@ -470,8 +458,7 @@ class PageController extends Controller
 
     public function getHindiMeta($pagetype, $pagetitle, $pageslug = '')
     {
-        // dd($pagetype . '====' .$pageslug);
-        //echo $pageslug;die;
+
         $meta = [];
         $meta['keywords'] = '';
         $meta['image'] = env('APP_URL') . '/epiconlogo.png';
@@ -557,11 +544,9 @@ class PageController extends Controller
         ));
     
         $response = curl_exec($curl);
-    
+
         curl_close($curl);
         return json_decode($response, true);
-    
-    
     }
 
   
