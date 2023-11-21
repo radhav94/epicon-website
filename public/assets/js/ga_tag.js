@@ -97,6 +97,19 @@ function video_seek(a, e, o) {
 function video_ended(a, e, o) {
     window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "video_complete", video_duration: a, video_name: o, video_seconds_viewed: e });
 }
+function audio_play(e, a) {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "audio_start", audio_duration: e, audio_name: a });
+}
+function audio_pause(e, a, t, n) {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "audio_pause", audio_duration: e, audio_name: a, audio_percent_viewed: t, audio_seconds_viewed: n });
+}
+function audio_seek(a, e, o) {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "audio_progress", audio_duration: a, audio_name: e, audio_seconds_viewed: o });
+}
+function audio_ended(a, e, o) {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "audio_complete", audio_duration: a, audio_name: e, audio_seconds_viewed: o });
+}
+
 function click_cta(e) {
     window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
     var a = $(e).data("event_context"),

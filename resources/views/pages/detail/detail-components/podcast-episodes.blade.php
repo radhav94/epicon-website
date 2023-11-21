@@ -30,7 +30,7 @@
                             <img class="podcast-top-icon" src="{{ asset('assets/img/podcast-top-icon.svg') }}" alt="podcast icon">
                         </div>
                         <div class="middle">
-                            <h6 class="title" >{{ $card['title'] }}</h6>
+                            <h6 class="title" data-duration="{{@$value['duration']}}">{{ $card['title'] }}</h6>
                             <div class="d-flex align-items-center flex-wrap">
                                 <span class="me-3">
                                     @if (@$value['release_date'])
