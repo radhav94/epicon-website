@@ -66,7 +66,21 @@
         display: none;
     }
 </style>
-
+<?php
+   $subplan = checkSubscription();
+    if(isKidsPage()){
+        $addClass = "allAccessBtn-sub";
+    }else{
+        $addClass = "subscription";
+    }
+    
+        $watchClass = "";
+        if (!isUserLoggedIn()) {
+            $watchClass = @$content['free_premium'] == true ? "login-with-subscription" : "";
+        } else {
+            $watchClass = @$subplan['status'] != 'active' ? $addClass : "";
+        }
+?>
 <div class="container videoContainer position-relative px-0 {{ getFirstSegment() == 'live-tv' ? 'live-tv-vidPlayer' : '' }}" style="display: none">
     <p id="closePlayer">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -91,12 +105,14 @@
         <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> -->
 
     </video>
-
+    @if(@$subplan['status'] != 'active' || !isUserLoggedIn() && @$content['free_premium'] != true)
     <div class="w-100 d-flex justify-content-center">
         <a class="subcription-btn trailer-subscription" href="javascript:void(0);" style="text-decoration: none">
             <img src="{{asset('img/crown.svg')}}" alt="crown"> Subscribe & Watch
         </a>
+   
     </div>
+    @endif
 
     {{-- <div class="custom-play-button" id="customPlayButton">
         <i class="fas fa-play"></i>
