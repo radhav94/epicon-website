@@ -44,9 +44,20 @@
         color: #fff;
         font-weight: bold;
         cursor: pointer;
-        margin: 0 0 0 auto;
-        padding: 10px 10px 10px 10px;
+        padding: 8px;
+        margin-bottom: 0px;
         width: fit-content;
+        position: absolute;
+        z-index: 2;
+        right: 0px;
+        background: #ffa508;
+        /* background: linear-gradient(67deg, #FF8D06 0%, #FFCB05 100%); */
+        border-bottom-left-radius: 100px;
+    }
+    #closePlayer svg{
+        position: relative;
+        left: 5px;
+        bottom: 5px;
     }
     .live-tv-vidPlayer button[data-plyr="fast-forward"], 
     .live-tv-vidPlayer button[data-plyr="rewind"], 
@@ -56,9 +67,9 @@
     }
 </style>
 
-<div class="container videoContainer {{ getFirstSegment() == 'live-tv' ? 'live-tv-vidPlayer' : '' }}" style="display: none">
+<div class="container videoContainer position-relative px-0 {{ getFirstSegment() == 'live-tv' ? 'live-tv-vidPlayer' : '' }}" style="display: none">
     <p id="closePlayer">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
             <g clip-path="url(#clip0_887_29375)">
                 <path d="M17.0508 19.0726L12 14.0218L6.94924 19.0726C6.39365 19.6282 5.48452 19.6282 4.92893 19.0726C4.37335 18.517 4.37335 17.6079 4.92893 17.0523L9.9797 12.0015L4.92893 6.95075C4.37335 6.39516 4.37335 5.48603 4.92893 4.93044C5.48452 4.37486 6.39365 4.37486 6.94924 4.93044L12 9.9812L17.0508 4.93044C17.6063 4.37486 18.5155 4.37486 19.0711 4.93044C19.6267 5.48603 19.6267 6.39516 19.0711 6.95075L14.0203 12.0015L19.0711 17.0523C19.6267 17.6079 19.6267 18.517 19.0711 19.0726C18.5155 19.6282 17.6063 19.6282 17.0508 19.0726Z" fill="white"/>
             </g>
@@ -80,6 +91,12 @@
         <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> -->
 
     </video>
+
+    <div class="w-100 d-flex justify-content-center">
+        <a class="subcription-btn trailer-subscription" href="javascript:void(0);" style="text-decoration: none">
+            <img src="https://epicon-revamp.test/assets/img/crown.svg" alt="crown"> Subscribe Now
+        </a>
+    </div>
 
     {{-- <div class="custom-play-button" id="customPlayButton">
         <i class="fas fa-play"></i>
