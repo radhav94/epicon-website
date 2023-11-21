@@ -80,6 +80,11 @@ function click_menu(e) {
         t = $(e).data("element_text");
         window.dataLayer.push({ event: "click_menu", event_context: a, element_text: t, time_on_page: time_on_page() }), window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset();
 }
+
+function click_spinner(a) {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "click_spinner", element_text: a});
+} 
+
 function video_play(e, a) {
     window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "video_start", video_duration: e, video_name: a });
 }
