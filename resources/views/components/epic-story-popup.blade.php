@@ -45,7 +45,7 @@ $content_list = $story_list['content_list'] ?? [];
             <img src="{{ asset('assets/img/mute-shots.svg') }}" width="40" height="40">
         </button>
         <button class="mute-btn-storie unmute-btn" style="display:none;">
-            <img src="{{ asset('img/unmute.svg') }}" width="40" height="40">
+            <img src="{{ asset('assets/img/unmute.svg') }}" width="40" height="40">
         </button>
         <!-- mute button end-->
         <!-- <div> -->
@@ -56,7 +56,7 @@ $content_list = $story_list['content_list'] ?? [];
                 </svg>
             </button>
             <button class="story-pause-btn" id="story-pause-btn{{ ($key + 1) }}" data-id="{{ @$value['ID'] }}" data-url="{{ @$value['limelight_videourl'] }}">
-                <img src="{{ asset('img/pause.svg') }}" width="40" height="40">
+                <img src="{{ asset('assets/img/pause.svg') }}" width="40" height="40">
             </button>
         </div>
 

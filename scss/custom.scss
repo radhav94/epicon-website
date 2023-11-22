@@ -943,8 +943,12 @@
     }
     .distro-banner-item{
         width: 100%;
-        height: auto;
+        height: 500px;
         position: relative;
+    }
+    .distro-banner-item .plyr--video {
+        overflow: hidden;
+        height: 100%;
     }
     .distro-banner-item img{
         width: 100%;
@@ -1016,7 +1020,10 @@
         }
     }
     @media screen and (max-width: 767px) {
-    
+        .distro-banner-item{
+            width: 100%;
+            height: auto;
+        }
         .ds-logo-text {
             margin-top: 120px;
         }

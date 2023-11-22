@@ -281,7 +281,7 @@ $episode_json = json_encode($episode_list);
                         <img src="{{asset('img/podcast-add.svg')}}" alt="icons">
                     </button> -->
                     <button class="rounded-grey-btn m-0 addToList" data-id="{{ @$content['ID'] }}" data-action="{{ @$wishAction }}" data-type="3">
-                                <img class="wl_add" src="{{ asset('assets/img/add-icon.svg') }}" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
+                                <img class="wl_add" src="{{ asset('assets/img/add-icon-podcast.svg') }}" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
                                 <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon" @if ($wishAction=='add' ) style="display: none" @endif>
                             </button>
                 </div>
