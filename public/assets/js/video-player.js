@@ -331,3 +331,7 @@ function playContentVideo(cid,c_type,element) {
 		'application/json'
 	);
 }
+
+$("#closePlayer").click(function(){
+	$(".content-div").css("display","block");
+});
