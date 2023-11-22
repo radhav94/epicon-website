@@ -121,13 +121,15 @@ class SubscriptionController extends Controller
             return redirect('/');
         }
         $data = $request->all();
-        //dd($data);
+        $result = [];
         $sessionPlanData = $request->session()->get('plandata');
         $userData = $request->session()->get('user');
         if (@$sessionPlanData[@$data['amountid']]) {
             $result = (@$sessionPlanData[@$data['amountid']]);
         }
-
+        if(empty($result)){
+            return view('pages.error.data-error');  
+        }
         return view('subscription.payment-method', compact('result', 'data'));
 
     }
