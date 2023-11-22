@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/swiper-bundle.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/toastr.min.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery-ui.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery-ui.min.css') }}">
     {{-- End header common styles --}}
 
 
@@ -38,7 +38,7 @@
 
     {{-- Start footer common scripts --}}
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/jquery-ui.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/jquery-ui.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/custom.js') }}?v={{ assetTime() }}" defer></script>
     <script src="{{ asset('assets/js/swiper.js') }}" defer></script>
     <script src="{{ asset('assets/js/spiner.js') }}" defer></script>
