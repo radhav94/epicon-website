@@ -124,8 +124,8 @@ class SubscriptionController extends Controller
         //dd($data);
         $sessionPlanData = $request->session()->get('plandata');
         $userData = $request->session()->get('user');
-        if ($sessionPlanData[@$data['amountid']]) {
-            $result = ($sessionPlanData[$data['amountid']]);
+        if (@$sessionPlanData[@$data['amountid']]) {
+            $result = (@$sessionPlanData[@$data['amountid']]);
         }
 
         return view('subscription.payment-method', compact('result', 'data'));
