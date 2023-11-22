@@ -37,8 +37,16 @@
     <script type="text/javascript">
         var APP_URL = "{{ url('/') }}";
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8JER642T3Z"></script> <script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8JER642T3Z"></script> 
+    <script>
+        var title = "<?php echo isset($metadata['title'])? $metadata['title'] : 'EPIC ON ' ?>";
         window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'client_ga_id': '374718823',
+            'content_type': title,
+            'platform_type': 'web',
+            'environment': 'develop',
+        });
     </script> 
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
