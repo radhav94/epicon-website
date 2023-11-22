@@ -3,17 +3,17 @@
                 $ua = strtolower($_SERVER["HTTP_USER_AGENT"]);
                 $isMob = is_numeric(strpos($ua, "mobile"));
                  if(isset($isMob) && $isMob==true){
-                    if(!empty(env('PAGEBLOCKERDATE'))) {
-                      $pageblockername = 'Mobile-Page-Blocks_'.env('PAGEBLOCKERDATE').'.jpg';
-                  } else {
-                      $pageblockername = 'Mobile-Page-Blocks.jpg';
-                  }
+                  //   if(!empty(env('PAGEBLOCKERDATE'))) {
+                  //     $pageblockername = 'Mobile-Page-Blocks_'.env('PAGEBLOCKERDATE').'.jpg';
+                  // } else {
+                      $pageblockername = 'PB_App_Mobile.jpg';
+                  // }
                 }else{
-                     if(!empty(env('PAGEBLOCKERDATE'))) {
-                        $pageblockername = 'Desktop-Page-Blocks_'.env('PAGEBLOCKERDATE').'.jpg';
-                    } else {
-                        $pageblockername = 'Desktop-Page-Blocks.jpg';
-                    }
+                    //  if(!empty(env('PAGEBLOCKERDATE'))) {
+                    //     $pageblockername = 'Desktop-Page-Blocks_'.env('PAGEBLOCKERDATE').'.jpg';
+                    // } else {
+                        $pageblockername = 'PB_Web_Desktop.jpg';
+                    // }
                 }      
 ?>
 <!-- page blocker start -->
