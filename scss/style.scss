@@ -1077,10 +1077,16 @@ input {
                     content: "";
                     position: absolute;
                     height: 50%;
-                    width: 100%;
+                    width: calc(100% - 20px);
                     left: 0;
-                    bottom: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    border-radius: 13px;
+                    bottom: 10px;
                     background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.77) 100%);
+                    @media screen and (max-width: 767px) {
+                        border-radius: 0px;
+                    }
                 }
                 @media screen and (max-width: 767px) {
                     border-radius: 12px;
@@ -1600,20 +1606,28 @@ input {
     overflow-x: initial !important;
 }
 .carousel-main,.library,.seeall-main-page{
-    margin-block: 25px;
+    margin-block: 30px;
     height: 100%;
     position: relative;
     max-width:100%;
     overflow-x: clip;
     z-index: 2;
+    @media (max-width:767px) {
+        margin-block: 15px;
+    }
     .carousel-title-n-arrow{
         @include flex(row, center, space-between);
 
         & h1{
             font-size: 18px;
             font-weight: 700;
-            line-height: 20px;
+            // line-height: 20px;
             margin-bottom: 0;
+            // margin-top: 10px;
+            padding-left: 5px;
+            height: 32px;
+            display: flex;
+            align-items: center;
             
             @media (max-width:700px) {
                 font-size: 14px;
@@ -2610,14 +2624,14 @@ input {
         position: relative;
       }
       .tranding-slide .tranding-slide-img{
-        width: 280px;
+        width: 240px;
         height: 420px;
       }
       .swiper-slide.tranding-slide.swiper-slide-prev{
-        transform: translate3d(350px, 0px, -130px) rotateX(0deg) rotateY(0deg) scale(1) !important;
+        transform: translate3d(330px, 0px, -130px) rotateX(0deg) rotateY(0deg) scale(1) !important;
       }
       .swiper-slide.tranding-slide.swiper-slide-next{
-        transform: translate3d(-350px, 0px, -130px) rotateX(0deg) rotateY(0deg) scale(1)!important;
+        transform: translate3d(-333px, 0px, -130px) rotateX(0deg) rotateY(0deg) scale(1)!important;
       }
       .tranding-slide-img {
         border-radius: 8px;
@@ -2636,7 +2650,7 @@ input {
         position: relative;
       }
       .tranding-slide .tranding-slide-img{
-        width: 280px;
+        width: 240px;
         height: auto;
       }
   }
@@ -2675,7 +2689,7 @@ input {
     }
     @media (max-width:700px) {
         padding-bottom: 0px;
-        padding-top: 0px;
+        padding-top: 10px;
         margin-bottom: 0;
     }
 
@@ -2887,7 +2901,7 @@ input {
         &::after{
             content: "";
             width: 400px;
-            height: 400px;
+            height: 330px;
             position: absolute;
             background-image: url("../img/gaming-galore-bg.svg");
             background-repeat: no-repeat;
@@ -2939,7 +2953,7 @@ input {
         
     }
 
-    .gaming-galore{
+    .gaming-galore,.ishara-nazara{
         width: 100%;
         padding: 0;
         overflow: hidden;
@@ -3977,9 +3991,21 @@ input {
     background: #fff;
     text-decoration: none;
     color: #070707;
+    transition: 0.4s;
     @media (max-width:767px) {
         padding: 6px 24px;
     }
+    &:hover{
+        background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
+        transition: 0.4s;
+        border: 0.5px solid #fff;
+        color: #fff;
+        svg path{
+            fill: #fff;
+            transition: 0.4s;
+        }
+    }
+
 }
 .childpin{
     h5,p{
@@ -7349,6 +7375,7 @@ input {
 }
 .supermix-main{
     padding-inline: 10px;
+    margin-bottom: 40px;
 }
 #resendBtn,#resendForgotBtn{
     border: none;
@@ -7439,6 +7466,11 @@ input {
     background-image: url("../img/distrotvbg-new-img.png");
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    margin-top: 40px;
+    @media (max-width:767px) {
+        margin-top: 25px;
+    }
 }
 .share-hover{
     position: absolute;
@@ -7712,6 +7744,8 @@ audio::-webkit-media-controls-play-button {
   }
   .carousel-main.spotlight-control{
     z-index: 1;
+    display: flex;
+    margin-top: 40px;
   }
   .search-main .more-like-this{
     padding-bottom: 10px;
@@ -7736,4 +7770,10 @@ audio::-webkit-media-controls-play-button {
   .carousel-main.spinner,.carousel-main .genere-fiesta{
     z-index: 1;
     position: relative;
+  }
+  .not-subscribe{
+    width: 40%;
+    @media (max-width:767px){
+        width: 80%;
+    }
   }

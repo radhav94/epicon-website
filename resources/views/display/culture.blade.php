@@ -15,7 +15,7 @@
                    </div>
                </div>
            </div>
-           <ul class="{{ $slug == 'games' ? 'ar-vr' : 'bollywood-tray' }} p-0 mb-0">
+           <ul class="{{ @$slug == 'games' ? 'ar-vr' : 'bollywood-tray' }} p-0 mb-0">
                @foreach ($value['content'] as $key => $val)
                    <?php
                    $card = getItemCardData($val, $displayLanguageParam);

@@ -1,5 +1,5 @@
 <section class="carousel-main mt-0">
-    <div class="carousel-title-n-arrow px-2 pb-3">
+    <div class="carousel-title-n-arrow px-2 mb-2">
         <h1 class="text-white small">{{ $title }}</h1>
         @if (@$value['show_more'])
             <a href="{{ getMidPageUrl($value) }}">

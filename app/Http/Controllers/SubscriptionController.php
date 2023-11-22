@@ -168,7 +168,9 @@ class SubscriptionController extends Controller
         }
 
         $parameters = $this->paymentProcess($resultData, $currency, $payment_type);
-
+        if(@$parameters['status'] == false){
+            return view('pages.error.data-error');
+        }
         $txid = generateTransactionID();
         $amount = $result['actual_price'];
         $productinfo = $result['id'];
@@ -201,7 +203,7 @@ class SubscriptionController extends Controller
 
         $request = Request();
         $userData = $request->session()->get('user');
-        //dd($userData);
+        $parameters['status'] = ""; 
         $order = $orderArr['order_data'];
         $userid = $userData['user_id'] ?? '';
         $order_number = $order['order_id'];
@@ -352,6 +354,11 @@ class SubscriptionController extends Controller
                 'paymentStartDate' => $newstartdate,
                 'paymentEndDate' => $endstartdate,
             ]);
+        }else{
+
+            $parameters['status'] = false; 
+            return $parameters;
+            
         }
 
         if (in_array($payment_type, ['CC', 'DC', 'NB', 'CASH', 'UPI'])) {
@@ -369,6 +376,7 @@ class SubscriptionController extends Controller
         $parameters['payuUrl'] = config('epicconfig.PAYUMONEY.SUBSCRIPTION_URL');
         $parameters['phone'] = empty($parameters['phone']) ? $parameters['phone'] : '';
         $parameters['email'] = empty($parameters['email']) ? $parameters['email'] : '';
+        $parameters['status'] = true; 
 
         Log::info("----------#####full parametes for log for ios full renew plan for payu -----------");
         Log::debug(json_encode($parameters));
