@@ -3,4 +3,4 @@
 
 <meta name="csrf-token" content="{{ csrf_token()}}" />
 <link rel="icon" href="{{asset('assets/img/favicon.png')}}"/>
-<title>@yield('title') | {{env('APP_NAME')}}</title>
+<title>@yield('title') | {{ (env('APP_NAME') == '') ? 'EPIC ON' : env('APP_NAME') }}</title>
