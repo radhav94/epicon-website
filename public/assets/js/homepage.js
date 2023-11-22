@@ -92,7 +92,7 @@
     $('.banner-carousel-1').not('.slick-initialized').slick({
         slidesToShow: 1,
         arrows: true,
-        dots: true,
+        dots: false,
         autoplay: true,
         autoplaySpeed: 1000,
         // appendDots: $(".slide-sl-dots"),
