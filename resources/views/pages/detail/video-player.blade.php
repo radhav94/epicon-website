@@ -102,7 +102,7 @@
 
 
         <video id="vidPlayer" class="videocont " data-id="{{ $content['ID'] }}" controls crossorigin playsinline
-            poster="{{ $cover_img }}">
+            poster="{{ $cover_img }}" autoplay>
             <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> -->
 
         </video>
