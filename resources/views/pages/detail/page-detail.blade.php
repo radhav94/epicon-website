@@ -15,6 +15,9 @@ $loadPlayer = true;
 
 @section('style')
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/socialSharing.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+        integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     @if ($loadPlayer)
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}" />
     @endif
