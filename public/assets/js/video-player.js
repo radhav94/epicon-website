@@ -15,9 +15,9 @@ $(document).ready(function () {
 
 	$(document).on('click', '#watchVideo', function () {
 		
-		$('.content-detail-banner').hide();
+		
 		if (vidPlaying && !is_trailer && !is_episode) {
-
+			$('.content-detail-banner').hide();
 			window.player.play();
 
 			if (!$('.videoContainer').is(":visible")) {
