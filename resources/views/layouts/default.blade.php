@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/swiper-bundle.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/toastr.min.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery-ui.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery-ui.min.css') }}">
     {{-- End header common styles --}}
 
 
@@ -36,6 +36,19 @@
         var APP_URL = "{{ url('/') }}";
     </script>
 
+    {{-- Start footer common scripts --}}
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/jquery-ui.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/custom.js') }}?v={{ assetTime() }}" defer></script>
+    <script src="{{ asset('assets/js/swiper.js') }}" defer></script>
+    <script src="{{ asset('assets/js/spiner.js') }}" defer></script>
+    <script src="{{ asset('assets/js/slick.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/script.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/bootstrap.bundle.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/toastr.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/epic.js') }}" defer></script>
+    <script src="{{ asset('assets/js/common.js') }}?v={{ assetTime() }}" defer></script>
+    {{-- End footer common scripts --}}
 </head>
 
 <body>
@@ -44,22 +57,6 @@
     @yield('content')
 
     @include('layouts.footer')
-
-    {{-- Start footer common scripts --}}
-    <script src="{{ asset('assets/js/jquery.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/jquery-ui.js') }}"></script>
-    <script src="{{ asset('assets/js/custom.js') }}?v={{ assetTime() }}"></script>
-    <script src="{{ asset('assets/js/swiper.js') }}"></script>
-    <script src="{{ asset('assets/js/spiner.js') }}"></script>
-    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
-    <script src="{{ asset('assets/js/script.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/toastr.min.js') }}"></script>
-
-    <script src="{{ asset('assets/js/epic.js') }}"></script>
-    <script src="{{ asset('assets/js/common.js') }}?v={{ assetTime() }}"></script>
-    
-    {{-- End footer common scripts --}}
 
     @if(request()->get('type') == 'register')
         @include('auth.after-register-popup')
