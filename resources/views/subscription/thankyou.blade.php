@@ -192,15 +192,18 @@
 @stop
 @section('script')
 <script>
-    showToaster('You have successfully purchased a subscription plan.', 1);
-        window.setTimeout(function() {
-            var chekUrl = localStorage.getItem("redirectURL");
-            if(chekUrl != "" && chekUrl !=null &&  chekUrl!=undefined){
-                localStorage.removeItem("redirectURL");
-                window.location.href = chekUrl;
-            }else{
-             window.location.href = APP_URL+'/my-account';
-            }
-    }, 2000);
+    $(document).ready(function(){
+        showToaster('You have successfully purchased a subscription plan.', 1);
+            window.setTimeout(function() {
+                var chekUrl = localStorage.getItem("redirectURL");
+                if(chekUrl != "" && chekUrl !=null &&  chekUrl!=undefined){
+                    localStorage.removeItem("redirectURL");
+                    window.location.href = chekUrl;
+                }else{
+                window.location.href = APP_URL+'/my-account';
+                }
+        }, 2000);
+
+});
 </script>    
 @stop
