@@ -106,6 +106,7 @@ input {
     transform: translateY(40px);
     transition: transform .3s;
     backdrop-filter: blur(50px);
+    background: #000000b8;
 }
 .side-menu-main{
     width: 100%;
@@ -243,8 +244,8 @@ input {
     }
     @media (max-width:700px) {
         & svg{
-            width: 10px;
-            height: 10px;
+            width: 15px;
+            height: 15px;
         }
     }
 }
@@ -1691,6 +1692,9 @@ input {
     .carousel-initilize li,.vertical-carousel-initilize li,.library li,.more-like-this li,.seeall-main-page li,.bollywood-tray li{
         padding: 0 15px 0 0px;
         position: relative;
+        @media (max-width:767px) {
+            padding: 0 10px 0 0px;
+        }
         .upcoming-title-play-btn{
             @include flex(row,center,space-between);
             position: absolute;
@@ -1724,6 +1728,10 @@ input {
                 @media (max-width:767px) {
                     width: 25px;
                     height: 25px;
+
+                    svg{
+                        height: 15px;
+                    }
                 }
             }
         }
@@ -3130,7 +3138,7 @@ input {
 
             @media (max-width:768px) {
                 display: inline-flex;
-                padding: 8px 6px;
+                padding: 8px 20px;
                 gap: 10px;
                 font-size: 12px;
                 margin: 5px;
@@ -3692,7 +3700,11 @@ input {
 
 .delights-display{
     & div{
-        padding: 0 5px;
+        // padding: 0 5px;
+        margin-right: 15px;
+        @media (max-width:700px) {
+            margin-right: 10px;
+        }
     }
     .content{
         padding: 0 20px 20px 20px;
@@ -3700,12 +3712,16 @@ input {
         background: var(--separator, linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%));
         text-decoration: none;
         border-radius: 222px 222px 24px 24px;
+        @media (max-width:700px) {
+            padding: 0 10px 10px 10px;
+        }
 
         .top{
             width: 100%;
             height: auto;
             overflow: hidden;
             margin-bottom: 15px;
+            margin-right: 0;
             margin-top: 20px;
             border-radius: 207px 207px 24px 24px;
             padding-inline: 0;
@@ -3714,6 +3730,9 @@ input {
             align-items: flex-end;
             justify-content: center;
             background: conic-gradient(from 180deg at 50% 50.00%, #302EBD 65.62500178813934deg, #D54CD4 234.37500715255737deg, #845BFF 360deg);
+            @media (max-width:700px) {
+                margin-top: 10px;
+            }
 
             img{
                 width: 100%;
@@ -3733,6 +3752,9 @@ input {
                 margin-bottom: 5px;
                 color: $bg-white;
                 @include line-clamp(1);
+                @media (max-width:700px) {
+                    font-size: 16px;
+                }
             }
             & p{
                 font-size: 14px;
@@ -3740,6 +3762,9 @@ input {
                 margin: 0;
                 color: $bg-white;
                 @include line-clamp(2);
+                @media (max-width:700px) {
+                    font-size: 12px;
+                }
             }
         }
     }
@@ -3995,16 +4020,16 @@ input {
     @media (max-width:767px) {
         padding: 6px 24px;
     }
-    &:hover{
-        background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
-        transition: 0.4s;
-        border: 0.5px solid #fff;
-        color: #fff;
-        svg path{
-            fill: #fff;
-            transition: 0.4s;
-        }
-    }
+    // &:hover{
+    //     background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
+    //     transition: 0.4s;
+    //     border: 0.5px solid #fff;
+    //     color: #fff;
+    //     svg path{
+    //         fill: #fff;
+    //         transition: 0.4s;
+    //     }
+    // }
 
 }
 .childpin{
@@ -4119,7 +4144,7 @@ input {
     & .nav-link{
         color: $bg-white;
         @media screen and (max-width: 700px){ 
-            padding: 6px 12px;
+            padding: 6px 9px;
             font-size: 12px;
         }
     }
@@ -4993,6 +5018,9 @@ input {
     @media (max-width:700px) {
         position: unset;
         margin-top: 15px;
+        width: 100%;
+        display: flex!important;
+        justify-content: flex-end;
     }
     .all-episode,.season{
         width: fit-content;
@@ -6517,7 +6545,7 @@ input {
     flex-shrink: 0;
 
     @media (max-width:700px) {
-        padding: 10px;
+        padding: 5px;
         width: 40px;
         height: 40px;
     }
@@ -7374,8 +7402,11 @@ input {
     }
 }
 .supermix-main{
-    padding-inline: 10px;
+    padding-inline: 15px;
     margin-bottom: 40px;
+    @media (max-width:767px) {
+        padding-inline: 10px;
+    }
 }
 #resendBtn,#resendForgotBtn{
     border: none;
@@ -7405,17 +7436,28 @@ input {
 .library .main-card .top-ten{
     top:0;
 }
-.plyr{
+.player-bg-wrap{
     background-color: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    @media (max-width:767px) {
+        border-radius: 0;
+    }
+}
+.videoContainer{
+    margin-top: 30px;
+    @media (max-width:767px) {
+        margin-top: 0px;
+    }
 }
 .videoContainer .plyr__video-wrapper{
-    height: 500px !important;
+    height: 424px !important;
     width: auto;
     display: flex;
 
-    video{
-        height: 100%!important;
-    }
+    // video{
+    //     height: auto!important;
+    // }
 
     @media (max-width: 768px) {
         height: auto !important;
@@ -7644,7 +7686,7 @@ input {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 20px;
+        gap: 40px;
         width: calc(100% - 50px);
         @media (max-width:767px) {
             justify-content: space-between;
@@ -7658,6 +7700,10 @@ input {
         img{
             width: 100%;
             height: 100%;
+            @media (max-width:767px) {
+                width: 28px;
+                height: 38px;
+            }
         }
     }
     .tenx-prev,.tenx-next,.podcast-close{
@@ -7677,8 +7723,15 @@ input {
     }
     .podcast-play,.podcast-pause{
         width: 80px;
+        padding: 0;
         @media (max-width:767px) {
-            width: 60px;
+            width: 50px;
+        }
+        img{
+            @media (max-width:767px) {
+                width: 50px;
+                height: 50px;
+            }
         }
     }
 }
@@ -7777,3 +7830,23 @@ audio::-webkit-media-controls-play-button {
         width: 80%;
     }
   }
+  .live-trey-content{
+    width: 100%;
+    margin-right: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    a{
+        display: flex;
+        width: 100%;
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+  }
+//   .plyr__poster{
+//     height: auto!important;
+//     width: 100%!important;
+//     background-size: cover!important;
+//   }
