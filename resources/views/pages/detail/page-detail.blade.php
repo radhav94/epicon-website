@@ -87,9 +87,14 @@ $loadPlayer = true;
             $watchClass = @$content['free_premium'] == true && @$subplan['status'] != 'active' ? $addClass : "";
             $watchid = @$content['free_premium'] != true || (@$content['free_premium'] == true && @$subplan['status'] == 'active') ? "watchVideo" : "";
         }
-
+        $dispnone = "";
 ?>
-        <div class="overlay mt-4">
+       @if ($trailers && isset($trailers['list']) && !empty($trailers['list'] && @$content['free_premium'] == true))
+        @if(!isUserLoggedIn() || @$subplan['status'] != 'active')
+        <?php $dispnone = "display:none"; ?>
+        @endif
+    @endif
+        <div class="overlay mt-4 content-div" style="{{$dispnone}}">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-lg-6 col-md-6">
