@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', @$content['title'])
+@section('title', "$meta_title")
 
 @section('style')
 <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/socialSharing.css') }}" />

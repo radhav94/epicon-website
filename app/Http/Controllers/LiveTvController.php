@@ -25,7 +25,8 @@ class LiveTvController extends Controller
 
             $meta = $this->getMeta($routenamed);
             $meta_title = $meta['title'];
-            return view('pages.livetv.live-tv', compact('response','meta_title', 'displayLanguageParam'));
+            $meta_description = $meta['description'];
+            return view('pages.livetv.live-tv', compact('response','meta_title','meta_description', 'displayLanguageParam'));
         }else{
             return view('pages.error.data-error');
         }
@@ -72,8 +73,8 @@ class LiveTvController extends Controller
                 $meta['description'] = 'देखें ईपीक चैनल लाइव टीवी, फिलमची लाइव टीवी और शोबॉक्स लाइव टीवी कभी भी ईपीक ऑन पर';
                 $meta['keywords'] = 'लाइव टीवी, लाइव टीवी शो, लाइव टीवी चैनल, पब्लिक टीवी लाइव, लाइव टीवी ऐप, ईपीक लाइव टीवी, ईपीक चैनल टीवी, शोबॉक्स लाइव टीवी, फिलमची लाइव टीवी';
             } else {
-                $meta['title'] = 'Watch Live TV anytime on EPIC ON';
-                $meta['description'] = 'Watch live tv channels of EPIC TV, Filamchi live tv and ShowBox live tv streaming on EPIC ON';
+                $meta['title'] = 'Watch Live Tv | Best OTT Platforms for Live TV | EPIC ON';
+                $meta['description'] = 'Catch all the live action with EPIC ON, Indias premier OTT platform for live TV. Stream your favorite news, sports, and entertainment channels from anywhere.';
                 $meta['keywords'] = 'live tv, live tv shows, live tv channel, public tv live, live tv app, EPIC ON live tv, epic channel tv, showbox live tv, filamchi live tv';
             }
         } else {

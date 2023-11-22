@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','Subscription')
+@section('title','Subscription Plans - Epic On')
 
 @section('style')
 
@@ -17,6 +17,7 @@
             </div>
         </div>
     </section> -->
+    <?php $meta_description = "Get access to a wide range of TV shows and movies of Epicon by subscribing to our platform. We have best plan for you. Check the Subscription section today!"; ?>
     <section class="container pb-5 choose-margin-mobile">
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-10 position-relative">
