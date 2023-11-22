@@ -94,17 +94,19 @@
             </defs>
         </svg>
     </p>
-    <div id="playVideo" data-id="{{ $content['ID'] }}" data-type="{{ $content['content_type'] }}"
-        data-lg="{{ isUserLoggedIn() }}" data-title="{{ $content['title'] }}">
+    <div class="player-bg-wrap">
+        <div id="playVideo" data-id="{{ $content['ID'] }}" data-type="{{ $content['content_type'] }}"
+            data-lg="{{ isUserLoggedIn() }}" data-title="{{ $content['title'] }}">
 
+        </div>
+
+
+        <video id="vidPlayer" class="videocont " data-id="{{ $content['ID'] }}" controls crossorigin playsinline
+            poster="{{ $cover_img }}">
+            <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> -->
+
+        </video>
     </div>
-
-
-    <video id="vidPlayer" class="videocont " data-id="{{ $content['ID'] }}" controls crossorigin playsinline
-        poster="{{ $cover_img }}">
-        <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> -->
-
-    </video>
        
     @if ($trailers && isset($trailers['list']) && !empty($trailers['list'] && @$content['free_premium'] == true))
         @if(!isUserLoggedIn() || @$subplan['status'] != 'active')
