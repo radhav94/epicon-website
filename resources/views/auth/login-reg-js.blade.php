@@ -340,6 +340,7 @@
                     },
                     success: function(response) {
                             if (response.payload.success == true) {
+                            login_success();
                             queryParams = new URLSearchParams(window.location.search);
                             $("#userid").val(response.payload.user_id);
                             $("#sign_method").val(response.payload.user_signup_method);
@@ -365,16 +366,19 @@
                             }
                             // alert("true resp");
                         } else {
+                            login_failed();
                             $('#verifyotp-result').html(response.payload.response.message);
                             // $('#verifyotp-result').html('Incorrect code entered. Please try again.');
                             // return false;
                         }
                     },
                     error: function(xhr, status, error) {
+                        login_failed();
                         console.log('error me aaya');
                     }
                 });
             } else {
+                login_failed();
                 return false;
             }
         });
@@ -387,7 +391,7 @@
             // Validate Name
             var name = $('#name').val();
             if (name.trim() === '') {
-                $('#name-error').text('Name is required');
+                $('#name-error').text('Email or Mobile is required');
             }
 
             // Validate Password
@@ -423,6 +427,7 @@
                     success: function(response) {
                         // alert(response);
                         if (response.payload.success == true) {
+                            registration_success();
                             // $('#register-result').html('');
                             $("#username").text(response.payload.name);
                             // $("#sign_method").val(response.payload.user_signup_method);
@@ -436,15 +441,18 @@
                                 window.location.href = "?type=register";
                             },1000);
                         } else {
+                            registration_failed();
                             $('#register-result').html(response.payload.response.message);
                             return false;
                         }
                     },
                     error: function(xhr, status, error) {
+                        registration_failed();
                         console.log('error me aaya');
                     }
                 });
             } else {
+                registration_failed();
                 return false;
             }
         });
@@ -478,7 +486,7 @@
             // Validate Name
             var name = $('#mobilenumber').val();
             if (name.trim() === '') {
-                $('#mobile-error').text('Name is required');
+                $('#mobile-error').text('Email or Mobile is required');
             }
 
             // Validate Password
@@ -508,8 +516,9 @@
                     },
                     success: function(response) {
                         queryParams = new URLSearchParams(window.location.search);
-                        // alert(response);
+                        alert(response);
                         if (response.payload.success == true) {
+                            login_success();
                             // $('#register-result').html('');
                             // $("#username").text(response.payload.name);
                             // $("#sign_method").val(response.payload.user_signup_method);
@@ -546,15 +555,18 @@
                             return false;
 
                         } else {
+                            login_failed();
                             $('#login-result').html(response.payload.response.message);
                             // return false;
                         }
                     },
                     error: function(xhr, status, error) {
+                        login_failed();
                         console.log('error me aaya');
                     }
                 });
             } else {
+                login_failed();
                 return false;
             }
         });

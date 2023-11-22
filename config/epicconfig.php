@@ -47,7 +47,7 @@ if($environment=='PRODUCTION'){
             'SUBSCRIPTION_URL'=>'https://subscription.citruspay.com/',
             'ENABLE_RECURRING_API'=>false,
             'API_URL'=>'https://info.payu.in/merchant/postservice.php?form=2',
-            'ENABLE_RECURRING_AT_FROM_TRANSACTION'=>false,
+            'ENABLE_RECURRING_AT_FROM_TRANSACTION'=>true,
         ],
         'PAYTMQR'=>[
 			'PAYTMQR_MERCHANT_ID'=>'EPICTE67767187383060',
@@ -128,7 +128,7 @@ if($environment=='PRODUCTION'){
 			'EVENT_TXN_URL' => 'https://api.moengage.com/v1/event/'
 		]
 	];
-} else if($environment=='STG' ){
+} else if($environment=='STAGE' ){
 	return [
 		'EPICCOIN'=>[
 			'VIDEO_WATCH_POINT_PER_MIN'=>'2',

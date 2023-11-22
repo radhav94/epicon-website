@@ -34,10 +34,19 @@ body{
     background-color: #545454;
     // -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
   }
-
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus,
   input:-webkit-autofill { 
+    -webkit-text-fill-color: #fff;
+    -webkit-box-shadow: 0 0 0px 1000px #000 inset;
     transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: #ffffff;
 }
 .banner-carousel,.login-carousel{
     opacity: 0;
@@ -1068,10 +1077,16 @@ input {
                     content: "";
                     position: absolute;
                     height: 50%;
-                    width: 100%;
+                    width: calc(100% - 20px);
                     left: 0;
-                    bottom: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    border-radius: 13px;
+                    bottom: 10px;
                     background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.77) 100%);
+                    @media screen and (max-width: 767px) {
+                        border-radius: 0px;
+                    }
                 }
                 @media screen and (max-width: 767px) {
                     border-radius: 12px;
@@ -1591,20 +1606,28 @@ input {
     overflow-x: initial !important;
 }
 .carousel-main,.library,.seeall-main-page{
-    margin-block: 25px;
+    margin-block: 30px;
     height: 100%;
     position: relative;
     max-width:100%;
     overflow-x: clip;
     z-index: 2;
+    @media (max-width:767px) {
+        margin-block: 15px;
+    }
     .carousel-title-n-arrow{
         @include flex(row, center, space-between);
 
         & h1{
             font-size: 18px;
             font-weight: 700;
-            line-height: 20px;
+            // line-height: 20px;
             margin-bottom: 0;
+            // margin-top: 10px;
+            padding-left: 5px;
+            height: 32px;
+            display: flex;
+            align-items: center;
             
             @media (max-width:700px) {
                 font-size: 14px;
@@ -1643,7 +1666,6 @@ input {
         height: 109%;
         transform: scale3d(1.2, 1.1, 1) translateZ(0px) perspective(500px);
         transition: transform 0.25s cubic-bezier(0.33, 0.04, 0.63, 0.93) 0.4s;
-        backface-visibility: hidden;
         opacity: 1;
     }
 
@@ -1662,12 +1684,11 @@ input {
         height: auto;
         transform: scale3d(1.2, 1.2, 1) translateZ(0px) perspective(500px);
         transition: transform 0.25s cubic-bezier(0.33, 0.04, 0.63, 0.93) 0.4s;
-        backface-visibility: hidden;
         opacity: 1;
        
     }
    
-    .carousel-initilize li,.vertical-carousel-initilize li,.library li,.more-like-this li,.seeall-main-page li{
+    .carousel-initilize li,.vertical-carousel-initilize li,.library li,.more-like-this li,.seeall-main-page li,.bollywood-tray li{
         padding: 0 15px 0 0px;
         position: relative;
         .upcoming-title-play-btn{
@@ -2258,7 +2279,7 @@ input {
 }
 
 .carousel-initilize,.vertical-carousel-initilize,.gaming-galore-main,.popular-language,.blockbuster-mm
-    ,.punjab-carousel,.discover-next-watch,.new-release-bottom,.imdb,.delights-display,.wildlife,.cust-collection,.short-sweet-carousel,.vertical-carousel-retro,.ar-vr,.additional-carousel{
+    ,.punjab-carousel,.discover-next-watch,.new-release-bottom,.imdb,.delights-display,.wildlife,.cust-collection,.short-sweet-carousel,.vertical-carousel-retro,.ar-vr,.additional-carousel,.bollywood-tray{
         .slick-next, .slick-prev{
             z-index: 1;
             right: 0px;
@@ -2603,14 +2624,14 @@ input {
         position: relative;
       }
       .tranding-slide .tranding-slide-img{
-        width: 280px;
+        width: 240px;
         height: 420px;
       }
       .swiper-slide.tranding-slide.swiper-slide-prev{
-        transform: translate3d(350px, 0px, -130px) rotateX(0deg) rotateY(0deg) scale(1) !important;
+        transform: translate3d(330px, 0px, -130px) rotateX(0deg) rotateY(0deg) scale(1) !important;
       }
       .swiper-slide.tranding-slide.swiper-slide-next{
-        transform: translate3d(-350px, 0px, -130px) rotateX(0deg) rotateY(0deg) scale(1)!important;
+        transform: translate3d(-333px, 0px, -130px) rotateX(0deg) rotateY(0deg) scale(1)!important;
       }
       .tranding-slide-img {
         border-radius: 8px;
@@ -2629,7 +2650,7 @@ input {
         position: relative;
       }
       .tranding-slide .tranding-slide-img{
-        width: 280px;
+        width: 240px;
         height: auto;
       }
   }
@@ -2668,7 +2689,7 @@ input {
     }
     @media (max-width:700px) {
         padding-bottom: 0px;
-        padding-top: 0px;
+        padding-top: 10px;
         margin-bottom: 0;
     }
 
@@ -2880,7 +2901,7 @@ input {
         &::after{
             content: "";
             width: 400px;
-            height: 400px;
+            height: 330px;
             position: absolute;
             background-image: url("../img/gaming-galore-bg.svg");
             background-repeat: no-repeat;
@@ -2932,7 +2953,7 @@ input {
         
     }
 
-    .gaming-galore{
+    .gaming-galore,.ishara-nazara{
         width: 100%;
         padding: 0;
         overflow: hidden;
@@ -3300,7 +3321,7 @@ input {
                 }
         }
     }
-    .punjab-carousel,.ar-vr{
+    .punjab-carousel,.ar-vr,.bollywood-tray{
         width: 100%;
         padding: 0;
         overflow-x: clip;
@@ -3970,9 +3991,21 @@ input {
     background: #fff;
     text-decoration: none;
     color: #070707;
+    transition: 0.4s;
     @media (max-width:767px) {
         padding: 6px 24px;
     }
+    &:hover{
+        background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
+        transition: 0.4s;
+        border: 0.5px solid #fff;
+        color: #fff;
+        svg path{
+            fill: #fff;
+            transition: 0.4s;
+        }
+    }
+
 }
 .childpin{
     h5,p{
@@ -4027,7 +4060,7 @@ input {
         background-color: #000;
         padding: 30px;
         border-radius: 15px;
-        box-shadow: 0px 0px 100px #000;
+        box-shadow: 0px 0px 30px rgba(176, 76, 241, 0.56);
         @media (max-width:1024px) {
             width: 50%;
         }
@@ -4924,6 +4957,26 @@ input {
         width: 150px!important;
         text-decoration: none;
     }
+}
+.subcription-btn.trailer-subscription{
+    width: 200px;
+    height: 50px;
+    margin-top: 20px;
+    border: 0.5px solid #737373;
+    box-shadow: 0px 3px 5px #000000;
+    transition: 0.4s;
+    @media (max-width:767px) {
+        height: 42px;
+        width: 180px!important;
+    }
+}
+.subcription-btn.trailer-subscription:hover{
+    transform: scale(1.1);
+    transition: 0.4s;
+}
+.subcription-btn:hover{
+    background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
+    transition: 0.4s;
 }
 .b7-color{
     color: #b7b7b7;
@@ -5918,7 +5971,21 @@ input {
         border-radius: 10px;
 
         @media (max-width:700px) {
-            width: 120px;
+            width: 140px;
+        }
+    }
+    &.trailer-card .main-card{
+        width: 260px;
+        border-radius: 10px;
+        .main-img{
+            margin: 0;
+        }
+
+        @media (max-width:700px) {
+            width: 180px;
+        }
+        .crown{
+            top:0px!important;
         }
     }
     @media (max-width:1024px) {
@@ -6151,6 +6218,7 @@ input {
                 font-size: 14px;
                 @include line-clamp(2);
                 padding-top: 50px;
+                z-index: -1;
             }
         }
     }
@@ -6333,8 +6401,9 @@ input {
     }
 }
 
-.tab-content>.tab-pane{ height: 0px; overflow: hidden; }
+.tab-content>.tab-pane{ height: 0px; overflow: hidden;}
 .tab-content>.active{ height: auto;}
+
 .podcast-background{
     &::after{
         content: "";
@@ -7306,6 +7375,7 @@ input {
 }
 .supermix-main{
     padding-inline: 10px;
+    margin-bottom: 40px;
 }
 #resendBtn,#resendForgotBtn{
     border: none;
@@ -7396,6 +7466,11 @@ input {
     background-image: url("../img/distrotvbg-new-img.png");
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    margin-top: 40px;
+    @media (max-width:767px) {
+        margin-top: 25px;
+    }
 }
 .share-hover{
     position: absolute;
@@ -7587,8 +7662,10 @@ input {
     }
     .tenx-prev,.tenx-next,.podcast-close{
         width: 50px;
+        height: 50px;
         @media (max-width:767px) {
             width: 40px;
+            height: 40px;
         }
     }
     .podcast-close{
@@ -7667,6 +7744,8 @@ audio::-webkit-media-controls-play-button {
   }
   .carousel-main.spotlight-control{
     z-index: 1;
+    display: flex;
+    margin-top: 40px;
   }
   .search-main .more-like-this{
     padding-bottom: 10px;
@@ -7686,5 +7765,15 @@ audio::-webkit-media-controls-play-button {
     @media (max-width:767px) {
         height: 100px;
         overflow: auto;
+    }
+  }
+  .carousel-main.spinner,.carousel-main .genere-fiesta{
+    z-index: 1;
+    position: relative;
+  }
+  .not-subscribe{
+    width: 40%;
+    @media (max-width:767px){
+        width: 80%;
     }
   }

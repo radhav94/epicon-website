@@ -1,4 +1,4 @@
-<section class="carousel-main px-2">
+<section class="container-fluid px-2">
     <div class="genere-fiesta">
         <div class="genere-fiesta-title">
             <h1>{{ $title }}</h1>

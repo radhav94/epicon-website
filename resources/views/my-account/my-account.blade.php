@@ -179,7 +179,7 @@ $subplan = checkSubscription();
             @endif
             @else
             <div class="col-12 text-center mt-5">
-                <img src="{{ asset('/img/not-subscribe.svg') }}" alt="img" style="margin-bottom: -50px; width: 100%;">
+                <img class="not-subscribe" src="{{ asset('/img/not-subscribe.svg') }}" alt="img" style="margin-bottom: -50px;">
                 <p class="small text-white">{{__('You have not subscribed to Epic On yet!')}}</p>
                 <a href="{{ getUrl('subscription') }}" class="login-btn mt-4" style="width: 280px;">
                     {{__('Subscribe Now')}}

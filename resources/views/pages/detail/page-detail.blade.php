@@ -20,7 +20,7 @@ $loadPlayer = true;
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     @if ($loadPlayer)
-        <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}" />
     @endif
     <style>
         .hide {

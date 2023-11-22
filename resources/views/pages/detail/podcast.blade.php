@@ -104,7 +104,7 @@ $episode_json = json_encode($episode_list);
                                         <path d="M4.95875 7.91448L5.30042 6.75615C5.33375 6.64782 5.30042 6.53115 5.22542 6.44782C5.14209 6.36448 5.02542 6.33948 4.91709 6.37282L3.75042 6.70615L2.59209 6.36448C2.48375 6.33115 2.36709 6.36448 2.28375 6.43948C2.20042 6.52282 2.17542 6.63948 2.20875 6.74782L2.54209 7.91448L2.20042 9.07282C2.16709 9.18115 2.20042 9.29782 2.27542 9.38115C2.35875 9.46448 2.47542 9.48948 2.58375 9.45615L3.74209 9.11448L4.90042 9.45615C4.92542 9.46448 4.95875 9.46448 4.99209 9.46448C5.07542 9.46448 5.15042 9.43115 5.21709 9.37282C5.30042 9.28948 5.32542 9.17282 5.29209 9.06448L4.95875 7.91448Z" fill="#FFAC33" />
                                         <path d="M17.4591 12.0872L17.8007 10.9289C17.8341 10.8205 17.8007 10.7039 17.7257 10.6205C17.6424 10.5372 17.5257 10.5122 17.4174 10.5455L16.2591 10.8872L15.1007 10.5455C14.9924 10.5122 14.8757 10.5455 14.7924 10.6205C14.7091 10.7039 14.6841 10.8205 14.7174 10.9289L15.0591 12.0872L14.7174 13.2455C14.6841 13.3539 14.7174 13.4705 14.7924 13.5539C14.8757 13.6372 14.9924 13.6622 15.1007 13.6289L16.2591 13.2872L17.4174 13.6289C17.4424 13.6372 17.4757 13.6372 17.5091 13.6372C17.5924 13.6372 17.6674 13.6039 17.7341 13.5455C17.8174 13.4622 17.8424 13.3455 17.8091 13.2372L17.4591 12.0872Z" fill="#FFAC33" />
                                     </svg>
-                                    {{ $content['percentage_match'] }}% match</button>
+                                    {{ @$content['percentage_match'] }}% match</button>
                                 @endif
                                 <!-- <button class="border-btn me-3 my-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -164,12 +164,12 @@ $episode_json = json_encode($episode_list);
                             $wishAction = in_array($content['ID'], $wishlist_ids) ? 'delete' : 'add';
 
                             $share_title = @$content['title'];
-                            if ($content['content_type'] == 'SEASON') {
+                            if (@$content['content_type'] == 'SEASON') {
                                 $share_title = @$content['parent_name'] . ' - ' . @$content['title'];
                             }
                             ?>
 
-                            <button class="rounded-grey-btn m-0 addToList" data-id="{{ $content['ID'] }}" data-action="{{ $wishAction }}" data-type="3">
+                            <button class="rounded-grey-btn m-0 addToList" data-id="{{ @$content['ID'] }}" data-action="{{ $wishAction }}" data-type="3">
                                 <img class="wl_add" src="{{ asset('assets/img/add-icon.svg') }}" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
                                 <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon" @if ($wishAction=='add' ) style="display: none" @endif>
                             </button>
@@ -180,7 +180,7 @@ $episode_json = json_encode($episode_list);
                                 </svg>&nbsp;
                                 <span class="claps_num">0</span>
                             </button>
-                            <button class="rounded-grey-btn shareThis" data-url="{{ getContentUrl($content) }}" data-title="{{ $share_title }}">
+                            <button class="rounded-grey-btn shareThis" data-url="{{ getContentUrl($content) }}" data-title="{{ @$share_title }}">
                                 <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
                             </button>
                         </div>
@@ -263,7 +263,7 @@ $episode_json = json_encode($episode_list);
                 </div>
             </div>
             <div class="podcast-controls">
-                <input type="hidden" id="play-id" name="">
+                <input type="hidden" id="play-id" name="" value="{{@$content['ID']}}">
                 <div class="controll-inner">
                     <button class="tenx-prev">
                         <img src="{{asset('img/podcast-previous.svg')}}" alt="icons">
@@ -280,7 +280,7 @@ $episode_json = json_encode($episode_list);
                    <!--  <button class="wl_add">
                         <img src="{{asset('img/podcast-add.svg')}}" alt="icons">
                     </button> -->
-                    <button class="rounded-grey-btn m-0 addToList" data-id="{{ $content['ID'] }}" data-action="{{ $wishAction }}" data-type="3">
+                    <button class="rounded-grey-btn m-0 addToList" data-id="{{ @$content['ID'] }}" data-action="{{ @$wishAction }}" data-type="3">
                                 <img class="wl_add" src="{{ asset('assets/img/add-icon.svg') }}" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
                                 <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon" @if ($wishAction=='add' ) style="display: none" @endif>
                             </button>
@@ -292,7 +292,6 @@ $episode_json = json_encode($episode_list);
         </div>
     </div>
 </div>
-
 @include('components.share-modal')
 
 
@@ -346,12 +345,11 @@ $episode_json = json_encode($episode_list);
 
         $("#playButton,.podcast-pause").click(function() {
             $('.podcast-bottom-player').show();
-            $(".podcast-pause").hide();
-            $('.podcast-play').show();
-            $('.pod-pause').hide(); 
-            $('.pod-play').show(); 
+            $(".podcast-pause,.pod-pause,#playButton").hide();
+            $('.podcast-play,.pod-play').show();
             $('#pod-play-'+$('#play-id').val()).hide();
             $('#pod-pause-'+$('#play-id').val()).show();
+
             isPlayed = true;
             if (audio.currentSrc == '') {
                 playCurrentEpisode();
@@ -360,7 +358,10 @@ $episode_json = json_encode($episode_list);
             if($(this).text().trim() == 'Listen')
             {
                  audio.load();
-            }     
+                  let cid = episodes[currentEpisodeIndex];
+                  $('#pod-play-'+cid).hide();
+                  $('#pod-pause-'+cid).show();
+            }            
             audio.play().then(() => {
                     console.log('Audio is playing');
                     audioEvents();
@@ -514,7 +515,10 @@ $episode_json = json_encode($episode_list);
 
     $('.podcast-close').click(function(){    
         audio.pause();
+        $('.pod-play').show();
+        $('.pod-pause').hide();
         $('.podcast-bottom-player').hide();
+        $("#playButton").show();
     });
 
     function podcastProgress() {
@@ -541,7 +545,8 @@ $episode_json = json_encode($episode_list);
     audio.onseeked = function() {
         let duration = Math.round(audio.duration);
         let currentTime = Math.round(audio.currentTime);
-        audio_seek(duration,audio_title,currentTime);
+        let progress = Math.round((currentTime / duration) * 100) + "%";
+        audio_seek(duration,audio_title,currentTime,progress);
     }
 </script>
 @stop

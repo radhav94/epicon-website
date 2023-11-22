@@ -92,7 +92,7 @@
     $('.banner-carousel-1').not('.slick-initialized').slick({
         slidesToShow: 1,
         arrows: true,
-        dots: true,
+        dots: false,
         autoplay: true,
         autoplaySpeed: 1000,
         // appendDots: $(".slide-sl-dots"),
@@ -466,7 +466,100 @@
         ]
     });
 
+    $('.bollywood-tray').not('.slick-initialized').slick({
+        dots: false,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 3.8,
+        slidesToScroll: 1,
+        accessibility: true,
+        responsive: [
+            {
+                breakpoint: 1367,
+                settings: {
+                    slidesToShow: 3.8,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 1025,
+                settings: {
+                    slidesToShow: 2.9,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 769,
+                settings: {
+                    slidesToShow: 2.1,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1.7,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1.7,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
+
     $('.gaming-galore').not('.slick-initialized').slick({
+        dots: false,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 6.3,
+        slidesToScroll: 1,
+        accessibility: true,
+        responsive: [
+            {
+                breakpoint: 1367,
+                settings: {
+                    slidesToShow: 6.3,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 1025,
+                settings: {
+                    slidesToShow: 5.9,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 769,
+                settings: {
+                    slidesToShow: 4.2,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 3.2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1.4,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
+
+
+    $('.ishara-nazara').not('.slick-initialized').slick({
         dots: false,
         infinite: false,
         speed: 300,

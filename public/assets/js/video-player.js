@@ -255,7 +255,8 @@ $(document).ready(function () {
 			var e = Math.round(player.currentTime),
 			a = Math.round(player.duration),
 			o = customData.title;
-			video_seek(a, e, o);
+			r = parseInt((player.currentTime / player.duration) * 100) + "%",
+			video_seek(a, e, o,r);
 
 		});
 

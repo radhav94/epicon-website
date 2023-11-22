@@ -236,7 +236,8 @@ const attactPlayerEvents = function (videoPayer) {
         var e = Math.round(videoPayer.currentTime),
         a = Math.round(videoPayer.duration);
         o = customData.title;
-        video_seek(a, e, o);
+        r = parseInt((videoPayer.currentTime / videoPayer.duration) * 100) + "%";
+        video_seek(a, e, o,r);
 
     });
 

@@ -1,4 +1,4 @@
-<section class="carousel-main pt-0 mb-0" id="tranding">
+<section class="carousel-main pt-3 mb-3" id="tranding">
     <div class="container-fluid">
         <div class="carousel-title-n-arrow mb-3">
             <h1 class="text-white small">{{ $title }}</h1>
@@ -14,17 +14,18 @@
         </div>
         <div class="tranding-slider {{ getFirstSegment() == 'podcast' ? 'podcast-height' : '' }}">
             <div class="swiper-wrapper">
-
                 @foreach ($value['content'] as $key => $val)
                     <?php
                     $card = getItemCardData($val, $displayLanguageParam);
-                    
+
                     if(isMobliDevice()){
-                        $cover_img = getCardImage($val, 'vertical_cover_image', 'medium');
+                        $img =  in_array(@$slug, ['podcast','games'])  ? 'cover_image' : 'vertical_cover_image';
+                        $cover_img = getCardImage($val, $img, 'medium');
+                        // $cover_img = getCardImage($val, 'vertical_cover_image', 'medium');
                     }else{
                         $cover_img = getCardImage($val, 'banner_image', 'large');
                     }
-                    
+
                     ?>
                     <div class="swiper-slide tranding-slide">
                         <div class="tranding-slide-img position-relative">

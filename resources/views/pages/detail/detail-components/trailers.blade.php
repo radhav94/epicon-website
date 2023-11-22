@@ -4,11 +4,11 @@
         aria-labelledby="my-list">
         @foreach ($trailers['list'] as $list_key => $list)
             <div class="carousel-main mb-4">
-                <div class="carousel-title-n-arrow px-2 mb-2">
+                <div class="carousel-title-n-arrow px-2 mb-3">
                     <h1 class="text-white small">{{ @$list['title'] }}</h1>
                 </div>
                 @if (@$list['content'])
-                    <ul class="carousel-initilize px-0">
+                    <ul class="more-like-this trailer-card px-0 pb-4">
                         @foreach ($list['content'] as $key => $value)
                             <?php
                             $card = getItemCardData($value, $displayLanguageParam);

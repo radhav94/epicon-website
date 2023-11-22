@@ -91,8 +91,8 @@ function video_play(e, a) {
 function video_pause(e, a, t, n) {
     window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "video_pause", video_duration: a, video_name: n, video_percent_viewed: t, video_seconds_viewed: e });
 }
-function video_seek(a, e, o) {
-    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "video_progress", video_duration: a, video_name: o, video_seconds_viewed: e });
+function video_seek(a, e, o,i) {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "video_progress", video_duration: a, video_name: o, video_seconds_viewed: e,video_percent_viewed: i });
 }
 function video_ended(a, e, o) {
     window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "video_complete", video_duration: a, video_name: o, video_seconds_viewed: e });
@@ -103,8 +103,8 @@ function audio_play(e, a) {
 function audio_pause(e, a, t, n) {
     window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "audio_pause", audio_duration: e, audio_name: a, audio_percent_viewed: t, audio_seconds_viewed: n });
 }
-function audio_seek(a, e, o) {
-    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "audio_progress", audio_duration: a, audio_name: e, audio_seconds_viewed: o });
+function audio_seek(a, e, o,i) {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "audio_progress", audio_duration: a, audio_name: e, audio_seconds_viewed: o,audio_percent_viewed: i });
 }
 function audio_ended(a, e, o) {
     window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers(), dataLayer.push({ event: "audio_complete", audio_duration: a, audio_name: e, audio_seconds_viewed: o });
@@ -126,6 +126,40 @@ function file_download(e) {
     var a = $(e).data("file_name"),
         t = $(e).data("file_type");
     dataLayer.push({ event: "file_download", file_name: a, file_type: t });
+}
+
+function login_start() {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
+    dataLayer.push({ event: "login_start"});
+}
+function login_success() {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
+    dataLayer.push({ event: "login_success"});
+}
+function login_failed() {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
+    dataLayer.push({ event: "login_failed"});
+}
+function login_skip() {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
+    dataLayer.push({ event: "login_skip"});
+}
+
+function registration_start() {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
+    dataLayer.push({ event: "registration_start"});
+}
+function registration_success() {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
+    dataLayer.push({ event: "registration_success"});
+}
+function registration_failed() {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
+    dataLayer.push({ event: "registration_failed"});
+}
+function registration_skip() {
+    window.google_tag_manager["G-8JER642T3Z"].dataLayer.reset(), datalayers();
+    dataLayer.push({ event: "registration_skip"});
 }
 $(document).ready(function () {
     dt = new Date();

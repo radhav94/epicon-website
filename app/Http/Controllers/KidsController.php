@@ -17,11 +17,6 @@ class KidsController extends Controller
     public function index($slug = 'home')
     {
         $pageslug = strtolower($slug);
-        // dd($pageslug);
-        $routenamed = $pageslug;
-        if (empty($routenamed)) {
-            $routenamed = $pageslug;
-        }
         
         $pagetitle = 'EPIC ON Kids | Kids Shows, Cartoon, Podcast, Ebook, Games';
         if ($this->isKidsSectionEnabled()) {
@@ -56,15 +51,16 @@ class KidsController extends Controller
 
             if ($result && @$result['success'] ==  true) {
                 $displayLanguageParam = setLanguageParameter();
-                $pagetitle = $result['data']['name'];
-                $pagetype = ($routenamed == 'home' || $routenamed == 'home-v2') ? 'HOME' : "CATALOG";
+                $pagetitle = @$result['data']['name'];
+
+                $pagetype = ($pageslug == 'home' || $pageslug == 'home-v2') ? 'HOME' : "CATALOG";
                 if ($displayLanguageParam == 'HINDI') {
-                    $meta = $this->getHindiMeta($pagetype, $pagetitle, $routenamed);
+                    $meta = $this->getHindiMeta($pagetype, $pagetitle, $pageslug);
                 } else {
-                    $meta = $this->getMeta($pagetype, $pagetitle, $routenamed);
+                    $meta = $this->getMeta($pagetype, $pagetitle, $pageslug);
                 }
-                $meta_title = $meta['title'];
-                // $meta_title = strtoupper($slug);
+                $meta_title = @$meta['title'];
+
                 return view('pages.homepage', compact('result', 'displayLanguageParam', 'meta_title'));
             }
             return view('pages.error.404');
@@ -100,7 +96,7 @@ class KidsController extends Controller
     private function isKidsSectionEnabled()
     {
         $user = session()->has('user') ? session()->get('user') : [];
-        if (array_key_exists('kidSection', $user) && $user['kidSection']) {
+        if (array_key_exists('kidSection', $user) && @$user['kidSection']) {
             return true;
         } else {
             return false;
