@@ -362,7 +362,7 @@ class SubscriptionController extends Controller
             return $parameters;
             
         }
-
+      
         if (in_array($payment_type, ['CC', 'DC', 'NB', 'CASH', 'UPI'])) {
             $parameters['pg'] = $payment_type;
         }
@@ -376,8 +376,8 @@ class SubscriptionController extends Controller
         $parameters['surl'] = getUrl('payusuccess');
         $parameters['furl'] = getUrl('payufail');
         $parameters['payuUrl'] = config('epicconfig.PAYUMONEY.SUBSCRIPTION_URL');
-        $parameters['phone'] = empty($parameters['phone']) ? $parameters['phone'] : '';
-        $parameters['email'] = empty($parameters['email']) ? $parameters['email'] : '';
+        $parameters['phone'] = $parameters['phone'];
+        $parameters['email'] = $parameters['email'];
         $parameters['status'] = true; 
 
         Log::info("----------#####full parametes for log for ios full renew plan for payu -----------");
