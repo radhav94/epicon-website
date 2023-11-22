@@ -9,7 +9,7 @@
         </a>
         @endif
     </div>
-    <ul class="vertical-carousel-initilize p-0">
+    <ul class="carousel-initilize p-0">
         @foreach ($value['content'] as $key => $val)
         <?php
         $card = getItemCardData($val, $displayLanguageParam);
@@ -21,7 +21,7 @@
         <li>
 
             <div class="play-card">
-                <a href="#/" class="top-card-img">
+                <a href="{{ getContentUrl($val) }}" class="top-card-img">
                     {!! freePremiumDiv($val) !!}
                     @if (@$extra['hide_top10'] != 1)
                     {!! topTenDiv($val) !!}
