@@ -141,7 +141,7 @@ class SubscriptionController extends Controller
         $sessionPlanData = $request->session()->get('plandata');
 
         $userData = $request->session()->get('user');
-
+        // dd($userData);
         if ($sessionPlanData[$formData['amountid']]) {
             $result = ($sessionPlanData[$formData['amountid']]);
         }
@@ -154,6 +154,7 @@ class SubscriptionController extends Controller
         ];
 
         $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2);
+
         if ($resultData['success'] == true && !empty(@$resultData['order_data'])) {
             $resorder = $resultData['order_data'];
             $orderPostData = [
@@ -205,6 +206,8 @@ class SubscriptionController extends Controller
 
         $request = Request();
         $userData = $request->session()->get('user');
+        // dd($userData);
+
         $parameters['status'] = ""; 
         $order = $orderArr['order_data'];
         $userid = $userData['user_id'] ?? '';
@@ -223,23 +226,17 @@ class SubscriptionController extends Controller
         }
         if (strtoupper(env('APP_ENV')) == 'PRODUCTION') {
             if ($request->post('device') == 'android' || $request->post('device') == 'ios') {
-                if (empty($userData['email'])) {
-                    $parameters = ['tid' => time(),
-                        'txnid' => $order_number,
-                        'amount' => $totalamount,
-                        'firstname' => $userData['name'],
-                        'email' => $userData['mobile'],
-                        'phone' => $userData['mobile'],
-                        'productinfo' => 'epicon ' . $plan_id];
-                } else {
-                    $parameters = ['tid' => time(),
-                        'txnid' => $order_number,
-                        'amount' => $totalamount,
-                        'firstname' => $userData['name'],
-                        'email' => $userData['email'],
-                        'phone' => $userData['mobile'],
-                        'productinfo' => 'epicon ' . $plan_id];
-                }
+                
+                    $parameters = [
+                            'tid' => time(),
+                            'txnid' => $order_number,
+                            'amount' => $totalamount,
+                            'firstname' => $userData['name'],
+                            'email' => $userData['email'],
+                            'phone' => $userData['mobile'],
+                            'productinfo' => 'epicon ' . $plan_id
+                        ];
+                
 
                 if ($finalcurrency == 'USD') {
                     $rate = $this->getConvertedPrice($finalcurrency, 'INR');
@@ -252,14 +249,14 @@ class SubscriptionController extends Controller
                         'txnid' => $order_number,
                         'amount' => $totalamount,
                         'firstname' => $userData['name'],
-                        'email' => $userid,
-                        'phone' => '',
+                        'email' => $userData['email'],
+                        'phone' => $userData['mobile'],
                         'si' => 1,
                         'productinfo' => 'epicon ' . $plan_id,
 
                     ];
                 } else {
-                    $parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => $userData['name'], 'email' => $userid, 'phone' => '', 'productinfo' => 'epicon ' . $plan_id];
+                    $parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => $userData['name'], 'email' => $userData['email'], 'phone' => @$userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
                     if ($finalcurrency == 'USD') {
                         $rate = $this->getConvertedPrice($finalcurrency, 'INR');
                         $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
@@ -268,27 +265,17 @@ class SubscriptionController extends Controller
                 }
             }
         } else {
-
+            // if not production - run below code
             if ($request->post('device') == 'android' || $request->post('device') == 'ios') {
 
-                if (empty($userData['email'])) {
-                    $parameters = ['tid' => time(),
-                        'txnid' => $order_number,
-                        'amount' => $totalamount,
-                        'firstname' => $userData['name'],
-                        'email' => $userData['email'],
-                        'phone' => $userData['mobile'],
-                        'productinfo' => 'epicon ' . $plan_id];
-                } else {
-
-                    $parameters = ['tid' => time(),
-                        'txnid' => $order_number,
-                        'amount' => $totalamount,
-                        'firstname' => $userData['name'],
-                        'email' => $userData['email'],
-                        'phone' => $userData['mobile'],
-                        'productinfo' => 'epicon ' . $plan_id];
-                }
+                $parameters = ['tid' => time(),
+                    'txnid' => $order_number,
+                    'amount' => $totalamount,
+                    'firstname' => $userData['name'],
+                    'email' => $userData['email'],
+                    'phone' => $userData['mobile'],
+                    'productinfo' => 'epicon ' . $plan_id];
+                
                 if ($finalcurrency == 'USD') {
 
                     $rate = $this->getConvertedPrice($finalcurrency, 'INR');
@@ -346,7 +333,7 @@ class SubscriptionController extends Controller
             }
             $parameters['si'] = "1";
             $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
-            $parameters['phone'] = $userData['mobile'] ?? '';
+            $parameters['phone'] = $userData['mobile'];
             $parameters['api_version'] = "7";
             $parameters['si_details'] = json_encode([
                 'billingAmount' => $totalamount,
@@ -367,7 +354,12 @@ class SubscriptionController extends Controller
             $parameters['pg'] = $payment_type;
         }
 
+        
+
         $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['txnid'] . '|' . $parameters['amount'] . '|' . $parameters['productinfo'] . '|' . $parameters['firstname'] . '|' . $parameters['email'] . '|||||||||||' . $parameters['si_details'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+
+        // echo 'Hi';
+        // dd($HASH);
 
         $calculated_hash = strtolower(hash("sha512", $HASH));
         $parameters['hash'] = $calculated_hash;
@@ -500,6 +492,8 @@ class SubscriptionController extends Controller
     public function payusuccess(Request $request)
     {
         $paymentresponse = $request->all();
+        // dd($paymentresponse);
+
         $paymtentStatus = strtolower($paymentresponse['status']);
         $final_result = ['message' => 'The transaction has been declined.'];
         //$getOnlyDate = date('Y-m-d', strtotime(@$orderdata['subscription_end_date']));
@@ -668,6 +662,7 @@ class SubscriptionController extends Controller
     public function payufail(Request $request)
     {
         $paymtentStatus = $request->all();
+        // dd($paymtentStatus);
 
         Log::info("----- PayuMoney Payment Failed Response.");
         Log::debug(json_encode($paymtentStatus));
