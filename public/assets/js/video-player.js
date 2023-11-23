@@ -203,13 +203,18 @@ $(document).ready(function () {
 
 		}
 
-		forwardButton.addEventListener('click', () => {
-			player.currentTime += 10;
-		});
-
-		rewindButton.addEventListener('click', () => {
-			player.currentTime -= 10;
-		});
+		if(forwardButton){
+			forwardButton.addEventListener('click', () => {
+				player.currentTime += 10;
+			});
+		}
+		
+		if(rewindButton){
+			rewindButton.addEventListener('click', () => {
+				player.currentTime -= 10;
+			});
+		}
+		
 		closePlayer.addEventListener('click', () => {
 			if (player) {
 				player.pause();
