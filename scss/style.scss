@@ -7877,10 +7877,10 @@ audio::-webkit-media-controls-play-button {
     }
 }
 .new-popular-main .upper-img{
-    height: 163px;
+    height: auto;
     overflow: hidden;
     @media (max-width:767px) {
-        height: 91px;
+        height: auto;
     }
     img{
         height: 100%;
