@@ -7864,3 +7864,21 @@ audio::-webkit-media-controls-play-button {
     height: auto;
     width: 100%;
 }
+.plyr--video {
+    height: 423px;
+    @media (max-width:768px) {
+        height: auto;
+    }
+}
+.new-popular-main .upper-img{
+    height: 163px;
+    overflow: hidden;
+    @media (max-width:767px) {
+        height: 91px;
+    }
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
