@@ -143,7 +143,7 @@ class AndroidPaymentController extends Controller
                 'billingCycle' => $billingCycle,
                 'billingInterval' => $billingInterval,
                 'paymentStartDate' => $newstartdate,
-                'paymentEndDate' => $endstartdate,
+                'paymentEndDate' => $endstartdate
             ]);
 
         }
