@@ -765,7 +765,7 @@ class SubscriptionController extends Controller
         //dd($data);
         $url = "https://test.payu.in/merchant/postservice.php?form=2";
         $verify_payment = si_transaction($url, $data);
-        dd($verify_payment);
+        //dd($verify_payment);
     }
 
     public function cancelMembership(Request $request){
