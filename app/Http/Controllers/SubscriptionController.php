@@ -116,7 +116,8 @@ class SubscriptionController extends Controller
 
     public function setSubscription(Request $request)
     {
-
+        if($request->has('amountid')){
+            
         if (!isUserLoggedIn()) {
             return redirect('/');
         }
@@ -131,7 +132,9 @@ class SubscriptionController extends Controller
             return view('pages.error.data-error');  
         }
         return view('subscription.payment-method', compact('result', 'data'));
-
+        }else{
+            return redirect('subscription');
+        }
     }
 
     public function saveSubscription(Request $request)
