@@ -174,26 +174,47 @@ class SubscriptionController extends Controller
             $productinfo = $result['id'];
             $firstname = $userData['name'];
             $email = $userData['email'];
-
-
-            $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . "|" . $txid . "|" . $parameters['amount'] . "|" . $parameters['productinfo'] . "|" . $parameters['firstname'] . "|" . $parameters['email'] . "|||||||||||" . $parameters['si_details'] . "|" . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
-
-            $calculated_hash = strtolower(hash("sha512", $HASH));
-            $parameters = [
-                "hash" => $calculated_hash,
-                "email" => $parameters['email'],
-                "txnid" => $txid,
-                "key" => $parameters['key'],
-                "firstname" => $parameters['firstname'],
-                "amount" => $parameters['amount'],
-                "phone" => $parameters['phone'],
-                "productinfo" => $parameters['productinfo'],
-                "surl" => $parameters['surl'],
-                "furl" => $parameters['furl'],
-                "payuUrl" => $parameters['payuUrl'],
-                "si_details" => $parameters['si_details'],
-            ];
-            return view('subscription.payumoney', compact('parameters'));
+            if (env('PAYU_SI') == true) {
+                $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . "|" . $txid . "|" . $parameters['amount'] . "|" . $parameters['productinfo'] . "|" . $parameters['firstname'] . "|" . $parameters['email'] . "|||||||||||" . $parameters['si_details'] . "|" . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+                $calculated_hash = strtolower(hash("sha512", $HASH));
+                $parameters = [
+                    "hash" => $calculated_hash,
+                    "email" => @$parameters['email'],
+                    "txnid" => $txid,
+                    "key" => @$parameters['key'],
+                    "firstname" => @$parameters['firstname'],
+                    "amount" => @$parameters['amount'],
+                    "phone" => @$parameters['phone'],
+                    "productinfo" => @$parameters['productinfo'],
+                    "surl" => @$parameters['surl'],
+                    "furl" => @$parameters['furl'],
+                    "payuUrl" => @$parameters['payuUrl'],
+                    "si_details" => @$parameters['si_details'],
+                ];
+            }
+            else{
+                $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . "|" . $txid . "|" . $parameters['amount'] . "|" . $parameters['productinfo'] . "|" . $parameters['firstname'] . "|" . $parameters['email'] . "||||||||||||" . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+                $calculated_hash = strtolower(hash("sha512", $HASH));
+                $parameters = [
+                    "hash" => $calculated_hash,
+                    "email" => @$parameters['email'],
+                    "txnid" => $txid,
+                    "key" => @$parameters['key'],
+                    "firstname" => @$parameters['firstname'],
+                    "amount" => @$parameters['amount'],
+                    "phone" => @$parameters['phone'],
+                    "productinfo" => @$parameters['productinfo'],
+                    "surl" => @$parameters['surl'],
+                    "furl" => @$parameters['furl'],
+                    "payuUrl" => @$parameters['payuUrl']
+                ];
+            }
+            if (env('PAYU_SI') == true) {
+                return view('subscription.payumoneysi', compact('parameters'));
+            }
+            else{
+                return view('subscription.payumoney', compact('parameters'));
+            }
         }
     }
 
@@ -212,7 +233,6 @@ class SubscriptionController extends Controller
     public function paymentProcess($orderArr, $currency, $payment_type)
     {
         /* All Required Parameters by your Gateway */
-
         $request = Request();
         $userData = $request->session()->get('user');
         $userid = $userData['user_id'] ?? '';
@@ -234,7 +254,6 @@ class SubscriptionController extends Controller
             $totalamount = "1";
         }
         $parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => @$userData['name'], 'email' => @$userData['email'], 'phone' => @$userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
-
         if (strtoupper(env('APP_ENV')) == 'PRODUCTION') {
             if ($request->post('device') == 'android' || $request->post('device') == 'ios') {
                 if ($finalcurrency == 'USD') {
@@ -244,7 +263,9 @@ class SubscriptionController extends Controller
                 }
             } else {
                 if ($finalcurrency == 'INR') {
-                    $parameters['si'] = 1;
+                    if (env('PAYU_SI') == true) {
+                        $parameters['si'] = 1;
+                    }
                 } else {
                     //$parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => $userData['name'], 'email' => $userData['email'], 'phone' => @$userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
                     if ($finalcurrency == 'USD') {
@@ -267,7 +288,9 @@ class SubscriptionController extends Controller
                 Log::info("-----END ios full renew plan for payu----------------------");
             } else {
                 if ($finalcurrency == 'INR') {
-                    $parameters['si'] = 1;
+                    if (env('PAYU_SI') == true) {
+                        $parameters['si'] = 1;
+                    }
                 } else {
                     //$parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => $userData['name'], 'email' => $userid, 'phone' => $userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
                     if ($finalcurrency == 'USD') {
@@ -280,9 +303,9 @@ class SubscriptionController extends Controller
         }
 
 
-
-
-        if (config('epicconfig.PAYUMONEY.ENABLE_RECURRING_AT_FROM_TRANSACTION') == true) {
+        $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
+        $parameters['phone'] = $userData['mobile'];
+        if (env('PAYU_SI') == true) {
             $billingCycle = 'MONTHLY';
             if ($plan_id == 'epic_in_pl_1') {
                 $billingInterval = 1;
@@ -305,9 +328,7 @@ class SubscriptionController extends Controller
                 $newstartdate = date("Y-m-d");
                 $endstartdate = date("Y-m-d", strtotime("+1 year"));
             }
-            $parameters['si'] = "1";
-            $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
-            $parameters['phone'] = $userData['mobile'];
+            $parameters['si'] = 1;
             $parameters['api_version'] = "7";
             $parameters['si_details'] = json_encode([
                 'billingAmount' => $totalamount,
@@ -317,19 +338,20 @@ class SubscriptionController extends Controller
                 'paymentStartDate' => $newstartdate,
                 'paymentEndDate' => $endstartdate
             ]);
-        }else{
-            $parameters['status'] = false; 
-            return $parameters;
+
+
+            $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['txnid'] . '|' . $parameters['amount'] . '|' . $parameters['productinfo'] . '|' . $parameters['firstname'] . '|' . $parameters['email'] . '|||||||||||' . $parameters['si_details'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
         }
-      
+        else{
+            $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['txnid'] . '|' . $parameters['amount'] . '|' . $parameters['productinfo'] . '|' . $parameters['firstname'] . '|' . $parameters['email'] . '||||||||||||' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+        }
+
         if (in_array($payment_type, ['CC', 'DC', 'NB', 'CASH', 'UPI'])) {
             $parameters['pg'] = $payment_type;
         }
 
 
-        $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['txnid'] . '|' . $parameters['amount'] . '|' . $parameters['productinfo'] . '|' . $parameters['firstname'] . '|' . $parameters['email'] . '|||||||||||' . $parameters['si_details'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
-
-
+    
         $calculated_hash = strtolower(hash("sha512", $HASH));
         $parameters['hash'] = $calculated_hash;
         $parameters['SALT'] = config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
