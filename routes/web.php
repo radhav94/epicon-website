@@ -143,7 +143,7 @@ foreach ($lang as $val) {
 
     Route::group(['prefix' => $prefix, 'middleware' => ['loggedin', 'checkUserAuthToken']], function () {
         //Subscription routes created by Ram
-        Route::post('paymentMethod', [SubscriptionController::class, 'setSubscription'])->name('paymentMethod');
+        Route::any('paymentMethod', [SubscriptionController::class, 'setSubscription'])->name('paymentMethod');
         Route::post('planBenefit', [SubscriptionController::class, 'planBenefit']);
         Route::post('saveSubscription', [SubscriptionController::class, 'saveSubscription'])->name('saveSubscription');
         Route::get('subscription', [SubscriptionController::class, 'subscription'])->name('subscription');
