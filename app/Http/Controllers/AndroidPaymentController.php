@@ -33,81 +33,48 @@ class AndroidPaymentController extends Controller
             $totalamount = "1";
         }
 
+        $parameters = ['tid' => time(),
+        'txnid' => $order_number,
+        'amount' => $totalamount,
+        'firstname' => $firstname,
+        'email' => $email,
+        'phone' => $mobile,
+        'productinfo' => 'epicon ' . $plan_id];
         if (strtoupper(env('APP_ENV')) == 'PRODUCTION') {
-        
-                    $parameters = ['tid' => time(),
-                        'txnid' => $order_number,
-                        'amount' => $totalamount,
-                        'firstname' => $firstname,
-                        'email' => $email,
-                        'phone' => $mobile,
-                        'productinfo' => 'epicon ' . $plan_id];
-             
-
+            if ($finalcurrency == 'USD') {
+                $rate = $this->getConvertedPrice($finalcurrency, 'INR');
+                $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
+                $parameters['amount'] = round(floor($totalamount), 2);
+            }
+            if ($finalcurrency == 'INR') {
+                $parameters['si'] = 1;
+            } else {
                 if ($finalcurrency == 'USD') {
                     $rate = $this->getConvertedPrice($finalcurrency, 'INR');
                     $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
                     $parameters['amount'] = round(floor($totalamount), 2);
                 }
-                if ($finalcurrency == 'INR') {
-                    $parameters = ['tid' => time(),
-                        'txnid' => $order_number,
-                        'amount' => $totalamount,
-                        'firstname' => $firstname,
-                        'email' => $email,
-                        'phone' => $mobile,
-                        'si' => 1,
-                        'productinfo' => 'epicon ' . $plan_id,
-
-                    ];
-                } else {
-                    $parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => $firstname, 'email' => $email, 'phone' =>$mobile, 'productinfo' => 'epicon ' . $plan_id];
-                    if ($finalcurrency == 'USD') {
-                        $rate = $this->getConvertedPrice($finalcurrency, 'INR');
-                        $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
-                        $parameters['amount'] = round(floor($totalamount), 2);
-                    }
-                }
-            
+            }
         } else {
-                    $parameters = ['tid' => time(),
-                        'txnid' => $order_number,
-                        'amount' => $totalamount,
-                        'firstname' => $firstname,
-                        'email' => $email,
-                        'phone' => $mobile,
-                        'productinfo' => 'epicon ' . $plan_id];
-            
+            if ($finalcurrency == 'USD') {
+                $rate = $this->getConvertedPrice($finalcurrency, 'INR');
+                $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
+                $parameters['amount'] = round(floor($totalamount), 2);
+            }
+            Log::info("----------#####log for ios full renew plan for payu -----------");
+            Log::debug(json_encode($parameters));
+            Log::info("-----END ios full renew plan for payu----------------------");
+      
+            if ($finalcurrency == 'INR') {
+                $parameters['si'] = 1;
+            } else {
                 if ($finalcurrency == 'USD') {
-
                     $rate = $this->getConvertedPrice($finalcurrency, 'INR');
                     $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
                     $parameters['amount'] = round(floor($totalamount), 2);
                 }
-                Log::info("----------#####log for ios full renew plan for payu -----------");
-                Log::debug(json_encode($parameters));
-                Log::info("-----END ios full renew plan for payu----------------------");
-          
-                if ($finalcurrency == 'INR') {
-                    $parameters = ['tid' => time(),
-                        'txnid' => $order_number,
-                        'amount' => $totalamount,
-                        'firstname' => $firstname,
-                        'email' => $email,
-                        'phone' => $mobile,
-                        'si' => 1,
-                        'productinfo' => 'epicon ' . $plan_id,
-                    ];
-
-                } else {
-
-                    $parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => $firstname, 'email' => $email, 'phone' => $mobile, 'productinfo' => 'epicon ' . $plan_id];
-                    if ($finalcurrency == 'USD') {
-                        $rate = $this->getConvertedPrice($finalcurrency, 'INR');
-                        $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
-                        $parameters['amount'] = round(floor($totalamount), 2);
-                    }
-                }
+            }
+        }
           
     
         if (config('epicconfig.PAYUMONEY.ENABLE_RECURRING_AT_FROM_TRANSACTION') == true) {
@@ -145,9 +112,8 @@ class AndroidPaymentController extends Controller
                 'paymentStartDate' => $newstartdate,
                 'paymentEndDate' => $endstartdate
             ]);
-
         }
-       
+   
         if (in_array($payment_type, ['CC', 'DC', 'NB', 'CASH', 'UPI'])) {
             $parameters['pg'] = $payment_type;
         }
@@ -172,8 +138,6 @@ class AndroidPaymentController extends Controller
         $parameters['epic_price'] = $totalamount;
 
 
-
-
         Log::info("----------#####full parametes for log for ios full renew plan for payu -----------");
         Log::debug(json_encode($parameters));
         Log::info("-----full parametes for END ios full renew plan for payu----------------------");
@@ -185,7 +149,7 @@ class AndroidPaymentController extends Controller
         Log::info("-----End------");
         $orderData = $request->session()->get('payuParams');
         return view('subscription.payumoney', compact('parameters'));
-        }
+        
     }
 
     public function androidPayuresponse(Request $request){
