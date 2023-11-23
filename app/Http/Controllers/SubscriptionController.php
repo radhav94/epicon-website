@@ -179,12 +179,12 @@ class SubscriptionController extends Controller
         $firstname = $userData['name'];
         $email = $userData['email'];
 
-        $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . "|" . $parameters['txnid'] . "|" . $parameters['amount'] . "|" . $parameters['productinfo'] . "|" . $parameters['firstname'] . "|" . $parameters['email'] . "|||||||||||" . $parameters['si_details'] . "|" . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+        $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . "|" . $txid . "|" . $parameters['amount'] . "|" . $parameters['productinfo'] . "|" . $parameters['firstname'] . "|" . $parameters['email'] . "|||||||||||" . $parameters['si_details'] . "|" . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
         $calculated_hash = strtolower(hash("sha512", $HASH));
         $parameters = [
             "hash" => $calculated_hash,
             "email" => $parameters['email'],
-            "txnid" => $parameters['txnid'],
+            "txnid" => $txid,
             "key" => $parameters['key'],
             "firstname" => $parameters['firstname'],
             "amount" => $parameters['amount'],
