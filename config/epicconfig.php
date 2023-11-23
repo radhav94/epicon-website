@@ -45,9 +45,9 @@ if($environment=='PRODUCTION'){
             'ANDROID_RESPONSE_URL'=>'https://www.epicon.in/payumoney/androidresponse',//url('payumoney/androidresponse'),
             'TESTMODE'=>false,
             'SUBSCRIPTION_URL'=>'https://secure.payu.in/_payment/',
-            'ENABLE_RECURRING_API'=>true,
+            'ENABLE_RECURRING_API'=>false,
             'API_URL'=>'https://info.payu.in/merchant/postservice.php?form=2',
-            'ENABLE_RECURRING_AT_FROM_TRANSACTION'=>true,
+            'ENABLE_RECURRING_AT_FROM_TRANSACTION'=>false,
         ],
         'PAYTMQR'=>[
 			'PAYTMQR_MERCHANT_ID'=>'EPICTE67767187383060',

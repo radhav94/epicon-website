@@ -1642,7 +1642,7 @@ input {
         align-items: center;
         justify-content: flex-start;
         height: 100%;
-        border-radius: 7px 7px 0 0;
+        border-radius: 7px 7px;
         overflow: hidden;
         text-decoration: none;
         color: #fff;
@@ -1691,10 +1691,10 @@ input {
     }
    
     .carousel-initilize li,.vertical-carousel-initilize li,.library li,.more-like-this li,.seeall-main-page li,.bollywood-tray li{
-        padding: 0 15px 0 0px;
+        margin-right: 15px;
         position: relative;
         @media (max-width:767px) {
-            padding: 0 10px 0 0px;
+            margin-right: 10px;
         }
         .upcoming-title-play-btn{
             @include flex(row,center,space-between);
@@ -2006,6 +2006,7 @@ input {
                     font-weight: 600;
                     line-height: 7px;
                     padding: 0;
+                    margin: 0;
                     @media (max-width:767px){
                         font-size: 7px;
                     }
@@ -2015,6 +2016,7 @@ input {
                     font-weight: 700;
                     text-align: center;
                     padding: 0;
+                    margin: 0;
                     @media (max-width:767px){
                         font-size: 12px;
                         line-height: 14px;
@@ -2072,12 +2074,14 @@ input {
                     font-weight: 600;
                     line-height: 7px;
                     padding: 0;
+                    margin: 0;
                 }
                 li:last-child{
                     font-size: 16px;
                     font-weight: 700;
                     text-align: center;
                     padding: 0;
+                    margin: 0;
                     // line-height: 0.2;
                 }
             }
@@ -2288,7 +2292,7 @@ input {
 }
 
 .carousel-initilize,.vertical-carousel-initilize,.gaming-galore-main,.popular-language,.blockbuster-mm
-    ,.punjab-carousel,.discover-next-watch,.new-release-bottom,.imdb,.delights-display,.wildlife,.cust-collection,.short-sweet-carousel,.vertical-carousel-retro,.ar-vr,.additional-carousel,.bollywood-tray{
+    ,.punjab-carousel,.discover-next-watch,.new-release-bottom,.imdb,.delights-display,.wildlife,.cust-collection,.short-sweet-carousel,.vertical-carousel-retro,.ar-vr,.additional-carousel,.bollywood-tray,.games{
         .slick-next, .slick-prev{
             z-index: 1;
             right: 0px;
@@ -3009,8 +3013,10 @@ input {
     padding: 0;
     overflow: hidden;
     div{
-        margin-left: 2px;
-        margin-right: 7px;
+        margin-right: 15px;
+        @media (max-width:767px){
+            margin-right: 10px;
+        }
         a{
             text-decoration: none;
             color: #fff;
@@ -7871,10 +7877,10 @@ audio::-webkit-media-controls-play-button {
     }
 }
 .new-popular-main .upper-img{
-    height: 163px;
+    height: auto;
     overflow: hidden;
     @media (max-width:767px) {
-        height: 91px;
+        height: auto;
     }
     img{
         height: 100%;
