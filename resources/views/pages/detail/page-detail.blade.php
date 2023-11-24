@@ -7,7 +7,24 @@ if (@$content['content_type'] == 'SHOW' || $content['content_type'] == 'SEASON')
     $loadPlayer = true;
 }
 $loadPlayer = true;
-// dd($content);
+
+if($isMoblile){
+    $cover_img = getCardImage($content, 'banner_image', 'medium');
+}else{
+
+    if(isset($content['airtel_feature_imageHD']) && !empty($content['airtel_feature_imageHD'])){
+        $cover_img = $content['airtel_feature_imageHD'];
+    }
+    else if(isset($content['trending_movie_buzz_image']) && !empty($content['trending_movie_buzz_image'])){
+
+        $cover_img = getCardImage($content, 'trending_movie_buzz_image', 'large');
+    }
+    else{
+        $cover_img = getCardImage($content, 'banner_image', 'large');
+    }
+}
+
+$meta['image'] = $cover_img;
 ?>
 
 @extends('layouts.default')
@@ -31,21 +48,6 @@ $loadPlayer = true;
 @section('content')
 <?php
 
-    if($isMoblile){
-        $cover_img = getCardImage($content, 'banner_image', 'medium');
-    }else{
-
-        if(isset($content['airtel_feature_imageHD']) && !empty($content['airtel_feature_imageHD'])){
-            $cover_img = $content['airtel_feature_imageHD'];
-        }
-        else if(isset($content['trending_movie_buzz_image']) && !empty($content['trending_movie_buzz_image'])){
-
-            $cover_img = getCardImage($content, 'trending_movie_buzz_image', 'large');
-        }
-        else{
-            $cover_img = getCardImage($content, 'banner_image', 'large');
-        }
-    }
     // dd($trailers);
     // dd($trailers['list'][0]['content'][0]['ID']);
     $trailer_id = @$trailers['list'][0]['content'][0]['ID'] ?? '';
