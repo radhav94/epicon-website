@@ -24,7 +24,7 @@ foreach ($input as $item) {
 }
 
 krsort($output);
-$meta_description = "Exciting collection of upcoming web series and movies on OTT platforms. Watch wide range of Hindi and English TV show and movies online";
+$meta['description'] = "Exciting collection of upcoming web series and movies on OTT platforms. Watch wide range of Hindi and English TV show and movies online";
 ?>
 <section class="container">
     <div class="upcoming-epicon-main">

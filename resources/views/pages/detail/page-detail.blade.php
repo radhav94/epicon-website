@@ -28,7 +28,7 @@ $meta['image'] = $cover_img;
 ?>
 
 @extends('layouts.default')
-@section('title', @$content['title'])
+@section('title', @$meta['title'])
 
 @section('style')
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/socialSharing.css') }}" />
