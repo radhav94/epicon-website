@@ -6369,12 +6369,11 @@ input {
                 }
             }
             span{
-                font-size: 12px;
+                font-size: 16px;
                 color: #B7B7B7;
             }
             p{
                 color: #B7B7B7;
-                @include line-clamp(2);
                 @media (max-width:700px) {
                     @include line-clamp(2);
                     position: absolute;
