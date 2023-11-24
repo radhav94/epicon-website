@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.epicchannel.epicon",
+    "sha256_cert_fingerprints":
+    ["EE:0D:9E:A1:AB:9D:92:25:AE:5B:15:0C:1D:BE:D8:82:7E:AA:27:42:F5:C3:9B:43:71:7A:BF:60:41:BC:C1:7D"]
+  }
+}]

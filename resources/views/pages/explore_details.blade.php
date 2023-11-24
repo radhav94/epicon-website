@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', ucfirst($slug))
+@section('title', 'Explore - ' . ucfirst($slug))
 
 @section('style')
     <style>

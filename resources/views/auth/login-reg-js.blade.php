@@ -655,6 +655,7 @@
                             $('.login-popup-modal').hide();
                             $('#login-modal').hide();
                             $('.loginBtn.login').trigger('click');
+                            showToaster('password changed successfully.', 1);
                             // location.reload(true);
                         } else {
                             $('#reset-forgot-result').html(response.payload.response

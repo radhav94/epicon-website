@@ -1262,3 +1262,7 @@ if (!function_exists('lastActiveTime')) {
 function getDeviceId() {
     return session()->get('device_id') ?? '';
 }
+
+function getDefaultMetaTitle(){
+    return 'Watch TV Shows, Movies, Podcast, Games, Rewards';
+}
