@@ -36,6 +36,7 @@
     }
 
     .live-tv-vidPlayer button[data-plyr="fast-forward"], 
+    .live-tv-vidPlayer button[data-plyr="settings"], 
     .live-tv-vidPlayer button[data-plyr="rewind"], 
     .live-tv-vidPlayer button[data-plyr="pip"].plyr__control, 
     .live-tv-vidPlayer .plyr__progress__container{

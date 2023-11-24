@@ -395,17 +395,17 @@
                                 <input type="hidden" name="otppin" id="otppin" value="">
                                 <div class="childpin">
                                     <div class="childpin-input">
-                                        <input class="mx-1 child-box1" type="number" min="0" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="number" min="0" max="9"
                                             maxlength="1" id="childpin11" name="childpin11">
-                                        <input class="mx-1 child-box1" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="number" min="1" max="9"
                                             maxlength="1" id="childpin22" name="childpin22">
-                                        <input class="mx-1 child-box1" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="number" min="1" max="9"
                                             maxlength="1" id="childpin33" name="childpin33">
-                                        <input class="mx-1 child-box1" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="number" min="1" max="9"
                                             maxlength="1" id="childpin44" name="childpin44">
-                                        <input class="mx-1 child-box1" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="number" min="1" max="9"
                                             maxlength="1" id="childpin55" name="childpin55">
-                                        <input class="mx-1 child-box1" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="number" min="1" max="9"
                                             maxlength="1" id="childpin66" name="childpin66">
                                     </div>
                                 </div>
