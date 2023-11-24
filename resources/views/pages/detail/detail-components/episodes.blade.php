@@ -1,3 +1,4 @@
+
 @if ($season_episode_data && count($season_episode_data) > 0)
     <div class="tab-pane fade {{ $active_tab == 'episode' ? 'show active' : '' }}" id="pills-episode" role="tabpanel"
         aria-labelledby="my-list">
@@ -27,7 +28,7 @@
                 
                 $cover_img = getCardImage($value, 'cover_image', 'medium');
                 ?>
-                <li class="episode-main mb-4">
+                <li class="episode-main mb-4 showmore-main">
                     @if(@$value['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($value) !!}
                     @else
@@ -58,7 +59,8 @@
                                 {{ convertSecondsToReadable($value['duration']) }}
                             @endif
                         </span>
-                        <p class="mt-2">{!! sanitizeData(@$value['short_description']) !!}</p>
+                        <p class="mt-2 shot-desc-{{$key}}">{!! sanitizeData(@$value['short_description']) !!}</p>
+                        <span class="read-button-{{$key}}"> </span>
                     </div>
                 </li>
             @endforeach
@@ -67,3 +69,5 @@
         @endforeach
     </div>
 @endif
+
+
