@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','Upcoming on Epicon')
+@section('title','Get to Know About Upcoming OTT New Web Series and Movies')
 
 @section('style')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}" />
@@ -24,7 +24,7 @@ foreach ($input as $item) {
 }
 
 krsort($output);
-
+$meta['description'] = "Exciting collection of upcoming web series and movies on OTT platforms. Watch wide range of Hindi and English TV show and movies online";
 ?>
 <section class="container">
     <div class="upcoming-epicon-main">

@@ -25,8 +25,12 @@ class DistroTvController extends Controller
         if ($result && @$result['success'] ==  true) {
             $displayLanguageParam = $data['displayLanguageParam'];
             $stories = $data['stories'];
-        
-            return view('pages.homepage-distro', compact('result', 'displayLanguageParam', 'stories'));
+
+            $meta = [
+                'title' => ($displayLanguageParam == 'HINDI') ? 'डिस्ट्रो टीवी' : 'DistroTV', 
+            ];
+
+            return view('pages.homepage-distro', compact('result', 'meta', 'displayLanguageParam', 'stories'));
                     }
         return view('pages.error.404');
     }

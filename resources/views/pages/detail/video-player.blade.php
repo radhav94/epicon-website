@@ -60,6 +60,7 @@
         bottom: 5px;
     }
     .live-tv-vidPlayer button[data-plyr="fast-forward"], 
+    .live-tv-vidPlayer .plyr__menu__container button:nth-child(3), 
     .live-tv-vidPlayer button[data-plyr="rewind"], 
     .live-tv-vidPlayer button[data-plyr="pip"].plyr__control, 
     .live-tv-vidPlayer .plyr__progress__container{

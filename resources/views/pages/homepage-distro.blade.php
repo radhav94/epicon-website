@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', "DistroTV")
+@section('title', $meta['title'] ?? getDefaultMetaTitle() )
 
 @section('style')
 <style>
