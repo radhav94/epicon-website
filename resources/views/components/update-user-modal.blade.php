@@ -1,6 +1,5 @@
 <?php //dd($userData); 
-$caption="";
-$input ="";
+$caption = $input = "";
 if(empty($userData['mobile']) && $userData['mobile']==''){
     $caption = __('Update Mobile Number');
     $placeholder = __('Please enter mobile');
@@ -12,12 +11,7 @@ if(empty($userData['mobile']) && $userData['mobile']==''){
 }
 
 ?>
-<style>
-        .inputCenter{margin-left: 180px;}
-    @media (max-width:767px) {
-        .inputCenter{margin-left: 0px;}
-    }
-</style>
+<style>.inputCenter{margin-left: 180px;}@media (max-width:767px) {.inputCenter{margin-left: 0px;}}</style>
 <div class="modal fade" id="update_user_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">
@@ -32,8 +26,6 @@ if(empty($userData['mobile']) && $userData['mobile']==''){
                         <!-- <div class="childpin-input">
                             <input class="cpin onlydigit" type="text" min="0" max="9" maxlength="1"
                                 name="email" required>
-                            
-
                         </div> -->
                         <!-- <input type="text" name="email" placeholder="Please enter email id" id="email-id"> -->
                         <?php echo $input; ?>

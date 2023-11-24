@@ -42,10 +42,8 @@ class PageController extends Controller
             } else {
                 $meta = $this->getMeta($pagetype, $pagetitle, $pageslug);
             }
-            $meta_title = $meta['title'];
-            $meta_description = $meta['description'];
 
-            return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta_title','meta_description','slug'));
+            return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta','slug'));
                     }
         return view('pages.error.404');
     }

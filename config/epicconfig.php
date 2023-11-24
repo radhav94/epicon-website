@@ -44,10 +44,10 @@ if($environment=='PRODUCTION'){
             'RESPONSE_URL'=>'https://www.epicon.in/payumoney/response',//url('/payumoney/response'),
             'ANDROID_RESPONSE_URL'=>'https://www.epicon.in/payumoney/androidresponse',//url('payumoney/androidresponse'),
             'TESTMODE'=>false,
-            'SUBSCRIPTION_URL'=>'https://subscription.citruspay.com/',
+            'SUBSCRIPTION_URL'=>'https://secure.payu.in/_payment/',
             'ENABLE_RECURRING_API'=>false,
             'API_URL'=>'https://info.payu.in/merchant/postservice.php?form=2',
-            'ENABLE_RECURRING_AT_FROM_TRANSACTION'=>true,
+            'ENABLE_RECURRING_AT_FROM_TRANSACTION'=>false,
         ],
         'PAYTMQR'=>[
 			'PAYTMQR_MERCHANT_ID'=>'EPICTE67767187383060',
@@ -432,15 +432,16 @@ if($environment=='PRODUCTION'){
 			'ANDROID_GETRSAKEY_URL'=>'https://secure.ccavenue.com/transaction/getRSAKey'
 		],
         'PAYUMONEY'=>[
-            'PAYUMONEY_MERCHANT_KEY'=>'5Z7qv4', // MERCHABT_ID 117245
-            'PAYUMONEY_SALT'=>'9S0qvfqO',
-            'RESPONSE_URL'=>env('APP_URL').'/payumoney/response',
-            'ANDROID_RESPONSE_URL'=>env('APP_URL').'/payumoney/androidresponse',
+            'PAYUMONEY_MERCHANT_KEY'=>'lp1BOz', // MERCHABT_ID 117245 // gtKFFx
+            'PAYUMONEY_SALT'=>'Vv7fqdW7VdtV9DxJyunZ2BLsXPnwaBax',//4R38IvwiV57FwVpsgOvTXBdLE4tHUXFW
+            'ANDROID_RESPONSE_URL'=>'https://dev.epicon.in/payumoney/androidresponse',
             'TESTMODE'=>true,
-            'SUBSCRIPTION_URL'=>'https://subscriptiontest.citruspay.com/',
-            'ENABLE_RECURRING_API'=>false,
-            'ENABLE_RECURRING_AT_FROM_TRANSACTION'=>false,
-            'API_URL'=>'https://test.payu.in/merchant/postservice.php?form=2',
+            'SUBSCRIPTION_URL'=>'https://test.payu.in/_payment',
+            'ENABLE_RECURRING_API'=>true,
+            'ENABLE_RECURRING_AT_FROM_TRANSACTION'=>true,
+            //'API_URL'=>'https://info.payu.in/merchant/postservice.php?form=2',
+			'API_URL'=>'https://test.payu.in/merchant/postservice.php?form=2',
+			'CANCEL_RECURRING_URL' =>'https://test.payu.in/merchant/'	
         ],
 		'PAYTM'=>[
 			'PAYTM_ENVIRONMENT'=>'TEST',

@@ -7,14 +7,9 @@
 
 @section('content')
 <?php 
-
 $request = Request();
-
 $userData = $request->session()->get('user');
-
-//dd($userData);
 $subscribData = ''; $id = ''; $name = ''; $plan = ''; $actual_price = ''; $epic_price = ''; $save = '';
-
 if(isset($result) && !empty($result)){
     $id = $result['id'];
     $name = $result['name'];
@@ -166,14 +161,15 @@ $(document).ready(function(){
     $('#update_user_modal').modal('show');
     //$('#verifyotpmodal').modal('show');
     $(".updateProfile").click(function (e) {
-            var userdetail = $(".userdetail").val();
-            var type = $(".userdetail").attr('data-id');
-            var actual_price = $("#actual_price").val();
-            $(".errMessage").text('');
-                if(userdetail == ''){
-                    $(".errMessage").text('This field is required and cannot be empty.');
-                    return false;
-                }
+        var userdetail = $(".userdetail").val();
+        var type = $(".userdetail").attr('data-id');
+        var actual_price = $("#actual_price").val();
+        $(".errMessage").text('');
+        if(userdetail == ''){
+            $(".errMessage").text('This field is required and cannot be empty.');
+            return false;
+        }
+        else{
             if(type == 'email'){
                 if( !validateEmail(userdetail)){
                    $(".errMessage").text('You have entered an invalid email address.');
@@ -187,33 +183,31 @@ $(document).ready(function(){
                 
                 }
             }
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        e.preventDefault();
-        var ajaxurl = APP_URL+'/sendOtpAjax';
-        $.ajax({
-            type: 'POST',
-            url: ajaxurl,
-            data: {userdetail:userdetail,type:type,price:actual_price},
-            dataType: 'json',
-            success: function (res) {
-                console.log(res.success);
-                if(res.success == true){
-                    $('#update_user_modal').modal('hide');
-                    $("#userdata").text(userdetail);
-                    $('#verifyotpmodal').modal('show');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
                 }
-
-                //$("#submit_button").html(res.html);
-                
-            },
-            error: function (e) {
-            },
-        });
+            });
+            e.preventDefault();
+            var ajaxurl = APP_URL+'/sendOtpAjax';
+            $.ajax({
+                type: 'POST',
+                url: ajaxurl,
+                data: {userdetail:userdetail,type:type,price:actual_price},
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res.success);
+                    if(res.success == true){
+                        $('#update_user_modal').modal('hide');
+                        $("#userdata").text(userdetail);
+                        $('#verifyotpmodal').modal('show');
+                    }
+                    //$("#submit_button").html(res.html);
+                },
+                error: function (e) {
+                },
+            });
+        }
     });
 
     // user update verify OTP
@@ -257,11 +251,8 @@ $(document).ready(function(){
                     $("#submit_button").html(res.html);
                     showToaster(res.message, 1);
                 }else{
-
                     showToaster(res.message, 2);
                 }
-                //$("#submit_button").html(res.html);
-                
             },
             error: function (e) {
             },
@@ -306,7 +297,6 @@ function validatePhone(phone_number) {
         return false;
     }
 }
-
 </script>
 @endif
 @stop

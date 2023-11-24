@@ -241,8 +241,7 @@
                                         <option value="">Gender</option>
                                         <option value="Female">Female</option>
                                         <option value="Male">Male</option>
-                                        <option value="Transgender">Transgender</option>
-                                        <option value="Shemale">Shemale</option>
+                                        {{--<option value="Others">Others</option>--}}
                                     </select>
                                     <span class="text-danger text-start d-flex mt-1 error" id="gender-error"
                                         style="font-size: 12px;"></span>

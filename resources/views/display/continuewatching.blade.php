@@ -9,19 +9,19 @@
         </a>
         @endif
     </div>
-    <ul class="vertical-carousel-initilize p-0">
+    <ul class="carousel-initilize p-0">
         @foreach ($value['content'] as $key => $val)
         <?php
         $card = getItemCardData($val, $displayLanguageParam);
 
-        $banner_img = getCardImage($val, 'banner_image', 'medium', ['cover_image']);
-        $cover_img = getCardImage($val, 'vertical_cover_image', 'medium', ['cover_image', 'banner_image']);
+        $banner_img = getCardImage($val, 'cover_image', 'medium');
+        $cover_img = getCardImage($val, 'cover_image', 'medium');
 
         ?>
         <li>
 
             <div class="play-card">
-                <a href="#/" class="top-card-img">
+                <a href="{{ getContentUrl($val) }}" class="top-card-img">
                     {!! freePremiumDiv($val) !!}
                     @if (@$extra['hide_top10'] != 1)
                     {!! topTenDiv($val) !!}

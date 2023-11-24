@@ -105,5 +105,12 @@
 @stop
 
 @section('script')
+
     <script src="{{ asset('assets/js/library.js') }}"></script>
+    <script type="text/javascript">
+        $("#history,#my-list").on('click', function() {
+            $('.vertical-carousel-initilize').slick('slickGoTo', 0);
+        });
+    </script>
 @stop
+

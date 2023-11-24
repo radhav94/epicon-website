@@ -1013,14 +1013,14 @@
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 1.5,
+                    slidesToShow: 2.1,
                     slidesToScroll: 1
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1.5,
+                    slidesToShow: 2.1,
                     slidesToScroll: 1
                 }
             }

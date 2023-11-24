@@ -418,7 +418,7 @@
 
         .card-body {
             overflow: hidden;
-            margin-bottom: 10px;
+            // margin-bottom: 10px;
             position: relative;
 
             .popular-head {
@@ -431,9 +431,13 @@
                 left: 8px;
                 padding: 6px;
                 font-size: 8px;
+                width: 95px;
 
-                @media (max-width:768px) {
-                    width: 25%;
+                @media (max-width:767px) {
+                    padding: 2px 6px;
+                    bottom: 58px;
+                    left: 5px;
+                    width: 88px;
                 }
 
                 img {
@@ -472,6 +476,9 @@
             .bottom-text {
                 & .left-text{
                     width: calc(100% - 56px);
+                    @media (max-width:767px) {
+                        width: calc(100% - 47px);
+                    }
                 }
                 h4 {
                     font-size: 16px;
@@ -507,6 +514,10 @@
                     background-position: center;
                     width: 40px;
                     height: 40px;
+                    @media (max-width:767px) {
+                        width: 30px;
+                        height: 30px;
+                    }
                 }
             }
         }
@@ -943,8 +954,12 @@
     }
     .distro-banner-item{
         width: 100%;
-        height: auto;
+        height: 500px;
         position: relative;
+    }
+    .distro-banner-item .plyr--video {
+        overflow: hidden;
+        height: 100%;
     }
     .distro-banner-item img{
         width: 100%;
@@ -1016,7 +1031,10 @@
         }
     }
     @media screen and (max-width: 767px) {
-    
+        .distro-banner-item{
+            width: 100%;
+            height: auto;
+        }
         .ds-logo-text {
             margin-top: 120px;
         }
