@@ -6254,7 +6254,7 @@ input {
             text-decoration: none;
         }
         span,p{
-            font-size: 14px;
+            font-size: 16px;
             color: #b7b7b7;
             @media (max-width:700px) {
                 font-size: 12px;
@@ -6263,7 +6263,6 @@ input {
         }
         p{
             font-size: 16px;
-            @include line-clamp(4);
             @media (max-width:700px) {
                 position: absolute;
                 width: 100%;
@@ -7887,4 +7886,8 @@ audio::-webkit-media-controls-play-button {
         width: 100%;
         object-fit: cover;
     }
+}
+
+.set-child-pin{
+    margin: 0 auto;
 }

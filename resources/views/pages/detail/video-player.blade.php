@@ -13,7 +13,7 @@
         height: 100%;
     }
     .plyr:fullscreen video {
-        height: 100%!important;
+        height: 100% !important;
     }
     #vidPlayer.hide {
         display: none !important;

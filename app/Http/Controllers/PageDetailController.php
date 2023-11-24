@@ -23,11 +23,15 @@ class PageDetailController extends Controller
             $params['user_id'] = getUserId();
             $params['profile_id'] = getProfileId();
         }
-
+        $pagetype = in_array($pageslug, ['homepage', 'home', 'home-v2']) ? 'HOME' : 'CATALOG';
         $result = CurlAPI($url, "GET", $params, 1);
         if ($result && @$result['success'] ==  true) {
             $displayLanguageParam = setLanguageParameter();
-
+            // if ($displayLanguageParam == 'HINDI') {
+            //     $meta = $this->getHindiMeta($pagetype, $contentslug, $pageslug);
+            // } else {
+            //     $meta = $this->getMeta($pagetype, $contentslug, $pageslug);
+            // }
             $content = $result['content'] ?? [];
 
             if(empty($content)){
@@ -89,7 +93,12 @@ class PageDetailController extends Controller
                 $template = 'pages.detail.podcast';
             }
 
-            return view($template, compact('content', 'displayLanguageParam', 'trailers', 'morelike', 'about', 'pageslug'));
+            $meta = [
+                'title' => @$content['title'],
+                'description' => @$content['description']
+            ];
+
+            return view($template, compact('content', 'displayLanguageParam', 'trailers', 'morelike','meta', 'about', 'pageslug'));
         }
 
         return view('pages.error.404');

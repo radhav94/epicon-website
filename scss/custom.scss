@@ -699,6 +699,7 @@
         display: grid;
         grid-template-columns: auto auto auto auto auto;
         gap: 12px;
+        margin-top: 14px;
 
         @media (max-width:1024px) {
             grid-template-columns: auto auto auto auto;
