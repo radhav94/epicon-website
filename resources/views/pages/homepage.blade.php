@@ -128,8 +128,12 @@
                 }
             });
         }
-
-        });
+        
+        if ("{{session()->has('error')}}") {
+            $('.loginBtn.login').trigger('click');
+            showToaster("{{session()->get('error')}}", 2);
+        }
+    });
 
     function closeModal() {
         var modal = document.querySelector('.modal-backdrop');
