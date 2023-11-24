@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', "$meta_title")
+@section('title', $meta['title'] ?? getDefaultMetaTitle() )
 
 @section('style')
 <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/socialSharing.css') }}" />
@@ -44,6 +44,7 @@ if (array_key_exists('season', $content)) {
     }
 }
 $episode_json = json_encode($episode_list);
+$meta['image'] = $cover_img;
 ?>
 <?php
     $subplan = checkSubscription();

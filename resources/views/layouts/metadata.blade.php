@@ -11,7 +11,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="{{ $meta['title'] ?? getDefaultMetaTitle() }}" />
 <meta property="og:description" content="{{ $meta['description'] ?? 'TV Shows, Movies, Podcast, Games, Rewards' }}" />
-<meta property="og:image" content="{{ $meta['image'] ?? url('/img/PB_Web_Desktop.jpg') }}" />
+<meta property="og:image" content="{{ $meta['image'] ?? url('/img/epiconlogo.png') }}" />
 {{-- End fb meta --}}
 
 {{-- start twitter meta --}}

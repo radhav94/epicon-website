@@ -92,9 +92,7 @@ class PageDetailController extends Controller
             if (@$content['asset_type'] == 'LISTEN') {
                 $template = 'pages.detail.podcast';
             }
-            $meta_title = $meta['title'];
-            $meta_description = $meta['description'];
-            return view($template, compact('content', 'displayLanguageParam', 'trailers', 'morelike','meta_title','meta_description', 'about', 'pageslug'));
+            return view($template, compact('content', 'displayLanguageParam', 'trailers', 'morelike','meta', 'about', 'pageslug'));
         }
 
         return view('pages.error.404');
@@ -118,7 +116,6 @@ class PageDetailController extends Controller
     {
         $meta = [];
         $meta['keywords'] = '';
-        $meta['image'] = env('APP_URL') . '/epiconlogo.png';
         $meta['url'] = url()->current();
         $meta['title'] = "Welcome to EPIC ON - India Ka Apna Infotainment";
         $meta['description'] = "EPIC ON - India Ka Apna Infotainment | Watch TV Shows, Documentaries, Epic Shorts, Epic Specials Online at EPIC ON";
@@ -217,7 +214,6 @@ class PageDetailController extends Controller
 
         $meta = [];
         $meta['keywords'] = '';
-        $meta['image'] = env('APP_URL') . '/epiconlogo.png';
         $meta['url'] = url()->current();
         $meta['title'] = "EPIC ON - India Ka Apna Infotainment में आपका स्वागत है";
         //echo $pageslug; exit();

@@ -42,7 +42,7 @@ class PageController extends Controller
             } else {
                 $meta = $this->getMeta($pagetype, $pagetitle, $pageslug);
             }
-
+            // dd($meta);
             return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta','slug'));
                     }
         return view('pages.error.404');
@@ -89,8 +89,8 @@ class PageController extends Controller
             } else {
                 $meta = $this->getMeta($pagetype, $pagetitle, $slug);
             }
-            $meta_title = $meta['title'];
-            return view('pages.explore', compact('result','meta_title'));
+
+            return view('pages.explore', compact('result','meta'));
         }
 
         return view('pages.error.data-error');
@@ -112,9 +112,9 @@ class PageController extends Controller
         if ($result && @$result['success'] ==  true) {
             $result = $result['data'] ?? [];
             
-            $meta_title = ($displayLanguageParam == 'HINDI') ? 'विवरण खोजें' : 'Explore Details';
+            $meta['title'] = ($displayLanguageParam == 'HINDI') ? 'विवरण खोजें' : 'Explore - '.ucfirst($slug);
 
-            return view('pages.explore_details', compact('result', 'slug', 'page','meta_title', 'limit'));
+            return view('pages.explore_details', compact('result', 'slug', 'page','meta', 'limit'));
         } else {
             return view('pages.error.data-error');
         }
@@ -452,6 +452,10 @@ class PageController extends Controller
                 $meta['title'] = 'Earn Rewards of Epicoins and Redeem on Offers | EPIC ON';
                 $meta['description'] = 'Get rewarded for binge-watching, playing games, reading books, and more. Redeem your EPIC coins on available offers at reward store';
                 $meta['keywords'] = 'flipkart offers, dominos coupons, myntra coupons, offers, dominos coupon codes, dominos offer, coupons, myntra coupon code, myntra offers, discounts, crossword, deals, vouchers';
+            } else if ($pageslug == 'explore') {
+                $meta['title'] = 'Explore';
+            } else if ($pageslug == 'premium') {
+                $meta['title'] = 'Premium';
             } else {
                 $meta['title'] = 'Top Podcasts Platform in India | Listen Now';
                 $meta['description'] = 'Discover the top podcasts in India on Epic On, Indias premier OTT platform. With a wide range of genres to choose from, there is something for everyone. Start listening today!';
@@ -516,8 +520,6 @@ class PageController extends Controller
                 $meta['keywords'] = 'फ्लिपकार्ट ऑफर, डोमिनोज़ कूपन, कूपन, ऑफ़र, डोमिनोज़ कूपन कोड, डोमिनोज़ ऑफ़र, कूपन कोड, ऑफ़र, छूट, क्रॉसवर्ड, डील्स, वाउचर';
             } else if ($pageslug == 'explore') {
                 $meta['title'] = 'अन्वेषण';
-                $meta['description'] = 'देखना, खेल खेलना, किताबें पढ़ना, और बहुत कुछ से ईपीक कोईन प्राप्त करें और रिवॉर्ड स्टोर पर उपलब्ध ऑफर्स पर रिडीम करें';
-                $meta['keywords'] = 'फ्लिपकार्ट ऑफर, डोमिनोज़ कूपन, कूपन, ऑफ़र, डोमिनोज़ कूपन कोड, डोमिनोज़ ऑफ़र, कूपन कोड, ऑफ़र, छूट, क्रॉसवर्ड, डील्स, वाउचर';
             } else if ($pageslug == 'premium') {
                 $meta['title'] = 'अधिमूल्य';
                 $meta['description'] = 'देखना, खेल खेलना, किताबें पढ़ना, और बहुत कुछ से ईपीक कोईन प्राप्त करें और रिवॉर्ड स्टोर पर उपलब्ध ऑफर्स पर रिडीम करें';

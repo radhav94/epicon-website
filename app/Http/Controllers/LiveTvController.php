@@ -24,9 +24,7 @@ class LiveTvController extends Controller
             $displayLanguageParam = setLanguageParameter();
 
             $meta = $this->getMeta($routenamed);
-            $meta_title = $meta['title'];
-            $meta_description = $meta['description'];
-            return view('pages.livetv.live-tv', compact('response','meta_title','meta_description', 'displayLanguageParam'));
+            return view('pages.livetv.live-tv', compact('response','meta', 'displayLanguageParam'));
         }else{
             return view('pages.error.data-error');
         }
@@ -36,7 +34,7 @@ class LiveTvController extends Controller
     {
         $meta = [];
         $meta['keywords'] = '';
-        $meta['image'] = env('APP_URL') . '/epiconlogo.png';
+        // $meta['image'] = env('APP_URL') . '/epiconlogo.png';
         $meta['url'] = url()->current();
         $meta['title'] = env('APP_NAME');
         $meta['description'] = env('APP_NAME');
