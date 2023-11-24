@@ -387,7 +387,6 @@ class PageController extends Controller
     {
         $meta = [];
         $meta['keywords'] = '';
-        $meta['image'] = env('APP_URL') . '/epiconlogo.png';
         $meta['url'] = url()->current();
         $meta['title'] = "Welcome to EPIC ON - India Ka Apna Infotainment";
         $meta['description'] = "EPIC ON - India Ka Apna Infotainment | Watch TV Shows, Documentaries, Epic Shorts, Epic Specials Online at EPIC ON";
@@ -485,7 +484,6 @@ class PageController extends Controller
 
         $meta = [];
         $meta['keywords'] = '';
-        $meta['image'] = env('APP_URL') . '/epiconlogo.png';
         $meta['url'] = url()->current();
         $meta['title'] = "EPIC ON - India Ka Apna Infotainment में आपका स्वागत है";
         //echo $pageslug; exit();

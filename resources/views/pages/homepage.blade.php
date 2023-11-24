@@ -1,5 +1,6 @@
 @extends('layouts.default')
-@section('title', $meta['title'])
+@section('title', $meta['title'] ?? getDefaultMetaTitle() )
+
 
 @section('style')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}" />
