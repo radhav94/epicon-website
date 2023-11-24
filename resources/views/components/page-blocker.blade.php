@@ -12,14 +12,22 @@
         
         $today = date('Y-m-d');
         if($enable_pageblocker == true){
-            if (
-                (!empty($start_date) && !empty($end_date) && $today >= $start_date && $today <= $end_date) ||
-                (!empty($start_date) && $today >= $start_date) ||
-                (!empty($end_date) && $today <= $end_date)
-            ) {
-                $enable_pageblocker = true;
-            } else {
-                $enable_pageblocker = false;
+
+            if( !empty($start_date) && !empty($end_date) ){
+                if ( $today >= $start_date && $today <= $end_date ) {
+                    $enable_pageblocker = true;
+                }else{
+                    $enable_pageblocker = false;
+                }
+            }
+            else if(!empty($start_date) && $today >= $start_date){
+                 $enable_pageblocker = true;
+            }
+            else if(!empty($end_date) && $today <= $end_date){
+                 $enable_pageblocker = true;
+            }
+            else {
+                 $enable_pageblocker = false;
             }
         }
 
