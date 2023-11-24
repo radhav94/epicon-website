@@ -30,10 +30,10 @@ class RetroRewindController extends Controller
 
             $displayLanguageParam = setLanguageParameter();
 
-            $meta_title = strtoupper($slug);
+            $meta['title'] = strtoupper($slug);
             $result = $result['data'] ?? [];
 
-            return view('pages.retro-list', compact('result', 'displayLanguageParam', 'meta_title', 'slug', 'page'));
+            return view('pages.retro-list', compact('result', 'displayLanguageParam', 'meta', 'slug', 'page'));
         }
 
         return view('pages.error.404');
