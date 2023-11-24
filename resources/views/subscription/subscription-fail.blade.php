@@ -13,3 +13,16 @@
 
 
 @stop
+@section('script')
+<script>
+    $(document).ready(function(){
+        showToaster('Transaction unsuccessful.', 2);
+            window.setTimeout(function() {
+
+            window.location.href = APP_URL+'/subscription';
+                
+        }, 2000);
+
+});
+</script>    
+@stop
