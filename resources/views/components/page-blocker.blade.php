@@ -1,29 +1,41 @@
 <?php 
-    $blockerlink = (env('IS_PAGEBLOCKER_FREE_CONTENT')==true) ? getUrl(env('PAGEBLOCKER_LANDING_URL','/')) : getUrl('/');
-                $ua = strtolower($_SERVER["HTTP_USER_AGENT"]);
-                $isMob = is_numeric(strpos($ua, "mobile"));
-                 if(isset($isMob) && $isMob==true){
-                  //   if(!empty(env('PAGEBLOCKERDATE'))) {
-                  //     $pageblockername = 'Mobile-Page-Blocks_'.env('PAGEBLOCKERDATE').'.jpg';
-                  // } else {
-                      $pageblockername = 'PB_App_Mobile.jpg';
-                  // }
-                }else{
-                    //  if(!empty(env('PAGEBLOCKERDATE'))) {
-                    //     $pageblockername = 'Desktop-Page-Blocks_'.env('PAGEBLOCKERDATE').'.jpg';
-                    // } else {
-                        $pageblockername = 'PB_Web_Desktop.jpg';
-                    // }
-                }      
+    $enable_pageblocker = false;
+
+    $pageblocker = @$result['data']['pageblocker'] ?? [];
+
+    if($pageblocker){
+        $start_date = @$pageblocker['start_date'];
+        $end_date = @$pageblocker['end_date'];
+        $pb_link = !empty(@$pageblocker['link']) ? @$pageblocker['link'] : getUrl('/');
+
+        $enable_pageblocker = @$pageblocker['status'] == 1 ? true : false;
+        
+        $today = date('Y-m-d');
+        if($enable_pageblocker == true){
+            if (
+                (!empty($start_date) && !empty($end_date) && $today >= $start_date && $today <= $end_date) ||
+                (!empty($start_date) && $today >= $start_date) ||
+                (!empty($end_date) && $today <= $end_date)
+            ) {
+                $enable_pageblocker = true;
+            } else {
+                $enable_pageblocker = false;
+            }
+        }
+
+        $pb_image = isMobliDevice() ? @$pageblocker['mobile_image'] : @$pageblocker['desktop_image'];
+    }
+  
+     
 ?>
 <!-- page blocker start -->
-@if(env('ENABLE_PAGEBLOCKER') == 1)
+@if($enable_pageblocker)
 <div class="modal page-blocker" tabindex="-1">
   <div class="modal-dialog page-dialog modal-dialog-centered modal-lg">
     <div class="modal-content blocker-content">
     <button class="close-button page-close" onclick="closeModal()">&times;</button>
-        <div class="modal-body blocker-body" data-url="{{ config('epicconfig.PAGEBLOCKER.PAGEBLOCKER_URL') }}">
-            <a href="{{ @$blockerlink }}" target="_blank"><img src="{{ asset('/img/'.@$pageblockername) }}" alt=""> </a>
+        <div class="modal-body blocker-body" data-url="{{ $pb_link }}">
+            <a href="{{ @$pb_link }}" target="_blank"><img src="{{ $pb_image }}" alt=""> </a>
         </div> 
     </div>
   </div>
