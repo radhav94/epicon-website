@@ -42,9 +42,8 @@ class PageController extends Controller
             } else {
                 $meta = $this->getMeta($pagetype, $pagetitle, $pageslug);
             }
-            $meta_title = $meta['title'];
 
-            return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta_title','slug'));
+            return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta','slug'));
                     }
         return view('pages.error.404');
     }
@@ -389,7 +388,6 @@ class PageController extends Controller
     
         $meta = [];
         $meta['keywords'] = '';
-        $meta['image'] = env('APP_URL') . '/epiconlogo.png';
         $meta['url'] = url()->current();
         $meta['title'] = "Welcome to EPIC ON - India Ka Apna Infotainment";
         $meta['description'] = "EPIC ON - India Ka Apna Infotainment | Watch TV Shows, Documentaries, Epic Shorts, Epic Specials Online at EPIC ON";
@@ -463,7 +461,6 @@ class PageController extends Controller
 
         $meta = [];
         $meta['keywords'] = '';
-        $meta['image'] = env('APP_URL') . '/epiconlogo.png';
         $meta['url'] = url()->current();
         $meta['title'] = "EPIC ON - India Ka Apna Infotainment में आपका स्वागत है";
         //echo $pageslug; exit();
