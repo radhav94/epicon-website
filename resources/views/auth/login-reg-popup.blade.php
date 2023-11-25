@@ -104,7 +104,7 @@
                                 </button>
                                 <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white"
                                 class="btn-close" style="width: 280px;">Login with password</button>
-                                <h6 class="mb-4 text-white text-start mt-4">or Continue with</h6>
+                                <h6 class="mb-4 text-white text-center mt-4">For Existing User only</h6>
                                 <div class="lg-social">
                                     <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
                                             alt=""></a>
@@ -332,7 +332,8 @@
                                     </svg>
                                 </button>
                                 <button class="login-btn login-btn-otp mt-0 bg-transparent text-white">Login using OTP</button>
-                                <h6 class="mb-4 text-white text-center mt-4 small">or Continue with</h6>
+                                <button class="login-btn login-btn-otp mt-0 bg-transparent text-white">New User ? Sign Up</button>
+                                <h6 class="mb-4 text-white text-center mt-4 small">For Existing User only</h6>
                                 <div class="lg-social">
                                     <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
                                             alt=""></a>
@@ -343,7 +344,7 @@
                                     <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
                                             alt=""></a> -->
                                 </div>
-                                <p class="get-help mt-5 small">Having trouble signing in? <a href="{{route('feedback')}}">Get
+                                <p class="get-help mt-4 small">Having trouble signing in? <a href="{{route('feedback')}}">Get
                                         Help</a></p>
                             </form>
                         </div>
