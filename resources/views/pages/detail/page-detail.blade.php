@@ -7,7 +7,7 @@ if (@$content['content_type'] == 'SHOW' || $content['content_type'] == 'SEASON')
     $loadPlayer = true;
 }
 $loadPlayer = true;
-
+$share_img = getCardImage($content, 'cover_image', 'medium');
 if($isMoblile){
     $cover_img = getCardImage($content, 'banner_image', 'medium');
 }else{
@@ -24,7 +24,7 @@ if($isMoblile){
     }
 }
 
-$meta['image'] = $cover_img;
+$meta['image'] = $share_img;
 ?>
 
 @extends('layouts.default')
