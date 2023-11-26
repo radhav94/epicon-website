@@ -6774,9 +6774,9 @@ input {
                 align-items: center;
                 justify-content: center;
                 flex-wrap: wrap;
-                .plyr--video{
-                    width: 100%;
-                }
+                // .plyr--video{
+                //     width: 100%;
+                // }
             }
             .story-iframe {
                 height: 610px;
@@ -7475,7 +7475,7 @@ input {
 }
 .videoContainer .plyr__video-wrapper{
     height: auto;
-    width: 100%;
+    // width: 100%;
     display: flex;
 
     // video{
@@ -7864,10 +7864,10 @@ audio::-webkit-media-controls-play-button {
         }
     }
   }
-.plyr video{
-    height: auto;
-    width: 100%;
-}
+// .plyr video{
+//     height: auto;
+//     width: 100%;
+// }
 .plyr--video {
     height: 423px;
     @media (max-width:768px) {
