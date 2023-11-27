@@ -231,10 +231,13 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                         <button class="nav-link" id="v-pills-sync-tab" data-bs-toggle="pill" data-bs-target="#v-pills-sync" type="button" role="tab" aria-controls="v-pills-sync" aria-selected="true">{{__('Sync Device')}}</button>
                         <button class="nav-link" id="v-pills-active-device-tab" data-bs-toggle="pill" data-bs-target="#v-pills-active-device" type="button" role="tab" aria-controls="v-pills-active-device" aria-selected="true">{{__('Active Devices')}}</button>
                         <button class="nav-link" id="v-pills-childpin-tab" data-bs-toggle="pill" data-bs-target="#v-pills-childpin" type="button" role="tab" aria-controls="v-pills-childpin" aria-selected="true">{{__('Set/Change Child PIN')}}</button>
+                        @if(!in_array(@$user_data['user_subscription_type'], ['GP', 'FB', 'TW']))
                         <button class="nav-link" id="v-pills-changed-password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-changed-password" type="button" role="tab" aria-controls="v-pills-changed-password" aria-selected="true">{{__('Change Password')}}</button>
+                        @endif
                         <button class="nav-link" id="v-pills-clear-search-history-tab" data-bs-toggle="pill" data-bs-target="#v-pills-clear-search-history" type="button" role="tab" aria-controls="v-pills-clear-search-history" aria-selected="true">{{__('Clear Search History')}}</button>
+                        @if(!in_array(@$user_data['user_subscription_type'], ['GP', 'FB', 'TW']))
                         <button class="nav-link" id="v-pills-delete-account-tab" data-bs-toggle="pill" data-bs-target="#v-pills-delete-account" type="button" role="tab" aria-controls="v-pills-delete-account" aria-selected="true">{{__('Delete Account')}}</button>
-
+                        @endif
                     </div>
                 </div>
             </div>
