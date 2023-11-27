@@ -7890,3 +7890,14 @@ audio::-webkit-media-controls-play-button {
 .set-child-pin{
     margin: 0 auto;
 }
+.plyr audio, .plyr iframe, .plyr video {
+    height: 100%!important;
+}
+#upcomingModal .modal-content{
+    background-color: #000;
+    background-image: none;
+}
+#upcomingModal .plyr video{
+    width: 100%!important;
+    height: 100%!important;
+}
