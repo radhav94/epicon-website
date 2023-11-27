@@ -101,6 +101,7 @@ $meta['image'] = $share_img;
                     <div class="col-sm-6 col-lg-6 col-md-6">
                         <div class="banner-content">
                             <div class="all-btn">
+                                <input type="hidden" name="subsuser" id="subsuser" value="{{$watchid}}">
                                 <input type="hidden" name="subUrl" class="subUrl" id="subUrl" value="{{ getUrl('subscription') }}">
                                 <button class="fill-btn mobile-width {{$watchClass}} m-0 w-25" id="{{$watchid}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
