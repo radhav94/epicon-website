@@ -15,7 +15,7 @@
           "NOT /qr-pay/*",
           "NOT /qr-promo/*",
           "NOT /getSubscription",
-          "/"
+          "*"
         ]
       }
     ]
