@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
-
     @include('layouts.metadata')
-
-
     {{-- Start header common styles --}}
     <link rel="stylesheet" href="{{ asset('/css/style.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick.min.css') }}" />
@@ -32,6 +28,16 @@
     })(window,document,'script','dataLayer','GTM-PS5WQPB');</script>
     <!-- End Google Tag Manager -->
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8JER642T3Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-8JER642T3Z');
+    </script>
+
     <script>
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -53,8 +59,20 @@
     })(window, document, "clarity", "script", "hj6mot5z97");
     </script>
 
+
+
     <script type="text/javascript">
         var APP_URL = "{{ url('/') }}";
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8JER642T3Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-8JER642T3Z');
     </script>
 
     {{-- Start footer common scripts --}}
@@ -131,5 +149,4 @@
         }
     </script>
 </body>
-
 </html>

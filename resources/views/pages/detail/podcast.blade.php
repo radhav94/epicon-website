@@ -27,6 +27,7 @@
 <input type="hidden" id="cont_id" value="{{ $content['ID'] }}">
 
 <?php
+$share_img = getCardImage($content, 'cover_image', 'medium');
 $cover_img = getCardImage($content, 'cover_image', 'large');
 // dd($content['claps']);
 $episode_list = [];
@@ -44,7 +45,7 @@ if (array_key_exists('season', $content)) {
     }
 }
 $episode_json = json_encode($episode_list);
-$meta['image'] = $cover_img;
+$meta['image'] = $share_img;
 ?>
 <?php
     $subplan = checkSubscription();

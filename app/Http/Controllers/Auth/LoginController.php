@@ -203,25 +203,29 @@ class LoginController extends Controller
 
     public function SendForgotOtp(Request $request)
     {
-        $mob_number = $request->post('forgot-name');
-        $mobile_number = str_replace("+", "", $request->post('stdisdcode')) . $mob_number;
+        $user_id = $request->post('forgot-name');
+        $countryCode = str_replace("+", "", $request->post('stdisdcode'));
         $signup_method = $request->post('signin_method');
-        if (!empty($mobile_number)) {
+
+        if($signup_method == 'MOBILE'){
+            $user_id = $countryCode.$user_id;
+        }
+
+        if (!empty($user_id)) {
             $SendotpRequestData = array(
-                'user_id' => $mobile_number,
+                'user_id' => $user_id,
                 'user_signup_method' => $signup_method,
             );
-            $SendotpResponseData = [
-                "success" => true,
-                "message" => "OTP sent successfully."
-            ];
+    
             $SendotpResponseData = CurlAPI("users/sendForgotPassOTP", 'POST', $SendotpRequestData, 2);
-            $response['meassage'] = $SendotpResponseData['message'];
-            // dd($SendotpResponseData);
+
+            $response['meassage'] = @$SendotpResponseData['message'];
+
             if ($SendotpResponseData && (@$SendotpResponseData['success'] == 'true' || $SendotpResponseData['success'] == true)) {
-                $request->session()->put('mobile_number', $mobile_number);
-                // $viewname = 'homepage';
-                return JSONResponse(200, 'OTP sent successfully.', ['user_id' => $mobile_number, 'user_signup_method' => $signup_method, 'response' => $response, 'success' => true]);
+
+                $request->session()->put('mobile_number', $user_id);
+
+                return JSONResponse(200, 'OTP sent successfully.', ['user_id' => $user_id, 'user_signup_method' => $signup_method, 'response' => $response, 'success' => true]);
             } else {
                 return JSONResponse(200, 'OTP sent failed.', ['response' => $response, 'success' => false]);
             }
