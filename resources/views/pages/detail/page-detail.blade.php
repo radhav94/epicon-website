@@ -19,9 +19,13 @@ if($isMoblile){
 
         $cover_img = getCardImage($content, 'trending_movie_buzz_image', 'large');
     }
+    else if(@$content['content_type'] == 'EPISODE'){
+        $cover_img = getCardImage($content, 'cover_image', 'large');
+    }
     else{
         $cover_img = getCardImage($content, 'banner_image', 'large');
     }
+    // dd($content);
 }
 
 $meta['image'] = $share_img;
