@@ -3,18 +3,18 @@
         position: relative;
     }
 
-    /* .videoContainer video {
+    .videoContainer video {
         width: 100%;
-    } */
+    }
 
     #playVideo {
         position: absolute;
         width: 100%;
         height: 100%;
     }
-    /* .plyr:fullscreen video {
+    .plyr:fullscreen video {
         height: 100% !important;
-    } */
+    }
     #vidPlayer.hide {
         display: none !important;
     }
