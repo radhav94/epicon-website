@@ -21,7 +21,11 @@
     //     $sub_text[] = $val['age_limit'];
     // }
 
-
+    if($val['content_type'] == 'GAMEZOP'){
+        $cardcls = 'game-hover';
+    }else{
+        $cardcls = '';
+    }
     // $sub_points = (@$val['age_limit']) ? '<li class="ps-1">' . @$val['age_limit'] . '</li>' : '';
     $sub_points = '';
     if ($generes) {
@@ -31,7 +35,7 @@
     }
              ?>
                 <li>
-                    <div class="play-card">
+                    <div class="play-card {{$cardcls}}">
                         <div class="top-card-img">
                             {!! freePremiumDiv($val) !!}
                             @if (@$extra['hide_top10'] != 1)

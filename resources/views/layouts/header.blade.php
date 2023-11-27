@@ -81,7 +81,8 @@ if ($request->has('type')) {
                     </svg>{{__('Upcoming on Epic On')}}
                 </a>
             </li>
-            <li>
+            <!-- Epic Shorts Menu Hide -->
+           <!--  <li>
                 <a href="{{ getUrlWithPrefix('homepage') }}#epic-shots">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
@@ -100,7 +101,7 @@ if ($request->has('type')) {
                             stroke-linejoin="round" />
                     </svg>{{__('Epic Shots')}}
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a href="{{ getUrl('new-popular') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
