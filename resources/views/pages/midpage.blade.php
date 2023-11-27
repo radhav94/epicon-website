@@ -47,9 +47,14 @@
             $sub_points .= '<li>' . $genre . '</li>';
         }
     }
+    if($val['content_type'] == 'GAMEZOP'){
+        $cardcls = 'game-hover';
+    }else{
+        $cardcls = '';
+    }
              ?>
                 <li>
-                    <div class="play-card">
+                    <div class="play-card {{$cardcls}}">
                         <div class="top-card-img">
                             {!! freePremiumDiv($val) !!}
                             @if (@$extra['hide_top10'] != 1)
