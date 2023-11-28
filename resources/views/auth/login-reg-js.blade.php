@@ -516,7 +516,7 @@
                     },
                     success: function(response) {
                         queryParams = new URLSearchParams(window.location.search);
-                        alert(response);
+                        // alert(response);
                         if (response.payload.success == true) {
                             login_success();
                             // $('#register-result').html('');
