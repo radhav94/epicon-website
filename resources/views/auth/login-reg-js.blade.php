@@ -361,7 +361,7 @@
                                                window.location.href = chekUrl;
                                                return false;
                                             }else{
-                                                window.location.href = response.payload.redirect;
+                                                location.reload();
                                                 return false;
                                             }
                                     }else{
