@@ -2,7 +2,6 @@
 
     <div class="tab-pane fade {{ $active_tab == 'trailors' ? 'show active' : '' }}" id="pills-trailors" role="tabpanel"
         aria-labelledby="my-list">
-
         @foreach ($trailers['list'] as $list_key => $list)
             <div class="carousel-main mb-4">
                 <div class="carousel-title-n-arrow px-2 mb-3">
@@ -20,7 +19,7 @@
                                 @if(@$value['asset_type'] == 'PLAY')
                                 {!! getplayanchorhtml($value) !!}
                                 @else
-                                <a href="javascript:playContentVideo('{{ $trailer_id }}','trailer', this)" class="main-card">
+                                <a  onclick="click_tile(this)" data-title="{{@$value['title']}}" data-type="{{@$value['catalog_slug']}}" href="javascript:playContentVideo('{{ $trailer_id }}','trailer', this)" class="main-card">
                                 @endif
                                     {!! freePremiumDiv($value) !!}
                                     <div class="main-img">

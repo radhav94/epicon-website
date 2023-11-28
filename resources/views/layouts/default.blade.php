@@ -59,25 +59,32 @@
     })(window, document, "clarity", "script", "hj6mot5z97");
     </script>
 
-
-
     <script type="text/javascript">
         var APP_URL = "{{ url('/') }}";
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8JER642T3Z"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'G-8JER642T3Z');
+    <script>
+        var title = "<?php echo isset($metadata['title'])? $metadata['title'] : 'EPIC ON ' ?>";
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'client_ga_id': '374718823',
+            'content_type': title,
+            'platform_type': 'web',
+            'environment': 'develop',
+        });
+    </script> 
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','G-8JER642T3Z');
     </script>
 
     {{-- Start footer common scripts --}}
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-ui.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/ga_tag.js') }}?v={{ assetTime() }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}?v={{ assetTime() }}" defer></script>
     <script src="{{ asset('assets/js/swiper.js') }}" defer></script>
     <script src="{{ asset('assets/js/spiner.js') }}" defer></script>
@@ -87,6 +94,7 @@
     <script src="{{ asset('assets/js/vendor/toastr.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/epic.js') }}" defer></script>
     <script src="{{ asset('assets/js/common.js') }}?v={{ assetTime() }}" defer></script>
+    
     {{-- End footer common scripts --}}
 </head>
 

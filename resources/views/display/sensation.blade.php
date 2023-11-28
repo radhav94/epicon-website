@@ -7,7 +7,7 @@
         <div class="carousel-title-n-arrow mb-3">
             <h1 class="text-white small">{{ $title }}</h1>
             @if (@$value['show_more'])
-                <a href="{{ getMidPageUrl($value) }}">
+                <a onclick="click_cta(this)" data-event_context="{{ @$title }}" data-element_text="SEE ALL" href="{{ getMidPageUrl($value) }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
                         fill="none">
                         <path d="M14.0533 11.2933L18.7466 16L14.0533 20.7067" stroke="white" stroke-width="1.5"
@@ -33,7 +33,7 @@
                     ?>
                     <div class="swiper-slide tranding-slide">
                         <div class="tranding-slide-img position-relative">
-                            <a href="{{ getContentUrl($val) }}">
+                            <a href="{{ getContentUrl($val) }}" onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}">
                                 <img src="{{ $cover_img }}" />
                             </a>
                             <div class="carousel-items-content position-absolute">
@@ -44,7 +44,7 @@
                                         @if(@$val['asset_type'] == 'PLAY')
                                         {!! getplayanchorhtml($val) !!}
                                         @else
-                                        <a href="{{ getContentUrl($val) }}">
+                                        <a onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}" href="{{ getContentUrl($val) }}">
                                         @endif
                                             <button class="big-play d-flex align-items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"

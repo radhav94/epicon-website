@@ -67,7 +67,7 @@ $meta['image'] = $share_img;
         <div class="banner-main position-relative">
             <img src="{{ $cover_img }}" alt="img">
         </div>
-        @if(!isActiveSubscription())
+        @if(!isActiveSubscription() && $trailer_id)
         <a href="javascript:playContentVideo('{{ $trailer_id }}','trailer', this)" class="TrailerLink" style="display: none;"></a>
         @endif
     <?php
@@ -105,6 +105,7 @@ $meta['image'] = $share_img;
                     <div class="col-sm-6 col-lg-6 col-md-6">
                         <div class="banner-content">
                             <div class="all-btn">
+                                <input type="hidden" name="subsuser" id="subsuser" value="{{$watchid}}">
                                 <input type="hidden" name="subUrl" class="subUrl" id="subUrl" value="{{ getUrl('subscription') }}">
                                 <button class="fill-btn mobile-width {{$watchClass}} m-0 w-25" id="{{$watchid}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
@@ -188,7 +189,7 @@ $meta['image'] = $share_img;
                                     </button>
                                     @endif
                                     <button class="rounded-transparent-btn shareThis" data-url="{{ getContentUrl($content) }}"
-                                        data-title="{{ $share_title }}">
+                                        data-title="{{ $share_title }}" data-type="{{@$content['catalog_slug']}}">
                                         <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
                                     </button>
                                     @if (@$content['is_popular'])

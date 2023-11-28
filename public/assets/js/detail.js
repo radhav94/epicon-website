@@ -1,5 +1,10 @@
 $(document).ready(function () {
-
+    var playid = $("#subsuser").val();
+    if(playid == "watchVideo"){
+        setTimeout(function() {
+        $("#watchVideo").trigger("click");
+        }, 1000);
+    }   
     $(document).on('click', '.clapButton', function () {
 
         let cardType = $(this).data('cardtype');
@@ -78,6 +83,9 @@ $(document).ready(function () {
     });
     initTrailerCarousel();
 
-    var link = document.querySelector('.TrailerLink'); 
-   link.click();
+    if($('.TrailerLink').length){
+        var link = document.querySelector('.TrailerLink'); 
+        link.click();
+    }
+    
 });

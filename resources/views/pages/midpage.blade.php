@@ -60,12 +60,12 @@
                             @if (@$extra['hide_top10'] != 1)
                                 {!! topTenDiv($val) !!}
                             @endif
-                            <a href="{{ getContentUrl($val) }}">
+                            <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{ucwords(str_replace('-', ' ', $pageslug))}}" href="{{ getContentUrl($val) }}">
                             <img src="{{ $cover_img }}" alt="">
                             </a>
                         </div>
                         <div class="bottom-card-content">
-                        <a href="{{ getContentUrl($val) }}"><h1>{{$val['title'] ?? ''}}</h1></a>
+                        <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{ucwords(str_replace('-', ' ', $pageslug))}}" href="{{ getContentUrl($val) }}"><h1>{{$val['title'] ?? ''}}</h1></a>
                             <ul><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
                                     fill="none">
                                     <path
@@ -200,7 +200,7 @@
             <!-- Load More Btn Start -->
             <input type="hidden" name="page" id="pageid" value="<?php echo $page+1; ?>">
             <div class="text-center">
-            <a href="javascript:;" class="autowidth catalog-showmore"
+            <a onclick="click_cta(this)" data-event_context="{{ucwords(str_replace('-', ' ', $pageslug))}}" data-element_text="Show More" href="javascript:;" class="autowidth catalog-showmore"
                 data-currenturl="{{ route('paginatecontent') }}"
                 catalog-id="{{ $catalog }}"
                 pageslug="{{ $pageslug }}">{{__('Show More')}}</a>

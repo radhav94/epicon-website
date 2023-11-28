@@ -23,7 +23,7 @@
                 </button>
                 {!! freePremiumDiv($val) !!}
                 <div class="carousel-items position-relative w-100">
-                    <a href="{{ getContentUrl($val) }}">
+                    <a onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}" href="{{ getContentUrl($val) }}">
                         <img src="{{ $card['banner_img'] }}" alt="">
                     </a>
                     <div class="carousel-items-content position-absolute">
@@ -34,7 +34,7 @@
                                 @if(@$val['asset_type'] == 'PLAY')
                                 {!! getplayanchorhtml($val) !!}
                                 @else
-                                <a href="{{ getContentUrl($val) }}">
+                                <a onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}" href="{{ getContentUrl($val) }}">
                                 @endif
                                     <button class="big-play d-flex align-items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"

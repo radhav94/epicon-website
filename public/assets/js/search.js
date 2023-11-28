@@ -14,6 +14,7 @@ $(document).ready(function () {
         var lang = $("html").attr("lang") != 'en' ? $("html").attr("lang") + "/" : "";
         var ajaxUrl = lang + 'get-search';
         if (searchtext.length > 2) {
+            searchEvent();
             $.ajax({
                 url: "/" + ajaxUrl,
                 type: 'POST',

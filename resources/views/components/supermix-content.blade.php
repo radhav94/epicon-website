@@ -13,7 +13,7 @@
         ?>
 
         <li class="episode-main mb-4">
-            <div class="pik supermixPlay handle" data-id="{{ @$value['ID'] }}" data-video="{{ @$value['supermix_url']['play_url'] }}">
+            <div class="pik supermixPlay handle" data-id="{{ @$value['ID'] }}" data-video="{{ @$value['supermix_url']['play_url'] }}" data-duration="{{ @$value['duration'] }}" data-title="{{ @$value['title'] }}">
                 <img src="{{ $cover_img }}" alt="img" class="popupVideo">
 
                 {!! freePremiumDiv($value) !!}
