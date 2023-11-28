@@ -310,6 +310,8 @@ $meta['image'] = $share_img;
 <script src="{{ asset('assets/js/common.js') }}"></script>
 <script>
     // List of episode URLs
+    var audio_title;
+    var audio_duration;
     var episodes = <?php echo $episode_json; ?>;
     var currentEpisodeIndex = 0;
     var audio = $("#audioPlayer")[0]; // Get the native audio element
@@ -376,7 +378,11 @@ $meta['image'] = $share_img;
         });
 
         $("#pauseButton,.podcast-play").click(function() {
-             audio.pause();
+            audio.pause();
+            let duration = Math.round(audio.duration);
+            let currentTime = Math.round(audio.currentTime);
+            let progress = Math.round((currentTime / duration) * 100) + "%";
+            audio_pause(duration,audio_title,progress,currentTime);
              $('.pod-play').show();
              $('.pod-pause').hide();
              $('.podcast-play').hide();
@@ -435,7 +441,11 @@ $meta['image'] = $share_img;
             $('.podcast-play').hide();
              $(".podcast-pause").show();
             $("#playButton").show();        
-           audio.pause();
+            audio.pause();
+            let duration = Math.round(audio.duration);
+            let currentTime = Math.round(audio.currentTime);
+            let progress = Math.round((currentTime / duration) * 100) + "%";
+            audio_pause(duration,audio_title,progress,currentTime);
         });
 
         audio.addEventListener("ended", function(){
@@ -482,11 +492,13 @@ $meta['image'] = $share_img;
                 });
         }
         var title=$("li.pod-main[data-id='" + episodeID + "']").find('.title').text();
+        audio_title = title;
+        var audio_duration=$("li.pod-main[data-id='" + episodeID + "']").find('.title').data('duration');
         var coverimg=$("li.pod-main[data-id='" + episodeID + "']").find('.pik-img').find('img').attr('src');
         $("li.pod-main[data-id='" + episodeID + "']").addClass('episode-active');
         $('.play-title').html(title);
         $('.podcast-bottom-player .play-converimg').attr('src',coverimg);  
-
+        audio_play(audio_duration,audio_title);
     }
 
     async function onPlayerError(xhr) {
@@ -528,6 +540,17 @@ $meta['image'] = $share_img;
         //     console.log("currentEpisodeIndex: "+currentEpisodeIndex);
         //     $("#nextEpisode").trigger('click');
         // });
+    }
+    audio.onended = function() {
+        let duration = Math.round(audio.duration);
+        let currentTime = Math.round(audio.currentTime);
+        audio_ended(duration,audio_title,currentTime);
+    }
+    audio.onseeked = function() {
+        let duration = Math.round(audio.duration);
+        let currentTime = Math.round(audio.currentTime);
+        let progress = Math.round((currentTime / duration) * 100) + "%";
+        audio_seek(duration,audio_title,currentTime,progress);
     }
 </script>
 @stop

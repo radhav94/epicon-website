@@ -11,7 +11,7 @@
                 @if(@$val['asset_type'] == 'PLAY')
                 {!! getplayanchorhtml($val) !!}
                 @else
-                <a href="{{ getContentUrl($val) }}" class="main-card mt-0">
+                <a onclick="click_search_results(this)" data-element_text="{{@$val['title']}}" href="{{ getContentUrl($val) }}" class="main-card mt-0">
                 @endif
                     <?php if (isset($val['pay_per_use']) && $val['pay_per_use'] == true) { ?>
                         <span class="crown position-absolute"><img src="{{asset('/img/crown.svg')}}" alt=""></span>

@@ -3,8 +3,10 @@
 
 <meta name="csrf-token" content="{{ csrf_token()}}" />
 <link rel="icon" href="{{asset('assets/img/favicon.png')}}"/>
-<!-- <title>@yield('title')</title> -->
-<title>@yield('title') | {{ (env('APP_NAME') == '') ? 'EPIC ON' : env('APP_NAME') }}</title>
+
+
+<title id="page_title" data-page-title="@yield('title') | {{env('APP_NAME')}}">@yield('title') | {{ (env('APP_NAME') == '') ? 'EPIC ON' : env('APP_NAME') }}</title>
+
 <meta name="description" content="{{htmlspecialchars_decode(@$meta['description'])}}" />
 
 {{-- Start fb meta --}}

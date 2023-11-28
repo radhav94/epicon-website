@@ -20,7 +20,7 @@
                             @if(@$value['asset_type'] == 'PLAY')
                             {!! getplayanchorhtml($value) !!}
                             @else
-                            <a href="javascript:void(0)" class="pik-img">
+                            <a onclick="click_tile(this)" data-title ="{{ @$value['title'] }}" data-type="{{@$value['catalog_name']}}" href="javascript:void(0)" class="pik-img">
                                 <!-- {{ getContentUrl($value) }} -->
                                 @endif
                                 <img src="{{ $cover_img }}" alt="img">
@@ -30,7 +30,7 @@
                             <img class="podcast-top-icon" src="{{ asset('assets/img/podcast-top-icon.svg') }}" alt="podcast icon">
                         </div>
                         <div class="middle">
-                            <h6 class="title" >{{ $card['title'] }}</h6>
+                            <h6 class="title" data-duration="{{@$value['duration']}}">{{ $card['title'] }}</h6>
                             <div class="d-flex align-items-center flex-wrap">
                                 <span class="me-3">
                                     @if (@$value['release_date'])

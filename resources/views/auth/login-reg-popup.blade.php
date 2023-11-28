@@ -64,7 +64,7 @@
                     </div>
                     <!-- login or register start -->
                     <div class="right-side position-relative">
-                        <button class="x-btn bg-transparent text-white closebtn position-absolute" class="btn-close"
+                        <button onclick="login_skip()" class="x-btn bg-transparent text-white closebtn position-absolute" class="btn-close"
                             data-bs-dismiss="modal" aria-label="Close">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 31 32"
                                 fill="none">
@@ -154,7 +154,7 @@
                                     <!-- Display validation result here -->
                                 </div>
                                 <button class="btn btn-primary bg-transparent" id="resendBtn" onclick="resendOTP()">Resend OTP</button>
-                                <button class="login-btn verify-btn mt-4">
+                                <button class="login-btn verify-btn mt-4" onclick="login_start(this)">
                                     Verify Number
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none">
@@ -249,7 +249,7 @@
                                 <div class="text-danger" id="register-result" style="color: red;">
                                     <!-- Display validation result here -->
                                 </div>
-                                <button class="login-btn register-btn w-100 mt-5">
+                                <button class="login-btn register-btn w-100 mt-5" onclick="registration_start()">
                                     Let's Get Started
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none">
@@ -319,7 +319,7 @@
                                         class="bg-transparent text-white p-0 small w-auto border-0 forgot-pwd-btn">Forgot
                                         Password?</button>
                                 </div>
-                                <button class="login-btn continue-login-btn mt-4">
+                                <button class="login-btn continue-login-btn mt-4" onclick="login_start(this)">
                                     Continue to Login
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none">

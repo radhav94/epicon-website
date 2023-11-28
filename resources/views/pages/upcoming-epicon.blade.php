@@ -82,7 +82,9 @@ $meta['description'] = "Exciting collection of upcoming web series and movies on
                                 <div class="card-main-body d-flex mt-4 pt-2 ms-3">
                                     <div class="card-body">
                                         {!! freePremiumDiv($val) !!}
-                                        <a class="upper-img upcomingVid" href="javascript:void(0)" data-id="{{ $id }}" data-type="{{ $content_type }}" data-title="{{ $title }}" data-promo="{{ $val['promo_url'] ?? '' }}">
+
+                                        <a onclick="click_tile(this)" class="upper-img upcomingVid" href="javascript:void(0)" data-id="{{ $id }}" data-type="{{ $content_type }}" data-title="{{ $title }}" data-promo="{{ $val['promo_url'] ?? '' }}">
+
                                             <img src="{{ $cover_img }}" alt="">
                                         </a>
                                         <div class="bottom-text d-flex mt-2">

@@ -3,9 +3,9 @@
          <h1 class="text-white small">{{ $title }}</h1>
          @if (@$value['show_more'])
           @if($title == 'Upcoming On Epicon')
-                <a href="{{ getUrl('upcoming-epicon') }}">
+                <a onclick="click_cta(this)" data-event_context="{{ @$title }}" data-element_text="SEE ALL" href="{{ getUrl('upcoming-epicon') }}">
             @else  
-                <a href="{{ getMidPageUrl($value) }}">
+                <a onclick="click_cta(this)" data-event_context="{{ @$title }}" data-element_text="SEE ALL" href="{{ getMidPageUrl($value) }}">
 
             @endif  
                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -28,7 +28,7 @@
                  @if(@$val['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($val) !!}
                 @else
-                    <a class="main-card" href="{{ getContentUrl($val) }}">
+                    <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}" class="main-card" href="{{ getContentUrl($val) }}">
                 @endif
                      {!! freePremiumDiv($val) !!}
                      {!! topTenDiv($val) !!}
