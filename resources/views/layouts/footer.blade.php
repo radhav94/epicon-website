@@ -74,10 +74,18 @@ if ($request->has('type')) {
             <div class="col-lg-6 link-pos">
                 <div class="f-link">
                     <ul class="d-flex mb-0">
+                        @if(isKidsPage())
+                        <li><a href="{{getUrl('kids/about')}}">{{__('About Us')}}</a></li>
+                        <li><a href="{{route('kids-terms-of-use')}}">{{__('Terms of Use')}}</a></li>
+                        <li><a href="{{route('kids-privacy')}}">{{__('Privacy Policy')}}</a></li>
+                        <li><a href="{{getUrl('kids/feedback')}}">{{__('Help Centre')}}</a></li>
+                        @else
                         <li><a href="{{getUrl('about')}}">{{__('About Us')}}</a></li>
                         <li><a href="{{route('terms-of-use')}}">{{__('Terms of Use')}}</a></li>
                         <li><a href="{{route('privacy')}}">{{__('Privacy Policy')}}</a></li>
                         <li><a href="{{getUrl('feedback')}}">{{__('Help Centre')}}</a></li>
+                        @endif
+                        
                     </ul>
                 </div>
             </div>

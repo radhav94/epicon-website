@@ -43,7 +43,7 @@ class AndroidPaymentController extends Controller
         if (strtoupper(env('APP_ENV')) == 'PRODUCTION') {
             if ($finalcurrency == 'USD') {
                 $rate = $this->getConvertedPrice($finalcurrency, 'INR');
-                $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
+                $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                 $parameters['amount'] = round(floor($totalamount), 2);
             }
             if ($finalcurrency == 'INR') {
@@ -53,14 +53,14 @@ class AndroidPaymentController extends Controller
             } else {
                 if ($finalcurrency == 'USD') {
                     $rate = $this->getConvertedPrice($finalcurrency, 'INR');
-                    $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
+                    $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                     $parameters['amount'] = round(floor($totalamount), 2);
                 }
             }
         } else {
             if ($finalcurrency == 'USD') {
                 $rate = $this->getConvertedPrice($finalcurrency, 'INR');
-                $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
+                $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                 $parameters['amount'] = round(floor($totalamount), 2);
             }
             Log::info("----------#####log for ios full renew plan for payu -----------");
@@ -74,7 +74,7 @@ class AndroidPaymentController extends Controller
             } else {
                 if ($finalcurrency == 'USD') {
                     $rate = $this->getConvertedPrice($finalcurrency, 'INR');
-                    $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
+                    $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                     $parameters['amount'] = round(floor($totalamount), 2);
                 }
             }

@@ -55,10 +55,16 @@
                         {!! $bestv !!}
                             <div>
                                 <h6>
+                                    <?php if($val['currency'] == 'INR' || $val['currency'] == 'inr'){ ?>
                                     <p class="small mb-0">{{$val['name']}}</p>
+                                     <?php    } ?>
                                     <span class="d-none save-{{$val['id']}}"></span>
                                 </h6>
-                                <h3 class="d-flex current-{{$val['id']}}"><div class="val-price">{{$currency_name}} {{$val['actual_price']}}.00</div> <span class="ms-1 small"><b class="b-none"> /</b> {{$val['plan']}}</span></h3>
+                                <?php if($val['currency'] == 'INR' || $val['currency'] == 'inr'){ ?>
+                                <h3 class="d-flex current-{{$val['id']}}"><div class="val-price">{{$currency_name}} {{$val['actual_price']}}.00</div><span class="ms-1 small"><b class="b-none"> /</b> {{@$val['plan'] ? @$val['plan'] : @$val['name']}}</span></h3>
+                                <?php    }else { ?> 
+                                    <h3 class="d-flex current-{{$val['id']}}"><div class="val-price">{{$currency_name}} {{$val['actual_price']}}</div><span class="ms-1 small"><b class="b-none"> /</b> {{@$val['name'] ? @$val['name'] : ''}}</span></h3>
+                                    <?php } ?>
                                 <h5 class="d-none"> </h5><h5 class="d-none oldprice-{{$val['id']}}"></h5>
                             </div>
                         </button>
@@ -324,10 +330,19 @@
                     var o = e.plans;
                     $.each(o, function (e, t) {
                         $('.oldprice-'+t.id).removeClass('d-none');
-                        $('.oldprice-'+t.id).text('₹ '+t.actual_price+'.00');
+                        if(t.currency == 'INR' || t.currency == 'inr'){
+                            $('.oldprice-'+t.id).text('₹ '+t.actual_price+'.00');
+                        }else{
+                            $('.oldprice-'+t.id).text('$ '+t.actual_price);
+                        }
+                        
                         $('.save-'+t.id).removeClass('d-none');
                         $('.save-'+t.id).text('Save 20%');
+                        if(t.currency == 'INR' || t.currency == 'inr'){
                         $('.current-'+t.id).html('₹ '+t.discounted_price+'<span class="ms-1 small"> / '+t.plan+'</span>');
+                        }else{
+                            $('.current-'+t.id).html('$ '+t.discounted_price+'<span class="ms-1 small"> / '+t.name+'</span>');
+                        }
                         $("#coupanstatus").val('Yes');
                        
                     });

@@ -17,8 +17,9 @@ class PageController extends Controller
 
     public function index($slug = 'home-v2')    
     {
+        // dd(session()->get('country_code'));
         $pageslug = strtolower($slug);
-
+        
         SilentLoginFunction();
 
         profileActive();
@@ -328,14 +329,14 @@ class PageController extends Controller
             'page' => $page,
             'limit' => (request()->v == 2 || request()->v == 1) ? 100 : $this->limit,
         ];
-
+        
         if (isUserLoggedIn()) {
             $params['user_id'] = getUserId();
             $params['profile_id'] = getProfileId();
         }
-
+        
         $result = CurlAPI("pages/homepage", "GET", $params, 1);
-        //dd($result);
+        // dd($result);
         if ($result && @$result['success'] ==  true) {
             $data = $result['data'] ?? [];
             $lists = $data['list'] ?? [];

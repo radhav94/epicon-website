@@ -19,8 +19,27 @@ class SubscriptionController extends Controller
         $today = date("Y-m-d") . "T" . date("H:i:s") . "Z";
         $todayStrToTime = strtotime($today);
         $usedDays = 0;
+        $countrycode = getCountryCode();
+        // $countrycode = session()->get('country_code');
+        // $countrystate = getCountryStateData();
+        
+        // if(!empty($countrystate)){
+        //     foreach($countrystate['countries'] as $i=>$value){
+        //         if($countrycode==$value['code'] || $countrycode==$value['countryisdcode']){ 
+        //             $countrycode= $value['code'];
+        //             break;
+        //         }
+        //     }
+        // }
+        // dd($countrycode);
         $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2, true);
-        $result = CurlAPI("subscriptions/plans", "GET", "", 2);
+        $input = [
+            'x_country' => @$countrycode,
+            'x_continent' => @$countrycode,
+        ];
+        // $result = CurlAPI("subscriptions/plans", "GET", "", 2);
+        $result = CurlAPI("v2/subscriptions/plans", "GET", $input, 2);
+        // dd($result);
         if (empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['message'] == 'No subscriptions found') {
 
             //$result = CurlAPI("subscriptions/plans", "GET", "", 2);
@@ -147,12 +166,15 @@ class SubscriptionController extends Controller
             $result = ($sessionPlanData[$formData['amountid']]);
         }
         $currency = $result['currency'] ?? '';
+        // dd($currency);
         $postData = [
             'user_id' => $userData['user_id'],
             'plan_id' => $result['id'],
             'order_value' => $result['actual_price'],
+            'x_country' => @$currency,
         ];
         $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2);
+        // dd($resultData);
         if ($resultData['success'] == true && !empty(@$resultData['order_data'])) {
             $resorder = $resultData['order_data'];
             $orderPostData = [
@@ -260,8 +282,8 @@ class SubscriptionController extends Controller
         if (strtoupper(env('APP_ENV')) == 'PRODUCTION') {
             if ($request->post('device') == 'android' || $request->post('device') == 'ios') {
                 if ($finalcurrency == 'USD') {
-                    $rate = $this->getConvertedPrice($finalcurrency, 'INR');
-                    $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
+                    $rate = getConvertedPrice($finalcurrency, 'INR');
+                    $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                     $parameters['amount'] = round(floor($totalamount), 2);
                 }
             } else {
@@ -272,8 +294,9 @@ class SubscriptionController extends Controller
                 } else {
                     //$parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => $userData['name'], 'email' => $userData['email'], 'phone' => @$userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
                     if ($finalcurrency == 'USD') {
-                        $rate = $this->getConvertedPrice($finalcurrency, 'INR');
-                        $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
+                        $rate = getConvertedPrice($finalcurrency, 'INR');
+                        // dd($rate);
+                        $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                         $parameters['amount'] = round(floor($totalamount), 2);
                     }
                 }
@@ -282,8 +305,8 @@ class SubscriptionController extends Controller
             // if not production - run below code
             if ($request->post('device') == 'android' || $request->post('device') == 'ios') {
                 if ($finalcurrency == 'USD') {
-                    $rate = $this->getConvertedPrice($finalcurrency, 'INR');
-                    $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
+                    $rate = getConvertedPrice($finalcurrency, 'INR');
+                    $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                     $parameters['amount'] = round(floor($totalamount), 2);
                 }
                 Log::info("----------#####log for ios full renew plan for payu -----------");
@@ -297,8 +320,8 @@ class SubscriptionController extends Controller
                 } else {
                     //$parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => $userData['name'], 'email' => $userid, 'phone' => $userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
                     if ($finalcurrency == 'USD') {
-                        $rate = $this->getConvertedPrice($finalcurrency, 'INR');
-                        $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
+                        $rate = getConvertedPrice($finalcurrency, 'INR');
+                        $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                         $parameters['amount'] = round(floor($totalamount), 2);
                     }
                 }
@@ -448,12 +471,16 @@ class SubscriptionController extends Controller
         $postData = $request->all();
         $userid = $sessionData['user_id'] ?? '';
         $promocode = $postData['promocode'] ?? '';
+        // $countrycode = session()->get('country_code');
+        $countrycode = getCountryCode();
         $postdata = array(
             'user_id' => $userid,
             'coupon_code' => $promocode,
+            'x_country' => @$countrycode,
         );
 
         $listResponseData = CurlAPI("subscriptions/createCouponOrder", 'POST', $postdata, 2);
+        // dd($listResponseData);
         if ($listResponseData && @$listResponseData['success'] == true) {
             $sessionData = $request->session()->get('plandata');
             foreach ($listResponseData['plans'] as $key => $val) {

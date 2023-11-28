@@ -169,6 +169,7 @@ class LoginController extends Controller
         $password = $request->post('login_pwd');
         $signup_method = $request->post('signup_method');
         // $userAgent = $request->post('userAgent');
+        $stdisdcode = @$request->post('stdisdcode');
         if ($signup_method == 'MOBILE' && !empty($request->post('stdisdcode'))) {
             $userid = str_replace("+", "", $request->post('stdisdcode')) . $userid;
         }
@@ -188,7 +189,10 @@ class LoginController extends Controller
             $request->session()->put('user_id', $userid);
             $request->session()->put('user_token', $loginResponseData['token']);
             $request->session()->put('device_id', @$loginResponseData['user_data']['device_id']);
-
+            // $countrycode = getCountryCode();
+            // dd($countrycode);
+            // $request->session()->put('country_code', $stdisdcode);
+            // $data['x_country'] = '';//$_SERVER['HTTP_X_REGION'];
             if (!empty($request->post('rememberme'))) {
                 setcookie("user_id", strtolower($userid), time() + 60 * 60 * 24 * 30);
                 setcookie("user_password", $password, time() + 60 * 60 * 24 * 30);

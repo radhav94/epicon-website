@@ -60,7 +60,7 @@ class KidsController extends Controller
                     $meta = $this->getMeta($pagetype, $pagetitle, $pageslug);
                 }
 
-                return view('pages.homepage', compact('result', 'displayLanguageParam', 'meta'));
+                return view('pages.homepage', compact('result', 'slug', 'displayLanguageParam', 'meta'));
             }
             return view('pages.error.404');
         } else {
