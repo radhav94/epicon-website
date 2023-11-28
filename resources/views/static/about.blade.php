@@ -1,12 +1,12 @@
 @extends('layouts.default')
-@section('title','About')
+@section('title','About Us - Epic On a Seamless Streaming Experience')
 
 @section('style')
 
 @stop
 
 @section('content')
-
+<?php $meta['description'] = "Experience entertainment like never before with the Epic On OTT Platform. Enjoy an extensive collection of movies, TV shows, and live shows all in one place."; ?>
     <section class="container w-100 my-4">
         <div class="row justify-content-center">
             <div class="col-sm-12">

@@ -116,20 +116,25 @@ class SubscriptionController extends Controller
 
     public function setSubscription(Request $request)
     {
-
+        if($request->has('amountid')){
+            
         if (!isUserLoggedIn()) {
             return redirect('/');
         }
         $data = $request->all();
-        //dd($data);
+        $result = [];
         $sessionPlanData = $request->session()->get('plandata');
         $userData = $request->session()->get('user');
-        if ($sessionPlanData[@$data['amountid']]) {
-            $result = ($sessionPlanData[$data['amountid']]);
+        if (@$sessionPlanData[@$data['amountid']]) {
+            $result = (@$sessionPlanData[@$data['amountid']]);
         }
-
+        if(empty($result)){
+            return view('pages.error.data-error');  
+        }
         return view('subscription.payment-method', compact('result', 'data'));
-
+        }else{
+            return redirect('subscription');
+        }
     }
 
     public function saveSubscription(Request $request)
@@ -137,10 +142,8 @@ class SubscriptionController extends Controller
         $formData = $request->all();
         $payment_type = $formData['payment_type'] ?? '';
         $sessionPlanData = $request->session()->get('plandata');
-
         $userData = $request->session()->get('user');
-
-        if ($sessionPlanData[$formData['amountid']]) {
+        if($sessionPlanData[$formData['amountid']]) {
             $result = ($sessionPlanData[$formData['amountid']]);
         }
         $currency = $result['currency'] ?? '';
@@ -148,9 +151,7 @@ class SubscriptionController extends Controller
             'user_id' => $userData['user_id'],
             'plan_id' => $result['id'],
             'order_value' => $result['actual_price'],
-
         ];
-
         $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2);
         if ($resultData['success'] == true && !empty(@$resultData['order_data'])) {
             $resorder = $resultData['order_data'];
@@ -164,48 +165,82 @@ class SubscriptionController extends Controller
                 "epic_price" => $result['epic_price'],
             ];
             $request->session()->put('create_order', $orderPostData);
-
         }
 
         $parameters = $this->paymentProcess($resultData, $currency, $payment_type);
         if(@$parameters['status'] == false){
             return view('pages.error.data-error');
         }
-        $txid = generateTransactionID();
-        $amount = $result['actual_price'];
-        $productinfo = $result['id'];
-        $firstname = $userData['name'];
-        $email = $userData['email'];
-
-        $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . "|" . $parameters['txnid'] . "|" . $parameters['amount'] . "|" . $parameters['productinfo'] . "|" . $parameters['firstname'] . "|" . $parameters['email'] . "|||||||||||" . $parameters['si_details'] . "|" . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
-        $calculated_hash = strtolower(hash("sha512", $HASH));
-        $parameters = [
-            "hash" => $calculated_hash,
-            "email" => $parameters['email'],
-            "txnid" => $parameters['txnid'],
-            "key" => $parameters['key'],
-            "firstname" => $parameters['firstname'],
-            "amount" => $parameters['amount'],
-            "phone" => $parameters['phone'],
-            "productinfo" => $parameters['productinfo'],
-            "surl" => $parameters['surl'],
-            "furl" => $parameters['furl'],
-            "payuUrl" => $parameters['payuUrl'],
-            "si_details" => $parameters['si_details'],
-        ];
-        return view('subscription.payumoney', compact('parameters'));
-
+        else{
+            $txid = generateTransactionID();
+            $amount = $result['actual_price'];
+            $productinfo = $result['id'];
+            $firstname = $userData['name'];
+            $email = $userData['email'];
+            if (env('PAYU_SI') == true) {
+                $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . "|" . $txid . "|" . $parameters['amount'] . "|" . $parameters['productinfo'] . "|" . $parameters['firstname'] . "|" . $parameters['email'] . "|||||||||||" . $parameters['si_details'] . "|" . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+                $calculated_hash = strtolower(hash("sha512", $HASH));
+                $parameters = [
+                    "hash" => $calculated_hash,
+                    "email" => @$parameters['email'],
+                    "txnid" => $txid,
+                    "key" => @$parameters['key'],
+                    "firstname" => @$parameters['firstname'],
+                    "amount" => @$parameters['amount'],
+                    "phone" => @$parameters['phone'],
+                    "productinfo" => @$parameters['productinfo'],
+                    "surl" => @$parameters['surl'],
+                    "furl" => @$parameters['furl'],
+                    "payuUrl" => @$parameters['payuUrl'],
+                    "si_details" => @$parameters['si_details'],
+                ];
+            }
+            else{
+                $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . "|" . $txid . "|" . $parameters['amount'] . "|" . $parameters['productinfo'] . "|" . $parameters['firstname'] . "|" . $parameters['email'] . "||||||||||||" . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+                $calculated_hash = strtolower(hash("sha512", $HASH));
+                $parameters = [
+                    "hash" => $calculated_hash,
+                    "email" => @$parameters['email'],
+                    "txnid" => $txid,
+                    "key" => @$parameters['key'],
+                    "firstname" => @$parameters['firstname'],
+                    "amount" => @$parameters['amount'],
+                    "phone" => @$parameters['phone'],
+                    "productinfo" => @$parameters['productinfo'],
+                    "surl" => @$parameters['surl'],
+                    "furl" => @$parameters['furl'],
+                    "payuUrl" => @$parameters['payuUrl']
+                ];
+            }
+            if (env('PAYU_SI') == true) {
+                return view('subscription.payumoneysi', compact('parameters'));
+            }
+            else{
+                return view('subscription.payumoney', compact('parameters'));
+            }
+        }
     }
+
+    /*public function generateHash($params, $salt) {
+        $hashString = $params["key"] . "|" . $params["txnid"] . "|" . $params["amount"] . "|" . $params["productinfo"] . "|" . $params["firstname"] . "|" . $params["email"] . "||||||" . $salt;
+        $hash = hash("sha512", $hashString);
+        return $hash;
+    }
+
+    public function generateHashWithSI($params, $salt) {
+        $hashString = $params["key"] . "|" . $params["txnid"] . "|" . $params["amount"] . "|" . $params["productinfo"] . "|" . $params["firstname"] . "|" . $params["email"] . "||||||" . $params["si_details"].'|'.$salt;
+        $hash = hash("sha512", $hashString);
+        return $hash;
+    }*/
 
     public function paymentProcess($orderArr, $currency, $payment_type)
     {
         /* All Required Parameters by your Gateway */
-
         $request = Request();
         $userData = $request->session()->get('user');
-        $parameters['status'] = ""; 
-        $order = $orderArr['order_data'];
         $userid = $userData['user_id'] ?? '';
+        
+        $order = $orderArr['order_data'];
         $order_number = $order['order_id'];
         $totalamount = $order['order_value'];
         $plan_id = $order['plan_id'];
@@ -215,30 +250,15 @@ class SubscriptionController extends Controller
         $newDate = $splitTimeStamp[0];
         $startdate = date("d-m-Y", strtotime($newDate));
         $finalcurrency = $currency;
+        
         // test amount logic
-        if (env('DEV_AMT') == true || $userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025') {
+        $parameters['status'] = "";
+        if (env('DEV_AMT') == true && ($userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025')) {
             $totalamount = "1";
         }
+        $parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => @$userData['name'], 'email' => @$userData['email'], 'phone' => @$userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
         if (strtoupper(env('APP_ENV')) == 'PRODUCTION') {
             if ($request->post('device') == 'android' || $request->post('device') == 'ios') {
-                if (empty($userData['email'])) {
-                    $parameters = ['tid' => time(),
-                        'txnid' => $order_number,
-                        'amount' => $totalamount,
-                        'firstname' => $userData['name'],
-                        'email' => $userData['mobile'],
-                        'phone' => $userData['mobile'],
-                        'productinfo' => 'epicon ' . $plan_id];
-                } else {
-                    $parameters = ['tid' => time(),
-                        'txnid' => $order_number,
-                        'amount' => $totalamount,
-                        'firstname' => $userData['name'],
-                        'email' => $userData['email'],
-                        'phone' => $userData['mobile'],
-                        'productinfo' => 'epicon ' . $plan_id];
-                }
-
                 if ($finalcurrency == 'USD') {
                     $rate = $this->getConvertedPrice($finalcurrency, 'INR');
                     $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
@@ -246,18 +266,11 @@ class SubscriptionController extends Controller
                 }
             } else {
                 if ($finalcurrency == 'INR') {
-                    $parameters = ['tid' => time(),
-                        'txnid' => $order_number,
-                        'amount' => $totalamount,
-                        'firstname' => $userData['name'],
-                        'email' => $userid,
-                        'phone' => '',
-                        'si' => 1,
-                        'productinfo' => 'epicon ' . $plan_id,
-
-                    ];
+                    if (env('PAYU_SI') == true) {
+                        $parameters['si'] = 1;
+                    }
                 } else {
-                    $parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => $userData['name'], 'email' => $userid, 'phone' => '', 'productinfo' => 'epicon ' . $plan_id];
+                    //$parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => $userData['name'], 'email' => $userData['email'], 'phone' => @$userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
                     if ($finalcurrency == 'USD') {
                         $rate = $this->getConvertedPrice($finalcurrency, 'INR');
                         $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
@@ -266,29 +279,9 @@ class SubscriptionController extends Controller
                 }
             }
         } else {
-
+            // if not production - run below code
             if ($request->post('device') == 'android' || $request->post('device') == 'ios') {
-
-                if (empty($userData['email'])) {
-                    $parameters = ['tid' => time(),
-                        'txnid' => $order_number,
-                        'amount' => $totalamount,
-                        'firstname' => $userData['name'],
-                        'email' => $userData['email'],
-                        'phone' => $userData['mobile'],
-                        'productinfo' => 'epicon ' . $plan_id];
-                } else {
-
-                    $parameters = ['tid' => time(),
-                        'txnid' => $order_number,
-                        'amount' => $totalamount,
-                        'firstname' => $userData['name'],
-                        'email' => $userData['email'],
-                        'phone' => $userData['mobile'],
-                        'productinfo' => 'epicon ' . $plan_id];
-                }
                 if ($finalcurrency == 'USD') {
-
                     $rate = $this->getConvertedPrice($finalcurrency, 'INR');
                     $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
                     $parameters['amount'] = round(floor($totalamount), 2);
@@ -298,19 +291,11 @@ class SubscriptionController extends Controller
                 Log::info("-----END ios full renew plan for payu----------------------");
             } else {
                 if ($finalcurrency == 'INR') {
-                    $parameters = ['tid' => time(),
-                        'txnid' => $order_number,
-                        'amount' => $totalamount,
-                        'firstname' => $userData['name'],
-                        'email' => $userData['email'],
-                        'phone' => $userData['mobile'],
-                        'si' => 1,
-                        'productinfo' => 'epicon ' . $plan_id,
-                    ];
-
+                    if (env('PAYU_SI') == true) {
+                        $parameters['si'] = 1;
+                    }
                 } else {
-
-                    $parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => $userData['name'], 'email' => $userid, 'phone' => $userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
+                    //$parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => $userData['name'], 'email' => $userid, 'phone' => $userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
                     if ($finalcurrency == 'USD') {
                         $rate = $this->getConvertedPrice($finalcurrency, 'INR');
                         $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
@@ -319,7 +304,11 @@ class SubscriptionController extends Controller
                 }
             }
         }
-        if (config('epicconfig.PAYUMONEY.ENABLE_RECURRING_AT_FROM_TRANSACTION') == true) {
+
+
+        $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
+        $parameters['phone'] = $userData['mobile'];
+        if (env('PAYU_SI') == true) {
             $billingCycle = 'MONTHLY';
             if ($plan_id == 'epic_in_pl_1') {
                 $billingInterval = 1;
@@ -342,9 +331,7 @@ class SubscriptionController extends Controller
                 $newstartdate = date("Y-m-d");
                 $endstartdate = date("Y-m-d", strtotime("+1 year"));
             }
-            $parameters['si'] = "1";
-            $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
-            $parameters['phone'] = $userData['mobile'] ?? '';
+            $parameters['si'] = 1;
             $parameters['api_version'] = "7";
             $parameters['si_details'] = json_encode([
                 'billingAmount' => $totalamount,
@@ -352,21 +339,22 @@ class SubscriptionController extends Controller
                 'billingCycle' => $billingCycle,
                 'billingInterval' => $billingInterval,
                 'paymentStartDate' => $newstartdate,
-                'paymentEndDate' => $endstartdate,
+                'paymentEndDate' => $endstartdate
             ]);
-        }else{
 
-            $parameters['status'] = false; 
-            return $parameters;
-            
+
+            $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['txnid'] . '|' . $parameters['amount'] . '|' . $parameters['productinfo'] . '|' . $parameters['firstname'] . '|' . $parameters['email'] . '|||||||||||' . $parameters['si_details'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+        }
+        else{
+            $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['txnid'] . '|' . $parameters['amount'] . '|' . $parameters['productinfo'] . '|' . $parameters['firstname'] . '|' . $parameters['email'] . '||||||||||||' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
         }
 
         if (in_array($payment_type, ['CC', 'DC', 'NB', 'CASH', 'UPI'])) {
             $parameters['pg'] = $payment_type;
         }
 
-        $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['txnid'] . '|' . $parameters['amount'] . '|' . $parameters['productinfo'] . '|' . $parameters['firstname'] . '|' . $parameters['email'] . '|||||||||||' . $parameters['si_details'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
 
+    
         $calculated_hash = strtolower(hash("sha512", $HASH));
         $parameters['hash'] = $calculated_hash;
         $parameters['SALT'] = config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
@@ -374,8 +362,8 @@ class SubscriptionController extends Controller
         $parameters['surl'] = getUrl('payusuccess');
         $parameters['furl'] = getUrl('payufail');
         $parameters['payuUrl'] = config('epicconfig.PAYUMONEY.SUBSCRIPTION_URL');
-        $parameters['phone'] = empty($parameters['phone']) ? $parameters['phone'] : '';
-        $parameters['email'] = empty($parameters['email']) ? $parameters['email'] : '';
+        $parameters['phone'] = $parameters['phone'];
+        $parameters['email'] = $parameters['email'];
         $parameters['status'] = true; 
 
         Log::info("----------#####full parametes for log for ios full renew plan for payu -----------");
@@ -498,6 +486,8 @@ class SubscriptionController extends Controller
     public function payusuccess(Request $request)
     {
         $paymentresponse = $request->all();
+        // dd($paymentresponse);
+
         $paymtentStatus = strtolower($paymentresponse['status']);
         $final_result = ['message' => 'The transaction has been declined.'];
         //$getOnlyDate = date('Y-m-d', strtotime(@$orderdata['subscription_end_date']));
@@ -666,6 +656,7 @@ class SubscriptionController extends Controller
     public function payufail(Request $request)
     {
         $paymtentStatus = $request->all();
+        // dd($paymtentStatus);
 
         Log::info("----- PayuMoney Payment Failed Response.");
         Log::debug(json_encode($paymtentStatus));
@@ -719,14 +710,12 @@ class SubscriptionController extends Controller
     public function sendOtpAjax(Request $request)
     {
         $ajaxData = $request->all();
-        $email="";
-        $mobile="";
-        //dd($ajaxData);
+        $email = $mobile = "";
         $type = $ajaxData['type'] ?? '';
         if($type == "email"){
             $email = $ajaxData['userdetail'] ?? '';
         }else{
-          $mobile =   $ajaxData['userdetail'] ?? '';
+            $mobile = $ajaxData['userdetail'] ?? '';
         }
         $otpResponse = [];
         $postData = [
@@ -734,14 +723,11 @@ class SubscriptionController extends Controller
             'email' => $email,
         ];
         $otpResponse = CurlAPI("users/contactDetailsOTP", "POST", $postData, 2, true);
-        //dd($otpResponse);
-        //$otpResponse['success'] = true;
         if ($otpResponse && @$otpResponse['success'] == true) {
             return response()->json($otpResponse, 200)->header('Content-Type', 'application/json');
         } else {
             return response()->json('something went wrong !', 201)->header('Content-Type', 'application/json');
         }
-
     }
 
     public function verifyOtpAjax(Request $request)
@@ -804,7 +790,7 @@ class SubscriptionController extends Controller
         //dd($data);
         $url = "https://test.payu.in/merchant/postservice.php?form=2";
         $verify_payment = si_transaction($url, $data);
-        dd($verify_payment);
+        //dd($verify_payment);
     }
 
     public function cancelMembership(Request $request){

@@ -87,20 +87,16 @@ class AuthSocialController extends Controller
 
         try {
             if (!empty($service)) {
-                $social_user = Socialite::driver($service)->user();
-                // dd($social_user);
+                $social_user = Socialite::driver($service)->user(); 
                 $user_id = $social_user->id ?? null;
                 $user_data = [];
                 $posted_data = [
                     'user_signup_method' => $user_signup_method,
                     $social_id => $user_id
                 ];
-
-                $epic_web_arr = CurlAPI('users/socialLogin', 'POST', $posted_data, 2);
                 
-                if(isset($epic_web_arr['user_data'])){
-                    $user_data = $epic_web_arr['user_data'];
-                }
+                $epic_web_arr = CurlAPI('users/socialLogin', 'POST', $posted_data, 2);
+                $user_data = @$epic_web_arr['user_data'];
 
                 if ($epic_web_arr['success'] == true && !empty($user_data)) {
                     $request->session()->put('user_id', $user_id);
@@ -110,7 +106,7 @@ class AuthSocialController extends Controller
 
                     return redirect("/");
                 } else {
-                    return redirect("/login/".$service)->with(['message' => $epic_web_arr['message']]);
+                    return redirect("/")->with('error', $epic_web_arr['message']);
                 }
             }
             return redirect($this->redirectTo);

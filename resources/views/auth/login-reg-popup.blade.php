@@ -104,7 +104,7 @@
                                 </button>
                                 <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white"
                                 class="btn-close" style="width: 280px;">Login with password</button>
-                                <h6 class="mb-4 text-white text-start mt-4">or Continue with</h6>
+                                <h6 class="mb-4 text-white text-center mt-4">For Existing User only</h6>
                                 <div class="lg-social">
                                     <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
                                             alt=""></a>
@@ -241,8 +241,7 @@
                                         <option value="">Gender</option>
                                         <option value="Female">Female</option>
                                         <option value="Male">Male</option>
-                                        <option value="Transgender">Transgender</option>
-                                        <option value="Shemale">Shemale</option>
+                                        {{--<option value="Others">Others</option>--}}
                                     </select>
                                     <span class="text-danger text-start d-flex mt-1 error" id="gender-error"
                                         style="font-size: 12px;"></span>
@@ -333,7 +332,8 @@
                                     </svg>
                                 </button>
                                 <button class="login-btn login-btn-otp mt-0 bg-transparent text-white">Login using OTP</button>
-                                <h6 class="mb-4 text-white text-center mt-4 small">or Continue with</h6>
+                                <button class="login-btn login-btn-otp mt-0 bg-transparent text-white">New User ? Sign Up</button>
+                                <h6 class="mb-4 text-white text-center mt-4 small">For Existing User only</h6>
                                 <div class="lg-social">
                                     <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
                                             alt=""></a>
@@ -344,7 +344,7 @@
                                     <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
                                             alt=""></a> -->
                                 </div>
-                                <p class="get-help mt-5 small">Having trouble signing in? <a href="{{route('feedback')}}">Get
+                                <p class="get-help mt-4 small">Having trouble signing in? <a href="{{route('feedback')}}">Get
                                         Help</a></p>
                             </form>
                         </div>
@@ -396,17 +396,17 @@
                                 <input type="hidden" name="otppin" id="otppin" value="">
                                 <div class="childpin">
                                     <div class="childpin-input">
-                                        <input class="mx-1 child-box1" type="number" min="0" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="number" min="0" max="9"
                                             maxlength="1" id="childpin11" name="childpin11">
-                                        <input class="mx-1 child-box1" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="number" min="1" max="9"
                                             maxlength="1" id="childpin22" name="childpin22">
-                                        <input class="mx-1 child-box1" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="number" min="1" max="9"
                                             maxlength="1" id="childpin33" name="childpin33">
-                                        <input class="mx-1 child-box1" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="number" min="1" max="9"
                                             maxlength="1" id="childpin44" name="childpin44">
-                                        <input class="mx-1 child-box1" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="number" min="1" max="9"
                                             maxlength="1" id="childpin55" name="childpin55">
-                                        <input class="mx-1 child-box1" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="number" min="1" max="9"
                                             maxlength="1" id="childpin66" name="childpin66">
                                     </div>
                                 </div>

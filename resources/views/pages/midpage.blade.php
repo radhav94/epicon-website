@@ -3,7 +3,7 @@
 
 @section('style')
 @stop
-<?php //dd($hybidData); ?>
+<?php $meta['description'] = "Keep your kids entertained with the best OTT platforms for kids in India, featuring a wide range of content. Subscribe and Enjoy ad-free streaming"; //dd($hybidData); ?>
 @section('content')
     <div class="container mt-4">
         <div class="row">
@@ -47,9 +47,14 @@
             $sub_points .= '<li>' . $genre . '</li>';
         }
     }
+    if($val['content_type'] == 'GAMEZOP'){
+        $cardcls = 'game-hover';
+    }else{
+        $cardcls = '';
+    }
              ?>
                 <li>
-                    <div class="play-card">
+                    <div class="play-card {{$cardcls}}">
                         <div class="top-card-img">
                             {!! freePremiumDiv($val) !!}
                             @if (@$extra['hide_top10'] != 1)

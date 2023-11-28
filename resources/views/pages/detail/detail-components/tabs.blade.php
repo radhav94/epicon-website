@@ -45,7 +45,7 @@
        <div class="row justify-content-center">
            <div class="col-sm-12">
                <div class="w-100 library">
-                   <ul class="nav nav-pills border-bot pb-3 ps-2" id="pills-tab" role="tablist">
+                   <ul class="nav nav-pills border-bot pb-3" id="pills-tab" role="tablist">
 
                        @foreach ($tabs as $key => $value)
                        <?php

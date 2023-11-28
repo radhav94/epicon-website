@@ -14,7 +14,7 @@
 
                 ?>
 
-                <li class="pod-main position-relative py-3" data-id="{{ $value['ID'] }}">
+                <li class="pod-main position-relative py-3 showmore-main" data-id="{{ $value['ID'] }}">
                     <div class="col-12 col-sm-11 ps-3 d-flex">
                         <div class="pik position-relative">
                             @if(@$value['asset_type'] == 'PLAY')
@@ -50,8 +50,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="col-sm-8 col-md-10 mt-2">{!! sanitizeData(@$value['short_description']) !!}</p>
-
+                            <p class="col-sm-8 col-md-10 mt-2 shot-desc-{{$key}}">{!! sanitizeData(@$value['short_description']) !!}</p>
+                            <span class="read-button-{{$key}}"> </span>
                             <div class="pod-grey-btn-list">
 
                                 <?php

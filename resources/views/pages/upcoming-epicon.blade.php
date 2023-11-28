@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','Upcoming on Epicon')
+@section('title','Get to Know About Upcoming OTT New Web Series and Movies')
 
 @section('style')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}" />
@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-<?php //dd($upcoming);
+<?php  
 
 $input = $upcoming;
 
@@ -24,7 +24,7 @@ foreach ($input as $item) {
 }
 
 krsort($output);
-
+$meta['description'] = "Exciting collection of upcoming web series and movies on OTT platforms. Watch wide range of Hindi and English TV show and movies online";
 ?>
 <section class="container">
     <div class="upcoming-epicon-main">
@@ -32,7 +32,7 @@ krsort($output);
         <div class="upcoming-heading border-bot">
             <h4 class="new-popularheading text-white my-4">Upcoming on Epic On</h4>
         </div>
-
+        <!-- <span id="closePlayer" style="display:none"></span> -->
         <?php foreach ($output as $key => $releaseDate) { ?>
             <?php if ($key !== "" && !strstr($key, '1970')) { ?>
                 <div class="card-details mb-4">
@@ -83,7 +83,8 @@ krsort($output);
                                     <div class="card-body">
                                         {!! freePremiumDiv($val) !!}
 
-                                        <a onclick="click_tile(this)" class="upper-img upcomingVid" href="javascript:void(0)" data-id="{{ $id }}" data-type="{{ $content_type }}" data-title="{{ $title }}">
+                                        <a onclick="click_tile(this)" class="upper-img upcomingVid" href="javascript:void(0)" data-id="{{ $id }}" data-type="{{ $content_type }}" data-title="{{ $title }}" data-promo="{{ $val['promo_url'] ?? '' }}">
+
                                             <img src="{{ $cover_img }}" alt="">
                                         </a>
                                         <div class="bottom-text d-flex mt-2">
@@ -91,8 +92,7 @@ krsort($output);
                                                 <h4 class="text-heading text-white upc">{{$title}}</h4>
                                                 <ul class="text-white">
                                                     <?php echo $sub_points ?>
-                                                    <!--  <li>Drama</li>
-                                            <li>Comedy</li>  -->
+                                             
                                                     <li>{{isset($date_text) ? $date_text : '' }}</li>
                                                 </ul>
                                             </div>
@@ -108,71 +108,7 @@ krsort($output);
             <?php } ?>
         <?php } ?>
 
-        <!--  <div class="card-details">
-                <div class="date-upperline">.</div>
-                <div class="internal-card d-flex">
-                    <div class="date-card text-white">
-                        <h6>Jun</h6>
-                        <h5>23</h5>
-                    </div>
-
-                    <div class="card-main-body d-flex">
-                        <div class="card-body">
-                             <span class="crown position-absolute"><img src="{{ asset('/img/crown.svg') }}" alt=""></span>
-                            <div class="upper-img">
-                                <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                            </div>
-                            <div class="bottom-text d-flex mt-2">
-                                <div class="left-text">
-                                    <h4 class="text-heading text-white">Inside Edge 3</h4>
-                                    <ul class="text-white">
-                                        <li>U/A 13+</li>
-                                        <li>Drama</li>
-                                        <li>Comedy</li>
-                                        <li>2023</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                             <span class="crown position-absolute"><img src="{{ asset('/img/crown.svg') }}" alt=""></span>
-                            <div class="upper-img">
-                                <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                            </div>
-                            <div class="bottom-text d-flex mt-2">
-                                <div class="left-text">
-                                    <h4 class="text-heading text-white">Inside Edge 3</h4>
-                                    <ul class="text-white">
-                                        <li>U/A 13+</li>
-                                        <li>Drama</li>
-                                        <li>Comedy</li>
-                                        <li>2023</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                             <span class="crown position-absolute"><img src="{{ asset('/img/crown.svg') }}" alt=""></span>
-                            <div class="upper-img">
-                                <img src="{{ asset('/img/new-popular-img-1.png') }}" alt="">
-                            </div>
-                            <div class="bottom-text d-flex mt-2">
-                                <div class="left-text">
-                                    <h4 class="text-heading text-white">Inside Edge 3</h4>
-                                    <ul class="text-white">
-                                        <li>U/A 13+</li>
-                                        <li>Drama</li>
-                                        <li>Comedy</li>
-                                        <li>2023</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                       
-                    </div>
-                </div>
-            </div> -->
+        
     </div>
 </section>
 <div class="modal" id="upcomingModal">
@@ -199,7 +135,8 @@ krsort($output);
 
 <script>
     var user_duration = 0;
-    var TrandingSlider = new Swiper('.tranding-slider', {
+    var player;
+   /* var TrandingSlider = new Swiper('.tranding-slider', {
         effect: 'coverflow',
         grabCursor: true,
         centeredSlides: true,
@@ -220,7 +157,7 @@ krsort($output);
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         }
-    });
+    });*/
 
     $(document).ready(function() {
 
@@ -229,15 +166,25 @@ krsort($output);
             let title = $(this).data('title');
             let lg = $(this).data('lg');
             let tp = $(this).data('type');
+            let promo = $(this).data('promo');
 
-            let requestData = {
-                cid: cid
-            };
             let customData = {
                 cid: cid,
                 tp: tp,
                 title: title,
                 lg: lg
+            };
+
+            if(promo == ''){
+                showToaster('Content video not found', 2);
+                return;
+            }else{
+                $("#upcomingModal").modal('show');
+                loadVideoPlayer(promo, '', customData);
+            }
+
+            /*let requestData = {
+                cid: cid
             };
 
             sendAjaxRequest(APP_URL + '/player', 'POST', JSON.stringify(requestData),
@@ -262,16 +209,10 @@ krsort($output);
                         showToaster($res.message, 2);
                     }
                 } catch (err) {}
-            }
+            }*/
 
             // Add a handler for the modal close event
-            $('#upcomingModal').on('hidden.bs.modal', function() {
-                if (typeof player !== "undefined") {
-                    console.log(player)
-                    player.stop();
-                }
-                $('video').attr('src', '');
-            });
+            
 
             // Add a click event listener to the window
             $(window).click(function(event) {
@@ -280,6 +221,14 @@ krsort($output);
                     $('#upcomingModal').modal('hide');
                 }
             });
+        });
+
+        $('#upcomingModal').on('hidden.bs.modal', function() {
+            if (typeof player !== "undefined") {
+                console.log(player)
+                player.stop();
+            }
+            $('video').attr('src', '');
         });
     });
 </script>

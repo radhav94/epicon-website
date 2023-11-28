@@ -13,7 +13,8 @@
         height: 100%;
     }
     .plyr:fullscreen video {
-        height: 100%!important;
+        height: auto !important;
+        width:100%;
     }
     #vidPlayer.hide {
         display: none !important;
@@ -60,6 +61,7 @@
         bottom: 5px;
     }
     .live-tv-vidPlayer button[data-plyr="fast-forward"], 
+    .live-tv-vidPlayer .plyr__menu__container button:nth-child(3), 
     .live-tv-vidPlayer button[data-plyr="rewind"], 
     .live-tv-vidPlayer button[data-plyr="pip"].plyr__control, 
     .live-tv-vidPlayer .plyr__progress__container{
@@ -94,16 +96,19 @@
             </defs>
         </svg>
     </p>
-    <div id="playVideo" data-id="{{ @$content['ID'] }}" data-type="{{ @$content['content_type'] }}"
-        data-lg="{{ isUserLoggedIn() }}" data-title="{{ @$content['title'] }}" data-duration="{{ @$content['duration'] ?? @$content['season'][0]['duration'] }}">
+
+    <div class="player-bg-wrap">
+        <div id="playVideo" data-id="{{ @$content['ID'] }}" data-type="{{ @$content['content_type'] }}" data-lg="{{ isUserLoggedIn() }}" data-title="{{ @$content['title'] }}" data-duration="{{ @$content['duration'] ?? @$content['season'][0]['duration'] }}">
+
+        </div>
+
+
+        <video id="vidPlayer" class="videocont " data-id="{{ $content['ID'] }}" controls crossorigin playsinline
+            poster="{{ $cover_img }}" autoplay>
+            <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> -->
+
+        </video>
     </div>
-
-
-    <video id="vidPlayer" class="videocont " data-id="{{ $content['ID'] }}" controls crossorigin playsinline
-        poster="{{ $cover_img }}">
-        <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> -->
-
-    </video>
        
     @if ($trailers && isset($trailers['list']) && !empty($trailers['list'] && @$content['free_premium'] == true))
         @if(!isUserLoggedIn() || @$subplan['status'] != 'active')

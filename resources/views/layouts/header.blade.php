@@ -81,8 +81,11 @@ if ($request->has('type')) {
                     </svg>{{__('Upcoming on Epic On')}}
                 </a>
             </li>
-            <li>
+
+            <!-- Epic Shorts Menu Hide -->
+           <!--  <li>
                 <a onclick="click_menu(this)" data-event_context="header" data-element_text="Epic Shots" href="{{ getUrlWithPrefix('homepage') }}#epic-shots">
+
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
@@ -100,7 +103,7 @@ if ($request->has('type')) {
                             stroke-linejoin="round" />
                     </svg>{{__('Epic Shots')}}
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a onclick="click_menu(this)" data-event_context="header" data-element_text="new popular" href="{{ getUrl('new-popular') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
@@ -236,6 +239,7 @@ if ($request->has('type')) {
             </a>
             @if (!kidsMode())
             @loggedin
+            {{--
             <div class="notification p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">
@@ -258,6 +262,7 @@ if ($request->has('type')) {
                     </div>
                 </div>
             </div>
+            --}}
             @endloggedin
             <div class="profile p-2">
            

@@ -106,6 +106,7 @@ input {
     transform: translateY(40px);
     transition: transform .3s;
     backdrop-filter: blur(50px);
+    background: #000000b8;
 }
 .side-menu-main{
     width: 100%;
@@ -243,8 +244,8 @@ input {
     }
     @media (max-width:700px) {
         & svg{
-            width: 10px;
-            height: 10px;
+            width: 15px;
+            height: 15px;
         }
     }
 }
@@ -895,7 +896,7 @@ input {
                 h2{
                     font-size: 12px;
                     color: $bg-white;
-                    margin-bottom: 10px;
+                    margin-bottom: 5px;
 
                     @media (max-width:768px){
                         margin-bottom: 0px;
@@ -1641,9 +1642,10 @@ input {
         align-items: center;
         justify-content: flex-start;
         height: 100%;
-        border-radius: 7px 7px 0 0;
+        border-radius: 7px 7px;
         overflow: hidden;
         text-decoration: none;
+        color: #fff;
     }
     ul li a img{
         width: 28px;
@@ -1689,8 +1691,11 @@ input {
     }
    
     .carousel-initilize li,.vertical-carousel-initilize li,.library li,.more-like-this li,.seeall-main-page li,.bollywood-tray li{
-        padding: 0 15px 0 0px;
+        margin-right: 15px;
         position: relative;
+        @media (max-width:767px) {
+            margin-right: 10px;
+        }
         .upcoming-title-play-btn{
             @include flex(row,center,space-between);
             position: absolute;
@@ -1724,6 +1729,10 @@ input {
                 @media (max-width:767px) {
                     width: 25px;
                     height: 25px;
+
+                    svg{
+                        height: 15px;
+                    }
                 }
             }
         }
@@ -1997,6 +2006,7 @@ input {
                     font-weight: 600;
                     line-height: 7px;
                     padding: 0;
+                    margin: 0;
                     @media (max-width:767px){
                         font-size: 7px;
                     }
@@ -2006,6 +2016,7 @@ input {
                     font-weight: 700;
                     text-align: center;
                     padding: 0;
+                    margin: 0;
                     @media (max-width:767px){
                         font-size: 12px;
                         line-height: 14px;
@@ -2063,12 +2074,14 @@ input {
                     font-weight: 600;
                     line-height: 7px;
                     padding: 0;
+                    margin: 0;
                 }
                 li:last-child{
                     font-size: 16px;
                     font-weight: 700;
                     text-align: center;
                     padding: 0;
+                    margin: 0;
                     // line-height: 0.2;
                 }
             }
@@ -2279,7 +2292,7 @@ input {
 }
 
 .carousel-initilize,.vertical-carousel-initilize,.gaming-galore-main,.popular-language,.blockbuster-mm
-    ,.punjab-carousel,.discover-next-watch,.new-release-bottom,.imdb,.delights-display,.wildlife,.cust-collection,.short-sweet-carousel,.vertical-carousel-retro,.ar-vr,.additional-carousel,.bollywood-tray{
+    ,.punjab-carousel,.discover-next-watch,.new-release-bottom,.imdb,.delights-display,.wildlife,.cust-collection,.short-sweet-carousel,.vertical-carousel-retro,.ar-vr,.additional-carousel,.bollywood-tray,.games{
         .slick-next, .slick-prev{
             z-index: 1;
             right: 0px;
@@ -2658,8 +2671,8 @@ input {
 //   SPINER CSS START
 .spinner{
     padding-left: 100px;
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 50px;
+    padding-bottom: 10px;
 
     &::after{
         content: "";
@@ -3000,8 +3013,10 @@ input {
     padding: 0;
     overflow: hidden;
     div{
-        margin-left: 2px;
-        margin-right: 7px;
+        margin-right: 15px;
+        @media (max-width:767px){
+            margin-right: 10px;
+        }
         a{
             text-decoration: none;
             color: #fff;
@@ -3130,7 +3145,7 @@ input {
 
             @media (max-width:768px) {
                 display: inline-flex;
-                padding: 8px 6px;
+                padding: 8px 20px;
                 gap: 10px;
                 font-size: 12px;
                 margin: 5px;
@@ -3692,7 +3707,11 @@ input {
 
 .delights-display{
     & div{
-        padding: 0 5px;
+        // padding: 0 5px;
+        margin-right: 15px;
+        @media (max-width:700px) {
+            margin-right: 10px;
+        }
     }
     .content{
         padding: 0 20px 20px 20px;
@@ -3700,12 +3719,16 @@ input {
         background: var(--separator, linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%));
         text-decoration: none;
         border-radius: 222px 222px 24px 24px;
+        @media (max-width:700px) {
+            padding: 0 10px 10px 10px;
+        }
 
         .top{
             width: 100%;
             height: auto;
             overflow: hidden;
             margin-bottom: 15px;
+            margin-right: 0;
             margin-top: 20px;
             border-radius: 207px 207px 24px 24px;
             padding-inline: 0;
@@ -3714,6 +3737,9 @@ input {
             align-items: flex-end;
             justify-content: center;
             background: conic-gradient(from 180deg at 50% 50.00%, #302EBD 65.62500178813934deg, #D54CD4 234.37500715255737deg, #845BFF 360deg);
+            @media (max-width:700px) {
+                margin-top: 10px;
+            }
 
             img{
                 width: 100%;
@@ -3727,12 +3753,16 @@ input {
 
         .bottom{
             width: 100%;
+            margin: 0;
             & h1{
                 font-size: 18px;
                 font-weight: 500;
                 margin-bottom: 5px;
                 color: $bg-white;
                 @include line-clamp(1);
+                @media (max-width:700px) {
+                    font-size: 16px;
+                }
             }
             & p{
                 font-size: 14px;
@@ -3740,6 +3770,9 @@ input {
                 margin: 0;
                 color: $bg-white;
                 @include line-clamp(2);
+                @media (max-width:700px) {
+                    font-size: 12px;
+                }
             }
         }
     }
@@ -3995,16 +4028,16 @@ input {
     @media (max-width:767px) {
         padding: 6px 24px;
     }
-    &:hover{
-        background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
-        transition: 0.4s;
-        border: 0.5px solid #fff;
-        color: #fff;
-        svg path{
-            fill: #fff;
-            transition: 0.4s;
-        }
-    }
+    // &:hover{
+    //     background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
+    //     transition: 0.4s;
+    //     border: 0.5px solid #fff;
+    //     color: #fff;
+    //     svg path{
+    //         fill: #fff;
+    //         transition: 0.4s;
+    //     }
+    // }
 
 }
 .childpin{
@@ -4119,7 +4152,7 @@ input {
     & .nav-link{
         color: $bg-white;
         @media screen and (max-width: 700px){ 
-            padding: 6px 12px;
+            padding: 6px 9px;
             font-size: 12px;
         }
     }
@@ -4993,6 +5026,9 @@ input {
     @media (max-width:700px) {
         position: unset;
         margin-top: 15px;
+        width: 100%;
+        display: flex!important;
+        justify-content: flex-end;
     }
     .all-episode,.season{
         width: fit-content;
@@ -5220,6 +5256,9 @@ input {
         overflow: hidden;
         border-radius: 16px;
         background: linear-gradient(0deg, #846ADD 0%, #D7A1E7 100%), linear-gradient(90deg, #130001 0%, #FA2847 100%), linear-gradient(90deg, #080808 0%, #FFF 100%);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
         img{
             height: 60px;
@@ -5274,9 +5313,13 @@ input {
         background-size: 100% 100%;
         height: 280px;
         overflow: hidden;
+
+        img{
+            height: 32px;
+        }
         
         .redeem-top{
-            width: 50%;
+            width: 100%;
             height: 81%;
             padding: 15px;
             margin: 0 auto;
@@ -5285,6 +5328,7 @@ input {
                 background: #FF7817;
                 height: 120px;
                 width: 100%;
+                overflow: hidden;
                 border-bottom-left-radius: 10px;
                 border-bottom-right-radius: 10px;
                 @include flex(column,center,center);
@@ -5293,6 +5337,7 @@ input {
                     align-items: center;
                     color: $bg-white;
                     margin-bottom: 0;
+                    margin-top: 5px;
                     img{
                         width: 25px;
                         height: 35px;
@@ -6142,6 +6187,16 @@ input {
         top: 0;
         z-index: -1;
     }
+    .episode-text-details p{
+        width: 90%!important;
+        @media (max-width:700px) {
+            padding-left: 10px;
+            padding-top: 20px!important;
+        }
+    }
+}
+.search-main{
+    padding-top: 15px;
 }
 .episode-main{
     display: flex;
@@ -6199,9 +6254,16 @@ input {
                 font-size: 14px;
                 @include line-clamp(1);
             }
+            a{
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+        a{
+            text-decoration: none;
         }
         span,p{
-            font-size: 14px;
+            font-size: 16px;
             color: #b7b7b7;
             @media (max-width:700px) {
                 font-size: 12px;
@@ -6210,7 +6272,6 @@ input {
         }
         p{
             font-size: 16px;
-            @include line-clamp(4);
             @media (max-width:700px) {
                 position: absolute;
                 width: 100%;
@@ -6317,12 +6378,11 @@ input {
                 }
             }
             span{
-                font-size: 12px;
+                font-size: 16px;
                 color: #B7B7B7;
             }
             p{
                 color: #B7B7B7;
-                @include line-clamp(2);
                 @media (max-width:700px) {
                     @include line-clamp(2);
                     position: absolute;
@@ -6517,7 +6577,7 @@ input {
     flex-shrink: 0;
 
     @media (max-width:700px) {
-        padding: 10px;
+        padding: 5px;
         width: 40px;
         height: 40px;
     }
@@ -7374,8 +7434,11 @@ input {
     }
 }
 .supermix-main{
-    padding-inline: 10px;
+    padding-inline: 15px;
     margin-bottom: 40px;
+    @media (max-width:767px) {
+        padding-inline: 10px;
+    }
 }
 #resendBtn,#resendForgotBtn{
     border: none;
@@ -7404,49 +7467,6 @@ input {
 
 .library .main-card .top-ten{
     top:0;
-}
-.plyr{
-    background-color: #000;
-}
-.videoContainer .plyr__video-wrapper{
-    height: 500px !important;
-    width: auto;
-    display: flex;
-
-    video{
-        height: 100%!important;
-    }
-
-    @media (max-width: 768px) {
-        height: auto !important;
-    }
-}
-.plyr__progress__container{
-    @media (max-width: 767px) {
-        position: absolute;
-        width: 76%;
-        bottom: 50px;
-        left: 0;
-    }
-}
-.plyr__controls .plyr__controls__item.plyr__time{
-    @media (max-width: 767px) {
-        position: absolute;
-        bottom: 48px;
-        right: 10px;
-    }
-}
-
-.plyr__controls .plyr__controls__item {
-    @media (max-width: 767px) {
-        margin-left: calc(var(--plyr-control-spacing,42px)/4)!important;
-    }
-}
-.plyr__controls .plyr__controls__item:first-child{
-    @media (max-width: 767px) {
-        margin-left: 0!important;
-        margin-right: unset!important;
-    }
 }
 .supermix-bottom-text{
     height: 70px;
@@ -7644,7 +7664,7 @@ input {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 20px;
+        gap: 40px;
         width: calc(100% - 50px);
         @media (max-width:767px) {
             justify-content: space-between;
@@ -7658,6 +7678,10 @@ input {
         img{
             width: 100%;
             height: 100%;
+            @media (max-width:767px) {
+                width: 28px;
+                height: 38px;
+            }
         }
     }
     .tenx-prev,.tenx-next,.podcast-close{
@@ -7677,8 +7701,15 @@ input {
     }
     .podcast-play,.podcast-pause{
         width: 80px;
+        padding: 0;
         @media (max-width:767px) {
-            width: 60px;
+            width: 50px;
+        }
+        img{
+            @media (max-width:767px) {
+                width: 50px;
+                height: 50px;
+            }
         }
     }
 }
@@ -7777,3 +7808,123 @@ audio::-webkit-media-controls-play-button {
         width: 80%;
     }
   }
+  .live-trey-content{
+    width: 100%;
+    margin-right: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    a{
+        display: flex;
+        width: 100%;
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+  }
+ 
+.new-popular-main .upper-img{
+    height: auto;
+    overflow: hidden;
+    @media (max-width:767px) {
+        height: auto;
+    }
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.set-child-pin{
+    margin: 0 auto;
+}
+.player-bg-wrap{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    width: 100%;
+    height: 500px;
+    background-color: #000;
+    @media (max-width:768px) {
+        width: 100%;
+        height: auto;
+    }
+}
+.plyr {
+    height: 100%;
+      width :100%;
+}
+// .plyr video{
+//     height: auto;
+//     width: 100%;
+// }
+// .plyr--video {
+//     height: 423px;
+//     @media (max-width:768px) {
+//         height: auto;
+//     }
+// }
+.videoContainer{
+    margin-top: 30px;
+    @media (max-width:767px) {
+        margin-top: 0px;
+    }
+}
+.videoContainer .plyr__video-wrapper{
+    position: relative;
+    // height: 100%;
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+.plyr__progress__container{
+    @media (max-width: 767px) {
+        position: absolute;
+        width: 76%;
+        bottom: 50px;
+        left: 0;
+    }
+}
+.plyr__controls .plyr__controls__item.plyr__time{
+    @media (max-width: 767px) {
+        position: absolute;
+        bottom: 48px;
+        right: 10px;
+    }
+}
+
+.plyr__controls .plyr__controls__item {
+    @media (max-width: 767px) {
+        margin-left: calc(var(--plyr-control-spacing,42px)/4)!important;
+    }
+}
+.plyr__controls .plyr__controls__item:first-child{
+    @media (max-width: 767px) {
+        margin-left: 0!important;
+        margin-right: unset!important;
+    }
+}
+// .plyr audio, .plyr iframe, .plyr video {
+//     height: auto!important;
+//     width: 100%;
+// }
+#upcomingModal .modal-content{
+    background-color: #000;
+    background-image: none;
+}
+#upcomingModal .plyr video{
+    height: auto!important;
+    width: 100%;
+}
+.plyr__video-wrapper{
+    height: 100%!important;
+    display: flex;
+    align-items: center;
+}
+.videoContainer video {
+    @media (max-width: 767px) {
+        height: initial!important;
+    }
+}

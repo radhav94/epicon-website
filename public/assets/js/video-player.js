@@ -17,13 +17,13 @@ $(document).ready(function () {
 		
 		$('.content-detail-banner').hide();
 		if (vidPlaying && !is_trailer && !is_episode) {
-
+			
 			window.player.play();
 
 			if (!$('.videoContainer').is(":visible")) {
 				$('.videoContainer').show();
 			}
-			console.log('video is already playing');
+			// console.log('video is already playing');
 			$('html, body').animate({
 				scrollTop: 0
 			}, 1000);
@@ -55,7 +55,7 @@ $(document).ready(function () {
 			onPlayerSuccess, onPlayerError, 'application/json');
 
 		function onPlayerSuccess(response) {
-			console.log(response);
+			// console.log(response);
 			// dummyInit = true;
 
 			let video_url;
@@ -64,7 +64,7 @@ $(document).ready(function () {
 			} else {
 				video_url = response.payload.video_url;
 			}
-			console.log('vid', video_url);
+			// console.log('vid', video_url);
 
 			if (video_url) {
 				// if (response.payload.subtitles) {
@@ -204,13 +204,18 @@ $(document).ready(function () {
 
 		}
 
-		forwardButton.addEventListener('click', () => {
-			player.currentTime += 10;
-		});
-
-		rewindButton.addEventListener('click', () => {
-			player.currentTime -= 10;
-		});
+		if(forwardButton){
+			forwardButton.addEventListener('click', () => {
+				player.currentTime += 10;
+			});
+		}
+		
+		if(rewindButton){
+			rewindButton.addEventListener('click', () => {
+				player.currentTime -= 10;
+			});
+		}
+		
 		closePlayer.addEventListener('click', () => {
 			if (player) {
 				player.pause();
@@ -225,7 +230,7 @@ $(document).ready(function () {
 			} else {
 				window.hls.levels.forEach((level, levelIndex) => {
 					if (level.height === newQuality) {
-						console.log("Found quality match with " + newQuality);
+						// console.log("Found quality match with " + newQuality);
 						window.hls.currentLevel = levelIndex;
 					}
 				});
@@ -321,7 +326,7 @@ function playContentVideo(cid,c_type,element) {
 	};
 	sendAjaxRequest(APP_URL + '/player', 'POST', JSON.stringify(requestData),
 		function (response) {
-			console.log(response);
+			// console.log(response);
 		
 			let playurl;
 			if (c_type == 'trailer' && response.payload.promo_url != "") {
@@ -349,3 +354,7 @@ function playContentVideo(cid,c_type,element) {
 		'application/json'
 	);
 }
+
+$("#closePlayer").click(function(){
+	$(".content-div").css("display","block");
+});

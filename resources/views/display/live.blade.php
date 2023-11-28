@@ -1,6 +1,6 @@
 
 <section class="carousel-main mt-0">
-    <div class="carousel-title-n-arrow px-2 pb-3">
+    <div class="carousel-title-n-arrow px-2 pb-2">
         <h1 class="text-white small">{{ $title }}</h1>
 
         @if (@$value['show_more'])
@@ -13,13 +13,13 @@
         @endif
     </div>
     <div class="gaming-galore-main">
-        <div class="gaming-galore">
+        <div class="carousel-initilize w-100">
             @foreach ($value['content'] as $key => $val)
 
             <?php 
             	 $banner_img = getCardImage($val, 'cover_image', 'medium');
             ?>
-                <div>
+                <div class="live-trey-content">
                     <a onclick="click_tile(this)" data-title ="{{ @$val['content_owner'] }}" data-type="{{@$title}}" href="{{ getUrl(@$val['url']) }}">
                         <img src="{{ $banner_img }}">
                     </a>

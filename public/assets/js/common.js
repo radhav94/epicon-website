@@ -82,7 +82,9 @@ $(document).ready(function () {
         window.history.pushState({},'',"?ref=subscription");
         var rediUrl = window.location.href;
         localStorage.setItem("redirectURL", rediUrl);
+        $('#closePlayer').trigger('click');
         $('.loginBtn.login').trigger('click');
+       
 
       });
 
@@ -114,6 +116,7 @@ $(document).ready(function () {
 
     $(".allAccessBtn-sub").click(function() {
         window.history.pushState({},'',"?ref=subscription");
+        $('#closePlayer').trigger('click');
         $("#child-pin-modal").modal('show');
     });
 

@@ -3,4 +3,22 @@
 
 <meta name="csrf-token" content="{{ csrf_token()}}" />
 <link rel="icon" href="{{asset('assets/img/favicon.png')}}"/>
-<title id="page_title" data-page-title="@yield('title') | {{env('APP_NAME')}}">@yield('title') | {{env('APP_NAME')}}</title>
+
+
+<title id="page_title" data-page-title="@yield('title') | {{env('APP_NAME')}}">@yield('title') | {{ (env('APP_NAME') == '') ? 'EPIC ON' : env('APP_NAME') }}</title>
+
+<meta name="description" content="{{htmlspecialchars_decode(@$meta['description'])}}" />
+
+{{-- Start fb meta --}}
+<meta property="og:url" content="{{URL::current()}}" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{ $meta['title'] ?? getDefaultMetaTitle() }}" />
+<meta property="og:description" content="{{ $meta['description'] ?? 'TV Shows, Movies, Podcast, Games, Rewards' }}" />
+<meta property="og:image" content="{{ $meta['image'] ?? url('/img/epiconlogo.png') }}" />
+{{-- End fb meta --}}
+
+{{-- start twitter meta --}}
+<meta property='twitter:title' content="{{ $meta['title'] ?? getDefaultMetaTitle() }}">
+<meta name="twitter:card" content="summary_large_image">
+{{-- End twitter meta --}}
+

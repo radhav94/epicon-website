@@ -10,7 +10,7 @@
                  @endif
              </div>
          </div>
-         <ul class="vertical-carousel-retro p-0 mb-0">
+         <ul class="vertical-carousel-retro p-0 mb-0 mt-4">
 
              @foreach ($value['content'] as $key => $val)
                  <?php

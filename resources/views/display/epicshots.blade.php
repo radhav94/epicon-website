@@ -1,5 +1,5 @@
 <section class="carousel-main mt-0" id="epic-shots">
-    <div class="carousel-title-n-arrow px-2 pb-3">
+    <div class="carousel-title-n-arrow px-2 pb-2">
         <h1 class="text-white small">{{$title}}</h1>
         @if (@$value['show_more'])
         <a onclick="click_cta(this)" data-event_context="Epic Shots" data-element_text="SEE ALL" href="{{ getMidPageUrl($value) }}">

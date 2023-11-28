@@ -94,7 +94,7 @@
                     data: formData,
                     dataType: 'json',
                     headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(response) {
                         if(response.payload.success == true){
@@ -130,7 +130,7 @@
                 data: formData,
                 dataType: 'json',
                 headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(response) {
                     if (response.payload.success == true) {
@@ -200,7 +200,7 @@
                     data: formData,
                     dataType: 'json',
                     headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(response) {
                         // console.log(response.payload.user_id+'success me aaya');
@@ -235,7 +235,7 @@
                 data: formData,
                 dataType: 'json',
                 headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(response) {
                     // console.log(response.payload.user_id+'success me aaya');
@@ -336,7 +336,7 @@
                     data: formData,
                     dataType: 'json',
                     headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(response) {
                             if (response.payload.success == true) {
@@ -422,7 +422,7 @@
                     data: formData,
                     dataType: 'json',
                     headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(response) {
                         // alert(response);
@@ -512,7 +512,7 @@
                     data: formData,
                     dataType: 'json',
                     headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(response) {
                         queryParams = new URLSearchParams(window.location.search);
@@ -601,7 +601,7 @@
                     data: formData,
                     dataType: 'json',
                     headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(response) {
                         // alert(response);
@@ -656,7 +656,7 @@
                     data: formData,
                     dataType: 'json',
                     headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(response) {
                         // alert(response);
@@ -667,6 +667,7 @@
                             $('.login-popup-modal').hide();
                             $('#login-modal').hide();
                             $('.loginBtn.login').trigger('click');
+                            showToaster('password changed successfully.', 1);
                             // location.reload(true);
                         } else {
                             $('#reset-forgot-result').html(response.payload.response

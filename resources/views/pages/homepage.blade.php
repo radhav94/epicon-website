@@ -1,5 +1,6 @@
 @extends('layouts.default')
-@section('title', $meta_title)
+@section('title', $meta['title'] ?? getDefaultMetaTitle() )
+
 
 @section('style')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}" />
@@ -127,8 +128,12 @@
                 }
             });
         }
-
-        });
+        
+        if ("{{session()->has('error')}}") {
+            $('.loginBtn.login').trigger('click');
+            showToaster("{{session()->get('error')}}", 2);
+        }
+    });
 
     function closeModal() {
         var modal = document.querySelector('.modal-backdrop');
