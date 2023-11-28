@@ -354,7 +354,17 @@
                                     window.location.href = $("input[name='kidsUrl']").val();
                                 }else if(queryParams.get('ref') == "subscription"){
 
-                                    window.location.href = APP_URL+'/subscription';
+                                    if(response.payload.subplan_status == 'active'){
+                                        var chekUrl = localStorage.getItem("redirectURL");
+                                        if(chekUrl != "" && chekUrl !=null &&  chekUrl!=undefined){
+                                               localStorage.removeItem("redirectURL");
+                                               window.location.href = chekUrl;
+                                               return false;
+                                            }
+                                    }else{
+                                        window.location.href = APP_URL+'/subscription';
+                                        return false;
+                                    }
 
                                 }else if(queryParams.get('ref') == "rewards"){
 
@@ -535,9 +545,17 @@
                                     window.location.href = $("input[name='kidsUrl']").val();
                                     return false;
                                 }else if(queryParams.get('ref') == "subscription"){
-                                    
-                                    window.location.href = APP_URL+'/subscription';
-                                    return false;
+                                    if(response.payload.subplan_status == 'active'){
+                                        var chekUrl = localStorage.getItem("redirectURL");
+                                        if(chekUrl != "" && chekUrl !=null &&  chekUrl!=undefined){
+                                               localStorage.removeItem("redirectURL");
+                                               window.location.href = chekUrl;
+                                               return false;
+                                            }
+                                    }else{
+                                        window.location.href = APP_URL+'/subscription';
+                                        return false;
+                                    }
 
                                 }else if(queryParams.get('ref') == "rewards"){
 
