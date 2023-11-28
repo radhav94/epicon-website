@@ -10,7 +10,6 @@ use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
 
 if (!function_exists('getUserAgent')) {
     function getUserAgent()
