@@ -114,8 +114,9 @@ class LoginController extends Controller
                 $request->session()->put('user', $user_data);
                 $request->session()->put('user_token', $verifyotpResponseData['token']);
                 $request->session()->put('device_id', @$verifyotpResponseData['user_data']['device_id']);
+                $subplan = checkSubscription();
                 // $viewname = 'homepage';
-                return JSONResponse(200, 'OTP verified successfully.', ['user_id' => $userid, 'user_signup_method' => $signup_method, 'otp_pin' => $otp_pin, 'response' => $response, 'user_data' => $user_data, 'success' => true]);
+                return JSONResponse(200, 'OTP verified successfully.', ['user_id' => $userid, 'user_signup_method' => $signup_method, 'otp_pin' => $otp_pin, 'response' => $response, 'user_data' => $user_data, 'success' => true,'subplan_status' => @$subplan['status']]);
             } elseif ((@$verifyotpResponseData['success'] == 'true' || @$verifyotpResponseData['success'] == true) && $is_verified == false) {
                 $request->session()->put('user_id', $userid);
                 return JSONResponse(200, 'OTP verified successfully.', ['user_id' => $userid, 'user_signup_method' => $signup_method, 'otp_pin' => $otp_pin, 'response' => $response, 'success' => true]);
