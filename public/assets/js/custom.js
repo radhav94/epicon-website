@@ -148,11 +148,17 @@ if (notificationElement) {
   }
   else {
     $(".profile").hover(function () {
-      var e = document.querySelector(".profile-drop-down");
-      if (e.style.display == 'block')
-        e.style.display = 'none';
-      else
-        e.style.display = 'block';
+
+        if( $('.profile-drop-down').length ){
+            var e = document.querySelector(".profile-drop-down");
+            if (e.style.display == 'block'){
+              e.style.display = 'none';
+            }
+            else{
+              e.style.display = 'block';
+            }
+        }
+
     });
   }
 
