@@ -15,9 +15,7 @@ $(document).ready(function () {
 
 	$(document).on('click', '#watchVideo', function () {
 		
-		//$('.content-detail-banner').hide();
-		$('.banner-main').hide();
-		$('#watchVideo').hide();
+		$('.content-detail-banner').hide();
 		if (vidPlaying && !is_trailer && !is_episode) {
 			
 			window.player.play();
@@ -222,9 +220,7 @@ $(document).ready(function () {
 				player.pause();
 			}
 			$('.videoContainer').hide();
-			//$('.content-detail-banner').show();
-			$('.banner-main').show();
-			$('#watchVideo').show();
+			$('.content-detail-banner').show();
 		});
 
 		function updateQuality(newQuality) {
@@ -323,9 +319,7 @@ function playContentVideo(cid,c_type,element) {
 			}
 		
 			if (playurl) {
-				//$('.content-detail-banner').hide();
-				$('.banner-main').hide();
-				$('#watchVideo').hide();
+				$('.content-detail-banner').hide();
 				$('html, body').animate({
 					scrollTop: 0
 				}, 1000);
