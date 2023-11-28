@@ -32,7 +32,7 @@
               }
               $fourlive_url_final = env('ISHARA_LIVE_TV_LINK', $fourlive_url);
               ?>
-              <a href="{{ $fourlive_url_final }}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
+              <a onclick="click_tile(this)" data-title="Ishara TV" data-type="LIVE CHANNEL" href="{{ $fourlive_url_final }}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@
                 $firstlive_url = url('/' . $response[1]['url']);
               }
               ?>
-              <a href="{{ $firstlive_url }}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
+              <a onclick="click_tile(this)" data-title="Epic TV" data-type="LIVE CHANNEL" href="{{ $firstlive_url }}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@
                 $thirdlive_url = url('/' . $response[2]['url']);
               }
               ?>
-              <a href="{{$thirdlive_url}}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
+              <a onclick="click_tile(this)" data-title="Filamchi TV" data-type="LIVE CHANNEL" href="{{$thirdlive_url}}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
             </div>
           </div>
         </div>
@@ -110,7 +110,7 @@
                 $secondlive_url = url('/' . $response[3]['url']);
               }
               ?>
-              <a href="{{ $secondlive_url }}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
+              <a onclick="click_tile(this)" data-title="Showbox TV" data-type="LIVE CHANNEL" href="{{ $secondlive_url }}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
             </div>
           </div>
         </div>
@@ -132,7 +132,7 @@
                   $secondlive_url = url('/' . @$response[4]['url']);
                 }
                 ?>
-              <a href="{{$secondlive_url}}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
+              <a onclick="click_tile(this)" data-title="Gubbare TV" data-type="LIVE CHANNEL" href="{{$secondlive_url}}" class="play-btn ct-livetv-clicked" ct-livetv-type="IsharaTv">{{__('Start Live TV')}}</a>
             </div>
           </div>
         </div>
@@ -156,7 +156,7 @@
                 }
                 $fourlive_url_final = env('ISHARA_LIVE_TV_LINK', $fourlive_url);
                 ?>
-                <a href="{{$fourlive_url_final}}" class="play-btn ct-livetv-clicked" ct-livetv-type="NazaraTv">{{__('Start Live TV')}}</a>
+                <a onclick="click_tile(this)" data-title="Nazara TV" data-type="LIVE CHANNEL" href="{{$fourlive_url_final}}" class="play-btn ct-livetv-clicked" ct-livetv-type="NazaraTv">{{__('Start Live TV')}}</a>
               </div>
             </div>
           </div>

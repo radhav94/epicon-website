@@ -12,7 +12,7 @@ if(@$val['display_type'] == 'standard'){
         @if (@$extra['hide_top10'] != 1)
             {!! topTenDiv($val) !!}
         @endif
-        <a href="{{ getContentUrl($val) }}">
+        <a href="{{ getContentUrl($val) }}" onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}">
             <img src="{{ $cover_img }}" alt="">
         </a>
     </div>
@@ -47,7 +47,7 @@ if(@$val['display_type'] == 'standard'){
                 @if(@$val['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($val) !!}
                 @else
-                    <a class="upper-img" href="{{ getContentUrl($val) }}">
+                    <a class="upper-img" onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}" href="{{ getContentUrl($val) }}">
                 @endif
                     <button class="play-btn w-100 text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

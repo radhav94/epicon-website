@@ -25,19 +25,19 @@ if ($request->has('type')) {
                         fill="white" />
                 </svg>
             </a>
-            <a class="navbar-brand me-3" href="{{ getUrlWithPrefix('homepage') }}"><img height="28"
+            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Home" class="navbar-brand me-3" href="{{ getUrlWithPrefix('homepage') }}"><img height="28"
                     src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
                 @loggedin
                 @if(@$subplan['status'] != 'active')
-                <a class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
+                <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
             @endif
             @elseloggedin
-            <a class="subscribe-btn login-popup login-with-subscription" href="javascript:void(0);">{{__('Subscribe')}}</a>
+            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn login-popup login-with-subscription" href="javascript:void(0);">{{__('Subscribe')}}</a>
             @endloggedin
         </div>
         <ul class="ps-3">
             <li>
-                <a href="{{ getUrl($kids_page ? '/kids/games' : 'games') }}">
+                <a onclick="click_menu(this)" data-event_context="header" data-element_text="game" href="{{ getUrl($kids_page ? '/kids/games' : 'games') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
@@ -47,7 +47,7 @@ if ($request->has('type')) {
                 </a>
             </li>
             <li>
-                <a href="{{ getUrl('live-tv') }}">
+                <a onclick="click_menu(this)" data-event_context="header" data-element_text="live tv" href="{{ getUrl('live-tv') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
@@ -59,7 +59,7 @@ if ($request->has('type')) {
                 </a>
             </li>
             <li>
-                <a href="{{ getUrl('upcoming-epicon') }}">
+                <a onclick="click_menu(this)" data-event_context="header" data-element_text="upcoming on epic on" href="{{ getUrl('upcoming-epicon') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path d="M10.6665 2.6665V6.6665" stroke="white" stroke-width="1.5" stroke-miterlimit="10"
@@ -81,9 +81,11 @@ if ($request->has('type')) {
                     </svg>{{__('Upcoming on Epic On')}}
                 </a>
             </li>
+
             <!-- Epic Shorts Menu Hide -->
            <!--  <li>
-                <a href="{{ getUrlWithPrefix('homepage') }}#epic-shots">
+                <a onclick="click_menu(this)" data-event_context="header" data-element_text="Epic Shots" href="{{ getUrlWithPrefix('homepage') }}#epic-shots">
+
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
@@ -103,7 +105,7 @@ if ($request->has('type')) {
                 </a>
             </li> -->
             <li>
-                <a href="{{ getUrl('new-popular') }}">
+                <a onclick="click_menu(this)" data-event_context="header" data-element_text="new popular" href="{{ getUrl('new-popular') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
@@ -130,11 +132,11 @@ if ($request->has('type')) {
             </a>
             @endif
             
-            <a class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}"
+            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Home" class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}"
                     alt=""></a>
                     
                 @if($kids_page && @$subplan['status'] != 'active')
-                    <a class="subscribe-btn allAccessBtn-sub" href="javascript:void(0);">{{__('Subscribe')}}</a>
+                    <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn allAccessBtn-sub" href="javascript:void(0);">{{__('Subscribe')}}</a>
                 @endif
 
             @if(!$kids_page)
@@ -142,11 +144,11 @@ if ($request->has('type')) {
 
             @if(@$subplan['status'] != 'active')
 
-            <a class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
+            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
             @endif
             @elseloggedin
 
-            <a class="subscribe-btn login-with-subscription" href="javascript:void(0);" >{{__('Subscribe')}}</a>
+            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn login-with-subscription" href="javascript:void(0);" >{{__('Subscribe')}}</a>
 
             @endloggedin
             @endif
@@ -190,12 +192,12 @@ if ($request->has('type')) {
         <ul class="menu-item list-unstyled d-flex mb-0">
             @if(isMobliDevice()==false)
             @foreach ($links as $key => $value)
-                <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a href="{{ getUrl($key) }}"
+                <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a onclick="click_menu(this)" data-event_context="header" data-element_text="{{ __($value) }}" href="{{ getUrl($key) }}"
                         @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
             @endforeach
             @else
             @foreach ($moblinks as $key => $value)
-                <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a href="{{ getUrl($key) }}"
+                <li class="{{ ($key == 'explore') ? 'd-none d-sm-block' : '' }}"><a onclick="click_menu(this)" data-event_context="header" data-element_text="Reward Store" href="{{ getUrl($key) }}"
                         @if ($current_route == $key) class="active" @endif>{{ __($value) }}</a></li>
             @endforeach
             @endif
@@ -318,7 +320,7 @@ if ($request->has('type')) {
                             <p class="m-0 small">{{__('Get access to exclusive content, with no ad breaks.')}}</p>
             
                             @if(@$subplan['status'] != 'active')
-                              <a href="{{ getUrl('subscription') }}"><button> <img class="me-1" width="18" src="{{ asset('assets/img/crown.svg') }}"
+                              <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" href="{{ getUrl('subscription') }}"><button> <img class="me-1" width="18" src="{{ asset('assets/img/crown.svg') }}"
                                     alt=""> {{__('Subscribe')}}</button></a>
                             @endif
                         </li>

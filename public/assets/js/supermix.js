@@ -5,8 +5,14 @@ var contentType;
 $(document).ready(function () {
     $("#supermixWatchBtn").click(function () {
         let cid = $("#supermixData ul li .supermixPlay").data('id');
+        let title = $("#supermixData ul li .supermixPlay").data('title');
+        let duration = $("#supermixData ul li .supermixPlay").data('duration');
         $('#supermixData ul li:first-child').addClass('active');
         contentType = 'supermix';
+        customData = {
+			title: title,
+			duration:duration
+		};
         getPlayData(cid);
         $(this).prop("disabled", true);
     });
@@ -16,7 +22,15 @@ $(document).ready(function () {
         // e.preventDefault();
         $(this).parent('li').addClass('active');
         let cid = $(this).data('id');
+        let title;
+        let duration;
+        title = $(this).data('title');
+        duration = $(this).data('duration');
         contentType = 'supermix';
+        customData = {
+			title: title,
+			duration:duration
+		};
         getPlayData(cid);
         $('#supermixModal').animate({
             scrollTop: 0
@@ -53,7 +67,7 @@ function getPlayData(cid) {
 }
 
 function playerSuccess(response) {
-    console.log(response);
+    console.log(JSON.stringify(response));
     let video_url;
     if (contentType == 'SHOW' || contentType == 'SEASON') {
         video_url = response.payload.promo_url;
@@ -83,7 +97,6 @@ function playerError(xhr) {
 }
 
 function loadSupermixVideo(source, subtitles, customData = false) {
-
     stopPlayer();
 
     // $('#vidPlayer').html(subtitles);
@@ -201,4 +214,38 @@ function stopPlayer() {
         videoPayer.pause();
         videoPayer.destroy();
     }
+}
+
+
+const attactPlayerEvents = function (videoPayer) {
+    console.log("attactPlayerEvents : "+customData.title);
+    player.on('play', event => {
+        video_play(customData.duration, customData.title);
+    });
+
+    videoPayer.on('pause', event => {
+        var e = Math.round(videoPayer.currentTime),
+        a = Math.round(videoPayer.duration),
+        r = parseInt((videoPayer.currentTime / videoPayer.duration) * 100) + "%";
+        o = customData.title;
+        video_pause(e, a, r, o);
+
+    });
+
+    videoPayer.on('seeked', event => {
+        var e = Math.round(videoPayer.currentTime),
+        a = Math.round(videoPayer.duration);
+        o = customData.title;
+        r = parseInt((videoPayer.currentTime / videoPayer.duration) * 100) + "%";
+        video_seek(a, e, o,r);
+
+    });
+
+    videoPayer.on('ended', event => {
+        var e = Math.round(videoPayer.currentTime),
+        a = Math.round(videoPayer.duration);
+        o = customData.title;
+        video_ended(a, e, o);
+    });
+
 }

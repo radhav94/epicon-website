@@ -189,7 +189,7 @@ $meta['image'] = $share_img;
                                     </button>
                                     @endif
                                     <button class="rounded-transparent-btn shareThis" data-url="{{ getContentUrl($content) }}"
-                                        data-title="{{ $share_title }}">
+                                        data-title="{{ $share_title }}" data-type="{{@$content['catalog_slug']}}">
                                         <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
                                     </button>
                                     @if (@$content['is_popular'])
