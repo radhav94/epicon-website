@@ -327,7 +327,7 @@ if ($request->has('type')) {
                         <li class="subc-text"><a href="{{ getUrl('my-account') }}">{{__('My Account')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('my-rewards') }}">{{__('My Rewards')}}</a></li>
                         @if(!kidsMode())
-                        <li class="subc-text"><a href="{{url('/my-rewards')}}">{{__('Reward Store')}}</a></li>
+                        {{--<li class="subc-text"><a href="{{url('/my-rewards')}}">{{__('Reward Store')}}</a></li>--}}
                         @endif
                         <li class="subc-text"><a href="{{ getUrl('settings') }}">{{__('Settings')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('feedback') }}">{{__('Help & Feedback')}}</a></li>
