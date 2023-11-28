@@ -12,9 +12,6 @@
       {
         "appID": "LUM7EKQ8XM.com.epicon.iosapp",
         "paths": [
-          "NOT /qr-pay/*",
-          "NOT /qr-promo/*",
-          "NOT /getSubscription",
           "*",
           "/"
         ]

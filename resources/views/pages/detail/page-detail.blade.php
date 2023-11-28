@@ -67,7 +67,7 @@ $meta['image'] = $share_img;
         <div class="banner-main position-relative">
             <img src="{{ $cover_img }}" alt="img">
         </div>
-        @if(!isActiveSubscription())
+        @if(!isActiveSubscription() && $trailer_id)
         <a href="javascript:playContentVideo('{{ $trailer_id }}','trailer', this)" class="TrailerLink" style="display: none;"></a>
         @endif
     <?php
