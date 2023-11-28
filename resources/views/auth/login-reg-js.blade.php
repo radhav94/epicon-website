@@ -360,6 +360,9 @@
                                                localStorage.removeItem("redirectURL");
                                                window.location.href = chekUrl;
                                                return false;
+                                            }else{
+                                                window.location.href = response.payload.redirect;
+                                                return false;
                                             }
                                     }else{
                                         window.location.href = APP_URL+'/subscription';
@@ -551,6 +554,9 @@
                                                localStorage.removeItem("redirectURL");
                                                window.location.href = chekUrl;
                                                return false;
+                                            }else{
+                                                window.location.href = response.payload.redirect;
+                                                return false;
                                             }
                                     }else{
                                         window.location.href = APP_URL+'/subscription';
