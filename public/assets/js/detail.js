@@ -83,7 +83,9 @@ $(document).ready(function () {
     });
     initTrailerCarousel();
 
-    var link = document.querySelector('.TrailerLink'); 
-    link.click();
+    if($('.TrailerLink').length){
+        var link = document.querySelector('.TrailerLink'); 
+        link.click();
+    }
     
 });

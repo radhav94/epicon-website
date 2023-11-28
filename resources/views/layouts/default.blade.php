@@ -84,6 +84,7 @@
     {{-- Start footer common scripts --}}
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-ui.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/ga_tag.js') }}?v={{ assetTime() }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}?v={{ assetTime() }}" defer></script>
     <script src="{{ asset('assets/js/swiper.js') }}" defer></script>
     <script src="{{ asset('assets/js/spiner.js') }}" defer></script>
@@ -93,7 +94,7 @@
     <script src="{{ asset('assets/js/vendor/toastr.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/epic.js') }}" defer></script>
     <script src="{{ asset('assets/js/common.js') }}?v={{ assetTime() }}" defer></script>
-    <script src="{{ asset('assets/js/ga_tag.js') }}?v={{ assetTime() }}"></script>
+    
     {{-- End footer common scripts --}}
 </head>
 
