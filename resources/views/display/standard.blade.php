@@ -17,7 +17,7 @@
                 @if(@$val['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($val) !!}
                 @else
-                    <a class="main-card" href="{{ getContentUrl($val) }}">
+                    <a class="main-card" onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}" href="{{ getContentUrl($val) }}">
                 @endif
                      {!! freePremiumDiv($val) !!}
                      {!! topTenDiv($val) !!}

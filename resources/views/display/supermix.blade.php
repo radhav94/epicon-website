@@ -22,7 +22,7 @@
                 <div class="d-flex align-items-baseline aie supermix-bottom-text">
                     <h1 class="me-3">{{ $card['title'] }} </h1><span> {!! sanitizeData(@$value['description'] ?? '') !!} </span>
                 </div>
-                <button class="start-mix-btn superMixButton">Start MixTape</button>
+                <button onclick="click_cta(this)" data-event_context="{!! sanitizeData(@$value['description'] ?? '') !!}" data-element_text="Start MixTape" class="start-mix-btn superMixButton">Start MixTape</button>
             </div>
         </div>
         {{-- @endforeach --}}

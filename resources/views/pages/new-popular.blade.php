@@ -54,7 +54,7 @@
                     @if(@$val['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($val) !!}
                     @else
-                    <a class="upper-img" href="{{ getContentUrl($val) }}">
+                    <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$val['catalog_slug']}}" class="upper-img" href="{{ getContentUrl($val) }}">
                     @endif
                         <img src="{{ $cover_img }}" alt="">
                     </a>

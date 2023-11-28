@@ -6,7 +6,7 @@
   },
   "applinks": {
     "apps": [
-      "LUM7EKQ8XM.com.epicon.iosapp"
+      
     ],
     "details": [
       {
@@ -15,7 +15,8 @@
           "NOT /qr-pay/*",
           "NOT /qr-promo/*",
           "NOT /getSubscription",
-          "*"
+          "*",
+          "/"
         ]
       }
     ]

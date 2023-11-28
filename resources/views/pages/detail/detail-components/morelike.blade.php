@@ -1,7 +1,6 @@
 @if ($morelike)
     <div class="tab-pane fade {{ $active_tab == 'morelike' ? 'show active' : '' }}" id="pills-morelike" role="tabpanel"
         aria-labelledby="my-list">
-
         <ul class="more-like-this px-0 py-4">
             @foreach ($morelike as $key => $value)
                 <?php
@@ -19,7 +18,7 @@
                     @if(@$value['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($value) !!}
                     @else
-                    <a href="{{ getContentUrl($value) }}" class="main-card">
+                    <a onclick="click_tile(this)" data-title="{{@$value['title']}}" data-type="{{@$value['catalog_slug']}}" href="{{ getContentUrl($value) }}" class="main-card">
                     @endif
                         {!! freePremiumDiv($value) !!}
                         {!! topTenDiv($value) !!}

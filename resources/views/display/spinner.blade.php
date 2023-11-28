@@ -44,6 +44,7 @@
      }
 
      function getSpinnerContent($genre) {
+        click_spinner($genre);
          let requestData = {
              genre: $genre
          };

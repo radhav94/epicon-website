@@ -96,9 +96,9 @@
             </defs>
         </svg>
     </p>
+
     <div class="player-bg-wrap">
-        <div id="playVideo" data-id="{{ $content['ID'] }}" data-type="{{ $content['content_type'] }}"
-            data-lg="{{ isUserLoggedIn() }}" data-title="{{ $content['title'] }}">
+        <div id="playVideo" data-id="{{ @$content['ID'] }}" data-type="{{ @$content['content_type'] }}" data-lg="{{ isUserLoggedIn() }}" data-title="{{ @$content['title'] }}" data-duration="{{ @$content['duration'] ?? @$content['season'][0]['duration'] }}">
 
         </div>
 

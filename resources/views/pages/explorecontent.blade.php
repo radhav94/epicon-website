@@ -36,7 +36,7 @@
             <div class="card-body">
                 {!! freePremiumDiv($val) !!}
 
-                <a class="upper-img" href="{{ getContentUrl($val) }}">
+                <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{ __(ucfirst(@$slug)) }}" class="upper-img" href="{{ getContentUrl($val) }}">
                     <img src="{{ $cover_img }}" alt="">
                 </a>
             </div>
