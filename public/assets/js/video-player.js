@@ -2,6 +2,11 @@ var dummyPlayer;
 var is_trailer = false;
 var is_episode = false;
 var vidPlaying = false;
+var player = {};
+var cur_cid = null;
+var cur_lg = $("#playVideo").data('lg');
+var cur_title = $("#playVideo").data('title');
+var cur_ctype = null;
 $(document).ready(function () {
 	/*dummyPlayer = new Plyr('#vidPlayer');
 	var dummyInit = false;
@@ -109,7 +114,7 @@ $(document).ready(function () {
 		const watchVideo = document.getElementById('watchVideo');
 		// const customPlayButton = document.getElementById('customPlayButton');
 		video.currentTime = parseInt(user_duration);
-		const defaultOptions = {
+		let defaultOptions = {
 			seekTime: 10,
 			controls: ['rewind', 'play', 'fast-forward', 'progress', 'current-time', 'volume', 'captions', 'settings', 'pip', 'fullscreen'],
 			customData: customData
@@ -120,8 +125,6 @@ $(document).ready(function () {
 
 		// defaultOptions.captions.tracks = subtitles;
 		// }
-
-		var player;
 
 		if (!Hls.isSupported()) {
 			video.src = source;
@@ -275,16 +278,25 @@ $(document).ready(function () {
 
 	}
 
-	const setplaytracking = function (player) {
-
+	const setplaytracking = function (player) {	
 		let requestData = player.config.customData;
+	
+		if (!requestData) {
+			requestData = {
+				cid : cur_cid,
+				lg : cur_lg,
+				tp: cur_ctype,
+				title: cur_title,
+			};
+		}
+
 		requestData.elapsed = player.currentTime;
 		requestData.completed = false;
 
 		if ((player.duration - player.currentTime) < 10) {
 			requestData.completed = true;
 		}
-
+		
 		if (requestData.lg == 1 && !is_trailer) {
 			sendAjaxRequest(APP_URL + '/setplayTracking', 'POST', JSON.stringify(requestData),
 				onTrackSuccess, onTrackError, 'application/json');
@@ -292,6 +304,15 @@ $(document).ready(function () {
 			function onTrackSuccess(response) { }
 			function onTrackError(response) { }
 		}
+	}
+
+	if($("#playVideo").length > 0) {
+		$("a, #closePlayer, .switch").click(function(){	
+			const currentVideo = $('#playVideo').data('id');
+			if(currentVideo != ""){
+				setplaytracking(player);
+			}
+		});
 	}
 
 	/*
@@ -314,11 +335,15 @@ function playContentVideo(cid,c_type,element) {
 
 	var promo_url = "";
 	var video_url = "";
+	cur_cid = cid;
+	cur_ctype = c_type;
 
 	if(c_type == 'trailer'){
 		is_trailer = true;
+		is_episode = false;
 	}else if(c_type == 'episode'){
 		is_episode = true;
+		is_trailer = false;
 	}
 	
 	let requestData = {
