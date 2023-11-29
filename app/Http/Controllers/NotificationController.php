@@ -19,7 +19,6 @@ class NotificationController extends Controller
         $headers = [
             'Authorization' => "Basic ".env('NOTIFICATION_AUTH'),
             'Accept' => 'application/json',
-            // 'Cookie' => '__cf_bm=eDHllvhoj99zAOo7VeDp4FL81HyGN12fG2wLX9uP5M4-1694688186-0-AdTC3iLJpDAFrF/XMALJlmy7xNa/Pn47yzz2sWH8w/3v3S/+FaaZq7EYAzeOGTEhDfQIjz9RFMBhZVsUS2G6/f8=; __cf_bm=L_pkXpCkhSsqhYZQyG.ICwkMn7nV6itcRE9iLQ7H2XA-1697205677-0-AS9cr18Ug1Qfhh2HOpYTLVVgwn6cYKYyq9CLdAKcgVebc8eTKSv4EqAY312XY+9xUbm9bP/P2rbTbre9eL0Wnb0=',
         ];
 
         try {
@@ -27,6 +26,14 @@ class NotificationController extends Controller
             $body = $response->getBody();
             $data = json_decode($body, true);
 
+            /*$filteredNotifications = array_filter($data['notifications'], function ($notification) {
+                echo date('Y-m-d H:i:s',$notification['send_after']);
+                echo '<br>';
+
+                return empty($notification['send_after']) || $notification['send_after'] <= strtotime(date('2023-11-27'));
+            });
+            dd($filteredNotifications);*/
+            
             return response()->json($data);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
