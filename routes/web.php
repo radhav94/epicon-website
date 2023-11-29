@@ -169,6 +169,21 @@ foreach ($lang as $val) {
         Route::get('my-rewards', [RewardsController::class, 'MyRewards'])->name('my-rewards');
 
         /* Kids section start */
+        // Static Pages Start
+        Route::get('kids/about', function () {
+            return view('static.about');
+        })->name('kids-about');
+
+        Route::get('kids/terms-of-use', function () {
+            return view('static.terms-of-use');
+        })->name('kids-terms-of-use');
+
+        Route::get('kids/privacy', function () {
+            return view('static.privacy');
+        })->name('kids-privacy');
+
+        Route::get('kids/feedback', [FeedbackController::class, 'Feedback'])->name('kids-feedback');
+        // Static Pages End
         Route::get('/kids/search', [SearchController::class, 'trendingsearch']);
         Route::get('/kids/midpage/{pageslug}/{catalog}', [PageController::class, 'showmidpagedetail']);
         Route::get('/kids/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);

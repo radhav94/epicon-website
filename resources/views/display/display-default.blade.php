@@ -4,7 +4,7 @@
 
  @if (@$result['data']['list'])
      @foreach ($result['data']['list'] as $key => $value)
-         @if (isset($value['display_type']) && ((isset($value['content']) && !empty($value['content'])) || $value['display_type'] == "shortandsweet"))
+         @if (isset($value['display_type']) && ((isset($value['content']) && !empty($value['content'])) || $value['display_type'] == "shortandsweet" || $value['display_type'] == "supermix"))
              @php
                  $template = 'display.' . $value['display_type'];
              @endphp
