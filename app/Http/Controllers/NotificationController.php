@@ -33,4 +33,10 @@ class NotificationController extends Controller
         }
     }
 
+    public function getServerIP(){
+        echo "<pre>";
+        print_r($_SERVER);
+        echo "</pre>";
+    }
+
 }
