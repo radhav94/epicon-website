@@ -20,18 +20,6 @@ class SubscriptionController extends Controller
         $todayStrToTime = strtotime($today);
         $usedDays = 0;
         $countrycode = getCountryCode();
-        // $countrycode = session()->get('country_code');
-        // $countrystate = getCountryStateData();
-        
-        // if(!empty($countrystate)){
-        //     foreach($countrystate['countries'] as $i=>$value){
-        //         if($countrycode==$value['code'] || $countrycode==$value['countryisdcode']){ 
-        //             $countrycode= $value['code'];
-        //             break;
-        //         }
-        //     }
-        // }
-        // dd($countrycode);
         $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2, true);
         $input = [
             'x_country' => @$countrycode,
@@ -471,7 +459,6 @@ class SubscriptionController extends Controller
         $postData = $request->all();
         $userid = $sessionData['user_id'] ?? '';
         $promocode = $postData['promocode'] ?? '';
-        // $countrycode = session()->get('country_code');
         $countrycode = getCountryCode();
         $postdata = array(
             'user_id' => $userid,

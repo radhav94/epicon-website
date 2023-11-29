@@ -1183,47 +1183,48 @@ function getJsonDataFromFile($filepath)
 }
 
 function getCountryCode(){
-    // $ipAddress = '114.143.27.82';
-
     // Check for the X-Forwarded-For header
     if (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
         $ipAddress = $_SERVER['HTTP_TRUE_CLIENT_IP'];
-    }elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
         $ipAddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    }
-    // Check for the actual client IP in case X-Forwarded-For is not present
-    elseif (isset($_SERVER['REMOTE_ADDR'])) {
+    } elseif (isset($_SERVER['REMOTE_ADDR'])) {
         $ipAddress = $_SERVER['REMOTE_ADDR'];
-    }
-    // dd($ipAddress);
-
-    // Make a request to the ipinfo.io API
-    $apiUrl = "https://ipinfo.io/{$ipAddress}/json";
-    $ch = curl_init($apiUrl);
-
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-    $response = curl_exec($ch);
-
-    if ($response === false) {
-        // Handle cURL error
-        die('cURL error: ' . curl_error($ch));
-    }
-    curl_close($ch);
-
-    // Decode the JSON response
-    $data = json_decode($response, true);
-
-    if ($data === null) {
-        // Handle JSON decoding error
-        die('JSON decoding error');
+    } else {
+        $ipAddress = '';
     }
 
-    // Extract and display the country code
-    $countryCode = isset($data['country']) ? $data['country'] : 'IN';
-    // dd($countryCode);
-    return $countryCode;
+    if (!empty($ipAddress)) {
+        $apiUrl = "https://ipinfo.io/{$ipAddress}/json";
+        $ch = curl_init($apiUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+
+        // Check for curl errors
+        if ($response === false) {
+            $errorCode = curl_errno($ch);
+            curl_close($ch);
+
+            // Handle the error, you might want to log it or return a default value
+            return "IN";
+        }
+
+        curl_close($ch);
+
+        $data = json_decode($response, true);
+
+        // Check for JSON decoding errors
+        if ($data === null) {
+            return "IN";
+        }
+
+        $countryCode = isset($data['country']) ? $data['country'] : 'IN';
+        return $countryCode;
+    } else {
+        return "IN";
+    }
 }
+
 
 function getCountryStateData()
 {
