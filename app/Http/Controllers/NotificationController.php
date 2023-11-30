@@ -55,14 +55,19 @@ class NotificationController extends Controller
     } else {
         $ipAddress = '';
     }
-    echo $ipAddress + "===============IP Adresss=========="
+    echo "=========".$ipAddress . "===============IP Adresss==========";
+    $apiUrl = "https://ipinfo.io/{$ipAddress}/json";
+        $ch = curl_init($apiUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+    print_r($response);
         $input = [
             'x_country' => @$countrycode,
             'x_continent' => @$countrycode,
         ];
         // $result = CurlAPI("subscriptions/plans", "GET", "", 2);
         $result = CurlAPI("v2/subscriptions/plans", "GET", $input, 2);
-        print_r($result);
+        dd($result);
         echo "</pre>";
     }
 
