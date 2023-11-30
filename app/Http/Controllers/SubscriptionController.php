@@ -154,15 +154,16 @@ class SubscriptionController extends Controller
             $result = ($sessionPlanData[$formData['amountid']]);
         }
         $currency = $result['currency'] ?? '';
+        $countrycode = getCountryCode();
         // dd($currency);
         $postData = [
             'user_id' => $userData['user_id'],
             'plan_id' => $result['id'],
             'order_value' => $result['actual_price'],
-            'x_country' => @$currency,
+            'x_country' => @$countrycode,
         ];
         $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2);
-        // dd($resultData);
+
         if ($resultData['success'] == true && !empty(@$resultData['order_data'])) {
             $resorder = $resultData['order_data'];
             $orderPostData = [
@@ -263,7 +264,7 @@ class SubscriptionController extends Controller
         
         // test amount logic
         $parameters['status'] = "";
-        if (env('DEV_AMT') == true && ($userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025' || $userid == 'epic11223@mailinator.com')) {
+        if (env('DEV_AMT') == true && ($userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025' || $userid == 'epic1122@mailinator.com')) {
             $totalamount = "1";
         }
         $parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => @$userData['name'], 'email' => @$userData['email'], 'phone' => @$userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
