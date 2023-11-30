@@ -84,11 +84,6 @@ $subplan = checkSubscription();
             }else{
                 $plancss = 'plan-expired';
             }
-            // if($subscriptionPurchases['currency'] == 'INR'){
-            //     $cur = "₹";
-            // }else{
-            //     $cur = "$";
-            // }
             ?>
             <div class="col-sm-6 col-md-7">
                 <div class="my-account-main {{$plancss}} position-relative mt-2">
