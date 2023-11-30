@@ -212,12 +212,13 @@ $meta['image'] = $share_img;
                             </div>
                     </div>
                     <div class="col-12">
-                    <p class="ua small mb-2 b7-color">
+                        <h3 class="titleText text-white">{{@$content['title']}}</h3>
+                        <p class="ua small mb-2 b7-color">
                             @include('pages.detail.detail-components.sub-bullets', [
                                 'v_content' => $content,
                             ])
                         </p>
-                    <div class="seemore">
+                        <div class="seemore">
                             <p class="text-white mb-0 descText">{!! sanitizeData(@$content['description']) !!}</p>
                             <span class="read-button"> </span>
                         </div>
@@ -229,7 +230,7 @@ $meta['image'] = $share_img;
                                     @endforeach
                                 </p>
                         </div>
-                            @endif
+                        @endif
                     </div>
                 </div>
             </div>

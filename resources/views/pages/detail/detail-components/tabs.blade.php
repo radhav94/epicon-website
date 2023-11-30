@@ -17,12 +17,13 @@
         }
         $tab1_title = 'Episodes';
         rsort($seasonList);
-    } elseif ($content['content_type'] == 'SEASON') {
+    } elseif ($content['content_type'] == 'SEASON' || $content['content_type'] == 'EPISODE') {
         $temp = $content['episodes'] ?? [];
         $tab1_title = 'Episodes';
         $lastSeason = @$content['slug'];
         $season_episode_data[$lastSeason] = $temp;
     }
+
 
     $active_tab = '';
     $tabs = [];
