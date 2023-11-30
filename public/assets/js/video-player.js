@@ -309,7 +309,7 @@ $(document).ready(function () {
 	if($("#playVideo").length > 0) {
 		$("a, #closePlayer, .switch").click(function(){	
 			const currentVideo = $('#playVideo').data('id');
-			if(currentVideo != ""){
+			if(currentVideo != "" && typeof player !== "undefined"){
 				setplaytracking(player);
 			}
 		});

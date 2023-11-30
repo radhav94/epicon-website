@@ -7,20 +7,20 @@
             <?php  $subplan = checkSubscription(); ?>
             @foreach ($ep_season_data as $key => $value)
                 <?php
-                 if(isKidsPage()){
-                    $addClass = "allAccessBtn-sub";
-                }else{
-                    $addClass = "subscription";
-                }
-                   if (!isUserLoggedIn()) {
+      
+                $addClass = isKidsPage() ? "allAccessBtn-sub" : "subscription";
+
+                $hreflink = getContentUrl($value);
+
+                $watchClass = '';
+
+                /*if (!isUserLoggedIn()) {
                     $watchClass = @$value['free_premium'] == true ? "login-with-subscription" : "";
                     $href = "javascript:void(0);"; 
                 } else {
-                    $hreflink = getContentUrl($value);
                     $watchClass = @$value['free_premium'] == true && @$subplan['status'] != 'active' ? $addClass : "";
                     $href = @$value['free_premium'] == true && @$subplan['status'] != 'active' ? 'javascript:void(0);' : $hreflink;
-                    
-                }   
+                } */  
                 if (!isset($value['ID']) || $value['ID'] == $content['ID']) {
                     continue;
                 }
@@ -32,7 +32,7 @@
                     @if(@$value['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($value) !!}
                     @else
-                    <a href="javascript:playContentVideo('{{ $value['ID'] }}','episode', this)" class="pik {{$watchClass}}">
+                    <a href="{{ $hreflink }}" class="pik {{$watchClass}}">
                     @endif
                         <img src="{{ $cover_img }}" alt="img">
 
