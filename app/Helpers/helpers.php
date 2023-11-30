@@ -1194,7 +1194,8 @@ function getCountryCode(){
         $ipAddress = '';
     }
 
-    $ipAddress = '170.40.150.126';
+    //us country
+    // $ipAddress = '170.40.150.126';
 
     if (!empty($ipAddress)) {
         $apiUrl = "https://ipinfo.io/{$ipAddress}/json";
