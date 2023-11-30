@@ -2,7 +2,7 @@ var dummyPlayer;
 var is_trailer = false;
 var is_episode = false;
 var vidPlaying = false;
-var player = {};
+var player;
 var cur_cid = null;
 var cur_lg = $("#playVideo").data('lg');
 var cur_title = $("#playVideo").data('title');
@@ -99,9 +99,9 @@ $(document).ready(function () {
 
 
 	loadVideoPlayer = function (source, subtitles = '', customData = false) {
-		// if (dummyPlayer) {
-		// 	dummyPlayer.destroy();
-		// }
+		if (player) {
+			player.destroy();
+		}
 
 		$('#vidPlayer').html(subtitles);
 		// const source = 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8';
@@ -309,7 +309,7 @@ $(document).ready(function () {
 	if($("#playVideo").length > 0) {
 		$("a, #closePlayer, .switch").click(function(){	
 			const currentVideo = $('#playVideo').data('id');
-			if(currentVideo != ""){
+			if(currentVideo != "" && typeof player !== "undefined"){
 				setplaytracking(player);
 			}
 		});
