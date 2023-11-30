@@ -42,7 +42,7 @@ class AndroidPaymentController extends Controller
         'productinfo' => 'epicon ' . $plan_id];
         if (strtoupper(env('APP_ENV')) == 'PRODUCTION') {
             if ($finalcurrency == 'USD') {
-                $rate = $this->getConvertedPrice($finalcurrency, 'INR');
+                $rate = getConvertedPrice($finalcurrency, 'INR');
                 $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                 $parameters['amount'] = round(floor($totalamount), 2);
             }
@@ -52,14 +52,14 @@ class AndroidPaymentController extends Controller
                 // }
             } else {
                 if ($finalcurrency == 'USD') {
-                    $rate = $this->getConvertedPrice($finalcurrency, 'INR');
+                    $rate = getConvertedPrice($finalcurrency, 'INR');
                     $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                     $parameters['amount'] = round(floor($totalamount), 2);
                 }
             }
         } else {
             if ($finalcurrency == 'USD') {
-                $rate = $this->getConvertedPrice($finalcurrency, 'INR');
+                $rate = getConvertedPrice($finalcurrency, 'INR');
                 $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                 $parameters['amount'] = round(floor($totalamount), 2);
             }
@@ -73,7 +73,7 @@ class AndroidPaymentController extends Controller
                 // }
             } else {
                 if ($finalcurrency == 'USD') {
-                    $rate = $this->getConvertedPrice($finalcurrency, 'INR');
+                    $rate = getConvertedPrice($finalcurrency, 'INR');
                     $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                     $parameters['amount'] = round(floor($totalamount), 2);
                 }
@@ -180,7 +180,7 @@ class AndroidPaymentController extends Controller
         if ($paymentresponse['status'] == 'success') {
             $orderData = $request->session()->get('payuParams');
             $getOnlyDate = date('Y-m-d', strtotime(@$orderData['subscription_end_date']));
-
+            $countrycode = getCountryCode();
             $updateOrderData = [
                 'plan' => $orderData['plan_id'] ?? '',
                 'user_id' => $orderData['user_id'] ?? '',
@@ -198,6 +198,8 @@ class AndroidPaymentController extends Controller
                 'recurring_receipt' => '',
                 'bank_name' => '',
                 'payment_mode' => $paymentresponse['mode'] ?? '',
+                'x_country' => @$countrycode,
+                'x_continent' => @$countrycode,
             ];
 
             $planValue = $orderData['epic_price'] ?? '';
