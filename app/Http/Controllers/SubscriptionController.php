@@ -38,8 +38,8 @@ class SubscriptionController extends Controller
                 foreach (@$result['plans'] as $val) {
 
                     if(isset($val['id'])){
-                        $plandata[@$val['id']] = [
-                            'id' => @$val['id'],
+                        $plandata[$val['id']] = [
+                            'id' => $val['id'],
                             'name' => @$val['name'],
                             'plan' => @$val['plan'],
                             'actual_price' => @$val['actual_price'],
@@ -51,7 +51,7 @@ class SubscriptionController extends Controller
                     }
                 }
                 if (!empty($plandata)) {
-                    $request->session()->put('plandata', @$plandata);
+                    $request->session()->put('plandata', $plandata);
                 }
 
                 return view('subscription.subscription', compact('result', 'offerCount'));
@@ -90,7 +90,7 @@ class SubscriptionController extends Controller
 
                         if(isset($val['id'])){
                             $plandata[$val['id']] = [
-                                'id' => @$val['id'],
+                                'id' => $val['id'],
                                 'name' => @$val['name'],
                                 'plan' => @$val['plan'],
                                 'actual_price' => @$val['actual_price'],
@@ -150,8 +150,8 @@ class SubscriptionController extends Controller
         $payment_type = $formData['payment_type'] ?? '';
         $sessionPlanData = $request->session()->get('plandata');
         $userData = $request->session()->get('user');
-        if($sessionPlanData[@$formData['amountid']]) {
-            $result = (@$sessionPlanData[$formData['amountid']]);
+        if($sessionPlanData[$formData['amountid']]) {
+            $result = ($sessionPlanData[$formData['amountid']]);
         }
         $currency = $result['currency'] ?? '';
         $countrycode = getCountryCode();
@@ -165,15 +165,15 @@ class SubscriptionController extends Controller
         $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2);
 
         if ($resultData['success'] == true && !empty(@$resultData['order_data'])) {
-            $resorder = @$resultData['order_data'];
+            $resorder = $resultData['order_data'];
             $orderPostData = [
-                "plan_id" => @$resorder['plan_id'],
-                "user_id" => @$resorder['user_id'],
+                "plan_id" => $resorder['plan_id'],
+                "user_id" => $resorder['user_id'],
                 "payment_gateway" => "payumoney",
-                "web_device" => @$resorder['device'],
-                "coupon_applied" => @$formData['coupanstatus'] ?? '',
-                "amount" => @$resorder['order_value'],
-                "epic_price" => @$result['epic_price'],
+                "web_device" => $resorder['device'],
+                "coupon_applied" => $formData['coupanstatus'] ?? '',
+                "amount" => $resorder['order_value'],
+                "epic_price" => $result['epic_price'],
             ];
             $request->session()->put('create_order', $orderPostData);
         }
@@ -251,16 +251,16 @@ class SubscriptionController extends Controller
         $userData = $request->session()->get('user');
         $userid = $userData['user_id'] ?? '';
         
-        $order = @$orderArr['order_data'];
-        $order_number = @$order['order_id'];
-        $totalamount = @$order['order_value'];
-        $plan_id = @$order['plan_id'];
-        $timestamp = @$order['created_date'];
-        @$validity = @$order['validity'];
+        $order = $orderArr['order_data'];
+        $order_number = $order['order_id'];
+        $totalamount = $order['order_value'];
+        $plan_id = $order['plan_id'];
+        $timestamp = $order['created_date'];
+        @$validity = $order['validity'];
         $splitTimeStamp = explode("T", $timestamp);
-        $newDate = @$splitTimeStamp[0];
+        $newDate = $splitTimeStamp[0];
         $startdate = date("d-m-Y", strtotime($newDate));
-        $finalcurrency = @$currency;
+        $finalcurrency = $currency;
         
         // test amount logic
         $parameters['status'] = "";
@@ -271,7 +271,7 @@ class SubscriptionController extends Controller
         if (strtoupper(env('APP_ENV')) == 'PRODUCTION') {
             if ($request->post('device') == 'android' || $request->post('device') == 'ios') {
                 if ($finalcurrency == 'USD') {
-                    $rate = getConvertedPrice(@$finalcurrency, 'INR');
+                    $rate = getConvertedPrice($finalcurrency, 'INR');
                     $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                     $parameters['amount'] = round(floor($totalamount), 2);
                 }
@@ -346,12 +346,12 @@ class SubscriptionController extends Controller
             $parameters['si'] = 1;
             $parameters['api_version'] = "7";
             $parameters['si_details'] = json_encode([
-                'billingAmount' => @$totalamount,
-                'billingCurrency' => @$finalcurrency,
-                'billingCycle' => @$billingCycle,
-                'billingInterval' => @$billingInterval,
-                'paymentStartDate' => @$newstartdate,
-                'paymentEndDate' => @$endstartdate
+                'billingAmount' => $totalamount,
+                'billingCurrency' => $finalcurrency,
+                'billingCycle' => $billingCycle,
+                'billingInterval' => $billingInterval,
+                'paymentStartDate' => $newstartdate,
+                'paymentEndDate' => $endstartdate
             ]);
 
 
