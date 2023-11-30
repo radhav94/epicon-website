@@ -17,7 +17,15 @@ if(isset($result) && !empty($result)){
     $actual_price = $result['actual_price'];
     $epic_price = $result['epic_price'];
     $save = $result['save'];
+    $currency_amt = @$result['currency'];
+
 }
+if($currency_amt == 'INR'){
+    $cur_var = 'Rs.';
+}else{
+    $cur_var = '$';
+}
+
 ?>
 <style>
     .active{ border-color: #04AA6D !important;
@@ -91,7 +99,7 @@ if(isset($result) && !empty($result)){
                 @if(empty($userData['mobile']) && $userData['mobile']=='' || empty($userData['email']) && $userData['email']=='')
                       <span id="submit_button"> </span>  
                 @else
-                <button class="fill-btn px-5" type="submit">{{__('Continue Pay')}} Rs. <?=$result['actual_price']?>
+                <button class="fill-btn px-5" type="submit">{{__('Continue Pay')}} {{$cur_var}} <?=$result['actual_price']?>
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.75 12C4.75 11.5858 5.08579 11.25 5.5 11.25H19.5C19.9142 11.25 20.25 11.5858 20.25 12C20.25 12.4142 19.9142 12.75 19.5 12.75H5.5C5.08579 12.75 4.75 12.4142 4.75 12Z" fill="#070707"/>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9697 4.46967C12.2626 4.17678 12.7374 4.17678 13.0303 4.46967L20.0303 11.4697C20.3232 11.7626 20.3232 12.2374 20.0303 12.5303L13.0303 19.5303C12.7374 19.8232 12.2626 19.8232 11.9697 19.5303C11.6768 19.2374 11.6768 18.7626 11.9697 18.4697L18.4393 12L11.9697 5.53033C11.6768 5.23744 11.6768 4.76256 11.9697 4.46967Z" fill="#070707"/>
