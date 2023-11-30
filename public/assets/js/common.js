@@ -116,7 +116,10 @@ $(document).ready(function () {
 
     $(".allAccessBtn-sub").click(function() {
         window.history.pushState({},'',"?ref=subscription");
-        $('#closePlayer').trigger('click');
+        var dispcss = $('.videoContainer').css('display');
+        if(dispcss == 'block'){
+            $('#closePlayer').trigger('click');
+        }
         $("#child-pin-modal").modal('show');
     });
 
