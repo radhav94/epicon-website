@@ -31,14 +31,14 @@ class PlayerController extends Controller
                     $extension = pathinfo($src, PATHINFO_EXTENSION);
 
                     // Check if the extension is 'srt'
-                    if (strtolower($extension) === 'srt') {
+                    // if (strtolower($extension) === 'srt') {
                         $srtContent = file_get_contents($src);
 
                         // Convert .srt to .vtt format
                         $vttContent = "WEBVTT\n\n";
                         $vttContent .= preg_replace("/,/", '.', $srtContent);
                         $src = 'data:text/vtt;base64,' . base64_encode($vttContent);
-                    }
+                    // }
 
 
                     $temp[] = [
