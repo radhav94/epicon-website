@@ -1194,6 +1194,8 @@ function getCountryCode(){
         $ipAddress = '';
     }
 
+    $ipAddress = '170.40.150.126';
+
     if (!empty($ipAddress)) {
         $apiUrl = "https://ipinfo.io/{$ipAddress}/json";
         $ch = curl_init($apiUrl);
@@ -1225,6 +1227,13 @@ function getCountryCode(){
     }
 }
 
+function getCurrency($val){
+    if((isset($val)) && ($val == 'INR' || $val == 'inr')){
+        return "₹";
+    }else{
+        return "$";
+    }
+}
 
 function getCountryStateData()
 {

@@ -84,6 +84,11 @@ $subplan = checkSubscription();
             }else{
                 $plancss = 'plan-expired';
             }
+            // if($subscriptionPurchases['currency'] == 'INR'){
+            //     $cur = "₹";
+            // }else{
+            //     $cur = "$";
+            // }
             ?>
             <div class="col-sm-6 col-md-7">
                 <div class="my-account-main {{$plancss}} position-relative mt-2">
@@ -109,8 +114,9 @@ $subplan = checkSubscription();
                                 <p>{{__('Days left')}}</p>
                             </div>
                         </div>
+                        
                         <div class="pp-right">
-                            <h3>₹ {{ isset($subscriptionPurchases['plan_amount']) ? $subscriptionPurchases['plan_amount'] : '' }} <span>/ {{ isset($plan_name) ? $plan_name : '' }}</span></h3>
+                            <h3>{!! getCurrency($subscriptionPurchases['currency']) !!} {{ isset($subscriptionPurchases['plan_amount']) ? $subscriptionPurchases['plan_amount'] : '' }} <span>/ {{ isset($plan_name) ? $plan_name : '' }}</span></h3>
                             <p>{{isset($substartdate) ? $substartdate : ''}} - {{ isset($subenddate) ? $subenddate : '' }}</p>
                         </div>
                     </div>

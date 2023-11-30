@@ -263,7 +263,7 @@ class SubscriptionController extends Controller
         
         // test amount logic
         $parameters['status'] = "";
-        if (env('DEV_AMT') == true && ($userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025')) {
+        if (env('DEV_AMT') == true && ($userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025' || $userid == 'epic11223@mailinator.com')) {
             $totalamount = "1";
         }
         $parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => @$userData['name'], 'email' => @$userData['email'], 'phone' => @$userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
@@ -509,6 +509,7 @@ class SubscriptionController extends Controller
             $orderData = $request->session()->get('orderdata');
             $orderValue = $request->session()->get('create_order');
             $getOnlyDate = date('Y-m-d', strtotime(@$orderData['subscription_end_date']));
+            $countrycode = getCountryCode();
 
             $updateOrderData = [
                 'plan' => $orderValue['plan_id'] ?? '',
@@ -527,6 +528,8 @@ class SubscriptionController extends Controller
                 'recurring_receipt' => '',
                 'bank_name' => '',
                 'payment_mode' => $paymentresponse['mode'] ?? '',
+                'x_country' => @$countrycode,
+                'x_continent' => @$countrycode,
 
             ];
 
@@ -749,6 +752,12 @@ class SubscriptionController extends Controller
         $ajaxData = $request->all();
         $email="";
         $mobile="";
+        $countrycode = getCountryCode();
+        if($countrycode == 'IN'){
+            $currency = ' Rs. ';
+        }else{
+            $currency = ' $ ';
+        }
         $otp = $ajaxData['vpin'] ? implode("",$ajaxData['vpin']) : '';
         $type = $ajaxData['type'] ?? '';
         if($type == "email"){
@@ -765,7 +774,7 @@ class SubscriptionController extends Controller
         //dd($postData);
         $verifyResponse = CurlAPI("users/contactDetailsOTPVerify", "POST", $postData, 2, true);
         //dd($verifyResponse);
-        $verifyResponse['html'] = '<button class="fill-btn px-5" type="submit">' . __('Continue Pay') . ' Rs. ' . $ajaxData['price'] . '
+        $verifyResponse['html'] = '<button class="fill-btn px-5" type="submit">' . __('Continue Pay') . $currency . $ajaxData['price'] . '
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M4.75 12C4.75 11.5858 5.08579 11.25 5.5 11.25H19.5C19.9142 11.25 20.25 11.5858 20.25 12C20.25 12.4142 19.9142 12.75 19.5 12.75H5.5C5.08579 12.75 4.75 12.4142 4.75 12Z" fill="#070707"/>
             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9697 4.46967C12.2626 4.17678 12.7374 4.17678 13.0303 4.46967L20.0303 11.4697C20.3232 11.7626 20.3232 12.2374 20.0303 12.5303L13.0303 19.5303C12.7374 19.8232 12.2626 19.8232 11.9697 19.5303C11.6768 19.2374 11.6768 18.7626 11.9697 18.4697L18.4393 12L11.9697 5.53033C11.6768 5.23744 11.6768 4.76256 11.9697 4.46967Z" fill="#070707"/>

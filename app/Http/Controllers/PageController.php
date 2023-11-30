@@ -17,7 +17,7 @@ class PageController extends Controller
 
     public function index($slug = 'home-v2')    
     {
-        // dd(session()->get('country_code'));
+        // dd(session()->get('user_token'));
         $pageslug = strtolower($slug);
         
         SilentLoginFunction();
