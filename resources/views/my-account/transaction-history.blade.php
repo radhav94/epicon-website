@@ -61,6 +61,7 @@
                                 $plan_name = '1 Year';
                                 break;
                         }
+                        
 
                         @endphp
                             <tr>
@@ -68,7 +69,7 @@
                                 <td>{{ isset($subs_start_date) ? $subs_start_date : '' }} </td>
                                 <!-- <td><img src="{{ asset('/img/visa.svg') }}" alt="icon" class="me-2">visa **** **** **** 1823</td> -->
                                 <td>{{ isset($subs_end_date) ? $subs_end_date : '' }}</td>
-                                <td class="text-end">₹ {{ isset($value['plan_amount']) ? $value['plan_amount'] : '' }}</td>
+                                <td class="text-end">{!! getCurrency($value['currency']) !!} {{ isset($value['plan_amount']) ? $value['plan_amount'] : '' }}</td>
                             </tr>
                         @endforeach
                     @else

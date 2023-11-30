@@ -38,12 +38,7 @@
                     }else{
                         $classActive = "";
                     }
-                    if($val['currency'] == 'INR' || $val['currency'] == 'inr'){
-                        $currency_name = "₹ ";
-                    }else{
-                        $currency_name = "$ ";
-                    }
-                    if($val['id'] == 'epic_in_pl_4'){
+                    if(@$val['id'] == 'epic_in_pl_4'){
                         $bestv = '<span class="best-value">Best Value</span>';
                     }else{
                         $bestv ="";
@@ -51,15 +46,21 @@
                     ?>
                     <li class="nav-item" role="presentation">
                         
-                        <button class="nav-link planid {{$classActive}}" id="pills-starter-tab" data-bs-toggle="pill" data-bs-target="#pills-starter" type="button" role="tab" aria-controls="pills-starter" aria-selected="true" data-id="{{$val['id']}}">
+                        <button class="nav-link planid {{$classActive}}" id="pills-starter-tab" data-bs-toggle="pill" data-bs-target="#pills-starter" type="button" role="tab" aria-controls="pills-starter" aria-selected="true" data-id="{{@$val['id']}}">
                         {!! $bestv !!}
                             <div>
                                 <h6>
-                                    <p class="small mb-0">{{$val['name']}}</p>
-                                    <span class="d-none save-{{$val['id']}}"></span>
+                                    <?php if($val['currency'] == 'INR' || $val['currency'] == 'inr'){ ?>
+                                    <p class="small mb-0">{{@$val['name']}}</p>
+                                     <?php    } ?>
+                                    <span class="d-none save-{{@$val['id']}}"></span>
                                 </h6>
-                                <h3 class="d-flex current-{{$val['id']}}"><div class="val-price">{{$currency_name}} {{$val['actual_price']}}.00</div> <span class="ms-1 small"><b class="b-none"> /</b> {{$val['plan']}}</span></h3>
-                                <h5 class="d-none"> </h5><h5 class="d-none oldprice-{{$val['id']}}"></h5>
+                                <?php if($val['currency'] == 'INR' || $val['currency'] == 'inr'){ ?>
+                                <h3 class="d-flex current-{{@$val['id']}}"><div class="val-price">{!! getCurrency(@$val['currency']) !!} {{@$val['actual_price']}}.00</div><span class="ms-1 small"><b class="b-none"> /</b> {{@$val['plan'] ? @$val['plan'] : @$val['name']}}</span></h3>
+                                <?php    }else { ?> 
+                                    <h3 class="d-flex current-{{@$val['id']}}"><div class="val-price">{!! getCurrency(@$val['currency']) !!} {{@$val['actual_price']}}</div><span class="ms-1 small"><b class="b-none"> /</b> {{@$val['name'] ? @$val['name'] : ''}}</span></h3>
+                                    <?php } ?>
+                                <h5 class="d-none"> </h5><h5 class="d-none oldprice-{{@$val['id']}}"></h5>
                             </div>
                         </button>
                     </li>
@@ -103,7 +104,7 @@
                                 <div class="offer-data"> 
                                 <ul class="additional-carousel mb-0 mt-3 p-0">
                                 @foreach($result['plans'] as $key => $val)
-                                    @if ($val['id'] == 'epic_in_pl_1')
+                                    @if (@$val['id'] == 'epic_in_pl_1')
                                     
                                     @foreach($val['benifits'] as $bn=>$bnval)
                                    
@@ -180,8 +181,8 @@
 
                             <form method="post" action="{{getUrl('paymentMethod')}}" class="paymentForm">
                             @csrf
-                            <input type="hidden" name="amountid" id="amountid" value="{{$result['plans'][0]['id']}}">
-                            <input type="hidden" name="currency" id="currency" value="{{$val['currency']}}">
+                            <input type="hidden" name="amountid" id="amountid" value="{{@$result['plans'][0]['id']}}">
+                            <input type="hidden" name="currency" id="currency" value="{{@$val['currency']}}">
                             <input type="hidden" name="coupanstatus" id="coupanstatus" value="No">
                             
                             {{--<p class="get-help mt-2 small">{{__('Already subscribed')}}?<a href="">{{__('Restore')}}</a></p>--}}
@@ -324,10 +325,19 @@
                     var o = e.plans;
                     $.each(o, function (e, t) {
                         $('.oldprice-'+t.id).removeClass('d-none');
-                        $('.oldprice-'+t.id).text('₹ '+t.actual_price+'.00');
+                        if(t.currency == 'INR' || t.currency == 'inr'){
+                            $('.oldprice-'+t.id).text('₹ '+t.actual_price+'.00');
+                        }else{
+                            $('.oldprice-'+t.id).text('$ '+t.actual_price);
+                        }
+                        
                         $('.save-'+t.id).removeClass('d-none');
                         $('.save-'+t.id).text('Save 20%');
+                        if(t.currency == 'INR' || t.currency == 'inr'){
                         $('.current-'+t.id).html('₹ '+t.discounted_price+'<span class="ms-1 small"> / '+t.plan+'</span>');
+                        }else{
+                            $('.current-'+t.id).html('$ '+t.discounted_price+'<span class="ms-1 small"> / '+t.name+'</span>');
+                        }
                         $("#coupanstatus").val('Yes');
                        
                     });

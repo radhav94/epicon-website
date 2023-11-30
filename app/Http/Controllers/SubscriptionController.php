@@ -19,8 +19,15 @@ class SubscriptionController extends Controller
         $today = date("Y-m-d") . "T" . date("H:i:s") . "Z";
         $todayStrToTime = strtotime($today);
         $usedDays = 0;
+        $countrycode = getCountryCode();
         $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2, true);
-        $result = CurlAPI("subscriptions/plans", "GET", "", 2);
+        $input = [
+            'x_country' => @$countrycode,
+            'x_continent' => @$countrycode,
+        ];
+        // $result = CurlAPI("subscriptions/plans", "GET", "", 2);
+        $result = CurlAPI("v2/subscriptions/plans", "GET", $input, 2);
+        // dd($result);
         if (empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['message'] == 'No subscriptions found') {
 
             //$result = CurlAPI("subscriptions/plans", "GET", "", 2);
@@ -147,12 +154,16 @@ class SubscriptionController extends Controller
             $result = ($sessionPlanData[$formData['amountid']]);
         }
         $currency = $result['currency'] ?? '';
+        $countrycode = getCountryCode();
+        // dd($currency);
         $postData = [
             'user_id' => $userData['user_id'],
             'plan_id' => $result['id'],
             'order_value' => $result['actual_price'],
+            'x_country' => @$countrycode,
         ];
         $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2);
+
         if ($resultData['success'] == true && !empty(@$resultData['order_data'])) {
             $resorder = $resultData['order_data'];
             $orderPostData = [
@@ -260,8 +271,8 @@ class SubscriptionController extends Controller
         if (strtoupper(env('APP_ENV')) == 'PRODUCTION') {
             if ($request->post('device') == 'android' || $request->post('device') == 'ios') {
                 if ($finalcurrency == 'USD') {
-                    $rate = $this->getConvertedPrice($finalcurrency, 'INR');
-                    $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
+                    $rate = getConvertedPrice($finalcurrency, 'INR');
+                    $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                     $parameters['amount'] = round(floor($totalamount), 2);
                 }
             } else {
@@ -272,8 +283,9 @@ class SubscriptionController extends Controller
                 } else {
                     //$parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => $userData['name'], 'email' => $userData['email'], 'phone' => @$userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
                     if ($finalcurrency == 'USD') {
-                        $rate = $this->getConvertedPrice($finalcurrency, 'INR');
-                        $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
+                        $rate = getConvertedPrice($finalcurrency, 'INR');
+                        // dd($rate);
+                        $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                         $parameters['amount'] = round(floor($totalamount), 2);
                     }
                 }
@@ -282,8 +294,8 @@ class SubscriptionController extends Controller
             // if not production - run below code
             if ($request->post('device') == 'android' || $request->post('device') == 'ios') {
                 if ($finalcurrency == 'USD') {
-                    $rate = $this->getConvertedPrice($finalcurrency, 'INR');
-                    $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
+                    $rate = getConvertedPrice($finalcurrency, 'INR');
+                    $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                     $parameters['amount'] = round(floor($totalamount), 2);
                 }
                 Log::info("----------#####log for ios full renew plan for payu -----------");
@@ -297,8 +309,8 @@ class SubscriptionController extends Controller
                 } else {
                     //$parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => $userData['name'], 'email' => $userid, 'phone' => $userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
                     if ($finalcurrency == 'USD') {
-                        $rate = $this->getConvertedPrice($finalcurrency, 'INR');
-                        $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 70) * $totalamount;
+                        $rate = getConvertedPrice($finalcurrency, 'INR');
+                        $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                         $parameters['amount'] = round(floor($totalamount), 2);
                     }
                 }
@@ -448,12 +460,15 @@ class SubscriptionController extends Controller
         $postData = $request->all();
         $userid = $sessionData['user_id'] ?? '';
         $promocode = $postData['promocode'] ?? '';
+        $countrycode = getCountryCode();
         $postdata = array(
             'user_id' => $userid,
             'coupon_code' => $promocode,
+            'x_country' => @$countrycode,
         );
 
         $listResponseData = CurlAPI("subscriptions/createCouponOrder", 'POST', $postdata, 2);
+        // dd($listResponseData);
         if ($listResponseData && @$listResponseData['success'] == true) {
             $sessionData = $request->session()->get('plandata');
             foreach ($listResponseData['plans'] as $key => $val) {
@@ -495,6 +510,7 @@ class SubscriptionController extends Controller
             $orderData = $request->session()->get('orderdata');
             $orderValue = $request->session()->get('create_order');
             $getOnlyDate = date('Y-m-d', strtotime(@$orderData['subscription_end_date']));
+            $countrycode = getCountryCode();
 
             $updateOrderData = [
                 'plan' => $orderValue['plan_id'] ?? '',
@@ -513,6 +529,8 @@ class SubscriptionController extends Controller
                 'recurring_receipt' => '',
                 'bank_name' => '',
                 'payment_mode' => $paymentresponse['mode'] ?? '',
+                'x_country' => @$countrycode,
+                'x_continent' => @$countrycode,
 
             ];
 
@@ -735,6 +753,12 @@ class SubscriptionController extends Controller
         $ajaxData = $request->all();
         $email="";
         $mobile="";
+        $countrycode = getCountryCode();
+        if($countrycode == 'IN'){
+            $currency = ' Rs. ';
+        }else{
+            $currency = ' $ ';
+        }
         $otp = $ajaxData['vpin'] ? implode("",$ajaxData['vpin']) : '';
         $type = $ajaxData['type'] ?? '';
         if($type == "email"){
@@ -751,7 +775,7 @@ class SubscriptionController extends Controller
         //dd($postData);
         $verifyResponse = CurlAPI("users/contactDetailsOTPVerify", "POST", $postData, 2, true);
         //dd($verifyResponse);
-        $verifyResponse['html'] = '<button class="fill-btn px-5" type="submit">' . __('Continue Pay') . ' Rs. ' . $ajaxData['price'] . '
+        $verifyResponse['html'] = '<button class="fill-btn px-5" type="submit">' . __('Continue Pay') . $currency . $ajaxData['price'] . '
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M4.75 12C4.75 11.5858 5.08579 11.25 5.5 11.25H19.5C19.9142 11.25 20.25 11.5858 20.25 12C20.25 12.4142 19.9142 12.75 19.5 12.75H5.5C5.08579 12.75 4.75 12.4142 4.75 12Z" fill="#070707"/>
             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9697 4.46967C12.2626 4.17678 12.7374 4.17678 13.0303 4.46967L20.0303 11.4697C20.3232 11.7626 20.3232 12.2374 20.0303 12.5303L13.0303 19.5303C12.7374 19.8232 12.2626 19.8232 11.9697 19.5303C11.6768 19.2374 11.6768 18.7626 11.9697 18.4697L18.4393 12L11.9697 5.53033C11.6768 5.23744 11.6768 4.76256 11.9697 4.46967Z" fill="#070707"/>

@@ -170,6 +170,7 @@ class LoginController extends Controller
         $password = $request->post('login_pwd');
         $signup_method = $request->post('signup_method');
         // $userAgent = $request->post('userAgent');
+        $stdisdcode = @$request->post('stdisdcode');
         if ($signup_method == 'MOBILE' && !empty($request->post('stdisdcode'))) {
             $userid = str_replace("+", "", $request->post('stdisdcode')) . $userid;
         }
@@ -180,7 +181,7 @@ class LoginController extends Controller
         ];
 
         $loginResponseData = CurlAPI("users/loginWithPassword", 'POST', $postedData, 2);
-        // dd($loginResponseData);
+
         $response['message'] = $loginResponseData['message'];
         
         if (@$loginResponseData['success'] == true && !empty($loginResponseData['user_data'])) {
@@ -189,7 +190,6 @@ class LoginController extends Controller
             $request->session()->put('user_id', $userid);
             $request->session()->put('user_token', $loginResponseData['token']);
             $request->session()->put('device_id', @$loginResponseData['user_data']['device_id']);
-
             if (!empty($request->post('rememberme'))) {
                 setcookie("user_id", strtolower($userid), time() + 60 * 60 * 24 * 30);
                 setcookie("user_password", $password, time() + 60 * 60 * 24 * 30);
