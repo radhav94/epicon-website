@@ -37,13 +37,13 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
         -moz-appearance: textfield;
     }
 
-    .setting-right .tab-content .tab-pane {
+    /* .setting-right .tab-content .tab-pane {
         padding: 0;
     }
 
     .setting-right .tab-content .tab-pane.show.active {
         padding: 20px 15px;
-    }
+    } */
 </style>
 
 @stop
