@@ -92,7 +92,8 @@ class AuthSocialController extends Controller
                 $user_data = [];
                 $posted_data = [
                     'user_signup_method' => $user_signup_method,
-                    $social_id => $user_id
+                    $social_id => $user_id,
+                    'user_agent' => getUserAgent(),
                 ];
                 
                 $epic_web_arr = CurlAPI('users/socialLogin', 'POST', $posted_data, 2);

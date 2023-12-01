@@ -145,6 +145,7 @@ class LoginController extends Controller
             'password' => $password,
             'date_of_birth' => $date_of_birth != "" ? date("Y-m-d", strtotime($date_of_birth)) : "",
             'gender' => $gender,
+            'user_agent' => getUserAgent(),
         );
         $registerResponseData = CurlAPI("users/register", 'POST', $postData, 2);
         $request->session()->put('registerResponseData', $registerResponseData);
