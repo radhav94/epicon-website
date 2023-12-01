@@ -48,6 +48,7 @@
                 arrows: false,
                 dots: true,
                 autoplay: true,
+                variableWidth: true,
             });
         });
 
