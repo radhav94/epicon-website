@@ -59,7 +59,7 @@ if ($request->has('type')) {
                 </a>
             </li>
             <li>
-                <a onclick="click_menu(this)" data-event_context="header" data-element_text="upcoming on epic on" href="{{ getUrl('upcoming-epicon') }}">
+                <a onclick="click_menu(this)" data-event_context="header" data-element_text="upcoming on epic on" href="{{ getUrl('coming-soon') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path d="M10.6665 2.6665V6.6665" stroke="white" stroke-width="1.5" stroke-miterlimit="10"
@@ -336,7 +336,7 @@ if ($request->has('type')) {
                         <li class="subc-text"><a href="{{ getUrl('feedback') }}">{{__('Help & Feedback')}}</a></li>
                         <li class="subc-text logout"><a href="javascript:void(0);">{{__('Log out')}}</a></li>
                         <li class="subc-text atp">
-                            <a href="{{ getUrl('about') }}">{{__('About Us')}}</a>
+                            <a href="{{ getUrl('about-us') }}">{{__('About Us')}}</a>
                             <a href="{{ route('terms-of-use') }}">{{__('Terms of Use')}}</a>
                             <a href="{{ route('privacy') }}">{{__('Privacy Policy')}}</a>
                         </li>

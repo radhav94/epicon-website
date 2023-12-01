@@ -80,7 +80,7 @@ if ($request->has('type')) {
                         <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Privacy Policy')}}" href="{{route('kids-privacy')}}">{{__('Privacy Policy')}}</a></li>
                         <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Help Centre')}}" href="{{getUrl('kids/feedback')}}">{{__('Help Centre')}}</a></li>
                         @else
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('About Us')}}" href="{{getUrl('about')}}">{{__('About Us')}}</a></li>
+                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('About Us')}}" href="{{getUrl('about-us')}}">{{__('About Us')}}</a></li>
                         <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Terms of Use')}}" href="{{route('terms-of-use')}}">{{__('Terms of Use')}}</a></li>
                         <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Privacy Policy')}}" href="{{route('privacy')}}">{{__('Privacy Policy')}}</a></li>
                         <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Help Centre')}}" href="{{getUrl('feedback')}}">{{__('Help Centre')}}</a></li>
