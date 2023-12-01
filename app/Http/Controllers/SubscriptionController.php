@@ -561,7 +561,11 @@ class SubscriptionController extends Controller
             ///////////---*** Verify Payment End ***---///////////
 
             $verifyDetails = json_decode($verify_payment);
-            Log::info($verifyDetails);
+            $data= json_decode( json_encode($verify_payment), true);
+
+            Log::info($verifyDetails->status);
+            Log::info("---------yes-------");
+            Log::info($data);
             if ($verifyDetails->status) {
 
 
