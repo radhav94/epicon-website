@@ -1183,6 +1183,7 @@ function getJsonDataFromFile($filepath)
 }
 
 function getCountryCode(){
+    if(!session()->get('countrycode')){
     // Check for the X-Forwarded-For header
     if (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
         $ipAddress = $_SERVER['HTTP_TRUE_CLIENT_IP'];
@@ -1198,34 +1199,29 @@ function getCountryCode(){
     // $ipAddress = '170.40.150.126';
 
     if (!empty($ipAddress)) {
-        $apiUrl = "https://ipinfo.io/{$ipAddress}/json";
-        $ch = curl_init($apiUrl);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-
-        // Check for curl errors
-        if ($response === false) {
-            $errorCode = curl_errno($ch);
-            curl_close($ch);
-
-            // Handle the error, you might want to log it or return a default value
-            return "IN";
-        }
-
-        curl_close($ch);
-
-        $data = json_decode($response, true);
-
-        // Check for JSON decoding errors
-        if ($data === null) {
-            return "IN";
-        }
-
-        $countryCode = isset($data['country']) ? $data['country'] : 'IN';
+        $data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ipAddress)); 
+// echo 'Country Name: ' . $data->geoplugin_countryName . "\n"; 
+// echo 'City Name: ' . $data->geoplugin_city . "\n"; 
+// echo 'Continent Name: ' . $data->geoplugin_continentName . "\n"; 
+// echo 'Latitude: ' . $data->geoplugin_latitude . "\n"; 
+// echo 'Longitude: ' . $data->geoplugin_longitude . "\n"; 
+// echo 'Currency Symbol: ' . $data->geoplugin_currencySymbol . "\n"; 
+// echo 'Currency Code: ' . $data->geoplugin_currencyCode . "\n"; 
+// echo 'Timezone: ' . $data->geoplugin_timezone;
+$countryCode = isset($data->geoplugin_countryCode) ? $data->geoplugin_countryCode : 'IN';
+// dd($countryCode);
+session()->put('countrycode',$countryCode);
+Log::info("----------#####Session Put Country Code -----------");
         return $countryCode;
     } else {
+        Log::info("----------#####Session Put Country Code -----------");
+        session()->put('countrycode','IN');
         return "IN";
     }
+}else{
+    return session()->get('countrycode');
+    Log::info("----------#####Session Getting Country Code -----------");
+}
 }
 
 function getCurrency($val){

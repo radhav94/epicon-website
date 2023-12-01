@@ -20,6 +20,8 @@ class SubscriptionController extends Controller
         $todayStrToTime = strtotime($today);
         $usedDays = 0;
         $countrycode = getCountryCode();
+        // $request->session()->put('countrycode',$countrycode);
+        // dd($countrycode);
         $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2, true);
         $input = [
             'x_country' => @$countrycode,
@@ -154,7 +156,8 @@ class SubscriptionController extends Controller
             $result = ($sessionPlanData[$formData['amountid']]);
         }
         $currency = $result['currency'] ?? '';
-        $countrycode = getCountryCode();
+        $countrycode = $request->session()->get('countrycode');
+        // $countrycode = getCountryCode();
         // dd($currency);
         $postData = [
             'user_id' => $userData['user_id'],
@@ -460,7 +463,8 @@ class SubscriptionController extends Controller
         $postData = $request->all();
         $userid = $sessionData['user_id'] ?? '';
         $promocode = $postData['promocode'] ?? '';
-        $countrycode = getCountryCode();
+        // $countrycode = getCountryCode();
+        $countrycode = $request->session()->get('countrycode');
         $postdata = array(
             'user_id' => $userid,
             'coupon_code' => $promocode,
@@ -510,7 +514,8 @@ class SubscriptionController extends Controller
             $orderData = $request->session()->get('orderdata');
             $orderValue = $request->session()->get('create_order');
             $getOnlyDate = date('Y-m-d', strtotime(@$orderData['subscription_end_date']));
-            $countrycode = getCountryCode();
+            // $countrycode = getCountryCode();
+            $countrycode = $request->session()->get('countrycode');
 
             $updateOrderData = [
                 'plan' => $orderValue['plan_id'] ?? '',
@@ -753,7 +758,8 @@ class SubscriptionController extends Controller
         $ajaxData = $request->all();
         $email="";
         $mobile="";
-        $countrycode = getCountryCode();
+        // $countrycode = getCountryCode();
+        $countrycode = $request->session()->get('countrycode');
         if($countrycode == 'IN'){
             $currency = ' Rs. ';
         }else{
