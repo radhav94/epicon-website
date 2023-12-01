@@ -42,16 +42,21 @@ $lang = ['hi', 'en'];
 Route::get('test', [TestController::class, 'index']);
 // server ip testing
 Route::get('serveriptesting123xyz', [NotificationController::class, 'getServerIP']);
-////////// TEST Routes /////////////////
-Route::get('distro-landing', function () {
-    return view('distro-landing');
-});
-Route::get('distro-video', function () {
-    return view('distro-video');
-});
-////////// END TEST Routes /////////////////
 
 
+//////Start Redirection routes ////////
+
+Route::redirect('watch/tv-shows/{any}', '/', 301);
+Route::redirect('watch/amar-chitra-katha/{any}', '/', 301);
+Route::redirect('watch/epic-shorts/{any}', '/', 301);
+Route::redirect('watch/movies/{any}', '/', 301);
+Route::redirect('listen/podcast/{any}', '/', 301);
+Route::redirect('play/gamepix/{any}', '/', 301);
+Route::redirect('play/gamezop/{any}', '/', 301);
+Route::redirect('contact-us', '/', 301);
+Route::redirect('listen', 'podcast', 301);
+Route::redirect('play', 'games', 301);
+//////End Redirection routes ////////
 
 
 Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.loadmore');
@@ -170,7 +175,7 @@ foreach ($lang as $val) {
 
         /* Kids section start */
         // Static Pages Start
-        Route::get('kids/about', function () {
+        Route::get('kids/about-us', function () {
             return view('static.about');
         })->name('kids-about');
 
@@ -201,14 +206,14 @@ foreach ($lang as $val) {
 
     Route::group(['prefix' => $prefix, 'middleware' => 'checkUserAuthToken'], function () {
         Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback');
-        Route::get('about', function () {
+        Route::get('about-us', function () {
             return view('static.about');
         })->name('about');
 
         Route::get('explore/{slug}', [PageController::class, 'explore_details']);
 
         Route::get('live-tv', [LiveTvController::class, 'livetv'])->name('live-tv');
-        Route::get('upcoming-epicon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
+        Route::get('coming-soon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
         Route::get('new-popular', [PopularController::class, 'NewsPopular'])->name('new-popular');
         Route::get('search', [SearchController::class, 'trendingsearch'])->name('search');
         Route::post('get-search', [SearchController::class, 'search'])->name('get-search');

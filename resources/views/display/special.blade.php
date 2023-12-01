@@ -3,7 +3,7 @@
          <h1 class="text-white small">{{ $title }}</h1>
          @if (@$value['show_more'])
           @if($title == 'Upcoming On Epicon')
-                <a onclick="click_cta(this)" data-event_context="{{ @$title }}" data-element_text="SEE ALL" href="{{ getUrl('upcoming-epicon') }}">
+                <a onclick="click_cta(this)" data-event_context="{{ @$title }}" data-element_text="SEE ALL" href="{{ getUrl('coming-soon') }}">
             @else  
                 <a onclick="click_cta(this)" data-event_context="{{ @$title }}" data-element_text="SEE ALL" href="{{ getMidPageUrl($value) }}">
 
