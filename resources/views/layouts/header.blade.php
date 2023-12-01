@@ -173,6 +173,7 @@ if ($request->has('type')) {
                 'podcast' => 'Podcasts',
                 'explore' => 'Explore',
                 'premium' => 'Premium',
+                'live-tv' => 'Live TV',
                 'distro-tv' => 'DistroTV',
                 // 'games' => 'Games'
             ];
