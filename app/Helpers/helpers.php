@@ -276,11 +276,11 @@ function topTenDiv($val)
 {
     if (@$val['is_top10'] == true) {
         echo '<span class="top-ten position-absolute">
-                <ul class="list-unstyled text-white">
-                    <li>Top</li>
-                    <li>10</li>
-                </ul>
-            </span>';
+        <ul class="list-unstyled text-white">
+        <li>Top</li>
+        <li>10</li>
+        </ul>
+        </span>';
     }
 }
 
@@ -307,7 +307,7 @@ function getWishListAction($val, $wishlist, $type = 1)
         } else {
             $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 22 16" fill="none">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8161 0.272093C21.2325 0.65643 21.2584 1.30553 20.8741 1.72189L7.999 15.6699C7.80961 15.8751 7.54478 15.9942 7.26561 15.9998C6.98644 16.0054 6.71706 15.8969 6.51962 15.6995L1.155 10.3349C0.754324 9.9342 0.754324 9.28458 1.155 8.88391C1.55567 8.48324 2.20529 8.48324 2.60596 8.88391L7.2155 13.4935L19.3663 0.330085C19.7506 -0.086281 20.3997 -0.112245 20.8161 0.272093Z" fill="white"/>
-          </svg>';
+            </svg>';
         }
         // return '<button class="big-add-list addToList ' . $wishAction . '-icon" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="1"> </button>';
         return '<button class="big-add-list ' . $logClass . $addToList . '" data-id="' . @$val['ID'] . '" data-action="' . $wishAction . '" data-type="1">  ' . $icon . '</button>';
@@ -791,10 +791,10 @@ function checkSubscription()
 
 // old logic
 function SilentLoginFunction_old(){
-        $request = Request();
-        $user = isUserLoggedIn();
+    $request = Request();
+    $user = isUserLoggedIn();
 
-        if(!empty($request->get('source'))){
+    if(!empty($request->get('source'))){
         if (($user) != false && strtolower($request->get('source') != "dishtv")) {
         } elseif ($user != false && strtolower($request->get('source') == "dishtv")) {
             $request->session()->forget('user');
@@ -838,46 +838,46 @@ function SilentLoginFunction_old(){
 
 function SilentLoginFunction(){
     $request = Request();
-       
-        $user = isUserLoggedIn();
-        $user_id = $request->get('user_id');
-        $source = $request->get('source');
 
-        if ((isUserLoggedIn()) == false) {
-            if (isset($user_id) && isset($source)) {
-                silentLogin($user_id, $source);
-            }
+    $user = isUserLoggedIn();
+    $user_id = $request->get('user_id');
+    $source = $request->get('source');
+
+    if ((isUserLoggedIn()) == false) {
+        if (isset($user_id) && isset($source)) {
+            silentLogin($user_id, $source);
         }
+    }
 }
 
 // Silent Login API
 function silentLogin($user_id, $source)
-    {
-        $request = Request();
-        $request_parameter = [
-            'user_id' =>  $user_id,
-            'source' =>   $source,
-            'user_agent' => getUserAgent(),
-        ];
-        $epicwebArr =  CurlAPI("users/silent-login", 'POST', $request_parameter, 2, true);
+{
+    $request = Request();
+    $request_parameter = [
+        'user_id' =>  $user_id,
+        'source' =>   $source,
+        'user_agent' => getUserAgent(),
+    ];
+    $epicwebArr =  CurlAPI("users/silent-login", 'POST', $request_parameter, 2, true);
         // if ($epicwebArr['success'] == true && isset($epicwebArr['session_id']) && !empty($epicwebArr['user_data'])) {
-        if ($epicwebArr['success'] == true && !empty($epicwebArr['user_data'])) {
-            $userdata = $epicwebArr['user_data'];
+    if ($epicwebArr['success'] == true && !empty($epicwebArr['user_data'])) {
+        $userdata = $epicwebArr['user_data'];
 
-            $trakcingData = ['Name' => $userdata['name'], 'Identity' => $userdata['user_id'], 'Email' => $userdata['user_id'], 'MSG-email' => true, 'MSG-push' => true];
-            $request->session()->put('authenticated', time());
+        $trakcingData = ['Name' => $userdata['name'], 'Identity' => $userdata['user_id'], 'Email' => $userdata['user_id'], 'MSG-email' => true, 'MSG-push' => true];
+        $request->session()->put('authenticated', time());
             // $request->session()->put('api_session', $epicwebArr['session_id']);
             // $request->session()->put('user', $user);
-            $request->session()->put('user_id', $userdata['user_id']);
-            $request->session()->put('user', $userdata);
-            $request->session()->put('user_token', $epicwebArr['token']);
-            $request->session()->put('device_id', @$userdata['device_id']);
-            $request->session()->put('logintracking', $trakcingData);
-            $request->session()->put('logintrackingType', "Login");
-            $request->session()->put('authEventTrack', 'Login successfull');
-            $request->session()->put('eventCat', 'Login');
-        }
+        $request->session()->put('user_id', $userdata['user_id']);
+        $request->session()->put('user', $userdata);
+        $request->session()->put('user_token', $epicwebArr['token']);
+        $request->session()->put('device_id', @$userdata['device_id']);
+        $request->session()->put('logintracking', $trakcingData);
+        $request->session()->put('logintrackingType', "Login");
+        $request->session()->put('authEventTrack', 'Login successfull');
+        $request->session()->put('eventCat', 'Login');
     }
+}
 
 function formatDate($date, $format = 'd F Y')
 {
@@ -1175,45 +1175,42 @@ function getJsonDataFromFile($filepath)
 {
     try {
         $jsonData = file_get_contents($filepath);
-	    $arrayData = json_decode($jsonData, true);
+        $arrayData = json_decode($jsonData, true);
     } catch (\Throwable $th) {
         $arrayData = [];
     }
-        return $arrayData;
+    return $arrayData;
 }
 
 function getCountryCode(){
     if(!session()->get('countrycode')){
     // Check for the X-Forwarded-For header
-    if (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
-        $ipAddress = $_SERVER['HTTP_TRUE_CLIENT_IP'];
-    } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        $ipAddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    } elseif (isset($_SERVER['REMOTE_ADDR'])) {
-        $ipAddress = $_SERVER['REMOTE_ADDR'];
-    } else {
-        $ipAddress = '';
-    }
+        if (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
+            $ipAddress = $_SERVER['HTTP_TRUE_CLIENT_IP'];
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ipAddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } elseif (isset($_SERVER['REMOTE_ADDR'])) {
+            $ipAddress = $_SERVER['REMOTE_ADDR'];
+        } else {
+            $ipAddress = '';
+        }
 
     //us country
     // $ipAddress = '170.40.150.126';
 
-    if (!empty($ipAddress)) {
-        $data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ipAddress)); 
-$countryCode = isset($data->geoplugin_countryCode) ? $data->geoplugin_countryCode : 'IN';
+        if (!empty($ipAddress)) {
+            $data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ipAddress)); 
+            $countryCode = isset($data->geoplugin_countryCode) ? $data->geoplugin_countryCode : 'IN';
 // dd($countryCode);
-session()->put('countrycode',$countryCode);
-Log::info("----------#####Session Put Country Code -----------");
-        return $countryCode;
-    } else {
-        Log::info("----------#####Session Put Country Code -----------");
-        session()->put('countrycode','IN');
-        return "IN";
+            session()->put('countrycode',$countryCode);
+            return $countryCode;
+        } else {
+            session()->put('countrycode','IN');
+            return "IN";
+        }
+    }else{
+        return session()->get('countrycode'); 
     }
-}else{
-    Log::info("----------#####Session Getting Country Code -----------");
-    return session()->get('countrycode'); 
-}
 }
 
 function getCurrency($val){
@@ -1233,21 +1230,20 @@ function getCountryStateData()
 
 function getCountryStateDataInHtml()
 {
-    $countrycode = getCountryCode();
-    // $countrycode = (!empty($_SERVER['HTTP_X_CC']) ? $_SERVER['HTTP_X_CC'] : 'IN');
+    $countrycode = (!empty($_SERVER['HTTP_X_CC']) ? $_SERVER['HTTP_X_CC'] : 'IN');
     $countrystate = getCountryStateData();
     $countryisdhtml = "";
 
     if( $countrystate){
-            foreach ($countrystate['countries'] as $i => $value) {
-                if ($countrycode == $value['code'] || $countrycode == $value['countryisdcode']) {
-                    $selectvar = "selected";
-                } else {
-                    $selectvar = "";
-                }
-                $countryisdhtml .= '<option value="' . $value['countryisdcode'] . '" ' . $selectvar . '>' . $value['displayisdcode'] . '</option>';
+        foreach ($countrystate['countries'] as $i => $value) {
+            if ($countrycode == $value['code'] || $countrycode == $value['countryisdcode']) {
+                $selectvar = "selected";
+            } else {
+                $selectvar = "";
             }
+            $countryisdhtml .= '<option value="' . $value['countryisdcode'] . '" ' . $selectvar . '>' . $value['displayisdcode'] . '</option>';
         }
+    }
     return $countryisdhtml;
 }
 
@@ -1260,16 +1256,16 @@ if (!function_exists('assetTime')) {
 if (!function_exists('countConvert')) {
     function countConvert($count = 0) {
         return $count >= 1000 ?
-                    (
-                        $count >= 1000000 ?
-                        (
-                            $count >= 1000000000 ? 
-                            round($count/1000000000, 2) . "B" 
-                            : round($count/1000000, 2) . "M"
-                        )
-                        : round($count/1000) . "K"
-                    ) 
-                : $count;
+        (
+            $count >= 1000000 ?
+            (
+                $count >= 1000000000 ? 
+                round($count/1000000000, 2) . "B" 
+                : round($count/1000000, 2) . "M"
+            )
+            : round($count/1000) . "K"
+        ) 
+        : $count;
     }
 }
 
