@@ -56,11 +56,16 @@ class NotificationController extends Controller
         $ipAddress = '';
     }
     echo "=========".$ipAddress . "===============IP Adresss==========";
-    $apiUrl = "https://ipinfo.io/{$ipAddress}/json";
-        $ch = curl_init($apiUrl);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-    print_r($response);
+    // $apiUrl = "https://ipinfo.io/{$ipAddress}/json";
+    //     $ch = curl_init($apiUrl);
+    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    //     $response = curl_exec($ch);
+    // print_r($response);
+     $data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ipAddress)); 
+     print_r($data);
+    $countryCode = isset($data->geoplugin_countryCode) ? $data->geoplugin_countryCode : 'IN';
+     echo "=========".$countryCode . "===============Country Code==========";
+
         $input = [
             'x_country' => @$countrycode,
             'x_continent' => @$countrycode,

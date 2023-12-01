@@ -20,6 +20,8 @@ class SubscriptionController extends Controller
         $todayStrToTime = strtotime($today);
         $usedDays = 0;
         $countrycode = getCountryCode();
+        // $request->session()->put('countrycode',$countrycode);
+        // dd($countrycode);
         $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2, true);
         $input = [
             'x_country' => @$countrycode,
