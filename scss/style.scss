@@ -71,6 +71,9 @@ body{
 }
 #login-modal .modal-content{
     background-image: url(../img/LoginTatlubaazBackBg.png);
+    @media (max-width:767px) {
+        background-image: none;
+    }
 }
 .modal-content{
     backdrop-filter: blur(20px);
@@ -4216,6 +4219,21 @@ input {
     }
 }
 .login-carousel{
+    width: 400px;
+    @media (max-width:767px) {
+        width: 274px;
+    }
+    .modal-dialog.px-3{
+        @media (max-width:767px) {
+            padding: 0!important;
+        }
+    }
+    & .slick-slide{
+        width: 400px;
+        @media (max-width:767px) {
+            width: 274px;
+        }
+    }
     &.slick-dotted.slick-slider{
         margin-bottom: 0;
     }
