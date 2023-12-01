@@ -1203,15 +1203,12 @@ function getCountryCode(){
 $countryCode = isset($data->geoplugin_countryCode) ? $data->geoplugin_countryCode : 'IN';
 // dd($countryCode);
 session()->put('countrycode',$countryCode);
-Log::info("----------#####Session Put Country Code -----------");
         return $countryCode;
     } else {
-        Log::info("----------#####Session Put Country Code -----------");
         session()->put('countrycode','IN');
         return "IN";
     }
 }else{
-    Log::info("----------#####Session Getting Country Code -----------");
     return session()->get('countrycode'); 
 }
 }
