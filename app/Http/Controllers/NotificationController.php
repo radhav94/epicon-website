@@ -43,6 +43,31 @@ class NotificationController extends Controller
     public function getServerIP(){
         echo "<pre>";
         print_r($_SERVER);
+        $countrycode = getCountryCode();
+        print_r($countrycode);
+        // Check for the X-Forwarded-For header
+    if (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
+        $ipAddress = $_SERVER['HTTP_TRUE_CLIENT_IP'];
+    } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ipAddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } elseif (isset($_SERVER['REMOTE_ADDR'])) {
+        $ipAddress = $_SERVER['REMOTE_ADDR'];
+    } else {
+        $ipAddress = '';
+    }
+    echo "=========".$ipAddress . "===============IP Adresss==========";
+    $apiUrl = "https://ipinfo.io/{$ipAddress}/json";
+        $ch = curl_init($apiUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+    print_r($response);
+        $input = [
+            'x_country' => @$countrycode,
+            'x_continent' => @$countrycode,
+        ];
+        // $result = CurlAPI("subscriptions/plans", "GET", "", 2);
+        $result = CurlAPI("v2/subscriptions/plans", "GET", $input, 2);
+        dd($result);
         echo "</pre>";
     }
 
