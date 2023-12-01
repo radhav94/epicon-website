@@ -71,7 +71,7 @@ class NotificationController extends Controller
             'x_continent' => @$countrycode,
         ];
         // $result = CurlAPI("subscriptions/plans", "GET", "", 2);
-        $result = CurlAPI("v2/subscriptions/plans", "GET", $input, 2);
+        $result = CurlAPI("subscriptions/plans", "GET", $input, 2);
         dd($result);
         echo "</pre>";
     }

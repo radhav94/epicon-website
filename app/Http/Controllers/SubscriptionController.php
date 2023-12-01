@@ -28,7 +28,7 @@ class SubscriptionController extends Controller
             'x_continent' => @$countrycode,
         ];
         // $result = CurlAPI("subscriptions/plans", "GET", "", 2);
-        $result = CurlAPI("v2/subscriptions/plans", "GET", $input, 2);
+        $result = CurlAPI("subscriptions/plans", "GET", $input, 2);
         // dd($result);
         if (empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['message'] == 'No subscriptions found') {
 
