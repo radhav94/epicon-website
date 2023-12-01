@@ -26,12 +26,6 @@ class PageController extends Controller
         $data = $this->homepageData($slug);
         $result = $data['result'];
 
-        if (request()->v == 2) {
-            foreach ($result['data']['list'] as $key => $value) {
-                d($value);
-            }
-            dd($result);
-        }
         $pagetitle = @$result['data']['name'];
         $pagetype = in_array($pageslug, ['homepage', 'home', 'home-v2']) ? 'HOME' : 'CATALOG';
 
@@ -327,7 +321,7 @@ class PageController extends Controller
             'list_language' => checkLang($listlang),
             'display_language' => checkLang($displang),
             'page' => $page,
-            'limit' => (request()->v == 2 || request()->v == 1) ? 100 : $this->limit,
+            'limit' => $this->limit,
         ];
         
         if (isUserLoggedIn()) {

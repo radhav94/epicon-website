@@ -42,13 +42,6 @@ class KidsController extends Controller
 
             $result = CurlAPI("pages/homepage", "GET", $params, 1);
 
-            if (request()->v == 2) {
-                foreach ($result['data']['list'] as $key => $value) {
-                    d($value);
-                }
-                dd($result);
-            }
-
             if ($result && @$result['success'] ==  true) {
                 $displayLanguageParam = setLanguageParameter();
                 $pagetitle = @$result['data']['name'];
