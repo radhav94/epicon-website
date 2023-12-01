@@ -60,7 +60,7 @@
                             @endif
                         </span>
                         <p class="mt-2 shot-desc-{{$key}}">{!! sanitizeData(@$value['short_description']) !!}</p>
-                        <span class="read-button-{{$key}}"> </span>
+                        <span class="read-button-{{$key}} readmore-episodes"> </span>
                     </div>
                 </li>
             @endforeach

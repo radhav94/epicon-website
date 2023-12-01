@@ -182,10 +182,13 @@ class SubscriptionController extends Controller
         }
 
         $parameters = $this->paymentProcess($resultData, $currency, $payment_type);
+        Log::info($parameters);
         if(@$parameters['status'] == false){
+            Log::info("false");
             return view('pages.error.data-error');
         }
         else{
+            Log::info("true");
             $txid = generateTransactionID();
             $amount = $result['actual_price'];
             $productinfo = $result['id'];
@@ -227,9 +230,11 @@ class SubscriptionController extends Controller
                 ];
             }
             if (env('PAYU_SI') == true) {
+                Log::info("calling subscription.payumoneysi");
                 return view('subscription.payumoneysi', compact('parameters'));
             }
             else{
+                Log::info("calling subscription.payumoney");
                 return view('subscription.payumoney', compact('parameters'));
             }
         }
@@ -249,6 +254,7 @@ class SubscriptionController extends Controller
 
     public function paymentProcess($orderArr, $currency, $payment_type)
     {
+        Log::info("Inside paymentProcess function");
         /* All Required Parameters by your Gateway */
         $request = Request();
         $userData = $request->session()->get('user');
@@ -267,7 +273,7 @@ class SubscriptionController extends Controller
         
         // test amount logic
         $parameters['status'] = "";
-        if (env('DEV_AMT') == true && ($userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025')) {
+        if (env('DEV_AMT') == true && ($userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025' || $userid == 'newrahul@mailinator.com' || $userid == 'newprathamesh@mailinator.com' || $userid == '917977495428' || $userid == '918169554956')) {
             $totalamount = "1";
         }
         $parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => @$userData['name'], 'email' => @$userData['email'], 'phone' => @$userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
@@ -504,13 +510,15 @@ class SubscriptionController extends Controller
     }
     public function payusuccess(Request $request)
     {
+        Log::info("-----Inside Payu sucess function----------------------");
         $paymentresponse = $request->all();
+        Log::info($paymentresponse);
         // dd($paymentresponse);
 
         $paymtentStatus = strtolower($paymentresponse['status']);
         $final_result = ['message' => 'The transaction has been declined.'];
         //$getOnlyDate = date('Y-m-d', strtotime(@$orderdata['subscription_end_date']));
-        if ($paymentresponse['status'] == 'success') {
+        if (@$paymentresponse['status'] == 'success') {
             $orderData = $request->session()->get('orderdata');
             $orderValue = $request->session()->get('create_order');
             $getOnlyDate = date('Y-m-d', strtotime(@$orderData['subscription_end_date']));
@@ -558,7 +566,9 @@ class SubscriptionController extends Controller
             ///////////---*** Verify Payment End ***---///////////
 
             $verifyDetails = json_decode($verify_payment);
+            Log::info($verifyDetails);
             if ($verifyDetails->status) {
+
 
                 ///---------***Prchase order api***-------///
                 // Log::info("-----createupdateorder----------------------");
@@ -628,6 +638,7 @@ class SubscriptionController extends Controller
                 return view('subscription.thankyou', compact('final_result','orderData'));
             } else {
                 ///---*** if payment not verify ***---///
+                Log::info("payusuccess---verifyDetails failure");
                 return view('subscription.subscription-fail', compact('final_result'));
             }
         } else {
@@ -678,8 +689,10 @@ class SubscriptionController extends Controller
 
     public function payufail(Request $request)
     {
+        Log::info("-----Inside PayuMoney Payment Failed function----");
         $paymtentStatus = $request->all();
         // dd($paymtentStatus);
+        Log::info($paymtentStatus);
 
         Log::info("----- PayuMoney Payment Failed Response.");
         Log::debug(json_encode($paymtentStatus));
