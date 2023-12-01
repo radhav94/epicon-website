@@ -20,7 +20,7 @@ $(document).ready(function () {
 
 	$(document).on('click', '#watchVideo', function () {
 		
-		$('.content-detail-banner').hide();
+		$('.hide-vid-element').hide();
 		if (vidPlaying && !is_trailer && !is_episode) {
 			
 			window.player.play();
@@ -224,7 +224,7 @@ $(document).ready(function () {
 				player.pause();
 			}
 			$('.videoContainer').hide();
-			$('.content-detail-banner').show();
+			$('.hide-vid-element').show();
 		});
 
 		function updateQuality(newQuality) {
@@ -362,7 +362,7 @@ function playContentVideo(cid,c_type,element) {
 			}
 		
 			if (playurl) {
-				$('.content-detail-banner').hide();
+				$('.hide-vid-element').hide();
 				$('html, body').animate({
 					scrollTop: 0
 				}, 1000);
@@ -379,7 +379,3 @@ function playContentVideo(cid,c_type,element) {
 		'application/json'
 	);
 }
-
-$("#closePlayer").click(function(){
-	$(".content-div").css("display","block");
-});

@@ -109,7 +109,9 @@
 
         </video>
     </div>
-       
+
+
+    {{--
     @if ($trailers && isset($trailers['list']) && !empty($trailers['list'] && @$content['free_premium'] == true))
         @if(!isUserLoggedIn() || @$subplan['status'] != 'active')
         <div class="w-100 d-flex justify-content-center">
@@ -120,6 +122,7 @@
         </div>
         @endif
     @endif
+    --}}
 
     {{-- <div class="custom-play-button" id="customPlayButton">
         <i class="fas fa-play"></i>
