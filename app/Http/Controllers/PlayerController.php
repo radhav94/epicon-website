@@ -32,7 +32,7 @@ class PlayerController extends Controller
 
                     // Check if the extension is 'srt'
                     // if (strtolower($extension) === 'srt') {
-                        $srtContent = file_get_contents($src);
+                        $srtContent = @file_get_contents($src);
 
                         // Convert .srt to .vtt format
                         $vttContent = "WEBVTT\n\n";

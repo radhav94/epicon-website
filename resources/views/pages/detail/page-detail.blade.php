@@ -64,7 +64,7 @@ $meta['image'] = $share_img;
     @endif
 
     <section class="content-detail-banner position-relative">
-        <div class="banner-main position-relative">
+        <div class="banner-main position-relative hide-vid-element">
             <img src="{{ $cover_img }}" alt="img">
         </div>
         @if(!isActiveSubscription() && $trailer_id)
@@ -96,7 +96,7 @@ $meta['image'] = $share_img;
 ?>
        @if ($trailers && isset($trailers['list']) && !empty($trailers['list'] && @$content['free_premium'] == true))
         @if(!isUserLoggedIn() || @$subplan['status'] != 'active')
-        <?php $dispnone = "display:none"; ?>
+        <?php $dispnone = "display:none1"; ?>
         @endif
     @endif
         <div class="overlay mt-4 content-div" style="{{$dispnone}}">
@@ -107,7 +107,7 @@ $meta['image'] = $share_img;
                             <div class="all-btn">
                                 <input type="hidden" name="subsuser" id="subsuser" value="{{$watchid}}">
                                 <input type="hidden" name="subUrl" class="subUrl" id="subUrl" value="{{ getUrl('subscription') }}">
-                                <button class="fill-btn mobile-width {{$watchClass}} m-0 w-25" id="{{$watchid}}">
+                                <button class="hide-vid-element fill-btn mobile-width {{$watchClass}} m-0 w-25" id="{{$watchid}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                         viewBox="0 0 28 28" fill="none">
                                         <path
