@@ -5977,9 +5977,15 @@ input {
 
 .more-like-this{
     display: flex;
-    gap: 10px;
+    gap: 15px;
     overflow: auto;
     list-style: none;
+    @media (max-width:700px) {
+        gap: 10px;
+    }
+    li{
+        margin-right: 0!important;
+    }
     &.trend li a{
         width: 280px;
         height: auto;
@@ -6202,7 +6208,7 @@ input {
     display: flex;
     gap: 20px;
     @media (max-width:700px) {
-        height: 160px;
+        height: auto;
     }
     .pik{
         width: 300px;
@@ -6248,6 +6254,9 @@ input {
         color: $bg-white;
         padding-top: 10px;
         width: 100%;
+        @media (max-width:700px) {
+            padding-top: 0px;
+        }
         h6{
             @include line-clamp(2);
             @media (max-width:700px) {
@@ -6273,12 +6282,12 @@ input {
         p{
             font-size: 16px;
             @media (max-width:700px) {
-                position: absolute;
+                // position: absolute;
                 width: 100%;
                 left: 0;
                 font-size: 14px;
-                @include line-clamp(2);
-                padding-top: 50px;
+                // @include line-clamp(2);
+                // padding-top: 50px;
                 z-index: -1;
             }
         }
@@ -6293,7 +6302,7 @@ input {
     }
     @media (max-width:700px) {
         align-items: flex-start;
-        height: 200px;
+        // height: 200px;
     }
     .pik{
         position: relative;
@@ -6368,6 +6377,10 @@ input {
             }
             .pod-grey-btn-list{
                 display: none;
+                margin-top: 15px;
+                @media (max-width:700px) {
+                    margin-top: 0px;
+                }
                 button{
                     padding: 10px;
                     width: 40px;
@@ -6385,12 +6398,13 @@ input {
                 color: #B7B7B7;
                 @media (max-width:700px) {
                     @include line-clamp(2);
-                    position: absolute;
+                    // position: absolute;
                     bottom: 0;
                     left: 0;
                     width: 100%;
                     font-size: 14px;
-                    padding-inline: 15px;
+                    margin-bottom: 0;
+                    // padding-inline: 15px;
                 }
             }
             .progress-main{
@@ -7931,4 +7945,11 @@ audio::-webkit-media-controls-play-button {
 
 .game-hover{
     display: none !important;
+}
+.readmore-episodes button{
+    border: 1px solid #fff;
+    border-radius: 3px;
+    @media (max-width: 767px) {
+        display: none;
+    }
 }
