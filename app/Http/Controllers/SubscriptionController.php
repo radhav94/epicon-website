@@ -20,6 +20,8 @@ class SubscriptionController extends Controller
         $todayStrToTime = strtotime($today);
         $usedDays = 0;
         $countrycode = getCountryCode();
+        // $request->session()->put('countrycode',$countrycode);
+        // dd($countrycode);
         $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2, true);
         $input = [
             'x_country' => @$countrycode,
@@ -561,7 +563,11 @@ class SubscriptionController extends Controller
             ///////////---*** Verify Payment End ***---///////////
 
             $verifyDetails = json_decode($verify_payment);
-            Log::info($verifyDetails);
+            $data= json_decode( json_encode($verify_payment), true);
+
+            Log::info($verifyDetails->status);
+            Log::info("---------yes-------");
+            Log::info($data);
             if ($verifyDetails->status) {
 
 
