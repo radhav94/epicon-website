@@ -53,7 +53,7 @@ class SettingController extends Controller
         $profile_data['result']['user_data']['interests'] = $genre;
         $request->session()->put('profile_data', $profile_data);
         $curlData = ["genre" => $genre];
-        $genrelist = postCurlApicall("v2profilecontent/editgenrelist", $curlData, 1, false, true);
+        $genrelist = postCurlApicall("v2profilecontent/editgenrelist", $curlData, 1);
         if (!$genrelist) {
             return JSONResponse(400, "Something went wrong. Please try again!");
         }

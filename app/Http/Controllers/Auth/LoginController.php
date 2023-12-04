@@ -340,7 +340,7 @@ class LoginController extends Controller
         $genre = $request->post('genreInterest') ? $request->post('genreInterest') : [];
         $user_token = $request->session()->get('user_token');
         $curlData = ["genre" => $genre];
-        $genrelist = postCurlApicall("v2profilecontent/savegenrelist", $curlData, 1, $user_token, false, true);
+        $genrelist = postCurlApicall("v2profilecontent/savegenrelist", $curlData, 1, $user_token);
         return JSONResponse(200, '', ['message' => $genrelist['message'], 'success' => $genrelist['success']]);
     }
 }
