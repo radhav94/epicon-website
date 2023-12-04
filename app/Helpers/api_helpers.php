@@ -14,7 +14,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
     } else {
         $url = config('epicconfig.EPICAPI.API_DOMAIN_1') . $context;
     }
-    $auth_token = "szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH";
+    $auth_token = config('epicconfig.EPICAPI.API_AUTH_TOKEN');
 
     $token = Session::get('user_token') ?? '';
 
@@ -59,7 +59,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
         if ($sendAuthTokenparams) {
         $url = $url . "?" . http_build_query($param);
         }
-        Log::info('URL : ================== '.$url);
+
         Log::channel('api')->info('URL : '.$url); 
         Log::channel('api')->info('INPUT : '.$req_data); 
 
