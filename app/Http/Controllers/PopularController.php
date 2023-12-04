@@ -9,7 +9,8 @@ class PopularController extends Controller
 {
     public function NewsPopular(){
         SilentLoginFunction();
-        $PopularResponse = CurlAPI("pages/getPopularContent", 'GET', '' , 1);
+        $data = ['auth_token' => config('epicconfig.EPICAPI.API_AUTH_TOKEN')];
+        $PopularResponse = CurlAPI("pages/getPopularContent", 'GET', $data , 1);
         // dd($PopularResponse);
         if($PopularResponse && @$PopularResponse['success'] == true){
             $Populardata = @$PopularResponse['data'];

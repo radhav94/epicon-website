@@ -1012,7 +1012,7 @@ if (!function_exists("getAllEpisodesFromSeason")) {
 if (!function_exists("update_user_session")) {
     function update_user_session()
     {
-        $profile_detail = CurlAPI("users/viewProfile", "POST", [], 2, true);
+        $profile_detail = CurlAPI("users/viewProfile", "POST", [], 2, true, true);
         if (is_array($profile_detail) && array_key_exists('success', $profile_detail)) {
             if ($profile_detail['success']) {
                 if (array_key_exists('user_data', $profile_detail)) {

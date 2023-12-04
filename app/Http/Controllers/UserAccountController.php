@@ -43,7 +43,7 @@ class UserAccountController extends Controller
     public function myaccount(){
 
         $subscriptionPurchases=[];
-        $subscriptionPurchasesArr = CurlAPI("users/purchases", 'POST', [] , 2, true);
+        $subscriptionPurchasesArr = CurlAPI("users/purchases", 'POST', [] , 2, true, true);
 
         if(isset($subscriptionPurchasesArr) && @$subscriptionPurchasesArr['success'] == true){
 
@@ -68,7 +68,7 @@ class UserAccountController extends Controller
             }  
         }
 
-        $viewprofile = CurlAPI("users/viewProfile", 'POST', [] , 2, true);  
+        $viewprofile = CurlAPI("users/viewProfile", 'POST', [] , 2, true, true);  
         
         if(isset($viewprofile) && @$viewprofile['success'] == true){
             $viewprofile = @$viewprofile['user_data'];
@@ -81,7 +81,7 @@ class UserAccountController extends Controller
 
     public function TransactionHistory(){
 
-        $subscriptionPurchases = CurlAPI("users/purchases", 'POST', [] , 2, true);
+        $subscriptionPurchases = CurlAPI("users/purchases", 'POST', [] , 2, true, true);
 
         if(isset($subscriptionPurchases) && @$subscriptionPurchases['success'] == true){
             $subscriptionPurchases = @$subscriptionPurchases['data'];

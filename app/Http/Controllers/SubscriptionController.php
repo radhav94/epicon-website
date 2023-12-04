@@ -22,8 +22,9 @@ class SubscriptionController extends Controller
         $countrycode = getCountryCode();
         // $request->session()->put('countrycode',$countrycode);
         // dd($countrycode);
-        $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2, true);
+        $subscriptionPurchases = CurlAPI("users/purchases", "POST", "", 2, true, true);
         $input = [
+            'auth_token' => config('epicconfig.EPICAPI.API_AUTH_TOKEN'),
             'x_country' => @$countrycode,
             'x_continent' => @$countrycode,
         ];
@@ -164,7 +165,7 @@ class SubscriptionController extends Controller
             'order_value' => $result['actual_price'],
             'x_country' => @$countrycode,
         ];
-        $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2);
+        $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2, false, true);
 
         if ($resultData['success'] == true && !empty(@$resultData['order_data'])) {
             $resorder = $resultData['order_data'];
@@ -407,7 +408,13 @@ class SubscriptionController extends Controller
     {
         $data = $request->all();
         $message = "data not found";
-        $result = CurlAPI("subscriptions/plans", "GET", "", 2);
+        $countrycode = getCountryCode();
+        $input = [
+            'auth_token' => config('epicconfig.EPICAPI.API_AUTH_TOKEN'),
+            'x_country' => @$countrycode,
+            'x_continent' => @$countrycode,
+        ];
+        $result = CurlAPI("subscriptions/plans", "GET", $input, 2);
         if ($result && @$result['success'] == true) {
 
             if ($result['success']) {
@@ -475,7 +482,7 @@ class SubscriptionController extends Controller
             'x_country' => @$countrycode,
         );
 
-        $listResponseData = CurlAPI("subscriptions/createCouponOrder", 'POST', $postdata, 2);
+        $listResponseData = CurlAPI("subscriptions/createCouponOrder", 'POST', $postdata, 2, false, true);
         // dd($listResponseData);
         if ($listResponseData && @$listResponseData['success'] == true) {
             $sessionData = $request->session()->get('plandata');
@@ -583,7 +590,7 @@ class SubscriptionController extends Controller
                 Log::info("-----updateOrderData----------------------");
                 Log::debug(json_encode($updateOrderData));
                 ///------***Update create order with payment details***--------///
-                $updatePayment = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2);
+                $updatePayment = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2, false, true);
 
                 Log::info("-----update Subscription Payment details after payment verify.");
                 Log::debug(json_encode($updatePayment));
@@ -759,7 +766,7 @@ class SubscriptionController extends Controller
             'mobile' => $mobile,
             'email' => $email,
         ];
-        $otpResponse = CurlAPI("users/contactDetailsOTP", "POST", $postData, 2, true);
+        $otpResponse = CurlAPI("users/contactDetailsOTP", "POST", $postData, 2, true, true);
         if ($otpResponse && @$otpResponse['success'] == true) {
             return response()->json($otpResponse, 200)->header('Content-Type', 'application/json');
         } else {
@@ -792,7 +799,7 @@ class SubscriptionController extends Controller
             'otp' => $otp
         ];
         //dd($postData);
-        $verifyResponse = CurlAPI("users/contactDetailsOTPVerify", "POST", $postData, 2, true);
+        $verifyResponse = CurlAPI("users/contactDetailsOTPVerify", "POST", $postData, 2, true, true);
         //dd($verifyResponse);
         $verifyResponse['html'] = '<button class="fill-btn px-5" type="submit">' . __('Continue Pay') . $currency . $ajaxData['price'] . '
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
@@ -840,7 +847,7 @@ class SubscriptionController extends Controller
         $ajaxData = $request->all();
         $Response = false;
         $error['message'] = "something went wrong !"; 
-        $Response = CurlAPI("subscriptions/cancelSubscription", "POST", '', 2, true);
+        $Response = CurlAPI("subscriptions/cancelSubscription", "POST", '', 2, true, true);
         if ($Response['success'] == true && !empty(@$Response['message'])) {
             return response()->json($Response, 200)->header('Content-Type', 'application/json');
         } else {

@@ -223,7 +223,7 @@ class AndroidPaymentController extends Controller
             if ($verifyDetails->status) {
                 Log::info("-----updateOrderData----------------------");
                 Log::debug(json_encode($updateOrderData));
-                $updatePayment = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2);
+                $updatePayment = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2, false, true);
 
                 Log::info("-----update Subscription Payment details after payment verify.");
                 Log::debug(json_encode($updatePayment));

@@ -17,7 +17,7 @@ class ProfileController extends Controller
 
     public function getProfileData()
     {
-        $result = CurlAPI("users/viewProfile", "POST", null, 2, true);
+        $result = CurlAPI("users/viewProfile", "POST", null, 2, true, true);
 
         if ($result && @$result['success'] ==  true) {
 
@@ -77,7 +77,7 @@ class ProfileController extends Controller
             $param['profile_img'] = $url;
         }
 
-        $result = CurlAPI("users/createProfile", "POST", $param, 2, true);
+        $result = CurlAPI("users/createProfile", "POST", $param, 2, true, true);
 
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(200, 'Profile created successfully.', ['redirect' => route('profile.index')]);
@@ -87,7 +87,7 @@ class ProfileController extends Controller
     }
     public function edit($id)
     {
-        $result = CurlAPI("users/viewProfile", "POST", null, 2, true);
+        $result = CurlAPI("users/viewProfile", "POST", null, 2, true, true);
 
         $profile = '';
 
@@ -130,7 +130,7 @@ class ProfileController extends Controller
             $param['profile_img'] = $request->old_profile_img ? $request->old_profile_img : '';
         }
 
-        $result = CurlAPI("users/editProfile", "POST", $param, 2, true);
+        $result = CurlAPI("users/editProfile", "POST", $param, 2, true, true);
 
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(200, 'Profile updated successfully.', ['redirect' => route('profile.index')]);
@@ -144,7 +144,7 @@ class ProfileController extends Controller
         $params = [
             'profile_id' => $profile_id
         ];
-        $result = CurlAPI("users/deleteProfile", "POST", $params, 2, true);
+        $result = CurlAPI("users/deleteProfile", "POST", $params, 2, true, true);
 
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(200, 'Profile deleted successfully.', ['redirect' => route('profile.index')]);
@@ -157,7 +157,7 @@ class ProfileController extends Controller
     {
         $param = ['pin' => $request->cpin_1 . $request->cpin_2 . $request->cpin_3 . $request->cpin_4];
 
-        $result = CurlAPI("users/setChildPin", "POST", $param, 2, true);
+        $result = CurlAPI("users/setChildPin", "POST", $param, 2, true, true);
 
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(200, 'Pin added successfully.', ['redirect' => route('profile.index')]);

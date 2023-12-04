@@ -66,7 +66,9 @@ class LoginController extends Controller
                 "success" => true,
                 "message" => "OTP sent successfully."
             ];
-            $SendotpResponseData = CurlAPI("users/sendOTP", 'POST', $SendotpRequestData, 2);
+            // dd($SendotpRequestData);
+            $SendotpResponseData = CurlAPI("users/sendOTP", 'POST', $SendotpRequestData, 2, false, true);
+
             $response['meassage'] = $SendotpResponseData['message'];
             // dd($SendotpResponseData);
             if ($SendotpResponseData && (@$SendotpResponseData['success'] == 'true' || @$SendotpResponseData['success'] == true)) {
@@ -97,7 +99,7 @@ class LoginController extends Controller
                 "success" => true,
                 "message" => "OTP verified successfully."
             ];
-            $verifyotpResponseData = CurlAPI("users/verifyOTP", 'POST', $verifyotpRequestData, 2);
+            $verifyotpResponseData = CurlAPI("users/verifyOTP", 'POST', $verifyotpRequestData, 2, false, true);
 
             if (isset($verifyotpResponseData['user_data'])) {
                 $is_verified = true;
@@ -147,7 +149,7 @@ class LoginController extends Controller
             'gender' => $gender,
             'user_agent' => getUserAgent(),
         );
-        $registerResponseData = CurlAPI("users/register", 'POST', $postData, 2);
+        $registerResponseData = CurlAPI("users/register", 'POST', $postData, 2, false, true);
         $request->session()->put('registerResponseData', $registerResponseData);
         $response['message'] = $registerResponseData['message'];
         
@@ -181,7 +183,7 @@ class LoginController extends Controller
             'user_agent' => getUserAgent(),
         ];
 
-        $loginResponseData = CurlAPI("users/loginWithPassword", 'POST', $postedData, 2);
+        $loginResponseData = CurlAPI("users/loginWithPassword", 'POST', $postedData, 2, false, true);
 
         $response['message'] = $loginResponseData['message'];
         
@@ -219,7 +221,7 @@ class LoginController extends Controller
                 'user_signup_method' => $signup_method,
             );
     
-            $SendotpResponseData = CurlAPI("users/sendForgotPassOTP", 'POST', $SendotpRequestData, 2);
+            $SendotpResponseData = CurlAPI("users/sendForgotPassOTP", 'POST', $SendotpRequestData, 2, false, true);
 
             $response['meassage'] = @$SendotpResponseData['message'];
 
@@ -251,7 +253,7 @@ class LoginController extends Controller
                 "success" => true,
                 "message" => "OTP verified successfully."
             ];
-            $verifyotpResponseData = CurlAPI("users/verifyForgotPassOTP", 'POST', $verifyotpRequestData, 2);
+            $verifyotpResponseData = CurlAPI("users/verifyForgotPassOTP", 'POST', $verifyotpRequestData, 2, false, true);
             // dd($verifyotpResponseData);
 
             $is_verified = false;
@@ -298,7 +300,7 @@ class LoginController extends Controller
                 "success" => true,
                 "message" => "OTP verified successfully."
             ];
-            $verifyotpResponseData = CurlAPI("users/forgotPassword", 'POST', $verifyotpRequestData, 2);
+            $verifyotpResponseData = CurlAPI("users/forgotPassword", 'POST', $verifyotpRequestData, 2, false, true);
             // dd($verifyotpResponseData);
             if (isset($verifyotpResponseData['user_data'])) {
                 $is_verified = true;
@@ -328,7 +330,8 @@ class LoginController extends Controller
 
     public function getGenreList() {
         $request = Request();
-        $genrelist = CurlAPI("v2profilecontent/genrelist", 'GET', [], 1);
+        $data = ['auth_token' => config('epicconfig.EPICAPI.API_AUTH_TOKEN')];
+        $genrelist = CurlAPI("v2profilecontent/genrelist", 'GET', $data, 1);
         return JSONResponse(200, '', ['response' => $genrelist, 'message' => $genrelist['message'], 'success' => $genrelist['success']]);
     }
 
@@ -337,7 +340,7 @@ class LoginController extends Controller
         $genre = $request->post('genreInterest') ? $request->post('genreInterest') : [];
         $user_token = $request->session()->get('user_token');
         $curlData = ["genre" => $genre];
-        $genrelist = postCurlApicall("v2profilecontent/savegenrelist", $curlData, 1, $user_token);
+        $genrelist = postCurlApicall("v2profilecontent/savegenrelist", $curlData, 1, $user_token, false, true);
         return JSONResponse(200, '', ['message' => $genrelist['message'], 'success' => $genrelist['success']]);
     }
 }
