@@ -79,7 +79,7 @@ class PlayerController extends Controller
                 'completed' => $request->completed ?? false,
             ];
             
-            $result = CurlAPI("pages/setplaytracking", "POST", $param, 1, true);
+            $result = CurlAPI("pages/setplaytracking", "POST", $param, 1, true, true);
 
             if ($result && @$result['success'] ==  true) {
                 return true;

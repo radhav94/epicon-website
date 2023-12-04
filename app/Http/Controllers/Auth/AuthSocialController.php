@@ -96,7 +96,7 @@ class AuthSocialController extends Controller
                     'user_agent' => getUserAgent(),
                 ];
                 
-                $epic_web_arr = CurlAPI('users/socialLogin', 'POST', $posted_data, 2);
+                $epic_web_arr = CurlAPI('users/socialLogin', 'POST', $posted_data, 2, false, true);
                 $user_data = @$epic_web_arr['user_data'];
 
                 if ($epic_web_arr['success'] == true && !empty($user_data)) {

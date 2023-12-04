@@ -9,7 +9,8 @@ class UpcomingController extends Controller
 {
     public function UpcomingEpicon(){
          SilentLoginFunction();
-         $UpcomingResponse = CurlAPI("pages/upcomingContent", 'GET', '' , 1);
+         $data = ['auth_token' => config('epicconfig.EPICAPI.API_AUTH_TOKEN')];
+         $UpcomingResponse = CurlAPI("pages/upcomingContent", 'GET', $data , 1);
 
         if($UpcomingResponse && @$UpcomingResponse['success'] == true){
             $Upcomingdata = $UpcomingResponse['data'] ?? [];

@@ -67,7 +67,7 @@ class KidsController extends Controller
         $kidsPin = $request->post('kidsPin') ? implode("", $request->post('kidsPin')) : '';
 
         $curlData = ["pin" => $kidsPin];
-        $response = CurlAPI("users/verifyChildPin", "POST", $curlData, 2, true);
+        $response = CurlAPI("users/verifyChildPin", "POST", $curlData, 2, true, true);
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
         }

@@ -15,7 +15,7 @@ class LogoutController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $result = CurlAPI("users/logout", "POST", [], 2, true);
+        $result = CurlAPI("users/logout", "POST", [], 2, true, true);
         if ($result && @$result['success'] ==  true) {
             $request->session()->forget('user_id');
             $request->session()->forget('user');

@@ -67,6 +67,7 @@ class NotificationController extends Controller
      echo "=========".$countryCode . "===============Country Code==========";
 
         $input = [
+            'auth_token' => config('epicconfig.EPICAPI.API_AUTH_TOKEN'),
             'x_country' => @$countrycode,
             'x_continent' => @$countrycode,
         ];

@@ -44,7 +44,7 @@ class PageDetailController extends Controller
             //get trailers tab data
             $params = ['content_id' => @$content['ID']];
 
-            $trailers_curl = CurlAPI("pages/trailers-and-more", "POST", $params, 1);
+            $trailers_curl = CurlAPI("pages/trailers-and-more", "POST", $params, 1, false, true);
             if ($trailers_curl && @$trailers_curl['success'] ==  true) {
                 $trailers = $trailers_curl['data'] ?? [];
             }
@@ -66,7 +66,7 @@ class PageDetailController extends Controller
 
             //get about tab data
             $params = ['content_id' => @$content['ID']];
-            $about_curl = CurlAPI("pages/about", "POST", $params, 1);
+            $about_curl = CurlAPI("pages/about", "POST", $params, 1, false, true);
             if ($about_curl && @$about_curl['success'] ==  true) {
                 $about = $about_curl['data'] ?? [];
             }
@@ -109,7 +109,7 @@ class PageDetailController extends Controller
         $params = [
             'content_id' => $request->content_id,
         ];
-        $result = CurlAPI("pages/clap", "POST", $params);
+        $result = CurlAPI("pages/clap", "POST", $params, 1, false, true);
 
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(200, 'Success', ['claps' => countConvert(@$result['claps'])]);

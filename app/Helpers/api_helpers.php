@@ -4,7 +4,7 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
 
-function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendUserToken = false)
+function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendUserToken = false,$sendAuthTokenparams = false)
 {
 
     if ($apiDomain == 3) {
@@ -14,13 +14,21 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
     } else {
         $url = config('epicconfig.EPICAPI.API_DOMAIN_1') . $context;
     }
+    $auth_token = config('epicconfig.EPICAPI.API_AUTH_TOKEN');
 
     $token = Session::get('user_token') ?? '';
 
-    $headers = ['x-access-auth-token: ' . config('epicconfig.EPICAPI.API_AUTH_TOKEN')];
+    $param = ['auth_token' => $auth_token];
+
+    $headers = [];
+    if (!$sendAuthTokenparams) {
+        $headers[] = 'x-access-auth-token: ' . config('epicconfig.EPICAPI.API_AUTH_TOKEN');
+    }
     if ($sendUserToken) {
         $headers[] = "Authorization: " . $token;
     }
+
+
 
     $curl = curl_init();
 
@@ -48,6 +56,9 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
         $headers[] = 'Content-Type: application/json';
 
         $req_data = ($data != null && !empty($data)) ? json_encode($data) : null;
+        if ($sendAuthTokenparams) {
+        $url = $url . "?" . http_build_query($param);
+        }
 
         Log::channel('api')->info('URL : '.$url); 
         Log::channel('api')->info('INPUT : '.$req_data); 

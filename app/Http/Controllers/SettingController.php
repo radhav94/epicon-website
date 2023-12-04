@@ -13,7 +13,7 @@ class SettingController extends Controller
     {
         $request = Request();
         /*genre section*/
-        $profile_data = CurlAPI("users/viewProfile", 'POST', [], 2, true);
+        $profile_data = CurlAPI("users/viewProfile", 'POST', [], 2, true, true);
         if (!$profile_data) {
             return view('pages.404');
         }
@@ -26,13 +26,14 @@ class SettingController extends Controller
         }
 
         /* active devices */
-        $activeDevice = CurlAPI("users/getDevice", 'POST', [], 2, true);
+        $activeDevice = CurlAPI("users/getDevice", 'POST', [], 2, true, true);
         if (!$activeDevice) {
             return view('pages.404');
         }
 
         /* sync devices */
-        $syncDevice = CurlAPI("users/getPin", 'GET', [], 2, true);
+        $data = ['auth_token' => config('epicconfig.EPICAPI.API_AUTH_TOKEN')];
+        $syncDevice = CurlAPI("users/getPin", 'GET', $data, 2, true);
         if (!$syncDevice) {
             return view('pages.404');
         }
@@ -64,7 +65,7 @@ class SettingController extends Controller
         $request = Request();
         $deviceId = $request->post('deviceId') ? $request->post('deviceId') : '';
         $curlData = ["id" => $deviceId];
-        $response = CurlAPI("users/deleteDevice", "POST", $curlData, 2, true);
+        $response = CurlAPI("users/deleteDevice", "POST", $curlData, 2, true, true);
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
         }
@@ -80,7 +81,7 @@ class SettingController extends Controller
         $newKidsPin = $request->post('newKidsPin') ? implode("", $request->post('newKidsPin')) : '';
         if ($command == "createKidsPin") {
             $curlData = ["pin" => $kidsPin];
-            $response = CurlAPI("users/setChildPin", "POST", $curlData, 2, true);
+            $response = CurlAPI("users/setChildPin", "POST", $curlData, 2, true, true);
             if ($response && @$response['success']) {
                 $profile_data = session()->get('profile_data') ?? [];
                 if (!$profile_data) {
@@ -90,7 +91,7 @@ class SettingController extends Controller
             }
         } else {
             $curlData = ["pin" => $newKidsPin, "old_pin" => $oldKidsPin];
-            $response = CurlAPI("users/changeChildPin", "POST", $curlData, 2, true);
+            $response = CurlAPI("users/changeChildPin", "POST", $curlData, 2, true, true);
         }
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
@@ -104,7 +105,7 @@ class SettingController extends Controller
         $old_password = $request->post('old_password') ? $request->post('old_password') : '';
         $new_password = $request->post('new_password') ? $request->post('new_password') : '';
         $curlData = ["new_password" => $new_password, "current_password" => $old_password];
-        $response = CurlAPI("users/changePassword", "POST", $curlData, 2, true);
+        $response = CurlAPI("users/changePassword", "POST", $curlData, 2, true, true);
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
         }
@@ -137,7 +138,7 @@ class SettingController extends Controller
         $request = Request();
         $password = $request->post('password') ?? '';
         $curlData = ["password" => $password];
-        $response = CurlAPI("users/sendDeleteAccountOTP", "POST", $curlData, 2, true);
+        $response = CurlAPI("users/sendDeleteAccountOTP", "POST", $curlData, 2, true, true);
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
         }
@@ -156,7 +157,7 @@ class SettingController extends Controller
             return JSONResponse(200, '', ['message' => "OTP is required", 'success' => 0, 'errorcode' => ""]);
         }
         $curlData = ["otp" => $otp];
-        $response = CurlAPI("users/verifyDeleteAccountOTP", "POST", $curlData, 2, true);
+        $response = CurlAPI("users/verifyDeleteAccountOTP", "POST", $curlData, 2, true, true);
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
         }
@@ -166,7 +167,8 @@ class SettingController extends Controller
 
     function syncDevicePin()
     {
-        $response = CurlAPI("users/getPin", 'GET', [], 2, true);
+        $data = ['auth_token' => config('epicconfig.EPICAPI.API_AUTH_TOKEN')];
+        $response = CurlAPI("users/getPin", 'GET', $data, 2, true);
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
         }

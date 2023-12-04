@@ -18,7 +18,7 @@ class FeedbackController extends Controller
             "type" => "feedback",
             "feedback" => $feedback
         ];
-        $response = CurlAPI("users/deleteAccount", "POST", $curlData, 2, true);
+        $response = CurlAPI("users/deleteAccount", "POST", $curlData, 2, true, true);
 
         $response = $response['payload'] ?? $response;
         

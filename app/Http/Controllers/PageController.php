@@ -117,7 +117,7 @@ class PageController extends Controller
 
     public function getSpinnerContent(Request $request)
     {
-        $result = CurlAPI("pages/spinnerContent", "POST", ['genre' => $request->genre]);
+        $result = CurlAPI("pages/spinnerContent", "POST", ['genre' => $request->genre], 1, false, true);
 
 
         if ($result && @$result['success'] ==  true) {
