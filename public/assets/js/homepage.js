@@ -1195,7 +1195,7 @@
         function onSupermixSuccess(response) {
 
             $('#supermixData').html(response.payload?.html);
-
+            showmoreFunction();
             $("#sortable").sortable({
                 handle: '.handle',
                 cancel: ''
@@ -1317,26 +1317,29 @@ jQuery(function($) {
     });
   });
 
-  jQuery(function($) {
-    var show_char = 300;
-    var ellipses = "... ";
-    items = document.querySelectorAll(".showmore-main");
-    items.forEach(function(item,eid) {
-        var content = $(".shot-desc-"+eid).text();
-        if (content.length > show_char) {
-        var a = content.substr(0, show_char);
-        var b = content.substr(show_char - content.length);
-        var html = a + "<span class='truncated-"+eid+"'>" + ellipses + "</span><span class='truncated-"+eid+"' style='display:none'>" + b + "</span>";
-        $(".shot-desc-"+eid).html(html);
-        $(".read-button-"+eid).html("<button class='bg-transparent text-white small read-more-"+eid+"' readmore-less'>Read More</button>");
-        }
+  showmoreFunction();
 
-        $(".read-more-"+eid).click(function(e) {
-        e.preventDefault();
-        $(".read-more-"+eid).text() == "Read More" ? $(".read-more-"+eid).text("Read Less") : $(".read-more-"+eid).text("Read More")
-        $('.shot-desc-'+eid+ ' .truncated-'+eid).toggle();
-        });
-
-    });
+function showmoreFunction(){
+        var show_char = 300;
+        var ellipses = "... ";
+        items = document.querySelectorAll(".showmore-main");
+        items.forEach(function(item,eid) {
+            var content = $(".shot-desc-"+eid).text();
+            if (content.length > show_char) {
+            var a = content.substr(0, show_char);
+            var b = content.substr(show_char - content.length);
+            var html = a + "<span class='truncated-"+eid+"'>" + ellipses + "</span><span class='truncated-"+eid+"' style='display:none'>" + b + "</span>";
+            $(".shot-desc-"+eid).html(html);
+            $(".read-button-"+eid).html("<button class='bg-transparent text-white small read-more-"+eid+"' readmore-less'>Read More</button>");
+            }
     
-});
+            $(".read-more-"+eid).click(function(e) {
+            e.preventDefault();
+            $(".read-more-"+eid).text() == "Read More" ? $(".read-more-"+eid).text("Read Less") : $(".read-more-"+eid).text("Read More")
+            $('.shot-desc-'+eid+ ' .truncated-'+eid).toggle();
+            });
+    
+        });
+        
+    
+}
