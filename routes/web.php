@@ -90,6 +90,8 @@ Route::post('verifyforgototp', [LoginController::class, 'setForgotOTPVerificatio
 Route::post('resetpwdapi', [LoginController::class, 'ResetPasswordVerification'])->name('resetpwdapi');
 Route::post('saveGenre', [LoginController::class, 'saveGenreForUser'])->name('saveGenre');
 Route::post('getGenre', [LoginController::class, 'getGenreList'])->name('getGenre');
+Route::get('emailverification', [LoginController::class, 'emailVerification'])->name('emailverification');
+Route::post('setResetPassword', [LoginController::class, 'setResetPassword'])->name('setResetPassword');
 /*login and registration end */
 
 Route::post('explorecontent', [PageController::class, 'explorecontent'])->name('explorecontent');

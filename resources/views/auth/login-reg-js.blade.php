@@ -57,22 +57,6 @@
             $('#login-modal').removeClass("show");
         });
 
-        $(".eye-toggle").click(function() {
-            var targetId = $(this).data("target");
-            var inputField = $("#" + targetId);
-            var isPasswordType = inputField.attr('type') === 'password';
-
-            if (isPasswordType) {
-                inputField.attr('type', 'text');
-                $(this).find('.eye-close-' + targetId).css('display', 'none');
-                $(this).find('.eye-open-' + targetId).css('display', 'block');
-            } else {
-                inputField.attr('type', 'password');
-                $(this).find('.eye-open-' + targetId).css('display', 'none');
-                $(this).find('.eye-close-' + targetId).css('display', 'block');
-            }
-        });
-
         $(".login-btn-otp").click(function(e) {
             e.preventDefault();
             $('.login-popup-modal').hide();
