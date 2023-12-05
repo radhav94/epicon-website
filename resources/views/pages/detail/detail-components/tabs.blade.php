@@ -17,11 +17,18 @@
         }
         $tab1_title = 'Episodes';
         rsort($seasonList);
-    } elseif ($content['content_type'] == 'SEASON' || $content['content_type'] == 'EPISODE') {
+    } elseif ($content['content_type'] == 'SEASON') {
         $temp = $content['episodes'] ?? [];
         $tab1_title = 'Episodes';
         $lastSeason = @$content['slug'];
         $season_episode_data[$lastSeason] = $temp;
+    }elseif ($content['content_type'] == 'EPISODE') {
+        $temp = $content['season'][0]['episodes'] ?? [];
+        $tab1_title = 'Episodes';
+        $lastSeason = @$content['slug'];
+        if($temp){
+         $season_episode_data[$lastSeason] = $temp;
+        }
     }
 
 
