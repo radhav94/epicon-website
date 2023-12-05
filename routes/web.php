@@ -62,15 +62,15 @@ Route::redirect('play', 'games', 301);
 
 
 //Start paytm routes
-    Route::get('ccavep/paytm',[PaytmController::class, '_androidPaytmUsingWeb']);
-    
     //paytm qrcode generation
     Route::get('paytmqrgeneration',[PaytmQrController::class, 'getPaytmSubscriptionQr']);
     Route::get('paytmqrstatus',[PaytmQrController::class, 'getPaytmQrPaymentStatus']);
 
+    // Route::get('ccavep/paytm',[PaytmController::class, '_androidPaytmUsingWeb']);
+    
     //normal paytm
-    Route::post('paytm/payloadresponse',[PaytmController::class, 'payloadresponse']);
-    Route::get('paytm/payloadresponse',[PaytmController::class, 'payloadresponse']);
+    // Route::post('paytm/payloadresponse',[PaytmController::class, 'payloadresponse']);
+    // Route::get('paytm/payloadresponse',[PaytmController::class, 'payloadresponse']);
 //End paytm routes 
 
 
