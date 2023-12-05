@@ -1230,7 +1230,8 @@ function getCountryStateData()
 
 function getCountryStateDataInHtml()
 {
-    $countrycode = (!empty($_SERVER['HTTP_X_CC']) ? $_SERVER['HTTP_X_CC'] : 'IN');
+    // $countrycode = (!empty($_SERVER['HTTP_X_CC']) ? $_SERVER['HTTP_X_CC'] : 'IN');
+    $countrycode = getCountryCode();
     $countrystate = getCountryStateData();
     $countryisdhtml = "";
 
