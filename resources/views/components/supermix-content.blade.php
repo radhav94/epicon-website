@@ -12,7 +12,7 @@
         $cover_img = isset($value['cover_image_v2']) ? $value['cover_image_v2']['small'] : $card['banner_img'];
         ?>
 
-        <li class="episode-main mb-4">
+        <li class="episode-main mb-4 showmore-main">
             <div class="pik supermixPlay handle" data-id="{{ @$value['ID'] }}" data-video="{{ @$value['supermix_url']['play_url'] }}" data-duration="{{ @$value['duration'] }}" data-title="{{ @$value['title'] }}">
                 <img src="{{ $cover_img }}" alt="img" class="popupVideo">
 
@@ -26,9 +26,10 @@
                     'v_content' => $value,
                     ])
                 </span>
-                <p class="col-sm-8 col-md-10 mt-2">
+                <p class="col-sm-8 col-md-10 mt-2 shot-desc-{{$key}}">
                     {!! sanitizeData(@$value['short_description']) !!}
                 </p>
+                <span class="read-button-{{$key}} readmore-episodes"> </span>
             </div>
             <button class="reorder-icon handle">
                 <img src="{{ asset('assets/img/reorder-icon.svg') }}" alt="icon">

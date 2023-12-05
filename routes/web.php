@@ -24,6 +24,8 @@ use App\Http\Controllers\LiveTvController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AndroidPaymentController;
 use App\Http\Controllers\DistroTvController;
+use App\Http\Controllers\PaytmController;
+use App\Http\Controllers\PaytmQrController;
 use Illuminate\Support\Facades\Route;
 
 $lang = ['hi', 'en'];
@@ -57,6 +59,20 @@ Route::redirect('contact-us', '/', 301);
 Route::redirect('listen', 'podcast', 301);
 Route::redirect('play', 'games', 301);
 //////End Redirection routes ////////
+
+
+//Start paytm routes
+    Route::get('ccavep/paytm',[PaytmController::class, '_androidPaytmUsingWeb']);
+    
+    //paytm qrcode generation
+    Route::get('paytmqrgeneration',[PaytmQrController::class, 'getPaytmSubscriptionQr']);
+    Route::get('paytmqrstatus',[PaytmQrController::class, 'getPaytmQrPaymentStatus']);
+
+    //normal paytm
+    Route::post('paytm/payloadresponse',[PaytmController::class, 'payloadresponse']);
+    Route::get('paytm/payloadresponse',[PaytmController::class, 'payloadresponse']);
+//End paytm routes 
+
 
 
 Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.loadmore');
