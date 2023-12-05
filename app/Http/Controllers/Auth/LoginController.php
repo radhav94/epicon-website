@@ -346,7 +346,6 @@ class LoginController extends Controller
 
     public function emailVerification() {
         $request = Request();
-        // dd($request->get('nxt'));
         $hash = $request->get('c');
         if ($request->get('nxt') == 'resetpwd') {
             return view('auth.reset-password-form', compact('hash'));
