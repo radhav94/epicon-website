@@ -61,6 +61,8 @@ Route::redirect('play', 'games', 301);
 //////End Redirection routes ////////
 
 
+Route::any('payu/webhook',[SubscriptionController::class, 'payuWebhook']);
+
 //Start paytm routes
     //paytm qrcode generation
     Route::get('paytmqrgeneration',[PaytmQrController::class, 'getPaytmSubscriptionQr']);
