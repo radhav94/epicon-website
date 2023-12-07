@@ -1181,6 +1181,7 @@ function getJsonDataFromFile($filepath)
     }
     return $arrayData;
 }
+
 function getCountryCode() {
     try {
         if (!session()->get('countrycode')) {
@@ -1200,7 +1201,6 @@ function getCountryCode() {
 
             if (!empty($ipAddress)) {
                 $file = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ipAddress);
-                
                 // Check for both failure and empty response
                 if ($file !== false && trim($file) !== "") {
                     $data = @json_decode($file);
@@ -1226,37 +1226,6 @@ function getCountryCode() {
         return 'IN';
     }
 }
-
-// function getCountryCode(){
-//     if(!session()->get('countrycode')){
-//     // Check for the X-Forwarded-For header
-//         if (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
-//             $ipAddress = $_SERVER['HTTP_TRUE_CLIENT_IP'];
-//         } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-//             $ipAddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-//         } elseif (isset($_SERVER['REMOTE_ADDR'])) {
-//             $ipAddress = $_SERVER['REMOTE_ADDR'];
-//         } else {
-//             $ipAddress = '';
-//         }
-
-//     //us country
-//     $ipAddress = '185.198.240.164';
-
-//         if (!empty($ipAddress)) {
-//             $data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ipAddress)); 
-//             $countryCode = isset($data->geoplugin_countryCode) ? $data->geoplugin_countryCode : 'IN';
-// // dd($countryCode);
-//             session()->put('countrycode',$countryCode);
-//             return $countryCode;
-//         } else {
-//             session()->put('countrycode','IN');
-//             return "IN";
-//         }
-//     }else{
-//         return session()->get('countrycode'); 
-//     }
-// }
 
 function getCurrency($val){
     if((isset($val)) && ($val == 'INR' || $val == 'inr')){
