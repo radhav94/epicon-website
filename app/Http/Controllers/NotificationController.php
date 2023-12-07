@@ -61,8 +61,12 @@ class NotificationController extends Controller
     //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     //     $response = curl_exec($ch);
     // print_r($response);
-     $data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ipAddress)); 
-     print_r($data);
+    $file = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ipAddress);
+        if(!$file){
+            return "IN";
+        }
+    $data = @json_decode($file); 
+    print_r($data);
     $countryCode = isset($data->geoplugin_countryCode) ? $data->geoplugin_countryCode : 'IN';
      echo "=========".$countryCode . "===============Country Code==========";
 
