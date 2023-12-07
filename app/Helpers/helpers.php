@@ -1199,7 +1199,7 @@ function getCountryCode(){
     // $ipAddress = '170.40.150.126';
 
         if (!empty($ipAddress)) {
-            $data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ipAddress)); 
+            $data = @json_encode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ipAddress)); 
             $countryCode = isset($data->geoplugin_countryCode) ? $data->geoplugin_countryCode : 'IN';
 // dd($countryCode);
             session()->put('countrycode',$countryCode);
