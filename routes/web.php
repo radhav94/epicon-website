@@ -59,6 +59,7 @@ Route::redirect('contact-us', '/', 301);
 Route::redirect('listen', 'podcast', 301);
 Route::redirect('play', 'games', 301);
 Route::redirect('privacy-policy', 'privacy', 301);
+Route::redirect('about', 'about-us', 301);
 Route::redirect('generatepin', 'settings?status=generatepin', 301);
 //////End Redirection routes ////////
 
