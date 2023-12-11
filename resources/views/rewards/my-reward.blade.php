@@ -225,7 +225,7 @@
                                             $redeemOn = isset($offersummary['redeem_on']) && !empty($offersummary['redeem_on']) ? date('d F Y', strtotime($offersummary['redeem_on'])) : '';
                                         ?>
                                         <tr>
-                                            <td><img class="summary-img" src="{{ $offer_image }}" alt="logo">Audible {{isset($offersummary['offer_title']) ? $offersummary['offer_title'] : '' }}</td>
+                                            <td><img class="summary-img" src="{{ $offer_image }}" alt="logo">{{isset($offersummary['offer_title']) ? $offersummary['offer_title'] : '' }}</td>
                                             <td style="color:#B7B7B7">Claimed on {{ isset($redeemOn) ? $redeemOn : '' }}</td>
                                             <td class="text-end"><img width="15" src="{{ asset('/img/coin.svg') }}" alt="">&nbsp; {{ isset($offersummary['epicoins']) ? $offersummary['epicoins'] : '' }}</td>
                                         </tr>
