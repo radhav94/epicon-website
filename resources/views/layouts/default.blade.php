@@ -80,7 +80,9 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','G-8JER642T3Z');
     </script>
-
+    <!-- Schema Code Start -->
+    @include('layouts.schema')
+    <!-- Schema Code END -->
     {{-- Start footer common scripts --}}
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-ui.min.js') }}" defer></script>

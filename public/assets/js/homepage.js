@@ -1077,6 +1077,8 @@
 
     $('.distro-banner').not('.slick-initialized').slick({ 
         dots: false,
+        autoplay: true,
+        pauseOnHover: false,
         arrows: true,
         infinite: true,
         speed: 300,
