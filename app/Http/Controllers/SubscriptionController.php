@@ -858,5 +858,7 @@ class SubscriptionController extends Controller
 
     public function payuWebhook(Request $request){
         Log::info("payu webhook : ". json_encode($request->all()));
+
+        return response()->json('success', 200);
     }
 }
