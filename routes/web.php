@@ -261,4 +261,5 @@ foreach ($lang as $val) {
 
 Route::post('/player', [PlayerController::class, 'getVideoUrl']);
 Route::post('/setplayTracking', [PlayerController::class, 'setplayTracking']);
+Route::any('/payu/transactioncallback', [SubscriptionController::class, 'payuWebhook']);
 
