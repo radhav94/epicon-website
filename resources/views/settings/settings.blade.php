@@ -269,6 +269,8 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
         var checkpin = $("#ispin").val();
         if(checkpin == "ispin"){
             $("#v-pills-childpin-tab").trigger('click');
+        }else if(checkpin == "generatepin"){
+            $("#v-pills-sync-tab").trigger('click');
         }
         var searchHistory = "{{ $hasSearchHistory }}";
         var resendOtp = false;
