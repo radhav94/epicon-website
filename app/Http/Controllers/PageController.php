@@ -15,11 +15,11 @@ class PageController extends Controller
         $this->limit = 10;
     }
 
-    public function index($slug = 'home-v2')    
+    public function index($slug = 'home-v2')
     {
         // dd(session()->get('user_token'));
         $pageslug = strtolower($slug);
-        
+
         SilentLoginFunction();
 
         profileActive();
@@ -38,9 +38,28 @@ class PageController extends Controller
                 $meta = $this->getMeta($pagetype, $pagetitle, $pageslug);
             }
             // dd($meta);
-            return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta','slug'));
-                    }
-        return view('pages.error.404');
+            return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta', 'slug'));
+        }
+
+        $whichLogic = 2;
+
+        if ($whichLogic === 1) {
+
+            $pageCheckArr = array_map('strtolower', array('epicoins-faq', 'listen&pid=15', 'getSubscription', 'login', 'documentaries', 'verifyotp', 'watch', 'loginwithpwd', 'resetpwdapi', 'sendotp', 'sendforgototp', 'verifyforgototp', 'amar-chitra-katha', 'catalog', 'index.php'));
+            if (in_array(strtolower($pageslug), $pageCheckArr)) {
+                return redirect('/');
+            } else {
+                return view('pages.error.404');
+            }
+        } else {
+
+            $pageCheckArr = array_map('strtolower', array('about-us', 'movies', 'tv-shows', 'podcast', 'explore', 'premium', 'live-tv', 'distro-tv', 'kids', 'new-popular', 'coming-soon', 'feedback', 'privacy', 'terms-of-use'));
+            if (!in_array(strtolower($pageslug), $pageCheckArr)) {
+                return redirect('/');
+            } else {
+                return view('pages.error.404');
+            }
+        }
     }
 
     public function loadMore(Request $request)
@@ -52,7 +71,7 @@ class PageController extends Controller
             $displayLanguageParam = $data['displayLanguageParam'];
             $stories = $data['stories'];
 
-            $view = view('display.display-default', compact('result', 'displayLanguageParam', 'stories','slug'))->render();
+            $view = view('display.display-default', compact('result', 'displayLanguageParam', 'stories', 'slug'))->render();
 
             return JSONResponse(
                 200,
@@ -85,7 +104,7 @@ class PageController extends Controller
                 $meta = $this->getMeta($pagetype, $pagetitle, $slug);
             }
 
-            return view('pages.explore', compact('result','meta'));
+            return view('pages.explore', compact('result', 'meta'));
         }
 
         return view('pages.error.data-error');
@@ -106,10 +125,10 @@ class PageController extends Controller
 
         if ($result && @$result['success'] ==  true) {
             $result = $result['data'] ?? [];
-            
-            $meta['title'] = ($displayLanguageParam == 'HINDI') ? 'विवरण खोजें' : 'Explore - '.ucfirst($slug);
 
-            return view('pages.explore_details', compact('result', 'slug', 'page','meta', 'limit'));
+            $meta['title'] = ($displayLanguageParam == 'HINDI') ? 'विवरण खोजें' : 'Explore - ' . ucfirst($slug);
+
+            return view('pages.explore_details', compact('result', 'slug', 'page', 'meta', 'limit'));
         } else {
             return view('pages.error.data-error');
         }
@@ -169,33 +188,33 @@ class PageController extends Controller
         }
     }
 
-    public function showmidpagedetail(Request $request,$pageslug, $catalog=null)
+    public function showmidpagedetail(Request $request, $pageslug, $catalog = null)
     {
         $page = 1;
         $slug = $pageslug;
         $limit = 48;
 
         $hybidData = $request->all();
-        if($request->is_hybrid){
+        if ($request->is_hybrid) {
 
-            $genre_viewall = json_encode(explode(",",$request->genre_viewall));
-            $catalog_viewall = json_encode(explode(",",$request->catalog_viewall));
-            $list_language_viewall = json_encode(explode(",",$request->list_language_viewall));
+            $genre_viewall = json_encode(explode(",", $request->genre_viewall));
+            $catalog_viewall = json_encode(explode(",", $request->catalog_viewall));
+            $list_language_viewall = json_encode(explode(",", $request->list_language_viewall));
             $params = [
-                'is_hybrid' =>'true',
+                'is_hybrid' => 'true',
                 'catalog_viewall' => $catalog_viewall,
                 'genre_viewall' => $genre_viewall,
-                'list_language_viewall' => $list_language_viewall, 
-                'limit' => $limit, 
+                'list_language_viewall' => $list_language_viewall,
+                'limit' => $limit,
                 'page' => 1
             ];
-            $epicwebArr = $this->hybridCurl($params); 
-        }else{
+            $epicwebArr = $this->hybridCurl($params);
+        } else {
             $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => $limit, 'page' => 1], 1);
         }
         if (isset($epicwebArr) && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
-            return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page','hybidData'));
+            return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page', 'hybidData'));
         } else {
             return view('pages.error.data-error');
         }
@@ -203,14 +222,14 @@ class PageController extends Controller
 
     public function channelsmidpagedetail($slug)
     {
-        $title = $slug; 
-        $slug = "live|".$slug;
+        $title = $slug;
+        $slug = "live|" . $slug;
         $page = 1;
-        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['slug' => $slug, 'page' => 1,'limit' => 48], 1);
-        
+        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['slug' => $slug, 'page' => 1, 'limit' => 48], 1);
+
         if (isset($epicwebArr) && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
-            return view('pages.chanel.channelmidpage', compact('epicwebArr','title', 'slug', 'page'));
+            return view('pages.chanel.channelmidpage', compact('epicwebArr', 'title', 'slug', 'page'));
         } else {
             return view('pages.error.data-error');
         }
@@ -220,27 +239,26 @@ class PageController extends Controller
     {
         $request = Request();
         $page = $request->page;
-        $catalog ="";
+        $catalog = "";
         $limit = 48;
         $dataCount = "";
-        if($request->is_hybrid){
+        if ($request->is_hybrid) {
 
-            $genre_viewall = json_encode(explode(",",$request->genre_viewall));
-            $catalog_viewall = json_encode(explode(",",$request->catalog_viewall));
-            $list_language_viewall =json_encode(explode(",",$request->list_language_viewall));
+            $genre_viewall = json_encode(explode(",", $request->genre_viewall));
+            $catalog_viewall = json_encode(explode(",", $request->catalog_viewall));
+            $list_language_viewall = json_encode(explode(",", $request->list_language_viewall));
             $params = [
-                'is_hybrid' =>'true',
+                'is_hybrid' => 'true',
                 'catalog_viewall' => $catalog_viewall,
                 'genre_viewall' => $genre_viewall,
-                'list_language_viewall' => $list_language_viewall, 
-                'limit' => $limit, 
+                'list_language_viewall' => $list_language_viewall,
+                'limit' => $limit,
                 'page' => $page
             ];
             $epicwebArr = $this->hybridCurl($params);
-            
-        }else{
-        $catalog = $request->catalogid;
-        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => $limit, 'page' => $page], 1);
+        } else {
+            $catalog = $request->catalogid;
+            $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => $limit, 'page' => $page], 1);
         }
         $catalogue_blade = "paginatecontent";
         if ($epicwebArr && @$epicwebArr['success'] == true) {
@@ -323,12 +341,12 @@ class PageController extends Controller
             'page' => $page,
             'limit' => $this->limit,
         ];
-        
+
         if (isUserLoggedIn()) {
             $params['user_id'] = getUserId();
             $params['profile_id'] = getProfileId();
         }
-        
+
         $result = CurlAPI("pages/homepage", "GET", $params, 1);
         // dd($result);
         if ($result && @$result['success'] ==  true) {
@@ -338,7 +356,7 @@ class PageController extends Controller
                 if ($list['display_type'] == "shortandsweet") {
                     $stories = $this->epicShots();
                     break;
-                }   
+                }
                 continue;
             }
         }
@@ -400,45 +418,43 @@ class PageController extends Controller
             //$meta['title'] = 'Watch EPIC On '.$pagetitle.', Episodes, Promos Online | EPIC On';
             if ($pagetitle == 'watch' || $pagetitle == 'tv-shows' || $pagetitle == 'epic-shorts' || $pagetitle == 'documentaries' || $pagetitle == 'video-books' || $pagetitle == 'movies' || $pagetitle == 'amar-chitra-katha') {
                 // dd($pageslug);
-                if($pageslug == 'tv-shows'){
+                if ($pageslug == 'tv-shows') {
                     $meta['title'] = 'Watch Indian TV Shows Online at Epic On | Streaming Now';
                     $meta['description'] = 'Watch your favorite TV show online at Epic On. Best OTT Platforms for TV shows in Hindi and English. Subscribe to our platform today!';
                     $meta['keywords'] = 'originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries, EPIC ON,films,hollywood movies, bollywood movies, hindi movies,originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries,amazon prime movies';
-                }else if($pageslug == 'epic-shorts'){
+                } else if ($pageslug == 'epic-shorts') {
                     $meta['title'] = 'Watch Short Clip Online in India at Epic On';
                     $meta['description'] = 'Enjoy a wide range of short clips online at Epic On. From funny videos to educational clips to inspiring stories, theres something for everyone. Watch now!';
                     $meta['keywords'] = 'originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries, EPIC ON,films,hollywood movies, bollywood movies, hindi movies,originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries,amazon prime movies';
-                }else if($pageslug == 'movies'){
+                } else if ($pageslug == 'movies') {
                     $meta['title'] = 'Best OTT Platform for Movies | Watch Online Movie Now';
                     $meta['description'] = 'Watch your favorite online movies on Epic On, Indias best OTT platform for movies. With a wide selection of movies to choose from, including new releases.';
                     $meta['keywords'] = 'originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries, EPIC ON,films,hollywood movies, bollywood movies, hindi movies,originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries,amazon prime movies';
-                }else{
-                $meta['title'] = 'Best Ott Platforms for kids Online in India | Watch Now';
-                $meta['description'] = 'Keep your kids entertained with the best OTT platforms for kids in India, featuring a wide range of content. Subscribe and Enjoy ad-free streaming';
-                $meta['keywords'] = 'originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries, EPIC ON,films,hollywood movies, bollywood movies, hindi movies,originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries,amazon prime movies';
+                } else {
+                    $meta['title'] = 'Best Ott Platforms for kids Online in India | Watch Now';
+                    $meta['description'] = 'Keep your kids entertained with the best OTT platforms for kids in India, featuring a wide range of content. Subscribe and Enjoy ad-free streaming';
+                    $meta['keywords'] = 'originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries, EPIC ON,films,hollywood movies, bollywood movies, hindi movies,originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries,amazon prime movies';
                 }
             } else if ($pagetitle == 'listen' || $pagetitle == 'podcast') {
-                
-                    $meta['title'] = 'Podcast to Listen in India at Epic On';
-                    $meta['description'] = 'Listen to the best podcasts in India on Epic On. With a wide variety of podcasts to choose from, you are sure to find something you will love. Start listening today!';
-                    $meta['keywords'] = 'free podcast, download podcast, free popular podcasts, free podcast downloads, free podcasts online';
-                
+
+                $meta['title'] = 'Podcast to Listen in India at Epic On';
+                $meta['description'] = 'Listen to the best podcasts in India on Epic On. With a wide variety of podcasts to choose from, you are sure to find something you will love. Start listening today!';
+                $meta['keywords'] = 'free podcast, download podcast, free popular podcasts, free podcast downloads, free podcasts online';
             } else if ($pagetitle == 'play' || $pagetitle == 'games') {
                 // print_r("Play Music");exit();
-                if($pageslug == 'gamepix'){
+                if ($pageslug == 'gamepix') {
                     $meta['title'] = 'Epic On - Online Gaming Platform for Kids | Check Today';
                     $meta['description'] = 'Enjoy fun and educational online games with kids of all ages! These games will keep you entertained and learning at the same time';
                     $meta['keywords'] = 'games, games free download, subway surfers, onilne games, car games, coin master free spins, games to play, play online games, gamezop, snake game, bubble shooter, onilne chess, bubble shooter, free games, new games, games, games free download, subway surfers, onilne games, car games, coin master free spins, games to play, play online games, gamezop, snake game, bubble shooter, onilne chess, bubble shooter, free games, new games,free online, kids games';
-                }else if($pageslug == 'gamezop'){
+                } else if ($pageslug == 'gamezop') {
                     $meta['title'] = 'Online Gaming OTT Platform | Play Now';
                     $meta['description'] = 'Experience the future of online gaming with Epic On, Indias premier OTT gaming platform. Play your favorite games instantly, without any installation.';
                     $meta['keywords'] = 'games, games free download, subway surfers, onilne games, car games, coin master free spins, games to play, play online games, gamezop, snake game, bubble shooter, onilne chess, bubble shooter, free games, new games, games, games free download, subway surfers, onilne games, car games, coin master free spins, games to play, play online games, gamezop, snake game, bubble shooter, onilne chess, bubble shooter, free games, new games,free online, kids games';
-                }else{
+                } else {
                     $meta['title'] = 'Online Gaming Platform | Play Games At Epic On';
                     $meta['description'] = 'Play your favorite online games on Epic On. With a wide selection of games to choose from, Enjoy smooth and seamless gaming edxperience. Sign up for a free trial!';
                     $meta['keywords'] = 'games, games free download, subway surfers, onilne games, car games, coin master free spins, games to play, play online games, gamezop, snake game, bubble shooter, onilne chess, bubble shooter, free games, new games, games, games free download, subway surfers, onilne games, car games, coin master free spins, games to play, play online games, gamezop, snake game, bubble shooter, onilne chess, bubble shooter, free games, new games,free online, kids games';
                 }
-                
             } else if ($pagetitle == 'read' || $pagetitle == 'ebooks') {
                 $meta['title'] = 'EBooks | Download free Fiction, Love Stories, Romance, English Ebook, Horror and many more on EPIC ON';
                 $meta['description'] = 'You cannot stop reading as EPIC ON has unlimited ebooks from popular publications. Read your favourite ebooks free online, available at EPIC ON';
@@ -542,33 +558,30 @@ class PageController extends Controller
         return $meta;
     }
 
-    public function hybridCurl($param){
-       
+    public function hybridCurl($param)
+    {
+
         $data = http_build_query($param);
         $curl = curl_init();
         curl_setopt_array($curl, array(
-        CURLOPT_URL => config('epicconfig.EPICAPI.API_DOMAIN_1').'/pages/midpageData',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => $data,
-        CURLOPT_HTTPHEADER => array(
-            'x-access-auth-token: szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH',
-            'Content-Type: application/x-www-form-urlencoded'
-        ),
+            CURLOPT_URL => config('epicconfig.EPICAPI.API_DOMAIN_1') . '/pages/midpageData',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $data,
+            CURLOPT_HTTPHEADER => array(
+                'x-access-auth-token: szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH',
+                'Content-Type: application/x-www-form-urlencoded'
+            ),
         ));
-    
+
         $response = curl_exec($curl);
 
         curl_close($curl);
         return json_decode($response, true);
     }
-
-  
-
 }
-
