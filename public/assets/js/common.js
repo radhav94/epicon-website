@@ -3,7 +3,8 @@ var queryParams = new URLSearchParams(window.location.search);
 
 $(document).ready(function () {
     $( ".profile_date_picker" ).datepicker({
-        dateFormat: 'dd-M-yy',
+        //dateFormat: 'dd-M-yy',
+        dateFormat: 'dd/mm/yy',
         maxDate: '-1d',
         changeMonth: true,
         changeYear: true,
