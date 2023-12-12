@@ -15,8 +15,9 @@ class PayuWebhookService
                 'order_id' => $webhookResponse["txnid"]
             ];
             $orderData = CurlAPI("subscriptions/updateOrderData", 'POST', $getOrderDataParams, 2, false, true);
-
-            if ($orderData && @$orderData['success'] == true && @$orderData['order_status'] == 'initiated') {
+            dd($orderData);
+            if ($orderData && @$orderData['success'] == true && @$orderData['data']['order_status'] == 'initiated') {
+                $orderData = $orderData['data'];
                 $verifyPayment = $this->verifyPaymentStatus($webhookResponse['txnid']);
 
                 if ($verifyPayment) {
@@ -37,12 +38,39 @@ class PayuWebhookService
                         "order_id" => $webhookResponse["txnid"],
                         "payu_status" => $webhookResponse["status"]
                     ];
-
+                    
                     $updatePayment = CurlAPI("subscriptions/updateOrderData", 'POST', $input, 2, false, true);
                     Log::info("----- updateOrderData -----");
                     Log::debug(json_encode($input));
                     Log::info("----- updateOrderDataResponse -----");
                     Log::debug(json_encode($updatePayment));
+
+                    $updateOrderData = [
+                        'plan' => $orderData['plan_id'] ?? '',
+                        'user_id' => $orderData['user_id'] ?? '',
+                        'order_id' => $webhookResponse["txnid"],
+                        'order_status' => 'complete',
+                        'payment_gateway' => 'payu',
+                        'bank_ref_no' => @$webhookResponse['bank_ref_num'],
+                        'ios_receipt' => '',
+                        'android_receipt' => '',
+                        'web_device' => 'web',
+                        'coupon_applied' => $orderData['coupon_applied'] ?? '',
+                        'subscriptionId' => '',
+                        'subscriptionPaymentMode' => '',
+                        'note' => '',
+                        'recurring_receipt' => '',
+                        'bank_name' => '',
+                        'payment_mode' => $webhookResponse['mode'] ?? '',
+                        'x_country' => '',
+                        'x_continent' => '',
+                    ];
+
+                    $updateOrder = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2, false, true);
+                    Log::info("----- updateOrder -----");
+                    Log::debug(json_encode($updateOrderData));
+                    Log::info("----- updateOrderResponse -----");
+                    Log::debug(json_encode($updateOrder));
 
                     $amount = $webhookResponse['amount'] ?? 0;
                     $this->preDebit($webhookResponse, $orderData);
