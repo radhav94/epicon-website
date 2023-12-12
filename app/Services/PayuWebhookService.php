@@ -33,7 +33,7 @@ class PayuWebhookService
                         "furl" => $webhookResponse["furl"],
                         "api_version" => 12,
                         "lastname" => $webhookResponse["lastname"] ?? null,
-                        "pg" => "payu",
+                        "pg" => @$webhookResponse["pg"] != '' ? $webhookResponse["pg"] : null,
                         "order_id" => $webhookResponse["txnid"],
                         "payu_status" => $webhookResponse["status"]
                     ];
@@ -47,9 +47,7 @@ class PayuWebhookService
                     $amount = $webhookResponse['amount'] ?? 0;
                     $this->preDebit($webhookResponse, $orderData);
                     $this->recurringPayment($webhookResponse, $amount);
-                    // $paymentStatus = strtolower($webhookResponse['status']);
-                    // $this->EventPushData($paymentStatus);
-                    
+                    // $this->EventPushData($webhookResponse);
                 } else {
                     Log::info("----- Failed to Verify Payment Status -----");
                 }
@@ -80,7 +78,6 @@ class PayuWebhookService
         Log::debug($verifyPayment);
 
         $verifyDetails = json_decode($verifyPayment);
-        // $data= json_decode(json_encode($verifyPayment), true);
 
         return $verifyDetails->status;
     }
@@ -132,5 +129,13 @@ class PayuWebhookService
         Log::info("----- PayuMoney Recuring Payment response -----");
         Log::debug(json_encode($parameters));
         Log::debug($recurringPayment);
+    }
+
+    public function EventPushData($order)
+    {   
+        if ($order['status'] == "success") {
+            $data['Mobile'] = @$order['phone'];
+            EventPush($order['user_id'], 'Subscribe', $data, true, false);
+        }
     }
 }
