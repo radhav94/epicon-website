@@ -103,16 +103,15 @@ class PageDetailController extends Controller
             return view($template, compact('content', 'displayLanguageParam', 'trailers', 'morelike', 'meta', 'about', 'pageslug'));
         }
 
-        if(strtolower($pageslug) === 'en')
-        {
+        if (strtolower($pageslug) === 'en') {
             $pageslug = request()->segment(2);
         }
 
-        $pageCheckArr = array_map('strtolower', array('ebook','ebooks', 'epic-shorts','watch','genre','listen'));
+        $pageCheckArr = array_map('strtolower', array('ebook', 'ebooks', 'epic-shorts', 'watch', 'genre', 'listen'));
         if (in_array(strtolower($pageslug), $pageCheckArr)) {
-        return redirect('/');
+            return redirect('/', 301);
         } else {
-        return redirect($pageslug);
+            return redirect($pageslug, 301);
         }
 
         // return view('pages.error.404');

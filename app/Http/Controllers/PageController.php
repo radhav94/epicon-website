@@ -47,7 +47,7 @@ class PageController extends Controller
 
             $pageCheckArr = array_map('strtolower', array('epicoins-faq', 'listen&pid=15', 'getSubscription', 'login', 'documentaries', 'verifyotp', 'watch', 'loginwithpwd', 'resetpwdapi', 'sendotp', 'sendforgototp', 'verifyforgototp', 'amar-chitra-katha', 'catalog', 'index.php'));
             if (in_array(strtolower($pageslug), $pageCheckArr)) {
-                return redirect('/');
+                return redirect('/', 301);
             } else {
                 return view('pages.error.404');
             }
@@ -55,7 +55,7 @@ class PageController extends Controller
 
             $pageCheckArr = array_map('strtolower', array('about-us', 'movies', 'tv-shows', 'podcast', 'explore', 'premium', 'live-tv', 'distro-tv', 'kids', 'new-popular', 'coming-soon', 'feedback', 'privacy', 'terms-of-use'));
             if (!in_array(strtolower($pageslug), $pageCheckArr)) {
-                return redirect('/');
+                return redirect('/', 301);
             } else {
                 return view('pages.error.404');
             }
