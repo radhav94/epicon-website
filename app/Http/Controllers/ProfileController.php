@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Session;
+use DateTime;
 
 class ProfileController extends Controller
 {
@@ -64,11 +65,17 @@ class ProfileController extends Controller
 
     public function store(Request $request): JsonResponse
     {
+        $userDob = $request->dob ?? '';
+        if (empty($userDob)) {
+            return JSONResponse(400, 'Date of birth is required.');
+        }
+        $date = DateTime::createFromFormat('d/m/Y', $userDob);
+        $dob = $date->format('Y-m-d');
         $param = [
             'name' => $request->name,
-            'date_of_birth' => $request->dob ? date('Y-m-d', strtotime($request->dob)) : '',
+            'date_of_birth' => $dob,
         ];
-        if(!empty($request->dob) && $request->dob >= date('Y-m-d')){
+        if(!empty($userDob) && $dob >= date('Y-m-d')){
             return JSONResponse(400, 'Date of birth must be less than today.');
         }
         
@@ -113,13 +120,18 @@ class ProfileController extends Controller
 
     public function update(Request $request): JsonResponse
     {
+        $userDob = $request->dob ?? '';
+        if (empty($userDob)) {
+            return JSONResponse(400, 'Date of birth is required.');
+        }
+        $date = DateTime::createFromFormat('d/m/Y', $userDob);
+        $dob = $date->format('Y-m-d');
         $param = [
             'profile_id' => $request->profile_id,
             'name' => $request->name,
-            'date_of_birth' => $request->dob ? date('Y-m-d', strtotime($request->dob)) : '',
+            'date_of_birth' => $dob,
         ];
-
-        if(!empty($request->dob) && $request->dob >= date('Y-m-d')){
+        if(!empty($userDob) && $dob >= date('Y-m-d')){
             return JSONResponse(400, 'Date of birth must be less than today.');
         }
 
