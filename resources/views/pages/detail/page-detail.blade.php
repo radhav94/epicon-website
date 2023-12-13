@@ -81,17 +81,11 @@ $meta['image'] = $share_img;
         $watchid = "";
         $addToList = "";
         $href = "javascript:void(0);";
-
-        if (!isUserLoggedIn()) {
-            $watchClass = @$content['free_premium'] == true ? "login-with-subscription" : "";
-            $watchid = @$content['free_premium'] != true ? "watchVideo" : "";
-            $addToList = "login-with-subscription";
-        } else {
             $addToList = "addToList";
             // for play Video 
             $watchClass = @$content['free_premium'] == true && @$subplan['status'] != 'active' ? $addClass : "";
             $watchid = @$content['free_premium'] != true || (@$content['free_premium'] == true && @$subplan['status'] == 'active') ? "watchVideo" : "";
-        }
+        
         $dispnone = "";
 ?>
        @if ($trailers && isset($trailers['list']) && !empty($trailers['list'] && @$content['free_premium'] == true))
