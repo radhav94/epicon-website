@@ -15,7 +15,7 @@ class PayuWebhookService
                 'order_id' => $webhookResponse["txnid"]
             ];
             $orderData = CurlAPI("subscriptions/updateOrderData", 'POST', $getOrderDataParams, 2, false, true);
-            dd($orderData);
+
             if ($orderData && @$orderData['success'] == true && @$orderData['data']['order_status'] == 'initiated') {
                 $orderData = $orderData['data'];
                 $verifyPayment = $this->verifyPaymentStatus($webhookResponse['txnid']);
