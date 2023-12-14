@@ -75,7 +75,7 @@ if ($request->has('type')) {
                 <div class="f-link">
                     <ul class="d-flex mb-0">
                         @if(isKidsPage())
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('About Us')}}" href="{{getUrl('kids/about')}}">{{__('About Us')}}</a></li>
+                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('About Us')}}" href="{{getUrl('kids/about-us')}}">{{__('About Us')}}</a></li>
                         <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Terms of Use')}}" href="{{route('kids-terms-of-use')}}">{{__('Terms of Use')}}</a></li>
                         <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Privacy Policy')}}" href="{{route('kids-privacy')}}">{{__('Privacy Policy')}}</a></li>
                         <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Help Centre')}}" href="{{getUrl('kids/feedback')}}">{{__('Help Centre')}}</a></li>

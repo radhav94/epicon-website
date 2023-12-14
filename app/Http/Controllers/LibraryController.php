@@ -18,7 +18,7 @@ class LibraryController extends Controller
         $listResponseData = CurlAPI("pages/wishlist", 'POST', $action, 1, true);
 
         $param = ['profile_id' => $profile_id];
-        $historyResponse = CurlAPI("pages/user/watch_history", 'GET', $param, 1, true, true);
+        $historyResponse = CurlAPI("pages/user/watch_history", 'GET', $param, 1, true);
         if (@$historyResponse['success'] == true) {
             $historydata = @$historyResponse['data'];
         } else {
