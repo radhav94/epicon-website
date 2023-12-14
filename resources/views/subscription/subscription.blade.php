@@ -215,7 +215,7 @@
 @section('script')
 <script>
     $(document).ready(function(){
-        $(".planid").click(function (e) {
+        $(".planid-hold").click(function (e) {
             var planid =$(this).attr('data-id');  
         $.ajaxSetup({
             headers: {
