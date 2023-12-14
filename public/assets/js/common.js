@@ -3,7 +3,8 @@ var queryParams = new URLSearchParams(window.location.search);
 
 $(document).ready(function () {
     $( ".profile_date_picker" ).datepicker({
-        dateFormat: 'dd-M-yy',
+        //dateFormat: 'dd-M-yy',
+        dateFormat: 'dd/mm/yy',
         maxDate: '-1d',
         changeMonth: true,
         changeYear: true,
@@ -127,6 +128,22 @@ $(document).ready(function () {
         // Go back to the previous page
         window.history.back();
     });
+
+    $(".eye-toggle").click(function() {
+        var targetId = $(this).data("target");
+        var inputField = $("#" + targetId);
+        var isPasswordType = inputField.attr('type') === 'password';
+
+        if (isPasswordType) {
+            inputField.attr('type', 'text');
+            $(this).find('.eye-close-' + targetId).css('display', 'none');
+            $(this).find('.eye-open-' + targetId).css('display', 'block');
+        } else {
+            inputField.attr('type', 'password');
+            $(this).find('.eye-open-' + targetId).css('display', 'none');
+            $(this).find('.eye-close-' + targetId).css('display', 'block');
+        }
+    });
 })
 
 $(document).on("click", ".check-content-url", function () {
@@ -164,7 +181,7 @@ $(window).on('load', function () {
     /*kids section*/
     // open login popup
     if (queryParams.get('profile') == "kids") {
-        $('.login').trigger('click');
+        $('.loginBtn.login').trigger('click');
     }
     /*kids section end*/
 
@@ -172,6 +189,11 @@ $(window).on('load', function () {
     if (queryParams.get('type') == "logout") {
         showToaster("You have been logged out. Kindly relogin to continue.", 2, 5000)
         window.history.replaceState({}, document.title, "/");
+    }
+
+    // open login popup
+    if (queryParams.get('type') == "login") {
+        $('.loginBtn.login').trigger('click');
     }
 })
 

@@ -343,4 +343,33 @@ class LoginController extends Controller
         $genrelist = postCurlApicall("v2profilecontent/savegenrelist", $curlData, 1, $user_token);
         return JSONResponse(200, '', ['message' => $genrelist['message'], 'success' => $genrelist['success']]);
     }
+
+    public function emailVerification() {
+        $request = Request();
+        $hash = $request->get('c');
+        if ($request->get('nxt') == 'resetpwd') {
+            return view('auth.reset-password-form', compact('hash'));
+        } else {
+            $verfiyPostedData = ['hash' => $request->get('c')];
+            $epicwebArr = CurlAPI("users/verifyemail", 'POST', $verfiyPostedData, 3);
+            $message = @$epicwebArr['message'];
+            if ($epicwebArr['success'] == true && $request->get('nxt') == 'login') {
+                $message = 'Signup verification successfull';
+            }
+            return redirect("?type=login")->with(['message' => $message]);
+        }
+    }
+
+    public function setResetPassword()
+    {
+        $request = Request();
+        $message = "Reset Password Fail using email";
+        $verfiyPostedData = ['new_password' => $request->post('set-password'), 'hash' => $request->post('hash')];
+        $epicwebArr = CurlAPI("users/resetpass", 'POST', $verfiyPostedData, 3);
+        if (!$epicwebArr) {
+            return JSONResponse(400, "Something went wrong. Please try again!");
+        }
+
+        return JSONResponse(200, '', ['message' => @$epicwebArr['message'], 'success' => @$epicwebArr['success']]);
+    }
 }

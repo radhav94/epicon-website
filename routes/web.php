@@ -24,6 +24,8 @@ use App\Http\Controllers\LiveTvController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AndroidPaymentController;
 use App\Http\Controllers\DistroTvController;
+use App\Http\Controllers\PaytmController;
+use App\Http\Controllers\PaytmQrController;
 use Illuminate\Support\Facades\Route;
 
 $lang = ['hi', 'en'];
@@ -56,7 +58,26 @@ Route::redirect('play/gamezop/{any}', '/', 301);
 Route::redirect('contact-us', '/', 301);
 Route::redirect('listen', 'podcast', 301);
 Route::redirect('play', 'games', 301);
+Route::redirect('privacy-policy', 'privacy', 301);
+Route::redirect('about', 'about-us', 301);
+Route::redirect('generatepin', 'settings?status=generatepin', 301);
 //////End Redirection routes ////////
+
+
+Route::any('payu/webhook',[SubscriptionController::class, 'payuWebhook']);
+
+//Start paytm routes
+    //paytm qrcode generation
+    Route::get('paytmqrgeneration',[PaytmQrController::class, 'getPaytmSubscriptionQr']);
+    Route::get('paytmqrstatus',[PaytmQrController::class, 'getPaytmQrPaymentStatus']);
+
+    // Route::get('ccavep/paytm',[PaytmController::class, '_androidPaytmUsingWeb']);
+    
+    //normal paytm
+    // Route::post('paytm/payloadresponse',[PaytmController::class, 'payloadresponse']);
+    // Route::get('paytm/payloadresponse',[PaytmController::class, 'payloadresponse']);
+//End paytm routes 
+
 
 
 Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.loadmore');
@@ -74,6 +95,8 @@ Route::post('verifyforgototp', [LoginController::class, 'setForgotOTPVerificatio
 Route::post('resetpwdapi', [LoginController::class, 'ResetPasswordVerification'])->name('resetpwdapi');
 Route::post('saveGenre', [LoginController::class, 'saveGenreForUser'])->name('saveGenre');
 Route::post('getGenre', [LoginController::class, 'getGenreList'])->name('getGenre');
+Route::get('emailverification', [LoginController::class, 'emailVerification'])->name('emailverification');
+Route::post('setResetPassword', [LoginController::class, 'setResetPassword'])->name('setResetPassword');
 /*login and registration end */
 
 Route::post('explorecontent', [PageController::class, 'explorecontent'])->name('explorecontent');
@@ -238,4 +261,5 @@ foreach ($lang as $val) {
 
 Route::post('/player', [PlayerController::class, 'getVideoUrl']);
 Route::post('/setplayTracking', [PlayerController::class, 'setplayTracking']);
+Route::any('/payu/transactioncallback', [SubscriptionController::class, 'payuWebhook']);
 
