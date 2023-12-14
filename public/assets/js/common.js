@@ -144,6 +144,14 @@ $(document).ready(function () {
             $(this).find('.eye-close-' + targetId).css('display', 'block');
         }
     });
+
+    $(".subscription-login").on("click", function () {
+        var rediUrl = window.location.href;
+        localStorage.setItem("SubredirectURL", rediUrl);
+        $(".loginBtn.login").trigger('click');
+
+        });
+
 })
 
 $(document).on("click", ".check-content-url", function () {

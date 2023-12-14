@@ -351,7 +351,8 @@
                                                 return false;
                                             }
                                     }else{
-                                        window.location.href = APP_URL+'/subscription';
+                                        localStorage.removeItem("SubredirectURL");
+                                        window.location.href = SubchekUrl;
                                         return false;
                                     }
 
@@ -516,7 +517,7 @@
                     success: function(response) {
                         queryParams = new URLSearchParams(window.location.search);
                         var SubchekUrl = localStorage.getItem("SubredirectURL");
-                        // alert(response);
+                        //alert(SubchekUrl);
                         if (response.payload.success == true) {
                             login_success();
                             // $('#register-result').html('');
@@ -524,7 +525,6 @@
                             // $("#sign_method").val(response.payload.user_signup_method);
                             $('.left-side, .right-side, .login-popup-modal').hide();
                             $('.screen-sucess-logged').show();
-                            
                             if(response.payload.subplan_status == 'active'){
                                 $('.no-subscription-user').hide();
                             }else{
@@ -546,7 +546,8 @@
                                                 return false;
                                             }
                                     }else{
-                                        window.location.href = APP_URL+'/subscription';
+                                        localStorage.removeItem("SubredirectURL");
+                                        window.location.href = SubchekUrl;
                                         return false;
                                     }
 

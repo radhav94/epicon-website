@@ -81,7 +81,11 @@ $meta['image'] = $share_img;
         $watchid = "";
         $addToList = "";
         $href = "javascript:void(0);";
+        if (!isUserLoggedIn()) {
+            $addToList = "subscription-login";
+        }else{
             $addToList = "addToList";
+        }    
             // for play Video 
             $watchClass = @$content['free_premium'] == true && @$subplan['status'] != 'active' ? $addClass : "";
             $watchid = @$content['free_premium'] != true || (@$content['free_premium'] == true && @$subplan['status'] == 'active') ? "watchVideo" : "";

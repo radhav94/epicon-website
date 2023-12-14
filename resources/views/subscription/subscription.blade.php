@@ -215,13 +215,6 @@
 @section('script')
 <script>
     $(document).ready(function(){
-        $(".subscription-login").on("click", function () {
-        var rediUrl = window.location.href;
-        localStorage.setItem("SubredirectURL", rediUrl);
-        $(".loginBtn.login").trigger('click');
-
-    });
-
         $(".planid").click(function (e) {
             var planid =$(this).attr('data-id');  
         $.ajaxSetup({
