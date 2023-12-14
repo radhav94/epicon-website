@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 
@@ -10,6 +11,7 @@ class PageDetailController extends Controller
 {
     public function detail($pageslug, $contentslug, $season = null, $episode = null)
     {
+
         SilentLoginFunction();
         $url = "pages/episode/{$pageslug}/{$contentslug}";
         $params = [];
@@ -34,7 +36,7 @@ class PageDetailController extends Controller
             // }
             $content = $result['content'] ?? [];
 
-            if(empty($content)){
+            if (empty($content)) {
                 return view('pages.error.404');
             }
 
@@ -98,10 +100,21 @@ class PageDetailController extends Controller
                 'description' => @$content['description']
             ];
 
-            return view($template, compact('content', 'displayLanguageParam', 'trailers', 'morelike','meta', 'about', 'pageslug'));
+            return view($template, compact('content', 'displayLanguageParam', 'trailers', 'morelike', 'meta', 'about', 'pageslug'));
         }
 
-        return view('pages.error.404');
+        if (strtolower($pageslug) === 'en') {
+            $pageslug = request()->segment(2);
+        }
+
+        $pageCheckArr = array_map('strtolower', array('ebook', 'ebooks', 'epic-shorts', 'watch', 'genre', 'listen'));
+        if (in_array(strtolower($pageslug), $pageCheckArr)) {
+            return redirect('/', 301);
+        } else {
+            return redirect($pageslug, 301);
+        }
+
+        // return view('pages.error.404');
     }
 
     public function clap(Request $request)
