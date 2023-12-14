@@ -517,7 +517,6 @@
                     success: function(response) {
                         queryParams = new URLSearchParams(window.location.search);
                         var SubchekUrl = localStorage.getItem("SubredirectURL");
-                        //alert(SubchekUrl);
                         if (response.payload.success == true) {
                             login_success();
                             // $('#register-result').html('');

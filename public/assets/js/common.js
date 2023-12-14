@@ -116,6 +116,8 @@ $(document).ready(function () {
     })
 
     $(".allAccessBtn-sub").click(function() {
+        var rediUrl = window.location.href;
+        localStorage.setItem("redirectURL", rediUrl);
         window.history.pushState({},'',"?ref=subscription");
         var dispcss = $('.videoContainer').css('display');
         if(dispcss == 'block'){
@@ -162,10 +164,8 @@ $(document).on("click", ".check-content-url", function () {
     var rediUrl = window.location.href;
     localStorage.setItem("redirectURL", rediUrl);
     if (is_premium == 1 && active_subscriber != 1) {
-        if(Islogin == "checklogin"){
-            $(".login").trigger('click');
-            return false;
-        }else if(Islogin == "allAccessBtn"){
+        if(Islogin == "allAccessBtn"){
+            window.history.pushState({},'',"?ref=subscription");
             $(".allAccessBtn").trigger('click');
             return false;
         }else{
@@ -174,7 +174,7 @@ $(document).on("click", ".check-content-url", function () {
         }
         
         //showToaster("Please subscribe to play this game.", 2);
-        return;
+       return;
     }
     if (content_url == "") {
         showToaster("Content not found.", 2);
