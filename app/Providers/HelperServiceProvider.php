@@ -27,7 +27,7 @@ class HelperServiceProvider extends ServiceProvider
 
         require_once app_path() . '/Library/PHPMailer.php';
         require_once app_path() . '/Library/SMTP.php';
-        require_once app_path() . '/Library/PayUMoney.php';
+        // require_once app_path() . '/Library/PayUMoney.php';
     }
 
     public static function api($context, $method = 'GET', $data = null, $token = null)
