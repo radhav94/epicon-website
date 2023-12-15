@@ -266,3 +266,4 @@ Route::get('{any}', function ($any) {
     return view('pages.error.404');
 })->where('any', '.*');
 
+ 
