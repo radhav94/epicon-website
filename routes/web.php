@@ -262,4 +262,7 @@ foreach ($lang as $val) {
 Route::post('/player', [PlayerController::class, 'getVideoUrl']);
 Route::post('/setplayTracking', [PlayerController::class, 'setplayTracking']);
 Route::any('/payu/transactioncallback', [SubscriptionController::class, 'payuWebhook']);
+Route::get('{any}', function ($any) {
+    return view('pages.error.404');
+})->where('any', '.*');
 

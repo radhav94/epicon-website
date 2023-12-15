@@ -13,7 +13,7 @@
             yearRange: "-100:-1"
         });
 
-        $(".emailText").on("keyup", function (e) {
+        $(".emailText").on("keyup paste", function (e) {
             var t = $(this).val();
             $(".emailText").val(t);
             t.length >= 7 && Number.isInteger(+t)
