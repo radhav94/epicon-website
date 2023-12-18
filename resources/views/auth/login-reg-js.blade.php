@@ -716,6 +716,15 @@
         $(".redi-subs").click(function() {
           $("#redi-val").val("subscription");
          });
+         
+         $(".skip-btn").click(function() {
+            $('#login-modal').hide();
+         });
+
+         $(".subscription-btn").click(function() {
+            window.location.href = APP_URL+'/subscription';
+            return false;
+         });
 
     });
     
