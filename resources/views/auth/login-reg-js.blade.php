@@ -514,9 +514,12 @@
                     },
                     success: function(response) {
                         queryParams = new URLSearchParams(window.location.search);
-                        // alert(response);
                         if (response.payload.success == true) {
                             login_success();
+                            if(response.payload.maxDevice == true) {
+                                window.location.href = APP_URL+'/max-device';
+                                return false;
+                            }
                             // $('#register-result').html('');
                             // $("#username").text(response.payload.name);
                             // $("#sign_method").val(response.payload.user_signup_method);

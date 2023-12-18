@@ -191,6 +191,7 @@ foreach ($lang as $val) {
 
         /*settings route*/
         Route::get('settings', [SettingController::class, 'Setting'])->name('settings');
+        Route::get('max-device', [SettingController::class, 'maxDevice'])->name('max-device');
         
         Route::get('library', [LibraryController::class, 'index'])->name('library');
         Route::get('my-account', [UserAccountController::class, 'myaccount'])->name('my-account');
