@@ -407,7 +407,7 @@ class PageController extends Controller
             /******Changed as per SEO Person
             $meta['title'] = 'Welcome to EPIC On - India Ka Apna Infotainment';
             $meta['description'] = 'EPIC On - India Ka Apna Infotainment | Watch TV Shows, Documentaries, Epic Shorts, Epic Specials Online at EPIC On';*/
-            $meta['title'] = 'Watch Indian and Hollywood Movies & TV Shows Online | Epic On';
+            $meta['title'] = 'Watch Indian and Hollywood Movies & TV Shows Online.';
             $meta['description'] = 'Watch Indian and Hollywood movies & TV shows online at Epic On, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.';
             $meta['keywords'] = 'movies, film, online videos, tv series, games, ebooks, podcast, tv shows, recipe shows, travel shows, historic places, mythology, festivals of India, best tv shows, best tv series, history of India';
         } else if ($pagetype == 'login') {
@@ -415,7 +415,7 @@ class PageController extends Controller
             $meta['keywords'] = 'movies, film, online videos, tv series, games, ebooks, podcast, tv shows, recipe shows, travel shows, historic places, mythology, festivals of India, best tv shows, best tv series, history of India';
             $meta['description'] = 'Enjoy the best of content across movie, tv shows, videos, podcasts, gaming & e-books on-the-go, on multiple devices. Explore, discover, and be inspired with all in one entertainment stop on EPIC ON';
         } else if ($pagetype == 'CATALOG') {
-            //$meta['title'] = 'Watch EPIC On '.$pagetitle.', Episodes, Promos Online | EPIC On';
+            //$meta['title'] = 'Watch EPIC On '.$pagetitle.', Episodes, Promos Online.';
             if ($pagetitle == 'watch' || $pagetitle == 'tv-shows' || $pagetitle == 'epic-shorts' || $pagetitle == 'documentaries' || $pagetitle == 'video-books' || $pagetitle == 'movies' || $pagetitle == 'amar-chitra-katha') {
                 // dd($pageslug);
                 if ($pageslug == 'tv-shows') {
@@ -460,13 +460,13 @@ class PageController extends Controller
                 $meta['description'] = 'You cannot stop reading as EPIC ON has unlimited ebooks from popular publications. Read your favourite ebooks free online, available at EPIC ON';
                 $meta['keywords'] = 'kindle ebook, ebook reading, ebooks, ebook library, read ebooks online, onlinebooks, free ebooks, free ebook download, read ebooks online free, free onlinebooks, kindle ebook, ebook reading, ebooks, ebook library, read ebooks online, onlinebooks, free ebooks, free ebook download, read ebooks online free, free onlinebooks';
             } else if ($pagetitle == 'offers') {
-                $meta['title'] = 'Earn Rewards of Epicoins and Redeem on Offers | EPIC ON';
+                $meta['title'] = 'Earn Rewards of Epicoins and Redeem on Offers.';
                 $meta['description'] = 'Get rewarded for binge-watching, playing games, reading books, and more. Redeem your EPIC coins on available offers at reward store';
                 $meta['keywords'] = 'flipkart offers, dominos coupons, myntra coupons, offers, dominos coupon codes, dominos offer, coupons, myntra coupon code, myntra offers, discounts, crossword, deals, vouchers';
             } else if ($pageslug == 'explore') {
                 $meta['title'] = 'Explore';
             } else if ($pageslug == 'premium') {
-                $meta['title'] = 'Premium | EPIC ON';
+                $meta['title'] = 'Premium.';
                 $meta['description'] = 'EPIC ON - India Ka Apna Infotainment | Watch TV Shows, Documentaries, Epic Shorts, Epic Specials Online at EPIC ON ';
                 $meta['keywords'] = 'free podcast, download podcast, free popular podcasts, free podcast downloads, free podcasts online';
             } else {
@@ -488,12 +488,12 @@ class PageController extends Controller
                 $meta['description'] = 'Watch your favourite bhojpuri movies live on filamchi live tv streaming on EPIC On';
                 $meta['keywords'] = 'live tv, movies online, live tv channel, public tv live, live tv app, filamchi tv, filamchi live tv, free live tv, bhojpuri movies, bhojpuri video, bhojpuri film, bhojpuri cinema, bhojpuri film video';
             } else {
-                $meta['title'] = 'Watch Live Tv | Best OTT Platforms for Live TV | EPIC ON';
+                $meta['title'] = 'Watch Live Tv | Best OTT Platforms for Live TV.';
                 $meta['description'] = 'Catch all the live action with EPIC ON, India\'s premier OTT platform for live TV. Stream your favorite news, sports, and entertainment channels from anywhere.';
                 $meta['keywords'] = 'live tv, movies online, live tv channel, public tv live, live tv app, filamchi tv, filamchi live tv, free live tv, bhojpuri movies, bhojpuri video, bhojpuri film, bhojpuri cinema, bhojpuri film video';
             }
         } else if ($pagetype == 'HISTORY') {
-            //$meta['title'] = 'Watch popular '.$pagetitle.' Shows, Episodes, Promos Online | EPIC On';
+            //$meta['title'] = 'Watch popular '.$pagetitle.' Shows, Episodes, Promos Online.';
             $meta['title'] = 'Watch EPICON for your favourite Tv Shows, Episodes - Podcast - Ebook - Games - Rewards';
             $meta['description'] = 'Watch ' . $pagetitle . ' Shows online. Latest ' . $pagetitle . ' Shows Episodes, Promos online at EPIC ON.';
             // } else if (strtolower($pagetype) == 'coming-soon') {
@@ -566,7 +566,7 @@ class PageController extends Controller
                 $meta['keywords'] = 'लाइव टीवी, फिल्में ऑनलाइन, लाइव टीवी चैनल, पब्लिक टीवी लाइव, लाइव टीवी एप, फिल्ममची टीवी, फिल्ममची लाइव टीवी, फ्री लाइव टीवी, भोजपुरी फिल्में, भोजपुरी वीडियो, भोजपुरी फिल्म, भोजपुरी सिनेमा, भोजपुरी फिल्म वीडियो';
             }
         } else if ($pagetype == 'HISTORY') {
-            //$meta['title'] = 'Watch popular '.$pagetitle.' Shows, Episodes, Promos Online | EPIC On';
+            //$meta['title'] = 'Watch popular '.$pagetitle.' Shows, Episodes, Promos Online.';
             $meta['title'] = 'Watch EPICON for your favourite Tv Shows, Episodes - Podcast - Ebook - Games - Rewards';
             $meta['description'] = 'Watch ' . $pagetitle . ' Shows online. Latest ' . $pagetitle . ' Shows Episodes, Promos online at EPIC ON.';
         }
