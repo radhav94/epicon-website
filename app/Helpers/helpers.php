@@ -1264,7 +1264,8 @@ function getCountryStateDataInHtml()
 
 if (!function_exists('assetTime')) {
     function assetTime() {
-        return time();
+        return env('VERSION_CONTROL');
+        // return time();
     }
 }
 
