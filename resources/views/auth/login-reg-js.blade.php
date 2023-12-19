@@ -14,6 +14,8 @@
         });
 
         $(".emailText").on("keyup paste", function (e) {
+            $("#mobile-error").text('');
+            $(".text-danger").text('');
             var t = $(this).val();
             $(".emailText").val(t);
             t.length >= 7 && Number.isInteger(+t)
@@ -28,6 +30,18 @@
                     $(".signup_method").val('EMAIL')
                 );
         }),
+
+        $("#login_pwd").on("keyup", function (e) {
+            $("#login-pwd-error").text('');
+            $(".text-danger").text('');
+        });
+
+        $(".child-box").on("keyup", function (e) {
+            $(".text-danger").text('');
+        });
+        $(".backpress").on("keyup", function (e) {
+            $(".text-danger").text('');
+        });
 
         $('.login').click(function(event) {
             if (!event.isTrigger) {
@@ -309,6 +323,7 @@
                 $('#validation-result').text('');
             } else {
                 $('#validation-result').text('Please fill in all input boxes.');
+                return false;
             }
 
             if (otp_pin != '') {
@@ -483,6 +498,7 @@
             e.preventDefault();
             // Clear previous errors
             $('.error').text('');
+            $('.text-danger').text('');
             // Validate Name
             var name = $('#mobilenumber').val();
             if (name.trim() === '') {
@@ -600,6 +616,7 @@
                 $('#validation-forgot-result').text('');
             } else {
                 $('#validation-forgot-result').text('Please fill in all input boxes.');
+                return false;
             }
 
             if (otp_pin != '') {
