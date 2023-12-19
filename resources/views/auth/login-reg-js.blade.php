@@ -327,6 +327,7 @@
                             if (response.payload.success == true) {
                             login_success();
                             queryParams = new URLSearchParams(window.location.search);
+                            var SubchekUrl = localStorage.getItem("SubredirectURL");
                             $("#userid").val(response.payload.user_id);
                             $("#sign_method").val(response.payload.user_signup_method);
                             
@@ -337,7 +338,7 @@
                             } else {
                                 if (queryParams.get('profile') == "kids") {
                                     window.location.href = $("input[name='kidsUrl']").val();
-                                }else if(queryParams.get('ref') == "subscription"){
+                                }else if(SubchekUrl != "" && SubchekUrl !=null &&  SubchekUrl!=undefined){
 
                                     if(response.payload.subplan_status == 'active'){
                                         var chekUrl = localStorage.getItem("redirectURL");
@@ -350,7 +351,8 @@
                                                 return false;
                                             }
                                     }else{
-                                        window.location.href = APP_URL+'/subscription';
+                                        localStorage.removeItem("SubredirectURL");
+                                        window.location.href = SubchekUrl;
                                         return false;
                                     }
 
@@ -514,7 +516,7 @@
                     },
                     success: function(response) {
                         queryParams = new URLSearchParams(window.location.search);
-                        // alert(response);
+                        var SubchekUrl = localStorage.getItem("SubredirectURL");
                         if (response.payload.success == true) {
                             login_success();
                             // $('#register-result').html('');
@@ -522,7 +524,6 @@
                             // $("#sign_method").val(response.payload.user_signup_method);
                             $('.left-side, .right-side, .login-popup-modal').hide();
                             $('.screen-sucess-logged').show();
-                            
                             if(response.payload.subplan_status == 'active'){
                                 $('.no-subscription-user').hide();
                             }else{
@@ -532,7 +533,7 @@
                                 if (queryParams.get('profile') == "kids" ) {
                                     window.location.href = $("input[name='kidsUrl']").val();
                                     return false;
-                                }else if(queryParams.get('ref') == "subscription"){
+                                }else if(SubchekUrl != "" && SubchekUrl !=null &&  SubchekUrl!=undefined){
                                     if(response.payload.subplan_status == 'active'){
                                         var chekUrl = localStorage.getItem("redirectURL");
                                         if(chekUrl != "" && chekUrl !=null &&  chekUrl!=undefined){
@@ -544,7 +545,8 @@
                                                 return false;
                                             }
                                     }else{
-                                        window.location.href = APP_URL+'/subscription';
+                                        localStorage.removeItem("SubredirectURL");
+                                        window.location.href = SubchekUrl;
                                         return false;
                                     }
 
@@ -717,6 +719,15 @@
           $("#redi-val").val("subscription");
          });
          
+         $(".skip-btn").click(function() {
+            $('#login-modal').hide();
+         });
+
+         $(".subscription-btn").click(function() {
+            window.location.href = APP_URL+'/subscription';
+            return false;
+         });
+
          $(".skip-btn").click(function() {
             $('#login-modal').hide();
          });
