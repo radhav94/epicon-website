@@ -13,7 +13,7 @@
             yearRange: "-100:-1"
         });
 
-        $(".emailText").on("keyup", function (e) {
+        $(".emailText").on("keyup paste", function (e) {
             var t = $(this).val();
             $(".emailText").val(t);
             t.length >= 7 && Number.isInteger(+t)
@@ -717,6 +717,15 @@
         
         $(".redi-subs").click(function() {
           $("#redi-val").val("subscription");
+         });
+
+         $(".skip-btn").click(function() {
+            $('#login-modal').hide();
+         });
+
+         $(".subscription-btn").click(function() {
+            window.location.href = APP_URL+'/subscription';
+            return false;
          });
 
     });
