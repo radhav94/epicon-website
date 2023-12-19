@@ -407,8 +407,8 @@ class PageController extends Controller
             /******Changed as per SEO Person
             $meta['title'] = 'Welcome to EPIC On - India Ka Apna Infotainment';
             $meta['description'] = 'EPIC On - India Ka Apna Infotainment | Watch TV Shows, Documentaries, Epic Shorts, Epic Specials Online at EPIC On';*/
-            $meta['title'] = 'Watch Indian and Hollywood Movies & TV Shows Online.';
-            $meta['description'] = 'Watch Indian and Hollywood movies & TV shows online at Epic On, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.';
+            $meta['title'] = 'Watch TV Shows, Web Series, Movies, Podcasts & Live TV Channels';
+            $meta['description'] = 'Watch TV Shows, Web Series, Movies, Podcasts & Live TV Channels online at Epic On, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.';
             $meta['keywords'] = 'movies, film, online videos, tv series, games, ebooks, podcast, tv shows, recipe shows, travel shows, historic places, mythology, festivals of India, best tv shows, best tv series, history of India';
         } else if ($pagetype == 'login') {
             $meta['title'] = 'EPIC ON | TV Shows, Movies, Podcast, Games, Rewards';
