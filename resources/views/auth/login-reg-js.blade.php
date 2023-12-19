@@ -738,22 +738,14 @@
          
          $(".skip-btn").click(function() {
             $('#login-modal').hide();
+            location.reload();
+            return false;
          });
 
          $(".subscription-btn").click(function() {
             window.location.href = APP_URL+'/subscription';
             return false;
          });
-
-         $(".skip-btn").click(function() {
-            $('#login-modal').hide();
-         });
-
-         $(".subscription-btn").click(function() {
-            window.location.href = APP_URL+'/subscription';
-            return false;
-         });
-
     });
     
 </script>
