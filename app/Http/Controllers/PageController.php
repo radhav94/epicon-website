@@ -395,7 +395,7 @@ class PageController extends Controller
         }
         return $stories_arr;
     }
-
+ 
     public function getMeta($pagetype, $pagetitle, $pageslug = '')
     {
         $meta = [];
