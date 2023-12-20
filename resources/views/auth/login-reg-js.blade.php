@@ -13,7 +13,7 @@
             yearRange: "-100:-1"
         });
 
-        $(".emailText").on("keyup paste", function (e) {
+        $(".emailText").on("keyup touchend", function (e) {
             $("#mobile-error").text('');
             $(".text-danger").text('');
             var t = $(this).val();
