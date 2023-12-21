@@ -130,7 +130,7 @@ class SettingController extends Controller
         }
 
         $response = $response['payload'] ?? $response;
-        
+
         $error_code = array_key_exists("errorcode", $response) ? $response['errorcode'] : '';
         return JSONResponse(200, '', ['message' => @$response['message'], 'success' => @$response['success'], 'errorcode' => $error_code]);
     }
@@ -184,16 +184,16 @@ class SettingController extends Controller
         $language = $request->input('language');
         $type = $request->input('type');
         if ($type == "display") {
-		    $request->session()->put('displayLanguage', $language);
-            app()->setLocale(trim($language)); 
+            $request->session()->put('displayLanguage', $language);
+            app()->setLocale(trim($language));
         } else {
-		    $request->session()->put('listLanguage', $language);
+            $request->session()->put('listLanguage', $language);
         }
-		if ($language == 'hi') {
-			return redirect('/hi');
-		} else {
-			return redirect('/');
-		}
+        if ($language == 'hi') {
+            return redirect('/hi');
+        } else {
+            return redirect('/');
+        }
     }
 
     function deleteSearchHistory()
@@ -209,15 +209,19 @@ class SettingController extends Controller
         return JSONResponse(200, '', []);
     }
 
-    function maxDevice(Request $request){
-
+    public function maxDevice(Request $request)
+    {
         $activeDeviceArr = CurlAPI("users/getDevice", 'POST', [], 2, true, true);
-        //dd($activeDeviceArr);
         if (!$activeDeviceArr) {
             return view('pages.error.data-error');
         }
-
         $activeDevices = @$activeDeviceArr['success'] && array_key_exists('data', $activeDeviceArr) ? $activeDeviceArr['data'] : [];
+
+        if (count($activeDevices) <= 5) {
+            session()->forget('maxDevice');
+            return redirect('/');
+        }
+        // dd($activeDevices);
         return view('settings.max-device', compact('activeDevices'));
     }
 }
