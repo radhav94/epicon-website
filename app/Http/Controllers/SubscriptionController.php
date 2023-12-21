@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\PayuWebhookService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
@@ -166,7 +167,7 @@ class SubscriptionController extends Controller
             'x_country' => @$countrycode,
         ];
         $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2, false, true);
-
+        $txid = generateTransactionID();
         if ($resultData['success'] == true && !empty(@$resultData['order_data'])) {
             $resorder = $resultData['order_data'];
             $orderPostData = [
@@ -179,6 +180,7 @@ class SubscriptionController extends Controller
                 "epic_price" => $result['epic_price'],
             ];
             $request->session()->put('create_order', $orderPostData);
+            $txid = $resorder['order_id'];
         }
 
         $parameters = $this->paymentProcess($resultData, $currency, $payment_type);
@@ -189,7 +191,7 @@ class SubscriptionController extends Controller
         }
         else{
             Log::info("true");
-            $txid = generateTransactionID();
+            // $txid = generateTransactionID();
             $amount = $result['actual_price'];
             $productinfo = $result['id'];
             $firstname = $userData['name'];
@@ -858,6 +860,10 @@ class SubscriptionController extends Controller
 
     public function payuWebhook(Request $request){
         Log::info("payu webhook : ". json_encode($request->all()));
+
+        $payuResponse = $request->all();
+        $payuWebhookService = new PayuWebhookService();
+        $payuWebhookService->processWebhookCallback($payuResponse);
 
         return response()->json('success', 200);
     }

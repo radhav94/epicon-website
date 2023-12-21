@@ -48,29 +48,23 @@ $episode_json = json_encode($episode_list);
 $meta['image'] = $share_img;
 ?>
 <?php
-    $subplan = checkSubscription();
-    if(isKidsPage()){
-        $addClass = "allAccessBtn-sub";
-    }else{
-        $addClass = "subscription";
-    }
-        $watchClass = "";
-        $watchid = "";
-        $addToList = "";
-        $href = "javascript:void(0);";
+$subplan = checkSubscription();
+if (isKidsPage()) {
+    $addClass = "allAccessBtn-sub";
+} else {
+    $addClass = "subscription";
+}
+$watchClass = "";
+$watchid = "";
+$addToList = "";
+$href = "javascript:void(0);";
 
-        if (!isUserLoggedIn()) {
-            $watchClass = @$content['free_premium'] == true ? "login-with-subscription" : "";
-            $watchid = @$content['free_premium'] != true ? "playButton" : "";
-            $addToList = "login-with-subscription";
-        } else {
-            $addToList = "addToList";
-            // for play Video 
-            $watchClass = @$content['free_premium'] == true && @$subplan['status'] != 'active' ? $addClass : "";
-            $watchid = @$content['free_premium'] != true || (@$content['free_premium'] == true && @$subplan['status'] == 'active') ? "playButton" : "";
-        }
+$addToList = "addToList";
+// for play Video
+$watchClass = @$content['free_premium'] == true && @$subplan['status'] != 'active' ? $addClass : "";
+$watchid = @$content['free_premium'] != true || (@$content['free_premium'] == true && @$subplan['status'] == 'active') ? "playButton" : "";
 
-        $playBtn = $watchClass == "" ? "playBtn" : "";
+$playBtn = $watchClass == "" ? "playBtn" : "";
 ?>
 
 <div class="podcast-background w-100">
@@ -152,7 +146,7 @@ $meta['image'] = $share_img;
                                     </svg> &nbsp;
                                     Listen
                                 </button>
-                           
+
                                 @if (@$content['free_premium'] == true && !isActiveSubscription())
                                 <a href="{{ $href }}" class="subcription-btn m-0 {{$watchClass}}">
                                     <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> Subscribe Now
@@ -161,17 +155,17 @@ $meta['image'] = $share_img;
                             </div>
 
                             <?php
-                            $wishlist = getWishlist();
+$wishlist = getWishlist();
 
-                            $wishlist_ids = $wishlist['ids'] ?? [];
+$wishlist_ids = $wishlist['ids'] ?? [];
 
-                            $wishAction = in_array($content['ID'], $wishlist_ids) ? 'delete' : 'add';
+$wishAction = in_array($content['ID'], $wishlist_ids) ? 'delete' : 'add';
 
-                            $share_title = @$content['title'];
-                            if (@$content['content_type'] == 'SEASON') {
-                                $share_title = @$content['parent_name'] . ' - ' . @$content['title'];
-                            }
-                            ?>
+$share_title = @$content['title'];
+if (@$content['content_type'] == 'SEASON') {
+    $share_title = @$content['parent_name'] . ' - ' . @$content['title'];
+}
+?>
 
                             <button class="rounded-grey-btn m-0 addToList" data-id="{{ @$content['ID'] }}" data-action="{{ $wishAction }}" data-type="3">
                                 <img class="wl_add" src="{{ asset('assets/img/add-icon.svg') }}" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
@@ -189,7 +183,7 @@ $meta['image'] = $share_img;
                             </button>
                         </div>
 
-                        
+
 
 
                     </div>
@@ -220,7 +214,7 @@ $meta['image'] = $share_img;
                     <div class="w-100">
                         <h5 class="play-title">{{ @$content['title'] }}</h5>
                         @if (count($episode_list) > 0) {{-- && (@$content['free_premium'] == false || (@$content['free_premium'] == true && isActiveSubscription()))) --}}
-                        
+
                         <div class="audio-player">
                             <audio id="audioPlayer" controls controlsList="nodownload noplaybackrate">
                                 <source id="audioSource" src="" type="audio/mpeg">
@@ -235,7 +229,7 @@ $meta['image'] = $share_img;
                                 <button id="nextEpisode1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 88 88" fill="none">
                                         <path d="M19.7656 72.9475V15.6493C19.7656 14.1599 21.4099 13.2573 22.6665 14.0569L67.6865 42.706C68.852 43.4477 68.852 45.1491 67.6865 45.8909L22.6665 74.5399C21.4099 75.3396 19.7656 74.4369 19.7656 72.9475Z" fill="black" stroke="black" stroke-width="3.775" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>  
+                                    </svg>
                                 </button>
                                 @endif
                                <!--  <button id="playButton1">
@@ -365,7 +359,7 @@ $meta['image'] = $share_img;
                   let cid = episodes[currentEpisodeIndex];
                   $('#pod-play-'+cid).hide();
                   $('#pod-pause-'+cid).show();
-            }            
+            }
             audio.play().then(() => {
                     console.log('Audio is playing');
                     audioEvents();
@@ -373,7 +367,7 @@ $meta['image'] = $share_img;
                 .catch(error => {
                     console.error('Failed to play audio:', error);
                 });
-            $("#pauseButton").show();            
+            $("#pauseButton").show();
             $(this).hide();
         });
 
@@ -387,7 +381,7 @@ $meta['image'] = $share_img;
              $('.pod-pause').hide();
              $('.podcast-play').hide();
              $(".podcast-pause").show();
-            $("#playButton").show();            
+            $("#playButton").show();
             $(this).hide();
         });
 
@@ -412,13 +406,13 @@ $meta['image'] = $share_img;
             var title=$(this).parent().find('.title').text();
             var coverimg=$(this).parent().find('.pik-img').find('img').attr('src');
             $('.play-title').html(title);
-            $('.play-converimg').attr('src',coverimg);            
+            $('.play-converimg').attr('src',coverimg);
             $('.podcast-bottom-player').show();
             $(".podcast-pause").hide();
             $('.podcast-play').show();
-            $('.pod-pause').hide(); 
-            $('.pod-play').show(); 
-            $(this).hide();  
+            $('.pod-pause').hide();
+            $('.pod-play').show();
+            $(this).hide();
             $('#pod-pause-'+$(this).attr('data-id')).show();
             $('#play-id').val($(this).attr('data-id'));
             isPlayed = true;
@@ -436,11 +430,11 @@ $meta['image'] = $share_img;
         $('.pod-pause').click(function(){
             $('.pod-play').show();
             $('.pod-pause').hide();
-            $(this).hide();           
+            $(this).hide();
             $('#pod-play-'+$(this).attr('data-id')).show();
             $('.podcast-play').hide();
              $(".podcast-pause").show();
-            $("#playButton").show();        
+            $("#playButton").show();
             audio.pause();
             let duration = Math.round(audio.duration);
             let currentTime = Math.round(audio.currentTime);
@@ -473,8 +467,8 @@ $meta['image'] = $share_img;
 
         $("#audioSource").attr("src", audio_url);
         let episodeID = episodes[currentEpisodeIndex];
-         $('.pod-pause').hide(); 
-            $('.pod-play').show(); 
+         $('.pod-pause').hide();
+            $('.pod-play').show();
             $('#pod-play-'+episodeID).hide();
             $('#pod-pause-'+episodeID).show();
         audio.load();
@@ -497,7 +491,7 @@ $meta['image'] = $share_img;
         var coverimg=$("li.pod-main[data-id='" + episodeID + "']").find('.pik-img').find('img').attr('src');
         $("li.pod-main[data-id='" + episodeID + "']").addClass('episode-active');
         $('.play-title').html(title);
-        $('.podcast-bottom-player .play-converimg').attr('src',coverimg);  
+        $('.podcast-bottom-player .play-converimg').attr('src',coverimg);
         audio_play(audio_duration,audio_title);
     }
 
@@ -510,14 +504,14 @@ $meta['image'] = $share_img;
                 /*if(siteMode == 'allAccessBtn-sub'){
                     $(".allAccessBtn-sub").trigger('click');
                 }else{
-                    $(".subscription").trigger('click'); 
+                    $(".subscription").trigger('click');
                 }*/
-                
+
             }
         } catch (err) {}
     }
 
-    $('.podcast-close').click(function(){    
+    $('.podcast-close').click(function(){
         audio.pause();
         $('.pod-play').show();
         $('.pod-pause').hide();

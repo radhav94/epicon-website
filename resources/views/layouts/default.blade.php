@@ -91,10 +91,10 @@
     <script src="{{ asset('assets/js/swiper.js') }}" defer></script>
     <script src="{{ asset('assets/js/spiner.js') }}" defer></script>
     <script src="{{ asset('assets/js/slick.min.js') }}" defer></script>
-    <script src="{{ asset('assets/js/script.js') }}" defer></script>
+    <script src="{{ asset('assets/js/script.js') }}?v={{ assetTime() }}" defer></script>
     <script src="{{ asset('assets/js/vendor/bootstrap.bundle.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/vendor/toastr.min.js') }}" defer></script>
-    <script src="{{ asset('assets/js/epic.js') }}" defer></script>
+    <script src="{{ asset('assets/js/epic.js') }}?v={{ assetTime() }}" defer></script>
     <script src="{{ asset('assets/js/common.js') }}?v={{ assetTime() }}" defer></script>
     
     {{-- End footer common scripts --}}
