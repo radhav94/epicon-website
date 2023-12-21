@@ -82,12 +82,19 @@
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
                 success: function(response) {
-                    console.log(response);
                     if (response.payload.success == true) {
-                        window.location.href = window.location.origin;
-                    } else {
-                        $("#childPinForm #error-msg").html(response.payload.message);
-                    }
+                        var SubchekUrl = localStorage.getItem("SubredirectURL");
+                            if(SubchekUrl != "" && SubchekUrl !=null &&  SubchekUrl!=undefined){
+                                        localStorage.removeItem("SubredirectURL");
+                                        window.location.href = SubchekUrl;
+                                        return false;
+                                    }else{
+                                        window.location.href = window.location.origin;
+                                        return false;
+                                    }
+                                }else {
+                                    $("#childPinForm #error-msg").html(response.payload.message);
+                                }
                 },
                 error: function(xhr, status, error) {
                     onError(xhr);
