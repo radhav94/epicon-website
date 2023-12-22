@@ -1,23 +1,23 @@
 <?php
-$userId         = getUserId();
+$userId = getUserId();
 ?>
 @extends('layouts.default')
-@section('title','Max Device')
+@section('title', 'Max Device')
 
 @section('content')
-<section class="w-100 mt-4 tb-margin-mobile">
-    <div class="container-fluid">
-        <div class="row">            
-            <div class="col-sm-9 pb-4 m-auto">
-                <div class="setting-right">
-                   
-                    <div class="text-white">
-                        <div class="language-setting">
-                            <h4 class="pb-4 border-bot">{{__('Manage the active devices')}}</h4>
+    <section class="w-100 mt-4 tb-margin-mobile">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-9 pb-4 m-auto">
+                    <div class="setting-right">
+
+                        <div class="text-white">
+                            <div class="language-setting">
+                                <h4 class="pb-4 border-bot">{{ __('Manage the active devices') }}</h4>
 
 
-                            <div class="container-fluid">
-                                <?php if (count($activeDevices) > 0) {
+                                <div class="container-fluid">
+                                    <?php if (count($activeDevices) > 0) {
                                     $isOther = false;
                                     $otherDevice = '<div class="row pt-4">
                                         <div class="col-sm-4 col-md-3">
@@ -66,59 +66,63 @@ $userId         = getUserId();
                                 } else { ?>
                                     <div class="row pt-4">
                                         <div class="col-sm-4 col-md-3">
-                                            <p>{{__('No device found')}}</p>
+                                            <p>{{ __('No device found') }}</p>
                                         </div>
                                     </div>
-                                <?php } ?>
+                                    <?php } ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                   
-                </div>
-            </div>
 
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 @stop
 @section('script')
-<script>
-    var userId = "{{ $userId }}";
-    var deviceId = "{{ getDeviceId() }}";
+    <script>
+        var userId = "{{ $userId }}";
+        var deviceId = "{{ getDeviceId() }}";
 
-    function logoutDevice(params) {
-        if (params == "") return;
-        var formData = {
-            deviceId: params
-        }
-        $.ajax({
-            url: "{{ route('remove-device') }}",
-            type: 'POST',
-            data: formData,
-            dataType: 'json',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            success: function(response) {
-                console.log(response);
-                if (response.payload.success == true) {
-                    $("div[data-id='" + params + "']").remove();
-                    showToaster('Device logout successfully.', 1);
-                    if ($('#otherDevice').html() == '') {
-                        $('#otherDevice').parent().remove();
-                    }
-                    if (deviceId == params) {
-                        location.reload();
-                    }
-                } else {
-                    $("#updateInterestForm #error-meg-for-genre-select").html(response.payload.message);
-                }
-            },
-            error: function(xhr, status, error) {
-                onError(xhr);
-            }
+        $(document).ready(function() {
+            showToaster('Max 5 Device Allowed.', 2);
         });
-    }
-</script>
+        
+        function logoutDevice(params) {
+            if (params == "") return;
+            var formData = {
+                deviceId: params
+            }
+            $.ajax({
+                url: "{{ route('remove-device') }}",
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.payload.success == true) {
+                        $("div[data-id='" + params + "']").remove();
+                        showToaster('Device logout successfully.', 1);
+                        if ($('#otherDevice').html() == '') {
+                            $('#otherDevice').parent().remove();
+                        }
+                        if (deviceId == params) {
+                            location.reload();
+                        }
+                    } else {
+                        $("#updateInterestForm #error-meg-for-genre-select").html(response.payload.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    onError(xhr);
+                }
+            });
+        }
+    </script>
 @stop
