@@ -114,6 +114,7 @@ $(document).ready(function () {
 		const watchVideo = document.getElementById('watchVideo');
 		// const customPlayButton = document.getElementById('customPlayButton');
 		video.currentTime = parseInt(user_duration);
+
 		let defaultOptions = {
 			seekTime: 10,
 			controls: ['rewind', 'play', 'fast-forward', 'progress', 'current-time', 'volume', 'captions', 'settings', 'pip', 'fullscreen'],
@@ -170,6 +171,11 @@ $(document).ready(function () {
 				player = new Plyr(video, defaultOptions);
 				window.player = player;
 
+				if( is_trailer == true ){
+					player.muted=true;
+				}else{
+					player.muted=false;
+				}
 				player.play();
 
 				player.on('ready', event => {
