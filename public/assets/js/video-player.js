@@ -7,6 +7,8 @@ var cur_cid = null;
 var cur_lg = $("#playVideo").data('lg');
 var cur_title = $("#playVideo").data('title');
 var cur_ctype = null;
+var loadPlayerCount = 0;
+
 $(document).ready(function () {
 	/*dummyPlayer = new Plyr('#vidPlayer');
 	var dummyInit = false;
@@ -20,9 +22,8 @@ $(document).ready(function () {
 
 	$(document).on('click', '#watchVideo', function () {
 		
-		$('.hide-vid-element').hide();
 		if (vidPlaying && !is_trailer && !is_episode) {
-			
+			$('.hide-vid-element').hide();
 			window.player.play();
 
 			if (!$('.videoContainer').is(":visible")) {
@@ -60,14 +61,17 @@ $(document).ready(function () {
 			onPlayerSuccess, onPlayerError, 'application/json');
 
 		function onPlayerSuccess(response) {
+			$('.hide-vid-element').hide();
 			// console.log(response);
 			// dummyInit = true;
 
 			let video_url;
 			if (ctype == 'SHOW' || ctype == 'SEASON') {
 				video_url = response.payload.promo_url;
+				is_trailer = true;
 			} else {
 				video_url = response.payload.video_url;
+				is_trailer = false;
 			}
 			// console.log('vid', video_url);
 
@@ -84,6 +88,8 @@ $(document).ready(function () {
 			}
 		}
 		function onPlayerError(xhr) {
+			$('.hide-vid-element').show();
+
 			try {
 				$res = JSON.parse(xhr.responseText);
 				if ($res.message != undefined && $res.message != 'failed') {
@@ -171,12 +177,14 @@ $(document).ready(function () {
 				player = new Plyr(video, defaultOptions);
 				window.player = player;
 
-				if( is_trailer == true ){
+				if( is_trailer == true && loadPlayerCount == 0){
 					player.muted=true;
 				}else{
 					player.muted=false;
 				}
 				player.play();
+
+				loadPlayerCount++;
 
 				player.on('ready', event => {
 					$height = $('#vidPlayer').height() + 'px';
