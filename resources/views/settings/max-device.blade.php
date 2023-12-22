@@ -88,7 +88,7 @@ $userId = getUserId();
         var deviceId = "{{ getDeviceId() }}";
 
         $(document).ready(function() {
-            showToaster('Max 5 Device Allowed.', 2);
+            showToaster('You can only log in a maximum of 5 devices at a time. Please log out of any extra devices below to continue on this device.', 2);
         });
         
         function logoutDevice(params) {
