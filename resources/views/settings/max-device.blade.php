@@ -112,9 +112,16 @@ $userId = getUserId();
                         if ($('#otherDevice').html() == '') {
                             $('#otherDevice').parent().remove();
                         }
+
+                        if(response.payload.deviceCnt <= 5)
+                        {
+                            location.replace("{{ url('/') }}");
+                        }
+
                         if (deviceId == params) {
                             location.reload();
                         }
+                        
                     } else {
                         $("#updateInterestForm #error-meg-for-genre-select").html(response.payload.message);
                     }

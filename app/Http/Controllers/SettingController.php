@@ -66,12 +66,16 @@ class SettingController extends Controller
         $deviceId = $request->post('deviceId') ? $request->post('deviceId') : '';
         $curlData = ["id" => $deviceId];
         $response = CurlAPI("users/deleteDevice", "POST", $curlData, 2, true, true);
+        $activeDeviceArr = CurlAPI("users/getDevice", 'POST', [], 2, true, true);
+
+        $activeDevices = @$activeDeviceArr['success'] && array_key_exists('data', $activeDeviceArr) ? $activeDeviceArr['data'] : [];
+
         // update session code add here
         update_user_session();
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
         }
-        return JSONResponse(200, '', ['message' => @$response['message'], 'success' => @$response['success']]);
+        return JSONResponse(200, '', ['message' => @$response['message'], 'success' => @$response['success'], 'deviceCnt'=>count($activeDevices)]);
     }
 
     public function setKidsPin()
