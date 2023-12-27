@@ -8,6 +8,8 @@
 
 <link rel="canonical" href="{{ URL::current() }}"/>
 
+<meta name="theme-color" content="#9442c7" />
+
 <!-- HTML Meta Tags -->
 <meta property="og:title" content="{{ $meta['title'] ?? getDefaultMetaTitle() }}">
 <meta property="og:site_name" content="Epic On">
