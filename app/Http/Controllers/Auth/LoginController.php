@@ -107,7 +107,7 @@ class LoginController extends Controller
             }
             $response['message'] = $verifyotpResponseData['message'];
             $response['is_verified'] = $is_verified;
-            $maxDevice = $loginResponseData['max_device_reached'] ?? '';
+            $maxDevice = $verifyotpResponseData['max_device_reached'] ?? '';
             if ((@$verifyotpResponseData['success'] == 'true' || @$verifyotpResponseData['success'] == true) && $is_verified == true) {
                 $user_data = $verifyotpResponseData['user_data'];
                 $request->session()->put('user_id', $userid);
