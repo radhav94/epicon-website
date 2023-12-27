@@ -15,12 +15,11 @@ $isMoblile      = isMobliDevice();
             }else{
                 $banner_img = getCardImage($val, 'banner_image', 'large');
             }
-            
             ?>
             <div class="carousel-card">
                 {!! freePremiumDiv($val) !!}
                 <div class="carousel-items position-relative w-100">
-                    <a href="{{ getContentUrl($val) }}" onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}">
+                    <a href="{{ isset($val['game_url']) ? @$val['game_url'] : getContentUrl($val) }}" onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}" target="{{ isset($val['game_url']) ? '_blank' : '' }}">
                         <img src="{{ $banner_img }}" alt="">
                     </a>
                     <div class="carousel-items-content position-absolute">
