@@ -2,7 +2,7 @@
 @section('title','Get to Know About Upcoming OTT New Web Series and Movies')
 
 @section('style')
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}?v={{ assetTime() }}" />
 
 @stop
 
@@ -139,7 +139,7 @@ $meta['description'] = "Exciting collection of upcoming web series and movies on
 <script src="{{ asset('assets/js/vendor/plyr.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/hls.min.js') }}"></script>
 <script src="{{ asset('assets/js/webvtt-subtitler.js') }}"></script>
-<script src="{{ asset('assets/js/video-player.js') }}"></script>
+<script src="{{ asset('assets/js/video-player.js') }}?v={{ assetTime() }}"></script>
 
 <script>
     var user_duration = 0;

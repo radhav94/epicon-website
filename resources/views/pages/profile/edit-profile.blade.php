@@ -141,5 +141,5 @@
 
 @section('script')
     <script src="{{ asset('assets/js/vendor/jquery.validate.min.js') }}"></script>
-    <script src="{{ asset('assets/js/profile.js') }}"></script>
+    <script src="{{ asset('assets/js/profile.js') }}?v={{ assetTime() }}"></script>
 @stop

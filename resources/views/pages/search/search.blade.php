@@ -157,5 +157,5 @@ $kids_page = isKidsPage();
 @stop
 
 @section('script')
-<script src="{{ asset('assets/js/search.js') }}?version=1"></script>
+<script src="{{ asset('assets/js/search.js') }}?v={{ assetTime() }}"></script>
 @stop

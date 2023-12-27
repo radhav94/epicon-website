@@ -3,7 +3,7 @@
 
 
 @section('style')
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}?v={{ assetTime() }}" />
 <style>
     #epicShots video {
         width: 100%;
@@ -45,12 +45,12 @@
 @stop
 
 @section('script')
-<script src="{{ asset('assets/js/homepage.js') }}"></script>
-<script src="{{ asset('assets/js/epic-story.js') }}"></script>
+<script src="{{ asset('assets/js/homepage.js') }}?v={{ assetTime() }}"></script>
+<script src="{{ asset('assets/js/epic-story.js') }}?v={{ assetTime() }}"></script>
 <script src="{{ asset('assets/js/vendor/plyr.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/hls.min.js') }}"></script>
 <script src="{{ asset('assets/js/webvtt-subtitler.js') }}"></script>
-<script src="{{ asset('assets/js/supermix.js') }}"></script>
+<script src="{{ asset('assets/js/supermix.js') }}?v={{ assetTime() }}"></script>
 
 <script>
     var processing;

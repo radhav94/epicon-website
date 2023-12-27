@@ -35,12 +35,12 @@ $meta['image'] = $share_img;
 @section('title', @$meta['title'])
 
 @section('style')
-    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/socialSharing.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/socialSharing.css') }}?v={{ assetTime() }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
         integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     @if ($loadPlayer)
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}?v={{ assetTime() }}" />
     @endif
     <style>
         .hide {
@@ -243,17 +243,17 @@ $meta['image'] = $share_img;
 @stop
 
 @section('script')
-    <script src="{{ asset('assets/js/homepage.js') }}"></script>
-    <script src="{{ asset('assets/js/socialSharing.js') }}"></script>
+    <script src="{{ asset('assets/js/homepage.js') }}?v={{ assetTime() }}"></script>
+    <script src="{{ asset('assets/js/socialSharing.js') }}?v={{ assetTime() }}"></script>
 
-    <script src="{{ asset('assets/js/detail.js') }}"></script>
-    <script src="{{ asset('assets/js/common.js') }}"></script>
+    <script src="{{ asset('assets/js/detail.js') }}?v={{ assetTime() }}"></script>
+    <script src="{{ asset('assets/js/common.js') }}?v={{ assetTime() }}"></script>
 
     @if ($loadPlayer)
         <script src="{{ asset('assets/js/vendor/plyr.js') }}"></script>
         <script src="{{ asset('assets/js/vendor/hls.min.js') }}"></script>
         <script src="{{ asset('assets/js/webvtt-subtitler.js') }}"></script>
-        <script src="{{ asset('assets/js/video-player.js') }}"></script>
+        <script src="{{ asset('assets/js/video-player.js') }}?v={{ assetTime() }}"></script>
     @endif
 
 
