@@ -567,7 +567,7 @@ function getplayanchorhtml($value)
 {
     $loginclass = isKidsPage() && !isActiveSubscription() ? "allAccessBtn" : "";
     $data_url = (isActiveSubscription() && $value['free_premium']) || !$value['free_premium'] ? @$value['game_url'] : '';
-    $html = '<a  onclick="click_tile(this)" data-title="' . $value['title'] . '" data-type="' . $value['content_type'] . '" href="javascript:void(0)" target="_blank" data-url="' . $data_url . '" data-premium="' . $value['free_premium'] . '" data-activesubscriber="' . isActiveSubscription() . '" check-login="' . $loginclass . '" class="main-card check-content-url">';
+    $html = '<a  onclick="click_tile(this)" data-title="'.$value['title'].'" data-type="'.$value['content_type'].'" href="javascript:void(0)" target="_blank" data-url="' . $data_url . '" data-premium="' . $value['free_premium'] . '" data-activesubscriber="' . isActiveSubscription() . '" check-login="' . $loginclass . '" class="main-card check-content-url">';
     return $html;
 }
 
@@ -790,12 +790,11 @@ function checkSubscription()
 }
 
 // old logic
-function SilentLoginFunction_old()
-{
+function SilentLoginFunction_old(){
     $request = Request();
     $user = isUserLoggedIn();
 
-    if (!empty($request->get('source'))) {
+    if(!empty($request->get('source'))){
         if (($user) != false && strtolower($request->get('source') != "dishtv")) {
         } elseif ($user != false && strtolower($request->get('source') == "dishtv")) {
             $request->session()->forget('user');
@@ -837,8 +836,7 @@ function SilentLoginFunction_old()
     }
 }
 
-function SilentLoginFunction()
-{
+function SilentLoginFunction(){
     $request = Request();
 
     $user = isUserLoggedIn();
@@ -862,15 +860,15 @@ function silentLogin($user_id, $source)
         'user_agent' => getUserAgent(),
     ];
     $epicwebArr =  CurlAPI("users/silent-login", 'POST', $request_parameter, 2, true);
-    // if ($epicwebArr['success'] == true && isset($epicwebArr['session_id']) && !empty($epicwebArr['user_data'])) {
+        // if ($epicwebArr['success'] == true && isset($epicwebArr['session_id']) && !empty($epicwebArr['user_data'])) {
     if ($epicwebArr['success'] == true && !empty($epicwebArr['user_data'])) {
         $userdata = $epicwebArr['user_data'];
         $maxDevice = $epicwebArr['max_device_reached'] ?? false;
 
         $trakcingData = ['Name' => $userdata['name'], 'Identity' => $userdata['user_id'], 'Email' => $userdata['user_id'], 'MSG-email' => true, 'MSG-push' => true];
         $request->session()->put('authenticated', time());
-        // $request->session()->put('api_session', $epicwebArr['session_id']);
-        // $request->session()->put('user', $user);
+            // $request->session()->put('api_session', $epicwebArr['session_id']);
+            // $request->session()->put('user', $user);
         $request->session()->put('user_id', $userdata['user_id']);
         $request->session()->put('user', $userdata);
         $request->session()->put('user_token', $epicwebArr['token']);
@@ -1186,8 +1184,7 @@ function getJsonDataFromFile($filepath)
     return $arrayData;
 }
 
-function getCountryCode()
-{
+function getCountryCode() {
     try {
         if (!session()->get('countrycode')) {
             // Check for the X-Forwarded-For header
@@ -1232,11 +1229,10 @@ function getCountryCode()
     }
 }
 
-function getCurrency($val)
-{
-    if ((isset($val)) && ($val == 'INR' || $val == 'inr')) {
+function getCurrency($val){
+    if((isset($val)) && ($val == 'INR' || $val == 'inr')){
         return "₹";
-    } else {
+    }else{
         return "$";
     }
 }
@@ -1255,7 +1251,7 @@ function getCountryStateDataInHtml()
     $countrystate = getCountryStateData();
     $countryisdhtml = "";
 
-    if ($countrystate) {
+    if( $countrystate){
         foreach ($countrystate['countries'] as $i => $value) {
             if ($countrycode == $value['code'] || $countrycode == $value['countryisdcode']) {
                 $selectvar = "selected";
@@ -1269,27 +1265,25 @@ function getCountryStateDataInHtml()
 }
 
 if (!function_exists('assetTime')) {
-    function assetTime()
-    {
+    function assetTime() {
         return env('VERSION_CONTROL');
         // return time();
     }
 }
 
 if (!function_exists('countConvert')) {
-    function countConvert($count = 0)
-    {
+    function countConvert($count = 0) {
         return $count >= 1000 ?
+        (
+            $count >= 1000000 ?
             (
-                $count >= 1000000 ?
-                (
-                    $count >= 1000000000 ?
-                    round($count / 1000000000, 2) . "B"
-                    : round($count / 1000000, 2) . "M"
-                )
-                : round($count / 1000) . "K"
+                $count >= 1000000000 ? 
+                round($count/1000000000, 2) . "B" 
+                : round($count/1000000, 2) . "M"
             )
-            : $count;
+            : round($count/1000) . "K"
+        ) 
+        : $count;
     }
 }
 
@@ -1321,12 +1315,10 @@ if (!function_exists('lastActiveTime')) {
 }
 
 
-function getDeviceId()
-{
+function getDeviceId() {
     return session()->get('device_id') ?? '';
 }
 
-function getDefaultMetaTitle()
-{
+function getDefaultMetaTitle(){
     return 'Watch TV Shows, Movies, Podcast, Games, Rewards';
 }
