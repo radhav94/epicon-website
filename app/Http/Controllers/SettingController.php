@@ -67,7 +67,6 @@ class SettingController extends Controller
         $curlData = ["id" => $deviceId];
         $response = CurlAPI("users/deleteDevice", "POST", $curlData, 2, true, true);
         $activeDeviceArr = CurlAPI("users/getDevice", 'POST', [], 2, true, true);
-
         $activeDevices = @$activeDeviceArr['success'] && array_key_exists('data', $activeDeviceArr) ? $activeDeviceArr['data'] : [];
 
         // update session code add here
