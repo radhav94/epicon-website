@@ -40,7 +40,7 @@ $userId = getUserId();
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 col-md-4">
-                                                    <button class="border-btn mb-4" onclick="logoutDevice(\'' . $deviceId . '\')">' . __('Log Out') . '</button>
+                                                    <button class="border-btn mb-4" onclick="logoutDevice(' . $deviceId . ')">' . __('Log Out') . '</button>
                                                 </div>
                                             </div>';
 
