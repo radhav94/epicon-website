@@ -26,6 +26,7 @@
                         <thead>
                         <tr>
                             <th>{{__('Plan')}}</th>
+                            <th>{{__('Source')}}</th>
                             <th>{{__('Start Date')}}</th>
                             <th>{{__('End Date')}}</th>
                             <th class="text-end">{{__('Total')}}</th>
@@ -47,6 +48,8 @@
                         @$validity_days = $value['validity_days'];
                         $plan_name = '';
 
+                        $sub_source = (isset($value['device'])) ? ucfirst(preg_replace('/_+/', ' ', $value['device'])) : ' - ';
+
                         switch ($validity_days) {
                             case 30:
                                 $plan_name = '1 Month';
@@ -66,6 +69,7 @@
                         @endphp
                             <tr>
                                 <td>{{$plan_name}}</td>
+                                <td>{{$sub_source}}</td>
                                 <td>{{ isset($subs_start_date) ? $subs_start_date : '' }} </td>
                                 <!-- <td><img src="{{ asset('/img/visa.svg') }}" alt="icon" class="me-2">visa **** **** **** 1823</td> -->
                                 <td>{{ isset($subs_end_date) ? $subs_end_date : '' }}</td>
