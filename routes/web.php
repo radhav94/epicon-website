@@ -43,7 +43,7 @@ $lang = ['hi', 'en'];
 
 Route::get('test', [TestController::class, 'index']);
 // server ip testing
-Route::get('serveriptesting123xyz', [NotificationController::class, 'getServerIP']);
+// Route::get('serveriptesting123xyz', [NotificationController::class, 'getServerIP']);
 
 
 //////Start Redirection routes ////////
