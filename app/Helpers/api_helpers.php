@@ -4,7 +4,7 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
 
-function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendUserToken = false,$sendAuthTokenparams = false)
+function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendUserToken = false,$sendAuthTokenparams = false, $logCommandCurl = false)
 {
 
     if ($apiDomain == 3) {
@@ -52,6 +52,11 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => $headers,
         ));
+
+        if($logCommandCurl){
+            $curlCommand = generateCurlCommand('GET', $api_url, $headers, $data, []);
+        }
+
     } else {
         $headers[] = 'Content-Type: application/json';
 
@@ -75,6 +80,9 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
             CURLOPT_POSTFIELDS =>  $req_data,
             CURLOPT_HTTPHEADER => $headers,
         ));
+        if($logCommandCurl){
+            $curlCommand =  generateCurlCommand('POST', $url, $headers, $req_data, []);
+        }
     }
 
 
@@ -94,4 +102,33 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
 
         return $apiresponse;
     }
+}
+
+
+function generateCurlCommand($method, $url, $headers, $data, $options) {
+        $command = "curl -X " . escapeshellcmd($method);
+
+        // Add URL
+        $command .= " \"" . escapeshellarg($url) . "\"";
+
+        // Add headers
+        foreach ($headers as $header) {
+            $command .= " -H \"" . escapeshellarg($header) . "\"";
+        }
+
+        // Add data for POST requests
+        if ($method == 'POST' && $data) {
+            $command .= " -d '" . escapeshellarg(json_encode($data)) . "'";
+        }
+
+        // Add options
+       /* $command .= " --max-redirs " . escapeshellarg($options['CURLOPT_MAXREDIRS']);
+        $command .= " --connect-timeout " . escapeshellarg($options['CURLOPT_TIMEOUT']);
+        if ($options['CURLOPT_FOLLOWLOCATION']) {
+            $command .= " --location";
+        }*/
+        Log::channel('api')->info('-------Start Terminal Curl Call-------- '."\n\n". $command."\n"); 
+        Log::channel('api')->info('-------End Terminal Curl Call-------- '); 
+
+        return $command;
 }
