@@ -878,6 +878,11 @@ function silentLogin($user_id, $source)
         $request->session()->put('logintrackingType', "Login");
         $request->session()->put('authEventTrack', 'Login successfull');
         $request->session()->put('eventCat', 'Login');
+
+        if($maxDevice === true)
+        {
+            header("Location:".url('/max-device'));
+        }
     }
 }
 
