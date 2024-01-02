@@ -112,10 +112,10 @@ $userId = getUserId();
                         if ($('#otherDevice').html() == '') {
                             $('#otherDevice').parent().remove();
                         }
-
+                        
                         if(response.payload.deviceCnt <= 5)
                         {
-                            location.replace("{{ url('/') }}");
+                            location.replace(response.payload.redirectUrl);
                         }
 
                         if (deviceId == params) {

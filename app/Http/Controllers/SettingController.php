@@ -70,12 +70,17 @@ class SettingController extends Controller
 
         $activeDevices = @$activeDeviceArr['success'] && array_key_exists('data', $activeDeviceArr) ? $activeDeviceArr['data'] : [];
 
+        $url = $request->session()->get('silentUrl');
+
+        if (count($activeDevices) <= 5) {
+            session()->forget('maxDevice');
+        }
         // update session code add here
         update_user_session();
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
         }
-        return JSONResponse(200, '', ['message' => @$response['message'], 'success' => @$response['success'], 'deviceCnt'=>count($activeDevices)]);
+        return JSONResponse(200, '', ['message' => @$response['message'], 'success' => @$response['success'], 'deviceCnt'=>count($activeDevices),'redirectUrl'=>$url??redirect('/')]);
     }
 
     public function setKidsPin()
