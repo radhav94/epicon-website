@@ -10,10 +10,18 @@ use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 if (!function_exists('getUserAgent')) {
     function getUserAgent()
-    {
+    {   
+        if( Cookie::get('user_agent_10') ){
+            // Log::info("Cookie - ".Cookie::get('user_agent_10'));
+            session()->put('device-detail', Cookie::get('user_agent_10') );
+
+            return Cookie::get('user_agent_10');
+        }
+
         $u_agent = $_SERVER['HTTP_USER_AGENT'];
         $ub = 'Unknown';
         $platform = 'Unknown';
@@ -44,6 +52,9 @@ if (!function_exists('getUserAgent')) {
         $o_system = $platform . " X" . time();
         $deviceDetail = "$ub ($o_system)";
         session()->put('device-detail', $deviceDetail);
+
+        Cookie::queue('user_agent_10', $deviceDetail, 525600);
+
         return $deviceDetail;
     }
 }

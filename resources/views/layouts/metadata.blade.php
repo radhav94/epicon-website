@@ -6,6 +6,9 @@
 
 <title id="page_title" data-page-title="@yield('title') | {{ env('APP_NAME') }}">@yield('title') | {{ env('APP_NAME') == '' ? 'EPIC ON' : env('APP_NAME') }}</title>
 
+<link rel="canonical" href="{{ URL::current() }}"/>
+
+<meta name="theme-color" content="#9442c7" />
 
 <!-- HTML Meta Tags -->
 <meta property="og:title" content="{{ $meta['title'] ?? getDefaultMetaTitle() }}">

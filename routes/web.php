@@ -43,7 +43,7 @@ $lang = ['hi', 'en'];
 
 Route::get('test', [TestController::class, 'index']);
 // server ip testing
-Route::get('serveriptesting123xyz', [NotificationController::class, 'getServerIP']);
+// Route::get('serveriptesting123xyz', [NotificationController::class, 'getServerIP']);
 
 
 //////Start Redirection routes ////////
@@ -176,7 +176,7 @@ foreach ($lang as $val) {
         Route::any('paymentMethod', [SubscriptionController::class, 'setSubscription'])->name('paymentMethod');
         Route::post('planBenefit', [SubscriptionController::class, 'planBenefit']);
         Route::post('saveSubscription', [SubscriptionController::class, 'saveSubscription'])->name('saveSubscription');
-        Route::get('subscription', [SubscriptionController::class, 'subscription'])->name('subscription');
+        //Route::get('subscription', [SubscriptionController::class, 'subscription'])->name('subscription');
         //Route::post('saveSubscription', [SubscriptionController::class, 'saveSubscription'])->name('saveSubscription');
         Route::post('payusuccess', [SubscriptionController::class, 'payusuccess'])->name('payusuccess');
         Route::post('payufail', [SubscriptionController::class, 'payufail'])->name('payufail');
@@ -217,7 +217,7 @@ foreach ($lang as $val) {
         Route::get('/kids/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
         /* Kids section end */
     });
-
+    Route::get('subscription', [SubscriptionController::class, 'subscription'])->name('subscription');
     Route::group(['prefix' => $prefix, 'as' => $prefix_name, 'middleware' => 'checkUserAuthToken'], function () {
         Route::get('/', [PageController::class, 'index'])->name('homepage');
         Route::get('/kids/{slug?}', [KidsController::class, 'index'])->name('kidsIndex');

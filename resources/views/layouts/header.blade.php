@@ -27,13 +27,12 @@ if ($request->has('type')) {
             </a>
             <a onclick="click_menu(this)" data-event_context="header" data-element_text="Home" class="navbar-brand me-3" href="{{ getUrlWithPrefix('homepage') }}"><img height="28"
                     src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
-                @loggedin
+               
                 @if(@$subplan['status'] != 'active')
                 <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
-            @endif
-            @elseloggedin
-            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn login-popup login-with-subscription" href="javascript:void(0);">{{__('Subscribe')}}</a>
-            @endloggedin
+                @endif
+            
+           
         </div>
         <ul class="ps-3">
             <li>
@@ -140,17 +139,10 @@ if ($request->has('type')) {
                 @endif
 
             @if(!$kids_page)
-            @loggedin
+                @if(@$subplan['status'] != 'active')
 
-            @if(@$subplan['status'] != 'active')
-
-            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
-            @endif
-            @elseloggedin
-
-            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn login-with-subscription" href="javascript:void(0);" >{{__('Subscribe')}}</a>
-
-            @endloggedin
+                <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
+                @endif
             @endif
         </div>
 

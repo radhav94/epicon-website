@@ -2,7 +2,7 @@
 @section('title',@$content['episodes_title'])
 
 @section('style')
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}?v={{ assetTime() }}" />
 
 <style>
      .para-info p,.para-info h4{
@@ -107,7 +107,7 @@
 
 
 @section('script')
-<script defer src="{{ asset('assets/js/distro-tv.js') }}"></script>
+<script defer src="{{ asset('assets/js/distro-tv.js') }}?v={{ assetTime() }}"></script>
 <script src="{{ asset('assets/js/vendor/plyr.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/hls.min.js') }}"></script>
 

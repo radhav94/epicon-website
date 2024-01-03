@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 class TestController extends Controller
 {
     public function index()
-    {
+    {   
+        if(strtolower(env('APP_ENV')) == 'production'){
+            return redirect('/');
+        }
+        
         $request = Request();
         d(request()->session()->all());
         echo '-------------------- <br>';
