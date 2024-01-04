@@ -223,6 +223,8 @@ foreach ($lang as $val) {
         Route::get('/kids/{slug?}', [KidsController::class, 'index'])->name('kidsIndex');
         Route::get('payu/androidtransaction', [AndroidPaymentController::class, 'androidPayuUsingWeb'])->name('androidPayuUsingWeb');
         Route::post('androidPayuresponse', [AndroidPaymentController::class, 'androidPayuresponse'])->name('androidPayuresponse');
+        Route::any('payment/success', [AndroidPaymentController::class, 'success'])->name('payment/success');
+        Route::any('payment/failure', [AndroidPaymentController::class, 'failure'])->name('payment/failure');
         Route::get('distro-tv', [DistroTvController::class, 'index'])->name('distro-tv');
         Route::get('distro-tv/{id}', [DistroTvController::class, 'distrotvvideo'])->name('distrotvvideo');
     });

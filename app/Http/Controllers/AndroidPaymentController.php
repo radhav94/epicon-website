@@ -288,4 +288,10 @@ class AndroidPaymentController extends Controller
 
 
     }
+    public function success(){
+        return view('subscription.pay-success');
+    }
+    public function failure(){
+        return view('subscription.pay-failure');
+    }
 }
