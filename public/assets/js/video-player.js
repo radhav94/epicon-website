@@ -20,9 +20,9 @@ $(document).ready(function () {
 
 	$(document).on('click', '#watchVideo', function () {
 		
-		$('.hide-vid-element').hide();
 		if (vidPlaying && !is_trailer && !is_episode) {
-			
+			$('.hide-vid-element').hide();
+
 			window.player.play();
 
 			if (!$('.videoContainer').is(":visible")) {
@@ -60,6 +60,7 @@ $(document).ready(function () {
 			onPlayerSuccess, onPlayerError, 'application/json');
 
 		function onPlayerSuccess(response) {
+			$('.hide-vid-element').hide();
 			// console.log(response);
 			// dummyInit = true;
 
@@ -84,6 +85,7 @@ $(document).ready(function () {
 			}
 		}
 		function onPlayerError(xhr) {
+			$('.hide-vid-element').show();
 			try {
 				$res = JSON.parse(xhr.responseText);
 				if ($res.message != undefined && $res.message != 'failed') {
