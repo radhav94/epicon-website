@@ -60,8 +60,11 @@
                             case 180:
                                 $plan_name = '6 Months';
                                 break;
-                            default:
+                            case 365:
                                 $plan_name = '1 Year';
+                                break;
+                            default:
+                                $plan_name = 'Active';
                                 break;
                         }
                         
@@ -73,7 +76,13 @@
                                 <td>{{ isset($subs_start_date) ? $subs_start_date : '' }} </td>
                                 <!-- <td><img src="{{ asset('/img/visa.svg') }}" alt="icon" class="me-2">visa **** **** **** 1823</td> -->
                                 <td>{{ isset($subs_end_date) ? $subs_end_date : '' }}</td>
-                                <td class="text-end">{!! getCurrency($value['currency']) !!} {{ isset($value['plan_amount']) ? $value['plan_amount'] : '' }}</td>
+                                <td class="text-end">
+                                    @if( isset($value['plan_amount']) )
+                                        {!! getCurrency($value['currency']) !!} {{ $value['plan_amount'] }}
+                                    @else
+                                         - 
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     @else
