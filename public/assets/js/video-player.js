@@ -93,7 +93,9 @@ $(document).ready(function () {
 					// 	dummyPlayer.destroy();
 					// 	dummyPlayer = new Plyr('#vidPlayer');
 					// }
-					showToaster($res.message, 2);
+					if($res.message != 'Content not found'){
+						showToaster($res.message, 2);
+					}
 				}
 			} catch (err) { }
 		}
