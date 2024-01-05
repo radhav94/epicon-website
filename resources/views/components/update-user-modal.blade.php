@@ -1,9 +1,46 @@
-<?php //dd($userData); 
-$caption = $input = "";
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+    .stdisdcode {
+        display: none;  
+    }
+    .input-field select{
+        width: auto!important;
+        padding-right: 40px;
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        color:#fff;
+        background-image: url("../img/drop-down-arrow-select-white.svg");
+        background-repeat: no-repeat;
+        background-position: center right 15px;
+        background-color: #000;
+    }
+    .input-placeholder-text{
+        text-indent: 115px;
+        background-color: #000!important;
+    }
+
+</style>
+<?php //dd(getCountryStateDataInHtml()); 
+$caption = $input = $stdisdcode = "";
 if(empty($userData['mobile']) && $userData['mobile']==''){
     $caption = __('Update Mobile Number');
     $placeholder = __('Please enter mobile');
-    $input = '<div class="input-field col-sm-6 inputCenter"><input type="text" name="mobile" class="form-control userdetail" placeholder="'.$placeholder.'" data-id="mobile" maxlength="10" id="mob-number"></div>'; 
+    $stdisdcode = '<div class="input-field col-sm-6 inputCenter position-relative">
+    <select class="uk-select select-control input__field stdcode" name="stdisdcode">'.getCountryStateDataInHtml().'
+    </select>';
+    $input = '<input type="text" name="mobile" class="form-control userdetail input-placeholder-text" placeholder="'.$placeholder.'" data-id="mobile" maxlength="10" id="mob-number"></div>'; 
 }else if(empty($userData['email']) && $userData['email']==''){
     $caption = __('Update Email Id');
     $placeholder = __('Please enter email id');
@@ -28,7 +65,8 @@ if(empty($userData['mobile']) && $userData['mobile']==''){
                                 name="email" required>
                         </div> -->
                         <!-- <input type="text" name="email" placeholder="Please enter email id" id="email-id"> -->
-                        <?php echo $input; ?>
+                        {!!$stdisdcode!!}
+                        {!!$input!!}
                         <span class="errMessage" style="color:red"> </span>
                         <button class="login-btn mt-4 updateProfile" style="width: 280px;" type="button">
                            {{__('Get OTP Now')}}
