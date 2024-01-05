@@ -72,20 +72,21 @@ class PlayerController extends Controller
         if (isUserLoggedIn()) {
             $param = [
                 'content_id' => $request->cid,
-                'duration' => $request->elapsed,
+                'duration' => ! empty($request->elapsed) ? $request->elapsed : 1,
                 'title' => $request->title,
                 'type' => $request->tp,
                 'profile_id' => getProfileId(),
                 'completed' => $request->completed ?? false,
             ];
-            
+
             $result = CurlAPI("pages/setplaytracking", "POST", $param, 1, true, true);
 
             if ($result && @$result['success'] ==  true) {
-                return true;
+                return JSONResponse(200, 'success.');
             }
 
-            return false;
+            // return JSONResponse(400, 'Error',$result);
+            return JSONResponse(400, 'Error');
         }
     }
 }

@@ -288,7 +288,7 @@ $(document).ready(function () {
 		if (!requestData) {
 			requestData = {
 				cid : cur_cid,
-				lg : cur_lg,
+				lg : 1,
 				tp: cur_ctype,
 				title: cur_title,
 			};
@@ -301,7 +301,7 @@ $(document).ready(function () {
 			requestData.completed = true;
 		}
 		
-		if (requestData.lg == 1 && !is_trailer) {
+		if (requestData.lg == 1 ) {
 			sendAjaxRequest(APP_URL + '/setplayTracking', 'POST', JSON.stringify(requestData),
 				onTrackSuccess, onTrackError, 'application/json');
 

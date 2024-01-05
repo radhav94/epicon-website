@@ -26,6 +26,12 @@ class CheckUserAuthToken
                     return redirect(route('homepage') . "?type=logout");
                 }
             }
+            if (session()->get('maxDevice') == true) {
+                if ($request->route()->getName() !== 'max-device' && $request->route()->getName() !== 'remove-device') {
+                    return redirect()->route('max-device');
+                }
+            }
+
             /* check authrization token end */
             if ($segment != 'kids' && $kidsmode && !$request->ajax()) {
                 return redirect(route('kidsIndex'));

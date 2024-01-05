@@ -14,6 +14,9 @@
         });
 
         $(".emailText").on("keyup paste", function (e) {
+            $(this).trigger('touchstart');
+            $("#mobile-error").text('');
+            $(".text-danger").text('');
             var t = $(this).val();
             $(".emailText").val(t);
             t.length >= 7 && Number.isInteger(+t)
@@ -28,6 +31,18 @@
                     $(".signup_method").val('EMAIL')
                 );
         }),
+
+        $("#login_pwd").on("keyup", function (e) {
+            $("#login-pwd-error").text('');
+            $(".text-danger").text('');
+        });
+
+        $(".child-box").on("keyup", function (e) {
+            $(".text-danger").text('');
+        });
+        $(".backpress").on("keyup", function (e) {
+            $(".text-danger").text('');
+        });
 
         $('.login').click(function(event) {
             if (!event.isTrigger) {
@@ -309,6 +324,7 @@
                 $('#validation-result').text('');
             } else {
                 $('#validation-result').text('Please fill in all input boxes.');
+                return false;
             }
 
             if (otp_pin != '') {
@@ -483,6 +499,7 @@
             e.preventDefault();
             // Clear previous errors
             $('.error').text('');
+            $('.text-danger').text('');
             // Validate Name
             var name = $('#mobilenumber').val();
             if (name.trim() === '') {
@@ -519,6 +536,10 @@
                         var SubchekUrl = localStorage.getItem("SubredirectURL");
                         if (response.payload.success == true) {
                             login_success();
+                            if(response.payload.maxDevice == true) {
+                                window.location.href = APP_URL+'/max-device';
+                                return false;
+                            }
                             // $('#register-result').html('');
                             // $("#username").text(response.payload.name);
                             // $("#sign_method").val(response.payload.user_signup_method);
@@ -600,6 +621,7 @@
                 $('#validation-forgot-result').text('');
             } else {
                 $('#validation-forgot-result').text('Please fill in all input boxes.');
+                return false;
             }
 
             if (otp_pin != '') {
@@ -718,16 +740,17 @@
         $(".redi-subs").click(function() {
           $("#redi-val").val("subscription");
          });
-
+         
          $(".skip-btn").click(function() {
             $('#login-modal').hide();
+            location.reload();
+            return false;
          });
 
          $(".subscription-btn").click(function() {
             window.location.href = APP_URL+'/subscription';
             return false;
          });
-
     });
     
 </script>

@@ -865,15 +865,18 @@ function SilentLoginFunction(){
 function silentLogin($user_id, $source)
 {
     $request = Request();
+    
     $request_parameter = [
         'user_id' =>  $user_id,
         'source' =>   $source,
         'user_agent' => getUserAgent(),
     ];
     $epicwebArr =  CurlAPI("users/silent-login", 'POST', $request_parameter, 2, true);
-        // if ($epicwebArr['success'] == true && isset($epicwebArr['session_id']) && !empty($epicwebArr['user_data'])) {
+    // if ($epicwebArr['success'] == true && isset($epicwebArr['session_id']) && !empty($epicwebArr['user_data'])) {
     if ($epicwebArr['success'] == true && !empty($epicwebArr['user_data'])) {
         $userdata = $epicwebArr['user_data'];
+        $maxDevice = $epicwebArr['max_device_reached'] ?? false;
+        $url =  $request->url();
 
         $trakcingData = ['Name' => $userdata['name'], 'Identity' => $userdata['user_id'], 'Email' => $userdata['user_id'], 'MSG-email' => true, 'MSG-push' => true];
         $request->session()->put('authenticated', time());
@@ -882,11 +885,18 @@ function silentLogin($user_id, $source)
         $request->session()->put('user_id', $userdata['user_id']);
         $request->session()->put('user', $userdata);
         $request->session()->put('user_token', $epicwebArr['token']);
+        $request->session()->put('maxDevice', $maxDevice);
         $request->session()->put('device_id', @$userdata['device_id']);
         $request->session()->put('logintracking', $trakcingData);
         $request->session()->put('logintrackingType', "Login");
         $request->session()->put('authEventTrack', 'Login successfull');
         $request->session()->put('eventCat', 'Login');
+        $request->session()->put('silentUrl', $url);
+
+        if($maxDevice === true)
+        {
+            header("Location:".url('/max-device'));
+        }
     }
 }
 

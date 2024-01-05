@@ -24,6 +24,7 @@ use App\Http\Controllers\LiveTvController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AndroidPaymentController;
 use App\Http\Controllers\DistroTvController;
+use App\Http\Controllers\MaxDeviceController;
 use App\Http\Controllers\PaytmController;
 use App\Http\Controllers\PaytmQrController;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,7 @@ Route::get('test', [TestController::class, 'index']);
 // server ip testing
 // Route::get('serveriptesting123xyz', [NotificationController::class, 'getServerIP']);
 
+Route::get('max-device', [MaxDeviceController::class, 'maxDevice'])->name('max-device');
 
 //////Start Redirection routes ////////
 
@@ -223,6 +225,8 @@ foreach ($lang as $val) {
         Route::get('/kids/{slug?}', [KidsController::class, 'index'])->name('kidsIndex');
         Route::get('payu/androidtransaction', [AndroidPaymentController::class, 'androidPayuUsingWeb'])->name('androidPayuUsingWeb');
         Route::post('androidPayuresponse', [AndroidPaymentController::class, 'androidPayuresponse'])->name('androidPayuresponse');
+        Route::any('payment/success', [AndroidPaymentController::class, 'success'])->name('payment/success');
+        Route::any('payment/failure', [AndroidPaymentController::class, 'failure'])->name('payment/failure');
         Route::get('distro-tv', [DistroTvController::class, 'index'])->name('distro-tv');
         Route::get('distro-tv/{id}', [DistroTvController::class, 'distrotvvideo'])->name('distrotvvideo');
     });
