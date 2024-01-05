@@ -80,7 +80,7 @@ class ProfileController extends Controller
         }
         
         if ($request->hasFile('profile_img')) {
-            $url = uploadFile('profile_img', 'profile');
+            $url = uploadFile('profile_img', 'profile', null, [100, 100]);
             $param['profile_img'] = $url;
         }
 
