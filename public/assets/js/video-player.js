@@ -301,13 +301,13 @@ $(document).ready(function () {
 			requestData.completed = true;
 		}
 		
-		if (requestData.lg == 1 ) {
+		// if (requestData.lg == 1 ) {
 			sendAjaxRequest(APP_URL + '/setplayTracking', 'POST', JSON.stringify(requestData),
 				onTrackSuccess, onTrackError, 'application/json');
 
 			function onTrackSuccess(response) { }
 			function onTrackError(response) { }
-		}
+		// }
 	}
 
 	if($("#playVideo").length > 0) {

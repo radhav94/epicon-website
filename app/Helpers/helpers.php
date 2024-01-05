@@ -1341,3 +1341,17 @@ function getDeviceId() {
 function getDefaultMetaTitle(){
     return 'Watch TV Shows, Movies, Podcast, Games, Rewards';
 }
+
+if (!function_exists('generateGuestUserId')) {
+    function generateGuestUserId()
+    {   
+        if( Cookie::get('guest_user_id') ){
+            return Cookie::get('guest_user_id');
+        }
+        
+        $result = 'guest_' . uniqid().'_'.mt_rand(1, 9999999);
+        Cookie::queue('guest_user_id', $result, 43200);
+
+        return $result;
+    }
+}

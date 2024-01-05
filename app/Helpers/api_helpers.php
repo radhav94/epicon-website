@@ -24,7 +24,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
     if (!$sendAuthTokenparams) {
         $headers[] = 'x-access-auth-token: ' . config('epicconfig.EPICAPI.API_AUTH_TOKEN');
     }
-    if ($sendUserToken) {
+    if ($sendUserToken && !empty($token)) {
         $headers[] = "Authorization: " . $token;
     }
 

@@ -69,24 +69,28 @@ class PlayerController extends Controller
 
     public function setplayTracking(Request $request)
     {
+        $param = [
+            'content_id' => $request->cid,
+            'duration' => ! empty($request->elapsed) ? $request->elapsed : 1,
+            'title' => $request->title,
+            'type' => $request->tp,
+            'completed' => $request->completed ?? false,
+        ];
+
         if (isUserLoggedIn()) {
-            $param = [
-                'content_id' => $request->cid,
-                'duration' => ! empty($request->elapsed) ? $request->elapsed : 1,
-                'title' => $request->title,
-                'type' => $request->tp,
-                'profile_id' => getProfileId(),
-                'completed' => $request->completed ?? false,
-            ];
-
-            $result = CurlAPI("pages/setplaytracking", "POST", $param, 1, true, true);
-
-            if ($result && @$result['success'] ==  true) {
-                return JSONResponse(200, 'success.');
-            }
-
-            // return JSONResponse(400, 'Error',$result);
-            return JSONResponse(400, 'Error');
+            $param['profile_id'] = getProfileId();
+        }else{
+            $param['user_id'] = generateGuestUserId();
         }
+        // dd($param);
+
+        $result = CurlAPI("pages/setplaytracking", "POST", $param, 1, true, true);
+
+        if ($result && @$result['success'] ==  true) {
+            return JSONResponse(200, 'success.');
+        }
+
+        // return JSONResponse(400, 'Error',$result);
+        return JSONResponse(400, 'Error');
     }
 }
