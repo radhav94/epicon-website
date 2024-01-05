@@ -290,6 +290,10 @@ $(document).ready(function(){
     }
 }); 
 
+$(".userdetail").on("keyup", function (e) {
+    $(".errMessage").text('');
+});
+
 });
 
 function validateEmail(email) {

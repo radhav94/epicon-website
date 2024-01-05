@@ -100,7 +100,6 @@ class LoginController extends Controller
                 "message" => "OTP verified successfully."
             ];
             $verifyotpResponseData = CurlAPI("users/verifyOTP", 'POST', $verifyotpRequestData, 2, false, true);
-
             if (isset($verifyotpResponseData['user_data'])) {
                 $is_verified = true;
             } else {
@@ -108,17 +107,17 @@ class LoginController extends Controller
             }
             $response['message'] = $verifyotpResponseData['message'];
             $response['is_verified'] = $is_verified;
-
-            // dd($verifyotpResponseData);
+            $maxDevice = $verifyotpResponseData['max_device_reached'] ?? '';
             if ((@$verifyotpResponseData['success'] == 'true' || @$verifyotpResponseData['success'] == true) && $is_verified == true) {
                 $user_data = $verifyotpResponseData['user_data'];
                 $request->session()->put('user_id', $userid);
+                $request->session()->put('maxDevice', $maxDevice);
                 $request->session()->put('user', $user_data);
                 $request->session()->put('user_token', $verifyotpResponseData['token']);
                 $request->session()->put('device_id', @$verifyotpResponseData['user_data']['device_id']);
                 $subplan = checkSubscription();
                 // $viewname = 'homepage';
-                return JSONResponse(200, 'OTP verified successfully.', ['user_id' => $userid, 'user_signup_method' => $signup_method, 'otp_pin' => $otp_pin, 'response' => $response, 'user_data' => $user_data, 'success' => true,'subplan_status' => @$subplan['status']]);
+                return JSONResponse(200, 'OTP verified successfully.', ['user_id' => $userid, 'user_signup_method' => $signup_method, 'otp_pin' => $otp_pin, 'response' => $response, 'user_data' => $user_data, 'success' => true,'subplan_status' => @$subplan['status'],'maxDevice' => $maxDevice]);
             } elseif ((@$verifyotpResponseData['success'] == 'true' || @$verifyotpResponseData['success'] == true) && $is_verified == false) {
                 $request->session()->put('user_id', $userid);
                 return JSONResponse(200, 'OTP verified successfully.', ['user_id' => $userid, 'user_signup_method' => $signup_method, 'otp_pin' => $otp_pin, 'response' => $response, 'success' => true]);
@@ -184,12 +183,12 @@ class LoginController extends Controller
         ];
 
         $loginResponseData = CurlAPI("users/loginWithPassword", 'POST', $postedData, 2, false, true);
-
         $response['message'] = $loginResponseData['message'];
-        
+        $maxDevice = $loginResponseData['max_device_reached'] ?? '';
         if (@$loginResponseData['success'] == true && !empty($loginResponseData['user_data'])) {
             $userdata = $loginResponseData['user_data'];
             $request->session()->put('user', $userdata);
+            $request->session()->put('maxDevice', $maxDevice);
             $request->session()->put('user_id', $userid);
             $request->session()->put('user_token', $loginResponseData['token']);
             $request->session()->put('device_id', @$loginResponseData['user_data']['device_id']);
@@ -198,7 +197,7 @@ class LoginController extends Controller
                 setcookie("user_password", $password, time() + 60 * 60 * 24 * 30);
             }
             $subplan = checkSubscription();
-            return JSONResponse(200, 'User Logged In Successfully.', ['redirect' => url('/') , 'success' => true, 'subplan_status' => @$subplan['status']]);
+            return JSONResponse(200, 'User Logged In Successfully.', ['redirect' => url('/') , 'success' => true, 'subplan_status' => @$subplan['status'],'maxDevice' => $maxDevice]);
         } else {
             return JSONResponse(200, 'Invalid Credentials.', ['response' => $response, 'success' => false]);
             // return redirect('/');

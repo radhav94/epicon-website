@@ -1,3 +1,4 @@
+@if (array_search("WATCH", array_column($value['content'], "asset_type")) !== false)
 <div class="carousel-main">
     <div class="carousel-title-n-arrow px-2">
         <h1 class="text-white small">{{ $title }}</h1>
@@ -11,7 +12,8 @@
     </div>
     <ul class="carousel-initilize p-0">
         @foreach ($value['content'] as $key => $val)
-        <?php
+    <?php       
+    if(strtolower(@$val['asset_type']) == "watch"){
         $card = getItemCardData($val, $displayLanguageParam);
 
         $banner_img = getCardImage($val, 'cover_image', 'medium');
@@ -93,6 +95,8 @@
                 </div>
             </a>
         </li>
+        <?php } ?>
         @endforeach
     </ul>
 </div>
+@endif

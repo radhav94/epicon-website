@@ -82,7 +82,6 @@
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
                 success: function(response) {
-                    console.log(response);
                     if (response.payload.success == true) {
                         var SubchekUrl = localStorage.getItem("SubredirectURL");
                             if(SubchekUrl != "" && SubchekUrl !=null &&  SubchekUrl!=undefined){
