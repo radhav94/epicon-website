@@ -24,6 +24,7 @@ use App\Http\Controllers\LiveTvController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AndroidPaymentController;
 use App\Http\Controllers\DistroTvController;
+use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\MaxDeviceController;
 use App\Http\Controllers\PaytmController;
 use App\Http\Controllers\PaytmQrController;
@@ -266,8 +267,14 @@ foreach ($lang as $val) {
 Route::post('/player', [PlayerController::class, 'getVideoUrl']);
 Route::post('/setplayTracking', [PlayerController::class, 'setplayTracking']);
 Route::any('/payu/transactioncallback', [SubscriptionController::class, 'payuWebhook']);
-Route::get('{any}', function ($any) {
-    return view('pages.error.404');
-})->where('any', '.*');
+
+
+
+/**
+ * This is the Final Error Controller 
+ * Please Don't make any Controller Below
+ * if need To Create Please Create From The Above and Starting Of This Comment
+ */
+Route::get('{any}', [ErrorController::class,'index'])->where('any', '.*');
 
  
