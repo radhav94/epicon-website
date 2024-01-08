@@ -15,6 +15,7 @@ class PageController extends Controller
         $this->limit = 10;
     }
 
+    
     public function index($slug = 'home-v2')
     {
         // dd(session()->get('user_token'));

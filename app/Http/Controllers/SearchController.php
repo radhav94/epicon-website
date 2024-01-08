@@ -7,6 +7,42 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
+    public  $categoryMapping = [
+        // 'All'       => 'AllResult',
+        'Movies'    => 'MoviesResult',
+        'Shows'     => 'ShowsResult',
+        'Podcasts'  => 'PodcastsResult',
+        'Kids'      => 'KidsResult',
+        'Games'     => 'GamesResult',
+        'Documentaries'     => 'DocumentariesResult',
+    ];
+
+
+
+    public function __construct()
+    {
+
+        $searchText = 'Kartik';
+        $kidsMode = session()->has('kidsMode') ? session()->get('kidsMode') : false;
+        if ($kidsMode == true) {
+            $postData = [
+                'searchTerm' => $searchText,
+                'kids_content' => true
+            ];
+        } else {
+            $postData = [
+                'searchTerm' => $searchText,
+            ];
+        }
+        $searchResult = CurlAPI("pages/search", 'POST', $postData, 1);
+        $bla = array_column($searchResult['contents'], 'title');
+        $newCategoryMapping = [];
+        foreach ($bla as $category) {
+            $newCategoryMapping[$category] = $category . 'Result';
+        }
+        $this->categoryMapping = $newCategoryMapping;
+    }
+
     public function trendingsearch(Request $request)
     {
         $searchHistory  = session()->has('searchHistory') ? session()->get('searchHistory') : [];
@@ -22,17 +58,19 @@ class SearchController extends Controller
             }
         }
 
+        $categoryMapping = $this->categoryMapping;
         $trending = CurlAPI("pages/trendingsearch", 'POST', '', 1);
+
         if ($trending && (@$trending['success'] == 'true' || @$trending['success'] == true)) {
             $trendingData = $trending['contents'] ?? [];
-            return view('pages.search.search', compact('trendingData', 'searchList'));
+            return view('pages.search.search', compact('trendingData', 'searchList', 'categoryMapping'));
         } else {
             return view('pages.error.404');
         }
     }
 
     public function search(Request $request)
-    {   
+    {
         $searchText = $request->post('searchinput');
         $kidsMode = session()->has('kidsMode') ? session()->get('kidsMode') : false;
         if ($kidsMode == true) {
@@ -45,33 +83,26 @@ class SearchController extends Controller
                 'searchTerm' => $searchText,
             ];
         }
-        
+
         $searchResult = CurlAPI("pages/search", 'POST', $postData, 1);
         // dd($searchResult);
         if ($searchResult) {
             $data = [];
 
             // Define a mapping of category titles to response keys
-            $categoryMapping = [
-                // 'All'       => 'AllResult',
-                'Movies'    => 'MoviesResult',
-                'Shows'     => 'ShowsResult',
-                'Podcasts'  => 'PodcastsResult',
-                'Kids'      => 'KidsResult',
-                'Games'     => 'GamesResult',
-            ];
+
 
             if (key_exists('contents', $searchResult)) {
                 foreach (@$searchResult['contents'] as $val) {
                     $title = @$val['title'];
 
-                    if (isset($categoryMapping[$title])) {
-                        $categoryKey = $categoryMapping[$title];
+                    if (isset($this->categoryMapping[$title])) {
+                        $categoryKey = $this->categoryMapping[$title];
                         $data['topResult'][$categoryKey] = $this->generateCategoryResponse($val);
                     }
 
-                    if (isset($categoryMapping[$title])) {
-                        $categoryKey = $categoryMapping[$title];
+                    if (isset($this->categoryMapping[$title])) {
+                        $categoryKey = $this->categoryMapping[$title];
                         $data['otherResult'][$categoryKey] = $this->getOtherResult($val);
                     }
                 }
@@ -103,25 +134,25 @@ class SearchController extends Controller
         $cover_img = getCardImage($topResult, 'cover_image', 'medium');
 
 
-        if(@$topResult['asset_type'] == 'PLAY'){
+        if (@$topResult['asset_type'] == 'PLAY') {
             $anchorHtml = getplayanchorhtml($topResult);
-        }else{
-            $anchorHtml = '<a  onclick="click_search_results(this)" data-element_text="'.@$topResult['title'].'" href="'.getContentUrl($topResult).'" >';
+        } else {
+            $anchorHtml = '<a  onclick="click_search_results(this)" data-element_text="' . @$topResult['title'] . '" href="' . getContentUrl($topResult) . '" >';
         }
-        
-        if( ($dateText && @$topResult['duration']) != ''){
+
+        if (($dateText && @$topResult['duration']) != '') {
             $pipe = '|';
-        }else{
+        } else {
             $pipe = '';
         }
 
-        $list = '<li class="episode-main mb-4">' 
-            . '<div class="pik">'.$anchorHtml.'<img src="' . $cover_img . '" alt="img">' . $premium . '</a></div>'
+        $list = '<li class="episode-main mb-4">'
+            . '<div class="pik">' . $anchorHtml . '<img src="' . $cover_img . '" alt="img">' . $premium . '</a></div>'
             . '<div class="episode-text-details">'
-            . '<h6>'.$anchorHtml . @$topResult['title'] . '</a></h6>'
+            . '<h6>' . $anchorHtml . @$topResult['title'] . '</a></h6>'
             . '<span>' . @$dateText . $pipe . convertSecondsToReadable(@$topResult['duration'])  . '</span>'
             . '<p class="search-top mt-2">' . sanitizeData(@$topResult['description']) . '</p>'
-            . '<div class="d-flex align-items-center"> '.$anchorHtml.' <button class="fill-btn em ms-0 mt-0 11">' . __('PLAY') . '</button></a>' . $wishlistAction . '</div></div>'
+            . '<div class="d-flex align-items-center"> ' . $anchorHtml . ' <button class="fill-btn em ms-0 mt-0 11">' . __('PLAY') . '</button></a>' . $wishlistAction . '</div></div>'
             . '</li>';
         $htmlContent .= $list . '</ul>';
         $this->addHistorySession($list, @$topResult['title']);
@@ -169,14 +200,14 @@ class SearchController extends Controller
             foreach ($contents as $content) {
                 $cover_img = getCardImage($content, 'cover_image', 'medium');
 
-                if(@$content['asset_type'] == 'PLAY'){
+                if (@$content['asset_type'] == 'PLAY') {
                     $anchorHtml = getplayanchorhtml($content);
-                }else{
-                    $anchorHtml = '<a onclick="click_search_results(this)" data-element_text="'.@$content['title'].'" href="'.getContentUrl($content).'" class="main-card mt-0">';
+                } else {
+                    $anchorHtml = '<a onclick="click_search_results(this)" data-element_text="' . @$content['title'] . '" href="' . getContentUrl($content) . '" class="main-card mt-0">';
                 }
-                
+
                 $htmlContent .= '<li>
-                                '.$anchorHtml.'
+                                ' . $anchorHtml . '
                                     <div class="main-img mt-0">
                                         <img src="' . $cover_img . '" alt="">
                                     </div>

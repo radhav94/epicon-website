@@ -32,44 +32,23 @@ $(document).ready(function () {
                         var result = false;
                         var topResult = response.topResult;
                         var otherResult = response.otherResult;
-                        console.log(topResult);
-                        
+                        // console.log(topResult);
+
                         if (topResult) {
-                            $('#Alltopresult').html(topResult.AllResult);
-                            $('#Moviestopresult').html(topResult.MoviesResult);
-                            $('#Showtopresult').html(topResult.ShowsResult);
-                            $('#Podcasttopresult').html(topResult.PodcastsResult);
-                            $('#Kidstopresult').html(topResult.KidsResult);
-                            $('#Gamestopresult').html(topResult.GamesResult);
+                            Object.keys(topResult).forEach(function (key) {
+                                $('#' + key + 'Top').html(topResult[key]);
+                            });
                         } else {
                             $('.topResult').html('');
                         }
 
                         if (otherResult) {
-                            if (otherResult.AllResult != "") {
-                                result = true;
-                                $('#AllOtherResult').html(otherResult.AllResult);
-                            }
-                            if (otherResult.MoviesResult != "") {
-                                result = true;
-                                $('#MoviesOtherResult').html(otherResult.MoviesResult);
-                            }
-                            if (otherResult.ShowsResult != "") {
-                                result = true;
-                                $('#ShowOtherResult').html(otherResult.ShowsResult);
-                            }
-                            if (otherResult.PodcastsResult != "") {
-                                result = true;
-                                $('#PodcastOtherResult').html(otherResult.PodcastsResult);
-                            }
-                            if (otherResult.KidsResult != "") {
-                                result = true;
-                                $('#KidsOtherResult').html(otherResult.KidsResult);
-                            }
-                            if (otherResult.GamesResult != "") {
-                                result = true;
-                                $('#GamesOtherResult').html(otherResult.GamesResult);
-                            }
+                            Object.keys(otherResult).forEach(function (key) {
+                                if (otherResult[key] !== "") {
+                                    result = true;
+                                    $('#' + key + 'Other').html(otherResult[key]);
+                                }
+                            });
                         } else {
                             $('.otherResult').html('');
                         }
