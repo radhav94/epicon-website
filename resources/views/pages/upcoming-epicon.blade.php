@@ -14,6 +14,9 @@ $input = $upcoming;
 $output = [];
 
 foreach ($input as $item) {
+    if(!isset($item['release_date'])){
+        continue;
+    }
     $releaseDate = substr($item['release_date'], 0, 10); // Extract the date part (e.g., "2023-09-15")
 
     if (!isset($output[$releaseDate])) {
