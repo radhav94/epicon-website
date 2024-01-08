@@ -80,9 +80,9 @@ class PlayerController extends Controller
         if (isUserLoggedIn()) {
             $param['profile_id'] = getProfileId();
         }else{
-            $param['user_id'] = generateGuestUserId();
+            $param['user_id'] = '';
+            $param['playertrackingid'] = generateGuestUserId();
         }
-        // dd($param);
 
         $result = CurlAPI("pages/setplaytracking", "POST", $param, 1, true, true);
 
