@@ -194,7 +194,7 @@ class LoginController extends Controller
             $request->session()->put('device_id', @$loginResponseData['user_data']['device_id']);
             if (!empty($request->post('rememberme'))) {
                 setcookie("user_id", strtolower($userid), time() + 60 * 60 * 24 * 30);
-                setcookie("user_password", $password, time() + 60 * 60 * 24 * 30);
+                // setcookie("user_password", $password, time() + 60 * 60 * 24 * 30);
             }
             $subplan = checkSubscription();
             return JSONResponse(200, 'User Logged In Successfully.', ['redirect' => url('/') , 'success' => true, 'subplan_status' => @$subplan['status'],'maxDevice' => $maxDevice]);
