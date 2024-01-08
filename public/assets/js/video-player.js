@@ -95,6 +95,8 @@ $(document).ready(function () {
 					// }
 					if($res.message != 'Content not found'){
 						showToaster($res.message, 2);
+					}else{
+						$('#watchVideo').hide();
 					}
 				}
 			} catch (err) { }
