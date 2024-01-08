@@ -81,16 +81,16 @@ class PlayerController extends Controller
             $param['profile_id'] = getProfileId();
         }else{
             $param['user_id'] = '';
-            $param['playertrackingid'] = generateGuestUserId();
+            $param['playtrackingid'] = generateGuestUserId();
         }
-
+        // dd($param);
         $result = CurlAPI("pages/setplaytracking", "POST", $param, 1, true, true);
 
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(200, 'success.');
         }
 
-        // return JSONResponse(400, 'Error',$result);
-        return JSONResponse(400, 'Error');
+        return JSONResponse(400, 'Error',$result);
+        // return JSONResponse(400, 'Error');
     }
 }
