@@ -37,7 +37,8 @@
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="my-list">
-                            <?php foreach($data as $key => $listdata) {  ?>
+                        <?php if(!empty($data)){ 
+                             foreach($data as $key => $listdata) {  ?>
                             <?php if(!empty($listdata)){ ?>
                             <div class="upcoming-heading">
                                 <h4 class="new-popularheading text-white my-4">{{ $key }}</h4>
@@ -61,12 +62,18 @@
                                 </ul>
                             </div>
 
+                            <?php } 
+                            }else{ ?>
+                                <div class="carousel-main">
+                                <h4 style="color:white">{{__('No data found')}}</h4>
+                            </div>
                             <?php } ?>
                         </div>
+                        
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="history">
                             <?php if(!empty($historydata)){ ?>
                             <div class="carousel-main">
-                                <ul class="vertical-carousel-initilize p-0">
+                                <ul class="more-like-this px-0">
                                     <?php foreach($historydata as $historydatalist){ 
                                         $cover_image = getCardImage($historydatalist, 'vertical_cover_image');
                                      ?>
