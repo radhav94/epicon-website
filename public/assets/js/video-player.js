@@ -88,10 +88,7 @@ $(document).ready(function () {
 		}
 		function onPlayerError(xhr) {
 			$('.hide-vid-element').show();
-<<<<<<< HEAD
-=======
 
->>>>>>> b9914bd12c956e7475d3b6c52549b3aa8e319590
 			try {
 				$res = JSON.parse(xhr.responseText);
 				if ($res.message != undefined && $res.message != 'failed') {
