@@ -8,6 +8,8 @@ var cur_lg = $("#playVideo").data('lg');
 var cur_title = $("#playVideo").data('title');
 var cur_ctype = null;
 var loadPlayerCount = 0;
+let lastTrackedMinuteTime = -1; 
+let lastPlayTrackTime = 0; 
 
 $(document).ready(function () {
 	/*dummyPlayer = new Plyr('#vidPlayer');
@@ -111,6 +113,8 @@ $(document).ready(function () {
 		if (player) {
 			player.destroy();
 		}
+		lastTrackedMinuteTime = -1;
+		lastPlayTrackTime = 0;
 
 		$('#vidPlayer').html(subtitles);
 		// const source = 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8';
@@ -258,6 +262,7 @@ $(document).ready(function () {
 		}
 	}
 
+	
 	const attactPlayerEvents = function (player,customData) {
 		player.on('play', event => {
 			vidPlaying = true;
@@ -293,9 +298,20 @@ $(document).ready(function () {
 			video_ended(a, e, o);
 		});
 
+		player.on('timeupdate', event => {
+			hitPlaytrackingEvery_x_minute(player,1);
+		});
 	}
 
 	const setplaytracking = function (player) {	
+		//player duration is not zero
+		if(player.duration < 1){
+			return;
+		}
+		//player current time and last time api current time hit is not same
+		if(player.currentTime == lastPlayTrackTime && lastPlayTrackTime !== 0){
+			return;
+		}
 		let requestData = player.config.customData;
 	
 		if (!requestData) {
@@ -310,17 +326,30 @@ $(document).ready(function () {
 		requestData.elapsed = player.currentTime;
 		requestData.completed = false;
 
-		if ((player.duration - player.currentTime) < 10) {
+		if ((player.duration - player.currentTime) < 10 && player.duration > 0) {
 			requestData.completed = true;
 		}
 		
 		// if (requestData.lg == 1 ) {
+			lastPlayTrackTime = player.currentTime;
+
 			sendAjaxRequest(APP_URL + '/setplayTracking', 'POST', JSON.stringify(requestData),
 				onTrackSuccess, onTrackError, 'application/json');
 
 			function onTrackSuccess(response) { }
 			function onTrackError(response) { }
 		// }
+	}
+
+	const hitPlaytrackingEvery_x_minute = function (player, minutes){
+		const currentTime = player.currentTime;
+	    const timeInMinutes = Math.floor(currentTime / 60);
+
+	    // if (timeInMinutes % minutes === 0 && timeInMinutes !== lastTrackedMinuteTime) {
+	    if (timeInMinutes !== lastTrackedMinuteTime && timeInMinutes > 1) {
+	        lastTrackedMinuteTime = timeInMinutes;
+	        setplaytracking(player);
+	    }
 	}
 
 	if($("#playVideo").length > 0) {
