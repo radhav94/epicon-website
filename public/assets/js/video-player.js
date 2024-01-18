@@ -346,7 +346,7 @@ $(document).ready(function () {
 	    const timeInMinutes = Math.floor(currentTime / 60);
 
 	    // if (timeInMinutes % minutes === 0 && timeInMinutes !== lastTrackedMinuteTime) {
-	    if (timeInMinutes !== lastTrackedMinuteTime && timeInMinutes > 1) {
+	    if (timeInMinutes !== lastTrackedMinuteTime && currentTime >= 1) {
 	        lastTrackedMinuteTime = timeInMinutes;
 	        setplaytracking(player);
 	    }
@@ -375,6 +375,11 @@ $(document).ready(function () {
 		// Update the player height when the window is resized
 		window.addEventListener('resize', setPlayerHeight);
 		*/
+	window.addEventListener('beforeunload', function (e) {
+		setplaytracking(player);
+        // e.preventDefault();
+        // e.returnValue = '';
+    });
 });
 
 function playContentVideo(cid,c_type,element) {
