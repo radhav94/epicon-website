@@ -57,7 +57,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                 <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="img">
                 <h4 class="text-white mt-4">{{__('Child PIN has been created successfully!')}}</h4>
                 <p class="w-75 text-white small m-auto mb-4">{{__('You can change it again any time from the settings tab.')}}</p>
-                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
+                <button class="login-btn mt-0 bg-transparent text-white btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                 <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="img">
                 <h4 class="text-white mt-4">{{__('Child PIN has been updated successfully!')}}</h4>
                 <p class="w-75 text-white small m-auto mb-4">{{__('You can change it again any time from the settings tab.')}}</p>
-                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
+                <button class="login-btn mt-0 bg-transparent text-white btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
             </div>
         </div>
     </div>
@@ -85,7 +85,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                 <h4 class="text-white mt-4">{{__('Your password has been changed successfully!')}}</h4>
                 <p class="w-75 text-white small m-auto mb-4">{{__('You can change it again any time from the settings tab.')}}</p>
 
-                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
+                <button class="login-btn mt-0 bg-transparent text-white btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
             </div>
         </div>
     </div>
@@ -100,7 +100,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                 <h4 class="text-white mt-4">{{__('Your search history has been cleared successfully!')}}</h4>
                 <p class="w-75 text-white small m-auto mb-4">{{__('Get ready for a fresh browsing experience.')}}</p>
 
-                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
+                <button class="login-btn mt-0 bg-transparent text-white btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
             </div>
         </div>
     </div>
@@ -135,7 +135,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                     </svg>
                 </button>
                 <span class="text-danger text-start d-flex mt-1 error" id="password-error" style="font-size: 12px;"></span>
-                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Go Back')}}</button>
+                <button class="login-btn mt-0 bg-transparent text-white btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Go Back')}}</button>
             </div>
 
 
@@ -170,7 +170,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                         </svg>
                     </a>
                     <span class="text-danger text-start d-flex mt-1 error" id="verify-otp-error" style="font-size: 12px;"></span>
-                    <button type="button" class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Cancel')}}</button>
+                    <button type="button" class="login-btn mt-0 bg-transparent text-white btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Cancel')}}</button>
                 </form>
             </div>
 
@@ -199,7 +199,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                     </svg>
                 </a>
                 <span class="text-danger text-start d-flex mt-1 error" id="reason-error" style="font-size: 12px;"></span>
-                <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Cancel')}}</button>
+                <button class="login-btn mt-0 bg-transparent text-white btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Cancel')}}</button>
             </div>
 
         </div>

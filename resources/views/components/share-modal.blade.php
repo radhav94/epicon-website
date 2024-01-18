@@ -1,7 +1,7 @@
 <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-centered px-3">
         <div class="modal-content">
-            <button class="x-btn bg-transparent text-white closebtn position-absolute" class="btn-close"
+            <button class="x-btn bg-transparent text-white closebtn position-absolute btn-close"
                 data-bs-dismiss="modal" aria-label="Close">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 31 32"
                     fill="none">

@@ -5,13 +5,14 @@
 
             @if (@$value['show_more'])
                 <a onclick="click_cta(this)" data-event_context="{{ @$title }}" data-element_text="SEE ALL" href="{{ getMidPageUrl($value) }}">
-                    <button>Explore More
+                    {{-- <button> --}}
+                        Explore More
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
                             fill="none">
                             <path d="M14.0533 11.2933L18.7466 16L14.0533 20.7067" stroke="white" stroke-width="1.5"
                                 stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
-                    </button>
+                    {{-- </button> --}}
                 </a>
             @endif
 
@@ -24,10 +25,10 @@
                     $card = getItemCardData($val, $displayLanguageParam);
                     ?>
                     <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}" href="{{ url('explore/' . @$val['slug']) }}">
-                        <button>
-                            <img src="{{ $val['fiesta_image'] ?? '' }}">
+                        {{-- <button> --}}
+                            <img src="{{ $val['fiesta_image'] ?? '' }}" alt="{{ $val['name'] }}">
                             {{ $val['name'] }}
-                        </button>
+                        {{-- </button> --}}
                     </a>
                 @endforeach
 

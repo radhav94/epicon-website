@@ -1,9 +1,6 @@
 @extends('layouts.default')
 @section('title', $meta['title'] ?? 'Subscription Plans' )
 
-@section('style')
-
-@stop
 @section('content')
 <!-- <section class="container-fluid mt-4">
         <div class="row">

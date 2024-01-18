@@ -2,60 +2,60 @@
 @section('title','About')
 
 @section('style')
+<style>
+    .para-info p,.para-info h4{
+       color: #fff;
+   }
+   .distro-banner-video .video-js{
+       height: 500px;
+       padding-top:38%;
+   }
+   .distro-banner-video .video-js .vjs-tech{
+       height: 100%;
+   }
+    /*.vjs-live .vjs-progress-control{
+       display: flex;
+       align-items: center;
+       width: 100%;
+   }
+   .vjs-live .vjs-time-control{
+       display: block;
+   }*/
+   .distro-banner-video .video-js .vjs-big-play-button{
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       width: 70px;
+       height: 70px;
+       border-radius: 80px;
+       line-height: 70px;
+   }
+   @media (max-width:768px) {
+       .header-info{
+           flex-direction: column-reverse;
+       }
+       .header-info img{
+           margin: 10px 0;
+       }
+   }
+   @media (max-width:700px) {
+       .distro-banner-video .video-js{
+           height: 250px;
+           padding-top:38%;
+       }
+       .distro-banner-video .video-js .vjs-tech{
+       height: 100%;
+       }
+   }
+
+
+</style>
 
 @stop
 
 @section('content')
 
-<style>
-     .para-info p,.para-info h4{
-        color: #fff;
-    }
-    .distro-banner-video .video-js{
-        height: 500px;
-        padding-top:38%;
-    }
-    .distro-banner-video .video-js .vjs-tech{
-        height: 100%;
-    }
-     /*.vjs-live .vjs-progress-control{
-        display: flex;
-        align-items: center;
-        width: 100%;
-    }
-    .vjs-live .vjs-time-control{
-        display: block;
-    }*/
-    .distro-banner-video .video-js .vjs-big-play-button{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 70px;
-        height: 70px;
-        border-radius: 80px;
-        line-height: 70px;
-    }
-    @media (max-width:768px) {
-        .header-info{
-            flex-direction: column-reverse;
-        }
-        .header-info img{
-            margin: 10px 0;
-        }
-    }
-    @media (max-width:700px) {
-        .distro-banner-video .video-js{
-            height: 250px;
-            padding-top:38%;
-        }
-        .distro-banner-video .video-js .vjs-tech{
-        height: 100%;
-        }
-    }
-
-
-</style>
 
 
 <section class="distro-main-video w-100 position-relative">

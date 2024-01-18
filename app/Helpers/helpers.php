@@ -286,12 +286,12 @@ function freePremiumDiv($val)
 function topTenDiv($val)
 {
     if (@$val['is_top10'] == true) {
-        echo '<span class="top-ten position-absolute">
+        echo '<div class="top-ten position-absolute">
         <ul class="list-unstyled text-white">
         <li>Top</li>
         <li>10</li>
         </ul>
-        </span>';
+        </div>';
     }
 }
 

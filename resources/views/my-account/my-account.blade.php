@@ -1,10 +1,6 @@
 @extends('layouts.default')
 @section('title','My Account')
-
-@section('style')
-
-@stop
-
+ 
 @section('content')
 
 <?php
@@ -66,7 +62,7 @@ $subplan = checkSubscription();
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"/>
                     </svg>
                  </button>
-                 <button class="login-btn mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Go Back')}}</button>
+                 <button class="login-btn mt-0 bg-transparent text-white btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Go Back')}}</button>
             </div>
         </div>
     </div>
@@ -145,9 +141,9 @@ $subplan = checkSubscription();
                         <img src="{{ asset('/img/email.svg') }}" alt="">
                         {{ $viewprofile['email'] }} &nbsp;
                         @endif
-                        <!-- <button class="edit-icon bg-transparent border-0">
+                        {{-- <!-- <button class="edit-icon bg-transparent border-0">
                             <img src="{{ asset('/img/edit-icon.svg') }}" alt="">
-                        </button> -->
+                        </button> --> --}}
                     </p>
                     <p>
                     @if(!empty(@$viewprofile['mobile']))
@@ -191,7 +187,7 @@ $subplan = checkSubscription();
                     </a>
             </div>
             @endif
-            <!-- <div class="col-12 text-center mt-5">
+            {{-- <!-- <div class="col-12 text-center mt-5">
                 <img src="{{ asset('/img/not-subscribe.svg') }}" alt="img" style="margin-bottom: -50px;">
                 <p class="small text-white">You have not subscribed to Epic On yet!</p>
                 <button class="login-btn mt-4" style="width: 280px;">
@@ -201,7 +197,7 @@ $subplan = checkSubscription();
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="#070707"></path>
                     </svg>
                  </button>
-            </div> -->
+            </div> --> --}}
 
         </div>
     </section>

@@ -1,6 +1,6 @@
 <section class="carousel-main new-release mt-0">
     <div class="carousel-title-n-arrow px-2 mb-2">
-        <h1 class="text-white small">{{ $title }}</h1>
+        <h5 class="text-white">{{ $title }}</h5>
 
         @if (@$value['show_more'])
             <a onclick="click_cta(this)" data-event_context="{{ $title }}" data-element_text="SEE ALL" href="{{ getMidPageUrl($value) }}">
@@ -42,14 +42,14 @@
                                 @endif
                                 <div class="content-overlay">
 
-                                    <!--
+                                    {{-- <!--
                                         <div class="imdb-rating">
                                             <ul>
                                                 <li>8.5</li>
                                                 <li><img src="{{ asset('assets/img/imdb-icon.png') }}" alt="img"></li>
                                             </ul>
                                         </div>
-                                    -->
+                                    --> --}}
 
                                     <div>
                                         <h1>{{ $card['title'] }}</h1>

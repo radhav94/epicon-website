@@ -37,8 +37,8 @@
         </div>
         @endforeach
 
-        <!-- <div class="distro-banner-item"><img src="{{asset('img/Desktop-Page-Blocks.png')}}" alt=""></div>
-        <div class="distro-banner-item"><img src="{{asset('img/Desktop-Page-Blocks.png')}}" alt=""></div> -->
+        {{-- <!-- <div class="distro-banner-item"><img src="{{asset('img/Desktop-Page-Blocks.png')}}" alt=""></div>
+        <div class="distro-banner-item"><img src="{{asset('img/Desktop-Page-Blocks.png')}}" alt=""></div> --> --}}
     </div>
     <div class="slider-controls-dots d-flex justify-content-center position-absolute">
         <div class="slide-dist-dots"></div>

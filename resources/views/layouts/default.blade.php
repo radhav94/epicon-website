@@ -4,9 +4,10 @@
     @include('layouts.metadata')
     {{-- Start header common styles --}}
     <link rel="stylesheet" href="{{ asset('/css/style.min.css') }}?v={{ assetTime() }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/swiper-bundle.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/toastr.min.css') }}" async/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/swiper-bundle.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/toastr.min.css') }}">
+
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery-ui.min.css') }}">
     {{-- End header common styles --}}
     <script src="{{ asset('assets/js/jquery.js') }}"></script>

@@ -1,9 +1,6 @@
 @extends('layouts.default')
 @section('title','Transaction History')
-
-@section('style')
-
-@stop
+ 
 
 @section('content')
 

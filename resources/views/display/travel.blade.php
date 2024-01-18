@@ -1,6 +1,6 @@
 <div class="carousel-main">
     <div class="carousel-title-n-arrow px-2">
-        <h1 class="text-white small">{{ $title }}</h1>
+        <h5 class="text-white">{{ $title }}</h5>
         @if (@$value['show_more'])
             <a onclick="click_cta(this)" data-event_context="{{@$title}}" data-element_text="SEE ALL" href="{{ getMidPageUrl($value) }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
