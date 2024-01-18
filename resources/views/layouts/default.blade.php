@@ -6,19 +6,19 @@
     <link rel="stylesheet" href="{{ asset('/css/style.min.css') }}?v={{ assetTime() }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/swiper-bundle.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/toastr.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/toastr.min.css') }}" async/>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery-ui.min.css') }}">
     {{-- End header common styles --}}
-
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
 
     {{-- Start page specific styles --}}
     @yield('style')
     {{-- End page specific styles --}}
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    {{--<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>--}}
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="preconnect">
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -84,7 +84,6 @@
     @include('layouts.schema')
     <!-- Schema Code END -->
     {{-- Start footer common scripts --}}
-    <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-ui.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/ga_tag.js') }}?v={{ assetTime() }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}?v={{ assetTime() }}" defer></script>
