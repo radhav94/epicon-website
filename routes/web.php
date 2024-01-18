@@ -202,7 +202,8 @@ foreach ($lang as $val) {
         /* Kids section start */
         // Static Pages Start
         Route::get('kids/about-us', function () {
-            return view('static.about');
+            $meta = getMeta('about-us');
+            return view('static.about', compact('meta'));
         })->name('kids-about');
 
         Route::get('kids/terms-of-use', function () {
@@ -235,7 +236,8 @@ foreach ($lang as $val) {
     Route::group(['prefix' => $prefix, 'middleware' => 'checkUserAuthToken'], function () {
         Route::get('feedback', [FeedbackController::class, 'Feedback'])->name('feedback');
         Route::get('about-us', function () {
-            return view('static.about');
+            $meta = getMeta('about-us');
+            return view('static.about', compact('meta'));
         })->name('about');
 
         Route::get('explore/{slug}', [PageController::class, 'explore_details']);

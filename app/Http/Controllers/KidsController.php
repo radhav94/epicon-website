@@ -114,9 +114,9 @@ class KidsController extends Controller
             $meta['description'] = 'Lets kids have their fun with EPIC ON Kids, a complete set of learning with entertainment. Explore popular kids shows, Cartoon, Podcast, Ebooks and Games.';
             $meta['keywords'] = 'kids shows, kids cartoon,  cartoons, cartoon movies, fairy tales for kids, fairy tales stories, animated movies,  tv shows for kids, entertainment for kids, cartoon channel, comic books, ebooks, ebooks for kids, podcast for kids, podcast, games for kids, puzzles for kids. EPIC ON Kids';
         } else if ($pagetype == 'CATALOG') {
-            //$meta['title'] = 'Watch EPIC On '.$pagetitle.', Episodes, Promos Online | EPIC On';
+            //$meta['title'] = 'Watch EPIC On '.$pagetitle.', Episodes, Promos Online';
             if ($pageslug == 'watch' || $pageslug == 'tv-shows' || $pageslug == 'epic-shorts' || $pageslug == 'documentaries' || $pageslug == 'video-books' || $pageslug == 'movies' || $pageslug == 'amar-chitra-katha') {
-                $meta['title'] = 'Watch TV Shows, Episodes, Movies, Originals Online | EPIC ON';
+                $meta['title'] = 'Watch TV Shows, Episodes, Movies, Originals Online';
                 $meta['description'] = 'Watch popular TV shows, blockbuster movies, originals, documentaries, & more, across the genres of comedy, romance, action, drama, food, travel & mythology.';
                 $meta['keywords'] = 'originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries';
             } else if ($pageslug == 'listen' || $pageslug == 'podcast') {
@@ -132,7 +132,7 @@ class KidsController extends Controller
                 $meta['description'] = 'Read comic books like panchatantra stories, fairy tales stories, bedtime stories, animal stories and more favourite ebooks for kids available at EPIC ON kids';
                 $meta['keywords'] = 'Read, Reading, comic books, ebooks, ebooks for kids, story books for kids, pancha tantra stories, online books for kids, fairy tales stories, reading books for kids, panchatantra stories for kids,  children story books, story books online, storytelling for kids, kids stories, kids story in hindi, short stories for kids, bedtime stories, bedtime stories for kids, children stories, animal stories for kids';
             } else if ($pageslug == 'offers') {
-                $meta['title'] = 'Earn Rewards of Epicoins and Redeem on Offers | EPIC ON';
+                $meta['title'] = 'Earn Rewards of Epicoins and Redeem on Offers';
                 $meta['description'] = 'Get rewarded for binge-watching, playing games, reading books, and more. Redeem your EPIC coins on available offers at reward store';
                 $meta['keywords'] = 'flipkart offers, dominos coupons, myntra coupons, offers, dominos coupon codes, dominos offer, coupons, myntra coupon code, myntra offers, discounts, crossword, deals, vouchers';
             } else if ($pageslug == "kids-watch") {
@@ -167,7 +167,7 @@ class KidsController extends Controller
                 $meta['keywords'] = 'live tv, movies online, live tv channel, public tv live, live tv app, filamchi tv, filamchi live tv, free live tv, bhojpuri movies, bhojpuri video, bhojpuri film, bhojpuri cinema, bhojpuri film video';
             }
         } else if ($pagetype == 'HISTORY') {
-            //$meta['title'] = 'Watch popular '.$pagetitle.' Shows, Episodes, Promos Online | EPIC On';
+            //$meta['title'] = 'Watch popular '.$pagetitle.' Shows, Episodes, Promos Online';
             $meta['title'] = 'Watch EPICON for your favourite Tv Shows, Episodes - Podcast - Ebook - Games - Rewards';
             $meta['description'] = 'Watch ' . $pagetitle . ' Shows online. Latest ' . $pagetitle . ' Shows Episodes, Promos online at EPIC ON.';
         }
@@ -229,7 +229,7 @@ class KidsController extends Controller
                 $meta['keywords'] = 'लाइव टीवी, फिल्में ऑनलाइन, लाइव टीवी चैनल, पब्लिक टीवी लाइव, लाइव टीवी एप, फिल्ममची टीवी, फिल्ममची लाइव टीवी, फ्री लाइव टीवी, भोजपुरी फिल्में, भोजपुरी वीडियो, भोजपुरी फिल्म, भोजपुरी सिनेमा, भोजपुरी फिल्म वीडियो';
             }
         } else if ($pagetype == 'HISTORY') {
-            //$meta['title'] = 'Watch popular '.$pagetitle.' Shows, Episodes, Promos Online | EPIC On';
+            //$meta['title'] = 'Watch popular '.$pagetitle.' Shows, Episodes, Promos Online';
             $meta['title'] = 'Watch EPICON for your favourite Tv Shows, Episodes - Podcast - Ebook - Games - Rewards';
             $meta['description'] = 'Watch ' . $pagetitle . ' Shows online. Latest ' . $pagetitle . ' Shows Episodes, Promos online at EPIC ON.';
         }

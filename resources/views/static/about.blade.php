@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', 'About Us - Epic On a Seamless Streaming Experience')
+@section('title', $meta['title'] ?? getDefaultMetaTitle() )
 
 @section('style')
 

@@ -1,4 +1,4 @@
-<?php $page = request()->segment(1); //dd($page); ?>
+<?php  $page = request()->segment(1);  ?>
 
 @if($page == 'games')
 <script type="application/ld+json">
@@ -89,6 +89,31 @@
     "datePublished": "2023-11-30",
     "name": "Watch Indian TV Shows Online at Epic On | Streaming Now | EPIC ON"
       }
-  }
+</script>
+@elseif($page == '')
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "WebSite",
+"name": "Epic On",
+"url": "https://www.epicon.in/",
+"potentialAction": {
+"@type": "ViewAction",
+"target": "https://www.epicon.in/"
+}
+}
+</script>
+@elseif($page == 'search')
+<script type="application/ld+json">
+{
+"@context" : "https://schema.org",
+"@type" : "WebSite",
+"url" : "https://www.epicon.in/",
+"potentialAction" : {
+"@type" : "SearchAction",
+"target" : "https://www.epicon.in/{search_term_string}",
+"query-input" : "required name=search_term_string"
+}
+}
 </script>
 @endif

@@ -23,63 +23,11 @@ class LiveTvController extends Controller
             $response = @$livetvArr['content'];
             $displayLanguageParam = setLanguageParameter();
 
-            $meta = $this->getMeta($routenamed);
+            $meta = getMeta($routenamed);
             return view('pages.livetv.live-tv', compact('response','meta', 'displayLanguageParam'));
         }else{
             return view('pages.error.data-error');
         }
-    }
-
-    public function getMeta($routenamed)
-    {
-        $meta = [];
-        $meta['keywords'] = '';
-        // $meta['image'] = env('APP_URL') . '/epiconlogo.png';
-        $meta['url'] = url()->current();
-        $meta['title'] = env('APP_NAME');
-        $meta['description'] = env('APP_NAME');
-        $displang = app()->getLocale();
-        if ($routenamed == 'favourites') {
-            $meta['title'] = 'My Favourites | EPIC ON';
-            $meta['description'] = '';
-        } else if ($routenamed == 'watchlater') {
-            $meta['title'] = 'Watch Later | EPIC ON';
-            $meta['description'] = '';
-        } else if ($routenamed == 'viewprofile' || $routenamed == 'editprofile' || $routenamed == 'profile') {
-            $meta['title'] = ($routenamed == 'editprofile') ? 'My Account Update | EPIC On' : 'My Account | EPIC ON';
-            $meta['description'] = '';
-        } else if ($routenamed == 'chpwd') {
-            $meta['title'] = 'Change Password | EPIC ON';
-            $meta['description'] = '';
-        } else if ($routenamed == 'subscriptions') {
-            $meta['title'] = 'Subscription Plans | EPIC ON';
-            $meta['description'] = 'Subscribe to EPIC ON an all-new avatar! Welcome to India’s first platform that offers multiform content, giving users an unparalleled experience.';
-            $meta['keywords'] = 'EPIC ON, EPIC ON Subscription';
-        } else if ($routenamed == 'checkout-subscriptions') {
-            $meta['title'] = 'Checkout Subscription Plans | EPIC ON';
-            $meta['description'] = '';
-        } else if ($routenamed == 'generatepin') {
-            $meta['title'] = 'Generate Pin | EPIC ON';
-            $meta['description'] = '';
-        } else if ($routenamed == 'QRPROMOTIONS') {
-            $meta['title'] = 'EPIC ON | Watch TV Shows, Specials, Shorts & Video Books';
-            $meta['description'] = 'EPIC ON is your companion for India-centric TV shows, short videos, documentaries, & specials across the genres of sports, food, history, mythology, travel, & more';
-            $meta['keywords'] = 'tv shows, tv series, recipe shows, travel shows, historic places, mythology, festivals of India, best tv shows, best tv series, history of India';
-        } else if ($routenamed == 'live-tv') {
-            if ($displang == 'hi') {
-                $meta['title'] = 'देखें लाइव टीवी कभी भी ईपीक ऑन पर';
-                $meta['description'] = 'देखें ईपीक चैनल लाइव टीवी, फिलमची लाइव टीवी और शोबॉक्स लाइव टीवी कभी भी ईपीक ऑन पर';
-                $meta['keywords'] = 'लाइव टीवी, लाइव टीवी शो, लाइव टीवी चैनल, पब्लिक टीवी लाइव, लाइव टीवी ऐप, ईपीक लाइव टीवी, ईपीक चैनल टीवी, शोबॉक्स लाइव टीवी, फिलमची लाइव टीवी';
-            } else {
-                $meta['title'] = 'Watch Live Tv | Best OTT Platforms for Live TV | EPIC ON';
-                $meta['description'] = 'Catch all the live action with EPIC ON, Indias premier OTT platform for live TV. Stream your favorite news, sports, and entertainment channels from anywhere.';
-                $meta['keywords'] = 'live tv, live tv shows, live tv channel, public tv live, live tv app, EPIC ON live tv, epic channel tv, showbox live tv, filamchi live tv';
-            }
-        } else {
-            $meta['title'] = 'EPIC ON';
-            $meta['description'] = '';
-        }
-        return $meta;
     }
 
 }

@@ -26,9 +26,7 @@ class DistroTvController extends Controller
             $displayLanguageParam = $data['displayLanguageParam'];
             $stories = $data['stories'];
 
-            $meta = [
-                'title' => ($displayLanguageParam == 'HINDI') ? 'डिस्ट्रो टीवी' : 'DistroTV', 
-            ];
+            $meta = getMeta('distro-tv');
 
             return view('pages.homepage-distro', compact('result', 'meta', 'displayLanguageParam', 'stories'));
                     }

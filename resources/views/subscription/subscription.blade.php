@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','Subscription Plans - Epic On')
+@section('title', $meta['title'] ?? 'Subscription Plans' )
 
 @section('style')
 
