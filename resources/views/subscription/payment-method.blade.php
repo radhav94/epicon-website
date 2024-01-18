@@ -172,6 +172,7 @@ $(document).ready(function(){
         var userdetail = $(".userdetail").val();
         var type = $(".userdetail").attr('data-id');
         var actual_price = $("#actual_price").val();
+        var stdcodeval = $(".stdcode").val();
         $(".errMessage").text('');
         if(userdetail == ''){
             $(".errMessage").text('This field is required and cannot be empty.');
@@ -201,7 +202,7 @@ $(document).ready(function(){
             $.ajax({
                 type: 'POST',
                 url: ajaxurl,
-                data: {userdetail:userdetail,type:type,price:actual_price},
+                data: {userdetail:userdetail,type:type,price:actual_price,stdcode:stdcodeval},
                 dataType: 'json',
                 success: function (res) {
                     console.log(res.success);
@@ -225,6 +226,7 @@ $(document).ready(function(){
             var userdetail = $(".userdetail").val();
             var type = $(".userdetail").attr('data-id');
             var actual_price = $("#actual_price").val();
+            var stdcodeval = $(".stdcode").val();
             $(".errMessage").text('');
             var valid = true;
             $('.vpin').each(function() {
@@ -245,7 +247,7 @@ $(document).ready(function(){
                 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
             }
         });
-        var formData = $('#verifyUserOtp').serialize()+ "&userdetail=" + userdetail+"&type=" + type+"&price=" + actual_price;
+        var formData = $('#verifyUserOtp').serialize()+ "&userdetail=" + userdetail+"&type=" + type+"&price=" + actual_price+"&stdcode="+stdcodeval;
         var ajaxurl = APP_URL+'/verifyOtpAjax';
         $.ajax({
             type: 'POST',

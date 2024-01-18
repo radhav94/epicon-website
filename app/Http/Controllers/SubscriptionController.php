@@ -756,18 +756,20 @@ class SubscriptionController extends Controller
     public function sendOtpAjax(Request $request)
     {
         $ajaxData = $request->all();
-        $email = $mobile = "";
+        $email = $mobile = $stdcode = "";
         $type = $ajaxData['type'] ?? '';
         if($type == "email"){
             $email = $ajaxData['userdetail'] ?? '';
         }else{
             $mobile = $ajaxData['userdetail'] ?? '';
+            $stdcode = $ajaxData['stdcode'] ?? '';
         }
         $otpResponse = [];
         $postData = [
-            'mobile' => $mobile,
+            'mobile' => $stdcode.$mobile,
             'email' => $email,
         ];
+        //dd($postData);
         $otpResponse = CurlAPI("users/contactDetailsOTP", "POST", $postData, 2, true, true);
         if ($otpResponse && @$otpResponse['success'] == true) {
             return response()->json($otpResponse, 200)->header('Content-Type', 'application/json');
@@ -779,8 +781,7 @@ class SubscriptionController extends Controller
     public function verifyOtpAjax(Request $request)
     {
         $ajaxData = $request->all();
-        $email="";
-        $mobile="";
+        $email = $mobile = $stdcode = "";
         $countrycode = getCountryCode();
         if($countrycode == 'IN'){
             $currency = ' Rs. ';
@@ -792,15 +793,15 @@ class SubscriptionController extends Controller
         if($type == "email"){
             $email = $ajaxData['userdetail'] ?? '';
         }else{
-          $mobile =   $ajaxData['userdetail'] ?? '';
+          $mobile =  $ajaxData['userdetail'] ?? '';
+          $stdcode = $ajaxData['stdcode'] ?? '';
         }
         $verifyResponse = [];
         $postData = [
-            'mobile' => $mobile,
+            'mobile' => $stdcode.$mobile,
             'email' => $email,
             'otp' => $otp
         ];
-        //dd($postData);
         $verifyResponse = CurlAPI("users/contactDetailsOTPVerify", "POST", $postData, 2, true, true);
         //dd($verifyResponse);
         $verifyResponse['html'] = '<button class="fill-btn px-5" type="submit">' . __('Continue Pay') . $currency . $ajaxData['price'] . '
