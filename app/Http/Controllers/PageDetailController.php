@@ -73,7 +73,6 @@ class PageDetailController extends Controller
                 $about = $about_curl['data'] ?? [];
             }
 
-
             /*if (request()->get('v') != '') {
                 // dd($about);
                 echo '--------Trailers --------';
