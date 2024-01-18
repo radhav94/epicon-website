@@ -279,4 +279,5 @@ Route::any('/payu/transactioncallback', [SubscriptionController::class, 'payuWeb
  */
 Route::get('{any}', [ErrorController::class,'index'])->where('any', '.*');
 
+
  
