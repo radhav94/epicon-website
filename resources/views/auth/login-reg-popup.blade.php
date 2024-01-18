@@ -155,7 +155,7 @@
                                 </div>
                                 <button class="btn btn-primary bg-transparent" id="resendBtn" onclick="resendOTP()">Resend OTP</button>
                                 <button class="login-btn verify-btn mt-4" onclick="login_start(this)">
-                                    Verify Number
+                                    Verify OTP
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
