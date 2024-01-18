@@ -73,8 +73,7 @@ class PageDetailController extends Controller
                 $about = $about_curl['data'] ?? [];
             }
 
-
-            if (request()->get('v') != '') {
+            /*if (request()->get('v') != '') {
                 // dd($about);
                 echo '--------Trailers --------';
                 d($trailers);
@@ -88,7 +87,7 @@ class PageDetailController extends Controller
 
                 dd($result);
                 die;
-            }
+            }*/
 
             $template = 'pages.detail.page-detail';
             if (@$content['asset_type'] == 'LISTEN') {
