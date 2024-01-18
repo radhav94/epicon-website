@@ -2,28 +2,28 @@
 @section('title', 'Search')
 
 @section('style')
+<style>
+    .main-header,
+    .footer,
+    .footer-mobile {
+        display: none;
+    }
+
+    .carousel-main .main-card .main-img img,
+    .library .main-card .main-img img,
+    .seeall-main-page .main-card .main-img img {
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: contain;
+        -o-object-position: top;
+        object-position: center;
+    }
+</style>
 
 @stop
 
 @section('content')
-    <style>
-        .main-header,
-        .footer,
-        .footer-mobile {
-            display: none;
-        }
-
-        .carousel-main .main-card .main-img img,
-        .library .main-card .main-img img,
-        .seeall-main-page .main-card .main-img img {
-            width: 100%;
-            height: 100%;
-            -o-object-fit: cover;
-            object-fit: contain;
-            -o-object-position: top;
-            object-position: center;
-        }
-    </style>
 
     <?php
     $kids_page = isKidsPage();

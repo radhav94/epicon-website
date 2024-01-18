@@ -1,9 +1,6 @@
 @extends('layouts.default')
 @section('title','New & Popular')
-
-@section('style')
-
-@stop
+ 
 
 @section('content')
 <?php //dd($popular[0]); ?>
@@ -69,10 +66,10 @@
                                 <li>{{$date_text}}</li>
                             </ul>
                         </div>
-                        <!-- <button class="addbutton"> -->
+                        {{-- <!-- <button class="addbutton"> -->
                             <!-- <img src="{{ asset('/img/round-add.png') }}" alt=""> -->
                             {!! getWishListAction($val, $wishlist, 2) !!}
-                        <!-- </button> -->
+                        <!-- </button> --> --}}
                     </div>
                 </div>
             <?php } ?>

@@ -1,8 +1,6 @@
 @extends('layouts.default')
 @section('title', ucwords(str_replace('-', ' ', $title)))
-
-@section('style')
-@stop
+ 
 
 @section('content')
 <div class="container mt-4">

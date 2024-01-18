@@ -1,9 +1,6 @@
 @extends('layouts.default')
 @section('title','Privacy')
-
-@section('style')
-
-@stop
+ 
 
 @section('content')
 

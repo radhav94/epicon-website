@@ -1,9 +1,6 @@
 @extends('layouts.default')
 @section('title', 'Add Profile')
-
-@section('style')
-
-@stop
+ 
 
 @section('content')
 

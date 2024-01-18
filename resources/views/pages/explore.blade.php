@@ -1,28 +1,26 @@
 @extends('layouts.default')
 @section('title', $meta['title'] ?? getDefaultMetaTitle() )
-
-@section('style')
-@stop
+ 
 
 @section('content')
 
 
 @if (@$result['data']['genres'])
-<!-- <section class="container-fluid">
+{{-- <!-- <section class="container-fluid">
     <div class="genresexplore">
         <h4 class="genresheading text-white">{{__('Genres')}}</h4>
         <div class="card-details">
 
             @foreach ($result['data']['genres'] as $key => $value)
             <a href="{{ getUrl('explore/' . @$value['slug']) }}" class="card-body">
-                {{-- <h4 class="action">{{ @$value['name'] }}</h4> --}}
+                <h4 class="action">{{ @$value['name'] }}</h4>
                 <img src="{{ @$value['images']['small'] }}" alt="">
             </a>
             @endforeach
 
         </div>
     </div>
-</section> -->
+</section> --> --}}
 
 <section class="container w-100 my-4">
         <div class="row justify-content-center">
@@ -41,7 +39,7 @@
                         @if( @$result['data']['genres'] )
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="my-list">
                             <div class="genresexplore">
-                                <!-- <h4 class="genresheading text-white">{{__('Genres')}}</h4> -->
+                                {{-- <!-- <h4 class="genresheading text-white">{{__('Genres')}}</h4> --> --}}
                                 <div class="card-details">
 
                                     @foreach ($result['data']['genres'] as $key => $value)

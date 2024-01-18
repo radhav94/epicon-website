@@ -1,8 +1,8 @@
  <div class="carousel-main spinner d-flex flex-wrap align-items-center justify-content-between">
      <div class="cant-decide">
-         <h1 class="text-white">{{ $title }}</h1>
-         <!-- <h1 class="text-white">Can’t decide what to watch?</h1>
-         <span class="text-white">We’ve got you, Spin Now</span> -->
+         <h5 class="text-">{{ $title }}</h5>
+         {{-- <!-- <h1 class="text-white">Can’t decide what to watch?</h1>
+         <span class="text-white">We’ve got you, Spin Now</span> --> --}}
      </div>
      <div class="chart-trigger align-items-center d-flex position-relative">
          <div class="main-chart-spinner d-flex align-items-center">
@@ -38,7 +38,7 @@
      }
 
      function onSpinnerSuccess(response) {
-         $html = '<a href="' + response['payload']['url'] + '"><img src="' + response['payload']['image'] + '"></a>';
+         $html = '<a href="' + response['payload']['url'] + '"><img src="' + response['payload']['image'] + '" alt=""></a>';
          $('.trigger-data-img').html($html);
          // console.log('Spinner Success:', responseData);
      }

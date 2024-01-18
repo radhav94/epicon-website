@@ -1,9 +1,6 @@
 @extends('layouts.default')
 @section('title','Subscription Plans - Epic On')
-
-@section('style')
-
-@stop
+ 
 @section('content')
 <!-- <section class="container-fluid mt-4">
         <div class="row">

@@ -1,9 +1,6 @@
 @extends('layouts.default')
 @section('title','My Rewards')
-
-@section('style')
-
-@stop
+ 
 
 @section('content')
 

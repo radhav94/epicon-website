@@ -2,13 +2,7 @@
 @section('title','About')
 
 @section('style')
-
-@stop
-
-@section('content')
-
 <style>
-
     .play-button{
         width: 35px;
         height: 35px;
@@ -44,6 +38,9 @@
         padding: 15px 0;
     }
 </style>
+@stop
+
+@section('content')
 
 <section class="distro-main w-100 position-relative">
     <div class="distro-overlay w-100 position-absolute">

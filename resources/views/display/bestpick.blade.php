@@ -1,6 +1,6 @@
 <div class="carousel-main mb-3">
     <div class="carousel-title-n-arrow px-2 mb-3">
-        <h1 class="text-white small">{{ $title }}</h1>
+        <h5 class="text-white">{{ $title }}</h5>
     </div>
     <div class="captive-speaker-tab">
         <div class="captive-tab">
@@ -37,7 +37,7 @@
                 ?>   
                     <li>
                         <a href="{{ getContentUrl($data) }}" class="main-card">
-                            <!-- <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span> -->
+                            {{-- <!-- <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span> --> --}}
                             <?php freePremiumDiv($data); ?>
                             <div class="main-img mt-0">
                                 <img src="{{$child_cover_img}}" alt="">

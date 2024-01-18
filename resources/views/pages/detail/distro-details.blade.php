@@ -2,7 +2,7 @@
 @section('title',@$content['episodes_title'])
 
 @section('style')
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}?v={{ assetTime() }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}?v={{ assetTime() }}">
 
 <style>
      .para-info p,.para-info h4{
@@ -112,7 +112,7 @@
 <script src="{{ asset('assets/js/vendor/hls.min.js') }}"></script>
 
 
-<script type="text/javascript">
+<script>
 
     document.addEventListener('DOMContentLoaded', () => {
         // Flag to track if distroPlay has been called

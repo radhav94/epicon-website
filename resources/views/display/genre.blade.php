@@ -25,7 +25,7 @@
                     ?>
                     <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}" href="{{ url('explore/' . @$val['slug']) }}">
                         <button>
-                            <img src="{{ $val['fiesta_image'] ?? '' }}">
+                            <img src="{{ $val['fiesta_image'] ?? '' }}" alt="{{ $val['name'] }}">
                             {{ $val['name'] }}
                         </button>
                     </a>

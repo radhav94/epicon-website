@@ -1,9 +1,6 @@
 @extends('layouts.default')
 @section('title','404')
-
-@section('style')
-
-@stop
+ 
 
 @section('content')
 

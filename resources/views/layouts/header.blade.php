@@ -82,7 +82,7 @@ if ($request->has('type')) {
             </li>
 
             <!-- Epic Shorts Menu Hide -->
-           <!--  <li>
+           {{-- <!--  <li>
                 <a onclick="click_menu(this)" data-event_context="header" data-element_text="Epic Shots" href="{{ getUrlWithPrefix('homepage') }}#epic-shots">
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
@@ -102,7 +102,7 @@ if ($request->has('type')) {
                             stroke-linejoin="round" />
                     </svg>{{__('Epic Shots')}}
                 </a>
-            </li> -->
+            </li> --> --}}
             <li>
                 <a onclick="click_menu(this)" data-event_context="header" data-element_text="new popular" href="{{ getUrl('spotlight') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
@@ -206,7 +206,7 @@ if ($request->has('type')) {
             <!-- <button id="allAccessBtn">All access</button> -->
 
             <label class="switch">
-                <input type="checkbox" class="allAccessBtn" name ="kidscheckbox" data-log="{{ isUserLoggedIn() }}" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
+                <input type="checkbox" class="allAccessBtn" name ="kidscheckbox" data-log="{{ isUserLoggedIn() }}" id="allAccessBtn" role="switch" {{$isactive}}>
                 <small></small>
             </label>
 
@@ -214,7 +214,7 @@ if ($request->has('type')) {
             <input class="form-check-input" name ="kidscheckbox" data-log="{{ isUserLoggedIn() }}" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
 
             </div> -->
-                <input type="hidden" name="kidsUrl" id="kidsUrl" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
+                <input type="hidden" name="kidsUrl" id="kidsUrlH" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
             <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" id="kidsUrl" class="p-2 me-0">
             <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt=""></a>
             @if (kidsMode())

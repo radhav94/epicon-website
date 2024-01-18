@@ -1,8 +1,6 @@
 @extends('layouts.default')
 @section('title', 'Data Not Found')
-
-@section('style')
-@stop
+ 
 
 @section('content')
 

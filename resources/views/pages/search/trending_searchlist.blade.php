@@ -1,6 +1,6 @@
 <div class="w-100 mb-4">
     <div class="carousel-title-n-arrow mb-3">
-        <h1 class="text-white small">{{__('Trending Moments')}}</h1>
+        <h5 class="text-white">{{__('Trending Moments')}}</h5>
     </div>
     <ul class="more-like-this px-0">
         <?php foreach ($trendingData as $val) {

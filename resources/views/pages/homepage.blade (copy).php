@@ -1,9 +1,6 @@
 @extends('layouts.default')
 @section('title','New homepage')
-
-@section('style')
-
-@stop
+ 
 
 @section('content')
 	 <section class="hero-banner w-100">

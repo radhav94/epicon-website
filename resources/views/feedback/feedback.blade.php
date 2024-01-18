@@ -1,9 +1,6 @@
 @extends('layouts.default')
 @section('title','Help & Feedback')
-
-@section('style')
-
-@stop
+ 
 
 @section('content')
 

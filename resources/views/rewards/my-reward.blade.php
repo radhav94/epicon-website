@@ -1,9 +1,6 @@
 @extends('layouts.default')
 @section('title','My Rewards')
-
-@section('style')
-
-@stop
+ 
 
 @section('content')
 
@@ -149,7 +146,7 @@
                                     </div>
                                 </li>
                                 <?php } ?>
-                               <!--  <li>
+                               {{-- <!--  <li>
                                     <div class="redeem-top">
                                         <div class="logo-coin">
                                             <img src="{{ asset('/img/McD.svg') }}" alt="logo">
@@ -208,7 +205,7 @@
                                     <div class="redeem-bottom">
                                         Expires in<span>1 Day</span>
                                     </div>
-                                </li> -->
+                                </li> --> --}}
                             </ul>
                         <?php }else{ ?>
                                     <h6 class="mt-4" style="color:white;">No Data Found</h6>
@@ -230,7 +227,7 @@
                                             <td class="text-end"><img width="15" src="{{ asset('/img/coin.svg') }}" alt="">&nbsp; {{ isset($offersummary['epicoins']) ? $offersummary['epicoins'] : '' }}</td>
                                         </tr>
                                         <?php } ?>
-                                    <!-- <tr>
+                                    {{-- <!-- <tr>
                                         <td><img class="summary-img" src="{{ asset('/img/macd-img.png') }}" alt="logo">Buy 1 Get 1 Free on Happy Meal on MacD</td>
                                         <td style="color:#B7B7B7">Claimed on 03/08/2023</td>
                                         <td class="text-end"><img width="15" src="{{ asset('/img/coin.svg') }}" alt="">&nbsp; 499</td>
@@ -244,7 +241,7 @@
                                         <td><img class="summary-img" src="{{ asset('/img/macd-img.png') }}" alt="logo">Audible Subscription for 3 months</td>
                                         <td style="color:#B7B7B7">Claimed on 03/08/2023</td>
                                         <td class="text-end"><img width="15" src="{{ asset('/img/coin.svg') }}" alt="">&nbsp; 499</td>
-                                    </tr> -->
+                                    </tr> --> --}}
                                 <?php }else{ ?>
                                     <h6 class="mt-4" style="color:white;">No summary to show</h6>
                                 <?php } ?>

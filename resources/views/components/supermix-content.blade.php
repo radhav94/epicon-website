@@ -1,8 +1,8 @@
 @if ($content)
 <div class="carousel-main">
     <div class="carousel-title-n-arrow border-bot pb-4 px-2">
-        <h1 class="text-white small">{{ count($content) }} SuperMixed Content
-        </h1>
+        <h5 class="text-white">{{ count($content) }} SuperMixed Content
+        </h5>
     </div>
     <ul class="list-unstyled col-12 p-0 mt-4 " id="sortable">
         @foreach ($content as $key => $value)

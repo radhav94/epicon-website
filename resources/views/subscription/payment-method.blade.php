@@ -2,7 +2,11 @@
 @section('title','Payment Method')
 
 @section('style')
-
+<style>
+    .active{ border-color: #04AA6D !important;
+             color: green !important;
+        }
+</style>
 @stop
 
 @section('content')
@@ -27,11 +31,6 @@ if($currency_amt == 'INR'){
 }
 
 ?>
-<style>
-    .active{ border-color: #04AA6D !important;
-             color: green !important;
-        }
-</style>
 
 <section class="container-fluid mt-4">
         <div class="row">

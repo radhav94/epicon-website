@@ -64,7 +64,7 @@
                     </div>
                     <!-- login or register start -->
                     <div class="right-side position-relative">
-                        <button onclick="login_skip()" class="x-btn bg-transparent text-white closebtn position-absolute" class="btn-close"
+                        <button onclick="login_skip()" class="x-btn bg-transparent text-white closebtn position-absolute btn-close"
                             data-bs-dismiss="modal" aria-label="Close">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 31 32"
                                 fill="none">
@@ -88,7 +88,7 @@
                                         you an OTP to verify your account</span>
                                     <span class="text-danger text-start d-flex mt-1 get-otp-message"
                                         style="font-size: 12px;"></span>
-                                    <!--  <span class="text-danger text-start d-flex mt-1 erroremail" style="font-size: 12px;">Please enter a valid mobile number</span> -->
+                                    {{-- <!--  <span class="text-danger text-start d-flex mt-1 erroremail" style="font-size: 12px;">Please enter a valid mobile number</span> --> --}}
                                 </div>
                                 <button class="login-btn login-get-otp w-100 mt-5">
                                     Get OTP Now
@@ -112,8 +112,8 @@
                                             alt=""></a>
                                     <a href="{{route('login.google')}}"><img src="{{ asset('/img/lg-google-icon.svg') }}"
                                             alt=""></a>
-                                    <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
-                                            alt=""></a> -->
+                                    {{-- <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
+                                            alt=""></a> --> --}}
                                 </div>
                                 <p class="get-help mt-5 small">Having trouble signing in? <a href="{{route('feedback')}}">Get Help</a>
                                 </p>
@@ -341,8 +341,8 @@
                                             alt=""></a>
                                     <a href="{{route('login.google')}}"><img src="{{ asset('/img/lg-google-icon.svg') }}"
                                             alt=""></a>
-                                    <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
-                                            alt=""></a> -->
+                                    {{-- <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
+                                            alt=""></a> --> --}}
                                 </div>
                                 <p class="get-help mt-4 small">Having trouble signing in? <a href="{{route('feedback')}}">Get
                                         Help</a></p>
@@ -392,7 +392,7 @@
                                 <h5 class="mb-4 text-white small mobile_no">+91 823****641</h5>
                                 <input type="hidden" name="userid_no" id="userid_no" value="">
                                 <input type="hidden" name="usersignupmethod" id="usersignupmethod" value="">
-                                <!-- <input type="hidden" name="user_agent" id="user_agent" value="WEB"> -->
+                                {{-- <!-- <input type="hidden" name="user_agent" id="user_agent" value="WEB"> --> --}}
                                 <input type="hidden" name="otppin" id="otppin" value="">
                                 <div class="childpin">
                                     <div class="childpin-input">

@@ -5,7 +5,7 @@
         @foreach ($trailers['list'] as $list_key => $list)
             <div class="carousel-main mb-4">
                 <div class="carousel-title-n-arrow px-2 mb-3">
-                    <h1 class="text-white small">{{ @$list['title'] }}</h1>
+                    <h5 class="text-white">{{ @$list['title'] }}</h5>
                 </div>
                 @if (@$list['content'])
                     <ul class="more-like-this trailer-card px-0 pb-4">

@@ -1,14 +1,7 @@
 @extends('layouts.default')
 @section('title', 'Library')
 
-@section('style')
-
-@stop
-
 @section('content')
-
-
-    <?php //dd($data); ?>
 
     <section class="container w-100 my-4">
         <div class="row justify-content-center">
@@ -28,12 +21,12 @@
                                 type="button" role="tab" aria-controls="pills-profile"
                                 aria-selected="false">{{__('History')}}</button>
                         </li>
-                        <!-- <div class="filter-library">
+                        {{-- <!-- <div class="filter-library">
                                 <select name="" id="">
                                     <option value="">Sort By</option>
                                     <option value="">2</option>
                                 </select>
-                            </div> -->
+                            </div> --> --}}
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="my-list">
@@ -88,13 +81,13 @@
                                     <?php } ?>
                                 </ul>
 
-                                <!-- <div class="delete-history mt-5">
+                                {{-- <!-- <div class="delete-history mt-5">
                                         <p>All your history will be auto-deleted after 30 days. You can choose to turn it off or delete now.</p>
                                         <div class="d-flex">
                                             <button class="border-btn">Turn Off</button>
                                             <button class="fill-btn">Delete Now</button>
                                         </div>
-                                    </div> -->
+                                    </div> --> --}}
 
                             </div>
                             <?php }else{ ?>
@@ -114,7 +107,7 @@
 @section('script')
 
     <script src="{{ asset('assets/js/library.js') }}?v={{ assetTime() }}"></script>
-    <script type="text/javascript">
+    <script>
         $("#history,#my-list").on('click', function() {
             $('.vertical-carousel-initilize').slick('slickGoTo', 0);
         });

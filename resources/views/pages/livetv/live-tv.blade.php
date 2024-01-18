@@ -1,9 +1,6 @@
 @extends('layouts.default')
 @section('title', $meta['title'] ?? getDefaultMetaTitle() )
-
-@section('style')
-
-@stop
+ 
 
 @section('content')
 <?php //dd($response); 
