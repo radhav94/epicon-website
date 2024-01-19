@@ -252,7 +252,7 @@ if (@$content['content_type'] == 'SEASON') {
                             <span class="me-3">05:00</span>
                             <div class="progress-main">
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-labelledby="labeldiv" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                             <span class="ms-3">30:08</span>
