@@ -18,18 +18,18 @@ if ($request->has('type')) {
 <div class="side-menu-main" id="side-menu">
     <div class="side-menu">
         <div class="main-header-left d-flex ps-3 pt-4">
-            <a href="#" class="menu-close me-3">    
+            <a href="#" class="menu-close me-3" aria-label="logo">    
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M25.1334 8.60204C25.2474 8.48816 25.3379 8.35293 25.3997 8.20408C25.4614 8.05524 25.4933 7.89568 25.4934 7.73453C25.4935 7.57338 25.4618 7.41378 25.4003 7.26486C25.3387 7.11593 25.2484 6.9806 25.1345 6.86657C25.0206 6.75255 24.8854 6.66208 24.7365 6.60031C24.5877 6.53855 24.4281 6.50671 24.267 6.50661C24.1058 6.50651 23.9462 6.53816 23.7973 6.59974C23.6484 6.66132 23.513 6.75162 23.399 6.86551L15.9985 14.266L8.60009 6.86551C8.36981 6.63523 8.05748 6.50586 7.73182 6.50586C7.40616 6.50586 7.09383 6.63523 6.86355 6.86551C6.63328 7.09579 6.50391 7.40811 6.50391 7.73377C6.50391 8.05944 6.63328 8.37176 6.86355 8.60204L14.2641 16.0004L6.86355 23.3988C6.74953 23.5129 6.65908 23.6482 6.59738 23.7972C6.53567 23.9462 6.50391 24.1059 6.50391 24.2671C6.50391 24.4284 6.53567 24.588 6.59738 24.737C6.65908 24.886 6.74953 25.0213 6.86355 25.1354C7.09383 25.3657 7.40616 25.495 7.73182 25.495C7.89307 25.495 8.05275 25.4633 8.20172 25.4015C8.3507 25.3398 8.48607 25.2494 8.60009 25.1354L15.9985 17.7348L23.399 25.1354C23.6293 25.3654 23.9415 25.4945 24.267 25.4943C24.5924 25.4941 24.9045 25.3646 25.1345 25.1343C25.3645 24.904 25.4936 24.5918 25.4934 24.2664C25.4932 23.9409 25.3637 23.6288 25.1334 23.3988L17.7329 16.0004L25.1334 8.60204Z"
                         fill="white" />
                 </svg>
             </a>
-            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Home" class="navbar-brand me-3" href="{{ getUrlWithPrefix('homepage') }}"><img height="28"
+            <a onclick="click_menu(this)" aria-label="Home" data-event_context="header" data-element_text="Home" class="navbar-brand me-3" href="{{ getUrlWithPrefix('homepage') }}"><img height="28"
                     src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
                
                 @if(@$subplan['status'] != 'active')
-                <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
+                <a onclick="click_menu(this)" aria-label="Subscribe" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
                 @endif
             
            
@@ -122,7 +122,7 @@ if ($request->has('type')) {
     <nav id="navbar_top" class="navbar @if(kidsMode() && isMobliDevice()) kids-navbar @endif navbar-expand-lg justify-content-between px-3 py-0">
         <div class="main-header-left d-flex">
             @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
-            <a class="hamburger" href="javascript:void(0)">
+            <a class="hamburger" href="javascript:void(0)" aria-label="hamburger">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
                     fill="none">
                     <path d="M5.5 24.5H26.5M5.5 16.5H26.5M5.5 8.5H26.5" stroke="white" stroke-width="2.5"
@@ -131,17 +131,17 @@ if ($request->has('type')) {
             </a>
             @endif
             
-            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Home" class="navbar-brand" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}"
+            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Home" class="navbar-brand" aria-label="Logo" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}"
                     alt=""></a>
                     
                 @if($kids_page && @$subplan['status'] != 'active')
-                    <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn allAccessBtn-sub" href="javascript:void(0);">{{__('Subscribe')}}</a>
+                    <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn allAccessBtn-sub" aria-label="Subscribe" href="javascript:void(0);">{{__('Subscribe')}}</a>
                 @endif
 
             @if(!$kids_page)
                 @if(@$subplan['status'] != 'active')
 
-                <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
+                <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" aria-label="Subscribe" class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
                 @endif
             @endif
         </div>
@@ -215,12 +215,12 @@ if ($request->has('type')) {
 
             </div> -->
                 <input type="hidden" name="kidsUrl" id="kidsUrlH" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
-            <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" id="kidsUrl" class="p-2 me-0">
+            <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" id="kidsUrl" class="p-2 me-0" aria-label="kidsUrl">
             <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt=""></a>
             @if (kidsMode())
             <a href="{{ getUrl('kids/search') }}" class="p-2 me-2">
             @else
-            <a href="{{ getUrl('search') }}" class="p-2 me-2 search-desk-hide">
+            <a href="{{ getUrl('search') }}" class="p-2 me-2 search-desk-hide" aria-label="Search">
             @endif
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">
@@ -335,7 +335,7 @@ if ($request->has('type')) {
                     
                 </ul>
                 @elseloggedin
-                <a href="javascript:void(0)" class="login loginBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                <a href="javascript:void(0)" class="login loginBtn" aria-label="login button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none">
                     <path
                         d="M7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8C17 10.7614 14.7614 13 12 13C9.23858 13 7 10.7614 7 8ZM12 11C13.6569 11 15 9.65685 15 8C15 6.34315 13.6569 5 12 5C10.3431 5 9 6.34315 9 8C9 9.65685 10.3431 11 12 11Z"

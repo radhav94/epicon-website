@@ -18,7 +18,7 @@ if ($request->has('type')) {
                 <div class="connect-with">
                     <h1>{{__('Connect With Us')}}</h1>
                     <div class="w-100 f-share-icons">
-                        <a onclick="click_social(this)" data-title="facebook" data-event_context="Epic on" target="_blank" href="https://www.facebook.com/theepicon">
+                        <a onclick="click_social(this)" aria-label="facebook" data-title="facebook" data-event_context="Epic on" target="_blank" href="https://www.facebook.com/theepicon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
                                 fill="none">
                                 <circle cx="20" cy="20" r="20" fill="white"
@@ -28,7 +28,7 @@ if ($request->has('type')) {
                                     fill="white" />
                             </svg>
                         </a>
-                        <a  onclick="click_social(this)" data-title="twitter" data-event_context="Epic on" target="_blank" href="https://twitter.com/theepicon">
+                        <a  onclick="click_social(this)" aria-label="twitter"  data-title="twitter" data-event_context="Epic on" target="_blank" href="https://twitter.com/theepicon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
                                 fill="none">
                                 <circle cx="20" cy="20" r="20" fill="white"
@@ -38,7 +38,7 @@ if ($request->has('type')) {
                                     fill="white" />
                             </svg>
                         </a>
-                        <a  onclick="click_social(this)" data-title="linkedin" data-event_context="Epic on" target="_blank" href="https://www.linkedin.com/company/theepicon">
+                        <a  onclick="click_social(this)" aria-label="linkedin" data-title="linkedin" data-event_context="Epic on" target="_blank" href="https://www.linkedin.com/company/theepicon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
                                 fill="none">
                                 <circle cx="20" cy="20" r="20" fill="white"
@@ -48,7 +48,7 @@ if ($request->has('type')) {
                                     fill="white" />
                             </svg>
                         </a>
-                        <a  onclick="click_social(this)" data-title="youtube" data-event_context="Epic on" target="_blank" href="https://www.youtube.com/channel/UC6TRCmHt1MZeArqN0efBhWQ">
+                        <a  onclick="click_social(this)" aria-label="youtube"  data-title="youtube" data-event_context="Epic on" target="_blank" href="https://www.youtube.com/channel/UC6TRCmHt1MZeArqN0efBhWQ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
                                 fill="none">
                                 <circle cx="20" cy="20" r="20" fill="white"
@@ -58,7 +58,7 @@ if ($request->has('type')) {
                                     fill="white" />
                             </svg>
                         </a>
-                        <a  onclick="click_social(this)" data-title="instagram" data-event_context="Epic on" target="_blank" href="https://www.instagram.com/theepicon">
+                        <a  onclick="click_social(this)" aria-label="instagram" data-title="instagram" data-event_context="Epic on" target="_blank" href="https://www.instagram.com/theepicon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
                                 fill="none">
                                 <circle cx="20" cy="20" r="20" fill="white"
@@ -92,9 +92,9 @@ if ($request->has('type')) {
                 <div class="download-store">
                     <h1>{{__('Download App')}}</h1>
                     <div class="w-100 download-store-logo">
-                        <a onclick="outbound_click(this)" data-event_context="app" data-element_text="android" href="https://play.google.com/store/apps/details?id=com.epicchannel.epicon&amp;hl=en" target="_blank"><img class="me-3" src="{{ asset('img/google-store-logo.svg') }}"
+                        <a onclick="outbound_click(this)" aria-label="app android" data-event_context="app" data-element_text="android" href="https://play.google.com/store/apps/details?id=com.epicchannel.epicon&amp;hl=en" target="_blank"><img class="me-3" src="{{ asset('img/google-store-logo.svg') }}"
                                 alt=""></a>
-                        <a onclick="outbound_click(this)" data-event_context="app" data-element_text="ios" href="https://apps.apple.com/in/app/epic-on/id1252513341" target="_blank"><img src="{{ asset('img/apple-store-logo.svg') }}" alt=""></a>
+                        <a onclick="outbound_click(this)" aria-label="app ios" data-event_context="app" data-element_text="ios" href="https://apps.apple.com/in/app/epic-on/id1252513341" target="_blank"><img src="{{ asset('img/apple-store-logo.svg') }}" alt=""></a>
                     </div>
                 </div>
             </div>
