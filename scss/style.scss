@@ -7933,10 +7933,11 @@ audio::-webkit-media-controls-play-button {
 }
 .videoContainer .plyr__video-wrapper{
     position: relative;
-    // height: 100%;
-    width: auto;
     display: flex;
     align-items: center;
+}
+.plyr audio, .plyr iframe, .plyr video {
+    object-fit: contain!important;
 }
 .plyr__progress__container{
     @media (max-width: 767px) {
@@ -7977,10 +7978,16 @@ audio::-webkit-media-controls-play-button {
     height: auto!important;
     width: 100%;
 }
-.plyr__video-wrapper{
+// .plyr__video-wrapper{
+//     height: 100%!important;
+//     display: flex;
+//     align-items: center;
+// }
+.plyr:fullscreen video {
     height: 100%!important;
-    display: flex;
-    align-items: center;
+    object-fit: contain;
+    object-position: center center;
+    width: 100%;
 }
 .videoContainer video {
     @media (max-width: 767px) {
