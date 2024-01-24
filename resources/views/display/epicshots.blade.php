@@ -1,6 +1,7 @@
 <section class="carousel-main mt-0" id="epic-shots">
     <div class="carousel-title-n-arrow px-2 pb-2">
         <h5 class="text-white">{{$title}}</h5>
+        {{-- 
         @if (@$value['show_more'])
         <a onclick="click_cta(this)" data-event_context="Epic Shots" data-element_text="SEE ALL" href="{{ getMidPageUrl($value) }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -8,6 +9,7 @@
             </svg>
         </a>
         @endif
+        --}}
     </div>
     <div class="gaming-galore-main">
         <div class="epic-shots">

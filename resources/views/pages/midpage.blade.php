@@ -18,7 +18,7 @@
             @foreach ($epicwebArr as $key => $val)
 
              <?php
-             $cover_img = isset($val['cover_image']) ? $val['cover_image']['medium'] : $val['banner_img'];
+             $cover_img = isset($val['cover_image']) ? $val['cover_image']['medium'] : @$val['banner_img'];
              $generes = array_column($val['genres_assign'] ?? [], 'name');
               $sub_text = [];
     $getTitle = getNewTitle($val);
