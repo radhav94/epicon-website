@@ -47,10 +47,10 @@ $content_list = $story_list['content_list'] ?? [];
         <!-- top end -->
         <!-- mute button start-->
         <button class="mute-btn-storie mute-btn">
-            <img src="{{ asset('assets/img/mute-shots.svg') }}" width="40" height="40" alt="">
+            <img src="{{ asset('assets/img/unmute.svg') }}" width="40" height="40" alt="">
         </button>
         <button class="mute-btn-storie unmute-btn" style="display:none;">
-            <img src="{{ asset('assets/img/unmute.svg') }}" width="40" height="40" alt="">
+            <img src="{{ asset('assets/img/mute-shots.svg') }}" width="40" height="40" alt="">
         </button>
         <!-- mute button end-->
         <!-- <div> -->
