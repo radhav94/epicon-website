@@ -81,16 +81,24 @@ $content_list = $story_list['content_list'] ?? [];
                 </div>
                 <div>
                     <h6 class="mt-3">{{ @$value['title'] }}</h6>
-                    <span class="my-1" style="font-size: 10px;">{{ timestampToDate(@$value['publish_start_date'], 'Y') }}.
-                        @if (is_array(@$story_list['genre']))
-                        {{ ucwords(implode(" . ", @$story_list['genre'])) }}
+                    <span class="my-1" style="font-size: 10px;" {{  @$story_list['isAutomatic'] == true ? 'is_utomatic' : '' }}>
+                        @if(@$story_list['isAutomatic'] == true)
+                            {{ timestampToDate(@$value['publish_start_date'], 'Y') }}.
+                            @if (is_array(@$story_list['genre']))
+                            {{ ucwords(implode(" . ", @$story_list['genre'])) }}
+                            @else
+                            {{ @$story_list['genre'] }}
+                            @endif
                         @else
-                        {{ @$story_list['genre'] }}
+                            {!! sanitizeData(@$value['short_description']) !!}
                         @endif
+
                     </span>
                 </div>
             </div>
+            @if(@$story_list['isAutomatic'] == true)
             <span class="small">{!! sanitizeData(@$value['short_description']) !!}</span>
+            @endif
         </div>
         <!-- <video-js id="myPlayersStories" data-account="3588749423001" data-video-id="{{ @$value['ID'] }}" data-player="default" data-embed="default" controls="true" autoplay data-tracker-type="{{ @$value['content_type'] }}" data-tracker-action="VIEW" data-application-id="" class="vjs-fluid"></video-js> -->
         <!-- </div> -->
