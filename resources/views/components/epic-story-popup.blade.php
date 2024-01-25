@@ -1,3 +1,8 @@
+<style>
+  .plyr__controls,.plyr__menu,.plyr__controls .plyr__controls__item:first-child,.plyr__controls .plyr__controls__item:nth-child(3),.plyr__volume,.plyr__progress__container,.plyr__time,.plyr__controls .plyr__controls__item:nth-child(2){
+      display:none;
+  }
+</style>
 <?php
 $content_list = $story_list['content_list'] ?? [];
 ?>

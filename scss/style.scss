@@ -6944,7 +6944,7 @@ input {
                 grid-auto-columns: min-content;
                 position: absolute;
                 right: 5px;
-                bottom: 125px;
+                bottom: 105px;
                 z-index: 99;
                 gap: 15px;
                 button{
@@ -6955,7 +6955,8 @@ input {
             .mute-btn-storie{
                 position: absolute;
                 right: 5px;
-                top: 10px;
+                top: unset!important;
+                bottom: 160px;
                 z-index: 9;
                 background: transparent;
                 border: none;
