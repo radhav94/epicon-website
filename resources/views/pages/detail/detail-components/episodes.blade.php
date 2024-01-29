@@ -1,4 +1,3 @@
-
 @if ($season_episode_data && count($season_episode_data) > 0)
     <div class="tab-pane fade {{ $active_tab == 'episode' ? 'show active' : '' }}" id="pills-episode" role="tabpanel"
         aria-labelledby="my-list">
@@ -48,12 +47,12 @@
                     <div class="episode-text-details">
                         <h6>{{ $card['title'] }}</h6>
                         <span>
-                            @if (@$value['release_date'])
-                                {{ formatDate($value['release_date']) }}
+                            @if (@$value['newrelease_date'])
+                                {{ formatDate($value['newrelease_date']) }}
                             @endif
 
                             @if (@$value['duration'])
-                                @if (@$value['release_date'])
+                                @if (@$value['newrelease_date'])
                                     |
                                 @endif
                                 {{ convertSecondsToReadable($value['duration']) }}
