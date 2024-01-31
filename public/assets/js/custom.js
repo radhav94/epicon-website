@@ -91,10 +91,13 @@ if (notificationElement) {
 
 
   // on hamburger click
-  document.querySelector(".hamburger").addEventListener("click", function () {
-    $("#side-menu").toggleClass("active");
-    return false;
-  });
+  if($('.hamburger').length){
+      document.querySelector(".hamburger").addEventListener("click", function () {
+        $("#side-menu").toggleClass("active");
+        return false;
+      });
+  }
+  
 
   $(".menu-close").on("click", function () {
     $("#side-menu").toggleClass("active");
