@@ -464,7 +464,7 @@ $(document).ready(function () {
 
 			//skip intro code
 			if(intro_start_time !="" && intro_start_time != undefined && intro_end_time !="" && intro_end_time !=undefined){
-				if(currentTime >= intro_start_time && currentTime < intro_end_time ){
+				if(currentTime >= intro_start_time && currentTime < intro_end_time && is_trailer == false){
 					$(".plyr").removeClass("plyr--hide-controls");
 					$(".skip-btn").css("display", "block");
 				}else{
