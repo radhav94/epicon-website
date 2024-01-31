@@ -12,6 +12,7 @@ class SubscriptionController extends Controller
 {
     public function subscription(Request $request)
     {
+        $meta = getMeta('subscription');
         $sessionData = $request->session()->get('user_token');
         $userData = $request->session()->get('plandata');
         //$request->session()->forget('plandata');
@@ -58,7 +59,7 @@ class SubscriptionController extends Controller
                     $request->session()->put('plandata', $plandata);
                 }
 
-                return view('subscription.subscription', compact('result', 'offerCount'));
+                return view('subscription.subscription', compact('result', 'offerCount', 'meta'));
             }else{
                 return view('pages.error.data-error');
             }
@@ -109,13 +110,13 @@ class SubscriptionController extends Controller
                     }
 
                 }
-                return view('subscription.subscription', compact('result', 'offerCount'));
+                return view('subscription.subscription', compact('result', 'offerCount', 'meta'));
 
             } else {
 
                 $numOfDays = checkNumDays($activePlan['subscription_end_date']);
                 if ($numOfDays <= 3) {
-                    return view('subscription.subscription', compact('result', 'offerCount'));
+                    return view('subscription.subscription', compact('result', 'offerCount', 'meta'));
                 } else {
                     //return redirect()->route('my-account');
                     return redirect()->route('homepage');

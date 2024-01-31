@@ -237,7 +237,7 @@
                                     <input class="form-control date_picker" type="text" id="dob" name="dob" placeholder="Date Of Birth" required readonly>
                                 </div>
                                 <div class="input-field text-white w-100 mb-3">
-                                    <select id="gender" name="gender">
+                                    <select id="gender" name="gender" style="display:block;">
                                         <option value="">Gender</option>
                                         <option value="Female">Female</option>
                                         <option value="Male">Male</option>

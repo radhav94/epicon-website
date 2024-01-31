@@ -14,7 +14,7 @@
         });
 
         $(".emailText").on("keyup paste", function (e) {
-            $(this).trigger('touchstart');
+            //$(this).trigger('touchstart');
             $("#mobile-error").text('');
             $(".text-danger").text('');
             var t = $(this).val();
@@ -32,6 +32,30 @@
                 );
         }),
 
+            $(".emailText").on("touchend", function (e) {
+            $("#mobile-error").text('');
+            $(".text-danger").text('');
+                setTimeout(function () {
+                    var t = $('.emailText').val();
+                    $(".emailText").val(t);
+                    t.length >= 7 && Number.isInteger(+t)
+                        ? (
+                            $(".stdisdcode").css({ display: "block" }),
+                            $(".emailText").css({ "text-indent": "115px" }),
+                            $(".signup_method").val('MOBILE')
+                        )
+                        : (
+                            $(".stdisdcode").css({ display: "none" }),
+                            $(".emailText").css({ "text-indent": "0px" }),
+                            $(".signup_method").val('EMAIL')
+                        );
+
+                }, 1000);
+                    
+            });
+                
+
+
         $("#login_pwd").on("keyup", function (e) {
             $("#login-pwd-error").text('');
             $(".text-danger").text('');
@@ -48,9 +72,10 @@
             if (!event.isTrigger) {
                 window.history.replaceState({}, document.title, "/" );
             }
+            
             $('.login-popup-modal').hide();
-
-            $('.left-side,.right-side,.screen-login-with-pwd').show();
+            $('.left-side,.right-side,.screen-login').show();
+            $('.screen-login-with-pwd').hide();
             $('#login-modal').show();
             $('#login-modal').addClass("show");
             $(".child-box").val('');
@@ -74,6 +99,7 @@
 
         $(".login-btn-otp").click(function(e) {
             e.preventDefault();
+            $("#login-form-id #mobilenumber").val(user_mob_email);
             $('.login-popup-modal').hide();
             $('.screen-login,.left-side,.right-side').show();
         });
@@ -407,26 +433,32 @@
             // Validate Name
             var name = $('#name').val();
             if (name.trim() === '') {
-                $('#name-error').text('Email or Mobile is required');
+                $('#name-error').text('Name is required');
+                return false;
             }
 
             // Validate Password
             var password = $('#password').val();
             if (password.trim() === '') {
                 $('#password-error').text('Password is required');
+                return false;
             }
 
             // Validate Confirm Password
             var confirmPassword = $('#confirm-password').val();
             if (confirmPassword.trim() === '') {
                 $('#confirm-password-error').text('Confirm password is required');
+                return false;
             } else if (confirmPassword !== password) {
                 $('#confirm-password-error').text('Passwords do not match');
+                return false;
             }
 
             var gender = $.trim($('#gender').val());
             if (gender == '') {
                 $('#gender-error').text('Gender is required');
+                return false;
+
             }
 
             var formData = $('#register-form-id').serialize();
@@ -482,7 +514,8 @@
 
         $('.login-btn-pwd').click(function(e) {
             e.preventDefault();
-            $("#login-form-id #mobilenumber").val(user_mob_email);
+            var isInputVal = $("#mobile_number").val();
+            $("#login-form-id #mobilenumber").val(isInputVal);
             // alert("btn clicked");
             $('.login-popup-modal').hide();
             $('.left-side,.right-side,.screen-login-with-pwd').show();
@@ -719,7 +752,7 @@
 
         //focus otp input
         $(".childpin-input .mx-1").on("input", function() {
-            const maxLength = parseInt($(this).attr("maxlength"));
+            const maxLength = parseInt($(this).data("maxlength"));
             const currentLength = $(this).val().length;
 
             // If the current input field is filled, move to the next field

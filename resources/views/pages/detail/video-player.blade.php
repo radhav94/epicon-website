@@ -3,19 +3,19 @@
         position: relative;
     }
 
-    /* .videoContainer video {
+    .videoContainer video {
         width: 100%;
-    } */
+    }
 
-    /* #playVideo {
+    #playVideo {
         position: absolute;
         width: 100%;
         height: 100%;
-    } */
-    /* .plyr:fullscreen video {
-        height: 100% !important;
-        width:auto!important;
-    } */
+    }
+    .plyr:fullscreen video {
+        height: auto !important;
+        width:100%;
+    }
     #vidPlayer.hide {
         display: none !important;
     }
@@ -83,6 +83,16 @@
             $watchClass = @$subplan['status'] != 'active' ? $addClass : "";
         }
 ?>
+<?php //dd($content); 
+if($content['content_type'] == "VIDEO"){
+        if(!empty($nextval)){
+        $next_movie_img = getCardImage($nextval, 'cover_image', 'small');
+    ?>          
+        <input type="hidden" class="next_movie" next-movie-title="{{@$nextval['title']}}" next-movie-url="{{getContentUrl(@$nextval)}}" next-movie-img="{{@$next_movie_img}}">
+<?php
+    }   
+}
+?>
 <div class="container videoContainer position-relative px-0 {{ getFirstSegment() == 'live-tv' ? 'live-tv-vidPlayer' : '' }}" style="display: none">
     <p id="closePlayer">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -96,9 +106,11 @@
             </defs>
         </svg>
     </p>
-
-    <div class="player-bg-wrap">
-        <div id="playVideo" data-id="{{ @$content['ID'] }}" data-type="{{ @$content['content_type'] }}" data-lg="{{ isUserLoggedIn() }}" data-title="{{ @$content['title'] }}" data-duration="{{ @$content['duration'] ?? @$content['season'][0]['duration'] }}">
+    <input type="hidden" id="content_type_for_next" value="{{ @$content['content_type'] }}">
+    <input type="hidden" class="skip-val" start-time="{{ @$content['intro_start_time'] }}" end-time="{{ @$content['intro_end_time'] }}">  
+    
+    <div class="player-bg-wrap" id="plyr-new">
+        <div id="playVideo" data-id="{{ @$content['ID'] }}" data-type="{{ @$content['content_type'] }}" data-lg="{{ isUserLoggedIn() }}" data-title="{{ @$content['title'] }}" data-duration="{{ @$content['duration'] ?? @$content['season'][0]['duration'] }}" content-order="{{@$content['content_order']}}">
 
         </div>
 
@@ -108,6 +120,13 @@
             <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> -->
 
         </video>
+
+        <!-- <div style="display:none;">
+            <a class="#" href="javascript:void(0);" id="next-epi-url">
+                <img src="" alt="" id="nextimg-src">
+            </a>
+        </div> -->
+
     </div>
 
 
@@ -130,9 +149,7 @@
         PLAY
     </div> --}}
 
+
 </div>
 
-<div style="display:none;">
-    <p class="rewind-btn"> Rewind</p>
-    <p class="forward-btn"> Fast -forward </p>
-</div>
+

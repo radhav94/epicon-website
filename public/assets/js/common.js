@@ -95,7 +95,7 @@ $(document).ready(function () {
             localStorage.setItem("redirectURL", "");
         }
         var checkstaus = $(this).is(':checked');
-        var kidsUrl= $("input#kidsUrlH").val();
+        var kidsUrl= $("input#kidsUrl").val();
         var isLoggedIn = $(this).data('log');
         if(checkstaus){
             $(this).prop('checked', false);

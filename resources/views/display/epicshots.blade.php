@@ -24,15 +24,17 @@
     </div>
 </section>
 
+@section('style')
 <style>
     #epicShots .plyr__controls__item, #epicShots .plyr__progress__buffer {
         display: none;
     }
 
 </style>
+@stop
 
 <!-- Epic Shots model -->
-<div class="modal epic-shots-modal fade" id="epicShots" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal epic-shots-modal fade" id="epicShots" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content p-0">
             <!-- story content coming from ajax -->

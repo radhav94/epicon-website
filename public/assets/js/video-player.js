@@ -2,25 +2,28 @@ var dummyPlayer;
 var is_trailer = false;
 var is_episode = false;
 var vidPlaying = false;
+var cancelStatus = true;
 var player;
 var cur_cid = null;
 var cur_lg = $("#playVideo").data('lg');
 var cur_title = $("#playVideo").data('title');
 var cur_ctype = null;
 var loadPlayerCount = 0;
+
+var intro_start_time = $('.skip-val').attr('start-time');
+var intro_end_time = $('.skip-val').attr('end-time');
+
+var content_type_val = $('#content_type_for_next').val();
+var countdownDuration = 5; 	
+var lastProgress = 0;
+var mov_nexlink = $(".next_movie").attr('next-movie-url');
+var mov_neximg = $(".next_movie").attr('next-movie-img');
+var mov_title = $(".next_movie").attr('next-movie-title');
+
 let lastTrackedMinuteTime = -1; 
 let lastPlayTrackTime = 0; 
 
 $(document).ready(function () {
-	/*dummyPlayer = new Plyr('#vidPlayer');
-	var dummyInit = false;
-
-	dummyPlayer.on('play', () => {
-		console.log('Play button clicked!');
-		if (dummyInit === false) {
-			$('#playVideo').trigger('click');
-		}
-	});*/
 
 	$(document).on('click', '#watchVideo', function () {
 		
@@ -39,6 +42,7 @@ $(document).ready(function () {
 		is_trailer = false;
 		is_episode = false;
 		$('#playVideo').trigger('click');
+
 	});
 
 	$(document).on('click', '#playVideo', function () {
@@ -47,6 +51,7 @@ $(document).ready(function () {
 		let title = $(this).data('title');
 		let lg = $(this).data('lg');
 		let duration = $(this).data('duration');
+		let content_order = $(this).attr('content-order');
 		let requestData = {
 			cid: cid
 		};
@@ -55,7 +60,8 @@ $(document).ready(function () {
 			tp: ctype,
 			title: title,
 			lg: lg,
-			duration:duration
+			duration:duration,
+			content_order : content_order
 		};
 
 		sendAjaxRequest(APP_URL + '/player', 'POST', JSON.stringify(requestData),
@@ -90,7 +96,6 @@ $(document).ready(function () {
 		}
 		function onPlayerError(xhr) {
 			$('.hide-vid-element').show();
-
 			try {
 				$res = JSON.parse(xhr.responseText);
 				if ($res.message != undefined && $res.message != 'failed') {
@@ -113,6 +118,7 @@ $(document).ready(function () {
 		if (player) {
 			player.destroy();
 		}
+
 		lastTrackedMinuteTime = -1;
 		lastPlayTrackTime = 0;
 
@@ -125,12 +131,13 @@ $(document).ready(function () {
 		const rewindButton = document.querySelector('.rewind-btn');
 		const closePlayer = document.getElementById('closePlayer');
 		const watchVideo = document.getElementById('watchVideo');
+		// const skipButton = document.querySelector('.skip-btn');
 		// const customPlayButton = document.getElementById('customPlayButton');
 		video.currentTime = parseInt(user_duration);
 
 		let defaultOptions = {
 			seekTime: 10,
-			controls: ['rewind', 'play', 'fast-forward', 'progress', 'current-time', 'volume', 'captions', 'settings', 'pip', 'fullscreen'],
+			controls: ['rewind', 'play', 'fast-forward', 'progress', 'current-time', 'volume', 'mute', 'captions', 'settings', 'pip', 'fullscreen'],
 			customData: customData
 		};
 
@@ -143,6 +150,11 @@ $(document).ready(function () {
 		if (!Hls.isSupported()) {
 			video.src = source;
 			player = new Plyr(video, defaultOptions);
+			window.player = player;
+
+			attactPlayerEvents(player,customData);
+
+			addCustControls(player);
 		} else {
 			// For more Hls.js options, see https://github.com/dailymotion/hls.js
 			const hls = new Hls();
@@ -180,53 +192,185 @@ $(document).ready(function () {
 					}
 				})
 
+
 				// Initialize new Plyr player with quality options
 				player = new Plyr(video, defaultOptions);
 				window.player = player;
 
-				if( is_trailer == true && loadPlayerCount == 0){
-					player.muted=true;
-				}else{
-					player.muted=false;
-				}
-				player.play();
-
-				loadPlayerCount++;
-
-				player.on('ready', event => {
-					$height = $('#vidPlayer').height() + 'px';
-
-					$('#vidPlayer').css({ "object-fit": "cover", "object-position": "center center", "width": "100%", "height": $height });
-
-					// Set the desired width and height for the video
-					// const videoElement = event.target.elements.container.querySelector('video');
-
-					// console.log('clientWidth', player.elements.wrapper.clientWidth);
-					// console.log('config aspectRatio', player.config.video.aspectRatio);
-
-
-					// const aspectRatio = player.elements.wrapper.clientWidth / player.config.video.aspectRatio;
-					// console.log('aspectRatio', aspectRatio);
-					// const playerContainer = document.querySelector('.videocont');
-					// playerContainer.style.height = `${aspectRatio}px`;
-
-					// videoElement.width = 640;  
-					// videoElement.height = 360;  
-				});
-
-
-				// video.style.height = $('#vidPlayer').height() + 'px';
-
 				attactPlayerEvents(player,customData);
 
-				// customPlayButton.style.display = 'none';
-			});
+				addCustControls(player);
+			}); //on hls end
 
 			hls.attachMedia(video);
 			window.hls = hls;
+		}//end if not hls supported
 
 
+	function addCustControls(player){
+
+		/* Start Custom Controls */
+		const wrapVideoControlRight = document.createElement('div');
+		wrapVideoControlRight.classList='wrap-div';
+
+		// previous btn bottom left
+		const prevEpisode = document.createElement('a');
+		prevEpisode.type = 'button';
+		prevEpisode.textContent = 'Previous Episode';
+		prevEpisode.classList="epi-prev";
+
+		// Next episode btn bottom right
+		const nextEpisode = document.createElement('a');
+		nextEpisode.type = 'button';
+		nextEpisode.textContent = 'Next Episode';
+		nextEpisode.classList="epi-next";
+
+		// next episode popup start
+
+		// Next episode main div popup
+		const nextPopup = document.createElement('div');
+		nextPopup.classList.add('nextpopup');
+
+		const nextEpisodeDiv = document.createElement('a');
+		nextEpisode.type = 'button';
+		nextEpisodeDiv.id = "next-epi-url";
+		nextEpisodeDiv.classList="next-epi-div";
+
+		// Next episode main div popup Next Episode btn
+		const nextEpisodeDivBtn = document.createElement("button");
+		nextEpisodeDivBtn.textContent="Next Episode";
+		nextEpisodeDivBtn.classList="next-episode-div-btn";
+
+		// Next episode main div popup Next Episode title
+		const nextEpisodeTitleButtonDivWrap = document.createElement("div");
+		nextEpisodeTitleButtonDivWrap.classList="next-episode-title-button-div-wrap";
+
+		const nextEpisodeTitle = document.createElement("h6");
+		nextEpisodeTitle.textContent="Next episode title text";
+		nextEpisodeTitle.id="episod-title";
+
+		const nextEpisodeImg = document.createElement('img');
+		nextEpisodeImg.id="nextimg-src";
+
+		const cancelPopupBtn = document.createElement('a');
+		cancelPopupBtn.textContent='x';
+		cancelPopupBtn.classList.add('cancelepisod');
+
+		const cancelCounter = document.createElement('p');
+		cancelCounter.id='countdown';
+
+		nextEpisodeDiv.appendChild(nextEpisodeImg, null);
+		nextEpisodeDiv.appendChild(nextEpisodeTitleButtonDivWrap, null);
+
+		nextEpisodeTitleButtonDivWrap.appendChild(nextEpisodeTitle, null);
+		nextEpisodeTitleButtonDivWrap.appendChild(nextEpisodeDivBtn, null);
+
+		nextEpisodeTitleButtonDivWrap.appendChild(cancelCounter, null);
+
+		nextPopup.appendChild(cancelPopupBtn,null);
+
+
+		nextPopup.appendChild(nextEpisodeDiv,null);
+
+		// next episode popup end
+
+		// skipp btn 
+		const skipButton = document.createElement('div');
+		skipButton.textContent = 'Skip Intro';
+		skipButton.classList.add('skip-btn');
+		//skip intro code
+
+		console.log(player);
+		// console.log(window.player);
+		// player = window.player;
+		player.elements.controls.appendChild(nextPopup);
+		// player.elements.controls.appendChild(nextPrevDiv);
+		player.elements.controls.appendChild(prevEpisode);
+		player.elements.controls.appendChild(nextEpisode);
+		player.elements.controls.appendChild(wrapVideoControlRight);
+		player.elements.controls.appendChild(skipButton);
+
+		// appending btns controll in wrapVideoControlRight div start
+		const captn = document.querySelector('[data-plyr="captions"]');
+		if(captn){
+			captn.classList.add("caption");
+			captn.classList.remove("plyr__controls__item");
+			wrapVideoControlRight.appendChild(captn, null);
 		}
+
+		const muteBtn = document.querySelector('[data-plyr="mute"]');
+		if(muteBtn){
+			muteBtn.classList.add("mute");
+			muteBtn.classList.remove('plyr__controls__item');
+			wrapVideoControlRight.appendChild(muteBtn, null);
+		}
+
+		const pipp = document.querySelector('[data-plyr="pip"]');
+		if(pipp){
+			pipp.classList.add("pipmod");
+			pipp.classList.remove('plyr__controls__item');
+			wrapVideoControlRight.appendChild(pipp, null);
+		}
+
+		const plyrMenuSpeed = document.querySelector('.plyr__menu');
+		if(plyrMenuSpeed){
+			plyrMenuSpeed.classList.remove('plyr__controls__item');
+			wrapVideoControlRight.appendChild(plyrMenuSpeed, null);
+		}
+
+		const fullscreen = document.querySelector('[data-plyr="fullscreen"]');
+		if(fullscreen){
+			fullscreen.classList.add ("fullscreen");
+			fullscreen.classList.remove("plyr__controls__item");
+			wrapVideoControlRight.appendChild(fullscreen, null);
+		}
+		
+		// wrapVideoControlRight.appendChild(nextEpisode, null);
+
+		// appending btns controll in wrapVideoControlRight div end
+
+		const playerMenuFisrtChild = document.querySelector('.plyr__menu').firstChild;
+		playerMenuFisrtChild.classList.add("setting-first-btn");
+		// alert(playerMenuFisrtChild);
+
+
+		$(".epi-prev").css("display", "none");
+		$(".epi-next").css("display", "none");
+		//$(".next-prev-div").css("display", "none");
+		$(".nextpopup").css("display", "none");
+
+		$(".cancelepisod").click(function(){
+			cancelStatus = false;
+			$(".nextpopup").css("display", "none");
+		});
+
+		// skip intro button
+		if(skipButton){
+			skipButton.addEventListener('click', () => {
+				player.currentTime = parseInt(intro_end_time);
+				$('.skip-btn').css("display", "none");
+			});
+		}
+		// end skip intro button
+
+		if( is_trailer == true && loadPlayerCount == 0){
+			player.muted=true;
+		}else{
+			player.muted=false;
+		}
+		player.play();
+
+		loadPlayerCount++;
+
+		player.on('ready', event => {
+			$height = $('#vidPlayer').height() + 'px';
+
+			$('#vidPlayer').css({ "object-fit": "cover", "object-position": "center center", "width": "100%", "height": $height });
+		});
+		/* END Custom Controls */
+	}
+
+
 
 		if(forwardButton){
 			forwardButton.addEventListener('click', () => {
@@ -244,6 +388,11 @@ $(document).ready(function () {
 			if (player) {
 				player.pause();
 			}
+			setTimeout(function() {
+				$('.nextpopup').css("display", "none");
+				$('.next-prev-div').css("display", "none");
+
+			}, 100);
 			$('.videoContainer').hide();
 			$('.hide-vid-element').show();
 		});
@@ -268,6 +417,10 @@ $(document).ready(function () {
 			vidPlaying = true;
 			setplaytracking(player);
 			video_play(customData.duration, customData.title);
+			if( content_type_val == 'EPISODE'){
+				nextwatch();
+			}
+			
 		});
 
 		player.on('pause', event => {
@@ -298,10 +451,132 @@ $(document).ready(function () {
 			video_ended(a, e, o);
 		});
 
+
+		var countdownDuration = 5; 	
+		var lastProgress = 0;	
+
 		player.on('timeupdate', event => {
 			hitPlaytrackingEvery_x_minute(player,1);
+			let duration = Math.round(player.duration);
+			let rediduration = Math.round((duration / 100) * 98);
+        	let currentTime = Math.round(player.currentTime);
+			let progress = Math.round(duration - currentTime);
+
+			//skip intro code
+			if(intro_start_time !="" && intro_start_time != undefined && intro_end_time !="" && intro_end_time !=undefined){
+				if(currentTime >= intro_start_time && currentTime < intro_end_time && is_trailer == false){
+					$(".plyr").removeClass("plyr--hide-controls");
+					$(".skip-btn").css("display", "block");
+				}else{
+					$(".skip-btn").css("display", "none");
+					// $(".plyr").addClass("plyr--hide-controls");
+				}
+			}
+			// skip intro code end
+
+			if(!is_trailer && content_type_val == 'VIDEO'){
+				if(mov_nexlink !="" && mov_nexlink!= undefined){
+					nextMovie(progress,currentTime,rediduration);
+				}
+
+			}
+
+			if(content_type_val == 'EPISODE'){
+					var plusone = 1;
+					var nxtid = (parseInt(customData.content_order)+plusone);
+					var nexlink = $("."+nxtid).attr('url-link');
+					var neximg = $("."+nxtid).attr('url-img');
+					var epstitle = $("."+nxtid).attr('epi-title');
+				if(currentTime > rediduration && cancelStatus == true){
+					if (lastProgress != progress && countdownDuration > -1) {
+						$('#countdown').text(countdownDuration--);
+						lastProgress = progress;
+					}
+					if(nexlink !="" && nexlink!= undefined){
+						$(".plyr").removeClass("plyr--hide-controls");
+						$("#nextimg-src").attr('src', neximg);
+						$('#next-epi-url').attr('href', nexlink);
+						$('#episod-title').text(epstitle);
+						$(".nextpopup").css("display", "flex");
+						if(countdownDuration == 0){
+							if(cancelStatus == true){
+								console.log("nexlink="+nexlink);	
+								window.location.href = nexlink;
+								return false;
+							}
+						}
+
+					}
+					
+				}else{
+					if(currentTime == duration && nexlink !="" && nexlink!= undefined){
+						window.location.href = nexlink;
+						return false;
+					}	
+					$(".nextpopup").css("display", "none");
+					countdownDuration = 5;
+				}			
+			}
 		});
 	}
+
+	function nextMovie(progress,currentTime,rediduration){
+		if(currentTime > rediduration && cancelStatus == true){
+			if (lastProgress != progress && countdownDuration > -1) {
+				$('#countdown').text(countdownDuration--);
+				lastProgress = progress;
+			}
+			$(".plyr").removeClass("plyr--hide-controls");
+			$("#nextimg-src").attr('src', mov_neximg);
+			$('#next-epi-url').attr('href', mov_nexlink);
+			$('#episod-title').text(mov_title);
+			$(".next-episode-div-btn").text('Next Movie');
+			$(".nextpopup").css("display", "flex");
+			if(countdownDuration == 0){
+				if(cancelStatus == true){
+					console.log("nexlink="+mov_nexlink);	
+					window.location.href = mov_nexlink;
+					return false;
+				}
+			}
+		}else{
+			$(".nextpopup").css("display", "none");
+			countdownDuration = 5;
+		}
+	}
+
+	if( content_type_val == 'EPISODE'){
+		nextwatch();
+	}
+	
+
+	function nextwatch(){
+		var current_order_id = $('#playVideo').attr('content-order');
+		var nxtepi = (parseInt(current_order_id)+1);
+		var prvepi = (parseInt(current_order_id)-1);
+		var prevepilink = $("."+prvepi).attr('url-link');
+		var nextepilink = $("."+nxtepi).attr('url-link');
+
+		let flag = 0;
+		if(nextepilink !="" && nextepilink!= undefined){
+			$('.epi-next').attr('href', nextepilink);
+			$(".epi-next").css("display", "block");
+			flag++;
+		}else{
+			$(".epi-next").css("display", "none");
+		}
+		
+		if(prevepilink !="" && prevepilink!= undefined){
+			$('.epi-prev').attr('href', prevepilink);
+			$(".epi-prev").css("display", "block");
+			flag++;
+		}else{
+			$(".epi-prev").css("display", "none");
+		}
+		if(flag > 0){
+			$(".next-prev-div").css("display", "flex");
+		}
+	}		
 
 	const setplaytracking = function (player) {	
 		//player duration is not zero
@@ -361,20 +636,6 @@ $(document).ready(function () {
 		});
 	}
 
-	/*
-		// Calculate the height based on the aspect ratio and container width
-		function setPlayerHeight() {
-			const aspectRatio = player.elements.wrapper.clientWidth / player.config.video.aspectRatio;
-			const playerContainer = document.querySelector('.videocont');
-			playerContainer.style.height = `${aspectRatio}px`;
-		}
-	
-		// Set the player height initially
-		setPlayerHeight();
-	
-		// Update the player height when the window is resized
-		window.addEventListener('resize', setPlayerHeight);
-		*/
 	window.addEventListener('beforeunload', function (e) {
 		setplaytracking(player);
         // e.preventDefault();
