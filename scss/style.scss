@@ -8006,3 +8006,25 @@ audio::-webkit-media-controls-play-button {
         display: none;
     }
 }
+
+
+// distro search filter start
+.distro-search-filter{
+    width: 500px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #AC2EC7 0%, #90E157 25%, #1CA8EC 50%, #50C0AE 75%, #FEC219 100%);
+    input{
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
+        background-color: #161616;
+        backdrop-filter: blur(5px);
+        border-radius: 12px;
+        border: none;
+        background-image: url("../img/distro-search-icon.svg");
+        background-repeat: no-repeat;
+    }
+}

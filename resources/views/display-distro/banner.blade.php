@@ -1,4 +1,8 @@
 <section class="distro-main w-100 position-relative">
+
+<div class="distro-search-filter">
+    <input type="text">
+</div>
     
     <div class="distro-banner">
     @foreach ($value['content'] as $key => $val)
