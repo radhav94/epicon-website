@@ -1,7 +1,7 @@
 <style>
-  .plyr__controls,.plyr__menu,.plyr__controls .plyr__controls__item:first-child,.plyr__controls .plyr__controls__item:nth-child(3),.plyr__volume,.plyr__progress__container,.plyr__time,.plyr__controls .plyr__controls__item:nth-child(2){
-      display:none;
-  }
+    .plyr__menu,.plyr__controls .plyr__controls__item:first-child,.plyr__controls .plyr__controls__item:nth-child(3),.plyr__volume,.plyr__progress__container,.plyr__time,.plyr__controls .plyr__controls__item:nth-child(2){
+        display:none;
+    }
 </style>
 <?php
 $content_list = $story_list['content_list'] ?? [];
@@ -47,21 +47,29 @@ $content_list = $story_list['content_list'] ?? [];
         <!-- top end -->
         <!-- mute button start-->
         <button class="mute-btn-storie mute-btn">
-            <img src="{{ asset('assets/img/unmute.svg') }}" width="40" height="40" alt="">
+            <img src="{{ asset('assets/img/unmute.svg') }}" alt="" width="40" height="40">
         </button>
         <button class="mute-btn-storie unmute-btn" style="display:none;">
-            <img src="{{ asset('assets/img/mute-shots.svg') }}" width="40" height="40" alt="">
+            <img src="{{ asset('assets/img/mute-shots.svg') }}" alt="" width="40" height="40">
         </button>
         <!-- mute button end-->
         <!-- <div> -->
+
+        <?php
+        $video_url = @$value['limelight_videourl']; 
+        if(empty($video_url)){
+            $video_url = @$value['limelight_promourl']; 
+        }
+        ?>
+
         <div class="play-add-share">
-            <button class="story-play-btn" id="story-play-btn{{ ($key + 1) }}" data-id="{{ @$value['ID'] }}" data-url="{{ @$value['limelight_videourl'] }}" style="display:none;">
+            <button class="story-play-btn" id="story-play-btn{{ ($key + 1) }}" data-id="{{ @$value['ID'] }}" data-url="{{ $video_url }}" style="display:none;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
                     <path d="M30.25 19.9977L30.25 20.0023C30.2504 20.1664 30.2104 20.3252 30.1374 20.4625C30.0645 20.5996 29.9629 20.7076 29.8479 20.7811L29.8479 20.7811L29.8431 20.7841L13.4704 31.3774L13.47 31.3776C13.3477 31.4569 13.2125 31.4972 13.0782 31.4999C12.944 31.5025 12.8081 31.4675 12.684 31.3936L12.6817 31.3923C12.5597 31.3201 12.4511 31.2106 12.3725 31.0693C12.2939 30.9278 12.2503 30.7626 12.25 30.5912V9.40877C12.2503 9.2374 12.2939 9.07222 12.3725 8.93074C12.4511 8.7894 12.5597 8.6799 12.6817 8.60774L12.6817 8.60775L12.684 8.60638C12.8081 8.53254 12.944 8.49751 13.0782 8.50014C13.2125 8.50277 13.3477 8.54314 13.47 8.62239L13.4704 8.62263L29.8431 19.2159L29.8431 19.2159L29.8479 19.2189C29.9629 19.2924 30.0645 19.4004 30.1374 19.5375C30.2104 19.6748 30.2504 19.8336 30.25 19.9977Z" stroke="white" stroke-width="2" />
                 </svg>
             </button>
             <button class="story-pause-btn" id="story-pause-btn{{ ($key + 1) }}" data-id="{{ @$value['ID'] }}" data-url="{{ @$value['limelight_videourl'] }}">
-                <img src="{{ asset('assets/img/pause.svg') }}" width="40" height="40" alt="">
+                <img src="{{ asset('assets/img/pause.svg') }}" alt="" width="40" height="40">
             </button>
         </div>
 
@@ -71,7 +79,7 @@ $content_list = $story_list['content_list'] ?? [];
         </div> -->
 
         <?php
-        $poster_img_url = getCardImage($value, 'banner_image', 'small', []);
+        $poster_img_url = getCardImage($value, 'banner_image', 'medium', []);
         ?>
         <video class="videocont" controls crossorigin playsinline poster="{{ $poster_img_url }}">
         </video>
@@ -79,7 +87,7 @@ $content_list = $story_list['content_list'] ?? [];
         <div class="stories-title">
             <div class="st-pik mb-2">
                 <?php
-                $img_url = getCardImage($value, 'banner_image', 'small', []);
+                $img_url = getCardImage($value, 'banner_image', 'medium', []);
                 ?>
                 <div class="st-pik-wrapper">
                     <img src="{{ $img_url }}" alt="shot-img">

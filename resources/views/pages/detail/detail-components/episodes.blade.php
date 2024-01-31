@@ -27,6 +27,7 @@
                 
                 $cover_img = getCardImage($value, 'cover_image', 'medium');
                 ?>
+                <input type="hidden" name="content_order" class="{{$value['content_order']}}" content-order-id="{{$value['content_order']}}" url-link="{{$hreflink}}" url-img="{{$cover_img}}" epi-title="{{$card['title']}}">
                 <li class="episode-main mb-4 showmore-main">
                     @if(@$value['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($value) !!}

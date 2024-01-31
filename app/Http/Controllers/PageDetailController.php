@@ -11,7 +11,7 @@ class PageDetailController extends Controller
 {
     public function detail($pageslug, $contentslug, $season = null, $episode = null)
     {
-
+        $request = request();
         SilentLoginFunction();
         $url = "pages/episode/{$pageslug}/{$contentslug}";
         $params = [];
@@ -98,8 +98,31 @@ class PageDetailController extends Controller
                 'title' => @$content['title'],
                 'description' => @$content['description']
             ];
+            $nextmovieArray =[];
+            $nextval=[];
+            if($content['content_type'] == "VIDEO"){
+                if(!session()->has('nextmovieArray')){
+                    $params = ['catalog_slug' => 'movies','kids_content'=>kidsMode() ? 'true' : 'false'];
+                    $nextmovieArray = CurlAPI("v2Content/standaloneContent/", "GET", $params, 1);
+                    if ($nextmovieArray && @$nextmovieArray['success'] ==  true) {
 
-            return view($template, compact('content', 'displayLanguageParam', 'trailers', 'morelike', 'meta', 'about', 'pageslug'));
+                        $request->session()->put('nextmovieArray', $nextmovieArray);
+                    }
+                }
+                $nextmovieArray = session()->get('nextmovieArray') ?? [];
+                if (!empty($nextmovieArray && isset($nextmovieArray['data']))) {
+                    $key = array_search($contentslug, array_column($nextmovieArray['data'],'slug'));
+                        $nextKey = ($key !== false) ? $key+1 : 0;
+                        $nextval = $nextmovieArray['data'][$nextKey] ?? '';
+                        if ($nextval == '' && $nextKey == count($nextmovieArray['data'])) {
+                            session()->forget('nextmovieArray');
+                        }
+                    }
+
+
+            }
+           
+            return view($template, compact('content', 'displayLanguageParam', 'trailers', 'morelike', 'meta', 'about', 'pageslug','contentslug','nextval'));
         }
 
         if (strtolower($pageslug) === 'en') {

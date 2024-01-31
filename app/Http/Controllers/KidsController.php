@@ -22,6 +22,7 @@ class KidsController extends Controller
         if ($this->isKidsSectionEnabled()) {
             setcookie("KidsMode", true, time() + 60 * 60 * 24 * 30, '/');
             session()->put('kidsMode', true);
+            session()->forget('nextmovieArray');
             $kid_profile = getDefaultProfile('kids');
             if ($kid_profile != "") {
                 profileActive($kid_profile);
@@ -77,6 +78,7 @@ class KidsController extends Controller
             $request->session()->put('profile_data', $profile_data);
             setcookie("KidsMode", false, time() + 60 * 60 * 24 * 30, '/');
             session()->put('kidsMode', false);
+            session()->forget('nextmovieArray');
             $default_profile = getDefaultProfile();
             if ($default_profile != "") {
                 profileActive($default_profile);
