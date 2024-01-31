@@ -12,7 +12,11 @@
                         @foreach ($list['content'] as $key => $value)
                             <?php
                             $card = getItemCardData($value, $displayLanguageParam);
-                            $cover_img = isset($value['cover_image']) ? $value['cover_image']['medium'] : $card['banner_img'];
+                            if (isset($value['cover_image']) && is_array($value['cover_image'])) {
+                                $cover_img = $value['cover_image']['medium'];
+                            } else {
+                                $cover_img = isset($value['cover_image']) && $value['cover_image'] != '' ? $value['cover_image'] : $card['banner_img'];
+                            }
                             $trailer_id = $value['ID'] ?? '';
                             ?>
                             <li>
