@@ -23,7 +23,7 @@
                                 @if(@$value['asset_type'] == 'PLAY')
                                 {!! getplayanchorhtml($value) !!}
                                 @else
-                                <a  onclick="click_tile(this)" data-title="{{@$value['title']}}" data-type="{{@$value['catalog_slug']}}" href="javascript:playTrailer('{{ $trailer_id }}','{{ @$value['catalog_slug'] }}','{{ @$value['limelight_promourl'] }}','{{ @$value['limelight_promourl'] }}')" class="main-card">
+                                <a  onclick="click_tile(this)" data-title="{{@$value['title']}}" data-type="{{@$value['catalog_slug']}}" href="javascript:playTrailer('{{ $trailer_id }}','{{ @$value['catalog_slug'] }}','{{ @$value['title'] }}','{{ @$value['limelight_promourl'] }}')" class="main-card">
                                 @endif
                                     {!! freePremiumDiv($value) !!}
                                     <div class="main-img">
