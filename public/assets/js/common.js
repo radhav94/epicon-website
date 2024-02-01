@@ -243,3 +243,22 @@ function getCookie(cname) {
     return "";
 }
 
+// distro search
+$(".distro-search-input").keydown(function() {
+    if (!this.value) {
+        $(".distro-search-show").toggleClass("d-none");
+    }
+    $(".distro-search-select").addClass("d-none");
+});
+$(".distro-filter").on("click",function() {
+    if (!this.value) {
+        $(".distro-search-select").toggleClass("d-none");
+        $(".distro-search-show").addClass("d-none");
+    }
+    $(".distro-filter img").toggleClass("dis-img-toggle");
+});
+$(".distro-search-clear").on("click",function(){
+    $(".distro-search-input").val("");
+    $(".distro-search-select").addClass("d-none");
+});
+
