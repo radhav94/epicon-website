@@ -45,44 +45,84 @@
     </div>
 </section>
 
-<div class="distro-search-main position-relative">
-    <div class="distro-search-filter">
-        <input class="distro-search-input" type="text" placeholder="Search">
-        <button class="distro-search-clear">
-            <img src="{{asset('assets/img/distro-search-text-clear.svg')}}" alt="icon">
-        </button>
-        <button class="distro-filter">
-            <img class="dis-img-toggle" src="{{asset('assets/img/distro-filter-arrow.svg')}}" alt="icon">
-        </button>
-    </div>
-    <div class="distro-search-show d-none">
-        <ul>
-            <li class="d-flex">
-                <div class="distro-search-img"><img src="{{asset('assets/img/distro-search-img.png')}}" alt="icon"></div>
-                <div class="distro-search-title-text">
-                    <h1 class="distro-search-title">Mastiii - India’s No.1 Music and Youth Channel Live TV</h1>
-                    <p class="distro-search-text">Catch Distro TV Channel, and Mastiii Channel Live Online on MX Player!</p>
-                </div>
-            </li>
-            <li class="d-flex">
-                <div class="distro-search-img"><img src="{{asset('assets/img/distro-search-img.png')}}" alt="icon"></div>
-                <div class="distro-search-title-text">
-                    <h1 class="distro-search-title">Mastiii - India’s No.1 Music and Youth Channel Live TV</h1>
-                    <p class="distro-search-text">Catch Distro TV Channel, and Mastiii Channel Live Online on MX Player!</p>
-                </div>
-            </li>
-            <li class="d-flex">
-                <div class="distro-search-img"><img src="{{asset('assets/img/distro-search-img.png')}}" alt="icon"></div>
-                <div class="distro-search-title-text">
-                    <h1 class="distro-search-title">Mastiii - India’s No.1 Music and Youth Channel Live TV</h1>
-                    <p class="distro-search-text">Catch Distro TV Channel, and Mastiii Channel Live Online on MX Player!</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <div class="distro-search-select d-none">
-        <h1>Genre</h1>
-        <h1>Title</h1>
-        <h1>Category</h1>
+<div class="distro-search-main">
+    <button class="distro-back-btn" id="distBack">
+        <img class="dis-img-toggle" src="{{asset('assets/img/distro-filter-arrow.svg')}}" alt="icon">
+    </button>
+    <div class="dist-wrap position-relative">
+        <div class="distro-search-filter">
+            <input class="distro-search-input" type="text" placeholder="Search">
+            <button class="distro-search-clear">
+                <img src="{{asset('assets/img/distro-search-text-clear.svg')}}" alt="icon">
+            </button>
+            <button class="distro-filter">
+                <img class="dis-img-toggle" src="{{asset('assets/img/distro-filter-arrow.svg')}}" alt="icon">
+            </button>
+        </div>
+        <div class="distro-search-show d-none">
+            <ul>
+                <li class="d-flex">
+                    <div class="distro-search-img"><img src="{{asset('assets/img/distro-search-img.png')}}" alt="icon"></div>
+                    <div class="distro-search-title-text">
+                        <h1 class="distro-search-title">Mastiii - India’s No.1 Music and Youth Channel Live TV</h1>
+                        <p class="distro-search-text">Catch Distro TV Channel, and Mastiii Channel Live Online on MX Player!</p>
+                    </div>
+                </li>
+                <li class="d-flex">
+                    <div class="distro-search-img"><img src="{{asset('assets/img/distro-search-img.png')}}" alt="icon"></div>
+                    <div class="distro-search-title-text">
+                        <h1 class="distro-search-title">Mastiii - India’s No.1 Music and Youth Channel Live TV</h1>
+                        <p class="distro-search-text">Catch Distro TV Channel, and Mastiii Channel Live Online on MX Player!</p>
+                    </div>
+                </li>
+                <li class="d-flex">
+                    <div class="distro-search-img"><img src="{{asset('assets/img/distro-search-img.png')}}" alt="icon"></div>
+                    <div class="distro-search-title-text">
+                        <h1 class="distro-search-title">Mastiii - India’s No.1 Music and Youth Channel Live TV</h1>
+                        <p class="distro-search-text">Catch Distro TV Channel, and Mastiii Channel Live Online on MX Player!</p>
+                    </div>
+                </li>
+                <li class="d-flex">
+                    <div class="distro-search-img"><img src="{{asset('assets/img/distro-search-img.png')}}" alt="icon"></div>
+                    <div class="distro-search-title-text">
+                        <h1 class="distro-search-title">Mastiii - India’s No.1 Music and Youth Channel Live TV</h1>
+                        <p class="distro-search-text">Catch Distro TV Channel, and Mastiii Channel Live Online on MX Player!</p>
+                    </div>
+                </li>
+                <li class="d-flex">
+                    <div class="distro-search-img"><img src="{{asset('assets/img/distro-search-img.png')}}" alt="icon"></div>
+                    <div class="distro-search-title-text">
+                        <h1 class="distro-search-title">Mastiii - India’s No.1 Music and Youth Channel Live TV</h1>
+                        <p class="distro-search-text">Catch Distro TV Channel, and Mastiii Channel Live Online on MX Player!</p>
+                    </div>
+                </li>
+                <li class="d-flex">
+                    <div class="distro-search-img"><img src="{{asset('assets/img/distro-search-img.png')}}" alt="icon"></div>
+                    <div class="distro-search-title-text">
+                        <h1 class="distro-search-title">Mastiii - India’s No.1 Music and Youth Channel Live TV</h1>
+                        <p class="distro-search-text">Catch Distro TV Channel, and Mastiii Channel Live Online on MX Player!</p>
+                    </div>
+                </li>
+                <li class="d-flex">
+                    <div class="distro-search-img"><img src="{{asset('assets/img/distro-search-img.png')}}" alt="icon"></div>
+                    <div class="distro-search-title-text">
+                        <h1 class="distro-search-title">Mastiii - India’s No.1 Music and Youth Channel Live TV</h1>
+                        <p class="distro-search-text">Catch Distro TV Channel, and Mastiii Channel Live Online on MX Player!</p>
+                    </div>
+                </li>
+                <li class="d-flex">
+                    <div class="distro-search-img"><img src="{{asset('assets/img/distro-search-img.png')}}" alt="icon"></div>
+                    <div class="distro-search-title-text">
+                        <h1 class="distro-search-title">Mastiii - India’s No.1 Music and Youth Channel Live TV</h1>
+                        <p class="distro-search-text">Catch Distro TV Channel, and Mastiii Channel Live Online on MX Player!</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="distro-search-select d-none">
+            <h1>Genre</h1>
+            <h1>Title</h1>
+            <h1>Category</h1>
+        </div>
     </div>
 </div>
