@@ -432,7 +432,7 @@ function playContentVideo(cid,c_type,element) {
 }
 
 
-function playTrailer(cid, c_type, title, multiPlayUrl) {
+function playTrailer(cid, title, multiPlayUrl) {
 	// console.log(multiPlayUrl);
 	$('.hide-vid-element').hide();
 	$('html, body').animate({
@@ -447,7 +447,7 @@ function playTrailer(cid, c_type, title, multiPlayUrl) {
 
 	let customData = {
 		cid: cid,
-		tp: c_type,
+		tp: 'trailer',
 		title: title,
 		lg: lg
 	};
