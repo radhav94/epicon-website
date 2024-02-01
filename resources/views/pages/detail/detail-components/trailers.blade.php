@@ -17,13 +17,17 @@
                             } else {
                                 $cover_img = isset($value['cover_image']) && $value['cover_image'] != '' ? $value['cover_image'] : $card['banner_img'];
                             }
-                            $trailer_id = $value['ID'] ?? '';
+                            $trailer_id = (int)$value['promo_id'] ?? '';
                             ?>
                             <li>
                                 @if(@$value['asset_type'] == 'PLAY')
                                 {!! getplayanchorhtml($value) !!}
                                 @else
-                                <a  onclick="click_tile(this)" data-title="{{@$value['title']}}" data-type="{{@$value['catalog_slug']}}" href="javascript:playContentVideo('{{ $trailer_id }}','trailer', this)" class="main-card">
+                                <a  onclick="click_tile(this)" data-title="{{@$value['title']}}" data-type="{{@$value['catalog_slug']}}" data-laptop="{{ @$value['limelight_promourl'] }}"
+                                
+                                href="javascript:playTrailer('{{ $trailer_id }}','{{ @$value['catalog_slug'] }}','{{ @$value['limelight_promourl'] }}','{{ @$value['limelight_promourl'] }}')" 
+                                
+                                class="main-card">
                                 @endif
                                     {!! freePremiumDiv($value) !!}
                                     <div class="main-img">
