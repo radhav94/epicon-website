@@ -156,7 +156,7 @@
                             </div>
                         </div>
                         <div class="use-code mt-4 coupan-div">
-                            <p>{{__('Use code GET20 and get flat 20% off on 3/6/12-month subscriptions or get extra benefits. (T&C apply*)')}}</p>
+                            <p>{{@$result['promotion_text']}}</p>
                             <div class="position-relative">
                                 <input type="text" placeholder="{{__('Enter promo code')}}" class="promocode">
                                 <div> 
