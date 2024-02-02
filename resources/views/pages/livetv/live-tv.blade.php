@@ -3,8 +3,8 @@
  
 
 @section('content')
-<?php //dd($response); 
-?>
+{{-- @dd($response) --}}
+
 <!-- Live TV Start -->
 <section class="livetv-wrapper pt-3">
   <div class="container" style="max-width:100%;">

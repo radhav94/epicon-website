@@ -31,10 +31,10 @@
 
                     <div class="main-img oval-shape avilable-audio {{$getTitle['cls']}}">
                         <img src="{{ $cover_img }}" alt="">
-                        <!-- <ul class=""> -->
+                        {{-- <!-- <ul class=""> --> --}}
                             {{-- <li>Available in 4 audios</li> --}}
                             {!! $getTitle['html'] !!}
-                        <!-- </ul> -->
+                        {{-- <!-- </ul> --> --}}
                     </div>
                 </a>
             </li>

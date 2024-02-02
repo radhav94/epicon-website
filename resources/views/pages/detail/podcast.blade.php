@@ -275,9 +275,9 @@ if (@$content['content_type'] == 'SEASON') {
                     <button class="tenx-next" >
                         <img src="{{asset('img/podcast-next.svg')}}" alt="icons">
                     </button>
-                   <!--  <button class="wl_add">
+                   {{-- <!--  <button class="wl_add">
                         <img src="{{asset('img/podcast-add.svg')}}" alt="icons">
-                    </button> -->
+                    </button> --> --}}
                     <button class="rounded-grey-btn m-0 addToList" data-id="{{ @$content['ID'] }}" data-action="{{ @$wishAction }}" data-type="3">
                                 <img class="wl_add" src="{{ asset('assets/img/add-icon-podcast.svg') }}" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
                                 <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon" @if ($wishAction=='add' ) style="display: none" @endif>

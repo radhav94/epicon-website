@@ -60,9 +60,9 @@
                             <h4 class="text-heading text-white">{{ isset($val['title']) ? $val['title'] : ''}}</h4>
                             <ul class="text-white">
                                 <?php echo $sub_points ?>
-                                <!-- <li>{{$val['age_limit']}}</li>
+                                {{-- <!-- <li>{{$val['age_limit']}}</li>
                                 <li>Drama</li>
-                                <li>Comedy</li> -->
+                                <li>Comedy</li> --> --}}
                                 <li>{{$date_text}}</li>
                             </ul>
                         </div>

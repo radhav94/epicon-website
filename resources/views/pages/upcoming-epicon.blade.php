@@ -35,7 +35,7 @@ $meta['description'] = "Exciting collection of upcoming web series and movies on
         <div class="upcoming-heading border-bot">
             <h4 class="new-popularheading text-white my-4">Upcoming on Epic On</h4>
         </div>
-        <!-- <span id="closePlayer" style="display:none"></span> -->
+        {{-- <!-- <span id="closePlayer" style="display:none"></span> --> --}}
         <?php foreach ($output as $key => $releaseDate) { ?>
             <?php if ($key !== "" && !strstr($key, '1970')) { ?>
                 <div class="card-details mb-4">
@@ -127,7 +127,7 @@ $meta['description'] = "Exciting collection of upcoming web series and movies on
             <div class="modal-body">
                 <div id="playVideo" data-id="" data-type="promo" data-lg="{{ isUserLoggedIn() }}" data-title=""> </div> 
                 <video id="vidPlayer" class="videocont" controls crossorigin playsinline poster="">
-                    <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> -->
+                    {{-- <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> --> --}}
 
                 </video>
             </div>

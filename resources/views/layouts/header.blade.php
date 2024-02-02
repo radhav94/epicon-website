@@ -203,17 +203,17 @@ if ($request->has('type')) {
             @if (kidsMode())
             @php $isactive = "checked"; @endphp
             @endif
-            <!-- <button id="allAccessBtn">All access</button> -->
+            {{-- <!-- <button id="allAccessBtn">All access</button> --> --}}
 
             <label class="switch">
                 <input type="checkbox" class="allAccessBtn" name ="kidscheckbox" data-log="{{ isUserLoggedIn() }}" id="allAccessBtn" role="switch" {{$isactive}}>
                 <small></small>
             </label>
 
-            <!-- <div class="form-check form-switch mb-0">
+            {{-- <!-- <div class="form-check form-switch mb-0">
             <input class="form-check-input" name ="kidscheckbox" data-log="{{ isUserLoggedIn() }}" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
-
-            </div> -->
+            </div> --> --}}
+            
                 <input type="hidden" name="kidsUrl" id="kidsUrlH" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
             <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" id="kidsUrl" class="p-2 me-0" aria-label="kidsUrl">
             <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt=""></a>

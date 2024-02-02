@@ -19,7 +19,7 @@
                             <div class="pik">
                                 <img src="{{$cover_img}}" alt="">
                             </div>
-                            <!--<p class="name">Mithlesh</p>-->
+                            {{-- <!--<p class="name">Mithlesh</p>--> --}}
                         </div>
                     </button>
                 </li>

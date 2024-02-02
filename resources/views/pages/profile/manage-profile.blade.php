@@ -38,7 +38,7 @@
                 {{-- <button class="custom-btn mt-4">{{__('Done')}}</button> --}}
             </div>
         @else
-            <!-- <h2>{{__('No data found')}}</h2> -->
+            {{-- <!-- <h2>{{__('No data found')}}</h2> --> --}}
             <h6 class="mt-4" style="color:white;">No Data Found</h6>
         @endif
 

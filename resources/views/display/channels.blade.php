@@ -22,7 +22,7 @@
             ?>
                 <div>
                     <a onclick="click_tile(this)" data-title ="{{ @$val['name'] }}" data-type="{{@$title}}" href="{{ getUrl('channels/'.$slug) }}">
-                    <!-- <a href="{{ isset($val['path']) ? getUrl(@$val['path']) : @$val['url'] }}"> -->
+                    {{-- <!-- <a href="{{ isset($val['path']) ? getUrl(@$val['path']) : @$val['url'] }}"> --> --}}
                         <img src="{{ @$val['image'] }}" alt="{{ @$val['name'] }}">
                     </a>
                 </div>
