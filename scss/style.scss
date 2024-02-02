@@ -8210,6 +8210,9 @@ audio::-webkit-media-controls-play-button {
         top: 50%;
         height: 32px;
         transform: rotate(-90deg);
+        @media (max-width:1024px) {
+            display: none;
+        }
         @media (max-width:767px) {
             right: -4%;
             top: 32%;
@@ -8427,9 +8430,6 @@ audio::-webkit-media-controls-play-button {
                 filter: drop-shadow(0px 5px 3px rgba(0,0,0,1));
             }
         }
-        .setting-first-btn:hover{
-            background-color: transparent!important;
-        }
     }
     .pipmod,.fullscreen,.caption{
         width: 32px!important;
@@ -8499,26 +8499,32 @@ audio::-webkit-media-controls-play-button {
     line-height: 19px;
 }
 .skip-btn{
-    padding: 5px 10px;
+    padding: 5px 8px;
     color: #000;
     background-color: rgba($color: rgb(255 255 255), $alpha: 1);
     border-radius: 5px;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 800;
     position: absolute;
-    bottom: 23%;
+    bottom: 24%;
     cursor: pointer;
-    box-shadow: 0 0 5px rgba($color: rgb(0 0 0), $alpha: 0.7);
+    box-shadow: 0 0 5px rgba($color: rgb(0 0 0), $alpha: 0.4);
     display: none;
-    animation: linear;
+    animation-timing-function: ease-out;
     animation-name: move;
-    animation-duration: 0.3s;
+    animation-duration: 0.5s;
     right: 10px;
+    @media (max-width:767px) {
+        bottom: 40%;
+    }
 }
 @keyframes move {
     0% {
-      right: 0%;
+      right: -20px;
+    }
+    100%{
+        right: 10px;
     }
   }
 .skipshow{
