@@ -1,4 +1,5 @@
-<style>
+@section('style')
+    <style>
     .videoContainer {
         position: relative;
     }
@@ -68,6 +69,7 @@
         display: none;
     }
 </style>
+@stop
 <?php
    $subplan = checkSubscription();
     if(isKidsPage()){
@@ -117,15 +119,15 @@ if($content['content_type'] == "VIDEO"){
 
         <video id="vidPlayer" class="videocont " data-id="{{ $content['ID'] }}" controls crossorigin playsinline
             poster="{{ $cover_img }}" autoplay>
-            <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> -->
+            {{-- <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> --> --}}
 
         </video>
 
-        <!-- <div style="display:none;">
+        {{-- <!-- <div style="display:none;">
             <a class="#" href="javascript:void(0);" id="next-epi-url">
                 <img src="" alt="" id="nextimg-src">
             </a>
-        </div> -->
+        </div> --> --}}
 
     </div>
 

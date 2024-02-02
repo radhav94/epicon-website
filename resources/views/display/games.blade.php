@@ -25,7 +25,7 @@ if (!isUserLoggedIn()) {
      <ul class="vertical-carousel-initilize p-0 mb-0">
 
          @foreach ($value['content'] as $key => $val)
-             <?php
+             </?php
              $card = getItemCardData($val, $displayLanguageParam);
              
              $cover_img = getCardImage($val, 'cover_image', 'medium');

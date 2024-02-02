@@ -28,7 +28,7 @@
             <p>{{ __('Content Language') }}</p>
             <div>
                 <div class="form-check mb-4">
-                    <input class="form-check-input me-2" type="radio" name="contentLang" id="exampleRadios7" value="all" <?php if ($listLanguage == 'all') {
+                    <input class="form-check-input me-2" type="radio" name="contentLang" id="exampleRadios7" value="all" </?php if ($listLanguage == 'all') {
                                                                                                                                 echo 'checked';
                                                                                                                             } ?>>
                     <label class="form-check-label" for="exampleRadios7">
@@ -36,7 +36,7 @@
                     </label>
                 </div>
                 <div class="form-check mb-4">
-                    <input class="form-check-input me-2" type="radio" name="contentLang" id="exampleRadios8" value="en" <?php if ($listLanguage == 'en') {
+                    <input class="form-check-input me-2" type="radio" name="contentLang" id="exampleRadios8" value="en" </?php if ($listLanguage == 'en') {
                                                                                                                             echo 'checked';
                                                                                                                         } ?>>
                     <label class="form-check-label" for="exampleRadios8">
@@ -44,7 +44,7 @@
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input me-2" type="radio" name="contentLang" id="exampleRadios9" value="hi" <?php if ($listLanguage == 'hi') {
+                    <input class="form-check-input me-2" type="radio" name="contentLang" id="exampleRadios9" value="hi" </?php if ($listLanguage == 'hi') {
                                                                                                                             echo 'checked';
                                                                                                                         } ?>>
                     <label class="form-check-label" for="exampleRadios9">

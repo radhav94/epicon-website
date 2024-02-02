@@ -52,9 +52,9 @@
         @endforeach
     </div>
 </div>
-<!-- <div class="slider-controls">
+{{-- <!-- <div class="slider-controls">
     <button type="button" class="slide-sl-prev">prev</button>
     <div class="slide-sl-dots"></div>
     <button type="button" class="slide-sl-next">next</button>
-</div> -->
+</div> --> --}}
 </section>

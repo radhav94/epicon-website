@@ -432,7 +432,7 @@
                                             fill="#070707" />
                                     </svg>
                                 </button>
-                                <!-- <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white" class="btn-close" style="width: 280px;">Login with password</button> -->
+                                {{-- <!-- <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white btn-close" style="width: 280px;">Login with password</button> --> --}}
                             </form>
                         </div>
 
@@ -559,7 +559,7 @@
                                     fill="#070707" />
                             </svg>
                         </button>
-                        <button class="login-btn skip-btn mt-0 bg-transparent text-white" class="btn-close"
+                        <button class="login-btn skip-btn mt-0 bg-transparent text-white btn-close"
                             style="width: 280px;">Skip for now</button>
                         </div>
                     </div>

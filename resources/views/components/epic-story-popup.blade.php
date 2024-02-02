@@ -1,8 +1,10 @@
+@section('style')
 <style>
     .plyr__menu,.plyr__controls .plyr__controls__item:first-child,.plyr__controls .plyr__controls__item:nth-child(3),.plyr__volume,.plyr__progress__container,.plyr__time,.plyr__controls .plyr__controls__item:nth-child(2){
         display:none;
     }
 </style>
+@stop
 <?php
 $content_list = $story_list['content_list'] ?? [];
 ?>
@@ -36,7 +38,7 @@ $content_list = $story_list['content_list'] ?? [];
     </div>
     <!-- Previous story Button -->
     <div class="story-iframe">
-        <!-- <h5 class="epic-shots-title text-white w-100 text-center mb-3">Epic Shots</h5> -->
+        {{-- <!-- <h5 class="epic-shots-title text-white w-100 text-center mb-3">Epic Shots</h5> -->
         <!--start player -->
         <!-- top views -->
         <!-- <span class="total-views">
@@ -44,7 +46,7 @@ $content_list = $story_list['content_list'] ?? [];
                 <path d="M7.9974 6C7.46696 6 6.95826 6.21071 6.58318 6.58579C6.20811 6.96086 5.9974 7.46957 5.9974 8C5.9974 8.53043 6.20811 9.03914 6.58318 9.41421C6.95826 9.78929 7.46696 10 7.9974 10C8.52783 10 9.03654 9.78929 9.41161 9.41421C9.78668 9.03914 9.9974 8.53043 9.9974 8C9.9974 7.46957 9.78668 6.96086 9.41161 6.58579C9.03654 6.21071 8.52783 6 7.9974 6ZM7.9974 11.3333C7.11334 11.3333 6.2655 10.9821 5.64037 10.357C5.01525 9.7319 4.66406 8.88406 4.66406 8C4.66406 7.11595 5.01525 6.2681 5.64037 5.64298C6.2655 5.01786 7.11334 4.66667 7.9974 4.66667C8.88145 4.66667 9.7293 5.01786 10.3544 5.64298C10.9795 6.2681 11.3307 7.11595 11.3307 8C11.3307 8.88406 10.9795 9.7319 10.3544 10.357C9.7293 10.9821 8.88145 11.3333 7.9974 11.3333ZM7.9974 3C4.66406 3 1.8174 5.07333 0.664062 8C1.8174 10.9267 4.66406 13 7.9974 13C11.3307 13 14.1774 10.9267 15.3307 8C14.1774 5.07333 11.3307 3 7.9974 3Z" fill="white" />
             </svg>&nbsp; 124
         </span> -->
-        <!-- top end -->
+        <!-- top end --> --}}
         <!-- mute button start-->
         <button class="mute-btn-storie mute-btn">
             <img src="{{ asset('assets/img/unmute.svg') }}" alt="" width="40" height="40">

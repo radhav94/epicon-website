@@ -38,13 +38,13 @@
             $wishlist = getWishlist();
     ?>
 
-         <div class="card-body">
-             {!! freePremiumDiv($val) !!}
+ <div class="card-body">
+     {!! freePremiumDiv($val) !!}
 
-             <a class="upper-img" href="{{ getContentUrl($val) }}">
-                 <img src="{{ $cover_img }}" alt="">
-             </a>
-         </div>
+     <a class="upper-img" href="{{ getContentUrl($val) }}">
+         <img src="{{ $cover_img }}" alt="">
+     </a>
+ </div>
 
 
  <?php

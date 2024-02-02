@@ -46,7 +46,7 @@
                             <img src="{{ $banner_img }}" alt="">
                         </a>
                          <div class="carousel-items-content position-absolute">
-                             <!-- <h1 class="banner-movie-tittle">{{ $card['title'] }}</h1> -->
+                             {{-- <!-- <h1 class="banner-movie-tittle">{{ $card['title'] }}</h1> --> --}}
                              <h2 class="mb-3">{{ $card['sub_text'] }}</h2>
                              <ul class="w-100 d-flex justify-content-between align-items-center list-unstyled mb-0">
                                  <li class="d-flex">

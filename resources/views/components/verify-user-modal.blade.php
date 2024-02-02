@@ -37,7 +37,7 @@
                                     fill="#070707" />
                             </svg>
                         </button>
-                        {{--<button class="login-btn mt-0 bg-transparent text-white" class="btn-close"
+                        {{--<button class="login-btn mt-0 bg-transparent text-white btn-close"
                             data-bs-dismiss="modal" aria-label="Close" style="width: 280px;" type="button"
                             id="pinCloseBtn">{{__('Cancel')}}</button>--}}
                     </form>

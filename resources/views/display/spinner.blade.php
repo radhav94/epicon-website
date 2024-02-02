@@ -1,6 +1,6 @@
  <div class="carousel-main spinner d-flex flex-wrap align-items-center justify-content-between">
      <div class="cant-decide">
-         <h5 class="text-">{{ $title }}</h5>
+         <h5 class="text-white">{{ $title }}</h5>
          {{-- <!-- <h1 class="text-white">Can’t decide what to watch?</h1>
          <span class="text-white">We’ve got you, Spin Now</span> --> --}}
      </div>

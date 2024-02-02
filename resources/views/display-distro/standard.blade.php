@@ -4,7 +4,7 @@
     </div>
     <div class="distro-slider mb-4">
     @foreach ($value['content'] as $key => $val)
-    <?php //dd($val);  ?>
+     {{-- @dd($val) --}}
         <div class="sample_img position-relative me-3">
             <a onclick="click_tile(this)" data-title ="{{ @$val['root_title'] }}" data-type="{{@$title}}" href="{{ getUrl('distro-tv') }}/{{@$val['ID']}}">
                 <img src="{{@$val['episodes_img_thumbh']}}" alt="">
