@@ -1,5 +1,5 @@
 <!-- Child Pin model -->
-<div class="modal fade" id="child-pin-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="child-pin-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered px-3">
         <div class="modal-content">
             <button class="x-btn bg-transparent text-white closebtn position-absolute btn-close" data-bs-dismiss="modal" aria-label="Close">
