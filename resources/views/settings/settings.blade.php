@@ -50,7 +50,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
 
 @section('content')
 <!-- childpin model -->
-<div class="modal fade" id="childpin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="childpin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">
         <div class="modal-content">
             <div class="modal-body text-center py-5">
@@ -63,7 +63,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
     </div>
 </div>
 <!-- changed childpin model -->
-<div class="modal fade" id="changed-childpin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="changed-childpin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">
         <div class="modal-content">
             <div class="modal-body text-center py-5">
@@ -77,7 +77,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
 </div>
 
 <!-- changed password model -->
-<div class="modal fade" id="changed-pass" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="changed-pass" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">
         <div class="modal-content">
             <div class="modal-body text-center py-5">
@@ -92,7 +92,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
 </div>
 
 <!-- clear history model -->
-<div class="modal fade" id="clear-history" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="clear-history" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">
         <div class="modal-content">
             <div class="modal-body text-center py-5">
@@ -107,7 +107,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
 </div>
 
 <!-- delete yr account model -->
-<div class="modal fade" id="delete-account" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="delete-account" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">
         <div class="modal-content">
             <div class="modal-body text-center py-5" id="sendOTP">

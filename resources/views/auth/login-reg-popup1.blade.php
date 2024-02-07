@@ -32,7 +32,7 @@
 </style>
 <!-- login model -->
 <div class="modal fade" id="login-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered px-3">
         <div class="modal-content">
             <button onclick="login_skip()" class="x-btn bg-transparent text-white closebtn position-absolute btn-close"

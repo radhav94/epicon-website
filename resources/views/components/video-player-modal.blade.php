@@ -1,4 +1,4 @@
-<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="videoModal" tabindex="-1"  aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">
         <div class="modal-content">
             <button class="x-btn bg-transparent text-white closebtn position-absolute btn-close"

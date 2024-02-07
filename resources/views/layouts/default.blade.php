@@ -52,7 +52,7 @@
       fbq('track', 'PageView');
     </script>
 
-    <script type="text/javascript">
+    <script>
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -60,7 +60,7 @@
     })(window, document, "clarity", "script", "hj6mot5z97");
     </script>
 
-    <script type="text/javascript">
+    <script>
         var APP_URL = "{{ url('/') }}";
     </script>
 

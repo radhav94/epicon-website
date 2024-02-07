@@ -6,7 +6,7 @@
 
     <!-- coupon modal start -->
 
-    <div class="modal fade coupon-model" id="redeem-popup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity: 1;">
+    <div class="modal fade coupon-model" id="redeem-popup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-hidden="true" style="opacity: 1;">
         <div class="modal-dialog modal-lg modal-dialog-centered px-3">
             <div class="modal-content">
                 <div class="modal-body coupon-model-body text-center py-5">

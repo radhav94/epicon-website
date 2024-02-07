@@ -6,7 +6,7 @@ if ($request->has('type')) {
  }
  ?>
 @if($webview !='webview')
-<section class="footer w-100">
+<div class="footer w-100">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
@@ -103,7 +103,7 @@ if ($request->has('type')) {
             Private
             Limited. All Rights Reserved.</div>
     </div>
-</section>
+</div>
     <?php
     $kids_page = isKidsPage();
    if ($kids_page) {
@@ -171,7 +171,7 @@ if ($request->has('type')) {
    }
 
 ?>
-    <section class="footer-mobile {{$kidsClass}}">
+    <div class="footer-mobile {{$kidsClass}}">
         <nav class="mob-nav">
         @foreach ($links as $key => $value)
        
@@ -182,8 +182,7 @@ if ($request->has('type')) {
            
         @endforeach
         </nav>
-   
-</section>
+    </div>
 @endif
 @notloggedin
     @include('auth.login-reg-popup')

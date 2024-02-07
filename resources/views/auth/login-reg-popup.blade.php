@@ -1,3 +1,4 @@
+@section('style')
 <style>
     /* Chrome, Safari, Edge, Opera */
     input::-webkit-outer-spin-button,
@@ -27,9 +28,10 @@
     }
 
 </style>
+@stop
 <!-- login model -->
 <div class="modal fade" id="login-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered px-3">
         <div class="modal-content">
             <div class="modal-body">
@@ -102,8 +104,7 @@
                                             fill="#070707"></path>
                                     </svg>
                                 </button>
-                                <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white"
-                                class="btn-close" style="width: 280px;">Login with password</button>
+                                <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white btn-close" style="width: 280px;">Login with password</button>
                                 <h6 class="mb-4 text-white text-center mt-4">For Existing User only</h6>
                                 <div class="lg-social">
                                     <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
@@ -130,17 +131,17 @@
                                 <input type="hidden" name="otp_pin" id="otp_pin" value="">
                                 <div class="childpin">
                                     <div class="childpin-input no-number-arrows">
-                                        <input class="mx-1 child-box" type="number" min="0" max="9"
+                                        <input class="mx-1 child-box" type="text" min="0" max="9"
                                             maxlength="1" id="childpin1" name="childpin1">
-                                        <input class="mx-1 child-box" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box" type="text" min="1" max="9"
                                             maxlength="1" id="childpin2" name="childpin2">
-                                        <input class="mx-1 child-box" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box" type="text" min="1" max="9"
                                             maxlength="1" id="childpin3" name="childpin3">
-                                        <input class="mx-1 child-box" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box" type="text" min="1" max="9"
                                             maxlength="1" id="childpin4" name="childpin4">
-                                        <input class="mx-1 child-box" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box" type="text" min="1" max="9"
                                             maxlength="1" id="childpin5" name="childpin5">
-                                        <input class="mx-1 child-box" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box" type="text" min="1" max="9"
                                             maxlength="1" id="childpin6" name="childpin6">
                                     </div>
                                 </div>
@@ -166,8 +167,7 @@
                                             fill="#070707" />
                                     </svg>
                                 </button>
-                                <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white"
-                                    class="btn-close" style="width: 280px;">Login with password</button>
+                                <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white btn-close" style="width: 280px;">Login with password</button>
                             </form>
                         </div>
                         <div class="login-popup-modal screen-register">
@@ -311,7 +311,7 @@
                                     <div class="form-check ps-0 d-flex align-items-center">
                                         <input type="checkbox" class="custom-control-input me-2" id="customCheck"
                                             name="rememberme" value="false">
-                                        <label class="form-check-label small text-white" for="flexCheckDefault1">
+                                        <label class="form-check-label small text-white">
                                             Remember me
                                         </label>
                                     </div>
@@ -396,17 +396,17 @@
                                 <input type="hidden" name="otppin" id="otppin" value="">
                                 <div class="childpin">
                                     <div class="childpin-input">
-                                        <input class="mx-1 child-box1 backpress" type="number" min="0" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="text" min="0" max="9"
                                             maxlength="1" id="childpin11" name="childpin11">
-                                        <input class="mx-1 child-box1 backpress" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="text" min="1" max="9"
                                             maxlength="1" id="childpin22" name="childpin22">
-                                        <input class="mx-1 child-box1 backpress" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="text" min="1" max="9"
                                             maxlength="1" id="childpin33" name="childpin33">
-                                        <input class="mx-1 child-box1 backpress" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="text" min="1" max="9"
                                             maxlength="1" id="childpin44" name="childpin44">
-                                        <input class="mx-1 child-box1 backpress" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="text" min="1" max="9"
                                             maxlength="1" id="childpin55" name="childpin55">
-                                        <input class="mx-1 child-box1 backpress" type="number" min="1" max="9"
+                                        <input class="mx-1 child-box1 backpress" type="text" min="1" max="9"
                                             maxlength="1" id="childpin66" name="childpin66">
                                     </div>
                                 </div>

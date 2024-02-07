@@ -1,3 +1,4 @@
+@section('style')
 <style>
     /* Chrome, Safari, Edge, Opera */
     input::-webkit-outer-spin-button,
@@ -32,6 +33,7 @@
     }
 
 </style>
+@stop
 <?php //dd(getCountryStateDataInHtml()); 
 $caption = $input = $stdisdcode = "";
 if(empty($userData['mobile']) && $userData['mobile']==''){
@@ -48,9 +50,11 @@ if(empty($userData['mobile']) && $userData['mobile']==''){
 }
 
 ?>
+@section('style')
 <style>.inputCenter{margin-left: 180px;}@media (max-width:767px) {.inputCenter{margin-left: 0px;}}</style>
+@stop
 <div class="modal fade" id="update_user_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">
         <div class="modal-content">
             <div class="modal-body">

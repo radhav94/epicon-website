@@ -126,7 +126,7 @@ $meta['description'] = "Exciting collection of upcoming web series and movies on
 
             <div class="modal-body">
                 <div id="playVideo" data-id="" data-type="promo" data-lg="{{ isUserLoggedIn() }}" data-title=""> </div> 
-                <video id="vidPlayer" class="videocont" controls crossorigin playsinline poster="">
+                <video id="vidPlayer" class="videocont" controls crossorigin playsinline >
                     {{-- <!-- <track src="subtitle.vtt" kind="subtitles" srclang="en" label="English"> --> --}}
 
                 </video>

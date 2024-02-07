@@ -1,4 +1,4 @@
-<div class="modal fade" id="supermixModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="supermixModal" tabindex="-1"  aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered px-3">
         <div class="modal-content">
             <button class="x-btn bg-transparent text-white closebtn position-absolute btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -10,12 +10,12 @@
 
                 {{-- start supermix page --}}
                 <div class="w-100">
-                    <section class="container-fluid w-100 mt-2 px-0">
+                    <div class="container-fluid w-100 mt-2 px-0">
                         <div class="row justify-content-center">
                             <div class="col-sm-12 px-0">
                                 <div class="supermix-main w-100">
                                     <div class="supermix-banner w-100 mb-4" id="supermix-banner-video">
-                                        <video id="vidPlayer" controls crossorigin playsinline poster="" style="width:100%"></video>
+                                        <video id="vidPlayer" controls crossorigin playsinline  style="width:100%"></video>
                                     </div>
                                     <div class="supermix-banner w-100 mb-4" id="supermix-banner-img">
                                         <img src="#" alt="banner">
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
                 {{-- end supermix page --}}
 
