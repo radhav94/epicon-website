@@ -691,3 +691,27 @@ function playContentVideo(cid,c_type,element) {
 		'application/json'
 	);
 }
+
+
+function playTrailer(cid, title, multiPlayUrl) {
+	// console.log(multiPlayUrl);
+	$('.hide-vid-element').hide();
+	$('html, body').animate({
+		scrollTop: 0
+	}, 1000);
+	$('.videoContainer').show();
+	$('html, body').animate({
+		scrollTop: 0
+	}, 1000);
+
+	let lg = $(this).data('lg');
+
+	let customData = {
+		cid: cid,
+		tp: 'trailer',
+		title: title,
+		lg: lg
+	};
+	loadVideoPlayer(multiPlayUrl, '', customData);
+
+}
