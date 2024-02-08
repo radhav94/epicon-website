@@ -206,7 +206,7 @@ $(document).ready(function () {
             videoPayer = new Plyr(video, defaultOptions);
             attactPlayerEvents(videoPayer);
 
-            addMixCustControls(videoPayer);
+            // addMixCustControls(videoPayer);
         } else {
             const hls = new Hls();
             hls.loadSource(source);
@@ -251,7 +251,7 @@ $(document).ready(function () {
 
                 attactPlayerEvents(videoPayer);
 
-                addMixCustControls(videoPayer);
+                // addMixCustControls(videoPayer);
 
             });
 
@@ -273,11 +273,13 @@ $(document).ready(function () {
         }
     }
 
-    function stopPlayer() {
-        if (videoPayer) {
-            videoPayer.pause();
-            videoPayer.destroy();
-        }
-    }
+  
 
 });
+
+function stopPlayer() {
+    if (videoPayer) {
+        videoPayer.pause();
+        videoPayer.destroy();
+    }
+}

@@ -7,15 +7,25 @@ $(document).ready(function () {
     }
 
     function changeMuteIcon() {
-
         if (player) {
-
             if (player.muted) {
-                $(".mute-btn").hide();
-                $(".unmute-btn").show();
-            } else {
                 $(".mute-btn").show();
                 $(".unmute-btn").hide();
+            } else {
+                $(".mute-btn").hide();
+                $(".unmute-btn").show();
+            }
+        }
+    }
+
+    function changePlayIcon(){
+        if(player){
+            if(player.playing){
+                $('.story-pause-btn').show();
+                $(".story-play-btn").hide();
+            }else{
+                $('.story-pause-btn').hide();
+                $(".story-play-btn").show();
             }
         }
     }
@@ -69,12 +79,12 @@ $(document).ready(function () {
         if (player) {
             if (player.muted) {
                 player.muted = false;
-                $(".mute-btn").show();
-                $(".unmute-btn").hide();
-            } else {
-                player.muted = true;
                 $(".mute-btn").hide();
                 $(".unmute-btn").show();
+            } else {
+                player.muted = true;
+                $(".mute-btn").show();
+                $(".unmute-btn").hide();
             }
         }
     })
@@ -85,6 +95,8 @@ $(document).ready(function () {
             showStoryPopup(currentStep);
             $(".progressBar progress:nth-child(" + (currentStep - 1) + ")").val(100);
             // $(".progressBar progress:nth-child(" + currentStep + ")").val(100);
+            changePlayIcon();
+            player.play();
         }
     });
 
@@ -93,6 +105,8 @@ $(document).ready(function () {
             $(".progressBar progress:nth-child(" + currentStep + ")").val(0);
             currentStep--;
             showStoryPopup(currentStep);
+            changePlayIcon();
+            player.play();
         }
     });
 
@@ -167,6 +181,8 @@ $(document).ready(function () {
     }
 
     const attactStoryPlayerEvents = function (player) {
+        changeMuteIcon();
+
         player.on('play', event => {
             $('.story-pause-btn').show();
             $(".story-play-btn").hide();
@@ -214,7 +230,6 @@ $(document).ready(function () {
             player = new Plyr(video, defaultOptions);
 
             attactStoryPlayerEvents(player);
-            changeMuteIcon();
         } else {
             // For more Hls.js options, see https://github.com/dailymotion/hls.js
             const hls = new Hls();
@@ -259,7 +274,6 @@ $(document).ready(function () {
                 attactStoryPlayerEvents(player);
 
                 player.play();
-                changeMuteIcon();
             });
 
             hls.attachMedia(video);
