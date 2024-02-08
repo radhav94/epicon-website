@@ -4,11 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Detection\MobileDetect;
 
 class TestController extends Controller
 {
     public function index()
     {   
+
+    $detect = new MobileDetect();
+    $deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
+
+    $detect= $deviceType == 'phone' ? true : false;
+
+    echo '<br><br><br>';
+    echo '<br><br><br>';
+
+    $ua = strtolower($_SERVER["HTTP_USER_AGENT"] ?? '');
+    $isMob = is_numeric(strpos($ua, "mobile"));
+    $isIPhone = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"] ?? ''), "iphone"));
+    $isMobile =  (isset($isMob) && $isMob == true) || (isset($isIPhone) && $isIPhone == true) || (isset($_SERVER['HTTP_X_MOBILE']) && $_SERVER['HTTP_X_MOBILE'] == true) ? true : false;
+
+    if($isMobile){
+        echo '--mobile--';
+    }else{
+        echo '--not a mobile--';
+    }
+    die;
+
         if(strtolower(env('APP_ENV')) == 'production'){
             return redirect('/');
         }
