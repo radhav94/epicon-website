@@ -16,6 +16,7 @@ class TestController extends Controller
 
     $detect= $deviceType == 'phone' ? true : false;
 
+    echo 'deviceType - '.$deviceType;
     echo '<br><br><br>';
     echo '<br><br><br>';
 
