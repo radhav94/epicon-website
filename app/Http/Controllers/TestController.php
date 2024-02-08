@@ -14,9 +14,16 @@ class TestController extends Controller
     $detect = new MobileDetect();
     $deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
 
-    $detect= $deviceType == 'phone' ? true : false;
+    // $detect= $deviceType == 'phone' ? true : false;
 
     echo 'deviceType - '.$deviceType;
+    echo '<br>';
+
+    if ($detect->isiOS() || $detect->is('iPhone') || $detect->is('iPad') || $detect->is('iPod')) {
+        echo "This is an Apple device <br>";
+    } else {
+        echo "This is not an Apple device <br>";
+    }
     echo '<br><br><br>';
     echo '<br><br><br>';
 
