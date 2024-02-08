@@ -6,6 +6,20 @@ $(document).ready(function () {
         player.muted = false;
     }
 
+    function changeMuteIcon(){
+
+        if (player) {
+
+            if (player.muted) {
+                $(".mute-btn").hide();
+                $(".unmute-btn").show();
+            } else {
+                $(".mute-btn").show();
+                $(".unmute-btn").hide();
+            }
+        }
+    }
+
     $(document).on('click', ".storyBtn", function () {
         var currentURL = window.location.href;
         var arr = currentURL.split('/')[3];
@@ -42,6 +56,7 @@ $(document).ready(function () {
                     currentStep = 1;
                     $(".progressBar progress:nth-child(" + currentStep + ")").val(100);
                     showStoryPopup(currentStep);
+
                 } else {
                     $('.loadmorecontent').css('overflow', 'auto');
                     return false;
@@ -243,7 +258,7 @@ $(document).ready(function () {
                 attactStoryPlayerEvents(player);
 
                 player.play();
-
+                changeMuteIcon();
             });
 
             hls.attachMedia(video);
