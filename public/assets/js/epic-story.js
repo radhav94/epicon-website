@@ -6,7 +6,7 @@ $(document).ready(function () {
         player.muted = false;
     }
 
-    function changeMuteIcon(){
+    function changeMuteIcon() {
 
         if (player) {
 
@@ -214,6 +214,7 @@ $(document).ready(function () {
             player = new Plyr(video, defaultOptions);
 
             attactStoryPlayerEvents(player);
+            changeMuteIcon();
         } else {
             // For more Hls.js options, see https://github.com/dailymotion/hls.js
             const hls = new Hls();
