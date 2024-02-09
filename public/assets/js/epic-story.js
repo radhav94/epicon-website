@@ -299,3 +299,7 @@ $(document).ready(function () {
     }
 
 });
+
+$(document).on("click",'.story-share-btn',function(){
+    $(".story-share-option").toggleClass("d-flex");
+});
