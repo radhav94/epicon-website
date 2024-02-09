@@ -6816,6 +6816,9 @@ input {
 .epic-shots-modal{
     height: 100vh;
     overflow: hidden;
+    background-color: rgba(0,0,0,.1);
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
     & .modal-dialog{
         width: 100%;
         max-width: 100%;
@@ -6833,7 +6836,7 @@ input {
                 position: absolute;
             }
             progress {
-                height: 13px;
+                height: 10px;
                 margin: 0 2px;
             }
             .story-modal {
@@ -6851,6 +6854,7 @@ input {
                 width: 370px;
                 position: relative;
                 display: flex;
+                border: 1px solid #212529;
                 @media (max-width:1367px) {
                     width: 340px;
                     height: 560px;
