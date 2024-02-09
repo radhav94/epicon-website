@@ -157,7 +157,11 @@ $(document).ready(function () {
 			addCustControls(player);
 		} else {
 			// For more Hls.js options, see https://github.com/dailymotion/hls.js
-			const hls = new Hls();
+			const hls = new Hls({
+			    xhrSetup: xhr => {
+			        xhr.setRequestHeader('access', 'allow')
+			    }
+			});
 			hls.loadSource(source);
 
 			// From the m3u8 playlist, hls parses the manifest and returns
