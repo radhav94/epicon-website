@@ -6816,6 +6816,9 @@ input {
 .epic-shots-modal{
     height: 100vh;
     overflow: hidden;
+    background-color: rgba(0,0,0,.1);
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
     & .modal-dialog{
         width: 100%;
         max-width: 100%;
@@ -6833,7 +6836,7 @@ input {
                 position: absolute;
             }
             progress {
-                height: 13px;
+                height: 6px;
                 margin: 0 2px;
             }
             .story-modal {
@@ -6847,13 +6850,15 @@ input {
                 }
             }
             .story-iframe {
-                height: 610px;
+                height: 100%;
                 width: 370px;
                 position: relative;
                 display: flex;
+                border: 1px solid #212529;
+                background-color: #000;
                 @media (max-width:1367px) {
                     width: 340px;
-                    height: 560px;
+                    height: 100%;
                 }
                 @media (max-width:700px) {
                     width: 100%;
@@ -6952,14 +6957,18 @@ input {
                 bottom: 105px;
                 z-index: 99;
                 gap: 15px;
-                background: rgba(0,0,0,0);
+                background: rgba($color: rgb(255 255 255), $alpha: 0.3);
                 -webkit-backdrop-filter: blur(20px);
                 backdrop-filter: blur(20px);
                 display: flex;
                 justify-content: center;
+                box-shadow: 0 0 5px rgba($color: rgb(0 0 0), $alpha: 0.15);
                 button{
                     background: transparent;
                     border: none;
+                    svg,img{
+                        filter: drop-shadow(0 0 1px rgba($color: rgb(0 0 0), $alpha: 0.6));
+                    }
                 }
             }
             .mute-btn-storie{
@@ -6971,13 +6980,16 @@ input {
                 top: unset!important;
                 bottom: 160px;
                 z-index: 9;
-                background: transparent;
                 border: none;
-                background: rgba(0,0,0,0);
+                background: rgba($color: rgb(255 255 255), $alpha: 0.3);
                 -webkit-backdrop-filter: blur(20px);
                 backdrop-filter: blur(20px);
                 display: flex;
                 justify-content: center;
+                box-shadow: 0 0 5px rgba($color: rgb(0 0 0), $alpha: 0.15);
+                img{
+                    filter: drop-shadow(0 0 1px rgba($color: rgb(0 0 0), $alpha: 0.6));
+                }
                 @media (max-width:700px) {
                     top: 80px;
                 }
@@ -6997,6 +7009,10 @@ input {
                 @include flex(row,center,center);
                 background: rgba($color: rgb(255 255 255), $alpha: 0.5);
                 font-size: 12px;
+                box-shadow: 0 0 5px rgba($color: rgb(0 0 0), $alpha: 0.15);
+                svg{
+                    filter: drop-shadow(0 0 1px rgba($color: rgb(0 0 0), $alpha: 0.6));
+                }
                 @media (max-width:700px) {
                     top: 40px;
                 }
@@ -7010,10 +7026,12 @@ input {
                 height: 40px;
                 @include flex(row,center,center);
                 border-radius: 50px;
-                background: rgba($color: rgb(255 255 255), $alpha: 0.5);
+                background: rgba($color: rgb(255 255 255), $alpha: 0.3);
+                box-shadow: 0 0 5px rgba($color: rgb(0 0 0), $alpha: 0.15);
+                svg{
+                    filter: drop-shadow(0 0 1px rgba($color: rgb(0 0 0), $alpha: 0.6));
+                }
                 @media (max-width:700px) {
-                    background: transparent;
-                    backdrop-filter: blur(20px);
                     top: 27px;
                 }
             }
