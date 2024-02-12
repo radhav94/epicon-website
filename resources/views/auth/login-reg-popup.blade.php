@@ -104,7 +104,7 @@
                                             fill="#070707"></path>
                                     </svg>
                                 </button>
-                                <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white btn-close" style="width: 280px;">Login with password</button>
+                                <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white">Login with password</button>
                                 <h6 class="mb-4 text-white text-center mt-4">For Existing User only</h6>
                                 <div class="lg-social">
                                     <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
@@ -167,7 +167,7 @@
                                             fill="#070707" />
                                     </svg>
                                 </button>
-                                <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white btn-close" style="width: 280px;">Login with password</button>
+                                <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white">Login with password</button>
                             </form>
                         </div>
                         <div class="login-popup-modal screen-register">
@@ -559,8 +559,7 @@
                                     fill="#070707" />
                             </svg>
                         </button>
-                        <button class="login-btn skip-btn mt-0 bg-transparent text-white btn-close"
-                            style="width: 280px;">Skip for now</button>
+                        <button class="login-btn skip-btn mt-0 bg-transparent text-white">Skip for now</button>
                         </div>
                     </div>
                 </div>

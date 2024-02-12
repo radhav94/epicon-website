@@ -6071,7 +6071,7 @@ input {
         }
 
         @media (max-width:700px) {
-            width: 180px;
+            width: 100%;
         }
         .crown{
             top:0px!important;
@@ -6254,6 +6254,7 @@ input {
     gap: 20px;
     @media (max-width:700px) {
         height: auto;
+        gap: 10px;
     }
     .pik{
         width: 300px;
@@ -8150,13 +8151,14 @@ audio::-webkit-media-controls-play-button {
     .plyr__controls .plyr__controls__item:nth-child(1){
         position: absolute;
         left: 30%;
-        top: 46%;
+        top: 50%;
         height: 50px;
         width: 50px;
         background-image: url("../img/previous-10-seconds.svg");
         background-repeat: no-repeat;
         background-size: 90%;
         background-position: center;
+        transform: translate(10%,-50%);
         svg{
             display: none;
         }
@@ -8165,7 +8167,6 @@ audio::-webkit-media-controls-play-button {
             right: unset;
             height: 40px;
             width: 40px;
-            top: 40%;
         }
     }
     .plyr__controls .plyr__controls__item:nth-child(1):hover{
@@ -8173,7 +8174,7 @@ audio::-webkit-media-controls-play-button {
         background-size: 90%!important;
         background-position: center!important;
         background-repeat: no-repeat!important;
-        transform: rotate(-45deg);
+        transform: translate(10%, -50%) rotate(-45deg);
         background-color: transparent!important;
         -webkit-filter: drop-shadow(0px 3px 2px rgba(0,0,0,0.7));
         filter: drop-shadow(0px 3px 2px rgba(0,0,0,0.7));
@@ -8183,9 +8184,9 @@ audio::-webkit-media-controls-play-button {
         position: absolute;
         height: 70px;
         width: 70px;
-        left: 50%;
-        top: 46%;
-        transform: translate(-50%, -14%)!important;
+        right: 50%;
+        top: 50%;
+        transform: translate(60%,-50%)!important;
         border-radius: 100px;
         svg{
             width: 100%;
@@ -8195,7 +8196,7 @@ audio::-webkit-media-controls-play-button {
         @media (max-width:767px) {
             height: 60px;
             width: 60px;
-            top: 40%;
+            // top: 40%;
         }
         &:hover{
             background-color:transparent !important;
@@ -8210,13 +8211,15 @@ audio::-webkit-media-controls-play-button {
     .plyr__controls .plyr__controls__item:nth-child(3){
         position: absolute;
         right: 30%;
-        top: 46%;
+        top: 50%;
         height: 50px;
         width: 50px;
         background-image: url("../img/next-10-seconds.svg");
         background-repeat: no-repeat;
         background-size: 90%;
         background-position: center;
+        transform: translate(10%,-50%);
+        transform-origin: center;
         svg{
             display: none;
         }
@@ -8225,7 +8228,6 @@ audio::-webkit-media-controls-play-button {
             left: unset;
             height: 40px;
             width: 40px;
-            top: 40%;
         }
     }
     .plyr__controls .plyr__controls__item:nth-child(3):hover{
@@ -8233,7 +8235,7 @@ audio::-webkit-media-controls-play-button {
         background-size: 90%!important;
         background-position: center!important;
         background-repeat: no-repeat!important;
-        transform: rotate(45deg);
+        transform:translate(10%, -50%) rotate(45deg);
         background-color: transparent!important;
         -webkit-filter: drop-shadow(0px 3px 2px rgba(0,0,0,0.7));
         filter: drop-shadow(0px 3px 2px rgba(0,0,0,0.7));
@@ -8337,10 +8339,13 @@ audio::-webkit-media-controls-play-button {
 }
 .nextpopup{
     position: absolute;
-    right: 0;
+    right: 10px;
     bottom: 92px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    animation-timing-function: ease-out;
+    animation-name: move;
+    animation-duration: .5s;
      @media (max-width:767px) {
         bottom: 70px;
     }
@@ -8353,6 +8358,8 @@ audio::-webkit-media-controls-play-button {
     padding: 5px 10px 5px 5px;
     background-color: rgba($color: #000000, $alpha: 0.7);
     text-decoration: none;
+    border-radius: 10px;
+    border: 1px solid rgba($color: rgb(255 255 255), $alpha: 0.2);
     @media (max-width:767px) {
         bottom: 70px;
     }
@@ -8517,7 +8524,7 @@ audio::-webkit-media-controls-play-button {
     top: -6px;
     left: -7px;
     text-decoration: none;
-    line-height: 20px;
+    line-height: 16px;
     z-index: 99;
     cursor: pointer;
 }
@@ -8585,5 +8592,41 @@ audio::-webkit-media-controls-play-button {
         position: relative;
         left: 5px;
         bottom: 5px;
+    }
+}
+.live-tv-vidPlayer .plyr__progress__container,.live-tv-vidPlayer .plyr__controls__item:nth-child(1),.live-tv-vidPlayer .plyr__controls__item:nth-child(3),.live-tv-vidPlayer .plyr__time--current,.live-tv-vidPlayer .nextpopup{
+    display:none!important;
+}
+#kidsUrl{
+    @media (max-width:767px) {
+        display: none;
+    }
+}
+.more-like-this.trailer-card{
+    @media (max-width:767px) {
+        grid-template-columns: repeat(1, 1fr);
+        display: grid;
+        gap: 20px;
+    }
+}
+.more-like-this.trailer-card .main-card .upcoming-title-play-btn{
+    @media (max-width:767px) {
+        position: unset;
+        height: 100%;
+        align-items: start;
+        flex-direction: column;
+        justify-content: space-around;
+        padding-top: 10px;
+        background: none;
+        .title{
+            width: 100%;
+        }
+    }
+}
+.more-like-this.trailer-card .main-card .main-img{
+    @media (max-width:767px) {
+        width: 160px;
+        height: 104px;
+        flex-shrink: 0;
     }
 }
