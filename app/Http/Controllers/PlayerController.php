@@ -19,16 +19,13 @@ class PlayerController extends Controller
         $isIPhone = is_numeric(strpos(strtolower(@$_SERVER["HTTP_USER_AGENT"]), "iphone")); 
         $isIPad = is_numeric(strpos(strtolower(@$_SERVER["HTTP_USER_AGENT"]), "ipad")); 
 
-        /*echo '--';   d($isIPhone);
-        echo '--';  d($isIPad);*/
-
         if($isIPhone || $isIPad){
-            $param = ['safari' => 1];
+            $param['safari'] = 1;
         }
         
-        d($param);
+        // d($param);
         $result = CurlAPI("pages/play_url", "POST", $param, 1, true);
-        dd($result);
+        // dd($result);
         if ($result && @$result['success'] ==  true) {
 
             $subtitles = $result['subtitles'] ?? [];
