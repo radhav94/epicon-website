@@ -17,6 +17,13 @@ class PlayerController extends Controller
   
         $param = ['content_id' => $request->cid];
 
+        $isIPhone = is_numeric(strpos(strtolower(@$_SERVER["HTTP_USER_AGENT"]), "iphone")); 
+        $isIPad = is_numeric(strpos(strtolower(@$_SERVER["HTTP_USER_AGENT"]), "ipad")); 
+
+        if($isIPhone || $isIPad){
+            $param['safari'] = 1;
+        }
+        
         $result = CurlAPI("pages/play_url", "POST", $param, 1, true);
        
         if ($result && @$result['success'] ==  true) {
