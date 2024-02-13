@@ -11,6 +11,16 @@ class TestController extends Controller
     public function index()
     {   
 
+        $isIPhone = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "iphone")); 
+        $isIPad = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "ipad")); 
+
+        echo '--';
+        d($isIPhone);
+        echo '--';
+        d($isIPad);
+
+        die;
+        
     $detect = new MobileDetect();
     $deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
 
