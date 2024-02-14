@@ -96,7 +96,7 @@ class PageDetailController extends Controller
             }
 
             $meta = [
-                'title' => @$content['title'],
+                'title' => $content['meta_title'] ?? @$content['title'],
                 'description' => @$content['description']
             ];
             $nextmovieArray =[];
