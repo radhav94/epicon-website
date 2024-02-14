@@ -217,6 +217,52 @@ $(document).ready(function () {
 		}//end if not hls supported
 
 
+		// hide show controls on mouse start
+
+	        let isMouseMoving = false;
+	        let timeout;
+
+	        document.addEventListener('mousemove', () => {
+	            if (!isMouseMoving) {
+	                if (timeout) {
+	                    clearTimeout(timeout);
+	                }
+	                // Show controls
+	                player.elements.controls.style.opacity = '1';
+
+	                // Set a timeout to hide controls after some time
+	                timeout = setTimeout(() => {
+	                    player.elements.controls.style.opacity = '0';
+	                }, 5000); // Adjust the duration as needed
+	            }
+	            // Mark mouse as moving
+	            isMouseMoving = true;
+
+	            // Reset mouse movement flag after 1 second
+	            setTimeout(() => {
+	                isMouseMoving = false;
+	            }, 1000);
+	        });
+
+	        // On control hover, keep controls visible
+	        player.elements.controls.addEventListener('mouseenter', () => {
+	            if (timeout) {
+	                clearTimeout(timeout);
+	            }
+	            player.elements.controls.style.opacity = '1';
+	        });
+
+	        // On control leave, set a timeout to hide controls
+	        player.elements.controls.addEventListener('mouseleave', () => {
+	            if (!isMouseMoving) {
+	                timeout = setTimeout(() => {
+	                    player.elements.controls.style.opacity = '0';
+	                }, 1000); // Adjust the duration as needed
+	            }
+	        });
+		// hide show controls on mouse end
+
+
 		function addCustControls(player) {
 
 			/* Start Custom Controls */
