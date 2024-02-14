@@ -217,6 +217,7 @@ $(document).ready(function () {
 		}//end if not hls supported
 
 
+		/*
 		// hide show controls on mouse start
 
 	        let isMouseMoving = false;
@@ -261,6 +262,7 @@ $(document).ready(function () {
 	            }
 	        });
 		// hide show controls on mouse end
+	    */
 
 
 		function addCustControls(player) {
