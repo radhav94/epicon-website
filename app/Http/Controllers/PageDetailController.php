@@ -95,8 +95,15 @@ class PageDetailController extends Controller
                 $template = 'pages.detail.podcast';
             }
 
+            $meta_title = $content['meta_title'] ?? @$content['title'];
+            if($meta_title){
+                if (substr(trim($meta_title), -9) === '| EPIC ON') {
+                    $meta_title = substr($meta_title, 0, -9);
+                } 
+            }
+
             $meta = [
-                'title' => $content['meta_title'] ?? @$content['title'],
+                'title' => $meta_title,
                 'description' => @$content['description']
             ];
             $nextmovieArray =[];
