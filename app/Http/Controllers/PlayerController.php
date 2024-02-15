@@ -23,7 +23,6 @@ class PlayerController extends Controller
             $param['safari'] = 1;
         }
         
-        // d($param);
         $result = CurlAPI("pages/play_url", "POST", $param, 1, true);
         // dd($result);
         if ($result && @$result['success'] ==  true) {

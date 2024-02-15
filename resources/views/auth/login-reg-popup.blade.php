@@ -66,7 +66,7 @@
                     </div>
                     <!-- login or register start -->
                     <div class="right-side position-relative">
-                        <button onclick="login_skip()" class="x-btn bg-transparent text-white closebtn position-absolute btn-close"
+                        <button onclick="login_skip()" class="x-btn text-white closebtn position-absolute btn-close"
                             data-bs-dismiss="modal" aria-label="Close">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 31 32"
                                 fill="none">

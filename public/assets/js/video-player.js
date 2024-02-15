@@ -216,6 +216,29 @@ $(document).ready(function () {
 			window.hls = hls;
 		}//end if not hls supported
 
+		// hide show controls on mouse start
+        let isMouseMoving = false;
+        let timeout;
+
+        document.addEventListener('mousemove', () => {
+            if (!isMouseMoving) {
+                if (timeout) {
+                    clearTimeout(timeout);
+                }
+                player.elements.controls.style.opacity = '1';
+
+                timeout = setTimeout(() => {
+                    player.elements.controls.style.opacity = '0';
+                }, 3000);
+            }
+
+            isMouseMoving = true;
+            
+            setTimeout(() => {
+                isMouseMoving = false;
+            }, 1000);
+        });
+        // hide show controls on mouse end
 
 		/*
 		// hide show controls on mouse start
