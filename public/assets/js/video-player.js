@@ -508,7 +508,9 @@ $(document).ready(function () {
 
 			if (!is_trailer && content_type_val == 'VIDEO') {
 				if (mov_nexlink != "" && mov_nexlink != undefined) {
-					nextMovie(progress, currentTime, rediduration);
+					if($('.live-tv-vidPlayer').length < 1){
+						nextMovie(progress, currentTime, rediduration);
+					}
 				}
 
 			}
@@ -568,7 +570,6 @@ $(document).ready(function () {
 			$(".nextpopup").css("display", "flex");
 			if (countdownDuration == 0) {
 				if (cancelStatus == true) {
-					console.log("nexlink=" + mov_nexlink);
 					window.location.href = mov_nexlink;
 					return false;
 				}
