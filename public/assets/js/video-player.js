@@ -228,7 +228,7 @@ $(document).ready(function () {
 
                 timeout = setTimeout(() => {
                     player.elements.controls.style.opacity = '0';
-                }, 3000);
+                }, 5000);
             }
 
             isMouseMoving = true;
@@ -526,6 +526,7 @@ $(document).ready(function () {
 					}
 					if (nexlink != "" && nexlink != undefined) {
 						$(".plyr").removeClass("plyr--hide-controls");
+						$(".plyr__controls").css("opacity",1);
 						$("#nextimg-src").attr('src', neximg);
 						$('#next-epi-url').attr('href', nexlink);
 						$('#episod-title').text(epstitle);
