@@ -559,6 +559,7 @@ $(document).ready(function () {
 				lastProgress = progress;
 			}
 			$(".plyr").removeClass("plyr--hide-controls");
+			$(".plyr__controls").css("opacity",1);
 			$("#nextimg-src").attr('src', mov_neximg);
 			$('#next-epi-url').attr('href', mov_nexlink);
 			$('#episod-title').text(mov_title);
