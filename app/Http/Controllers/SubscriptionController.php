@@ -261,14 +261,16 @@ class SubscriptionController extends Controller
 
     public function paymentProcess($orderArr, $currency, $payment_type)
     {   
-        $this->payuLog( 'Inside paymentProcess function', $order['order_id']);
-
+        
         /* All Required Parameters by your Gateway */
         $request = Request();
         $userData = $request->session()->get('user');
         $userid = $userData['user_id'] ?? '';
         
         $order = $orderArr['order_data'];
+
+        $this->payuLog( 'Inside paymentProcess function', $order['order_id']);
+
         $order_number = $order['order_id'];
         $totalamount = $order['order_value'];
         $plan_id = $order['plan_id'];
@@ -518,7 +520,7 @@ class SubscriptionController extends Controller
     {
         $paymentresponse = $request->all();
 
-        $this->payuLog( 'Inside Payu sucess function', @$paymentresponse['txnid'], [$paymentresponse]);
+        $this->payuLog( 'Inside Payu success function', @$paymentresponse['txnid'], [$paymentresponse]);
 
         $paymtentStatus = strtolower($paymentresponse['status']);
         $final_result = ['message' => 'The transaction has been declined.'];
@@ -562,33 +564,27 @@ class SubscriptionController extends Controller
             $parameters_verify_payment['hash'] = $calculated_hash;
             $data = 'key=' . $parameters_verify_payment['key'] . '&command=' . $parameters_verify_payment['command'] . '&var1=' . $parameters_verify_payment['var1'] . '&hash=' . $parameters_verify_payment['hash'];
             $url = config('epicconfig.PAYUMONEY.API_URL');
+
+            $this->payuLog( 'Verify Payment Status - Request', @$paymentresponse['txnid'], ['url' => $url, 'data' => $data]);
+
             $verify_payment = si_transaction($url, $data);
 
-           
-
-            Log::channel('payu')->info("-----Verify Payment Status");
-            Log::channel('payu')->debug(json_encode($parameters_verify_payment));
-            Log::channel('payu')->debug($verify_payment);
-            Log::channel('payu')->info("-----END----------------------");
+            $this->payuLog( 'Verify Payment Status - Response', @$paymentresponse['txnid'], [$verify_payment]);
 
             ///////////---*** Verify Payment End ***---///////////
 
             $verifyDetails = json_decode($verify_payment);
             $data= json_decode( json_encode($verify_payment), true);
 
-            Log::channel('payu')->info($verifyDetails->status);
-            Log::channel('payu')->info("---------yes-------");
-            Log::channel('payu')->info($data);
             if ($verifyDetails->status) {
-
-                Log::channel('payu')->info("-----updateOrderData----------------------");
-                Log::channel('payu')->debug(json_encode($updateOrderData));
+                $this->payuLog( 'Verify Payment Status - success', @$paymentresponse['txnid']);
+                
                 ///------***Update create order with payment details***--------///
+                $this->payuLog( 'UpdateOrder Api Request', @$paymentresponse['txnid'], ['url' => 'subscriptions/updateOrder', 'data' => $updateOrderData]);
+
                 $updatePayment = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2, false, true);
 
-                Log::channel('payu')->info("-----update Subscription Payment details after payment verify.");
-                Log::channel('payu')->debug(json_encode($updatePayment));
-                Log::channel('payu')->info("-----END----------------------");
+                $this->payuLog( 'UpdateOrder Api Response', @$paymentresponse['txnid'], [$updatePayment]);
                 ///------***End payment details***--------///
 
                 $this->EventPushData($paymtentStatus);
@@ -597,7 +593,8 @@ class SubscriptionController extends Controller
                 return view('subscription.thankyou', compact('final_result','orderData'));
             } else {
                 ///---*** if payment not verify ***---///
-                Log::channel('payu')->info("payusuccess---verifyDetails failure");
+                $this->payuLog( 'Verify Payment Status - Failed', @$paymentresponse['txnid']);
+
                 return view('subscription.subscription-fail', compact('final_result'));
             }
         } else {
@@ -648,18 +645,13 @@ class SubscriptionController extends Controller
 
     public function payufail(Request $request)
     {
-        Log::channel('payu')->info("-----Inside PayuMoney Payment Failed function----");
         $paymtentStatus = $request->all();
-        // dd($paymtentStatus);
-        Log::channel('payu')->info($paymtentStatus);
 
-        Log::channel('payu')->info("----- PayuMoney Payment Failed Response.");
-        Log::channel('payu')->debug(json_encode($paymtentStatus));
-        Log::channel('payu')->info("-----END----------------------");
+        $this->payuLog( 'PAYMENT FAILED RESPONSE', @$paymtentStatus['txnid'],[$paymtentStatus]);
+
         $orderdata = $request->session()->get('orderdata');
-        Log::channel('payu')->info("----- Order data get From Session");
-        Log::channel('payu')->debug(json_encode($orderdata));
-        Log::channel('payu')->info("-----END----------------------");
+        $this->payuLog( 'Payment Failed - Order data from session', @$paymtentStatus['txnid'],[$orderdata]);
+
         
         $message = "";
         $orderdata['plan_name'] = "1 Month";
