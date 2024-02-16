@@ -11,7 +11,7 @@ use Route;
 class SubscriptionController extends Controller
 {
     public function subscription(Request $request)
-    {
+    {   
         $meta = getMeta('subscription');
         $sessionData = $request->session()->get('user_token');
         $userData = $request->session()->get('plandata');
@@ -167,6 +167,8 @@ class SubscriptionController extends Controller
             'order_value' => $result['actual_price'],
             'x_country' => @$countrycode,
         ];
+        $this->payuLog('Create Order Api Request', false, [$postData]);
+
         $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2, false, true);
 
         $txid = generateTransactionID();
@@ -185,14 +187,13 @@ class SubscriptionController extends Controller
             $txid = $resorder['order_id'];
         }
 
-        Log::channel('payu')->info('TxId-'.$txid.' Create Order Api Response');
-        Log::channel('payu')->info($resultData);
+        $this->payuLog( 'Create Order Api Response', $txid,[$resultData]);
 
         $parameters = $this->paymentProcess($resultData, $currency, $payment_type);
-        Log::channel('payu')->info('TxId-'.$txid . ' --paymentProcess Params--  '. json_encode($parameters));
+
+        $this->payuLog( 'Payu Money Request data', $txid,[$parameters]);
 
         if(@$parameters['status'] == false){
-            Log::channel('payu')->info('TxId-'.$txid.' parameter status false');
             return view('pages.error.data-error');
         }
         else{
@@ -259,8 +260,9 @@ class SubscriptionController extends Controller
     }*/
 
     public function paymentProcess($orderArr, $currency, $payment_type)
-    {
-        Log::channel('payu')->info("Inside paymentProcess function");
+    {   
+        $this->payuLog( 'Inside paymentProcess function', $order['order_id']);
+
         /* All Required Parameters by your Gateway */
         $request = Request();
         $userData = $request->session()->get('user');
@@ -398,9 +400,6 @@ class SubscriptionController extends Controller
         $request->session()->forget('payuParams');
         $request->session()->put('payuParams', $parameters);
 
-        Log::channel('payu')->info("-----PayUMoney Request Data------");
-        Log::channel('payu')->debug(json_encode($parameters));
-        Log::channel('payu')->info("-----End------");
         //$orderData = $request->session()->get('orderdata');
         //dd($parameters);
         return $parameters;
@@ -517,10 +516,9 @@ class SubscriptionController extends Controller
     }
     public function payusuccess(Request $request)
     {
-        Log::channel('payu')->info("-----Inside Payu sucess function----------------------");
         $paymentresponse = $request->all();
-        Log::channel('payu')->info($paymentresponse);
-        // dd($paymentresponse);
+
+        $this->payuLog( 'Inside Payu sucess function', @$paymentresponse['txnid'], [$paymentresponse]);
 
         $paymtentStatus = strtolower($paymentresponse['status']);
         $final_result = ['message' => 'The transaction has been declined.'];
@@ -565,10 +563,14 @@ class SubscriptionController extends Controller
             $data = 'key=' . $parameters_verify_payment['key'] . '&command=' . $parameters_verify_payment['command'] . '&var1=' . $parameters_verify_payment['var1'] . '&hash=' . $parameters_verify_payment['hash'];
             $url = config('epicconfig.PAYUMONEY.API_URL');
             $verify_payment = si_transaction($url, $data);
+
+           
+
             Log::channel('payu')->info("-----Verify Payment Status");
             Log::channel('payu')->debug(json_encode($parameters_verify_payment));
             Log::channel('payu')->debug($verify_payment);
             Log::channel('payu')->info("-----END----------------------");
+
             ///////////---*** Verify Payment End ***---///////////
 
             $verifyDetails = json_decode($verify_payment);
@@ -815,4 +817,15 @@ class SubscriptionController extends Controller
 
         return response()->json('success', 200);
     }
+
+    private function payuLog($msg, $uid='', $data=[]){
+        $prefix = ($uid != '') ? '--TxId-'.$uid.'-- ' : '';
+
+        if($data){
+            Log::channel('payu')->info($prefix.''.$msg. PHP_EOL . json_encode($data));
+        }else{
+            Log::channel('payu')->info($prefix.$msg );
+        }
+    }
+
 }
