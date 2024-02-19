@@ -283,7 +283,8 @@ class SubscriptionController extends Controller
         
         // test amount logic
         $parameters['status'] = "";
-        if (env('DEV_AMT') == true && ($userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025' || $userid == 'newrahul@mailinator.com' || $userid == 'newprathamesh@mailinator.com' || $userid == '917977495428' || $userid == '918169554956' || $userid == 'nilesh@mailinator.com')) {
+        if (env('DEV_AMT') == true && ($userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025' || $userid == 'newrahul@mailinator.com' || $userid == 'newprathamesh@mailinator.com' || $userid == '917977495428' || $userid == '918169554956' || $userid == 'nilesh@mailinator.com' || strpos($userid, "-test@mailinator.com") !== false)
+        ) {
             $totalamount = "1";
         }
         $parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => @$userData['name'], 'email' => @$userData['email'], 'phone' => @$userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
@@ -333,7 +334,6 @@ class SubscriptionController extends Controller
                 }
             }
         }
-
 
         $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
         $parameters['phone'] = $userData['mobile'];
