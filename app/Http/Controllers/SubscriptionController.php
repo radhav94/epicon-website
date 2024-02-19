@@ -283,7 +283,6 @@ class SubscriptionController extends Controller
         
         // test amount logic
         $parameters['status'] = "";
-
         if (env('DEV_AMT') == true && ($userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025' || $userid == 'newrahul@mailinator.com' || $userid == 'newprathamesh@mailinator.com' || $userid == '917977495428' || $userid == '918169554956' || $userid == 'nilesh@mailinator.com')) {
             $totalamount = "1";
         }
@@ -343,7 +342,6 @@ class SubscriptionController extends Controller
             if ($plan_id == 'epic_in_pl_1') {
                 $billingInterval = 1;
                 $newstartdate = date("Y-m-d");
-
                 // $billingCycle = 'MONTHLY';
                 // $endstartdate = date("Y-m-d", strtotime("+1 month -1 day"));
 
@@ -351,20 +349,20 @@ class SubscriptionController extends Controller
                 $endstartdate = date("Y-m-d", strtotime("+1 day"));
 
             } else if ($plan_id == 'epic_in_pl_2') {
-                $billingInterval = 1;
-                $billingCycle = 'DAILY';
+                $billingInterval = 3;
+                $billingCycle = 'MONTHLY';
                 $newstartdate = date("Y-m-d");
-                $endstartdate = date("Y-m-d", strtotime("+1 day"));
+                $endstartdate = date("Y-m-d", strtotime("+3 month -1 day"));
             } else if ($plan_id == 'epic_in_pl_3') {
-                $billingInterval = 1;
-                $billingCycle = 'DAILY';
+                $billingInterval = 6;
+                $billingCycle = 'MONTHLY';
                 $newstartdate = date("Y-m-d");
-                $endstartdate = date("Y-m-d", strtotime("+1 day"));
+                $endstartdate = date("Y-m-d", strtotime("+6 month -1 day"));
             } else {
                 $billingInterval = 1;
-                $billingCycle = 'DAILY';
+                $billingCycle = 'YEARLY';
                 $newstartdate = date("Y-m-d");
-                $endstartdate = date("Y-m-d", strtotime("+1 day"));
+                $endstartdate = date("Y-m-d", strtotime("+1 year"));
             }
             $parameters['si'] = 1;
             $parameters['api_version'] = "7";
@@ -442,24 +440,24 @@ class SubscriptionController extends Controller
                     $i = 0;
                     foreach ($val['benifits'] as $bn => $bnval) {
                         $html .= '<li>
-					<a href="#">
-						<span class="off-image">
-						<img src="' . $bnval['vendor_image'] . '" alt=""></span>
-						<div class="ac-content">
-							<div class="left">
-								<div class="circle-logo">
+                    <a href="#">
+                        <span class="off-image">
+                        <img src="' . $bnval['vendor_image'] . '" alt=""></span>
+                        <div class="ac-content">
+                            <div class="left">
+                                <div class="circle-logo">
 
-								</div>
-								<span>Exc. Offer</span>
-							</div>
-							<div class="right">
-								<h5>25% OFF</h5>
-								<p id="vname">' . $bnval['vendor_name'] . '</p>
-								<span>Valid until 03 March 2022</span>
-							</div>
-						</div>
-					</a>
-				</li>';
+                                </div>
+                                <span>Exc. Offer</span>
+                            </div>
+                            <div class="right">
+                                <h5>25% OFF</h5>
+                                <p id="vname">' . $bnval['vendor_name'] . '</p>
+                                <span>Valid until 03 March 2022</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>';
                         $i++;
                     }
 
