@@ -22,7 +22,7 @@ class SearchController extends Controller
     public function __construct()
     {
 
-        $searchText = 'Kartik';
+        $searchText = '';
         $kidsMode = session()->has('kidsMode') ? session()->get('kidsMode') : false;
         if ($kidsMode == true) {
             $postData = [
@@ -35,11 +35,16 @@ class SearchController extends Controller
             ];
         }
         $searchResult = CurlAPI("pages/search", 'POST', $postData, 1);
-        $bla = array_column($searchResult['contents'], 'title');
+
         $newCategoryMapping = [];
-        foreach ($bla as $category) {
-            $newCategoryMapping[$category] = $category . 'Result';
+        if ($searchResult && (@$searchResult['success'] == 'true' || @$searchResult['success'] == true)) {
+            $bla = array_column($searchResult['contents'], 'title');
+        
+            foreach ($bla as $category) {
+                $newCategoryMapping[$category] = $category . 'Result';
+            }
         }
+        
         $this->categoryMapping = $newCategoryMapping;
     }
 

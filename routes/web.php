@@ -231,6 +231,7 @@ foreach ($lang as $val) {
         Route::any('payment/failure', [AndroidPaymentController::class, 'failure'])->name('payment/failure');
         Route::get('distro-tv', [DistroTvController::class, 'index'])->name('distro-tv');
         Route::get('distro-tv/{id}', [DistroTvController::class, 'distrotvvideo'])->name('distrotvvideo');
+        Route::any('distro-tv-search', [DistroTvController::class, 'search'])->name('distro-tv-search');
     });
 
     Route::group(['prefix' => $prefix, 'middleware' => 'checkUserAuthToken'], function () {
