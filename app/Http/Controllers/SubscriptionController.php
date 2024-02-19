@@ -167,7 +167,7 @@ class SubscriptionController extends Controller
             'order_value' => $result['actual_price'],
             'x_country' => @$countrycode,
         ];
-        $this->payuLog('Create Order Api Request', false, [$postData]);
+        $this->payuLog('Create Order Api Request', false, ['endpoint' => 'subscriptions/createorder', 'data' => $postData]);
 
         $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2, false, true);
 
@@ -283,7 +283,7 @@ class SubscriptionController extends Controller
         
         // test amount logic
         $parameters['status'] = "";
-        if (env('DEV_AMT') == true && ($userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025' || $userid == 'newrahul@mailinator.com' || $userid == 'newprathamesh@mailinator.com' || $userid == '917977495428' || $userid == '918169554956' || $userid == 'nilesh@mailinator')) {
+        if (env('DEV_AMT') == true && ($userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025' || $userid == 'newrahul@mailinator.com' || $userid == 'newprathamesh@mailinator.com' || $userid == '917977495428' || $userid == '918169554956' || $userid == 'nilesh@mailinator.com')) {
             $totalamount = "1";
         }
         $parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => @$userData['name'], 'email' => @$userData['email'], 'phone' => @$userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
@@ -342,8 +342,12 @@ class SubscriptionController extends Controller
             if ($plan_id == 'epic_in_pl_1') {
                 $billingInterval = 1;
                 $newstartdate = date("Y-m-d");
-                $billingCycle = 'MONTHLY';
-                $endstartdate = date("Y-m-d", strtotime("+1 month -1 day"));
+                // $billingCycle = 'MONTHLY';
+                // $endstartdate = date("Y-m-d", strtotime("+1 month -1 day"));
+
+                $billingCycle = 'DAILY';
+                $endstartdate = date("Y-m-d", strtotime("+1 day"));
+
             } else if ($plan_id == 'epic_in_pl_2') {
                 $billingInterval = 3;
                 $billingCycle = 'MONTHLY';
