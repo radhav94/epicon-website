@@ -106,6 +106,7 @@ class PageDetailController extends Controller
                 'title' => $meta_title,
                 'description' => @$content['description']
             ];
+            
             $nextmovieArray =[];
             $nextval=[];
             if($content['content_type'] == "VIDEO"){
