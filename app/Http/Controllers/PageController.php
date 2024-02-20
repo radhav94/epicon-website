@@ -436,7 +436,13 @@ class PageController extends Controller
 
             if ($found == true) {
                 $story_list['content_list'] = array_values($story_list['content_list']);
-                return view('pages.story.storypage', compact('story_list', 'story_id'));
+                $meta = [
+                    'title' => @$story_list['content_list'][0]['title'],
+                    'description' => @$story_list['content_list'][0]['short_description'],
+                    'image' => @$story_list['content_list'][0]['story_image'],
+                ];
+
+                return view('pages.story.storypage', compact('story_list', 'story_id','meta'));
             }
         }
 
