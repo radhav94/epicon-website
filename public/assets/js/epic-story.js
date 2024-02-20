@@ -90,6 +90,7 @@ $(document).ready(function () {
     })
 
     $(document).on('click', '.nextStoryBtn', function () {
+        $(".story-share-option").removeClass("d-flex");
         if (currentStep < $(".story-modal").length) {
             currentStep++;
             showStoryPopup(currentStep);
@@ -101,6 +102,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.previousStoryBtn', function () {
+        $(".story-share-option").removeClass("d-flex");
         if (currentStep > 1) {
             $(".progressBar progress:nth-child(" + currentStep + ")").val(0);
             currentStep--;
