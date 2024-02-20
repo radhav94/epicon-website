@@ -244,21 +244,26 @@ function getCookie(cname) {
 }
 
 // distro search
-// const dback = document.getElementById("dback");
-// $(".distro-search-input").on("click",function() {
-//     $(".distro-search-main").addClass("dsm-style");
-//     if ($(".distro-back-btn").css({"display":"none"})){
-//         $(".distro-back-btn").css({"display":"block"})
-//     }
-// });
 
 if ($('.distro-search-main').length) {
 
     $('.distro-search-input').val('');
+
+    $(".distro-search-input").on("click",function() {
+        $(".distro-search-main").addClass("dsm-style");
+        if ($(".distro-back-btn").css({"display":"none"})){
+            $(".distro-back-btn").css({"display":"block"})
+        }
+    });
+
     $("#distBack").on("click", function () {
         $(".distro-search-main").removeClass("dsm-style");
         $(this).css({ "display": "none" });
+        $(".distro-search-input").val("");
+        $(".distro-search-select, .distro-search-show, .distro-search-clear").hide();
+        $('.distro-search-show').html('');
     });
+    
     $(".distro-filter").on("click", function () {
         if (!this.value) {
             $(".distro-search-select").toggle();
