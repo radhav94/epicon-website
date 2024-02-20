@@ -5,7 +5,7 @@ $(document).ready(function () {
     if (player) {
         player.muted = false;
     }
-
+});
     function changeMuteIcon() {
         if (player) {
             if (player.muted) {
@@ -33,7 +33,7 @@ $(document).ready(function () {
     $(document).on('click', ".storyBtn", function () {
         var currentURL = window.location.href;
         var arr = currentURL.split('/')[3];
-        // alert(currentURL+"============"+arr);
+
         if (arr == '' || arr == null || arr == undefined) {
             var mainurl = currentURL + '#';
             window.history.pushState('forward', null, mainurl);
@@ -111,8 +111,13 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.epic-short-close', function () {
-        $(".modal").modal('hide');
-        $('#epicShots .modal-content').html("");
+        if ($('.storyShareMod').length) {
+            window.location.href = $(this).data('url');
+            return false;
+        } else {
+            $(".modal").modal('hide');
+            $('#epicShots .modal-content').html("");
+        }
     });
 
     $('#epicShots').on('hidden.bs.modal', function (e) {
@@ -298,8 +303,24 @@ $(document).ready(function () {
         }
     }
 
-});
+
 
 $(document).on("click",'.story-share-btn',function(){
     $(".story-share-option").toggleClass("d-flex");
 });
+
+$(document).on("click",'.s-copy-s',function(e){
+    e.preventDefault();
+    
+    var textToCopy = $(this).data('url');
+    navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+        //   console.log('Text copied to clipboard');
+        })
+        .catch(err => {
+          console.error('Error copying text: ', err);
+        });
+
+    // $('.s-copy-s').attr("title", "Copied!").tooltip("_fixTitle").tooltip("show").attr("title", "Copied!").tooltip("_fixTitle");
+   
+  });

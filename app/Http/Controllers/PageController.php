@@ -17,7 +17,7 @@ class PageController extends Controller
 
     
     public function index($slug = 'home-v2')
-    {
+    {    
         // dd(session()->get('user_token'));
         $pageslug = strtolower($slug);
 
@@ -416,5 +416,30 @@ class PageController extends Controller
 
         curl_close($curl);
         return json_decode($response, true);
+    }
+
+    public function storyPage($story_id, $slug)
+    {
+        $story_list = $this->epicShots($story_id);
+        $content_list = $story_list['content_list'] ?? [];
+
+        if ($content_list) {
+            $found = false;
+
+            foreach ($content_list as $key => $value) {
+                if ($value['slug'] == $slug) {
+                    $found = true;
+                } else {
+                    unset($story_list['content_list'][$key]);
+                }
+            }
+
+            if ($found == true) {
+                $story_list['content_list'] = array_values($story_list['content_list']);
+                return view('pages.story.storypage', compact('story_list', 'story_id'));
+            }
+        }
+
+        return redirect()->to(url('/'));
     }
 }

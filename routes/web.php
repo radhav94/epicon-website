@@ -84,7 +84,8 @@ Route::any('payu/webhook',[SubscriptionController::class, 'payuWebhook']);
 
 
 Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.loadmore');
-Route::GET('ajaxStoryData', [PageController::class, 'ajaxStoryData'])->name('ajaxStoryData');
+Route::get('ajaxStoryData', [PageController::class, 'ajaxStoryData'])->name('ajaxStoryData');
+Route::get('story/{id}/{slug}', [PageController::class, 'storyPage'])->name('storyPage');
 Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
 Route::post('clap', [PageDetailController::class, 'clap'])->name('clap');
 
