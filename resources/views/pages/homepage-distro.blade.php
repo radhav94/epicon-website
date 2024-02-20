@@ -39,6 +39,9 @@
     .distro-slider .slick-list{
         padding: 15px 0;
     }
+    .distro-search-img img{
+        width: 100%;
+    }
     .npq.active
     {
     background: #fff;
