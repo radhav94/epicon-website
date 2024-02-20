@@ -1,5 +1,5 @@
 <section class="distro-main w-100 position-relative">
-    
+
     <div class="distro-banner">
     @foreach ($value['content'] as $key => $val)
   
@@ -44,3 +44,30 @@
         <div class="slide-dist-dots"></div>
     </div>
 </section>
+
+
+{{-- Start Distro Search --}}
+<div class="distro-search-main">
+    <button class="distro-back-btn" id="distBack">
+        <img class="dis-img-toggle" src="{{asset('assets/img/distro-filter-arrow.svg')}}" alt="icon">
+    </button>
+    <div class="dist-wrap position-relative">
+        <div class="distro-search-filter">
+            <input class="distro-search-input" type="text" placeholder="Search">
+            <button class="distro-search-clear" style="display: none;">
+                <img src="{{asset('assets/img/distro-search-text-clear.svg')}}" alt="icon">
+            </button>
+            <button class="distro-filter">
+                <img class="dis-img-toggle" src="{{asset('assets/img/distro-filter-arrow.svg')}}" alt="icon">
+            </button>
+        </div>
+        <div class="distro-search-show" style="display: none;">
+            
+        </div>
+        <div class="distro-search-select " style="display: none;">
+            <h1 class="npq"  data-type="genre">Genre</h1>
+            <h1 class="npq active" data-type="title">Title</h1>
+        </div>
+    </div>
+</div>
+{{-- End Distro Search --}}

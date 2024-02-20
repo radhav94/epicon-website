@@ -39,6 +39,12 @@
     .distro-slider .slick-list{
         padding: 15px 0;
     }
+    .npq.active
+    {
+    background: #fff;
+    color: #000;
+    padding: 4px;
+    }
 </style>
 @stop
 
