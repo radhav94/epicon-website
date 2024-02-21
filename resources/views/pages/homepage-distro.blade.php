@@ -48,6 +48,7 @@
     color: #000;
     padding: 4px;
     }
+    .dis-img-toggle{display: none;}
 </style>
 @stop
 

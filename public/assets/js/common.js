@@ -268,7 +268,7 @@ if ($('.distro-search-main').length) {
         if (!this.value) {
             $(".distro-search-select").toggle();
         }
-        $(".distro-filter img").toggleClass("dis-img-toggle");
+        // $(".distro-filter img").toggleClass("dis-img-toggle");
     });
     $(".distro-search-clear").on("click", function () {
         $(".distro-search-input").val("");
