@@ -323,6 +323,9 @@ $(document).on("click",'.s-copy-s',function(e){
           console.error('Error copying text: ', err);
         });
 
-    // $('.s-copy-s').attr("title", "Copied!").tooltip("_fixTitle").tooltip("show").attr("title", "Copied!").tooltip("_fixTitle");
-   
+
+    $(".copy-story").css({"opacity":"1"});
+    setTimeout(function() {
+        $(".copy-story").css({"opacity":"0"});
+    }, 2000);
   });

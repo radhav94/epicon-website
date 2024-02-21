@@ -83,11 +83,12 @@ $content_list = $story_list['content_list'] ?? [];
         </button>
 
         <div class="story-share-option">
-            <a href="#"  class="s-copy-s" data-url="{{ $shareUrl }}" data-toggle="tooltip" title="Copy">
+            <a href="#"  class="s-copy-s position-relative" data-url="{{ $shareUrl }}" data-toggle="tooltip" title="Copy">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M15.24 2H11.346C9.582 2 8.184 2 7.091 2.148C5.965 2.3 5.054 2.62 4.336 3.341C3.617 4.062 3.298 4.977 3.147 6.107C3 7.205 3 8.608 3 10.379V16.217C3 17.725 3.92 19.017 5.227 19.559C5.16 18.649 5.16 17.374 5.16 16.312V11.302C5.16 10.021 5.16 8.916 5.278 8.032C5.405 7.084 5.691 6.176 6.425 5.439C7.159 4.702 8.064 4.415 9.008 4.287C9.888 4.169 10.988 4.169 12.265 4.169H15.335C16.611 4.169 17.709 4.169 18.59 4.287C18.326 3.61337 17.8652 3.03489 17.2676 2.62696C16.6701 2.21902 15.9635 2.00054 15.24 2Z" fill="white"/>
                     <path d="M6.6001 11.3963C6.6001 8.67028 6.6001 7.30728 7.4441 6.46028C8.2871 5.61328 9.6441 5.61328 12.3601 5.61328H15.2401C17.9551 5.61328 19.3131 5.61328 20.1571 6.46028C21.0001 7.30728 21.0001 8.67028 21.0001 11.3963V16.2163C21.0001 18.9423 21.0001 20.3053 20.1571 21.1523C19.3131 21.9993 17.9551 21.9993 15.2401 21.9993H12.3601C9.6451 21.9993 8.2871 21.9993 7.4441 21.1523C6.6001 20.3053 6.6001 18.9423 6.6001 16.2163V11.3963Z" fill="white"/>
                 </svg>
+                <span class="copy-story position-absolute">Copied!</span>
             </a>
             <a href="https://www.facebook.com/sharer.php?u={{ $shareUrl }}" target="_blank" class="s-fb-s">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
