@@ -8050,7 +8050,7 @@ audio::-webkit-media-controls-play-button {
         background-repeat: no-repeat;
         background-position: left 10px center;
         padding-left: 50px;
-        padding-right: 108px;
+        padding-right: 94px;
     }
     .distro-search-clear{
         background: transparent;
@@ -8070,6 +8070,9 @@ audio::-webkit-media-controls-play-button {
         padding-left: 15px;
         position: absolute;
         right: 10px;
+        img{
+            transition: 0.3s;
+        }
         .dis-img-toggle{
             transform: rotate(180deg);
             transition: 0.3s;
@@ -8140,12 +8143,13 @@ audio::-webkit-media-controls-play-button {
     font-weight: 600;
     @include line-clamp(2);
     color: #fff;
+    margin-bottom: 3px;
 }
 .distro-search-text{
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     @include line-clamp(2);
-    color: #fff;
+    color: rgba($color: rgb(255 255 255), $alpha: 0.8);
     margin-bottom: 0;
 }
 .distro-search-select{

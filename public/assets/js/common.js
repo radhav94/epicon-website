@@ -270,6 +270,10 @@ if ($('.distro-search-main').length) {
         }
         $(".distro-filter img").toggleClass("dis-img-toggle");
         $(".distro-search-show").hide();
+        $(".distro-search-main").addClass("dsm-style");
+        if ($(".distro-back-btn").css({"display":"none"})){
+            $(".distro-back-btn").css({"display":"block"})
+        }
     });
     $(".distro-search-clear").on("click", function () {
         $(".distro-search-input").val("");
