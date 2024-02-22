@@ -8019,6 +8019,7 @@ audio::-webkit-media-controls-play-button {
     margin-block: 40px;
     margin-left: 40px;
     z-index: 1;
+    position: relative;
     @media (max-width: 767px) {
         width: 100%;
         margin-left: 0px;
