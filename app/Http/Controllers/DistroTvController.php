@@ -95,11 +95,13 @@ class DistroTvController extends Controller
         if($searchTerm){
             if($type == 'title'){
                 $postData = [
-                    'searchTerm' =>  $searchTerm
+                    'searchTerm' =>  $searchTerm,
+                    'limit' =>  '25'
                 ];
             }else{
                 $postData = [
-                    'root_genre' =>  $searchTerm
+                    'root_genre' =>  $searchTerm,
+                    'limit' =>  '25'
                 ];
             }
     
