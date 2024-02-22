@@ -8039,6 +8039,10 @@ audio::-webkit-media-controls-play-button {
     background: linear-gradient(45deg, #AC2EC7 0%, #90E157 25%, #1CA8EC 50%, #50C0AE 75%, #FEC219 100%);
     position: relative;
     z-index: 99;
+    @media (max-width: 767px) {
+       height: 40px;
+       border-radius: 6px;
+    }
     input{
         width: calc(100% - 4px);
         height: calc(100% - 4px);
@@ -8051,12 +8055,16 @@ audio::-webkit-media-controls-play-button {
         background-position: left 10px center;
         padding-left: 50px;
         padding-right: 94px;
+        @media (max-width: 767px) {
+            border-radius: 6px;
+         }
     }
     .distro-search-clear{
         background: transparent;
         border: none;
         position: absolute;
         right: 60px;
+        display: flex;
     }
     .distro-filter{
         width: 60px;
