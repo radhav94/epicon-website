@@ -8190,10 +8190,10 @@ audio::-webkit-media-controls-play-button {
 }
 .dsm-style{
     @media (max-width: 767px) {
-        height: 100dvh;
+        height: calc(100dvh - 0px);
         background-color: #000000b3;
         backdrop-filter: blur(15px);
-        z-index: 999;
+        z-index: 9999;
         animation-name: gotop;
         animation-duration: 0.3s;
         animation-timing-function: ease-in;
