@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Blade;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -19,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {   
+        Blade::directive('csrf', function () {
+            return '<input type="hidden" name="_token" value="' . csrf_token() . '">';
+        });
+
         $env = strtoupper(env('APP_ENV'));
         if ($env == 'DEV' || $env == 'STAGE' || $env == 'PRODUCTION') {
             URL::forceScheme('https');
