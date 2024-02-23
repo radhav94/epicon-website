@@ -19,7 +19,7 @@ $isMoblile      = isMobliDevice();
             <div class="carousel-card">
                 {!! freePremiumDiv($val) !!}
                 <div class="carousel-items position-relative w-100">
-                    <a href="{{ isset($val['game_url']) ? @$val['game_url'] : getContentUrl($val) }}" onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}" target="{{ isset($val['game_url']) ? '_blank' : '' }}">
+                    <a href="{{ isset($val['game_url']) ? @$val['game_url'] : getContentUrl($val) }}" onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}" {{ isset($val['game_url']) ? 'target="_blank"' : '' }}>
                         <img src="{{ $banner_img }}" alt="">
                     </a>
                     <div class="carousel-items-content position-absolute">
