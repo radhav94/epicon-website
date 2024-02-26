@@ -1,37 +1,37 @@
 @section('style')
-<style>
-    /* Chrome, Safari, Edge, Opera */
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
 
-    /* Firefox */
-    input[type=number] {
-        -moz-appearance: textfield;
-    }
-    .stdisdcode {
-        display: none;  
-    }
-    .input-field select{
-        width: auto!important;
-        padding-right: 40px;
-        position: absolute;
-        bottom: 0;
-        top: 0;
-        color:#fff;
-        background-image: url("../img/drop-down-arrow-select-white.svg");
-        background-repeat: no-repeat;
-        background-position: center right 15px;
-        background-color: #000;
-    }
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
 
-</style>
+        .stdisdcode {
+            display: none;
+        }
+
+        .input-field select {
+            width: auto !important;
+            padding-right: 40px;
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            color: #fff;
+            background-image: url("../img/drop-down-arrow-select-white.svg");
+            background-repeat: no-repeat;
+            background-position: center right 15px;
+            background-color: #000;
+        }
+    </style>
 @stop
 <!-- login model -->
-<div class="modal fade" id="login-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-hidden="true">
+<div class="modal fade" id="login-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered px-3">
         <div class="modal-content">
             <div class="modal-body">
@@ -43,24 +43,29 @@
                         <div class="login-carousel px-2">
                             <div>
                                 <h5 class="text-white text-start">Get much more than just an App</h5>
-                                <p class="text-white text-start">Watch Enthralling Shows, Movies, Live TV, Listen to Podcasts &
+                                <p class="text-white text-start">Watch Enthralling Shows, Movies, Live TV, Listen to
+                                    Podcasts &
                                     Play Games</p>
                             </div>
                             <div>
                                 <h5 class="text-white text-start">One Subscription multiple devices</h5>
-                                <p class="text-white text-start">Stream on smartphone,tab,Smart TV effortlessly with one subscription</p>
+                                <p class="text-white text-start">Stream on smartphone,tab,Smart TV effortlessly with one
+                                    subscription</p>
                             </div>
                             <div>
-                                <h5 class="text-white text-start">Kids Safe  Content </h5>
-                                <p class="text-white text-start">Kids content control in your hands with Pin-Based logins</p>
+                                <h5 class="text-white text-start">Kids Safe Content </h5>
+                                <p class="text-white text-start">Kids content control in your hands with Pin-Based
+                                    logins</p>
                             </div>
                             <div>
-                                <h5 class="text-white text-start">Exclusive EPIC ON Originals  </h5>
-                                <p class="text-white text-start">Exclusive Originals only Available on the App & Web , groove to the tunes of Tatlubaaz and many more</p>
+                                <h5 class="text-white text-start">Exclusive EPIC ON Originals </h5>
+                                <p class="text-white text-start">Exclusive Originals only Available on the App & Web ,
+                                    groove to the tunes of Tatlubaaz and many more</p>
                             </div>
                             <div>
                                 <h5 class="text-white text-start">Jaw-dropping Reward Store </h5>
-                                <p class="text-white text-start">More than 500+ brands listed on the platform for you to win every-second</p>
+                                <p class="text-white text-start">More than 500+ brands listed on the platform for you to
+                                    win every-second</p>
                             </div>
                         </div>
                     </div>
@@ -104,19 +109,21 @@
                                             fill="#070707"></path>
                                     </svg>
                                 </button>
-                                <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white">Login with password</button>
+                                <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white">Login with
+                                    password</button>
                                 <h6 class="mb-4 text-white text-center mt-4">For Existing User only</h6>
                                 <div class="lg-social">
                                     <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
                                             alt=""></a>
-                                    <a href="{{route('login.twitter')}}"><img src="{{ asset('/img/lg-twitter-icon.svg') }}"
-                                            alt=""></a>
-                                    <a href="{{route('login.google')}}"><img src="{{ asset('/img/lg-google-icon.svg') }}"
-                                            alt=""></a>
+                                    <a href="{{ route('login.twitter') }}"><img
+                                            src="{{ asset('/img/lg-twitter-icon.svg') }}" alt=""></a>
+                                    <a href="{{ route('login.google') }}"><img
+                                            src="{{ asset('/img/lg-google-icon.svg') }}" alt=""></a>
                                     {{-- <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
                                             alt=""></a> --> --}}
                                 </div>
-                                <p class="get-help mt-5 small">Having trouble signing in? <a href="{{route('feedback')}}">Get Help</a>
+                                <p class="get-help mt-5 small">Having trouble signing in? <a
+                                        href="{{ route('feedback') }}">Get Help</a>
                                 </p>
                             </form>
                         </div>
@@ -131,18 +138,18 @@
                                 <input type="hidden" name="otp_pin" id="otp_pin" value="">
                                 <div class="childpin">
                                     <div class="childpin-input no-number-arrows">
-                                        <input class="mx-1 child-box" type="text" min="0" max="9"
-                                            maxlength="1" id="childpin1" name="childpin1">
-                                        <input class="mx-1 child-box" type="text" min="1" max="9"
-                                            maxlength="1" id="childpin2" name="childpin2">
-                                        <input class="mx-1 child-box" type="text" min="1" max="9"
-                                            maxlength="1" id="childpin3" name="childpin3">
-                                        <input class="mx-1 child-box" type="text" min="1" max="9"
-                                            maxlength="1" id="childpin4" name="childpin4">
-                                        <input class="mx-1 child-box" type="text" min="1" max="9"
-                                            maxlength="1" id="childpin5" name="childpin5">
-                                        <input class="mx-1 child-box" type="text" min="1" max="9"
-                                            maxlength="1" id="childpin6" name="childpin6">
+                                        <input class="mx-1 child-box" type="tel" maxlength="1" id="childpin1"
+                                            name="childpin1">
+                                        <input class="mx-1 child-box" type="tel" maxlength="1" id="childpin2"
+                                            name="childpin2">
+                                        <input class="mx-1 child-box" type="tel" maxlength="1" id="childpin3"
+                                            name="childpin3">
+                                        <input class="mx-1 child-box" type="tel" maxlength="1" id="childpin4"
+                                            name="childpin4">
+                                        <input class="mx-1 child-box" type="tel" maxlength="1" id="childpin5"
+                                            name="childpin5">
+                                        <input class="mx-1 child-box" type="tel" maxlength="1" id="childpin6"
+                                            name="childpin6">
                                     </div>
                                 </div>
                                 <div class="text-danger" id="validation-result" style="color: red;">
@@ -154,7 +161,8 @@
                                 <div class="text-danger" id="verifyotp-result" style="color: red;">
                                     <!-- Display validation result here -->
                                 </div>
-                                <button class="btn btn-primary bg-transparent" id="resendBtn" onclick="resendOTP()">Resend OTP</button>
+                                <button class="btn btn-primary bg-transparent" id="resendBtn"
+                                    onclick="resendOTP()">Resend OTP</button>
                                 <button class="login-btn verify-btn mt-4" onclick="login_start(this)">
                                     Verify OTP
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -167,7 +175,8 @@
                                             fill="#070707" />
                                     </svg>
                                 </button>
-                                <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white">Login with password</button>
+                                <button class="login-btn login-btn-pwd mt-0 bg-transparent text-white">Login with
+                                    password</button>
                             </form>
                         </div>
                         <div class="login-popup-modal screen-register">
@@ -234,14 +243,15 @@
                                         style="font-size: 12px;"></span>
                                 </div>
                                 <div class="input-field w-100 mb-3">
-                                    <input class="form-control date_picker" type="text" id="dob" name="dob" placeholder="Date Of Birth" required readonly>
+                                    <input class="form-control date_picker" type="text" id="dob"
+                                        name="dob" placeholder="Date Of Birth" required readonly>
                                 </div>
                                 <div class="input-field text-white w-100 mb-3">
                                     <select id="gender" name="gender" style="display:block;">
                                         <option value="">Gender</option>
                                         <option value="Female">Female</option>
                                         <option value="Male">Male</option>
-                                        {{--<option value="Others">Others</option>--}}
+                                        {{-- <option value="Others">Others</option> --}}
                                     </select>
                                     <span class="text-danger text-start d-flex mt-1 error" id="gender-error"
                                         style="font-size: 12px;"></span>
@@ -261,7 +271,9 @@
                                             fill="#070707"></path>
                                     </svg>
                                 </button>
-                                <p class="get-help mt-5 small">By clicking on Register, you agree to our <a href="{{ route('terms-of-use') }}">Terms & Conditions</a> and <a href="{{ route('privacy') }}">Privacy Policy</a></p>
+                                <p class="get-help mt-5 small">By clicking on Register, you agree to our <a
+                                        href="{{ route('terms-of-use') }}">Terms & Conditions</a> and <a
+                                        href="{{ route('privacy') }}">Privacy Policy</a></p>
                             </form>
                         </div>
 
@@ -269,18 +281,23 @@
                             <form method="POST" name="login-form" id="login-form-id">
                                 <h5 class="mb-4 text-white">Login with Password</h5>
                                 <div class="input-field w-100 mb-3">
-                                    <select class="uk-select select-control input__field stdisdcode" name="stdisdcode">
+                                    <select class="uk-select select-control input__field stdisdcode"
+                                        name="stdisdcode">
                                         {!! getCountryStateDataInHtml() !!}
                                     </select>
                                     <input class="form-control emailText" id="mobilenumber" name="mobilenumber"
-                                        placeholder="Email or Mobile Number" value="<?php if(isset($_COOKIE["user_id"])) { echo $_COOKIE["user_id"]; } ?>">
+                                        placeholder="Email or Mobile Number" value="<?php if (isset($_COOKIE['user_id'])) {
+                                            echo $_COOKIE['user_id'];
+                                        } ?>">
                                     <input type="hidden" name="signup_method" class="signup_method" value="">
                                     <span class="text-danger text-start d-flex mt-1 error" id="mobile-error"
                                         style="font-size: 12px;"></span>
                                 </div>
                                 <div class="input-field w-100 mb-3">
                                     <input class="form-control" id="login_pwd" name="login_pwd" type="password"
-                                        placeholder="Enter Password" value="<?php if(isset($_COOKIE["user_password"])) { echo $_COOKIE["user_password"]; } ?>">
+                                        placeholder="Enter Password" value="<?php if (isset($_COOKIE['user_password'])) {
+                                            echo $_COOKIE['user_password'];
+                                        } ?>">
                                     <div class="eye-toggle" data-target="login_pwd">
                                         <a class="eye eye-open-login_pwd" style="display: none;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16"
@@ -315,7 +332,7 @@
                                             Remember me
                                         </label>
                                     </div>
-                                    <button type="button" 
+                                    <button type="button"
                                         class="bg-transparent text-white p-0 small w-auto border-0 forgot-pwd-btn">Forgot
                                         Password?</button>
                                 </div>
@@ -331,20 +348,23 @@
                                             fill="#070707"></path>
                                     </svg>
                                 </button>
-                                <button class="login-btn login-btn-otp mt-0 bg-transparent text-white">Login using OTP</button>
-                                <button class="login-btn login-btn-otp mt-0 bg-transparent text-white">New User ? Sign Up</button>
+                                <button class="login-btn login-btn-otp mt-0 bg-transparent text-white">Login using
+                                    OTP</button>
+                                <button class="login-btn login-btn-otp mt-0 bg-transparent text-white">New User ? Sign
+                                    Up</button>
                                 <h6 class="mb-4 text-white text-center mt-4 small">For Existing User only</h6>
                                 <div class="lg-social">
-                                    <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
-                                            alt=""></a>
-                                    <a href="{{route('login.twitter')}}"><img src="{{ asset('/img/lg-twitter-icon.svg') }}"
-                                            alt=""></a>
-                                    <a href="{{route('login.google')}}"><img src="{{ asset('/img/lg-google-icon.svg') }}"
-                                            alt=""></a>
+                                    <a href="{{ url('/login/facebook') }}"><img
+                                            src="{{ asset('/img/lg-fb-icon.svg') }}" alt=""></a>
+                                    <a href="{{ route('login.twitter') }}"><img
+                                            src="{{ asset('/img/lg-twitter-icon.svg') }}" alt=""></a>
+                                    <a href="{{ route('login.google') }}"><img
+                                            src="{{ asset('/img/lg-google-icon.svg') }}" alt=""></a>
                                     {{-- <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
                                             alt=""></a> --> --}}
                                 </div>
-                                <p class="get-help mt-4 small">Having trouble signing in? <a href="{{route('feedback')}}">Get
+                                <p class="get-help mt-4 small">Having trouble signing in? <a
+                                        href="{{ route('feedback') }}">Get
                                         Help</a></p>
                             </form>
                         </div>
@@ -353,7 +373,8 @@
                             <form method="POST" name="forgot-pwd-form-id" id="forgot-pwd-form-id">
                                 <h5 class="mb-4 text-white">Forgot Password</h5>
                                 <div class="input-field w-100 mb-3">
-                                    <select class="uk-select select-control input__field stdisdcode" name="stdisdcode">
+                                    <select class="uk-select select-control input__field stdisdcode"
+                                        name="stdisdcode">
                                         {!! getCountryStateDataInHtml() !!}
                                     </select>
                                     <input class="form-control emailText" id="forgot-name" name="forgot-name"
@@ -396,18 +417,18 @@
                                 <input type="hidden" name="otppin" id="otppin" value="">
                                 <div class="childpin">
                                     <div class="childpin-input">
-                                        <input class="mx-1 child-box1 backpress" type="text" min="0" max="9"
-                                            maxlength="1" id="childpin11" name="childpin11">
-                                        <input class="mx-1 child-box1 backpress" type="text" min="1" max="9"
-                                            maxlength="1" id="childpin22" name="childpin22">
-                                        <input class="mx-1 child-box1 backpress" type="text" min="1" max="9"
-                                            maxlength="1" id="childpin33" name="childpin33">
-                                        <input class="mx-1 child-box1 backpress" type="text" min="1" max="9"
-                                            maxlength="1" id="childpin44" name="childpin44">
-                                        <input class="mx-1 child-box1 backpress" type="text" min="1" max="9"
-                                            maxlength="1" id="childpin55" name="childpin55">
-                                        <input class="mx-1 child-box1 backpress" type="text" min="1" max="9"
-                                            maxlength="1" id="childpin66" name="childpin66">
+                                        <input class="mx-1 child-box1 backpress" type="tel" maxlength="1"
+                                            id="childpin11" name="childpin11">
+                                        <input class="mx-1 child-box1 backpress" type="tel" maxlength="1"
+                                            id="childpin22" name="childpin22">
+                                        <input class="mx-1 child-box1 backpress" type="tel" maxlength="1"
+                                            id="childpin33" name="childpin33">
+                                        <input class="mx-1 child-box1 backpress" type="tel" maxlength="1"
+                                            id="childpin44" name="childpin44">
+                                        <input class="mx-1 child-box1 backpress" type="tel" maxlength="1"
+                                            id="childpin55" name="childpin55">
+                                        <input class="mx-1 child-box1 backpress" type="tel" maxlength="1"
+                                            id="childpin66" name="childpin66">
                                     </div>
                                 </div>
                                 <div class="text-danger" id="validation-forgot-result" style="color: red;">
@@ -419,7 +440,8 @@
                                 <div class="text-danger" id="verifyotp-forgot-result" style="color: red;">
                                     <!-- Display validation result here -->
                                 </div>
-                                <button class="bg-transparent rounded text-white" id="resendForgotBtn" onclick="resendForgotOTP()">Resend OTP</button>
+                                <button class="bg-transparent rounded text-white" id="resendForgotBtn"
+                                    onclick="resendForgotOTP()">Resend OTP</button>
                                 <button class="login-btn verify-forgot-btn mt-4" style="width: 280px;">
                                     Verify Email/Number
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -524,7 +546,7 @@
                             successfully registered with EPIC ON!</h4>
                         <p class="small text-white">Tell us what you’re interested in and we’ll do our best to give you
                             better recommendations </p>
-                        {{--<button class="login-btn interest-btn mt-4" style="width: 280px;">
+                        {{-- <button class="login-btn interest-btn mt-4" style="width: 280px;">
                             Choose Interests
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none">
@@ -541,25 +563,27 @@
                     <!-- successfully logged  start-->
                     <div class="login-popup-modal successfully-loged w-100 screen-sucess-logged">
 
-                        <img width="100" class="{{@$subplan['status']}}" src="{{ asset('/img/success-tick.png') }}" alt="">
-                        <h4 class="text-center text-white mt-3">Awesome! You have successfully logged in to EPIC ON {{@$subplan_status}}
+                        <img width="100" class="{{ @$subplan['status'] }}"
+                            src="{{ asset('/img/success-tick.png') }}" alt="">
+                        <h4 class="text-center text-white mt-3">Awesome! You have successfully logged in to EPIC ON
+                            {{ @$subplan_status }}
                         </h4>
                         <div class="no-subscription-user">
-                        <input type="hidden" id="redi-val" value="">  
-                        <button class="no-active-subscription mt-4 mb-4">No Active Subscription</button>
-                        <button class="login-btn subscription-btn mt-4 redi-subs" style="width: 280px;">
-                            Buy Subscription
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z"
-                                    fill="#070707" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z"
-                                    fill="#070707" />
-                            </svg>
-                        </button>
-                        <button class="login-btn skip-btn mt-0 bg-transparent text-white">Skip for now</button>
+                            <input type="hidden" id="redi-val" value="">
+                            <button class="no-active-subscription mt-4 mb-4">No Active Subscription</button>
+                            <button class="login-btn subscription-btn mt-4 redi-subs" style="width: 280px;">
+                                Buy Subscription
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z"
+                                        fill="#070707" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.9393 12L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z"
+                                        fill="#070707" />
+                                </svg>
+                            </button>
+                            <button class="login-btn skip-btn mt-0 bg-transparent text-white">Skip for now</button>
                         </div>
                     </div>
                 </div>
