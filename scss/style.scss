@@ -4015,11 +4015,10 @@ input {
          -moz-appearance: none;
         &:focus{
             box-shadow: none;
-
-        optain{
-
         }
-        }
+    }
+    select option{
+        color: #fff;
     }
     &.sel-bor{
         border-bottom: 1.249px solid #545454;
@@ -5330,7 +5329,7 @@ input {
         .earn-bottom{
             display: flex;
             width: 100%;
-            height: 100%;
+            height: 80px;
             padding: 15px;
             background: rgba(8, 8, 8, 0.40);
             color: $bg-white;
@@ -5376,7 +5375,7 @@ input {
             height: 81%;
             padding: 15px;
             margin: 0 auto;
-
+            cursor: pointer;
             .logo-coin{
                 background: #FF7817;
                 height: 120px;
@@ -6854,7 +6853,47 @@ input {
             progress {
                 height: 6px;
                 margin: 0 2px;
+                background: #000;
             }
+            progress::-webkit-progress-bar {
+                background: -webkit-linear-gradient(top, #ffffff00, #ffffff00 49%, #ffffff00 50%, #ffffff00);
+                border-radius: 15px;
+                padding: 0.5px;
+                text-align:left;
+                border: 1px solid rgba($color: rgb(255 255 255), $alpha: 0.3);
+            }
+            
+            progress::-moz-progress-bar {
+                background:
+                    -moz-linear-gradient(45deg, transparent, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%),
+                    -moz-linear-gradient(top, #FF8D06, #ff8c00 49%, #FF8D06 50%, #ff8c00);
+                border-radius: 15px;
+                text-align:left;
+                background-size: 25px 14px, 100% 100%, 100% 100%;
+                -moz-animation: move 5s linear 0 infinite;
+            }
+            
+            progress::-webkit-progress-value {
+                border-radius: 15px;
+                box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
+                background:
+                    -webkit-linear-gradient(45deg, transparent, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%),
+                    -webkit-linear-gradient(top, #FF8D06, #ff8c00 49%, #FF8D06 50%, #ff8c00);
+                background-size: 25px 14px, 100% 100%, 100% 100%;
+                -webkit-animation: move 5s linear 0 infinite;
+            }
+            
+            
+            @-webkit-keyframes move {
+                0% {background-position: 0px 0px, 0 0, 0 0}
+                100% {background-position: -100px 0px, 0 0, 0 0}
+            }
+            
+            @-moz-keyframes move {
+                0% {background-position: 0px 0px, 0 0, 0 0}
+                100% {background-position: -100px 0px, 0 0, 0 0}
+            }
+            
             .story-modal {
                 height: 100dvh;
                 display: flex;
@@ -8610,6 +8649,9 @@ audio::-webkit-media-controls-play-button {
 .live-tv-vidPlayer .plyr__progress__container,.live-tv-vidPlayer .plyr__controls__item:nth-child(1),.live-tv-vidPlayer .plyr__controls__item:nth-child(3),.live-tv-vidPlayer .plyr__time--current,.live-tv-vidPlayer .nextpopup{
     display:none!important;
 }
+.live-tv-vidPlayer .plyr .plyr__menu .plyr__menu__container > div button:nth-child(3){
+    display:none!important;
+}
 #kidsUrl{
     @media (max-width:767px) {
         display: none;
@@ -8641,5 +8683,15 @@ audio::-webkit-media-controls-play-button {
         width: 160px;
         height: 104px;
         flex-shrink: 0;
+    }
+}
+.library-title-center{
+    @media (max-width:767px) {
+        text-align: center;
+    }
+}
+.nav-center{
+    @media (max-width:767px) {
+        justify-content: center;
     }
 }
