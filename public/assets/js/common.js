@@ -300,13 +300,14 @@ if ($('.distro-search-main').length) {
         $('.distro-search-show').html('');
 
         var searchtext = $('.distro-search-input').val();
-        if (searchtext != "") {
-            $(".distro-search-clear").show();
-        } else {
-            $(".distro-search-clear").hide();
-        }
+        if (searchtext.length > 1) {
 
-        // if (searchtext.length > 2) {
+            if (searchtext != "") {
+                $(".distro-search-clear").show();
+            } else {
+                $(".distro-search-clear").hide();
+            }
+
             let type = $('.distro-search-select .npq.active').data('type');
             $.ajax({
                 url: APP_URL + "/distro-tv-search",
@@ -326,6 +327,6 @@ if ($('.distro-search-main').length) {
                     console.log("in error function");
                 }
             });
-        // }
+        }
     });
 }
