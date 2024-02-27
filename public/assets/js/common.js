@@ -243,3 +243,90 @@ function getCookie(cname) {
     return "";
 }
 
+// distro search
+
+if ($('.distro-search-main').length) {
+
+    $('.distro-search-input').val('');
+
+    $(".distro-search-input").on("click",function() {
+        $(".distro-search-main").addClass("dsm-style");
+        if ($(".distro-back-btn").css({"display":"none"})){
+            $(".distro-back-btn").css({"display":"block"})
+        }
+    });
+
+    $("#distBack").on("click", function () {
+        $(".distro-search-main").removeClass("dsm-style");
+        $(this).css({ "display": "none" });
+        $(".distro-search-input").val("");
+        $(".distro-search-select, .distro-search-show, .distro-search-clear").hide();
+        $('.distro-search-show').html('');
+    });
+    
+    $(".distro-filter").on("click", function () {
+        if (!this.value) {
+            $(".distro-search-select").toggle();
+        }
+        $(".distro-filter img").toggleClass("dis-img-toggle");
+        $(".distro-search-show").hide();
+        $(".distro-search-main").addClass("dsm-style");
+        if ($(".distro-back-btn").css({"display":"none"})){
+            $(".distro-back-btn").css({"display":"block"})
+        }
+    });
+    $(".distro-search-clear").on("click", function () {
+        $(".distro-search-input").val("");
+        $(".distro-search-select, .distro-search-show, .distro-search-clear").hide();
+        $('.distro-search-show').html('');
+    });
+
+    $('.distro-search-select .npq').click(function () {
+        $('.distro-search-select .npq').removeClass('active');
+        $(this).addClass('active');
+        $(".distro-search-input").val("");
+        $(".distro-search-select, .distro-search-show, .distro-search-clear").hide();
+        $('.distro-search-show').html('');
+    });
+
+    $(document).on('click', '.distro-s-li', function () {
+        let url = $(this).data('url');
+        window.location.href = url;
+        return;
+    });
+
+    $(".distro-search-input").on("keyup", function () {
+        $(".distro-search-show, .distro-search-select").hide();
+        $('.distro-search-show').html('');
+
+        var searchtext = $('.distro-search-input').val();
+        if (searchtext.length > 1) {
+
+            if (searchtext != "") {
+                $(".distro-search-clear").show();
+            } else {
+                $(".distro-search-clear").hide();
+            }
+
+            let type = $('.distro-search-select .npq.active').data('type');
+            $.ajax({
+                url: APP_URL + "/distro-tv-search",
+                type: 'POST',
+                data: { 'term': searchtext, 'type': type },
+                dataType: 'json',
+                async: true,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (data) {
+                    var response = data.payload.html;
+                    $(".distro-search-show").html(response);
+                    $(".distro-search-show").show();
+                },
+                error: function (xhr, status, error) {
+                    console.log("in error function");
+                }
+            });
+        }
+    });
+}

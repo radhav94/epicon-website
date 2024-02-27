@@ -83,4 +83,45 @@ class DistroTvController extends Controller
             return view('pages.error.data-error');
         }
     }
+
+    public function search(Request $request)
+    {   
+        $html = '';
+        $searchTerm = $request->get('term');
+        $type = $request->get('type','title');
+
+        $contents = [];
+
+        if($searchTerm){
+            if($type == 'title'){
+                $postData = [
+                    'searchTerm' =>  $searchTerm,
+                    'limit' =>  '25'
+                ];
+            }else{
+                $postData = [
+                    'root_genre' =>  $searchTerm,
+                    'limit' =>  '25'
+                ];
+            }
+    
+            $searchResult = CurlAPI("pages/distrotv/search", 'POST', $postData, 1);
+    
+            if ($searchResult) {
+                if (key_exists('contents', $searchResult)) {
+                    $contents = $searchResult['contents'];
+                }
+            }
+        }
+
+        $html = view('display-distro.search-tray',compact('contents'))->render();
+
+        return JSONResponse(
+            200,
+            'Success.',
+            [
+                'html' => $html,
+            ]
+        );
+    }
 }

@@ -39,6 +39,20 @@
     .distro-slider .slick-list{
         padding: 15px 0;
     }
+    .distro-search-img img{
+        width: 100%;
+        height:100%;
+        object-fit:cover;
+    }
+    .npq.active
+    {
+        background: #ffffff1a;
+        color: #fff;
+        padding: 4px;
+        border-left:1px solid #fff;
+        padding-left:10px;
+    }
+    /* .dis-img-toggle{display: none;} */
 </style>
 @stop
 
