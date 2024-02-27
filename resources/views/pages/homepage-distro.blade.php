@@ -28,7 +28,7 @@
         justify-content: center;
     }
     .sample_img:hover{
-        transform: scale(1.3, 1.3);
+        transform: scale(1.2, 1.2);
         transform-origin: center;
         position: relative;
         z-index: 9;
