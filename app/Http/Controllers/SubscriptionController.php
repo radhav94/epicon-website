@@ -539,6 +539,7 @@ class SubscriptionController extends Controller
                 'order_status' => 'complete',
                 'payment_gateway' => $orderValue['payment_gateway'] ?? '',
                 'bank_ref_no' => $paymentresponse['bank_ref_num'] ?? '',
+                'transaction_id' => $paymentresponse['mihpayid'] ?? '',
                 'ios_receipt' => '',
                 'android_receipt' => '',
                 'web_device' => $orderValue['web'] ?? '',
