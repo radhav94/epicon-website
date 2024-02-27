@@ -52,7 +52,7 @@ class PageController extends Controller
         } else {
 
             $pageCheckArr = array_map('strtolower', array('about-us', 'movies', 'tv-shows', 'podcast', 'explore', 'premium', 'live-tv', 'distro-tv', 'kids', 'new-popular', 'coming-soon', 'feedback', 'privacy', 'terms-of-use'));
-            if (!in_array(strtolower($pageslug), $pageCheckArr)) {
+            if (!in_array(strtolower($pageslug), $pageCheckArr) && !empty($result)) {
                 return redirect('/', 301);
             } else {
                 return view('pages.error.404');
