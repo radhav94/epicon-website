@@ -189,7 +189,7 @@ class AndroidPaymentController extends Controller
                 'order_status' => 'complete',
                 'payment_gateway' => $orderData['payment_gateway'] ?? '',
                 'bank_ref_no' => $paymentresponse['bank_ref_num'] ?? '',
-                'transaction_id' => $paymentresponse['mihpayid'],
+                'transaction_id' => $paymentresponse['mihpayid'] ?? '',
                 'ios_receipt' => '',
                 'android_receipt' => '',
                 'web_device' => $orderData['web'] ?? '',
