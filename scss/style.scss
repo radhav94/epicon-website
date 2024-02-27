@@ -6853,7 +6853,8 @@ input {
             progress {
                 height: 6px;
                 margin: 0 2px;
-                background: #000;
+                background: rgba($color: #000000, $alpha: 0.7);
+                border-radius: 6px;
             }
             progress::-webkit-progress-bar {
                 background: -webkit-linear-gradient(top, #ffffff00, #ffffff00 49%, #ffffff00 50%, #ffffff00);
