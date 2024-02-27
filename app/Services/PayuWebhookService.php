@@ -52,6 +52,7 @@ class PayuWebhookService
                         'order_status' => 'complete',
                         'payment_gateway' => 'payu',
                         'bank_ref_no' => @$webhookResponse['bank_ref_num'],
+                        'transaction_id' => @$webhookResponse['mihpayid'],
                         'ios_receipt' => '',
                         'android_receipt' => '',
                         'web_device' => 'web',
