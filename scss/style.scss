@@ -8753,6 +8753,7 @@ audio::-webkit-media-controls-play-button {
             margin-bottom: 10px;
             padding-bottom: 10px;
             border-bottom: 1px solid rgba($color: rgb(255 255 255), $alpha: 0.2);
+            cursor: pointer;
         }
     }
 }
@@ -8766,6 +8767,9 @@ audio::-webkit-media-controls-play-button {
 .distro-search-select{
     height: auto;
     padding-top: 30px;
+    h1{
+        padding-left: 10px;
+    }
     @media (max-width: 767px) {
         backdrop-filter: none;
        padding: 20px 10px 10px 10px;
