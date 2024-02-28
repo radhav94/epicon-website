@@ -48,9 +48,6 @@
     {
         background: #ffffff1a;
         color: #fff;
-        padding: 4px;
-        border-left:1px solid #fff;
-        padding-left:10px;
     }
     /* .dis-img-toggle{display: none;} */
 </style>
