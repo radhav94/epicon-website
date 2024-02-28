@@ -240,7 +240,7 @@ input {
     }
     @media (max-width:700px) {
         &{
-           height: 30px;
+           height: 30px!important;
            padding: 2px 10px;
             font-size: 12px;
         }
@@ -1616,12 +1616,16 @@ input {
     overflow-x: initial !important;
 }
 .carousel-main,.library,.seeall-main-page{
-    margin-block: 30px;
+    margin-block: 20px;
     height: 100%;
     position: relative;
     max-width:100%;
     overflow-x: clip;
     z-index: 2;
+
+    @media (max-width:767px) {
+        margin-block: 10px;
+    }
 
     .carousel-title-n-arrow{
         @include flex(row, center, space-between);
@@ -2277,6 +2281,9 @@ input {
         padding-left: 12px;
     }
 }
+.seeall-main-page .main-card .main-img{
+    margin-top: 0;
+}
 .main-card .main-img:has(.new-show-title)~.upcoming-title-play-btn{
     bottom: 20px;
     border-bottom-left-radius: 10px;
@@ -2301,12 +2308,13 @@ input {
 .seeall-main-page ul{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+    gap: 12px;
     @media (max-width:1024px) {
         grid-template-columns: repeat(4, 1fr);
     }
     @media (max-width:767px) {
         grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
 }
 
@@ -4015,11 +4023,10 @@ input {
          -moz-appearance: none;
         &:focus{
             box-shadow: none;
-
-        optain{
-
         }
-        }
+    }
+    select option{
+        color: #fff;
     }
     &.sel-bor{
         border-bottom: 1.249px solid #545454;
@@ -4982,10 +4989,11 @@ input {
     }
 
     @media (max-width:700px) {
-        padding: 4px 5px;
+        // padding: 4px 5px;
         font-size: 12px;
         font-weight: 600;
         margin-block:10px;
+        height: 41px;
     }
 }
 .fill-btn{
@@ -5023,7 +5031,7 @@ input {
     @media (max-width:700px){
         margin: 0 auto;
         padding: 8px 10px;
-        height: 45px;
+        height: 41px;
     }
 }
 .subcription-btn{
@@ -5145,6 +5153,9 @@ input {
         width: 17px!important;
     }
     transition: 0.4s;
+    @media (max-width:700px) {
+        height: 41px;
+    }
 }
 .rounded-transparent-btn:hover{
     transition: 0.4s;
@@ -5330,7 +5341,7 @@ input {
         .earn-bottom{
             display: flex;
             width: 100%;
-            height: 100%;
+            height: 80px;
             padding: 15px;
             background: rgba(8, 8, 8, 0.40);
             color: $bg-white;
@@ -5376,7 +5387,7 @@ input {
             height: 81%;
             padding: 15px;
             margin: 0 auto;
-
+            cursor: pointer;
             .logo-coin{
                 background: #FF7817;
                 height: 120px;
@@ -6854,7 +6865,48 @@ input {
             progress {
                 height: 6px;
                 margin: 0 2px;
+                background: rgba($color: #000000, $alpha: 0.7);
+                border-radius: 6px;
             }
+            progress::-webkit-progress-bar {
+                background: -webkit-linear-gradient(top, #ffffff00, #ffffff00 49%, #ffffff00 50%, #ffffff00);
+                border-radius: 15px;
+                padding: 0.5px;
+                text-align:left;
+                border: 1px solid rgba($color: rgb(255 255 255), $alpha: 0.3);
+            }
+            
+            progress::-moz-progress-bar {
+                background:
+                    -moz-linear-gradient(45deg, transparent, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%),
+                    -moz-linear-gradient(top, #FF8D06, #ff8c00 49%, #FF8D06 50%, #ff8c00);
+                border-radius: 15px;
+                text-align:left;
+                background-size: 25px 14px, 100% 100%, 100% 100%;
+                -moz-animation: move 5s linear 0 infinite;
+            }
+            
+            progress::-webkit-progress-value {
+                border-radius: 15px;
+                box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
+                background:
+                    -webkit-linear-gradient(45deg, transparent, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%),
+                    -webkit-linear-gradient(top, #FF8D06, #ff8c00 49%, #FF8D06 50%, #ff8c00);
+                background-size: 25px 14px, 100% 100%, 100% 100%;
+                -webkit-animation: move 5s linear 0 infinite;
+            }
+            
+            
+            @-webkit-keyframes move {
+                0% {background-position: 0px 0px, 0 0, 0 0}
+                100% {background-position: -100px 0px, 0 0, 0 0}
+            }
+            
+            @-moz-keyframes move {
+                0% {background-position: 0px 0px, 0 0, 0 0}
+                100% {background-position: -100px 0px, 0 0, 0 0}
+            }
+            
             .story-modal {
                 height: 100dvh;
                 display: flex;
@@ -7562,7 +7614,7 @@ input {
 .main-card.seeallm{
     height: auto;
     .crown{
-        top: 10px!important;
+        top: 0px!important;
     }
     .top-ten{
         top: 4px!important;
@@ -7612,6 +7664,9 @@ input {
 
     & .upper-img{
         width: 30px!important;
+        height: 30px;
+        border: 1px solid #211f26;
+        border-radius: 5px;
     }
 }
 .share-hover:hover{
@@ -8132,6 +8187,7 @@ audio::-webkit-media-controls-play-button {
         padding: 10px 10px 10px 10px !important;
         justify-content: space-between;
         height: 100%;
+        transition: 0.3s;
       }
       .plyr__controls .plyr__controls__item.plyr__progress__container {
         padding-left: 2.5px;
@@ -8265,6 +8321,11 @@ audio::-webkit-media-controls-play-button {
         transform: rotate(-90deg);
         border: 1px solid rgba($color: rgb(255 255 255), $alpha: 0.2);
         border-radius: 10px;
+        padding: 18px 10px;
+        -webkit-filter: drop-shadow(0px 1px 2px rgba(0,0,0,0.7));
+        filter: drop-shadow(0px 1px 2px rgba(0,0,0,0.7));
+        transition: 0.3s;
+        box-shadow: 0px 0px 5px #00000075;
         @media (max-width:1024px) {
             display: none;
         }
@@ -8301,6 +8362,7 @@ audio::-webkit-media-controls-play-button {
 .videoContainer video {
     object-fit: contain!important;
     height: 100%!important;
+    width: 100%;
     @media (max-width: 767px) {
         height: auto!important;
     }
@@ -8610,6 +8672,9 @@ audio::-webkit-media-controls-play-button {
 .live-tv-vidPlayer .plyr__progress__container,.live-tv-vidPlayer .plyr__controls__item:nth-child(1),.live-tv-vidPlayer .plyr__controls__item:nth-child(3),.live-tv-vidPlayer .plyr__time--current,.live-tv-vidPlayer .nextpopup{
     display:none!important;
 }
+.live-tv-vidPlayer .plyr .plyr__menu .plyr__menu__container > div button:nth-child(3){
+    display:none!important;
+}
 #kidsUrl{
     @media (max-width:767px) {
         display: none;
@@ -8643,7 +8708,6 @@ audio::-webkit-media-controls-play-button {
         flex-shrink: 0;
     }
 }
-
 
 // distro search filter start
 .distro-main{
@@ -8853,3 +8917,14 @@ audio::-webkit-media-controls-play-button {
     margin-bottom: 0;
 }
 // distro search filter end
+
+.library-title-center{
+    @media (max-width:767px) {
+        text-align: center;
+    }
+}
+.nav-center{
+    @media (max-width:767px) {
+        justify-content: center;
+    }
+}

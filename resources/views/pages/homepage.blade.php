@@ -7,7 +7,7 @@
 <style>
     #epicShots video {
         width: 100%;
-        height: inherit;
+        height: 100%;
     }
 
     #supermixModal button:disabled,
