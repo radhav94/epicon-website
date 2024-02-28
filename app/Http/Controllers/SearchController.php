@@ -43,9 +43,8 @@ class SearchController extends Controller
             foreach ($bla as $category) {
                 $newCategoryMapping[$category] = $category . 'Result';
             }
+            $this->categoryMapping = $newCategoryMapping;
         }
-        
-        $this->categoryMapping = $newCategoryMapping;
     }
 
     public function trendingsearch(Request $request)
