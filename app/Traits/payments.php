@@ -135,6 +135,7 @@ trait payments {
 				'order_id'=>$order_id,
 				'order_status'=>$statusToUpdate,
 				'transaction_id'=>$transaction_id,
+                'authPayuId'=>$transaction_id,
 				'payment_gateway'=>$gateway,
 				'bank_ref_no'=>$bank_transaction_id,
 				'payment_mode'=>$paymentservice,
