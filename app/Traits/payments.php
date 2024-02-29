@@ -136,6 +136,7 @@ trait payments {
 				'order_status'=>$statusToUpdate,
 				'transaction_id'=>$transaction_id,
                 'authPayuId'=>$transaction_id,
+                'is_recurring' => env('PAYU_SI'),
 				'payment_gateway'=>$gateway,
 				'bank_ref_no'=>$bank_transaction_id,
 				'payment_mode'=>$paymentservice,

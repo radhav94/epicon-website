@@ -191,7 +191,7 @@ class AndroidPaymentController extends Controller
                 'bank_ref_no' => $paymentresponse['bank_ref_num'] ?? '',
                 'transaction_id' => $paymentresponse['mihpayid'] ?? '',
                 'authPayuId' => $paymentresponse['mihpayid'] ?? '',
-                'is_recurring' => true,
+                'is_recurring' => env('PAYU_SI'),
                 'ios_receipt' => '',
                 'android_receipt' => '',
                 'web_device' => $orderData['web'] ?? '',
