@@ -13,6 +13,11 @@ $content_list = $story_list['content_list'] ?? [];
         @endfor
 </div>
 @foreach ($content_list as $key => $value)
+
+@if (isset($showStory) && !empty($showStory) && $showStory == ($key+1))
+    <input type="hidden" name="playHiddenVideo" id="playHiddenVideo" value="{{ $showStory }}">
+@endif
+
 <div class="story-modal" id="story-modal-{{ ($key + 1) }}">
 
     <a href="javascript:;" class="epic-short-close close" aria-label="Close">

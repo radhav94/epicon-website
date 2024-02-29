@@ -420,6 +420,7 @@ class PageController extends Controller
 
     public function storyPage($story_id, $slug)
     {
+        $showStory = 0;
         $story_list = $this->epicShots($story_id);
         $content_list = $story_list['content_list'] ?? [];
 
@@ -429,8 +430,7 @@ class PageController extends Controller
             foreach ($content_list as $key => $value) {
                 if ($value['slug'] == $slug) {
                     $found = true;
-                } else {
-                    unset($story_list['content_list'][$key]);
+                    $showStory = $key + 1;
                 }
             }
 
@@ -442,7 +442,7 @@ class PageController extends Controller
                     'image' => @$story_list['content_list'][0]['story_image'],
                 ];
 
-                return view('pages.story.storypage', compact('story_list', 'story_id','meta'));
+                return view('pages.story.storypage', compact('story_list', 'story_id', 'meta', 'showStory'));
             }
         }
 

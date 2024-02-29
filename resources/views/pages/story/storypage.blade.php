@@ -40,13 +40,30 @@
 <script src="{{ asset('assets/js/webvtt-subtitler.js') }}"></script>
 
 <script>
+    // $(document).ready(function() {
+    //     $("#epicShots").modal('show');
+    //     // $('#epicShots .modal-content').html(response.payload.html);
+    //     currentStep = 1;
+    //     $(".progressBar progress:nth-child(" + currentStep + ")").val(100);
+    //     showStoryPopup(currentStep);
+    // });
+    // $('.storyBtn').trigger('click');
+
+
     $(document).ready(function() {
         $("#epicShots").modal('show');
-        // $('#epicShots .modal-content').html(response.payload.html);
-        currentStep = 1;
-        $(".progressBar progress:nth-child(" + currentStep + ")").val(100);
-        showStoryPopup(currentStep);
+        var playHiddenVideo = $("#playHiddenVideo").val();
+        if (playHiddenVideo > 0) {
+        currentStep = playHiddenVideo;
+        } else {
+            currentStep = 1;
+        }
+        $(".story-share-option").removeClass("d-flex");
+        if (currentStep < $(".story-modal").length) {
+            showStoryPopup(currentStep);
+            changePlayIcon();
+            player.play();
+        }
     });
-    // $('.storyBtn').trigger('click');
 </script>
 @stop
