@@ -29,6 +29,8 @@ use App\Http\Controllers\MaxDeviceController;
 use App\Http\Controllers\PaytmController;
 use App\Http\Controllers\PaytmQrController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TvActiveController;
+
 
 $lang = ['hi', 'en'];
 
@@ -48,6 +50,9 @@ Route::get('test', [TestController::class, 'index']);
 // Route::get('serveriptesting123xyz', [NotificationController::class, 'getServerIP']);
 
 Route::get('max-device', [MaxDeviceController::class, 'maxDevice'])->name('max-device');
+
+Route::get('activatetv/{code?}', [TvActiveController::class, 'activate_tv_code']);
+// https://epicon.in/activatetv/%3Cnumberic%20code%3E
 
 //////Start Redirection routes ////////
 
