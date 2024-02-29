@@ -540,6 +540,8 @@ class SubscriptionController extends Controller
                 'payment_gateway' => $orderValue['payment_gateway'] ?? '',
                 'bank_ref_no' => $paymentresponse['bank_ref_num'] ?? '',
                 'transaction_id' => $paymentresponse['mihpayid'] ?? '',
+                'authPayuId' => $paymentresponse['mihpayid'] ?? '',
+                'is_recurring' => true,
                 'ios_receipt' => '',
                 'android_receipt' => '',
                 'web_device' => $orderValue['web'] ?? '',
