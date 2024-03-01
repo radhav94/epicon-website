@@ -218,7 +218,7 @@ input {
 }
 // switch to kids end
 
-.big-play{
+.big-play,.carousel-items a[data-type="GAMEZOP"]{
     padding: 6px 20px;
     background: $bg-white;
     color: $bg-dark-gray;
@@ -252,7 +252,7 @@ input {
         }
     }
 }
-.big-play:hover,.fill-btn:hover,.big-add-list:hover{
+.big-play:hover,.fill-btn:hover,.big-add-list:hover,.carousel-items a[data-type="GAMEZOP"]:hover{
     background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
     color: #fff;
     transition:all 0.4s;
@@ -4004,7 +4004,7 @@ input {
         border: none;
     }
     select{
-        width: auto;
+        width: 100%;
         background-color: transparent;
         color: rgba(255, 255, 255, 1);
         border: none;
@@ -4016,9 +4016,9 @@ input {
         text-align: left;
         background-repeat: no-repeat;
         background-position: calc(100% - 15px) center;
-        width: 100%;
         border-radius: 10px;
         border: 1.249px solid #545454;
+        appearance: none;
         -webkit-appearance: none;
          -moz-appearance: none;
         &:focus{
@@ -4027,6 +4027,7 @@ input {
     }
     select option{
         color: #fff;
+        background-color: transparent;
     }
     &.sel-bor{
         border-bottom: 1.249px solid #545454;
@@ -4887,7 +4888,7 @@ input {
         }
         .nav-link.active{
             border-radius: 6px;
-            background: linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%);
+            background: linear-gradient(270deg, #201F31 0%, #232342 47.92%, #342857 100%);
             color: $bg-white;
         }
     }
