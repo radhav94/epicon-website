@@ -13,6 +13,7 @@ class PageDetailController extends Controller
     {
         $request = request();
         SilentLoginFunction();
+        check_Tv_Activation_Code();
         $url = "pages/episode/{$pageslug}/{$contentslug}";
         $params = [];
         if ($season && $episode) {

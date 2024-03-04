@@ -24,6 +24,7 @@ class PageController extends Controller
         SilentLoginFunction();
 
         profileActive();
+        check_Tv_Activation_Code();
         $data = $this->homepageData($slug);
         $result = $data['result'];
 
