@@ -6923,7 +6923,8 @@ input {
                 width: 370px;
                 position: relative;
                 display: flex;
-                border: 1px solid #212529;
+                border-left: 1px solid #212529;
+                border-right: 1px solid #212529;
                 background-color: #000;
                 @media (max-width:1367px) {
                     width: 340px;
