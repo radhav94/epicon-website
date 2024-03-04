@@ -52,7 +52,6 @@ Route::get('test', [TestController::class, 'index']);
 Route::get('max-device', [MaxDeviceController::class, 'maxDevice'])->name('max-device');
 
 Route::get('activatetv/{code?}', [TvActiveController::class, 'activate_tv_code']);
-// https://epicon.in/activatetv/%3Cnumberic%20code%3E
 
 //////Start Redirection routes ////////
 
