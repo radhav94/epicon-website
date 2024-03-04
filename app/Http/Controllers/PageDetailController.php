@@ -102,9 +102,16 @@ class PageDetailController extends Controller
                 } 
             }
 
+            $meta_description = '';
+            if (isset($content['meta_description']) && !empty($content['meta_description'])) {
+                $meta_description = $content['meta_description'] ?? '';
+            } else {
+                $meta_description = $content['description'] ?? '';
+            }
+
             $meta = [
                 'title' => $meta_title,
-                'description' => @$content['description']
+                'description' => $meta_description
             ];
             
             $nextmovieArray =[];
