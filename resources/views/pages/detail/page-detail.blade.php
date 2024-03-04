@@ -220,11 +220,11 @@ $meta['image'] = $share_img;
                         </div>
                         @if (@$content['cast'])
                         <div class="seemore">
-                                <p class="text-white mb-3">Cast:
-                                    @foreach ($content['cast'] as $key => $value)
-                                        {{ $value }}
-                                    @endforeach
+                            @foreach ($content['cast'] as $key => $value)
+                                <p class="text-white mb-3">{{ ucwords(strtolower($key)) }}:
+                                    {{ ucwords(strtolower($value)) }}
                                 </p>
+                            @endforeach
                         </div>
                         @endif
                     </div>
