@@ -342,28 +342,27 @@ class SubscriptionController extends Controller
             if ($plan_id == 'epic_in_pl_1') {
                 $billingInterval = 1;
                 $newstartdate = date("Y-m-d");
-                // $billingCycle = 'MONTHLY';
-                // $endstartdate = date("Y-m-d", strtotime("+1 month -1 day"));
-
-                $billingCycle = 'DAILY';
-                $endstartdate = date("Y-m-d", strtotime("+1 day"));
-
+                // $billingCycle = 'DAILY';
+                // $endstartdate = date("Y-m-d", strtotime("+1 day"));
+                $billingCycle = 'MONTHLY';
+                //$endstartdate = date("Y-m-d", strtotime("+1 month -1 day"));
             } else if ($plan_id == 'epic_in_pl_2') {
                 $billingInterval = 3;
                 $billingCycle = 'MONTHLY';
                 $newstartdate = date("Y-m-d");
-                $endstartdate = date("Y-m-d", strtotime("+3 month -1 day"));
+                //$endstartdate = date("Y-m-d", strtotime("+3 month -1 day"));
             } else if ($plan_id == 'epic_in_pl_3') {
                 $billingInterval = 6;
                 $billingCycle = 'MONTHLY';
                 $newstartdate = date("Y-m-d");
-                $endstartdate = date("Y-m-d", strtotime("+6 month -1 day"));
+                //$endstartdate = date("Y-m-d", strtotime("+6 month -1 day"));
             } else {
                 $billingInterval = 1;
                 $billingCycle = 'YEARLY';
                 $newstartdate = date("Y-m-d");
-                $endstartdate = date("Y-m-d", strtotime("+1 year"));
+                //$endstartdate = date("Y-m-d", strtotime("+1 year"));
             }
+            $endstartdate = date("Y-m-d", strtotime("+10 year"));
             $parameters['si'] = 1;
             $parameters['api_version'] = "7";
             $parameters['si_details'] = json_encode([
