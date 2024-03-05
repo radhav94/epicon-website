@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Log;
 
 // Testing URL
-// https://epicon-revamp-v2.test/activatetv/F06B1C
+// https://epicon-revamp-v2.test/activatetv/C85CD7
 class TvActiveController extends Controller
 {
     public function activate_tv_code($code = 0)
@@ -17,8 +17,12 @@ class TvActiveController extends Controller
                 request()->session()->put('tv_verify', true);
                 header("Location:" . url('?type=login'));
             } else {
-                $this->verifyTvCode($code);
-                return redirect("?type=activetv");
+                $result =  $this->verifyTvCode($code);
+                if (isset($result) && !empty($result) && $result['success'] == true) {
+                    return view('activetv.tv-success', ['result' => $result]);
+                } else {
+                    return view('activetv.tv-failure', ['result' => $result]);
+                }
             }
         } else {
             return  redirect('/');
