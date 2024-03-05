@@ -198,12 +198,6 @@ $(window).on('load', function () {
         showToaster("You have been logged out. Kindly relogin to continue.", 2, 5000)
         window.history.replaceState({}, document.title, "/");
     }
-      /*Tv Verification Done*/
-    if (queryParams.get('type') == "activetv") {
-        showToaster("Code Verify Successfully.", 1, 5000)
-        window.history.replaceState({}, document.title, "/");
-    }
-
     // open login popup
     if (queryParams.get('type') == "login") {
         $('.loginBtn.login').trigger('click');

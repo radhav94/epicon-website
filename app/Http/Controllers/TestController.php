@@ -19,7 +19,7 @@ class TestController extends Controller
         echo '--';
         d($isIPad);
 
-        die;
+        // die;
         
     $detect = new MobileDetect();
     $deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
@@ -47,7 +47,7 @@ class TestController extends Controller
     }else{
         echo '--not a mobile--';
     }
-    die;
+    // die;
 
         if(strtolower(env('APP_ENV')) == 'production'){
             return redirect('/');
