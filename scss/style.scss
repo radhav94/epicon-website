@@ -1616,7 +1616,7 @@ input {
     overflow-x: initial !important;
 }
 .carousel-main,.library,.seeall-main-page{
-    margin-block: 20px;
+    margin-block: 40px;
     height: 100%;
     position: relative;
     max-width:100%;
@@ -1624,7 +1624,7 @@ input {
     z-index: 2;
 
     @media (max-width:767px) {
-        margin-block: 10px;
+        margin-block: 25px;
     }
 
     .carousel-title-n-arrow{
@@ -2277,7 +2277,6 @@ input {
     .slick-list{
         opacity: 1;
         overflow: visible;
-        overflow: initial;
         padding-left: 12px;
     }
 }
@@ -2771,6 +2770,17 @@ input {
         margin: 0 5px;
         img{
             width: 100%;
+            animation-name: fade-in-out;
+            animation-duration: 0.5s;
+            animation-timing-function: ease-in-out;
+        }
+        @keyframes fade-in-out {
+            0%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
         }
     }
     #chart{
