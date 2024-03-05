@@ -218,7 +218,7 @@ input {
 }
 // switch to kids end
 
-.big-play{
+.big-play,.carousel-items a[data-type="GAMEZOP"]{
     padding: 6px 20px;
     background: $bg-white;
     color: $bg-dark-gray;
@@ -252,7 +252,7 @@ input {
         }
     }
 }
-.big-play:hover,.fill-btn:hover,.big-add-list:hover{
+.big-play:hover,.fill-btn:hover,.big-add-list:hover,.carousel-items a[data-type="GAMEZOP"]:hover{
     background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
     color: #fff;
     transition:all 0.4s;
@@ -1616,7 +1616,7 @@ input {
     overflow-x: initial !important;
 }
 .carousel-main,.library,.seeall-main-page{
-    margin-block: 20px;
+    margin-block: 30px;
     height: 100%;
     position: relative;
     max-width:100%;
@@ -1624,12 +1624,15 @@ input {
     z-index: 2;
 
     @media (max-width:767px) {
-        margin-block: 10px;
+        margin-block: 20px;
     }
 
     .carousel-title-n-arrow{
         @include flex(row, center, space-between);
+        height: 40px;
         & h5{
+            margin-bottom: 0;
+            @include line-clamp(1);
             @media (max-width:700px) {
                 font-size: medium;
             }
@@ -2277,7 +2280,6 @@ input {
     .slick-list{
         opacity: 1;
         overflow: visible;
-        overflow: initial;
         padding-left: 12px;
     }
 }
@@ -2771,6 +2773,17 @@ input {
         margin: 0 5px;
         img{
             width: 100%;
+            animation-name: fade-in-out;
+            animation-duration: 0.5s;
+            animation-timing-function: ease-in-out;
+        }
+        @keyframes fade-in-out {
+            0%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
         }
     }
     #chart{
@@ -4004,7 +4017,7 @@ input {
         border: none;
     }
     select{
-        width: auto;
+        width: 100%;
         background-color: transparent;
         color: rgba(255, 255, 255, 1);
         border: none;
@@ -4016,9 +4029,9 @@ input {
         text-align: left;
         background-repeat: no-repeat;
         background-position: calc(100% - 15px) center;
-        width: 100%;
         border-radius: 10px;
         border: 1.249px solid #545454;
+        appearance: none;
         -webkit-appearance: none;
          -moz-appearance: none;
         &:focus{
@@ -4027,6 +4040,7 @@ input {
     }
     select option{
         color: #fff;
+        background-color: transparent;
     }
     &.sel-bor{
         border-bottom: 1.249px solid #545454;
@@ -4887,7 +4901,7 @@ input {
         }
         .nav-link.active{
             border-radius: 6px;
-            background: linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%);
+            background: linear-gradient(270deg, #201F31 0%, #232342 47.92%, #342857 100%);
             color: $bg-white;
         }
     }
@@ -6922,7 +6936,8 @@ input {
                 width: 370px;
                 position: relative;
                 display: flex;
-                border: 1px solid #212529;
+                border-left: 1px solid #212529;
+                border-right: 1px solid #212529;
                 background-color: #000;
                 @media (max-width:1367px) {
                     width: 340px;
@@ -6945,6 +6960,7 @@ input {
                 position: absolute;
                 left: 24%;
                 z-index: 5;
+                cursor: pointer;
                 @media (max-width:700px) {
                     z-index: 5;
                     width: 36%;
@@ -7168,6 +7184,8 @@ input {
                 border-radius: 50px;
                 background: rgba($color: rgb(255 255 255), $alpha: 0.3);
                 box-shadow: 0 0 5px rgba($color: rgb(0 0 0), $alpha: 0.15);
+                -webkit-backdrop-filter: blur(20px);
+                backdrop-filter: blur(20px);
                 svg{
                     filter: drop-shadow(0 0 1px rgba($color: rgb(0 0 0), $alpha: 0.6));
                 }
@@ -8804,7 +8822,6 @@ audio::-webkit-media-controls-play-button {
     }
 }
 
-
 // distro search filter start
 .distro-main{
     @media (max-width: 767px) {
@@ -9013,6 +9030,7 @@ audio::-webkit-media-controls-play-button {
     margin-bottom: 0;
 }
 // distro search filter end
+
 .library-title-center{
     @media (max-width:767px) {
         text-align: center;

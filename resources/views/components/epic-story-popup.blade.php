@@ -119,7 +119,7 @@ $content_list = $story_list['content_list'] ?? [];
         </video>
 
         <div class="stories-title">
-            <div class="st-pik mb-2">
+            <div class="st-pik">
                 <?php
                 $img_url = getCardImage($value, 'banner_image', 'medium', []);
                 ?>
@@ -127,7 +127,7 @@ $content_list = $story_list['content_list'] ?? [];
                     <img src="{{ $img_url }}" alt="shot-img">
                 </div>
                 <div>
-                    <h6 class="mb-1 mt-1">{{ @$value['title'] }}</h6>
+                    <h6 class="mb-1">{{ @$value['title'] }}</h6>
                     <span class="my-1" style="font-size: 12px;" {{  @$story_list['isAutomatic'] == true ? 'is_utomatic' : '' }}>
                         @if(@$story_list['isAutomatic'] == true)
                         {{ timestampToDate(@$value['publish_start_date'], 'Y') }}.

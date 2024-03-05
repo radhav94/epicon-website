@@ -5,7 +5,6 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Blade;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -20,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-    {   
+    {
         Blade::directive('csrf', function () {
             return '<input type="hidden" name="_token" value="' . csrf_token() . '">';
         });
