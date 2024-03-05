@@ -1616,7 +1616,7 @@ input {
     overflow-x: initial !important;
 }
 .carousel-main,.library,.seeall-main-page{
-    margin-block: 40px;
+    margin-block: 30px;
     height: 100%;
     position: relative;
     max-width:100%;
@@ -1624,12 +1624,15 @@ input {
     z-index: 2;
 
     @media (max-width:767px) {
-        margin-block: 25px;
+        margin-block: 20px;
     }
 
     .carousel-title-n-arrow{
         @include flex(row, center, space-between);
+        height: 40px;
         & h5{
+            margin-bottom: 0;
+            @include line-clamp(1);
             @media (max-width:700px) {
                 font-size: medium;
             }
@@ -8943,3 +8946,11 @@ audio::-webkit-media-controls-play-button {
         justify-content: center;
     }
 }
+// .carousel-main.new-release{
+//     .carousel-title-n-arrow{
+//         margin-bottom: 20px!important;
+//         @media (max-width:767px) {
+//             margin-bottom: 15px!important;
+//         }
+//     }
+// } 
