@@ -34,9 +34,6 @@
     .sample_img:hover .play-button{
         opacity: 1;
     }
-    .distro-slider .slick-list{
-        padding: 15px 0;
-    }
 </style>
 @stop
 

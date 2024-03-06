@@ -22,7 +22,7 @@
     }
     .distro-slider .sample_img{
         border-radius:15px;
-        overflow:hidden;
+        overflow:visible;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -36,9 +36,6 @@
     .sample_img:hover .play-button{
         opacity: 1;
     }
-    .distro-slider .slick-list{
-        padding: 15px 0;
-    }
     .distro-search-img img{
         width: 100%;
         height:100%;
@@ -49,7 +46,6 @@
         background: #ffffff1a;
         color: #fff;
     }
-    /* .dis-img-toggle{display: none;} */
 </style>
 @stop
 

@@ -774,13 +774,12 @@
         width: 28px;
         height: 28px;
         position: absolute;
-        /* top: 45px; */
-        /* left: 85px; */
         background-color:black;
         border: 1px solid #fff;
         border-radius:50%;
         cursor: pointer;
         opacity: 0;
+        transition: 0.5s;
     }
     .play-button img{
         width:16px !important;
@@ -855,6 +854,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 0;
     }
 
     .ds-logo-text {
@@ -907,6 +907,7 @@
         height: 30px;
         position: absolute;
         right: 0;
+        filter: drop-shadow(2px 4px 3px black);
     }
 
     .distrotv-slide-show button.slick-next::before,.distrotv-slide-show button.slick-prev::before ,.distro-slider button.slick-prev::before{
@@ -938,7 +939,7 @@
         outline: 0;
         border-radius: 40px;
     }
-    .distrotv-slide-show button.slick-prev{
+    .distrotv-slide-show button.slick-prev::before{
         transform: rotate(180deg);
     }
 
@@ -970,14 +971,15 @@
     }
 
     .distro-title{
-        // margin-bottom: 0;
-        // padding-left: 14px;
-        // padding: 0;
+        height: 40px;
+        font-size: 18px;
         font-weight: 700;
-        font-size: 16px;
         color: #dfdfdf;
         text-transform: uppercase;
         position: relative;
+        line-height: 40px;
+        @include line-clamp(1);
+        margin-bottom: 6px;
     }
 
     .distro-slider .sample_img{
@@ -1043,7 +1045,7 @@
             display: none !important;
         }
         .distro-title{
-            font-size: 12px;
+            font-size: 16px;
             // position: absolute;
         }
         .distro-tray {
@@ -1058,9 +1060,9 @@
         .distrohead-row{
             padding:0 0 0 0 !important;
         }
-        .distrotv-slide-inner .slick-list {
-            padding: 15px 0 0px 0;
-        }
+        // .distrotv-slide-inner .slick-list {
+        //     padding: 15px 0 0px 0;
+        // }
     }
 
     .add-icon {

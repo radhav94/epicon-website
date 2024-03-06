@@ -9,6 +9,8 @@ body{
     background-repeat: no-repeat;
     background-size: 100% auto;
     font-family: 'Outfit', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 *{
     -ms-overflow-style: none;  /* IE and Edge */
@@ -1630,9 +1632,11 @@ input {
     .carousel-title-n-arrow{
         @include flex(row, center, space-between);
         height: 40px;
+        padding-inline: 12px !important;
         & h5{
             margin-bottom: 0;
             @include line-clamp(1);
+            text-transform: uppercase;
             @media (max-width:700px) {
                 font-size: medium;
             }
@@ -2776,13 +2780,17 @@ input {
             animation-name: fade-in-out;
             animation-duration: 0.5s;
             animation-timing-function: ease-in-out;
+            position: relative;
         }
         @keyframes fade-in-out {
             0%{
                 opacity: 0;
+                right: -100px;
+
             }
             100%{
                 opacity: 1;
+                right: 0;
             }
         }
     }
@@ -3126,10 +3134,11 @@ input {
     padding: 30px;
     @include flex(row,center,flex-start);
     display: flex;
-
+    margin-top: 45px;
     @media (max-width:700px) {
         flex-wrap: wrap;
         padding: 20px;
+        margin-top: 36px;
     }
 
     .genere-fiesta-title{
@@ -3207,7 +3216,7 @@ input {
             position: relative;
             display: flex;
             align-items: center;
-            padding:0 5px;
+            margin-right: 12px;
 
             img{
                 width: 100%;
@@ -3827,7 +3836,7 @@ input {
 .wildlife{
     .wildlife-wrapper{
         display: flex;
-        padding: 0 5px;
+        margin-right: 12px;
 
         & div:nth-child(2){
             margin-left: -40px;
@@ -4039,7 +4048,7 @@ input {
         }
     }
     select option{
-        color: #fff;
+        color: #000;
         background-color: transparent;
     }
     &.sel-bor{
@@ -7712,9 +7721,10 @@ input {
 }
 .supermix-main{
     padding-inline: 15px;
-    margin-bottom: 40px;
+    margin-top: 45px;
     @media (max-width:767px) {
         padding-inline: 10px;
+        margin-top: 36px;
     }
 }
 #resendBtn,#resendForgotBtn{
@@ -7756,17 +7766,17 @@ input {
         }
     }
 }
-.distro-slider{
-    overflow: hidden;
+.distro-slider .slick-list{
+    overflow: visible;
 }
 .distrohead-row{
     background-image: url("../img/distrotvbg-new-img.png");
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
-    margin-top: 40px;
+    margin-top: 45px;
     @media (max-width:767px) {
-        margin-top: 25px;
+        margin-top: 36px;
     }
 }
 .share-hover{
@@ -8057,7 +8067,10 @@ audio::-webkit-media-controls-play-button {
   .carousel-main.spotlight-control{
     z-index: 1;
     display: flex;
-    margin-top: 40px;
+    margin-top: 45px;
+    @media (max-width:767px) {
+        margin-top: 36px;
+    }
   }
   .search-main .more-like-this{
     padding-bottom: 10px;

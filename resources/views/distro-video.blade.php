@@ -13,14 +13,6 @@
    .distro-banner-video .video-js .vjs-tech{
        height: 100%;
    }
-    /*.vjs-live .vjs-progress-control{
-       display: flex;
-       align-items: center;
-       width: 100%;
-   }
-   .vjs-live .vjs-time-control{
-       display: block;
-   }*/
    .distro-banner-video .video-js .vjs-big-play-button{
        position: absolute;
        top: 50%;
