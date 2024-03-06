@@ -364,6 +364,7 @@ input {
         padding: 8px 22px;
         color: $bg-primary;
         letter-spacing: 0.28px;
+        border: 0.5px solid #47474700;
 
         @media screen and (max-width: 1024px) {
             padding: 8px 8px;
