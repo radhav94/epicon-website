@@ -1361,6 +1361,7 @@
             </div>
         </div>
 
+        @if ($show == 'show')
         <form id="feedbackForm">
             <div class="col-sm-12">
                 <h4 class="text-white mb-4">{{__('Need More Help?')}}</h4>
@@ -1379,6 +1380,7 @@
                     </svg></span>
             </button>
         </form>
+        @endif
     </div>
 
 </section>
