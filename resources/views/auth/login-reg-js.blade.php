@@ -95,6 +95,7 @@
         $(".closebtn").click(function() {
             $('#login-modal').hide();
             $('#login-modal').removeClass("show");
+            $('.child-box').val('');
         });
 
         $(".login-btn-otp").click(function(e) {
