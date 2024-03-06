@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class FeedbackController extends Controller
 {
     public function feedback() {
-        return view('feedback.feedback');
+        return view('feedback.feedback',['show'=>'hide']);
     }
 
     public function saveFeedback() {
