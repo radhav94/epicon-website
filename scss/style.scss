@@ -2160,7 +2160,7 @@ input {
                 border: 1px solid #211F26;
                 border-radius: 5px;
                 height: 30px;
-                width: 70px;
+                width: 58px;
                 transition: all 0.4s;
                 color: #211F26;
                 &:hover{
@@ -6393,6 +6393,7 @@ input {
 .pod-main{
     @include flex(row,center,center);
     gap: 15px;
+    background-color: transparent;
     & .col-sm-11{
         gap: 20px;
     }
@@ -6473,9 +6474,16 @@ input {
             }
             .pod-grey-btn-list{
                 display: none;
-                margin-top: 15px;
-                @media (max-width:700px) {
-                    margin-top: 0px;
+                animation-name: podGreyList;
+                animation-timing-function: ease-in;
+                animation-duration: 0.5s;
+                @keyframes podGreyList {
+                    0%{
+                        opacity: 0;
+                    }
+                    100%{
+                        opacity: 1;
+                    }
                 }
                 button{
                     padding: 10px;
@@ -6483,6 +6491,11 @@ input {
                     height: 40px;
                     @media (max-width:700px) {
                         margin-top: 15px;
+                    }
+                    &:hover {
+                        transition: all .4s;
+                        transform: scale(1.1);
+                        background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
                     }
                 }
             }
@@ -6494,13 +6507,11 @@ input {
                 color: #B7B7B7;
                 @media (max-width:700px) {
                     @include line-clamp(2);
-                    // position: absolute;
                     bottom: 0;
                     left: 0;
                     width: 100%;
                     font-size: 14px;
                     margin-bottom: 0;
-                    // padding-inline: 15px;
                 }
             }
             .progress-main{
@@ -6511,6 +6522,9 @@ input {
                 overflow: hidden;
                 @include flex(row, flex-end, space-between);
                 display: none;
+                animation-name: podGreyList;
+                animation-timing-function: ease-in;
+                animation-duration: 0.5s;
                 @media (max-width:700px) {
                     width: 130px;
                     margin-top: 10px;
@@ -6525,8 +6539,10 @@ input {
                 }
             }
         }
-        &.active{
-            background: linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%);
+        &:hover{
+            // background: linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%);
+            background-color: rgba(31, 31, 49, 0.5);
+            transition: all 0.7s;
         }
         &.active{
             .progress-main{
@@ -6591,7 +6607,9 @@ input {
 .podcast-top{
     @include flex(row,center,center);
     gap: 40px;
-    
+    @media (max-width:768px) {
+        gap: 20px;
+    }
     @media (max-width:700px) {
         flex-direction: column;
         gap: 20px;
@@ -6603,6 +6621,10 @@ input {
         overflow: hidden;
         // border-radius: 30px;
         flex-shrink: 0;
+        @media (max-width:768px) {
+            width: 200px;
+            height: 200px;
+        }
         @media (max-width:700px) {
             width: 250px;
             height: 250px;
@@ -6646,7 +6668,7 @@ input {
     .thumb-detail{
         h1{
             font-size: 30px;
-            @media (max-width:767px) {
+            @media (max-width:768px) {
                 font-size: 24px;
             }
         }
@@ -6688,8 +6710,8 @@ input {
 
     @media (max-width:700px) {
         padding: 5px;
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
     }
 }
 .supermix-main{
@@ -6949,13 +6971,14 @@ input {
                 border-left: 1px solid #212529;
                 border-right: 1px solid #212529;
                 background-color: #000;
+                @media (max-width:3500px) {
+                    width: 30%;
+                }
                 @media (max-width:1367px) {
-                    width: 340px;
-                    height: 100%;
+                    width: 380px;
                 }
                 @media (max-width:700px) {
                     width: 100%;
-                    height: 100%;
                 }
             }
             .story-iframe .video-js {
@@ -7625,9 +7648,15 @@ input {
             transform: scale(1.1);
             background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
         }
+        @media (max-width:768px) {
+            height: 40px;
+        }
     }
     @media (max-width:768px) {
         flex-wrap: wrap;
+        .addToList,.shareThis{
+            width: 40px;
+        }
     }
     @media (max-width:767px) {
         justify-content: center;
@@ -7782,7 +7811,7 @@ input {
 }
 .share-hover{
     position: absolute;
-    left: 72px;
+    left: 57px;
     padding-top: 10px;
     bottom: 0px;
 
@@ -7857,20 +7886,46 @@ input {
     left: 0;
     right: 0;
     padding: 20px;
-    background-color: #000;
-    background-image: url("../img/podcast-bottom-bg.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: linear-gradient(0deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%);
+    // background-image: url("../img/podcast-bottom-bg.png");
+    // background-repeat: no-repeat;
+    // background-size: cover;
     z-index: 99;
-    box-shadow: 0px 0px 5px #ffffff8c;
+    box-shadow: 0px 0px 5px rgba($color: #000000, $alpha: 0.7);
+    animation-name: slideFromBottom;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.5s;
+    backdrop-filter: blur(37px);
 
-    @media (max-width:767px) {
+    @keyframes slideFromBottom {
+        0%{
+            opacity: 0;
+            bottom: -100px;
+        }
+        100%{
+            opacity: 1;
+            bottom: 0px;
+        }
+    }
+
+    @media (max-width:768px) {
         bottom: 60px;
         padding-inline: 0px;
         padding-block: 10px;
+        @keyframes slideFromBottom {
+            0%{
+                opacity: 0;
+                bottom: -100px;
+            }
+            100%{
+                opacity: 1;
+                bottom: 60px;
+            }
+        }
     }
     .podcast-wrapper-main{
         display: flex;
+        gap: 20px;
         .pod-main{
             height: auto;
         }
@@ -7886,12 +7941,12 @@ input {
             width: 50%;
             @media (max-width:767px) {
                 width: 100%;
-                margin-bottom: 5px;
             }
         }
         @media (max-width:767px) {
             width: 100%;
             flex-wrap: wrap;
+            gap: 5px;
         }
     }
     .pod-pik-detals{
@@ -7957,50 +8012,47 @@ input {
         align-items: center;
         gap: 40px;
         width: calc(100% - 50px);
+        @media (max-width:768px) {
+            gap: 5px;
+        }
         @media (max-width:767px) {
             justify-content: space-between;
             width: calc(100% - 0px);
-            gap: 5px;
         }
     }
     button{
         border: none;
         background-color: transparent;
+        padding: 5px;
+        flex-shrink: 0;
         img{
             width: 100%;
             height: 100%;
-            @media (max-width:767px) {
-                width: 28px;
-                height: 38px;
-            }
         }
     }
     .tenx-prev,.tenx-next,.podcast-close{
         width: 50px;
         height: 50px;
+        display: flex;
+        align-items: center;
         @media (max-width:767px) {
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
         }
     }
     .podcast-close{
         @media (max-width:767px) {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: 5px;
+            right: 10px;
+            padding: 0;
         }
     }
     .podcast-play,.podcast-pause{
         width: 80px;
         padding: 0;
         @media (max-width:767px) {
-            width: 50px;
-        }
-        img{
-            @media (max-width:767px) {
-                width: 50px;
-                height: 50px;
-            }
+            width: 40px;
         }
     }
 }
@@ -8237,8 +8289,10 @@ audio::-webkit-media-controls-play-button {
 .readmore-episodes button{
     border: 1px solid #fff;
     border-radius: 3px;
+    margin-bottom: 15px;
     @media (max-width: 767px) {
         display: none;
+        margin-bottom: 0px;
     }
 }
 // player css start
@@ -9053,5 +9107,10 @@ audio::-webkit-media-controls-play-button {
 .nav-center{
     @media (max-width:767px) {
         justify-content: center;
+    }
+}
+.epicon-footer-logo{
+    @media (max-width:768px) {
+        width: 100px;
     }
 }
