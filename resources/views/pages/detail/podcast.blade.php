@@ -8,7 +8,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
     li.pod-main.episode-active {
-        background: linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%);
+        /* background: linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%); */
+        background-color: rgba(31, 31, 49, 0.8);
     }
 
     .episode-active .progress-main {
@@ -18,7 +19,7 @@
         display: none;
     }
     .footer{
-        padding-bottom:170px;
+        padding-bottom:190px;
     }
 </style>
 @stop
@@ -515,7 +516,7 @@ if (@$content['content_type'] == 'SEASON') {
         audio.pause();
         $('.pod-play').show();
         $('.pod-pause').hide();
-        $('.podcast-bottom-player').hide();
+        $('.podcast-bottom-player').hide('fade','fast');
         $("#playButton").show();
     });
 

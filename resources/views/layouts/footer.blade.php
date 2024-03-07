@@ -10,7 +10,7 @@ if ($request->has('type')) {
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <a onclick="click_menu(this)" data-event_context="footer" data-element_text="Home" href="{{ getUrlWithPrefix('homepage') }}"><img width="150" src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
+                <a onclick="click_menu(this)" data-event_context="footer" data-element_text="Home" href="{{ getUrlWithPrefix('homepage') }}"><img width="150" class="epicon-footer-logo" src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
             </div>
         </div>
         <div class="row middle-footer">
