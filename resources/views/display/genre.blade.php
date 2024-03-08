@@ -20,18 +20,24 @@
         </div>
         <div class="genere-fiesta-content">
             <div>
+                @php
+                    $encounteredSlugs = [];
+                @endphp
                 @foreach ($value['content'] as $key => $val)
-                    <?php
-                    $card = getItemCardData($val, $displayLanguageParam);
-                    ?>
-                    <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}" href="{{ url('explore/' . @$val['slug']) }}">
-                        {{-- <button> --}}
-                            <img src="{{ $val['fiesta_image'] ?? '' }}" alt="{{ $val['name'] }}">
+                    @php
+                        $card = getItemCardData($val, $displayLanguageParam);
+                        $currentSlug = @$val['slug'];
+                    @endphp
+                    @if (!in_array($currentSlug, $encounteredSlugs))
+                        <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{ @$title }}"
+                            href="{{ url('explore/' . @$val['slug']) }}">
+                            {{-- <button> --}}
+                            <img src="{{ $val['fiesta_image'] ?? asset('img/default-genre-fiesta-img.png') }}" alt="{{ $val['name'] }}">
                             {{ $val['name'] }}
-                        {{-- </button> --}}
-                    </a>
+                            {{-- </button> --}}
+                        </a>
+                    @endif
                 @endforeach
-
             </div>
         </div>
     </div>
