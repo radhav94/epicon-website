@@ -28,11 +28,17 @@
                 @foreach ($uniqueContent as $key => $val)
                     <?php
                     $card = getItemCardData($val, $displayLanguageParam);
+                    if ($val['slug'] != '' && $val['fiesta_image'] == '') {
+                        $default = $val['slug'] . '.png';
+                    } else {
+                        $default = 'default-genre-fiesta-img';
+                    }
                     ?>
                     <a class="unique-slug" onclick="click_tile(this)" data-title="{{ @$val['title'] }}"
-                        data-type="{{ @$title }}" href="{{ url('explore/' . @$val['slug']) }}">
+                        data-type="{{ @$title }}" kartik="{{ $default }}"
+                        href="{{ url('explore/' . @$val['slug']) }}">
                         {{-- <button> --}}
-                        <img src="{{ $val['fiesta_image'] ?? asset('img/default-genre-fiesta-img.png') }}" alt="{{ $val['name'] }}">
+                        <img src="{{ $val['fiesta_image'] ?? asset('genre_img/' . $default) }}" alt="{{ $default }}">
                         {{ $val['name'] }}
                         {{-- </button> --}}
                     </a>
