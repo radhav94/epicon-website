@@ -21,22 +21,21 @@
         <div class="genere-fiesta-content">
             <div>
                 @php
-                    $encounteredSlugs = [];
+                    $uniqueContent = collect($value['content'])
+                        ->unique('slug')
+                        ->values();
                 @endphp
-                @foreach ($value['content'] as $key => $val)
-                    @php
-                        $card = getItemCardData($val, $displayLanguageParam);
-                        $currentSlug = @$val['slug'];
-                    @endphp
-                    @if (!in_array($currentSlug, $encounteredSlugs))
-                        <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{ @$title }}"
-                            href="{{ url('explore/' . @$val['slug']) }}">
-                            {{-- <button> --}}
-                            <img src="{{ $val['fiesta_image'] ?? asset('img/default-genre-fiesta-img.png') }}" alt="{{ $val['name'] }}">
-                            {{ $val['name'] }}
-                            {{-- </button> --}}
-                        </a>
-                    @endif
+                @foreach ($uniqueContent as $key => $val)
+                    <?php
+                    $card = getItemCardData($val, $displayLanguageParam);
+                    ?>
+                    <a class="unique-slug" onclick="click_tile(this)" data-title="{{ @$val['title'] }}"
+                        data-type="{{ @$title }}" href="{{ url('explore/' . @$val['slug']) }}">
+                        {{-- <button> --}}
+                        <img src="{{ $val['fiesta_image'] ?? asset('img/default-genre-fiesta-img.png') }}" alt="{{ $val['name'] }}">
+                        {{ $val['name'] }}
+                        {{-- </button> --}}
+                    </a>
                 @endforeach
             </div>
         </div>
