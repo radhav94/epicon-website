@@ -187,6 +187,9 @@
             .payu-card {
                 width: 90%;
             }
+            .ec-input{
+                height:38px;
+            }
         }
     </style>
 
