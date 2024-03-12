@@ -200,8 +200,8 @@
     <script>
         $(document).ready(function() {
             setTimeout(function() {
-                window.location.href = "{{ url('/') }}"
-            }, 3000);
+                window.location.href = "{{ url('/activatetv/') }}"
+            }, 2000);
         });
     </script>
 
