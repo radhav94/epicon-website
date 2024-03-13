@@ -11,9 +11,9 @@ class AndroidPaymentController extends Controller
     public function androidPayuUsingWeb(){
 
         $request = Request();
-        Log::info("-----Android Request Data------");
-        Log::debug(json_encode($request->all()));
-        Log::info("-----End------");
+
+        $this->payuLog('-----Android Request Data------', false, [$request->all()]);
+
 
         $userid = $request->get('user_id');
         $firstname = $request->get('firstname');
@@ -63,10 +63,7 @@ class AndroidPaymentController extends Controller
                 $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                 $parameters['amount'] = round(floor($totalamount), 2);
             }
-            Log::info("----------#####log for ios full renew plan for payu -----------");
-            Log::debug(json_encode($parameters));
-            Log::info("-----END ios full renew plan for payu----------------------");
-      
+   
             if ($finalcurrency == 'INR') {
                 // if (env('PAYU_SI') == true) {
                 //     $parameters['si'] = 1;
@@ -145,16 +142,11 @@ class AndroidPaymentController extends Controller
         $parameters['mode'] = '';
         $parameters['epic_price'] = $totalamount;
 
+        $this->payuLog('-----PayUMoney Request Data------', false, [$parameters]);
 
-        Log::info("----------#####full parametes for log for ios full renew plan for payu -----------");
-        Log::debug(json_encode($parameters));
-        Log::info("-----full parametes for END ios full renew plan for payu----------------------");
         $request->session()->forget('payuParams');
         $request->session()->put('payuParams', $parameters);
 
-        Log::info("-----PayUMoney Request Data------");
-        Log::debug(json_encode($parameters));
-        Log::info("-----End------");
         $orderData = $request->session()->get('payuParams');
         //  if (env('PAYU_SI') == true) {
         //     return view('subscription.payumoneysi', compact('parameters'));
@@ -167,9 +159,9 @@ class AndroidPaymentController extends Controller
     public function androidPayuresponse(Request $request){
 
         $paymentresponse = $request->all();
-        Log::info("-----Android payment Response Data------");
-        Log::debug(json_encode($paymentresponse));
-        Log::info("-----End------");
+
+        $this->payuLog('-----Android payment Response Data------', false, [$paymentresponse]);
+
         $paymtentStatus = strtolower($paymentresponse['status']);
         $final_result = ['message' => 'The transaction has been declined.',
         'status'=>@$paymtentStatus,
@@ -214,21 +206,21 @@ class AndroidPaymentController extends Controller
             $data = 'key=' . $parameters_verify_payment['key'] . '&command=' . $parameters_verify_payment['command'] . '&var1=' . $parameters_verify_payment['var1'] . '&hash=' . $parameters_verify_payment['hash'];
             $url = config('epicconfig.PAYUMONEY.API_URL');
             $verify_payment = si_transaction($url, $data);
-            Log::info("-----Verify Payment Status");
-            Log::debug(json_encode($parameters_verify_payment));
-            Log::debug($verify_payment);
-            Log::info("-----END----------------------");
+
+            $this->payuLog('-----Verify Payment Status------', false, ['url' => $url, 'requestdata' => $data, 'response' => $verify_payment]);
 
             $verifyDetails = json_decode($verify_payment);
             if ($verifyDetails->status) {
-                Log::info("-----updateOrderData----------------------");
-                Log::debug(json_encode($updateOrderData));
+               
+                $this->payuLog('-----updateOrderData request------', false, [ 'url' => 'subscriptions/updateOrder', 'request' => $updateOrderData]);
+
                 $updatePayment = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2, false, true);
 
-                Log::info("-----update Subscription Payment details after payment verify.");
-                Log::debug(json_encode($updatePayment));
-                Log::info("-----END----------------------");
+                $this->payuLog('-----updateOrderData response------', false, [ 'url' => 'subscriptions/updateOrder', 'request' => $updateOrderData, 'response' => $updatePayment]);
 
+
+                /*
+                //start predebit
                 $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
                 $parameters['command'] = 'pre_debit_SI';
                 $parameters['txnid'] = $paymentresponse['txnid'];
@@ -250,6 +242,10 @@ class AndroidPaymentController extends Controller
                 Log::debug(json_encode($parameters));
                 Log::debug($pre_debit);
                 Log::info("-----END----------------------");
+                //end predebit
+
+
+                //start recurring
                 $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
                 $parameters['command'] = 'si_transaction';
                 $parameters['var1'] = json_encode([
@@ -270,7 +266,8 @@ class AndroidPaymentController extends Controller
                 Log::debug(json_encode($parameters));
                 Log::debug($recurring_payment);
                 Log::info("-----END----------------------");
-
+                //end recurring
+                */
                 $final_result = ['message' => 'You have successfully purchased a subscription plan.',
                 'txnid'=>@$paymentresponse['txnid'],
                 'bank_ref_num'=>@$paymentresponse['bank_ref_num'],
@@ -293,5 +290,15 @@ class AndroidPaymentController extends Controller
     }
     public function failure(){
         return view('subscription.pay-failure');
+    }
+
+    private function payuLog($msg, $uid='', $data=[]){
+        $prefix = ($uid != '') ? '--TxId-'.$uid.'-- ' : '';
+
+        if($data){
+            Log::channel('payu_android')->info($prefix.''.$msg. PHP_EOL . json_encode($data));
+        }else{
+            Log::channel('payu_android')->info($prefix.$msg );
+        }
     }
 }

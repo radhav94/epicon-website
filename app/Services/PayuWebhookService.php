@@ -2,19 +2,22 @@
 
 namespace App\Services;
 
-use Log;
+use Illuminate\Support\Facades\Log;
 
 class PayuWebhookService
 {
 
     public function processWebhookCallback(array $webhookResponse = [])
     {
-        Log::info("----- Inside processWebhookCallback function -----");
+        $this->payuLog('payu-webhook ----- Inside processWebhookCallback function -----');
+
         if (!empty($webhookResponse) && @$webhookResponse['status'] == 'success') {
             $getOrderDataParams = [
                 'order_id' => $webhookResponse["txnid"]
             ];
             $orderData = CurlAPI("subscriptions/updateOrderData", 'POST', $getOrderDataParams, 2, false, true);
+
+            $this->payuLog('payu-webhook -- Get User Order', false, [ 'url' => 'subscriptions/updateOrderData', 'request' => $getOrderDataParams, 'response' => $orderData ]);
 
             if ($orderData && @$orderData['success'] == true && @$orderData['data']['order_status'] == 'initiated') {
                 $orderData = $orderData['data'];
@@ -40,10 +43,8 @@ class PayuWebhookService
                     ];
                     
                     $updatePayment = CurlAPI("subscriptions/updateOrderData", 'POST', $input, 2, false, true);
-                    Log::info("----- updateOrderData -----");
-                    Log::debug(json_encode($input));
-                    Log::info("----- updateOrderDataResponse -----");
-                    Log::debug(json_encode($updatePayment));
+
+                    $this->payuLog('payu-webhook -- updateOrderData', false, [ 'url' => 'subscriptions/updateOrderData', 'request' => $input, 'response' => $updatePayment]);
 
                     $updateOrderData = [
                         'plan' => $orderData['plan_id'] ?? '',
@@ -67,24 +68,25 @@ class PayuWebhookService
                     ];
 
                     $updateOrder = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2, false, true);
-                    Log::info("----- updateOrder -----");
-                    Log::debug(json_encode($updateOrderData));
-                    Log::info("----- updateOrderResponse -----");
-                    Log::debug(json_encode($updateOrder));
 
-                    $amount = $webhookResponse['amount'] ?? 0;
-                    $this->preDebit($webhookResponse, $orderData);
-                    $this->recurringPayment($webhookResponse, $amount);
+                    $this->payuLog('payu-webhook -- updateOrder', false, [ 'url' => 'subscriptions/updateOrder', 'request' => $updateOrderData, 'response' => $updateOrder]);
+
+
+                    // $amount = $webhookResponse['amount'] ?? 0;
+                    // $this->preDebit($webhookResponse, $orderData);
+                    // $this->recurringPayment($webhookResponse, $amount);
                     // $this->EventPushData($webhookResponse);
                 } else {
-                    Log::info("----- Failed to Verify Payment Status -----");
+
+                    $this->payuLog('payu-webhook -- Verify Payment Status Failed', false, [  'txnid' =>  $webhookResponse['txnid'] ]);
+                    
                 }
             } else {
-                Log::info("----- User Order-----");
-                Log::debug($orderData);
+                $this->payuLog('payu-webhook -- Get User Order Else Loop', false, [ 'url' => 'subscriptions/updateOrderData', 'request' => $getOrderDataParams]);
             }
         } else {
-            Log::info("----- Received " . @$webhookResponse['status'] . " Status -----");
+
+            $this->payuLog("payu-webhook ------- Received " . @$webhookResponse['status'] . " Status -----");
         }
     }
 
@@ -101,9 +103,7 @@ class PayuWebhookService
 
         $verifyPayment = si_transaction($url, $data);
 
-        Log::info("----- Verify Payment Status -----");
-        Log::debug(json_encode($verifyPaymentParameters));
-        Log::debug($verifyPayment);
+        $this->payuLog('payu-webhook -- Verify Payment Status', false, [ 'url' => $url, 'request' => $data, 'response' => $verifyPayment]);
 
         $verifyDetails = json_decode($verifyPayment);
 
@@ -130,9 +130,8 @@ class PayuWebhookService
         $data = 'key=' . $parameters['key'] . '&command=' . $parameters['command'] . '&var1=' . $parameters['var1'] . '&var2=&var3=&var4=&var5=&var6=&var7=&var8=&var9=&hash=' . $parameters['hash'];
         $url = config('epicconfig.PAYUMONEY.API_URL');
         $pre_debit = si_transaction($url, $data);
-        Log::info("----- PayuMoney Pre Debit response -----");
-        Log::debug(json_encode($parameters));
-        Log::debug($pre_debit);
+
+        $this->payuLog('payu-webhook -- Pre Debit', false, [ 'url' =>$url, 'request' => $data, 'response' => $pre_debit]);
     }
 
     public function recurringPayment(array $webhookResponse = [], $amount = 0) 
@@ -154,9 +153,8 @@ class PayuWebhookService
         $data = 'key=' . $parameters['key'] . '&command=' . $parameters['command'] . '&var1=' . $parameters['var1'] . '&var2=&var3=&var4=&var5=&var6=&var7=&var8=&var9=&hash=' . $parameters['hash'];
         $url = config('epicconfig.PAYUMONEY.API_URL');
         $recurringPayment = si_transaction($url, $data);
-        Log::info("----- PayuMoney Recuring Payment response -----");
-        Log::debug(json_encode($parameters));
-        Log::debug($recurringPayment);
+
+        $this->payuLog('payu-webhook -- Recuring Payment', false, [ 'url' =>$url, 'request' => $data, 'response' => $recurringPayment]);
     }
 
     public function EventPushData($order)
@@ -164,6 +162,16 @@ class PayuWebhookService
         if ($order['status'] == "success") {
             $data['Mobile'] = @$order['phone'];
             EventPush($order['user_id'], 'Subscribe', $data, true, false);
+        }
+    }
+
+    private function payuLog($msg, $uid='', $data=[]){
+        $prefix = ($uid != '') ? '--TxId-'.$uid.'-- ' : '';
+
+        if($data){
+            Log::channel('payu')->info($prefix.''.$msg. PHP_EOL . json_encode($data));
+        }else{
+            Log::channel('payu')->info($prefix.$msg );
         }
     }
 }

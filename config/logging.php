@@ -144,6 +144,12 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 60,
         ],
+        'payu_android' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/payu_android/payu.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 60,
+        ],
     ],
 
 ];
