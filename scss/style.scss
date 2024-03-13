@@ -1471,12 +1471,6 @@ input {
                     height: auto;
                 }
             }
-            @media (max-width:1024px) {
-                height: 450px;
-            }
-            @media (max-width:767px) {
-                height: auto;
-            }
             img{
                 width: 100%;
                 height: 100%;
@@ -1513,6 +1507,7 @@ input {
                     font-size: 20px;
                     color: $bg-white;
                     @include line-clamp(2);
+                    font-weight: 500;
 
                     @media (max-width:768px){
                         width: 100%;
@@ -2277,7 +2272,7 @@ input {
                 }
                 .left-time{
                     color: #272727;
-                    font-size: 7px;
+                    font-size: 9px;
                 }
             }
         }
@@ -2738,6 +2733,7 @@ input {
         padding-bottom: 0px;
         padding-top: 10px;
         margin-bottom: 0;
+        padding-left: 21px;
     }
 
     .cant-decide{
@@ -2745,9 +2741,11 @@ input {
         @media (max-width:1024px) {
             width: 100%;
             margin-bottom: 60px;
+            padding-inline: 20px;
         }
         @media (max-width:700px) {
             margin-bottom: -20px;
+            padding-inline: 0px;
         }
         h5{
             color: #fff;
@@ -2869,9 +2867,22 @@ input {
     }
     .chart-trigger{
         width: calc(100% - 35%);
+        @media (max-width:1024px) {
+            margin: 0 auto;
+            width: 68%;
+        }
+        @media (max-width:768px) {
+            width: 100%;
+        }
         @media (max-width:700px) {
-            left: -170px;
+            left: -195px;
             transform: scale(0.7);
+        }
+        @media (max-width:430px) {
+            left: -165px;
+        }
+        @media (max-width:429px) {
+            left: -200px;
         }
     }
     .main-chart-spinner{
@@ -5066,6 +5077,7 @@ input {
     img{
         width: 20px!important;
         margin-right: 5px;
+        margin-block: 5px;
 
         @media (max-width:767px) {
             width: 20px !important;
@@ -5103,7 +5115,7 @@ input {
 }
 .ua{
     @media (max-width:700px) {
-        font-size: 12px;
+        font-size: 14px;
     }
 }
 .episode-season{
@@ -6379,14 +6391,15 @@ input {
         }
         p{
             font-size: 16px;
+            color: #e9e5e5;
             @media (max-width:700px) {
-                // position: absolute;
                 width: 100%;
                 left: 0;
                 font-size: 14px;
-                // @include line-clamp(2);
-                // padding-top: 50px;
                 z-index: -1;
+            }
+            span{
+                color: #e9e5e5;
             }
         }
     }
@@ -6401,7 +6414,10 @@ input {
     }
     @media (max-width:700px) {
         align-items: flex-start;
-        // height: 200px;
+        padding-inline: 10px;
+        & .col-sm-11{
+            gap: 15px;
+        }
     }
     .pik{
         position: relative;
@@ -6502,18 +6518,26 @@ input {
                 }
             }
             span{
-                font-size: 16px;
+                font-size: 14px;
                 color: #B7B7B7;
             }
             p{
-                color: #B7B7B7;
+                color: #e9e5e5;
+                font-size: 16px;
                 @media (max-width:700px) {
                     @include line-clamp(2);
                     bottom: 0;
                     left: 0;
                     width: 100%;
-                    font-size: 14px;
                     margin-bottom: 0;
+                    font-size: 14px;
+                }
+                span{
+                    color: #e9e5e5;
+                    font-size: 16px;
+                    @media (max-width:700px) {
+                        font-size: 14px;
+                    }
                 }
             }
             .progress-main{
@@ -6574,7 +6598,7 @@ input {
     @media (max-width:700px) {
         width: 35px;
         height: 35px;
-        margin-right: 20px;
+        // margin-right: 20px;
         margin-top: 30px;
     }
 }
@@ -6596,19 +6620,19 @@ input {
     &::after{
         content: "";
         width: 100%;
-        height: 100%;
+        height: 200%;
         position: absolute;
         left: 0;
         right: 0;
         top: 0;
         z-index: -1;
-        background: url("../img/podcast-main-bg.png") no-repeat center top;
-        background-size: cover;
+        background: url("../img/podcast-main-bg-new.png") no-repeat center top;
+        background-size: 100% 100%;
     }
 }
 .podcast-top{
     @include flex(row,center,center);
-    gap: 40px;
+    gap: 30px;
     @media (max-width:768px) {
         gap: 20px;
     }
@@ -6617,19 +6641,19 @@ input {
         gap: 20px;
     }
     .thumb{
-        width: 300px;
-        height: 300px;
+        width: 276px;
+        height: 276px;
         position: relative;
         overflow: hidden;
-        // border-radius: 30px;
+        border-radius: 30px;
         flex-shrink: 0;
         @media (max-width:768px) {
             width: 200px;
             height: 200px;
         }
         @media (max-width:700px) {
-            width: 250px;
-            height: 250px;
+            width: 300px;
+            height: 300px;
         }
         img{
             width: 100%;
@@ -6684,7 +6708,7 @@ input {
             }
             span{
                 color: #B7B7B7;
-                font-size: 12px;
+                font-size: 14px;
             }
         }
         .with-whom{
@@ -6800,18 +6824,36 @@ input {
         }
         .f-share-icons{
             display: flex;
+            gap: 5px;
             @media (max-width:768px) {
                 @include flex(row,center,center);
+                gap: 10px;
             }
             a{
                 width: 35px;
                 height: 35px;
-                margin-right: 5px;
                 text-decoration: none;
                 display: flex;
+                animation-duration: 0.5s;
+                // &:hover{
+                //     animation-name: onShare;
+                //     animation-duration: 0.5s;
+                //     animation-timing-function: ease-in-out;
+                //     animation-fill-mode: forwards;
+                //     animation-iteration-count: 1;
+                //     position: relative;
+                // }
                 img{
                     width: 100%;
                     height: 100%;
+                }
+                @keyframes onShare {
+                    0%{
+                        top: 0px;
+                    }
+                    100%{
+                        top: -10px;
+                    }
                 }
             }
         }
@@ -7712,6 +7754,7 @@ input {
     background-size: cover;
     display: flex;
     margin-top: 45px;
+    padding-block: 20px;
     @media (max-width:767px) {
         margin-top: 36px;
     }
@@ -7911,7 +7954,7 @@ input {
     gap: 20px;
     @media (max-width:767px) {
         width: 100%;
-        padding-left: 70px;
+        padding-left: 90px;
     }
     .controll-inner{
         display: flex;

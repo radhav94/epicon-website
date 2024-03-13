@@ -765,29 +765,44 @@
         text-align: end;
         font-size: 15px;
         color: #fff;
-        padding-top: 10px;
+        padding-bottom: 16px;
+        display: flex;
+        justify-content: flex-end;
     }
     
     .distrohead-row .view-all-div a{
         text-decoration: none;
         color: #fff;
+        width: fit-content;
+        display: flex;
+        text-align: right;
+        padding: 4px 10px 4px 10px;
+        background: rgba(0 0 0 / 20%);
+        border-radius: 5px;
+        transition: 0.3s;
+        &:hover{
+            background: rgba(0 0 0 / 50%);
+        }
     }
     
     .play-button{
-        width: 28px;
-        height: 28px;
+        width: 35px;
+        height: 35px;
         position: absolute;
         background-color:black;
         border: 1px solid #fff;
         border-radius:50%;
-        cursor: pointer;
+        pointer-events: none;
         opacity: 0;
         transition: 0.5s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .play-button img{
-        width:16px !important;
-        height: 16px !important;
-        margin: 5px auto;
+        width:9px !important;
+        height: 14px !important;
+        margin: 0 auto;
     }
 
     .distro-main .slider-controls .slide-m-prev,.distro-main .slider-controls .slide-m-next{
@@ -833,18 +848,33 @@
     .distro-main .slider-controls-dots .slick-dots li {
         width: fit-content;
     }
-    .card-row .slide:hover,.distrotv-slide-inner .slide:hover {
+    .card-row .slide:hover {
         transform: scale(1.02);
         transform-origin: center;
         position: relative;
         transition: 0.3s ease-in-out;
         z-index: 9;
     }
+    .distrotv-slide-inner .slide{
+        margin-right: 15px;
+        transition: 0.3s ease-in-out;
+    }
+    .distrotv-slide-inner .slide:hover{
+        transform: scale(1.1, 1.1);
+        z-index: 9;
+        transition: 0.3s ease-in-out;
+    }
     .card-row .slide:hover .play-icon {
         transform: scale(1.2, 1.2);
     }
+    .distrotv-slide-inner{
+        overflow-x: clip;
+    }
+    .distrotv-slide-inner .slide:hover .play-button{
+        opacity: 1;
+    }
     .distrotv-slide-inner .slick-list{
-        padding: 15px 0;
+        overflow: visible;
     }
 
     .distrotv-slide-inner .slide-img-wrap img{
@@ -1058,14 +1088,6 @@
         .distro-tray img {
             width: 100%;
         }
-    }
-    @media (max-width: 700px) {
-        .distrohead-row{
-            padding:0 0 0 0 !important;
-        }
-        // .distrotv-slide-inner .slick-list {
-        //     padding: 15px 0 0px 0;
-        // }
     }
 
     .add-icon {

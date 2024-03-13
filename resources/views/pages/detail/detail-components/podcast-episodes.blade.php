@@ -15,7 +15,7 @@
                 ?>
 
                 <li class="pod-main position-relative py-3 showmore-main" data-id="{{ $value['ID'] }}">
-                    <div class="col-12 col-sm-11 ps-3 d-flex">
+                    <div class="col-12 col-sm-11 d-flex">
                         <div class="pik position-relative">
                             @if(@$value['asset_type'] == 'PLAY')
                             {!! getplayanchorhtml($value) !!}
