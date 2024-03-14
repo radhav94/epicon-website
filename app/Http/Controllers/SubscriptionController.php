@@ -805,7 +805,7 @@ class SubscriptionController extends Controller
 
 
     public function payuWebhook(Request $request){
-        Log::channel('payu')->info("payu webhook : ". json_encode($request->all()));
+        Log::channel('payu_webhook')->info("payu webhook : ". json_encode($request->all()));
 
         $payuResponse = $request->all();
         $payuWebhookService = new PayuWebhookService();

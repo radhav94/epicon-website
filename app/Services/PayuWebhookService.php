@@ -169,9 +169,9 @@ class PayuWebhookService
         $prefix = ($uid != '') ? '--TxId-'.$uid.'-- ' : '';
 
         if($data){
-            Log::channel('payu')->info($prefix.''.$msg. PHP_EOL . json_encode($data));
+            Log::channel('payu_webhook')->info($prefix.''.$msg. PHP_EOL . json_encode($data));
         }else{
-            Log::channel('payu')->info($prefix.$msg );
+            Log::channel('payu_webhook')->info($prefix.$msg );
         }
     }
 }

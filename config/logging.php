@@ -150,6 +150,12 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 60,
         ],
+        'payu_webhook' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/payu_webhook/payu.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 60,
+        ],
     ],
 
 ];
