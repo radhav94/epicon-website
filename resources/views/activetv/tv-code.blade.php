@@ -5,7 +5,7 @@
     <section class="tv--authentication">
         <h5 class="tv--authentication__title">TV Authentication Code</h5>
         <img class="tv--authentication__img" src="{{ asset('assets/img/tv-authentication-img.png') }}" alt="">
-        <form class="tv--authentication__form" action="" method="get">
+        <form class="tv--authentication__form" id="authenticationForm" action="" method="get">
             <div class="tv--authentication__input">
                 <input type="text" class="tv--authentication__input--box pew-pew" maxlength="1">
                 <input type="text" class="tv--authentication__input--box pew-pew" maxlength="1">
@@ -15,9 +15,9 @@
                 <input type="text" class="tv--authentication__input--box pew-pew" maxlength="1">
                 <input type="hidden" name="check" id="check">
             </div>
+            <span id="validation" class="text-danger"></span>
             <div class="w-100 mt-4">
-                <button type="submit" class="btn login-btn bg-white mt-3">
-                    Verify &nbsp;
+                <button type="submit" class="btn login-btn bg-white mt-3">Verify &nbsp;
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -35,21 +35,49 @@
 @stop
 @section('script')
     <script>
-        $(".pew-pew").on("input", function() {
-            const maxLength = parseInt($(this).attr("maxlength"));
-            const currentLength = $(this).val().length;
+        $(document).ready(function() {
+            $(".pew-pew").on("input", function() {
+                const maxLength = parseInt($(this).attr("maxlength"));
+                const currentLength = $(this).val().length;
 
-            // If the current input field is filled, move to the next field
-            if (currentLength === maxLength) {
-                $(this).next(".pew-pew").focus();
-            }
+                // If the current input field is filled, move to the next field
+                if (currentLength === maxLength) {
+                    $(this).next(".pew-pew").focus();
+                }
 
-            // Update the "check" value
-            let checkValue = '';
-            $(".pew-pew").each(function() {
-                checkValue += $(this).val();
+                // Update the "check" value
+                let checkValue = '';
+                $(".pew-pew").each(function() {
+                    checkValue += $(this).val();
+                });
+                $("#check").val(checkValue);
+
+                // Check if all input fields are filled
+                validateInputs();
             });
-            $("#check").val(checkValue);
+
+            $('#authenticationForm').on('submit', function(event) {
+                // Prevent form submission if inputs are not valid
+                if (!validateInputs()) {
+                    event.preventDefault();
+                }
+            });
+
+            function validateInputs() {
+                var valid = true;
+                $(".pew-pew").each(function() {
+                    if ($(this).val() === '') {
+                        valid = false;
+                        return false;
+                    }
+                });
+                if (valid) {
+                    $('#validation').text('');
+                } else {
+                    $('#validation').text('Please fill in all input boxes.');
+                }
+                return valid;
+            }
         });
     </script>
 @stop
