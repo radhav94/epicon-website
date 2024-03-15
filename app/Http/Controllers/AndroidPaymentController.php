@@ -139,7 +139,7 @@ class AndroidPaymentController extends Controller
         $parameters['email'] = $email;
         $parameters['user_id'] = $userid;
         $parameters['order_id'] = $order_number;
-        $parameters['payment_gateway'] = "PayU";
+        $parameters['payment_gateway'] = "payumoney";
         $parameters['web'] = "android";
         $parameters['plan_id'] = $plan_id;
         $parameters['mode'] = '';
@@ -187,7 +187,7 @@ class AndroidPaymentController extends Controller
                 'user_id' => $orderData['user_id'] ?? '',
                 'order_id' => $orderData['order_id'] ?? '',
                 'order_status' => 'complete',
-                'payment_gateway' => 'PayU',
+                'payment_gateway' => $orderData['payment_gateway'] ?? '',
                 'bank_ref_no' => $paymentresponse['bank_ref_num'] ?? '',
                 'transaction_id' => $paymentresponse['mihpayid'] ?? '',
                 'authPayuId' => $paymentresponse['mihpayid'] ?? '',

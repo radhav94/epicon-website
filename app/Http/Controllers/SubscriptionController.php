@@ -166,7 +166,6 @@ class SubscriptionController extends Controller
             'plan_id' => $result['id'],
             'order_value' => $result['actual_price'],
             'x_country' => @$countrycode,
-            'payment_gateway' => 'PayU',
         ];
         $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2, false, true);
         $txid = generateTransactionID();
@@ -175,7 +174,7 @@ class SubscriptionController extends Controller
             $orderPostData = [
                 "plan_id" => $resorder['plan_id'],
                 "user_id" => $resorder['user_id'],
-                "payment_gateway" => "PayU",
+                "payment_gateway" => "payumoney",
                 "web_device" => $resorder['device'],
                 "coupon_applied" => $formData['coupanstatus'] ?? '',
                 "amount" => $resorder['order_value'],
@@ -540,7 +539,7 @@ class SubscriptionController extends Controller
                 'user_id' => $orderValue['user_id'] ?? '',
                 'order_id' => $orderData['order_id'] ?? '',
                 'order_status' => 'complete',
-                'payment_gateway' => 'PayU',
+                'payment_gateway' => $orderValue['payment_gateway'] ?? '',
                 'bank_ref_no' => $paymentresponse['bank_ref_num'] ?? '',
                 'transaction_id' => $paymentresponse['mihpayid'] ?? '',
                 'authPayuId' => $paymentresponse['mihpayid'] ?? '',
