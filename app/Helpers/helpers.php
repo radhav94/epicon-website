@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Detection\MobileDetect;
 
 if (!function_exists('getUserAgent')) {
     function getUserAgent()
@@ -381,11 +382,18 @@ function getWishlist()
 }
 
 function isMobliDevice()
-{
+{   
+    $detect = new MobileDetect();
+    $deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
+
+    return ($deviceType == 'phone') ? true : false;
+
+    /*
     $ua = strtolower($_SERVER["HTTP_USER_AGENT"] ?? '');
     $isMob = is_numeric(strpos($ua, "mobile"));
     $isIPhone = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"] ?? ''), "iphone"));
     return (isset($isMob) && $isMob == true) || (isset($isIPhone) && $isIPhone == true) || (isset($_SERVER['HTTP_X_MOBILE']) && $_SERVER['HTTP_X_MOBILE'] == true) ? true : false;
+    */
 }
 
 function getItemCardData($val, $language)
