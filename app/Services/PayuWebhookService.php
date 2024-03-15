@@ -50,7 +50,7 @@ class PayuWebhookService
                         'user_id' => $orderData['user_id'] ?? '',
                         'order_id' => $webhookResponse["txnid"],
                         'order_status' => 'complete',
-                        'payment_gateway' => 'payu',
+                        'payment_gateway' => 'PayU',
                         'bank_ref_no' => @$webhookResponse['bank_ref_num'],
                         'transaction_id' => @$webhookResponse['mihpayid'] ?? '',
                         'authPayuId' => @$webhookResponse['mihpayid'] ?? '',
