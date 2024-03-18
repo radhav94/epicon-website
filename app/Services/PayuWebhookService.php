@@ -20,16 +20,30 @@ class PayuWebhookService
 
             if(empty(@$orderData['data'] )){
                 //new api
-                $newParam = ['email' => $webhookResponse['email']];
-                $result = CurlAPI("subscriptions/checkActiveSubscription", 'POST', $newParam, 2, false, true);
-            
-                if($result['status'] == false && isset($result['userOrder'])){
-                    $mismatchFlag = true;
+                if(isset($webhookResponse['email']) && !empty($webhookResponse['email'])){
 
-                    $orderData = [];
-                    $orderData['success'] = true;
-                    $orderData['data'] = $result['userOrder'];
+
+                    Log::info("----- Inside checkActiveSubscription -----");
+
+                    $newParam = ['email' => $webhookResponse['email']];
+                    $result = CurlAPI("subscriptions/checkActiveSubscription", 'POST', $newParam, 2, false, true);
+                    
+                    Log::info("----- checkActiveSubscription request -----");
+                    Log::debug(json_encode($newParam));
+                    Log::info("----- checkActiveSubscription response -----");
+                    Log::debug(json_encode($result));
+
+                    if($result['status'] == false && isset($result['userOrder'])){
+                        $mismatchFlag = true;
+    
+                        $orderData = [];
+                        $orderData['success'] = true;
+                        $orderData['data'] = $result['userOrder'];
+
+                        Log::info("----- missmatch found -----".@$result['userOrder']['order_id']);
+                    }
                 }
+                
             }
 
             if ($orderData && @$orderData['success'] == true && @$orderData['data']['order_status'] == 'initiated') {
