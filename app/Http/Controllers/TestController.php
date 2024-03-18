@@ -9,26 +9,53 @@ class TestController extends Controller
 {
     public function index()
     {   
-        if(strtolower(env('APP_ENV')) == 'production'){
-            return redirect('/');
-        }
-        
-        $request = Request();
-        d(request()->session()->all());
-        echo '-------------------- <br>';
-        $request->session()->get('user_token');
-        $curlData = [];
-        $genrelist = postCurlApicall("users/viewProfile", $curlData, 2);
+        die;
+        //get order data by email
+        // $orderData = [];
+        // $newParam = ['email' => 'mohammed.2010vazeer@gmail.com1'];
+        // $result = CurlAPI("subscriptions/checkActiveSubscription", 'POST', $newParam, 2, false, true);
+    
+        // if($result['status'] == false && isset($result['userOrder'])){
+        //     $orderData = [];
+        //     $orderData['success'] = true;
+        //     $orderData['data'] = $result['userOrder'];
+        // }
+        // dd($orderData);
 
-        d($genrelist);
-        echo '-------------------- <br>';
+        //get order data
+        $getOrderDataParams = [
+            'order_id' => 77692712
+        ];
+        $orderData = CurlAPI("subscriptions/updateOrderData", 'POST', $getOrderDataParams, 2, false, true);
 
-        echo "Old api <br>";
-
-        $result = CurlAPI("users/viewProfile", "POST", null, 2);
-
-        dd($result);
+        dd($orderData);
+        $txid = 19429969818;
+        $txid = 776927;
+        // $txid = 1710712966715;
+        $verifyPayment = $this->verifyPaymentStatus($txid);
+        dd( $verifyPayment );
     }
+
+    public function verifyPaymentStatus($txnid = null)
+    {
+        $verifyPaymentParameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
+        $verifyPaymentParameters['command'] = 'verify_payment';
+        $verifyPaymentParameters['var1'] = $txnid;
+        $hash = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $verifyPaymentParameters['command'] . '|' . $verifyPaymentParameters['var1'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+        $calculatedHash = strtolower(hash("sha512", $hash));
+        $verifyPaymentParameters['hash'] = $calculatedHash;
+        $data = 'key=' . $verifyPaymentParameters['key'] . '&command=' . $verifyPaymentParameters['command'] . '&var1=' . $verifyPaymentParameters['var1'] . '&hash=' . $verifyPaymentParameters['hash'];
+        $url = config('epicconfig.PAYUMONEY.API_URL');
+
+        $verifyPayment = si_transaction($url, $data);
+
+        // $this->payuLog('Verify Payment Status', [ 'url' => $url, 'request' => $data, 'response' => $verifyPayment]);
+
+        $verifyDetails = json_decode($verifyPayment);
+
+        return $verifyDetails;
+    }
+
     public function index1()
     {
 

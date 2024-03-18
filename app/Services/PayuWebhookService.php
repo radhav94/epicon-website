@@ -16,15 +16,52 @@ class PayuWebhookService
             ];
             $orderData = CurlAPI("subscriptions/updateOrderData", 'POST', $getOrderDataParams, 2, false, true);
 
+            $mismatchFlag = false; //if order_id is missmatched
+
+            if(empty(@$orderData['data'] )){
+                //new api
+                if(isset($webhookResponse['email']) && !empty($webhookResponse['email'])){
+
+
+                    Log::info("----- Inside checkActiveSubscription -----");
+
+                    $newParam = ['email' => $webhookResponse['email']];
+                    $result = CurlAPI("subscriptions/checkActiveSubscription", 'POST', $newParam, 2, false, true);
+                    
+                    Log::info("----- checkActiveSubscription request -----");
+                    Log::debug(json_encode($newParam));
+                    Log::info("----- checkActiveSubscription response -----");
+                    Log::debug(json_encode($result));
+
+                    if($result['status'] == false && isset($result['userOrder'])){
+                        $mismatchFlag = true;
+    
+                        $orderData = [];
+                        $orderData['success'] = true;
+                        $orderData['data'] = $result['userOrder'];
+
+                        Log::info("----- missmatch found -----".@$result['userOrder']['order_id']);
+                    }
+                }
+                
+            }
+
             if ($orderData && @$orderData['success'] == true && @$orderData['data']['order_status'] == 'initiated') {
                 $orderData = $orderData['data'];
                 $verifyPayment = $this->verifyPaymentStatus($webhookResponse['txnid']);
 
                 if ($verifyPayment) {
+
+                    if($mismatchFlag){
+                        $txnId = $orderData['order_id'];
+                    }else{
+                        $txnId = $webhookResponse["txnid"];
+                    }
+
                     $input = [
                         "key" => $webhookResponse["key"],
                         "hash" => $webhookResponse["hash"],
-                        "txnid" => $webhookResponse["txnid"],
+                        "txnid" => $txnId,
                         "amount" => $webhookResponse["amount"],
                         "firstname" => $webhookResponse["firstname"],
                         "email" => $webhookResponse["email"],
@@ -35,7 +72,7 @@ class PayuWebhookService
                         "api_version" => 12,
                         "lastname" => $webhookResponse["lastname"] ?? null,
                         "pg" => @$webhookResponse["pg"] != '' ? $webhookResponse["pg"] : null,
-                        "order_id" => $webhookResponse["txnid"],
+                        "order_id" => $txnId,
                         "payu_status" => $webhookResponse["status"]
                     ];
                     
@@ -48,7 +85,7 @@ class PayuWebhookService
                     $updateOrderData = [
                         'plan' => $orderData['plan_id'] ?? '',
                         'user_id' => $orderData['user_id'] ?? '',
-                        'order_id' => $webhookResponse["txnid"],
+                        'order_id' => $txnId,
                         'order_status' => 'complete',
                         'payment_gateway' => 'payu',
                         'bank_ref_no' => @$webhookResponse['bank_ref_num'],
