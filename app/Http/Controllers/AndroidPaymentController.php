@@ -79,45 +79,48 @@ class AndroidPaymentController extends Controller
         
         $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
         $parameters['phone'] = $mobile ?? '';
-        // if (env('PAYU_SI') == true) {
-        //         $billingCycle = 'MONTHLY';
-        //         if ($plan_id == 'epic_in_pl_1') {
-        //             $billingInterval = 1;
-        //             $newstartdate = date("Y-m-d");
-        //             $billingCycle = 'MONTHLY';
-        //             $endstartdate = date("Y-m-d", strtotime("+1 month -1 day"));
-        //         } else if ($plan_id == 'epic_in_pl_2') {
-        //             $billingInterval = 3;
-        //             $billingCycle = 'MONTHLY';
-        //             $newstartdate = date("Y-m-d");
-        //             $endstartdate = date("Y-m-d", strtotime("+3 month -1 day"));
-        //         } else if ($plan_id == 'epic_in_pl_3') {
-        //             $billingInterval = 6;
-        //             $billingCycle = 'MONTHLY';
-        //             $newstartdate = date("Y-m-d");
-        //             $endstartdate = date("Y-m-d", strtotime("+6 month -1 day"));
-        //         } else {
-        //             $billingInterval = 1;
-        //             $billingCycle = 'YEARLY';
-        //             $newstartdate = date("Y-m-d");
-        //             $endstartdate = date("Y-m-d", strtotime("+1 year"));
-        //         }
-        //         $parameters['si'] = 1;
-        //         $parameters['api_version'] = "7";
-        //         $parameters['si_details'] = json_encode([
-        //             'billingAmount' => $totalamount,
-        //             'billingCurrency' => $finalcurrency,
-        //             'billingCycle' => $billingCycle,
-        //             'billingInterval' => $billingInterval,
-        //             'paymentStartDate' => $newstartdate,
-        //             'paymentEndDate' => $endstartdate
-        //         ]);
+        if (env('PAYU_SI') == true) {
+                $billingCycle = 'MONTHLY';
+                if ($plan_id == 'epic_in_pl_1') {
+                    $billingInterval = 1;
+                    $newstartdate = date("Y-m-d");
+                    // $billingCycle = 'DAILY';
+                    // $endstartdate = date("Y-m-d", strtotime("+1 day"));
+                    $billingCycle = 'MONTHLY';
+                    //$endstartdate = date("Y-m-d", strtotime("+1 month -1 day"));
+                } else if ($plan_id == 'epic_in_pl_2') {
+                    $billingInterval = 3;
+                    $billingCycle = 'MONTHLY';
+                    $newstartdate = date("Y-m-d");
+                    //$endstartdate = date("Y-m-d", strtotime("+3 month -1 day"));
+                } else if ($plan_id == 'epic_in_pl_3') {
+                    $billingInterval = 6;
+                    $billingCycle = 'MONTHLY';
+                    $newstartdate = date("Y-m-d");
+                    //$endstartdate = date("Y-m-d", strtotime("+6 month -1 day"));
+                } else {
+                    $billingInterval = 1;
+                    $billingCycle = 'YEARLY';
+                    $newstartdate = date("Y-m-d");
+                    //$endstartdate = date("Y-m-d", strtotime("+1 year"));
+                }
+                $endstartdate = date("Y-m-d", strtotime("+10 year"));
+                $parameters['si'] = 1;
+                $parameters['api_version'] = "7";
+                $parameters['si_details'] = json_encode([
+                    'billingAmount' => $totalamount,
+                    'billingCurrency' => $finalcurrency,
+                    'billingCycle' => $billingCycle,
+                    'billingInterval' => $billingInterval,
+                    'paymentStartDate' => $newstartdate,
+                    'paymentEndDate' => $endstartdate
+                ]);
 
-        //     $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['txnid'] . '|' . $parameters['amount'] . '|' . $parameters['productinfo'] . '|' . $parameters['firstname'] . '|' . $parameters['email'] . '|||||||||||' . $parameters['si_details'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
-        // }
-        // else{
+            $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['txnid'] . '|' . $parameters['amount'] . '|' . $parameters['productinfo'] . '|' . $parameters['firstname'] . '|' . $parameters['email'] . '|||||||||||' . $parameters['si_details'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+        }
+        else{
             $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['txnid'] . '|' . $parameters['amount'] . '|' . $parameters['productinfo'] . '|' . $parameters['firstname'] . '|' . $parameters['email'] . '||||||||||||' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
-        // }
+        }
    
         if (in_array($payment_type, ['CC', 'DC', 'NB', 'CASH', 'UPI'])) {
             $parameters['pg'] = $payment_type;
@@ -148,12 +151,12 @@ class AndroidPaymentController extends Controller
         $request->session()->put('payuParams', $parameters);
 
         $orderData = $request->session()->get('payuParams');
-        //  if (env('PAYU_SI') == true) {
-        //     return view('subscription.payumoneysi', compact('parameters'));
-        // }
-        // else{
+         if (env('PAYU_SI') == true) {
+            return view('subscription.payumoneysi', compact('parameters'));
+        }
+        else{
             return view('subscription.payumoney', compact('parameters'));
-        // }
+        }
     }
 
     public function androidPayuresponse(Request $request){
@@ -218,56 +221,6 @@ class AndroidPaymentController extends Controller
 
                 $this->payuLog('-----updateOrderData response------', false, [ 'url' => 'subscriptions/updateOrder', 'request' => $updateOrderData, 'response' => $updatePayment]);
 
-
-                /*
-                //start predebit
-                $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
-                $parameters['command'] = 'pre_debit_SI';
-                $parameters['txnid'] = $paymentresponse['txnid'];
-                $parameters['var1'] = json_encode([
-                    'authpayuid' => $paymentresponse['mihpayid'],
-                    'requestId' => md5($paymentresponse['mihpayid']),
-                    'debitDate' => $getOnlyDate,
-                    'invoiceDisplayNumber' => $paymentresponse['mihpayid'],
-                    'amount' => $planValue,
-                    'action' => 'retreive',
-                ]);
-                $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['command'] . '|' . $parameters['var1'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
-                $calculated_hash = strtolower(hash("sha512", $HASH));
-                $parameters['hash'] = $calculated_hash;
-                $data = 'key=' . $parameters['key'] . '&command=' . $parameters['command'] . '&var1=' . $parameters['var1'] . '&var2=&var3=&var4=&var5=&var6=&var7=&var8=&var9=&hash=' . $parameters['hash'];
-                $url = config('epicconfig.PAYUMONEY.API_URL');
-                $pre_debit = si_transaction($url, $data);
-                Log::info("-----PayuMoney Pre Debit response");
-                Log::debug(json_encode($parameters));
-                Log::debug($pre_debit);
-                Log::info("-----END----------------------");
-                //end predebit
-
-
-                //start recurring
-                $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
-                $parameters['command'] = 'si_transaction';
-                $parameters['var1'] = json_encode([
-                    'authpayuid' => $paymentresponse['mihpayid'],
-                    'invoiceDisplayNumber' => $paymentresponse['mihpayid'],
-                    'amount' => $planValue,
-                    'txnid' => 'rec_txid_' . $paymentresponse['txnid'],
-                    'phone' => $paymentresponse['phone'],
-                    "email" => $paymentresponse['email'],
-                ]);
-                $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['command'] . '|' . $parameters['var1'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
-                $calculated_hash = strtolower(hash("sha512", $HASH));
-                $parameters['hash'] = $calculated_hash;
-                $data = 'key=' . $parameters['key'] . '&command=' . $parameters['command'] . '&var1=' . $parameters['var1'] . '&var2=&var3=&var4=&var5=&var6=&var7=&var8=&var9=&hash=' . $parameters['hash'];
-                $url = config('epicconfig.PAYUMONEY.API_URL');
-                $recurring_payment = si_transaction($url, $data);
-                Log::info("-----PayuMoney Recuring Payment response");
-                Log::debug(json_encode($parameters));
-                Log::debug($recurring_payment);
-                Log::info("-----END----------------------");
-                //end recurring
-                */
                 $final_result = ['message' => 'You have successfully purchased a subscription plan.',
                 'txnid'=>@$paymentresponse['txnid'],
                 'bank_ref_num'=>@$paymentresponse['bank_ref_num'],
