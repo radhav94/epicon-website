@@ -9,7 +9,7 @@ class TestController extends Controller
 {
     public function index()
     {   
-
+        die;
         //get order data by email
         // $orderData = [];
         // $newParam = ['email' => 'mohammed.2010vazeer@gmail.com1'];
