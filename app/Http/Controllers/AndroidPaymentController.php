@@ -47,9 +47,9 @@ class AndroidPaymentController extends Controller
                 $parameters['amount'] = round(floor($totalamount), 2);
             }
             if ($finalcurrency == 'INR') {
-                if (env('PAYU_SI') == true) {
-                    $parameters['si'] = 1;
-                }
+                // if (env('PAYU_SI') == true) {
+                //     $parameters['si'] = 1;
+                // }
             } else {
                 if ($finalcurrency == 'USD') {
                     $rate = getConvertedPrice($finalcurrency, 'INR');
@@ -65,9 +65,9 @@ class AndroidPaymentController extends Controller
             }
    
             if ($finalcurrency == 'INR') {
-                if (env('PAYU_SI') == true) {
-                    $parameters['si'] = 1;
-                }
+                // if (env('PAYU_SI') == true) {
+                //     $parameters['si'] = 1;
+                // }
             } else {
                 if ($finalcurrency == 'USD') {
                     $rate = getConvertedPrice($finalcurrency, 'INR');
@@ -79,6 +79,7 @@ class AndroidPaymentController extends Controller
         
         $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
         $parameters['phone'] = $mobile ?? '';
+        /*
         if (env('PAYU_SI') == true) {
                 $billingCycle = 'MONTHLY';
                 if ($plan_id == 'epic_in_pl_1') {
@@ -118,9 +119,10 @@ class AndroidPaymentController extends Controller
 
             $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['txnid'] . '|' . $parameters['amount'] . '|' . $parameters['productinfo'] . '|' . $parameters['firstname'] . '|' . $parameters['email'] . '|||||||||||' . $parameters['si_details'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
         }
-        else{
+        */
+        // else{
             $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['txnid'] . '|' . $parameters['amount'] . '|' . $parameters['productinfo'] . '|' . $parameters['firstname'] . '|' . $parameters['email'] . '||||||||||||' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
-        }
+        // }
    
         if (in_array($payment_type, ['CC', 'DC', 'NB', 'CASH', 'UPI'])) {
             $parameters['pg'] = $payment_type;
@@ -151,12 +153,12 @@ class AndroidPaymentController extends Controller
         $request->session()->put('payuParams', $parameters);
 
         $orderData = $request->session()->get('payuParams');
-         if (env('PAYU_SI') == true) {
-            return view('subscription.payumoneysi', compact('parameters'));
-        }
-        else{
+        //  if (env('PAYU_SI') == true) {
+        //     return view('subscription.payumoneysi', compact('parameters'));
+        // }
+        // else{
             return view('subscription.payumoney', compact('parameters'));
-        }
+        // }
     }
 
     public function androidPayuresponse(Request $request){
