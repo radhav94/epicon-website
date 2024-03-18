@@ -47,9 +47,9 @@ class AndroidPaymentController extends Controller
                 $parameters['amount'] = round(floor($totalamount), 2);
             }
             if ($finalcurrency == 'INR') {
-                // if (env('PAYU_SI') == true) {
-                //     $parameters['si'] = 1;
-                // }
+                if (env('PAYU_SI') == true) {
+                    $parameters['si'] = 1;
+                }
             } else {
                 if ($finalcurrency == 'USD') {
                     $rate = getConvertedPrice($finalcurrency, 'INR');
@@ -65,9 +65,9 @@ class AndroidPaymentController extends Controller
             }
    
             if ($finalcurrency == 'INR') {
-                // if (env('PAYU_SI') == true) {
-                //     $parameters['si'] = 1;
-                // }
+                if (env('PAYU_SI') == true) {
+                    $parameters['si'] = 1;
+                }
             } else {
                 if ($finalcurrency == 'USD') {
                     $rate = getConvertedPrice($finalcurrency, 'INR');
