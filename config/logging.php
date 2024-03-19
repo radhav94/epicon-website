@@ -134,6 +134,28 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 14,
         ],
+        /*'deprecations' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/php-deprecation-warnings.log'),
+        ],*/
+        'payu' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/payu/payu.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 60,
+        ],
+        'payu_android' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/payu_android/payu.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 60,
+        ],
+        'payu_webhook' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/payu_webhook/payu.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 60,
+        ],
     ],
 
 ];

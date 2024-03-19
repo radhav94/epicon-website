@@ -11,7 +11,7 @@ use Route;
 class SubscriptionController extends Controller
 {
     public function subscription(Request $request)
-    {
+    {   
         $meta = getMeta('subscription');
         $sessionData = $request->session()->get('user_token');
         $userData = $request->session()->get('plandata');
@@ -167,7 +167,10 @@ class SubscriptionController extends Controller
             'order_value' => $result['actual_price'],
             'x_country' => @$countrycode,
         ];
+        $this->payuLog('Create Order Api Request', false, ['endpoint' => 'subscriptions/createorder', 'data' => $postData]);
+
         $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2, false, true);
+
         $txid = generateTransactionID();
         if ($resultData['success'] == true && !empty(@$resultData['order_data'])) {
             $resorder = $resultData['order_data'];
@@ -184,14 +187,17 @@ class SubscriptionController extends Controller
             $txid = $resorder['order_id'];
         }
 
+        $this->payuLog( 'Create Order Api Response', $txid,[$resultData]);
+
         $parameters = $this->paymentProcess($resultData, $currency, $payment_type);
-        Log::info($parameters);
+
+        $this->payuLog( 'Payu Money Request data', $txid,[$parameters]);
+
         if(@$parameters['status'] == false){
-            Log::info("false");
             return view('pages.error.data-error');
         }
         else{
-            Log::info("true");
+
             // $txid = generateTransactionID();
             $amount = $result['actual_price'];
             $productinfo = $result['id'];
@@ -233,11 +239,9 @@ class SubscriptionController extends Controller
                 ];
             }
             if (env('PAYU_SI') == true) {
-                Log::info("calling subscription.payumoneysi");
                 return view('subscription.payumoneysi', compact('parameters'));
             }
             else{
-                Log::info("calling subscription.payumoney");
                 return view('subscription.payumoney', compact('parameters'));
             }
         }
@@ -256,14 +260,17 @@ class SubscriptionController extends Controller
     }*/
 
     public function paymentProcess($orderArr, $currency, $payment_type)
-    {
-        Log::info("Inside paymentProcess function");
+    {   
+        
         /* All Required Parameters by your Gateway */
         $request = Request();
         $userData = $request->session()->get('user');
         $userid = $userData['user_id'] ?? '';
         
         $order = $orderArr['order_data'];
+
+        $this->payuLog( 'Inside paymentProcess function', $order['order_id']);
+
         $order_number = $order['order_id'];
         $totalamount = $order['order_value'];
         $plan_id = $order['plan_id'];
@@ -276,7 +283,8 @@ class SubscriptionController extends Controller
         
         // test amount logic
         $parameters['status'] = "";
-        if (env('DEV_AMT') == true && ($userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025' || $userid == 'newrahul@mailinator.com' || $userid == 'newprathamesh@mailinator.com' || $userid == '917977495428' || $userid == '918169554956')) {
+        if (env('DEV_AMT') == true && ($userid == '123test123@mailinator.com' || $userid == '11test1@mailinator.com' || $userid == 'epicontest31@gmail.com' || $userid == '8169554956' || $userid == '9819208025' || $userid == 'newrahul@mailinator.com' || $userid == 'newprathamesh@mailinator.com' || $userid == '917977495428' || $userid == '918169554956' || $userid == 'nilesh@mailinator.com' || strpos($userid, "-test@mailinator.com") !== false)
+        ) {
             $totalamount = "1";
         }
         $parameters = ['tid' => time(), 'txnid' => $order_number, 'amount' => $totalamount, 'firstname' => @$userData['name'], 'email' => @$userData['email'], 'phone' => @$userData['mobile'], 'productinfo' => 'epicon ' . $plan_id];
@@ -310,9 +318,7 @@ class SubscriptionController extends Controller
                     $totalamount = (!empty($totalamount) && $rate !== false) ? floor($rate) * $totalamount : env('INR_TO_USD_RATE', 83) * $totalamount;
                     $parameters['amount'] = round(floor($totalamount), 2);
                 }
-                Log::info("----------#####log for ios full renew plan for payu -----------");
-                Log::debug(json_encode($parameters));
-                Log::info("-----END ios full renew plan for payu----------------------");
+       
             } else {
                 if ($finalcurrency == 'INR') {
                     if (env('PAYU_SI') == true) {
@@ -329,7 +335,6 @@ class SubscriptionController extends Controller
             }
         }
 
-
         $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
         $parameters['phone'] = $userData['mobile'];
         if (env('PAYU_SI') == true) {
@@ -339,7 +344,7 @@ class SubscriptionController extends Controller
                 $newstartdate = date("Y-m-d");
                 $billingCycle = 'MONTHLY';
                 //$endstartdate = date("Y-m-d", strtotime("+1 month -1 day"));
-            } else if ($plan_id == 'epic_in_pl_2') {
+            }else if ($plan_id == 'epic_in_pl_2') {
                 $billingInterval = 3;
                 $billingCycle = 'MONTHLY';
                 $newstartdate = date("Y-m-d");
@@ -392,18 +397,13 @@ class SubscriptionController extends Controller
         $parameters['email'] = $parameters['email'];
         $parameters['status'] = true; 
 
-        Log::info("----------#####full parametes for log for ios full renew plan for payu -----------");
-        Log::debug(json_encode($parameters));
-        Log::info("-----full parametes for END ios full renew plan for payu----------------------");
+
         $request->session()->forget('orderdata');
         $request->session()->put('orderdata', $order);
 
         $request->session()->forget('payuParams');
         $request->session()->put('payuParams', $parameters);
 
-        Log::info("-----PayUMoney Request Data------");
-        Log::debug(json_encode($parameters));
-        Log::info("-----End------");
         //$orderData = $request->session()->get('orderdata');
         //dd($parameters);
         return $parameters;
@@ -520,10 +520,9 @@ class SubscriptionController extends Controller
     }
     public function payusuccess(Request $request)
     {
-        Log::info("-----Inside Payu sucess function----------------------");
         $paymentresponse = $request->all();
-        Log::info($paymentresponse);
-        // dd($paymentresponse);
+
+        $this->payuLog( 'Inside Payu success function', @$paymentresponse['txnid'], [$paymentresponse]);
 
         $paymtentStatus = strtolower($paymentresponse['status']);
         $final_result = ['message' => 'The transaction has been declined.'];
@@ -570,83 +569,28 @@ class SubscriptionController extends Controller
             $parameters_verify_payment['hash'] = $calculated_hash;
             $data = 'key=' . $parameters_verify_payment['key'] . '&command=' . $parameters_verify_payment['command'] . '&var1=' . $parameters_verify_payment['var1'] . '&hash=' . $parameters_verify_payment['hash'];
             $url = config('epicconfig.PAYUMONEY.API_URL');
+
+            $this->payuLog( 'Verify Payment Status - Request', @$paymentresponse['txnid'], ['url' => $url, 'data' => $data]);
+
             $verify_payment = si_transaction($url, $data);
-            Log::info("-----Verify Payment Status");
-            Log::debug(json_encode($parameters_verify_payment));
-            Log::debug($verify_payment);
-            Log::info("-----END----------------------");
+
+            $this->payuLog( 'Verify Payment Status - Response', @$paymentresponse['txnid'], [$verify_payment]);
+
             ///////////---*** Verify Payment End ***---///////////
 
             $verifyDetails = json_decode($verify_payment);
             $data= json_decode( json_encode($verify_payment), true);
 
-            Log::info($verifyDetails->status);
-            Log::info("---------yes-------");
-            Log::info($data);
             if ($verifyDetails->status) {
-
-
-                ///---------***Prchase order api***-------///
-                // Log::info("-----createupdateorder----------------------");
-                // Log::debug(json_encode($orderData));
-                // $updateData = CurlAPI("subscriptions/createupdateorder", 'POST', $orderData, 2);
-                // //dd($updateData);
-                // Log::info("-----update Subscription Status after payment verify.");
-                // Log::debug(json_encode($updateData));
-                // Log::info("-----END----------------------");
-                ///---------***End Prchase order api***-------///
-                Log::info("-----updateOrderData----------------------");
-                Log::debug(json_encode($updateOrderData));
+                $this->payuLog( 'Verify Payment Status - success', @$paymentresponse['txnid']);
+                
                 ///------***Update create order with payment details***--------///
+                $this->payuLog( 'UpdateOrder Api Request', @$paymentresponse['txnid'], ['url' => 'subscriptions/updateOrder', 'data' => $updateOrderData]);
+
                 $updatePayment = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2, false, true);
 
-                Log::info("-----update Subscription Payment details after payment verify.");
-                Log::debug(json_encode($updatePayment));
-                Log::info("-----END----------------------");
+                $this->payuLog( 'UpdateOrder Api Response', @$paymentresponse['txnid'], [$updatePayment]);
                 ///------***End payment details***--------///
-
-                $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
-                $parameters['command'] = 'pre_debit_SI';
-                $parameters['txnid'] = $paymentresponse['txnid'];
-                $parameters['var1'] = json_encode([
-                    'authpayuid' => $paymentresponse['mihpayid'],
-                    'requestId' => md5($paymentresponse['mihpayid']),
-                    'debitDate' => $getOnlyDate,
-                    'invoiceDisplayNumber' => $paymentresponse['mihpayid'],
-                    'amount' => $planValue,
-                    'action' => 'retreive',
-                ]);
-                $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['command'] . '|' . $parameters['var1'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
-                $calculated_hash = strtolower(hash("sha512", $HASH));
-                $parameters['hash'] = $calculated_hash;
-                $data = 'key=' . $parameters['key'] . '&command=' . $parameters['command'] . '&var1=' . $parameters['var1'] . '&var2=&var3=&var4=&var5=&var6=&var7=&var8=&var9=&hash=' . $parameters['hash'];
-                $url = config('epicconfig.PAYUMONEY.API_URL');
-                $pre_debit = si_transaction($url, $data);
-                Log::info("-----PayuMoney Pre Debit response");
-                Log::debug(json_encode($parameters));
-                Log::debug($pre_debit);
-                Log::info("-----END----------------------");
-                ///////////////---*** Recurring Payment Transaction ***---//////////
-                $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
-                $parameters['command'] = 'si_transaction';
-                $parameters['var1'] = json_encode([
-                    'authpayuid' => $paymentresponse['mihpayid'],
-                    'invoiceDisplayNumber' => $paymentresponse['mihpayid'],
-                    'amount' => $planValue,
-                    'txnid' => 'rec_txid_' . $paymentresponse['txnid'],
-                    'phone' => $paymentresponse['phone'],
-                    "email" => $paymentresponse['email'],
-                ]);
-                $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['command'] . '|' . $parameters['var1'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
-                $calculated_hash = strtolower(hash("sha512", $HASH));
-                $parameters['hash'] = $calculated_hash;
-                $data = 'key=' . $parameters['key'] . '&command=' . $parameters['command'] . '&var1=' . $parameters['var1'] . '&var2=&var3=&var4=&var5=&var6=&var7=&var8=&var9=&hash=' . $parameters['hash'];
-                $url = config('epicconfig.PAYUMONEY.API_URL');
-                $recurring_payment = si_transaction($url, $data);
-                Log::info("-----PayuMoney Recuring Payment response");
-                Log::debug(json_encode($parameters));
-                Log::debug($recurring_payment);
-                Log::info("-----END----------------------");
 
                 $this->EventPushData($paymtentStatus);
 
@@ -654,7 +598,8 @@ class SubscriptionController extends Controller
                 return view('subscription.thankyou', compact('final_result','orderData'));
             } else {
                 ///---*** if payment not verify ***---///
-                Log::info("payusuccess---verifyDetails failure");
+                $this->payuLog( 'Verify Payment Status - Failed', @$paymentresponse['txnid']);
+
                 return view('subscription.subscription-fail', compact('final_result'));
             }
         } else {
@@ -705,18 +650,13 @@ class SubscriptionController extends Controller
 
     public function payufail(Request $request)
     {
-        Log::info("-----Inside PayuMoney Payment Failed function----");
         $paymtentStatus = $request->all();
-        // dd($paymtentStatus);
-        Log::info($paymtentStatus);
 
-        Log::info("----- PayuMoney Payment Failed Response.");
-        Log::debug(json_encode($paymtentStatus));
-        Log::info("-----END----------------------");
+        $this->payuLog( 'PAYMENT FAILED RESPONSE', @$paymtentStatus['txnid'],[$paymtentStatus]);
+
         $orderdata = $request->session()->get('orderdata');
-        Log::info("----- Order data get From Session");
-        Log::debug(json_encode($orderdata));
-        Log::info("-----END----------------------");
+        $this->payuLog( 'Payment Failed - Order data from session', @$paymtentStatus['txnid'],[$orderdata]);
+
         
         $message = "";
         $orderdata['plan_name'] = "1 Month";
@@ -866,7 +806,7 @@ class SubscriptionController extends Controller
 
 
     public function payuWebhook(Request $request){
-        Log::info("payu webhook : ". json_encode($request->all()));
+        Log::channel('payu_webhook')->info("payu webhook : ". json_encode($request->all()));
 
         $payuResponse = $request->all();
         $payuWebhookService = new PayuWebhookService();
@@ -874,4 +814,15 @@ class SubscriptionController extends Controller
 
         return response()->json('success', 200);
     }
+
+    private function payuLog($msg, $uid='', $data=[]){
+        $prefix = ($uid != '') ? '--TxId-'.$uid.'-- ' : '';
+
+        if($data){
+            Log::channel('payu')->info($prefix.''.$msg. PHP_EOL . json_encode($data));
+        }else{
+            Log::channel('payu')->info($prefix.$msg );
+        }
+    }
+
 }
