@@ -204,7 +204,7 @@ class SubscriptionController extends Controller
             $firstname = $userData['name'];
             $email = $userData['email'];
             if (env('PAYU_SI') == true) {
-                $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . "|" . $txid . "|" . $parameters['amount'] . "|" . $parameters['productinfo'] . "|" . $parameters['firstname'] . "|" . $parameters['email'] . "|||||||||||" . $parameters['si_details'] . "|" . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+                $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . "|" . $txid . "|" . $parameters['amount'] . "|" . $parameters['productinfo'] . "|" . $parameters['firstname'] . "|" . $parameters['email'] . "|".$userData['user_id']."||||||||||" . $parameters['si_details'] . "|" . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
                 $calculated_hash = strtolower(hash("sha512", $HASH));
                 $parameters = [
                     "hash" => $calculated_hash,
@@ -219,6 +219,7 @@ class SubscriptionController extends Controller
                     "furl" => @$parameters['furl'],
                     "payuUrl" => @$parameters['payuUrl'],
                     "si_details" => @$parameters['si_details'],
+                    "udf1" => $userData['user_id'],
                 ];
             }
             else{
@@ -374,7 +375,7 @@ class SubscriptionController extends Controller
             ]);
 
 
-            $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['txnid'] . '|' . $parameters['amount'] . '|' . $parameters['productinfo'] . '|' . $parameters['firstname'] . '|' . $parameters['email'] . '|||||||||||' . $parameters['si_details'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
+            $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['txnid'] . '|' . $parameters['amount'] . '|' . $parameters['productinfo'] . '|' . $parameters['firstname'] . '|' . $parameters['email'] . '|'.$userid.'||||||||||' . $parameters['si_details'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
         }
         else{
             $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters['txnid'] . '|' . $parameters['amount'] . '|' . $parameters['productinfo'] . '|' . $parameters['firstname'] . '|' . $parameters['email'] . '||||||||||||' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
