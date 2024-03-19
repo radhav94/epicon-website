@@ -92,7 +92,7 @@ class PayuWebhookService
                         'bank_ref_no' => @$webhookResponse['bank_ref_num'],
                         'transaction_id' => @$webhookResponse['mihpayid'] ?? '',
                         'authPayuId' => @$webhookResponse['mihpayid'] ?? '',
-                        'is_recurring' => env('PAYU_SI'),
+                        'is_recurring' => (@$webhookResponse['payment_source'] == 'sist') ? true : false,
                         'ios_receipt' => '',
                         'android_receipt' => '',
                         'web_device' => 'web',
