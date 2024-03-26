@@ -84,6 +84,20 @@
     <!-- Schema Code Start -->
     @include('layouts.schema')
     <!-- Schema Code END -->
+    
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PS5WQPB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    @include('layouts.header')
+
+    @yield('content')
+
+    @include('layouts.footer')
+
     {{-- Start footer common scripts --}}
     <script src="{{ asset('assets/js/vendor/jquery-ui.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/ga_tag.js') }}?v={{ assetTime() }}"></script>
@@ -98,18 +112,6 @@
     <script src="{{ asset('assets/js/common.js') }}?v={{ assetTime() }}" defer></script>
     
     {{-- End footer common scripts --}}
-</head>
-
-<body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PS5WQPB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    @include('layouts.header')
-
-    @yield('content')
-
-    @include('layouts.footer')
 
     @if(request()->get('type') == 'register')
         @include('auth.after-register-popup')
