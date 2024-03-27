@@ -22,6 +22,9 @@
         border: 1px solid #999999;
         background-color: #16161600;
     }
+    .banner-img{
+        aspect-ratio: auto 442 / 213;
+    }
 </style>
 @stop
 
@@ -45,12 +48,12 @@
 @stop
 
 @section('script')
-<script src="{{ asset('assets/js/homepage.js') }}?v={{ assetTime() }}"></script>
-<script src="{{ asset('assets/js/epic-story.js') }}?v={{ assetTime() }}"></script>
-<script src="{{ asset('assets/js/vendor/plyr.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/hls.min.js') }}"></script>
-<script src="{{ asset('assets/js/webvtt-subtitler.js') }}"></script>
-<script src="{{ asset('assets/js/supermix.js') }}?v={{ assetTime() }}"></script>
+<script src="{{ asset('assets/js/homepage.js') }}?v={{ assetTime() }}" defer></script>
+<script src="{{ asset('assets/js/epic-story.js') }}?v={{ assetTime() }}" defer></script>
+<script src="{{ asset('assets/js/vendor/plyr.js') }}" defer></script>
+<script src="{{ asset('assets/js/vendor/hls.min.js') }}" defer></script>
+<script src="{{ asset('assets/js/webvtt-subtitler.js') }}" defer></script>
+<script src="{{ asset('assets/js/supermix.js') }}?v={{ assetTime() }}" defer></script>
 
 <script>
     var processing;
