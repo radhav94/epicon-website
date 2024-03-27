@@ -22,7 +22,7 @@ $isMoblile = isMobliDevice();
                     <a href="{{ isset($val['game_url']) ? @$val['game_url'] : getContentUrl($val) }}"
                         onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}"
                         {{ isset($val['game_url']) ? 'target="_blank"' : '' }}>
-                        <img src="{{ $banner_img }}" alt="" class="banner-img">
+                        <img fetchpriority="low" src="{{ $banner_img }}" alt="" class="banner-img">
                     </a>
                     <div class="carousel-items-content position-absolute">
                         <h2>{{ $card['sub_text'] }}</h2>
