@@ -13,8 +13,7 @@ class PlayerController extends Controller
     }
 
     public function getVideoUrl(Request $request): JsonResponse
-    {
-  
+    {   
         $param = ['content_id' => $request->cid];
 
         $isIPhone = is_numeric(strpos(strtolower(@$_SERVER["HTTP_USER_AGENT"]), "iphone")); 
@@ -25,7 +24,7 @@ class PlayerController extends Controller
         }
         
         $result = CurlAPI("pages/play_url", "POST", $param, 1, true);
-       
+        // dd($result);
         if ($result && @$result['success'] ==  true) {
 
             $subtitles = $result['subtitles'] ?? [];
