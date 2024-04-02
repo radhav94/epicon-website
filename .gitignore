@@ -20,7 +20,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-
+info.txt
 /public/icons
 /public/benefit-offers
 /public/epicoin-offers

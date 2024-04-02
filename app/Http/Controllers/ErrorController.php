@@ -9,6 +9,7 @@ class ErrorController extends Controller
     public function index()
     {
         $data['url'] = url()->current();
+
         $removeArr = array(
             "/en/",
             "/index.php/",

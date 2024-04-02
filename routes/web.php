@@ -29,6 +29,8 @@ use App\Http\Controllers\MaxDeviceController;
 use App\Http\Controllers\PaytmController;
 use App\Http\Controllers\PaytmQrController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TvActiveController;
+
 
 $lang = ['hi', 'en'];
 
@@ -48,6 +50,8 @@ Route::get('test', [TestController::class, 'index']);
 // Route::get('serveriptesting123xyz', [NotificationController::class, 'getServerIP']);
 
 Route::get('max-device', [MaxDeviceController::class, 'maxDevice'])->name('max-device');
+
+Route::get('activatetv/{code?}', [TvActiveController::class, 'activate_tv_code']);
 
 //////Start Redirection routes ////////
 
@@ -84,7 +88,8 @@ Route::any('payu/webhook',[SubscriptionController::class, 'payuWebhook']);
 
 
 Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.loadmore');
-Route::GET('ajaxStoryData', [PageController::class, 'ajaxStoryData'])->name('ajaxStoryData');
+Route::get('ajaxStoryData', [PageController::class, 'ajaxStoryData'])->name('ajaxStoryData');
+Route::get('story/{id}/{slug}', [PageController::class, 'storyPage'])->name('storyPage');
 Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
 Route::post('clap', [PageDetailController::class, 'clap'])->name('clap');
 
@@ -281,4 +286,3 @@ Route::any('/payu/transactioncallback', [SubscriptionController::class, 'payuWeb
 Route::get('{any}', [ErrorController::class,'index'])->where('any', '.*');
 
 
- 

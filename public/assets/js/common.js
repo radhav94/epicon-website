@@ -198,7 +198,6 @@ $(window).on('load', function () {
         showToaster("You have been logged out. Kindly relogin to continue.", 2, 5000)
         window.history.replaceState({}, document.title, "/");
     }
-
     // open login popup
     if (queryParams.get('type') == "login") {
         $('.loginBtn.login').trigger('click');
