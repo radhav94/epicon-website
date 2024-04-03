@@ -908,6 +908,20 @@ function silentLogin($user_id, $source)
     }
 }
 
+
+function check_Tv_Activation_Code()
+{
+    $request = Request();
+    $activetvcode = $request->session()->get('activetvcode');
+    $tv_verify = $request->session()->get('tv_verify');
+    $user_id = $request->session()->get('user_id');
+    $maxDevice = $request->session()->get('maxDevice');
+    if ((isset($user_id) && !empty($user_id)) && (isset($tv_verify) && $tv_verify == true) && (isset($maxDevice) && $maxDevice === false)) {
+        header("Location:" . url('activatetv/' . $activetvcode));
+    }
+}
+
+
 function formatDate($date, $format = 'd F Y')
 {
     return date($format, strtotime($date));

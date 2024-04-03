@@ -7063,23 +7063,26 @@ input {
                     border-radius: 0px;
                 }
             }
-            .play-add-share{
+            .play-add-share,.story-share-btn,.story-clap-btn{
                 width: 40px;
                 height: 40px;
                 border-radius: 40px;
+                border: none;
                 display: grid;
                 grid-auto-columns: min-content;
                 position: absolute;
-                right: 15px;
-                bottom: 105px;
+                right: 16px;
+                bottom: 282px;
                 z-index: 99;
                 gap: 15px;
                 background: rgba($color: rgb(255 255 255), $alpha: 0.3);
                 -webkit-backdrop-filter: blur(20px);
                 backdrop-filter: blur(20px);
                 display: flex;
+                align-items: center;
                 justify-content: center;
                 box-shadow: 0 0 5px rgba($color: rgb(0 0 0), $alpha: 0.15);
+                padding: 0;
                 button{
                     background: transparent;
                     border: none;
@@ -7088,14 +7091,83 @@ input {
                     }
                 }
             }
+            .story-clap-btn{
+                bottom: 226px;
+                svg,img{
+                    filter: drop-shadow(0 0 1px rgba($color: rgb(0 0 0), $alpha: 0.6));
+                }
+                span{
+                    position: absolute;
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #fff;
+                    bottom: -20px;
+                    text-shadow: 0 0 5px rgba($color: #000000, $alpha: 0.7);
+                }
+            }
+            .story-share-btn{
+                bottom: 100px;
+                svg,img{
+                    filter: drop-shadow(0 0 1px rgba($color: rgb(0 0 0), $alpha: 0.6));
+                }
+            }
+            .story-share-option{
+                position: absolute;
+                bottom: 100px;
+                right: 68px;
+                z-index: 99;
+                height: 40px;
+                display: none;
+                gap: 10px;
+                    a{
+                        height: 40px;
+                        width: 40px;
+                        border-radius: 40px;
+                        background: rgba($color: rgb(255 255 255), $alpha: 0.3);
+                        -webkit-backdrop-filter: blur(20px);
+                        backdrop-filter: blur(20px);
+                        box-shadow: 0 0 5px rgba($color: rgb(0 0 0), $alpha: 0.15);
+                        visibility: hidden;
+                        animation-name: shareAnimo;
+                        animation-duration: 0.3s;
+                        animation-delay: 0.3s;
+                        animation-timing-function: ease-out;
+                        animation-fill-mode: forwards;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        svg,img{
+                            filter: drop-shadow(0 0 1px rgba($color: rgb(0 0 0), $alpha: 0.6));
+                        }
+                        &:nth-child(2){
+                            animation-delay: 0.2s;
+                        }
+                        &:nth-child(3){
+                            animation-delay: 0.1s;
+                        }
+                        @keyframes shareAnimo {
+                            0%{
+                                visibility: hidden;
+                                opacity: 0;
+                                top: -30px;
+                            }
+                            100%{
+                                visibility: visible;
+                                opacity: 1;
+                                top: 0;
+                            }
+                        }
+                }
+            }
             .mute-btn-storie{
                 width: 40px;
                 height: 40px;
                 border-radius: 40px;
                 position: absolute;
-                right: 15px;
+                right: 16px;
                 top: unset!important;
-                bottom: 160px;
+                bottom: 156px;
                 z-index: 9;
                 border: none;
                 background: rgba($color: rgb(255 255 255), $alpha: 0.3);
@@ -7155,6 +7227,29 @@ input {
                 }
             }
         }
+    }
+}
+.copy-story{
+    top: -30px;
+    background-color: black;
+    padding: 1px 5px 3px 5px;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 3px;
+    border: 1px solid rgba($color: rgb(255 255 255), $alpha: 0.5);
+    opacity: 0;
+    &::after{
+        content: "";
+        position: absolute;
+        width: 0; 
+        height: 0; 
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid rgb(0, 0, 0);
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        bottom: -7px;
     }
 }
 
@@ -9017,5 +9112,75 @@ audio::-webkit-media-controls-play-button {
 .epicon-footer-logo{
     @media (max-width:768px) {
         width: 100px;
+    }
+}
+.tv--authentication{
+    width: 45%;
+    height: auto;
+    margin: 0 auto;
+    padding-bottom: 150px;
+    @media (max-width:1024px) {
+        width: 58%;
+    }
+    @media (max-width:800px) {
+        width: 75%;
+    }
+    @media (max-width:767px) {
+        width: 100%;
+        padding-bottom: 20px;
+    }
+    & .tv--authentication__title{
+        color: white;
+        font-weight: 600;
+        text-align: center;
+    }
+    & .tv--authentication__img{
+        width: 100%;
+        margin-bottom: -150px;
+        margin-top: -75px;
+        @media (max-width:767px) {
+            margin-bottom: -80px;
+            margin-top: -25px;
+        }
+    }
+    & .tv--authentication__form{
+        width: 63%;
+        margin: 0 auto;
+        position: relative;
+        @media (max-width:767px) {
+            width: 90%;
+        }
+        & .tv--authentication__input{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            @media (max-width:767px) {
+                gap: 5px;
+            }
+            & .tv--authentication__input--box{
+                width: 60px;
+                height: 60px;
+                background-color: #16162FCC;
+                border-radius: 15px;
+                border: 1px solid #494949;
+                text-align: center;
+                font-weight: 400;
+                font-size: 22px;
+                @media (max-width:1336px) {
+                    height: 50px;
+                    width: 50px;
+                }
+                @media (max-width:767px) {
+                    height: 50px;
+                    width: 50px;
+                }
+                @media (max-width:320px) {
+                    height: 40px;
+                    width: 40px;
+                }
+            }
+        }
     }
 }

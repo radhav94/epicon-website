@@ -361,7 +361,6 @@ class SubscriptionController extends Controller
                 $newstartdate = date("Y-m-d");
                 //$endstartdate = date("Y-m-d", strtotime("+1 year"));
             }
-
             $endstartdate = date("Y-m-d", strtotime("+10 year"));
             $parameters['si'] = 1;
             $parameters['api_version'] = "7";
@@ -439,24 +438,24 @@ class SubscriptionController extends Controller
                     $i = 0;
                     foreach ($val['benifits'] as $bn => $bnval) {
                         $html .= '<li>
-					<a href="#">
-						<span class="off-image">
-						<img src="' . $bnval['vendor_image'] . '" alt=""></span>
-						<div class="ac-content">
-							<div class="left">
-								<div class="circle-logo">
+                    <a href="#">
+                        <span class="off-image">
+                        <img src="' . $bnval['vendor_image'] . '" alt=""></span>
+                        <div class="ac-content">
+                            <div class="left">
+                                <div class="circle-logo">
 
-								</div>
-								<span>Exc. Offer</span>
-							</div>
-							<div class="right">
-								<h5>25% OFF</h5>
-								<p id="vname">' . $bnval['vendor_name'] . '</p>
-								<span>Valid until 03 March 2022</span>
-							</div>
-						</div>
-					</a>
-				</li>';
+                                </div>
+                                <span>Exc. Offer</span>
+                            </div>
+                            <div class="right">
+                                <h5>25% OFF</h5>
+                                <p id="vname">' . $bnval['vendor_name'] . '</p>
+                                <span>Valid until 03 March 2022</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>';
                         $i++;
                     }
 
