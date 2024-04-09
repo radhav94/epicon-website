@@ -29,6 +29,7 @@ $(document).ready(function () {
 
 		if (vidPlaying && !is_trailer && !is_episode) {
 			$('.hide-vid-element').hide();
+			$(".loaderImg").show();
 			window.player.play();
 			if (!$('.videoContainer').is(":visible")) {
 				$('.videoContainer').show();
@@ -46,6 +47,8 @@ $(document).ready(function () {
 	});
 
 	$(document).on('click', '#playVideo', function () {
+		$('.hide-vid-element').hide();
+		$(".loaderImg").show();
 		let cid = $(this).data('id');
 		let ctype = $(this).data('type');
 		let title = $(this).data('title');
@@ -68,7 +71,7 @@ $(document).ready(function () {
 			onPlayerSuccess, onPlayerError, 'application/json');
 
 		function onPlayerSuccess(response) {
-			$('.hide-vid-element').hide();
+			// $('.hide-vid-element').hide();
 			// console.log(response);
 			// dummyInit = true;
 
@@ -87,7 +90,7 @@ $(document).ready(function () {
 				// 	$('#vidPlayer').html(response.payload.html);
 				// }
 
-				$('.videoContainer').show();
+				// $('.videoContainer').show();
 				$('html, body').animate({
 					scrollTop: 0
 				}, 1000);
@@ -96,6 +99,7 @@ $(document).ready(function () {
 		}
 		function onPlayerError(xhr) {
 			$('.hide-vid-element').show();
+			$(".loaderImg").hide();
 			try {
 				$res = JSON.parse(xhr.responseText);
 				if ($res.message != undefined && $res.message != 'failed') {
@@ -444,6 +448,8 @@ $(document).ready(function () {
 			loadPlayerCount++;
 
 			player.on('ready', event => {
+				$('.videoContainer').show();
+				$(".loaderImg").hide();
 				$height = $('#vidPlayer').height() + 'px';
 
 				$('#vidPlayer').css({ "object-fit": "cover", "object-position": "center center", "width": "100%", "height": $height });
@@ -780,6 +786,7 @@ function playContentVideo(cid, c_type, element) {
 function playTrailer(cid, title, multiPlayUrl) {
 	// console.log(multiPlayUrl);
 	$('.hide-vid-element').hide();
+	$(".loaderImg").show();
 	$('html, body').animate({
 		scrollTop: 0
 	}, 1000);
