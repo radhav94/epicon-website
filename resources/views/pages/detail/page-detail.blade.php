@@ -65,7 +65,7 @@ $meta['image'] = $share_img;
         <div class="banner-main position-relative hide-vid-element">
             <img src="{{ $cover_img }}" alt="img">
         </div>
-        <div class="banner-main position-relative loaderImg" style="display:none">
+        <div class="loaderImg" style="display:none">
             <img class=""  src="{{ asset('assets/img/Spin.gif') }}" alt="img">
         </div>
         @if(!isActiveSubscription() && $trailer_id)
