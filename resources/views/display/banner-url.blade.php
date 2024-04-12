@@ -1,4 +1,4 @@
-<div class="banner-url my-4 py-2">
+<div class="banner-url my-4">
     <div class="container-fluid">
         @php
             $static_banner_img = $value['static_banner_img']['original'] ?? asset('assets/img/default-830x400.png');
