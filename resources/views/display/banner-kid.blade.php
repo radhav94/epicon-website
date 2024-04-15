@@ -1,10 +1,8 @@
 <div class="carousel-main home-kids-bg">
     <div class="gaming-galore-main">
-        <a href="{{ url('kids') }}" class="">
-            <div class="galore-title">
+            <a href="{{ url('kids') }}" class="galore-title">
                 <img class="kids-tray-img" src="{{ asset('assets/img/kids-home-img.svg') }}" alt="">
-            </div>
-        </a>
+            </a>
         <div class="gaming-galore p-0 mb-0">
             @foreach ($value['content'] as $key => $val)
                 <?php
