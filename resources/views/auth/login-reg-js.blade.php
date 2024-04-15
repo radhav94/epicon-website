@@ -168,6 +168,7 @@
                         $("#signupmethod").val(response.payload.user_signup_method);
                         $('.login-popup-modal').hide();
                         $('.screen-verify').show();
+                        $('input[type="tel"]').val('');
                         // var response = JSON.parse(response);
                         // $('#dynamic-content').html(response.content);
                     } else {
@@ -237,6 +238,7 @@
                         $("#usersignupmethod").val(response.payload.user_signup_method);
                         $('.login-popup-modal').hide();
                         $('.left-side,.right-side').show();
+                        $('input[type="tel"]').val('');
                         if (response.payload.success == true) {
                             $('.screen-forgot-otp').show();
                             resendForgotOTP();
@@ -273,6 +275,7 @@
                     $("#usersignupmethod").val(response.payload.user_signup_method);
                     $('.login-popup-modal').hide();
                     $('.left-side,.right-side').show();
+                    $('input[type="tel"]').val('');
                     if (response.payload.success == true) {
                         $('.screen-forgot-otp').show();
                     } else {
@@ -734,6 +737,7 @@
                             $('.login-popup-modal').hide();
                             $('#login-modal').hide();
                             $('.loginBtn.login').trigger('click');
+                            $('input[type="tel"]').val('');
                             showToaster('password changed successfully.', 1);
                             // location.reload(true);
                         } else {
