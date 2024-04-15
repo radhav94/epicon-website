@@ -9184,3 +9184,21 @@ audio::-webkit-media-controls-play-button {
         }
     }
 }
+.banner-url{
+    a{
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+        border-radius: 10px;
+        overflow: hidden;
+        @media (max-width:1024px) {
+            width: 100%;
+        }
+    }
+}
+.kids-tray-img{
+    z-index: 99;
+    @media (max-width:767px) {
+        width: 100px;
+    }
+}
