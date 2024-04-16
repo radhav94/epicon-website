@@ -24,7 +24,7 @@
 		"NOT /feedback",
 		"NOT /about-us",
 		    "NOT /privacy",
-		    "NOT /terms-of-use"
+		    "NOT /terms-of-use",
                     "/*"
                 ]
             }
