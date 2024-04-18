@@ -526,7 +526,14 @@ class SubscriptionController extends Controller
             $listResponseData['planSessionData'] = $storeSessionData;
             return response()->json($listResponseData, 200)->header('Content-Type', 'application/json');
         } else {
-            return response()->json('Coupan not found.', 201)->header('Content-Type', 'application/json');
+            if ($listResponseData && @$listResponseData['success'] == false) {
+                $error['message'] = @$listResponseData['message'] ?? 'Coupan not found.';
+                $error['type'] = '2';
+            } else {
+                $error['message'] = 'Coupan not found.';
+                $error['type'] = '2';
+            }
+            return response()->json($error, 201)->header('Content-Type', 'application/json');
         }
 
     }

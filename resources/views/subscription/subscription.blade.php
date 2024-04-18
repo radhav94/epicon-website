@@ -341,9 +341,10 @@
                     }, 3000);
                     return;
                 } else {
-                    var r = e;
-                    console.log("message="+e);
-                    console.log("message="+e);
+                    var r = e.message;
+                    // console.log("message="+e.message);
+                    // console.log("message="+e);
+                    showToaster(e.message, e.type);
 
                     $('.payment').prop('disabled', false);
                     if(e.success == false){
