@@ -207,6 +207,18 @@
         </div>
     </section>
     
+    <div class="modal fade" id="success-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered px-3">
+            <div class="modal-content">
+                <div class="modal-body text-center py-5">
+                    <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="img">
+                    <h4 class="text-white mt-4">{{__('Subscription successfully!')}}</h4>
+                    <p class="w-75 text-white small m-auto mb-4"></p>
+                    <button class="login-btn mt-0 bg-transparent text-white btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('script')
@@ -321,38 +333,46 @@
             data: {promocode:promo},
             dataType: 'json',
             success: function (e, t, n) {
-                var r = e;
-                console.log("message="+e);
-                console.log("message="+e);
+                if (e.is_createdPlan) {
+                    $("#success-modal p").text(e.message);
+                    $("#success-modal").modal("show");
+                    setTimeout(function(){
+                        window.location.href = "{{ route('my-account') }}";
+                    }, 3000);
+                    return;
+                } else {
+                    var r = e;
+                    console.log("message="+e);
+                    console.log("message="+e);
 
-                $('.payment').prop('disabled', false);
-                if(e.success == false){
-                    $(".coupan-msg").text(r);
-                }
-                if ((console.log(e.plans), "NaN" != e.plans && null != e.plans && "" != e.plans)) {
-                    var o = e.plans;
-                    $.each(o, function (e, t) {
-                        $('.oldprice-'+t.id).removeClass('d-none');
-                        if(t.currency == 'INR' || t.currency == 'inr'){
-                            $('.oldprice-'+t.id).text('₹ '+t.actual_price+'.00');
-                        }else{
-                            $('.oldprice-'+t.id).text('$ '+t.actual_price);
-                        }
+                    $('.payment').prop('disabled', false);
+                    if(e.success == false){
+                        $(".coupan-msg").text(r);
+                    }
+                    if ((console.log(e.plans), "NaN" != e.plans && null != e.plans && "" != e.plans)) {
+                        var o = e.plans;
+                        $.each(o, function (e, t) {
+                            $('.oldprice-'+t.id).removeClass('d-none');
+                            if(t.currency == 'INR' || t.currency == 'inr'){
+                                $('.oldprice-'+t.id).text('₹ '+t.actual_price+'.00');
+                            }else{
+                                $('.oldprice-'+t.id).text('$ '+t.actual_price);
+                            }
+                            
+                            $('.save-'+t.id).removeClass('d-none');
+                            $('.save-'+t.id).text('Save 20%');
+                            if(t.currency == 'INR' || t.currency == 'inr'){
+                            $('.current-'+t.id).html('₹ '+t.discounted_price+'<span class="ms-1 small"> / '+t.plan+'</span>');
+                            }else{
+                                $('.current-'+t.id).html('$ '+t.discounted_price+'<span class="ms-1 small"> / '+t.name+'</span>');
+                            }
+                            $("#coupanstatus").val('Yes');
                         
-                        $('.save-'+t.id).removeClass('d-none');
-                        $('.save-'+t.id).text('Save 20%');
-                        if(t.currency == 'INR' || t.currency == 'inr'){
-                        $('.current-'+t.id).html('₹ '+t.discounted_price+'<span class="ms-1 small"> / '+t.plan+'</span>');
-                        }else{
-                            $('.current-'+t.id).html('$ '+t.discounted_price+'<span class="ms-1 small"> / '+t.name+'</span>');
-                        }
-                        $("#coupanstatus").val('Yes');
-                       
-                    });
-                    showToaster('Coupon applied', 1);
-                    $(".CoupanApply").text("{{__('Remove')}}");
-                    //console.log(o.pname);
-                    
+                        });
+                        showToaster('Coupon applied', 1);
+                        $(".CoupanApply").text("{{__('Remove')}}");
+                        //console.log(o.pname);                        
+                    }
                 }
             },
             error: function (e, t, a) {

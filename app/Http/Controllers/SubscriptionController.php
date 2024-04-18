@@ -491,19 +491,34 @@ class SubscriptionController extends Controller
         // dd($listResponseData);
         if ($listResponseData && @$listResponseData['success'] == true) {
             $sessionData = $request->session()->get('plandata');
-            foreach ($listResponseData['plans'] as $key => $val) {
-                if (isset($sessionData[$val['id']])) {
-                    $sessionData[$val['id']] = [
-                        'id' => $val['id'],
-                        'name' => $val['name'],
-                        'plan' => isset($sessionData[$val['id']]['plan']) ? $sessionData[$val['id']]['plan'] : '',
-                        'actual_price' => $val['discounted_price'], // this is use for final transaction
-                        'currency' => $val['currency'],
-                        'epic_price' => $val['actual_price'], // this is actual price without discount
-                        'save' => '', // this is disount percetage like 20%
+            if (array_key_exists("subscription_data", $listResponseData)) {
+                $val = $listResponseData['subscription_data'];
+                $sessionData[$val['plan_id']] = [
+                    'id' => $val['plan_id'],
+                    'name' => $val['plan_name'],
+                    'plan' => $sessionData[$val['plan_id']]['plan'] ?? '',
+                    'actual_price' => '', // this is use for final transaction
+                    'currency' => '',
+                    'epic_price' => $val['plan_amount'], // this is actual price without discount
+                    'save' => '', // this is disount percetage like 20%
+                ];
+                $listResponseData['is_createdPlan'] = true;
+            } else {
+                foreach ($listResponseData['plans'] as $key => $val) {
+                    if (isset($sessionData[$val['id']])) {
+                        $sessionData[$val['id']] = [
+                            'id' => $val['id'],
+                            'name' => $val['name'],
+                            'plan' => isset($sessionData[$val['id']]['plan']) ? $sessionData[$val['id']]['plan'] : '',
+                            'actual_price' => $val['discounted_price'], // this is use for final transaction
+                            'currency' => $val['currency'],
+                            'epic_price' => $val['actual_price'], // this is actual price without discount
+                            'save' => '', // this is disount percetage like 20%
 
-                    ];
+                        ];
+                    }
                 }
+                $listResponseData['is_createdPlan'] = false;
             }
             if (!empty($sessionData)) {
                  $storeSessionData = $request->session()->put('plandata', $sessionData);
