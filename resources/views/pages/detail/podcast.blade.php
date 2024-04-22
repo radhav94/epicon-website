@@ -340,7 +340,7 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
             }
             if ($(this).text().trim() == 'Listen') {
                 audio.load();
-                let cid = episodes[currentEpisodeIndex];
+                let cid = episodes[currentEpisodeIndex]["ID"];
                 $('#pod-play-' + cid).hide();
                 $('#pod-pause-' + cid).show();
             }
