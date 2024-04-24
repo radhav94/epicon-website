@@ -117,7 +117,9 @@
     document.addEventListener('DOMContentLoaded', () => {
         // Flag to track if distroPlay has been called
         var distroPlayCalled = false;
-        const source = '{{ @$content['episodes_content']['url'] }}';
+        //const source = '{{ @$content['episodes_content']['url'] }}';
+        const sourceUrl = '{{ @$contentUrl }}';
+        const source = sourceUrl.replace(/amp;/g, '');
         const video = document.querySelector('video');
         
         const player = new Plyr(video, {captions: {active: true, update: true, language: 'en'}});
