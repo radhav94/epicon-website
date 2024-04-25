@@ -91,11 +91,9 @@ class DistroTvController extends Controller
                                   '__env.u__'=>$deviceId ?? '',
                                   '__APP_NAME__'=>'EPIC ON',
                                   '__APP_BUNDLE__'=>'',
-                                  '__STORE_URL__'=>'https://apps.apple.com/in/app/epic-on-originals-movies/id1252513341', 
+                                  '__STORE_URL__'=>'', 
                                   '__APP_CATEGORY__'=>'entertainment', 
                                   '__APP_VERSION__'=>'V3',
-                                  '__WIDTH__'=>'100 percent',
-                                  '__HEIGHT__'=>'500px and auto',
                                   '__DEVICE_ID__'=>$deviceId,
                                   '__LIMIT_AD_TRACKING__'=>'0',
                                   '__IS_GDPR__'=>'0',
@@ -110,7 +108,7 @@ class DistroTvController extends Controller
                                   '__LONGITUDE__'=>'',
                                   '__GEO_DMA__'=>'',
                                   '__GEO_TYPE__'=>'2',
-                                  '__PAGEURL_ESC__'=>'https://www.epicon.in/',
+                                  '__PAGEURL_ESC__'=>urlencode('https://www.epicon.in/'),
                                   '__PALN__'=>'',
                                   'amp;'=>''
 
