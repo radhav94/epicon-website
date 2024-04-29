@@ -78,7 +78,43 @@ class DistroTvController extends Controller
      
         if ($resultArr && @$resultArr['success'] ==  true) {
              $content = $resultArr['pageData'] ?? '';
-            return view('pages.detail.distro-details', compact('content'));
+             $content_url = $content['episodes_content']['url'];
+             $session_id = generateUUIDv4();
+             $uniqId = date('Ymdhms') . rand(100, 999);
+             if (isset($_COOKIE['deviceId'])) {
+                $deviceId = $_COOKIE['deviceId'];
+              }else{
+                $deviceId = generateDeviceId();
+              }
+              $replaceContent = ['__CACHE_BUSTER__'=>$uniqId,
+                                  '__env.i__'=>$session_id ?? '',
+                                  '__env.u__'=>$deviceId ?? '',
+                                  '__APP_NAME__'=>'EPIC ON',
+                                  '__APP_BUNDLE__'=>'',
+                                  '__STORE_URL__'=>'', 
+                                  '__APP_CATEGORY__'=>'entertainment', 
+                                  '__APP_VERSION__'=>'V3',
+                                  '__DEVICE_ID__'=>$deviceId,
+                                  '__LIMIT_AD_TRACKING__'=>'0',
+                                  '__IS_GDPR__'=>'0',
+                                  '__IS_CCPA__'=>'0',
+                                  '__ADVERTISING_ID__'=>$deviceId,
+                                  '__DEVICE__'=> getUserAgent() ?? '',
+                                  '__DEVICE_ID_TYPE__'=>'cookie',
+                                  '__DEVICE_CONNECTION_TYPE__'=>'',
+                                  '__CLIENT_IP__'=>$_SERVER['REMOTE_ADDR'] ??'',
+                                  '__GEO_COUNTRY__'=>getCountryCode() ??'',
+                                  '__LATITUDE__'=>'',
+                                  '__LONGITUDE__'=>'',
+                                  '__GEO_DMA__'=>'',
+                                  '__GEO_TYPE__'=>'2',
+                                  '__PAGEURL_ESC__'=>urlencode('https://www.epicon.in/'),
+                                  '__PALN__'=>'',
+                                  'amp;'=>''
+
+                                ];
+           $contentUrl = str_replace(array_keys($replaceContent), array_values($replaceContent), $content_url);
+            return view('pages.detail.distro-details', compact('content','contentUrl'));
         }else{
             return view('pages.error.data-error');
         }

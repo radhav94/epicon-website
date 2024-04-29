@@ -10,6 +10,9 @@ class PayuWebhookService
     public function processWebhookCallback(array $webhookResponse = [])
     {
         $this->payuLog('payu-webhook ----- Inside processWebhookCallback function -----');
+        $this->payuLog("----- Sleeping for 5 mins -----");
+        sleep(300);
+        $this->payuLog("----- Inside checkActiveSubscription -----");
 
         if (!empty($webhookResponse) && @$webhookResponse['status'] == 'success') {
             $getOrderDataParams = [
@@ -47,6 +50,17 @@ class PayuWebhookService
                     }
                 }
                 
+            }else {
+               
+                $newParam = ['email' => $webhookResponse['email']];
+                $result = CurlAPI("subscriptions/checkActiveSubscription", 'POST', $newParam, 2, false, true);
+                
+
+                $this->payuLog('payu-webhook -- checkActiveSubscription', false, [ 'url' => 'subscriptions/checkActiveSubscription', 'request' => $newParam, 'response' => $result]);
+
+                if(@$result['status'] == true && @$result['userOrder']['order_status'] == 'complete') {
+                    exit();
+                }
             }
 
             if ($orderData && @$orderData['success'] == true && @$orderData['data']['order_status'] == 'initiated') {

@@ -38,7 +38,7 @@
                 <div class="login-register text-center">
                     <div class="left-side">
                         <div class="w-100 pe-5">
-                            <img class="w-100" src="{{ asset('/img/tatlubaz-bg.png') }}" alt="">
+                            <img class="w-100" src="{{ asset('/img/plot-1-2-bg.png') }}" alt="">
                         </div>
                         <div class="login-carousel px-2">
                             <div>
