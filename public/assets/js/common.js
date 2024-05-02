@@ -205,6 +205,10 @@ $(window).on('load', function () {
     // open login popup after success
     if (queryParams.get('tp') == "ln") {
         $('#successfully-loged').modal('show');
+        setTimeout(function(){
+            $('#successfully-loged').modal('hide');
+            window.history.replaceState({}, document.title, "/");
+        },2000);
     }
 })
 
