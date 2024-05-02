@@ -105,7 +105,7 @@ class AuthSocialController extends Controller
                     $request->session()->put('user_token', $epic_web_arr['token']);
                     $request->session()->put('device_id', @$epic_web_arr['user_data']['device_id']);
 
-                    return redirect("/");
+                    return redirect(url("/")."?tp=ln");
                 } else {
                     return redirect("/")->with('error', $epic_web_arr['message']);
                 }

@@ -1,3 +1,9 @@
+<style>
+    #successfully-loged .modal-content {
+        background-image: url(../img/LoginTatlubaazBackBg.png);
+    }
+</style>
+
 <?php
 $kids_page = isKidsPage();
 

@@ -202,6 +202,10 @@ $(window).on('load', function () {
     if (queryParams.get('type') == "login") {
         $('.loginBtn.login').trigger('click');
     }
+    // open login popup after success
+    if (queryParams.get('tp') == "ln") {
+        $('#successfully-loged').modal('show');
+    }
 })
 
 $(document).on("click", ".interest-suggetion", function(e){
