@@ -1,4 +1,4 @@
-<section class="carousel-main new-release mt-0">
+<section class="carousel-main new-release mt-0" style="min-height: 270px;">
     <div class="carousel-title-n-arrow px-2 mb-2">
         <h5 class="text-white">{{ $title }}</h5>
         @if (@$value['show_more'])
