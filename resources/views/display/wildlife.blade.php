@@ -30,7 +30,7 @@
                         @else
                         <a onclick="click_tile(this)" data-title ="{{ @$v['title'] }}" data-type="{{@$title}}" href="{{ getContentUrl($v) }}" class="{{ $k == 0 ? 'left' : 'right' }}">
                         @endif
-                            <img src="{{ $cover_img }}" alt="">
+                            <img fetchpriority="low" src="{{ $cover_img }}" alt="">
                         </a>
                     </div>
                 @endforeach
