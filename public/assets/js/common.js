@@ -208,7 +208,7 @@ $(window).on('load', function () {
         setTimeout(function(){
             $('#successfully-loged').modal('hide');
             window.history.replaceState({}, document.title, "/");
-        },2000);
+        },3000);
     }
 })
 
