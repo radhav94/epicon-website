@@ -69,21 +69,12 @@
 
                        <!-- filter -->
                        <div class="episode-season" style="display:block">
-                           {{-- <!-- <div class="all-episode">
-                               <select>
-                                   <option value="0">{{__('All Episodes')}}</option>
-                                   <option value="1">1 to 50</option>
-                                   <option value="2">51 - 100</option>
-                                   <option value="3">101 - 150</option>
-                                   <option value="4">151 - 200</option>
-                               </select>
-                           </div> --> --}}
                            @if (count($seasonList) > 0)
                            <div class="season">
                                <select id="seasonSelect">
                                    <!-- <option value="0">{{__('All Seasons')}}</option> -->
                                    @foreach ($seasonList as $key => $season)
-                                   <option value="{{ $season['url'] }}" <?php echo ($key == 0) ? 'checked' : ''; ?>>{{ $season['title'] }}</option>
+                                   <option value="{{ $season['url'] }}" <?php echo ($key == 0) ? 'selected="selected"' : ''; ?>>{{ $season['title'] }}</option>
                                    @endforeach
                                </select>
                            </div>
