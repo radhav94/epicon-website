@@ -1,4 +1,4 @@
-<section class="carousel-main new-release mt-0">
+<section class="carousel-main new-release mt-0" style="min-height: 270px;">
     <div class="carousel-title-n-arrow px-2 mb-2">
         <h5 class="text-white">{{ $title }}</h5>
         @if (@$value['show_more'])
@@ -30,7 +30,7 @@
                         @else
                         <a onclick="click_tile(this)" data-title ="{{ @$v['title'] }}" data-type="{{@$title}}" href="{{ getContentUrl($v) }}" class="{{ $k == 0 ? 'left' : 'right' }}">
                         @endif
-                            <img src="{{ $cover_img }}" alt="">
+                            <img fetchpriority="low" src="{{ $cover_img }}" alt="">
                         </a>
                     </div>
                 @endforeach
