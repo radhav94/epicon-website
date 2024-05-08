@@ -12,7 +12,7 @@ class PageController extends Controller
     private  $limit;
     public function  __construct()
     {
-        $this->limit = 10;
+        $this->limit = 5;
     }
 
     
@@ -63,6 +63,7 @@ class PageController extends Controller
 
     public function loadMore(Request $request)
     {
+        $this->limit = 10;
         $slug = ($request->route == '/' || $request->route == 'hi') ? 'home-v2' : $request->route;
         $data = $this->homepageData($slug, $request->page);
         $result = $data['result'];
