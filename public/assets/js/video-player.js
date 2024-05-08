@@ -74,6 +74,8 @@ $(document).ready(function () {
 			// $('.hide-vid-element').hide();
 			// console.log(response);
 			// dummyInit = true;
+			$('.videoContainer').show();
+			$(".loaderImg").hide();
 
 			let video_url;
 			if (ctype == 'SHOW' || ctype == 'SEASON') {
@@ -448,8 +450,6 @@ $(document).ready(function () {
 			loadPlayerCount++;
 
 			player.on('ready', event => {
-				$('.videoContainer').show();
-				$(".loaderImg").hide();
 				$height = $('#vidPlayer').height() + 'px';
 
 				$('#vidPlayer').css({ "object-fit": "cover", "object-position": "center center", "width": "100%", "height": $height });
