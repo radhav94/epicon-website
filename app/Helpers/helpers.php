@@ -1217,18 +1217,7 @@ function kidsMode()
 function getJsonDataFromFile($filepath)
 {
     try {
-        $context = stream_context_create([ 
-
-            'ssl' => [ 
-    
-                'verify_peer' => false, 
-    
-                'verify_peer_name' => false, 
-    
-            ], 
-    
-        ]); 
-        $jsonData = file_get_contents($filepath, true, $context);
+        $jsonData = file_get_contents($filepath);
         $arrayData = json_decode($jsonData, true);
     } catch (\Throwable $th) {
         $arrayData = [];
