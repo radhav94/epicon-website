@@ -1217,7 +1217,18 @@ function kidsMode()
 function getJsonDataFromFile($filepath)
 {
     try {
-        $jsonData = file_get_contents($filepath);
+        $context = stream_context_create([ 
+
+            'ssl' => [ 
+    
+                'verify_peer' => false, 
+    
+                'verify_peer_name' => false, 
+    
+            ], 
+    
+        ]); 
+        $jsonData = file_get_contents($filepath, true, $context);
         $arrayData = json_decode($jsonData, true);
     } catch (\Throwable $th) {
         $arrayData = [];
@@ -1303,6 +1314,24 @@ function getCountryStateDataInHtml()
         }
     }
     return $countryisdhtml;
+}
+
+function getCountryList()
+{
+    $countrycode = getCountryCode();
+    $countrystate = getCountryStateData();
+    $countryHtml = "";
+    if( $countrystate){
+        foreach ($countrystate['countries'] as $i => $value) {
+            if ($countrycode == $value['code'] || $countrycode == $value['countryisdcode']) {
+                $selectvar = "selected";
+            } else {
+                $selectvar = "";
+            }
+            $countryHtml .= '<option value="' . $value['country'] . '" ' . $selectvar . '>' . $value['country'] . '</option>';
+        }
+    }
+    return $countryHtml;
 }
 
 if (!function_exists('assetTime')) {

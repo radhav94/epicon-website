@@ -130,6 +130,7 @@ Route::get('login/twitter/callback', [AuthSocialController::class, 'handleProvid
 /*social login end*/
 
 Route::group(['middleware' => 'checkUserAuthToken'], function () {
+    Route::post('save-feedback', [FeedbackController::class, 'saveFeedback'])->name('save-feedback');
     Route::get('terms-of-use', function () {
         return view('static.terms-of-use');
     })->name('terms-of-use');
@@ -160,7 +161,6 @@ Route::group(['middleware' => ['loggedin', 'checkUserAuthToken']], function () {
     //Subscription routes created by Ram
     Route::post('getCouponAjax', [SubscriptionController::class, 'getCoupon'])->name('getCoupon');
     Route::post('redeemcoupon', [RewardsController::class, 'RedeemCouponCode'])->name('redeemcoupon');
-    Route::post('save-feedback', [FeedbackController::class, 'saveFeedback'])->name('save-feedback');
     //end
 });
 

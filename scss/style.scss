@@ -9203,3 +9203,31 @@ audio::-webkit-media-controls-play-button {
         width: 100px;
     }
 }
+.faq-select{
+    display: flex;
+    gap: 10px;
+    select{
+        background-color: transparent;
+        border: 1.249px solid #545454;
+        height: 50px;
+        color: #fff;
+        border-radius: 10px;
+    }
+    button{
+        padding: 10px 24px;
+        display: block;
+        border: none;
+        border-radius: 40px;
+        width: 50%;
+        font-size: 16px;
+        font-weight: 600;
+        background: #fff;
+        text-decoration: none;
+        color: #070707;
+    }
+    button:first-child{
+        background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
+        border: 1px solid #fff;
+        color: #fff;
+    }
+}
