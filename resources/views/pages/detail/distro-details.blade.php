@@ -113,11 +113,14 @@
 
 
 <script>
-
-    document.addEventListener('DOMContentLoaded', () => {
+     const scrWidth = $("#video-container").width();
+     const scrHeight = $("#video-container").height();
+     document.addEventListener('DOMContentLoaded', () => {
         // Flag to track if distroPlay has been called
         var distroPlayCalled = false;
-        const source = '{{ @$content['episodes_content']['url'] }}';
+        //const source = '{{ @$content['episodes_content']['url'] }}';
+        const sourceUrl = '{{ @$contentUrl }}';
+        const source = sourceUrl.replace(/amp;/g, '').replace('__WIDTH__',scrWidth).replace('__HEIGHT__',scrHeight);
         const video = document.querySelector('video');
         
         const player = new Plyr(video, {captions: {active: true, update: true, language: 'en'}});
