@@ -1041,7 +1041,10 @@ if (!function_exists("getAllEpisodesFromSeason")) {
             if (is_array($season['episodes'])) {
                 foreach ($season['episodes'] as $episode) {
                     if (array_key_exists('ID', $episode) && !empty($episode['ID'])) {
-                        $episode_list[] = $episode['ID'];
+                        $episode_list[] = [
+                            "ID" => $episode['ID'],
+                            "file_url_original" => $episode["file_url_original"]
+                        ];
                     } else {
                         continue;
                     }
