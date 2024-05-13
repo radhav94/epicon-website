@@ -11,7 +11,7 @@
                  </svg>
              </a> --> --}}
              <div class="view-all-div">
-            <a href="{{ Route('distro-tv') }}"><h6>View All</h6></a>
+            <a href="{{ Route('distro-tv') }}">View All</a>
         </div>
          @endif
 
@@ -26,7 +26,7 @@
             @foreach ($value['content'] as $key => $val)
                 <div class="slide">
                     <figure>
-                        <div class="slide-img-wrap me-3">
+                        <div class="slide-img-wrap">
                             <a href="{{ getUrl('distro-tv') }}/{{@$val['id']}}">
                             <img class="slide-img lazyload" src="{{ @$val['episodes_img_thumbh'] }}" alt=""></a>
                         </div>
