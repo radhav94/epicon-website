@@ -68,8 +68,8 @@
 
 
                        <!-- filter -->
-                       <div class="episode-season" style="display:block">
-                       <div class="all-episode">
+                       <div class="episode-season" style="display:flex">
+                       <div class="all-episode season">
                                <select id="SortingEp">
                                    <option value="asc" selected>Sort by oldest</option>
                                    <option value="desc">Sort by newest</option>
