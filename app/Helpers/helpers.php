@@ -1308,6 +1308,24 @@ function getCountryStateDataInHtml()
     return $countryisdhtml;
 }
 
+function getCountryList()
+{
+    $countrycode = getCountryCode();
+    $countrystate = getCountryStateData();
+    $countryHtml = "";
+    if( $countrystate){
+        foreach ($countrystate['countries'] as $i => $value) {
+            if ($countrycode == $value['code'] || $countrycode == $value['countryisdcode']) {
+                $selectvar = "selected";
+            } else {
+                $selectvar = "";
+            }
+            $countryHtml .= '<option value="' . $value['country'] . '" ' . $selectvar . '>' . $value['country'] . '</option>';
+        }
+    }
+    return $countryHtml;
+}
+
 if (!function_exists('assetTime')) {
     function assetTime() {
         return env('VERSION_CONTROL');

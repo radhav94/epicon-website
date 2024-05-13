@@ -1,6 +1,13 @@
 @extends('layouts.default')
 @section('title','Help & Feedback')
  
+@section('style')
+<style>
+    select.isdcode option {
+        color: #fff !important;
+    }
+</style>
+@stop
 
 @section('content')
 
@@ -1363,22 +1370,55 @@
 
         @if ($show == 'show')
         <form id="feedbackForm">
-            <div class="col-sm-12">
-                <h4 class="text-white mb-4">{{__('Need More Help?')}}</h4>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="text-white mb-4">{{__('Need More Help?')}}</h4>
+                </div>
+                <div class="col-sm-6 faq-select mt-3">
+                    <div class="w-100 position-relative">
+                        <select class="form-select" name="country" style="display: block;" required>
+                            {!! getCountryList() !!}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6 login-popup-modal mt-3">
+                    <div class="input-field w-100 position-relative">
+                        <select class="uk-select select-control input__field isdcode" name="isdcode" style="display: block !important;">
+                            {!! getCountryStateDataInHtml() !!}
+                        </select>
+                        <input class="form-control" style="text-indent: 115px;" name="phone" type="text" value="{{ $mobile }}" {{ !empty($mobile) ? 'readonly' : '' }} placeholder="Enter mobile no" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Please enter a valid phone number">
+                    </div>
+                </div>
+                <div class="col-sm-6 mt-3">
+                    <div class="input-field w-100 position-relative">
+                        <input class="form-control" name="email" type="text" value="{{ $email }}" {{ !empty($email) ? 'readonly' : '' }} placeholder="Enter email id" required>
+                    </div>
+                </div>
+                <div class="col-sm-6 faq-select mt-3">
+                    <select class="form-select" name="platform" required>
+                        <option value="">Platform</option>
+                        <option value="web" selected>Web</option>
+                        <option value="android">Android</option>
+                        <option value="ios">IOS</option>
+                    </select>
+                </div>
+                <div class="col-sm-12 need-help mt-3">
+                    <p class="para-help mb-2">{{__('Write your query/feedback below and we will reach out to you.')}}</p>
+                    <textarea class="form-control" rows="3" name="message"></textarea>
+                    <div class="error-msg text-center text-danger pt-2"></div>
+                    <div class="success-msg text-center text-success pt-2"></div>
+                </div>
+                <div class="col-sm-3 col-md-6 col-lg-6 col-xxl-3 faq-select mt-3">
+                    <button type="button" id="submit-btn">
+                        {{__('Submit')}}
+                        <span><svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.94922 12C4.94922 11.5858 5.28501 11.25 5.69922 11.25H19.6992C20.1134 11.25 20.4492 11.5858 20.4492 12C20.4492 12.4142 20.1134 12.75 19.6992 12.75H5.69922C5.28501 12.75 4.94922 12.4142 4.94922 12Z" fill="#fff" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.1689 4.46967C12.4618 4.17678 12.9367 4.17678 13.2295 4.46967L20.2295 11.4697C20.5224 11.7626 20.5224 12.2374 20.2295 12.5303L13.2295 19.5303C12.9367 19.8232 12.4618 19.8232 12.1689 19.5303C11.876 19.2374 11.876 18.7626 12.1689 18.4697L18.6386 12L12.1689 5.53033C11.876 5.23744 11.876 4.76256 12.1689 4.46967Z" fill="#fff" />
+                            </svg></span>
+                    </button>
+                    <button onclick="window.history.back();" type="button">Back</button>
+                </div>
             </div>
-            <div class="col-sm-12 need-help">
-                <p class="para-help">{{__('Write your query/feedback below and we will reach out to you within 24 hours.')}}</p>
-                <textarea name="feedback" id="" cols="122" rows="5" placeholder="{{__('Type your query here...')}}"></textarea>
-                <div class="error-msg text-center text-danger pt-2"></div>
-                <div class="success-msg text-center text-success pt-2"></div>
-            </div>
-            <button type="button" class="need-button">
-                {{__('Submit')}}
-                <span><svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.94922 12C4.94922 11.5858 5.28501 11.25 5.69922 11.25H19.6992C20.1134 11.25 20.4492 11.5858 20.4492 12C20.4492 12.4142 20.1134 12.75 19.6992 12.75H5.69922C5.28501 12.75 4.94922 12.4142 4.94922 12Z" fill="#070707" />
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.1689 4.46967C12.4618 4.17678 12.9367 4.17678 13.2295 4.46967L20.2295 11.4697C20.5224 11.7626 20.5224 12.2374 20.2295 12.5303L13.2295 19.5303C12.9367 19.8232 12.4618 19.8232 12.1689 19.5303C11.876 19.2374 11.876 18.7626 12.1689 18.4697L18.6386 12L12.1689 5.53033C11.876 5.23744 11.876 4.76256 12.1689 4.46967Z" fill="#0000007a" />
-                    </svg></span>
-            </button>
         </form>
         @endif
     </div>
@@ -1391,15 +1431,33 @@
 
 <script>
     $(document).ready(function() {
-        $("#feedbackForm button").click(function() {
+        $("#feedbackForm #submit-btn").click(function() {
             $("#feedbackForm .success-msg, #feedbackForm .error-msg").html("");
-            var feedback = $("#feedbackForm textarea").val();
-            if (feedback.trim() == "") {
-                $("#feedbackForm .error-msg").html("Query/Feedback is required");
-                return;
+            $("#feedbackForm .error-box").remove();
+            let isValid = true;
+            var stdisdcode = $("#feedbackForm select[name='isdcode']");
+            if (stdisdcode.val().trim() == "") {
+                $(stdisdcode).after('<p class="error-box text-danger pt-2 col-md-6">Country is required</p>');
+                isValid = false;
             }
-            var formData = $('#feedbackForm').serialize();
-            if (formData != '') {
+            var email = $("#feedbackForm input[name='email']");
+            if (email.val().trim() == "") {
+                $(email).after('<p class="error-box text-danger pt-2 col-md-6">Email is required</p>');
+                isValid = false;
+            }
+            var platform = $("#feedbackForm select[name='platform']");
+            if (platform.val().trim() == "") {
+                $(platform).after('<p class="error-box text-danger pt-2 col-md-6">Platform is required</p>');
+                isValid = false;
+            }
+            var feedback = $("#feedbackForm textarea");
+            if (feedback.val().trim() == "") {
+                $(feedback).after('<p class="error-box text-danger pt-2 col-md-12">Query/Feedback is required</p>');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                var formData = $('#feedbackForm').serialize();
                 $.ajax({
                     url: "{{ route('save-feedback') }}",
                     type: 'POST',
@@ -1412,7 +1470,7 @@
                         console.log(response);
                         if (response.payload.success == true) {
                             $("#feedbackForm textarea").val('');
-                            $("#feedbackForm .success-msg").html("Your Feedback updated. We will reach out to you within 24 hours.");
+                            $("#feedbackForm .success-msg").html("Your Feedback updated. We will reach out to you soon.");
                         } else {
                             if (response.payload.errorcode == "2002") {
                                 $("#feedbackForm .error-msg").html("You are not logged in.");
@@ -1426,7 +1484,8 @@
                     }
                 });
             } else {
-                $("#feedbackForm #error-msg").html("Please type your query.");
+                $("#feedbackForm #error-msg").html("Please fill all required fields.");
+                return;
             }
         })
 
