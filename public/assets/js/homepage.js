@@ -1031,42 +1031,42 @@
         dots: false,
         infinite: false,
         speed: 300,
-        slidesToShow: 3.2,
+        slidesToShow: 3.7,
         slidesToScroll: 1,
         accessibility: true,
         responsive: [
             {
                 breakpoint: 1367,
                 settings: {
-                    slidesToShow: 3.2,
+                    slidesToShow: 3.6,
                     slidesToScroll: 1,
                 }
             },
             {
                 breakpoint: 1025,
                 settings: {
-                    slidesToShow: 2.2,
+                    slidesToShow: 3.1,
                     slidesToScroll: 1,
                 }
             },
             {
                 breakpoint: 769,
                 settings: {
-                    slidesToShow: 1.6,
+                    slidesToShow: 2.3,
                     slidesToScroll: 1,
                 }
             },
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 1.1,
+                    slidesToShow: 1.2,
                     slidesToScroll: 1
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1.1,
+                    slidesToShow: 1.2,
                     slidesToScroll: 1
                 }
             }
@@ -1103,37 +1103,31 @@
             {
             breakpoint: 3e3,
             settings: {
-                slidesToShow: 7.3,
+                slidesToShow: 6.3,
                 slidesToScroll: 1
             }
         }, {
             breakpoint: 1600,
             settings: {
-                slidesToShow: 6.3,
+                slidesToShow: 5.8,
                 slidesToScroll: 1
             }
         }, {
             breakpoint: 1200,
             settings: {
-                slidesToShow: 7.3,
+                slidesToShow: 4.5,
                 slidesToScroll: 1
             }
         }, {
             breakpoint: 900,
             settings: {
-                slidesToShow: 5.3,
+                slidesToShow: 4.3,
                 slidesToScroll: 1
             }
         }, {
             breakpoint: 600,
             settings: {
-                slidesToShow: 4.3,
-                slidesToScroll: 1
-            }
-        }, {
-            breakpoint: 480,
-            settings: {
-                slidesToShow: 2.2,
+                slidesToShow: 1.8,
                 slidesToScroll: 1
             }
         }]
@@ -1159,7 +1153,7 @@
         }, {
             breakpoint: 1600,
             settings: {
-                slidesToShow: 4.3,
+                slidesToShow: 3.8,
                 slidesToScroll: 1
             }
         }, {
@@ -1171,7 +1165,7 @@
         }, {
             breakpoint: 900,
             settings: {
-                slidesToShow: 3.3,
+                slidesToShow: 2.8,
                 slidesToScroll: 1
             }
         }, {
