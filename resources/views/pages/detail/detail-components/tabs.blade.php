@@ -12,7 +12,7 @@
                 'url' => $value['slug']
             ];
             $temp = $value['episodes'] ?? [];
-            $lastSeason = $value['slug'];
+            //$lastSeason = $value['slug'];
             $season_episode_data[$value['slug']] = $temp;
         }
         $tab1_title = 'Episodes';
@@ -20,7 +20,7 @@
     } elseif ($content['content_type'] == 'SEASON') {
         $temp = $content['episodes'] ?? [];
         $tab1_title = 'Episodes';
-        $lastSeason = @$content['slug'];
+        //$lastSeason = @$content['slug'];
         $season_episode_data[$lastSeason] = $temp;
     }elseif ($content['content_type'] == 'EPISODE') {
         $temp = $content['season'][0]['episodes'] ?? [];
@@ -68,7 +68,15 @@
 
 
                        <!-- filter -->
-                       <div class="episode-season" style="display:block">
+                       <div class="episode-season" style="display:flex">
+                       @if($content['content_type'] !="VIDEO")
+                       <div class="all-episode season">
+                               <select id="SortingEp">
+                                   <option value="asc" selected>Sort by oldest</option>
+                                   <option value="desc">Sort by newest</option>
+                               </select>
+                        </div>
+                        @endif
                            @if (count($seasonList) > 0)
                            <div class="season">
                                <select id="seasonSelect">

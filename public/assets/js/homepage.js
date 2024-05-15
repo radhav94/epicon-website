@@ -1329,7 +1329,7 @@ function showmoreFunction(){
             $(".read-button-"+eid).html("<button class='bg-transparent text-white small read-more-"+eid+"' readmore-less'>Read More</button>");
             }
     
-            $(".read-more-"+eid).click(function(e) {
+            $(document).on("click", ".read-more-" + eid, function (e) {
             e.preventDefault();
             $(".read-more-"+eid).text() == "Read More" ? $(".read-more-"+eid).text("Read Less") : $(".read-more-"+eid).text("Read More")
             $('.shot-desc-'+eid+ ' .truncated-'+eid).toggle();
