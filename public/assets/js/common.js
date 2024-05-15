@@ -13,11 +13,7 @@ $(document).ready(function () {
         yearRange: "-100:-1"
     });
 
-    var defaultSlug = $("#seasonSelect").val();
-    if (defaultSlug != "" && defaultSlug != 0) {
-        $(".season-episode-main").addClass('hide');
-        $("#pills-episode-" + defaultSlug).removeClass('hide');
-    }
+    $("#seasonSelect").trigger("change");
 
     $("#seasonSelect").change(function () {
         var slug = $(this).val();
