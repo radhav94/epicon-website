@@ -69,12 +69,14 @@
 
                        <!-- filter -->
                        <div class="episode-season" style="display:flex">
+                       @if($content['content_type'] !="VIDEO")
                        <div class="all-episode season">
                                <select id="SortingEp">
                                    <option value="asc" selected>Sort by oldest</option>
                                    <option value="desc">Sort by newest</option>
                                </select>
                         </div>
+                        @endif
                            @if (count($seasonList) > 0)
                            <div class="season">
                                <select id="seasonSelect">
