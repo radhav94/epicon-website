@@ -386,7 +386,7 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
             }
         });
 
-        $('.playBtn').click(async function() {
+        $(document).on('click', '.playBtn', function() {
             var title = $(this).parent().find('.title').text();
             var coverimg = $(this).parent().find('.pik-img').find('img').attr('src');
             $('.play-title').html(title);
