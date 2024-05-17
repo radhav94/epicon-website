@@ -6525,9 +6525,12 @@ input {
                     }
                 }
             }
-            span{
+            div > span{
                 font-size: 14px;
                 color: #B7B7B7;
+            }
+            span{
+                word-break: break-all;
             }
             p{
                 color: #e9e5e5;
