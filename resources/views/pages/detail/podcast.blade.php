@@ -414,7 +414,7 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
                 playCurrentEpisode();
             }
         });
-        $('.pod-pause').click(function() {
+        $(document).on('click', '.pod-pause', function() {
             $('.pod-play').show();
             $('.pod-pause').hide();
             $(this).hide();
