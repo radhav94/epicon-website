@@ -72,8 +72,8 @@
                        @if($content['content_type'] !="VIDEO")
                        <div class="all-episode season">
                                <select id="SortingEp">
-                                   <option value="asc" selected>Sort by oldest</option>
-                                   <option value="desc">Sort by newest</option>
+                                   <option value="asc" selected>Sort by Asc</option>
+                                   <option value="desc">Sort by Desc</option>
                                </select>
                         </div>
                         @endif

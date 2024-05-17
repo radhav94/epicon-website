@@ -6525,13 +6525,17 @@ input {
                     }
                 }
             }
-            span{
+            div > span{
                 font-size: 14px;
                 color: #B7B7B7;
+            }
+            span{
+                word-break: break-all;
             }
             p{
                 color: #e9e5e5;
                 font-size: 16px;
+                word-break: break-all;
                 @media (max-width:700px) {
                     @include line-clamp(2);
                     bottom: 0;
