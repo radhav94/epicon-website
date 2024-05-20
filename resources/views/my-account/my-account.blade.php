@@ -107,12 +107,12 @@ $subplan = checkSubscription();
                         </div>
                         
                         <div class="pp-right">
-                            <h3>{!! getCurrency($subscriptionPurchases['currency']) !!} {{ isset($subscriptionPurchases['plan_amount']) ? $subscriptionPurchases['plan_amount'] : '' }} <span>/ {{ isset($plan_name) ? $plan_name : '' }}</span></h3>
+                            @if(@$subscriptionPurchases['plan_amount'] != '')<h3>{!! getCurrency($subscriptionPurchases['currency']) !!} {{ isset($subscriptionPurchases['plan_amount']) ? $subscriptionPurchases['plan_amount'] : '' }} <span>/ {{ isset($plan_name) ? $plan_name : '' }}</span></h3>@endif
                             <p>{{isset($substartdate) ? $substartdate : ''}} - {{ isset($subenddate) ? $subenddate : '' }}</p>
                         </div>
                     </div>
                    <?php  //echo $numOfDays; exit;?>
-                    @if($numOfDays <= 3 || $subscriptionPurchases['plan_status'] == 'past')
+                    @if($numOfDays <= 4 || $subscriptionPurchases['plan_status'] == 'past')
                     <div class="w-100 text-center">
                         @if($numOfDays <= 0)
                         @php $class = "renew-paln"; @endphp
