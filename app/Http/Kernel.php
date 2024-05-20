@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\LanguageManager::class,
             \App\Http\Middleware\CheckUserAuthToken::class,
+            \Illuminate\Http\Middleware\HandleCors::class
         ],
 
         'api' => [
