@@ -121,8 +121,8 @@ class PageController extends Controller
         if ($result && @$result['success'] ==  true) {
             $result = $result['data'] ?? [];
 
-            $meta['title'] = ($displayLanguageParam == 'HINDI') ? 'विवरण खोजें' : 'Explore - ' . ucfirst($slug);
-
+            //$meta['title'] = ($displayLanguageParam == 'HINDI') ? 'विवरण खोजें' : 'Explore - ' . ucfirst($slug);
+            $meta = exploreGetMeta($slug);
             return view('pages.explore_details', compact('result', 'slug', 'page', 'meta', 'limit'));
         } else {
             return view('pages.error.data-error');
