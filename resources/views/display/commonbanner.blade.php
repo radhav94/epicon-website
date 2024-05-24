@@ -9,7 +9,7 @@ $isMoblile      = isMobliDevice();
             $card = getItemCardData($val, $displayLanguageParam);
 
             if (!$isMoblile) {
-                $banner_img = getCardImage($val, 'banner_image', 'large');
+                $banner_img = getCardImage($val, 'banner_image_v2', 'large');
             } else {
                 $img =  in_array($firstSegment, ['podcast','games'])  ? 'cover_image' : 'vertical_cover_image';
                 $banner_img = getCardImage($val, $img, 'medium');
