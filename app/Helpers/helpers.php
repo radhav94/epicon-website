@@ -1709,7 +1709,7 @@ function sortEpisodes($temp)
 {
     if (count($temp) > 0) {
         usort($temp, function ($a, $b) {
-            return $a['content_order'] - $b['content_order'];
+            return @$a['content_order'] - @$b['content_order'];
         });
         return $temp;
     }
