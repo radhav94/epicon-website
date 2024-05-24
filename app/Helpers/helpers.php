@@ -1704,3 +1704,13 @@ function generateDeviceId() {
     setcookie('deviceId', $deviceId, time() + (10 * 365 * 24 * 60 * 60), '/'); 
     return $deviceId;
 }
+
+function sortEpisodes($temp)
+{
+    if (count($temp) > 0) {
+        usort($temp, function ($a, $b) {
+            return $a['content_order'] - $b['content_order'];
+        });
+        return $temp;
+    }
+}

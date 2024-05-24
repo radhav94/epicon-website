@@ -438,12 +438,12 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
     // Function to load and play the current episode
     function playCurrentEpisode() {
         $("#playButton").hide();
-        $("li.pod-main").removeClass('episode-active');
+        $(".pod-main").removeClass('episode-active');
         let episodeID = episodes[currentEpisodeIndex]["ID"];
-        var title = $("li.pod-main[data-id='" + episodeID + "']").find('.title').text();
-        var audio_duration = $("li.pod-main[data-id='" + episodeID + "']").find('.title').data('duration');
-        var coverimg = $("li.pod-main[data-id='" + episodeID + "']").find('.pik-img').find('img').attr('src');
-        $("li.pod-main[data-id='" + episodeID + "']").addClass('episode-active');
+        var title = $(".pod-main .pod-div[data-id='" + episodeID + "']").find('.title').text();
+        var audio_duration = $(".pod-main .pod-div[data-id='" + episodeID + "']").find('.title').data('duration');
+        var coverimg = $(".pod-main .pod-div[data-id='" + episodeID + "']").find('.pik-img').find('img').attr('src');
+        $(".pod-main .pod-div[data-id='" + episodeID + "']").parent().addClass('episode-active');
         $('.play-title').html(title);
         $('.podcast-bottom-player .play-converimg').attr('src', coverimg);
 
@@ -483,7 +483,7 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
         let duration = audio.duration;
         let currentTime = audio.currentTime;
         let progress = Math.round((currentTime / duration) * 100) + "%";
-        $("li.pod-main[data-id='" + episodeID + "'] .progress-bar").css("width", progress);
+        $(".pod-main .pod-div[data-id='" + episodeID + "'] .progress-bar").css("width", progress);
         $('.podcast-bottom-player .progress-bar').css("width", progress);
     }
 
@@ -504,6 +504,19 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
         let currentTime = Math.round(audio.currentTime);
         let progress = Math.round((currentTime / duration) * 100) + "%";
         audio_seek(duration, audio_title, currentTime, progress);
+    }
+
+    function sortEpisodes() 
+    {
+        $(".pod-main").removeClass('episode-active');
+        $(".podcast-close").trigger("click");
+        let sortEpisodes = [];
+        $.each(episodes, function(index){
+            sortEpisodes[index] = episodes[episodes.length - (index + 1)];
+        })
+        setTimeout(function(){
+            episodes = sortEpisodes;
+        }, 500)        
     }
 </script>
 @stop

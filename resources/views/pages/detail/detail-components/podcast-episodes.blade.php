@@ -2,6 +2,9 @@
     <div class="tab-pane fade {{ $active_tab == 'episode' ? 'show active' : '' }}" id="pills-episode" role="tabpanel" aria-labelledby="my-list">
         @foreach ($season_episode_data as $skey => $ep_season_data)
             <ul class="season-episode-main list-unstyled col-12 p-0  {{ $skey == $lastSeason ? '' : 'hide' }}" id="pills-episode-{{$skey ?? ''}}">
+                @php
+                    $ep_season_data = $ep_season_data ?? [];
+                @endphp
                 @foreach ($ep_season_data as $key => $value)
                 <?php
                 if (!isset($value['ID']) || $value['ID'] == $content['ID']) {
@@ -14,8 +17,8 @@
 
                 ?>
 
-                <li class="pod-main position-relative py-3 showmore-main" data-id="{{ $value['ID'] }}">
-                    <div class="col-12 col-sm-11 d-flex">
+                <li class="pod-main position-relative py-3 showmore-main">
+                    <div class="col-12 col-sm-11 d-flex pod-div" data-id="{{ $value['ID'] }}">
                         <div class="pik position-relative">
                             @if(@$value['asset_type'] == 'PLAY')
                             {!! getplayanchorhtml($value) !!}
