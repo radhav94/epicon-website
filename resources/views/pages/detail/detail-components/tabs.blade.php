@@ -6,15 +6,17 @@
     if ($content['content_type'] == 'SHOW') {
         $seasons = $content['season'] ?? [];
         $tab1_title = 'Seasons';
-        foreach ($seasons as $value) {
-            $seasonList[] = [
-                'title' => $value['title'],
-                'url' => $value['slug']
-            ];
+        foreach ($seasons as $value) {            
             $temp = $value['episodes'] ?? [];
             $temp = sortEpisodes($temp);
             //$lastSeason = $value['slug'];
-            $season_episode_data[$value['slug']] = $temp;
+            if ($temp != null) {
+                $seasonList[] = [
+                    'title' => $value['title'],
+                    'url' => $value['slug']
+                ];
+                $season_episode_data[$value['slug']] = $temp;
+            }
         }
         $tab1_title = 'Episodes';
         rsort($seasonList);
@@ -33,7 +35,6 @@
          $season_episode_data[$lastSeason] = $temp;
         }
     }
-
 
     $active_tab = '';
     $tabs = [];
