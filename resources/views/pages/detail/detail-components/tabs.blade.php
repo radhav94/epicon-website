@@ -12,6 +12,7 @@
                 'url' => $value['slug']
             ];
             $temp = $value['episodes'] ?? [];
+            $temp = sortEpisodes($temp);
             //$lastSeason = $value['slug'];
             $season_episode_data[$value['slug']] = $temp;
         }
@@ -19,11 +20,13 @@
         rsort($seasonList);
     } elseif ($content['content_type'] == 'SEASON') {
         $temp = $content['episodes'] ?? [];
+        $temp = sortEpisodes($temp);
         $tab1_title = 'Episodes';
         //$lastSeason = @$content['slug'];
         $season_episode_data[$lastSeason] = $temp;
     }elseif ($content['content_type'] == 'EPISODE') {
         $temp = $content['season'][0]['episodes'] ?? [];
+        $temp = sortEpisodes($temp);
         $tab1_title = 'Episodes';
         $lastSeason = @$content['slug'];
         if($temp){
