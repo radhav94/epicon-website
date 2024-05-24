@@ -3,9 +3,8 @@
         @foreach ($value['content'] as $key => $val)
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
-            
             if(!isMobliDevice()){
-                $banner_img = getCardImage($val, 'banner_image', 'large');
+                $banner_img = getCardImage($val, 'banner_image_v2', 'large');
             }else{
                 $banner_img = getCardImage($val, 'vertical_cover_image', 'medium');
             }
