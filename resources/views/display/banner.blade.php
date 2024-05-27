@@ -13,7 +13,7 @@ $isMoblile = isMobliDevice();
                 $img = in_array($firstSegment, ['podcast', 'games']) ? 'cover_image' : 'vertical_cover_image';
                 $banner_img = getCardImage($val, $img, 'medium');
             } else {
-                $banner_img = getCardImage($val, 'banner_image', 'large');
+                $banner_img = getCardImage($val, 'banner_image_v2', 'large');
             }
             ?>
             <div class="carousel-card">
