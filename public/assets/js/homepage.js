@@ -1207,6 +1207,7 @@
         getSupermixData();
         $('#supermix-banner-video').hide();
         $('#supermix-banner-img').show();
+        showmoreFunction();
     });
 
     $(document).off('click.superMixButton').on('click.superMixButton', '.superMixButton', function (e) {
