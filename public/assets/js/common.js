@@ -1,5 +1,6 @@
 // Get the URL query parameters
 var queryParams = new URLSearchParams(window.location.search);
+var isSorted = false;
 
 $(document).ready(function () {
     $(".profile_date_picker").datepicker({
@@ -21,7 +22,10 @@ $(document).ready(function () {
             $(".season-episode-main").addClass('hide');
             $("#pills-episode-" + slug).removeClass('hide');
             let sortType = $("#seasonSelect").val() || "";
-            sortingEp($(this).val(), sortType);
+            if (isSorted) {
+                isSorted = true;
+                sortingEp($(this).val(), sortType);
+            }
         } else {
             return false;
         }
@@ -358,5 +362,9 @@ function sortingEp(id, sortType) {
     vals.reverse();
     for (var i = 0, l = lis.length; i < l; i++) {
         lis[i].innerHTML = vals[i];
+    }
+    var currentUrl = window.location.href;
+    if (currentUrl.includes("/podcast")) {
+        sortEpisodes(sortType);
     }
 }

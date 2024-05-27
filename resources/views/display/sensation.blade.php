@@ -26,7 +26,7 @@
                     if( $isMoblile ){
                         $cover_img = getCardImage($val, 'vertical_cover_image', 'medium');
                     }else{
-                        $cover_img = getCardImage($val, 'banner_image', 'large', ['cover_image']);
+                        $cover_img = getCardImage($val, 'banner_image_v2', 'large', ['cover_image']);
                     }
                     
                     
