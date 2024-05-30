@@ -88,7 +88,7 @@ $subplan = checkSubscription();
                     
                     <img class="corner-bg" src="{{ asset('/img/corner-bg.svg') }}" alt="">
                     <p class="current-subs d-flex">{{__('Current Subscription')}}</p>
-                    <h1>{{__('Premium HD')}}</h1>
+                    <h1>{{ isset($subscriptionPurchases['plan_name']) ? $subscriptionPurchases['plan_name'] : '' }}</h1>
                     <div class="premium-plan">
 
                         <div class="past-sub w-100">{{__('PAST SUBSCRIPTION')}}</div>
