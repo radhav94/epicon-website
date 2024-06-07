@@ -29,8 +29,8 @@ class DistroTvController extends Controller
             $meta = getMeta('distro-tv');
 
             return view('pages.homepage-distro', compact('result', 'meta', 'displayLanguageParam', 'stories'));
-                    }
-        return view('pages.error.404');
+        }
+        return response()->view('pages.error.404', [], 404);
     }
 
     private function homepageData($slug = 'home-v2', $page = 1)

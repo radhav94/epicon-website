@@ -48,7 +48,7 @@ class PageController extends Controller
             if (in_array(strtolower($pageslug), $pageCheckArr)) {
                 return redirect('/', 301);
             } else {
-                return view('pages.error.404');
+                return response()->view('pages.error.404', [], 404);
             }
         } else {
 
@@ -56,7 +56,7 @@ class PageController extends Controller
             if (!in_array(strtolower($pageslug), $pageCheckArr) && !empty($result)) {
                 return redirect('/', 301);
             } else {
-                return view('pages.error.404');
+                return response()->view('pages.error.404', [], 404);
             }
         }
     }
