@@ -1740,9 +1740,9 @@ function generateUUIDv4() {
 function generateDeviceId() {
     // Gather available information
     $navigatorInfo = [
-        $_SERVER['HTTP_USER_AGENT'],
-        $_SERVER['HTTP_ACCEPT_LANGUAGE'],
-        $_SERVER['REMOTE_ADDR'], // IP address
+        $_SERVER['HTTP_USER_AGENT'] ?? "",
+        $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? "",
+        $_SERVER['REMOTE_ADDR'] ?? "", // IP address
         date_default_timezone_get(), // Timezone
     ];
     // Combine and hash the information to create a unique identifier

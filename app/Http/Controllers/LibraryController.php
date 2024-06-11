@@ -27,7 +27,7 @@ class LibraryController extends Controller
             $data = @$wishData['contents'];
             return view('library.library', compact('data', 'historydata'));
         } else {
-            return view('pages.error.data-error');
+            return response()->view('pages.error.404', [], 404);
         }
     }
 }

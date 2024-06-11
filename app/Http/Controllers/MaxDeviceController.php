@@ -11,7 +11,7 @@ class MaxDeviceController extends Controller
     {
         $activeDeviceArr = CurlAPI("users/getDevice", 'POST', [], 2, true, true);
         if (!$activeDeviceArr) {
-            return view('pages.error.data-error');
+            return response()->view('pages.error.404', [], 404);
         }
         $activeDevices = @$activeDeviceArr['success'] && array_key_exists('data', $activeDeviceArr) ? $activeDeviceArr['data'] : [];
 

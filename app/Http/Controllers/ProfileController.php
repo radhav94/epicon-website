@@ -49,7 +49,7 @@ class ProfileController extends Controller
         if ($res) {
             return view('pages.profile.manage-profile')->with('data', $res);
         } else {
-            return view('pages.error.404');
+            return response()->view('pages.error.404', [], 404);
         }
     }
 
@@ -60,7 +60,7 @@ class ProfileController extends Controller
         if ($data && count(@$data['profiles']) < $this->profile_limit){
             return view('pages.profile.add-profile', compact('data'));
         }
-        return view('pages.error.404');
+        return response()->view('pages.error.404', [], 404);
     }
 
     public function store(Request $request): JsonResponse
@@ -114,7 +114,7 @@ class ProfileController extends Controller
         if ($profile) {
             return view('pages.profile.edit-profile', compact('profile', 'data'));
         } else {
-            return view('pages.error.404');
+            return response()->view('pages.error.404', [], 404);
         }
     }
 

@@ -48,7 +48,7 @@ class PageController extends Controller
             if (in_array(strtolower($pageslug), $pageCheckArr)) {
                 return redirect('/', 301);
             } else {
-                return view('pages.error.404');
+                return response()->view('pages.error.404', [], 404);
             }
         } else {
 
@@ -56,7 +56,7 @@ class PageController extends Controller
             if (!in_array(strtolower($pageslug), $pageCheckArr) && !empty($result)) {
                 return redirect('/', 301);
             } else {
-                return view('pages.error.404');
+                return response()->view('pages.error.404', [], 404);
             }
         }
     }
@@ -102,7 +102,7 @@ class PageController extends Controller
             return view('pages.explore', compact('result', 'meta'));
         }
 
-        return view('pages.error.data-error');
+        return response()->view('pages.error.404', [], 404);
     }
 
     public function explore_details($slug)
@@ -125,7 +125,7 @@ class PageController extends Controller
             $meta = exploreGetMeta($slug);
             return view('pages.explore_details', compact('result', 'slug', 'page', 'meta', 'limit'));
         } else {
-            return view('pages.error.data-error');
+            return response()->view('pages.error.404', [], 404);
         }
     }
 
@@ -211,7 +211,7 @@ class PageController extends Controller
             $epicwebArr = $epicwebArr['data'];
             return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page', 'hybidData'));
         } else {
-            return view('pages.error.data-error');
+            return response()->view('pages.error.404', [], 404);
         }
     }
 
@@ -226,7 +226,7 @@ class PageController extends Controller
             $epicwebArr = $epicwebArr['data'];
             return view('pages.chanel.channelmidpage', compact('epicwebArr', 'title', 'slug', 'page'));
         } else {
-            return view('pages.error.data-error');
+            return response()->view('pages.error.404', [], 404);
         }
     }
 
