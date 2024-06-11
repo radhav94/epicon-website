@@ -56,7 +56,7 @@ class KidsController extends Controller
 
                 return view('pages.homepage', compact('result','slug', 'displayLanguageParam', 'meta'));
             }
-            return view('pages.error.404');
+            return response()->view('pages.error.404', [], 404);
         } else {
             return redirect(getUrl('settings?status=ispin'));
         }

@@ -21,7 +21,7 @@ class UpcomingController extends Controller
             // return view('pages.upcoming-epicon')->with('upcoming',$Upcomingdata);
             return view('pages.upcoming-epicon', compact('upcoming', 'meta'));
         }else{
-            return view('pages.error.data-error');
+            return response()->view('pages.error.404', [], 404);
         }
     }
 }
