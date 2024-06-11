@@ -26,7 +26,7 @@ class LiveTvController extends Controller
             $meta = getMeta($routenamed);
             return view('pages.livetv.live-tv', compact('response','meta', 'displayLanguageParam'));
         }else{
-            return view('pages.error.data-error');
+            return response()->view('pages.error.404', [], 404);
         }
     }
 

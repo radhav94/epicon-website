@@ -116,7 +116,7 @@ class DistroTvController extends Controller
            $contentUrl = str_replace(array_keys($replaceContent), array_values($replaceContent), $content_url);
             return view('pages.detail.distro-details', compact('content','contentUrl'));
         }else{
-            return view('pages.error.data-error');
+            return response()->view('pages.error.404', [], 404);
         }
     }
 
