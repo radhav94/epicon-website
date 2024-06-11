@@ -15,7 +15,7 @@ class RewardsController extends Controller
             $walletArr = @$walletArr['data'];
             return view('rewards.my-reward',compact('walletArr'));
         }else{
-            return view('pages.error.data-error');
+            return response()->view('pages.error.404', [], 404);
         }
     }
 

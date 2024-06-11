@@ -38,7 +38,7 @@ class PageDetailController extends Controller
             $content = $result['content'] ?? [];
 
             if (empty($content)) {
-                return view('pages.error.404');
+                return response()->view('pages.error.404', [], 404);
             }
 
             $trailers = [];

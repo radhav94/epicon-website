@@ -36,7 +36,7 @@ class RetroRewindController extends Controller
             return view('pages.retro-list', compact('result', 'displayLanguageParam', 'meta', 'slug', 'page'));
         }
 
-        return view('pages.error.404');
+        return response()->view('pages.error.404', [], 404);
     }
     public function retroRewindContent(Request $request)
     {
