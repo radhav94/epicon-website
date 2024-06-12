@@ -152,11 +152,21 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                             <label class="text-white text-start w-100 mb-1" for=""><?php echo $pinText; ?></label>
                             <div class="childpin">
                                 <div class="childpin-input d-flex justify-content-between pt-3">
-                                    <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
-                                    <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
-                                    <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
-                                    <input class="mx-1 child-box onlydigit" name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
-                                </div>
+                                    <input class="mx-1 child-box onlydigit" inputmode="numeric" pattern="[0-9]*"
+
+                                    name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
+
+                                    <input class="mx-1 child-box onlydigit" inputmode="numeric" pattern="[0-9]*"
+
+                                    name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
+
+                                    <input class="mx-1 child-box onlydigit" inputmode="numeric" pattern="[0-9]*"
+
+                                    name="verifyOTP[]" type="text" min="0" max="9" maxlength="1">
+
+                                    <input class="mx-1 child-box onlydigit" inputmode="numeric" pattern="[0-9]*"
+
+                                    name="verifyOTP[]" type="text" min="0" max="9" maxlength="1"> </div>
                             </div>
                             <p class="text-center w-100 text-white small mt-2 resend-otp">{{__('Resend OTP in 0:30')}}</p>
                             <button class="btn btn-primary" id="resendOTPBtn" onclick="resendVerifyOTP()" style="display:none">{{__('Resend OTP')}}</button>
