@@ -11,17 +11,17 @@
                         </p>
                         <div class="childpin-input">
                             <input class="vpin onlydigit" type="text" min="0" max="9" maxlength="1"
-                                name="vpin[]" required>
+                                name="vpin[]" required inputmode="numeric" pattern="[0-9]*">
                             <input class="vpin onlydigit" type="text" min="0" max="9" maxlength="1"
-                                name="vpin[]" required>
+                                name="vpin[]" required inputmode="numeric" pattern="[0-9]*">
                             <input class="vpin onlydigit" type="text" min="0" max="9" maxlength="1"
-                                name="vpin[]" required>
+                                name="vpin[]" required inputmode="numeric" pattern="[0-9]*">
                             <input class="vpin onlydigit" type="text" min="0" max="9" maxlength="1"
-                                name="vpin[]" required>
+                                name="vpin[]" required inputmode="numeric" pattern="[0-9]*">
                             <input class="vpin onlydigit" type="text" min="0" max="9" maxlength="1"
-                                name="vpin[]" required>
+                                name="vpin[]" required inputmode="numeric" pattern="[0-9]*">
                             <input class="vpin onlydigit" type="text" min="0" max="9" maxlength="1"
-                                name="vpin[]" required>
+                                name="vpin[]" required inputmode="numeric" pattern="[0-9]*">
 
                         </div>
                         <div id="err_message" style="color: red;"> </div>
