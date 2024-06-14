@@ -15,9 +15,9 @@ class PageController extends Controller
         $this->limit = 5;
     }
 
-    
+
     public function index($slug = 'home-v2')
-    {    
+    {
         // dd(session()->get('user_token'));
         $pageslug = strtolower($slug);
 
@@ -34,7 +34,7 @@ class PageController extends Controller
         if ($result && @$result['success'] ==  true) {
             $displayLanguageParam = $data['displayLanguageParam'];
             $stories = $data['stories'];
-            
+
             $meta = getMeta($pagetype, $pagetitle, $pageslug);
             // dd($meta);
             return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta', 'slug'));
@@ -48,7 +48,7 @@ class PageController extends Controller
             if (in_array(strtolower($pageslug), $pageCheckArr)) {
                 return redirect('/', 301);
             } else {
-                return view('pages.error.404');
+                return response()->view('pages.error.404', [], 404);
             }
         } else {
 
@@ -56,7 +56,7 @@ class PageController extends Controller
             if (!in_array(strtolower($pageslug), $pageCheckArr) && !empty($result)) {
                 return redirect('/', 301);
             } else {
-                return view('pages.error.404');
+                return response()->view('pages.error.404', [], 404);
             }
         }
     }
@@ -102,7 +102,7 @@ class PageController extends Controller
             return view('pages.explore', compact('result', 'meta'));
         }
 
-        return view('pages.error.data-error');
+        return response()->view('pages.error.404', [], 404);
     }
 
     public function explore_details($slug)
@@ -125,7 +125,7 @@ class PageController extends Controller
             $meta = exploreGetMeta($slug);
             return view('pages.explore_details', compact('result', 'slug', 'page', 'meta', 'limit'));
         } else {
-            return view('pages.error.data-error');
+            return response()->view('pages.error.404', [], 404);
         }
     }
 
@@ -211,7 +211,7 @@ class PageController extends Controller
             $epicwebArr = $epicwebArr['data'];
             return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page', 'hybidData'));
         } else {
-            return view('pages.error.data-error');
+            return response()->view('pages.error.404', [], 404);
         }
     }
 
@@ -226,7 +226,7 @@ class PageController extends Controller
             $epicwebArr = $epicwebArr['data'];
             return view('pages.chanel.channelmidpage', compact('epicwebArr', 'title', 'slug', 'page'));
         } else {
-            return view('pages.error.data-error');
+            return response()->view('pages.error.404', [], 404);
         }
     }
 
@@ -310,18 +310,65 @@ class PageController extends Controller
 
     public function ajaxStoryData(Request $request)
     {
-        $story_id = $request->id;
-        $story_list = $this->epicShots($story_id);
+        $id = $request->id;
 
-        $view = view('components.epic-story-popup', compact('story_list'))->render();
 
-        return JSONResponse(
-            200,
-            'Success.',
-            [
-                'html' => $view,
-            ]
-        );
+
+        if (preg_match("/[a-z]/i", $id)) {
+
+            $content_list = $this->epicShotsByShortCode($id);
+
+            $story_list['content_list'] = array_values($content_list);
+
+            $meta = [
+
+                'title' => @$story_list['content_list'][0]['title'],
+
+                'description' => @$story_list['content_list'][0]['short_description'],
+
+                'image' => @$story_list['content_list'][0]['story_image'],
+
+            ];
+        } else {
+
+            $story_list = $this->epicShots($id);
+        }
+
+
+
+        if ($story_list) {
+
+            $view = view('components.epic-story-popup', compact('story_list'))->render();
+
+            return JSONResponse(
+
+                200,
+
+                'Success.',
+
+                [
+
+                    'html' => $view,
+
+                ]
+
+            );
+        } else {
+
+            return JSONResponse(
+
+                200,
+
+                'Success.',
+
+                [
+
+                    'html' => null,
+
+                ]
+
+            );
+        }
     }
 
     private function homepageData($slug = 'home-v2', $page = 1)
@@ -381,13 +428,30 @@ class PageController extends Controller
                             $stories_arr[] = [
                                 'id' => @$story['ID'],
                                 'title' => @$story['title'],
-                                'img_url' => getCardImage($story, 'imageUrl', 'small', [])
+                                'img_url' => getCardImage($story, 'imageUrl', 'small', []),
+                                'short_code' => @$story['content_list'][0]['short_code']
                             ];
                         }
                     }
                 }
             }
         }
+        return $stories_arr;
+    }
+
+    private function epicShotsByShortCode($short_code = "")
+
+    {
+
+        $stories_arr = [];
+
+        $response = CurlAPI("pages/stories/video?short_code=" . $short_code, "GET", null, 1);
+
+        if ($response && @$response['success'] == true) {
+
+            $stories_arr = $response['data']['list'] ?? [];
+        }
+
         return $stories_arr;
     }
 
@@ -419,32 +483,28 @@ class PageController extends Controller
         return json_decode($response, true);
     }
 
-    public function storyPage($story_id, $slug)
+    public function storyPage($short_code)
     {
-        $showStory = 0;
-        $story_list = $this->epicShots($story_id);
-        $content_list = $story_list['content_list'] ?? [];
+        $showStory = 1;
+
+        $content_list = $this->epicShotsByShortCode($short_code);
 
         if ($content_list) {
-            $found = false;
+            $story_list['content_list'] = array_values($content_list);
 
-            foreach ($content_list as $key => $value) {
-                if ($value['slug'] == $slug) {
-                    $found = true;
-                    $showStory = $key + 1;
-                }
-            }
+            $meta = [
 
-            if ($found == true) {
-                $story_list['content_list'] = array_values($story_list['content_list']);
-                $meta = [
-                    'title' => @$story_list['content_list'][0]['title'],
-                    'description' => @$story_list['content_list'][0]['short_description'],
-                    'image' => @$story_list['content_list'][0]['story_image'],
-                ];
+                'title' => @$story_list['content_list'][0]['title'],
 
-                return view('pages.story.storypage', compact('story_list', 'story_id', 'meta', 'showStory'));
-            }
+                'description' => @$story_list['content_list'][0]['short_description'],
+
+                'image' => @$story_list['content_list'][0]['story_image'],
+
+            ];
+
+
+
+            return view('pages.story.storypage', compact('story_list', 'meta', 'showStory'));
         }
 
         return redirect()->to(url('/'));

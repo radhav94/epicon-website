@@ -69,7 +69,7 @@ class SearchController extends Controller
             $trendingData = $trending['contents'] ?? [];
             return view('pages.search.search', compact('trendingData', 'searchList', 'categoryMapping'));
         } else {
-            return view('pages.error.404');
+            return response()->view('pages.error.404', [], 404);
         }
     }
 

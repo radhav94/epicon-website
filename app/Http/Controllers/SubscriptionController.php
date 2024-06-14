@@ -54,7 +54,7 @@ class SubscriptionController extends Controller
                 }
             }
         } else {  
-            return view('pages.error.data-error');
+            return response()->view('pages.error.404', [], 404);
         }
 
         if (empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['message'] == 'No subscriptions found') {
@@ -129,7 +129,7 @@ class SubscriptionController extends Controller
             $result = (@$sessionPlanData[@$data['amountid']]);
         }
         if(empty($result)){
-            return view('pages.error.data-error');  
+            return response()->view('pages.error.404', [], 404);  
         }
         return view('subscription.payment-method', compact('result', 'data'));
         }else{
@@ -182,7 +182,7 @@ class SubscriptionController extends Controller
         $this->payuLog( 'Payu Money Request data', $txid,[$parameters]);
 
         if(@$parameters['status'] == false){
-            return view('pages.error.data-error');
+            return response()->view('pages.error.404', [], 404);
         }
         else{
 
