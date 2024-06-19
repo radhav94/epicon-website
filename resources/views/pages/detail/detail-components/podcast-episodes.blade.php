@@ -7,9 +7,6 @@
                 @endphp
                 @foreach ($ep_season_data as $key => $value)
                 <?php
-                if (!isset($value['ID']) || $value['ID'] == $content['ID']) {
-                    continue;
-                }
                 $card = getItemCardData($value, $displayLanguageParam);
                 //$cover_img = isset($value['cover_image']) ? @$value['cover_image']['medium'] : $card['banner_img'];
 
