@@ -30,6 +30,7 @@ use App\Http\Controllers\PaytmController;
 use App\Http\Controllers\PaytmQrController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TvActiveController;
+use App\Http\Controllers\SpotlightController;
 
 
 $lang = ['hi', 'en'];
@@ -248,6 +249,7 @@ foreach ($lang as $val) {
         Route::get('explore/{slug}', [PageController::class, 'explore_details']);
 
         Route::get('live-tv', [LiveTvController::class, 'livetv'])->name('live-tv');
+        Route::get('spotlight', [SpotlightController::class, 'index'])->name('spotlight');
         Route::get('coming-soon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
         Route::get('new-popular', [PopularController::class, 'NewsPopular'])->name('new-popular');
         Route::get('search', [SearchController::class, 'trendingsearch'])->name('search');
