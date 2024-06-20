@@ -29,7 +29,7 @@
                 <div class="carousel-title-n-arrow pb-3">
                     <h5 class="text-white mb-0">{{ $head_item['title'] }} in India</h5>
                 </div>
-                @if (strtolower(str_replace(' ', '', $head_item['title'])) != 'commingsoon')
+                @if (strtolower(str_replace(' ', '', $head_item['title'])) != 'comingsoon')
                     <div class="top-ten-shows-movies">
                         @foreach ($head_item['content'] as $num=> $item)
                             <?php $cover_img = getCardImage($item, 'cover_image', 'medium', ['epic_shorts_image', 'banner_image']); ?>
