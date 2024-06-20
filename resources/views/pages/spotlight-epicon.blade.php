@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}?v={{ assetTime() }}">
 
 @stop
-<?php //dd($spotlightData); ?>
+
 @section('content')
 
 <div class="scrollspy">
