@@ -9301,3 +9301,210 @@ audio::-webkit-media-controls-play-button {
         width: 50px;
     }
 }
+
+
+// spotlight start
+.scrollspy {
+    #comingsoon {
+      @media (max-width:767px) {
+        margin-top: 15px !important;
+      }
+    }
+  
+    #nav-container {
+      position: fixed;
+      width: 100%;
+      padding: 1em 0;
+      z-index: 9;
+      background-color: rgba($color: #000000, $alpha: 0.4);
+      box-shadow: inset 0 0px 30px rgba(0, 0, 0, 1);
+      top: 80px;
+      backdrop-filter: blur(50px);
+  
+      @media (max-width:767px) {
+        top: 100px;
+        padding: 0.5em 0;
+        flex-direction: column;
+      }
+    }
+  
+    .upper-img {
+      padding: 6px 0px !important;
+    }
+  
+    #nav {
+      display: flex;
+      justify-content: center;
+  
+      & a {
+        img {
+          @media (max-width:767px) {
+            display: none;
+          }
+        }
+      }
+    }
+  
+    a:link,
+    a:visited,
+    a:active {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      color: #fff;
+      padding: 6px 12px;
+  
+      @media (max-width:767px) {
+        font-size: 11px;
+        padding: 6px 6px;
+      }
+    }
+  
+    .nav-link {
+      padding: 0 1em;
+      border-radius: 2em;
+      transition: all .4s;
+      pointer-events: none;
+    }
+  
+    a.active {
+      color: #fff;
+      border: .5px solid #474747;
+        background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
+        box-shadow: -3px 3px 6px 0px #000;
+    }
+  
+    a.nav-link.active:hover {
+      margin: 0;
+    }
+  
+    section {
+      height: auto;
+    }
+  
+    a.active[href="#commingsoon"],
+    a.active[href="#topmovies"],
+    a.active[href="#topshows"],
+    a.active[href="#trending"]  {
+      background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
+      border: .5px solid #474747;
+      background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
+      box-shadow: -3px 3px 6px 0px #000;
+    }
+  
+    .top-ten-shows-movies {
+      display: flex;
+      overflow: auto;
+  
+      & .card-ms {
+        width: 230px;
+        height: auto;
+        margin-right: 10px;
+        flex-shrink: 0;
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+        background-color: transparent;
+        border: none;
+        overflow: hidden;
+  
+        & .number {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100px;
+          height: 140px;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: left bottom;
+        }
+  
+        & .img {
+          width: 150px;
+          position: relative;
+          overflow: hidden;
+          border-radius: 10px;
+  
+          img {
+            width: 100%;
+          }
+        }
+  
+      }
+    }
+  
+    & .card-ms:nth-child(1) .number {
+      background-image: url(../img/1-ms.svg);
+      left: 15px;
+    }
+  
+    & .card-ms:nth-child(2) .number {
+      background-image: url(../img/2-ms.svg);
+    }
+  
+    & .card-ms:nth-child(3) .number {
+      background-image: url(../img/3-ms.svg);
+    }
+  
+    & .card-ms:nth-child(4) .number {
+      background-image: url(../img/4-ms.svg);
+    }
+  
+    & .card-ms:nth-child(5) .number {
+      background-image: url(../img/5-ms.svg);
+    }
+  
+    & .card-ms:nth-child(6) .number {
+      background-image: url(../img/6-ms.svg);
+    }
+  
+    & .card-ms:nth-child(7) .number {
+      background-image: url(../img/7-ms.svg);
+    }
+  
+    & .card-ms:nth-child(8) .number {
+      background-image: url(../img/8-ms.svg);
+    }
+  
+    & .card-ms:nth-child(9) .number {
+      background-image: url(../img/9-ms.svg);
+    }
+  
+    & .card-ms:nth-child(10) .number {
+      background-image: url(../img/10-ms.svg);
+      background-size: cover;
+      background-position: left;
+      left: -3px;
+      height: 125px;
+    }
+  
+    & .card-ms:nth-child(10) {
+      width: 260px;
+    }
+  
+    .carousel-title-n-arrow h5 {
+      text-transform: uppercase;
+  
+      @media (max-width:767px) {
+        font-size: medium;
+      }
+    }
+  }
+  
+  // spotlight end
+
+  .marquee{
+    width: fit-content;
+    height: auto;
+    position: relative;
+    animation: marqAnim 10s linear infinite;
+    animation-delay: -12.5s;
+  }
+  @keyframes marqAnim {
+    0% {
+      left: 100%;
+    }
+    100% {
+      left: -100%;
+    }
+  }
