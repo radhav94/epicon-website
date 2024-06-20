@@ -160,7 +160,7 @@ if ($request->has('type')) {
             'logoimg'=>'',
             'class'=>'search'  
          ],
-         [  'name'=>'Spotlight',
+         [  'name'=>'Hot & New',
             'url'=>'spotlight',
             'logoimg'=>'',
             'class'=>'spotlight'  
