@@ -32,7 +32,7 @@
                 @if (strtolower(str_replace(' ', '', $head_item['title'])) != 'commingsoon')
                     <div class="top-ten-shows-movies">
                         @foreach ($head_item['content'] as $num=> $item)
-                            <?php $cover_img = getCardImage($item, 'cover_image_special', 'medium', ['epic_shorts_image', 'banner_image']); ?>
+                            <?php $cover_img = getCardImage($item, 'cover_image', 'medium', ['epic_shorts_image', 'banner_image']); ?>
                             <a href="#/" class="card-ms">
                                 <div class="number"></div>
                                 <div class="img">
