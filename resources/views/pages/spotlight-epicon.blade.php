@@ -7,11 +7,10 @@
 @stop
 
 @section('content')
-
-<div class="scrollspy">
+<div class="scrollspy pb-5">
     <div id="nav-container" class="position-fixed d-flex align-items-center justify-content-between px-3">
         <div class="carousel-title-n-arrow">
-            <h5 class="text-white mb-0">Spotlight</h5>
+            <h5 class="text-white mb-0">{{__('Hot & New')}}</h5>
         </div>
         <div id="nav">
             @foreach ($spotlightData['data']['list'] as $key => $head_item)
@@ -24,65 +23,55 @@
         </div>
     </div>
     <div class="container-fluid pt-5 pe-0">
+        {{--dd($spotlightData['data']['list'][0]['content'][0]['cover_image'])--}}
         @foreach ($spotlightData['data']['list'] as $head_item)
             <section id="{{ strtolower(str_replace(' ', '', $head_item['title'])) }}" class="mt-5">
                 <div class="carousel-title-n-arrow pb-3">
-                    <h5 class="text-white mb-0">{{ $head_item['title'] }} in India</h5>
+                    <h5 class="text-white mb-0">{{ $head_item['title'] }}</h5>
                 </div>
-                @if (strtolower(str_replace(' ', '', $head_item['title'])) != 'comingsoon')
+                @php
+                    $title = $head_item['title'] ?? "";
+                @endphp
                     <div class="top-ten-shows-movies">
+
                         @foreach ($head_item['content'] as $num=> $item)
-                            <?php $cover_img = getCardImage($item, 'cover_image', 'medium', ['epic_shorts_image', 'banner_image']); ?>
-                            <a href="#/" class="card-ms">
+                       
+                            @php
+                                $cover_img = getCardImage($item, 'cover_image', 'medium', ['epic_shorts_image', 'banner_image'])
+                            @endphp
+                            @if (!in_array(strtolower(str_replace(' ', '', $head_item['title'])), ['comingsoon', 'commingsoon']))
+                            <a onclick="click_tile(this)" data-title ="{{ @$item['title'] }}" data-type="{{ @$title }}" href="{{ getContentUrl($item) }}" class="card-ms">
                                 <div class="number"></div>
                                 <div class="img">
                                     <img src="{{ $cover_img }}" alt="">
                                 </div>
                             </a>
-                        @endforeach
-                    </div>
-                @else
-                    @php
-                        $groupedItems = [];
-                    @endphp
-                    @foreach ($head_item['content'] as $item)
-                        @php
-                            $creationDate = date('Y-m-d', strtotime($item['created_on']));
-                            $groupedItems[$creationDate][] = $item;
-                        @endphp
-                    @endforeach
-                    @foreach ($groupedItems as $date => $items)
-                        <div class="upcoming-epicon-main">
-                            <div class="card-details mb-4">
-                                <div class="date-upperline">.</div>
+                            @else
+                            @php $date = date('Y-m-d', strtotime($item['publish_future_date'] ?? $item['created_on'])); @endphp
+                            <div class="upcoming-epicon-main">
+                            <div class="card-details">
                                 <div class="internal-card d-flex">
-                                    <div class="date-card text-white">
-                                        <h6>{{ date('d', strtotime($date)) }}</h6>
-                                        <h6>{{ date('M', strtotime($date)) }}</h6>
-                                        <h6>{{ date('Y', strtotime($date)) }}</h6>
-                                    </div>
+                                    
                                     <div class="upcomming-scroll">
-                                        @foreach ($items as $cont)
-                                            <div class="card-main-body d-flex mt-4 pt-2 ms-3">
+                                        <div class="card-main-body d-flex ms-3">
                                                 <div class="card-body">
-                                                    <a onclick="click_tile(this)" class="upper-img upcomingVid"
-                                                        href="javascript:void(0)" data-id="378" data-type="SHOW"
-                                                        data-title="Plot 1 By 2 - Trailer"
-                                                        data-promo="">
-                                                        <img src="{{ $cont['cover_image']['original']??asset('assets/img/top-ten-movies.png') }}"
-                                                            alt="">
-                                                    </a>
-                                                    {{-- @dd($cont) --}}
+                                                    <div class="upper-img upcomingVid">
+                                                        <img src="{{ $item['cover_image']['original']??asset('assets/img/top-ten-movies.png') }}" alt="">
+                                                    </div>
+                                                    
                                                     <div class="bottom-text d-flex mt-2">
                                                         <div class="left-text">
                                                             <h4 class="text-heading text-white upc">
-                                                                {{ $cont['title'] }}
+                                                            {{ $item['title'] }}
                                                             </h4>
+                                                            <h6 class="text-white">{{ date('d', strtotime($date)) }}
+                                                            {{ date('M', strtotime($date)) }}
+                                                            {{ date('Y', strtotime($date)) }}</h6>
                                                             <ul class="text-white">
-                                                                @if(isset($cont['age_limit']))
-                                                                    <li>{{ $cont['age_limit'] }}</li>
-                                                                @endif
-                                                                @foreach ($cont['genres_assign'] as $genre)
+                                                            @if(isset($item['age_limit']))
+                                                                <li>{{ $item['age_limit'] }}</li>
+                                                            @endif
+                                                                @foreach ($item['genres_assign'] as $genre)
                                                                 <li>{{ $genre['name'] }}</li>
                                                                 @endforeach
                                                                 <li>{{ date('Y', strtotime($date)) }}</li>
@@ -91,13 +80,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endforeach
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                @endif
+                        </div>   
+
+                    @endif
+                @endforeach
+                    </div>
+                
             </section>
         @endforeach
     </div>
