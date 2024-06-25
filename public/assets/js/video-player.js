@@ -121,6 +121,7 @@ $(document).ready(function () {
 
 
 	loadVideoPlayer = function (source, subtitles = '', customData = false) {
+		$(".loaderImg").hide();
 		if (player) {
 			player.destroy();
 		}
