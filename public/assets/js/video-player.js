@@ -32,6 +32,7 @@ $(document).ready(function () {
 			$(".loaderImg").show();
 			window.player.play();
 			if (!$('.videoContainer').is(":visible")) {
+				$(".loaderImg").hide();
 				$('.videoContainer').show();
 			}
 			// console.log('video is already playing');
