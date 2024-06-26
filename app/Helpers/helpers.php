@@ -1413,7 +1413,7 @@ if (!function_exists('getMeta')) {
 
         $meta['keywords'] = '';
 
-        $meta['image'] = env('APP_URL') . '/epiconlogo.png';
+        $meta['image'] = env('APP_URL') . '/img/epiconlogo.png';
 
         $meta['url'] = url()->current();
 
