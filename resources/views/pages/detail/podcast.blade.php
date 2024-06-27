@@ -128,7 +128,7 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
                             </div>
                         </div>
                         <div class="seemore">
-                            <p class="pod-detail-text mt-3 descText mb-0">{!! sanitizeData(@$content['description']) !!}</p>
+                            <p class="pod-detail-text mt-3 descText mb-0">{!! sanitizeData(strip_tags(@$content['description'])) !!}</p>
                             <span class="read-button d-block mb-3"> </span>
                         </div>
                         <div class="podcast-btns d-flex align-items-center" data-id="{{ @$content['ID'] }}">
