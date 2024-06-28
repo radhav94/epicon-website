@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="col-sm-8 col-md-10 mt-2 shot-desc-{{$key}}">{!! sanitizeData(@$value['short_description']) !!}</p>
+                            <p class="col-sm-8 col-md-10 mt-2 shot-desc-{{$key}}">{!! sanitizeData(strip_tags(@$value['short_description'])) !!}</p>
                             <span class="read-button-{{$key}} readmore-episodes"> </span>
                             <div class="pod-grey-btn-list">
 
