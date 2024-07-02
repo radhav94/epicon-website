@@ -265,6 +265,14 @@ foreach ($lang as $val) {
                 return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog]);
             }
         });
+
+        Route::any('explore/{pageslug}/{catalog?}', function ($pageslug, $catalog = null, $redirect = 'explore') {
+            if ($pageslug != 'live-tv') {
+                return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog, 'redirect' => $redirect]);
+            }
+        });
+
+        
         Route::get('channels/{slug}', [PageController::class, 'channelsmidpagedetail']);
         Route::get('explore', [PageController::class, 'explore'])->name('explore');
         Route::get('retro-rewind/{slug}', [RetroRewindController::class, 'retroRewindList'])->name('retro-list');

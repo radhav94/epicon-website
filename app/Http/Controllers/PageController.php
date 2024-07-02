@@ -116,10 +116,10 @@ class PageController extends Controller
         ];
         $data = $this->homepageData($slug);
         $displayLanguageParam = $data['displayLanguageParam'];
-        $result = CurlAPI("pages/midpage/" . $slug, "GET", $params, 1);
+        $result = CurlAPI("pages/explorePage/" . $slug, "GET", $params, 1);
 
         if ($result && @$result['success'] ==  true) {
-            $result = $result['data'] ?? [];
+            $result = $result['pageData'] ?? [];
 
             //$meta['title'] = ($displayLanguageParam == 'HINDI') ? 'विवरण खोजें' : 'Explore - ' . ucfirst($slug);
             $meta = exploreGetMeta($slug);
@@ -183,11 +183,12 @@ class PageController extends Controller
         }
     }
 
-    public function showmidpagedetail(Request $request, $pageslug, $catalog = null)
+    public function showmidpagedetail(Request $request, $pageslug, $catalog = null, $redirect = 'other')
     {
         $page = 1;
         $slug = $pageslug;
         $limit = 48;
+        $perpage = 20;
 
         $hybidData = $request->all();
         if ($request->is_hybrid) {
@@ -205,11 +206,16 @@ class PageController extends Controller
             ];
             $epicwebArr = $this->hybridCurl($params);
         } else {
-            $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => $limit, 'page' => 1], 1);
+            if ($redirect == 'explore') {
+                $url = "pages/midpage/{$pageslug}";
+                $epicwebArr = CurlAPI($url, "GET", ['page' => 1, 'catalog_slug' => $catalog], 1);
+            } else {
+                $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => $limit, 'page' => 1], 1);
+            }
         }
         if (isset($epicwebArr) && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
-            return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page', 'hybidData'));
+            return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page', 'hybidData', 'perpage'));
         } else {
             return response()->view('pages.error.404', [], 404);
         }
@@ -234,6 +240,7 @@ class PageController extends Controller
     {
         $request = Request();
         $page = $request->page;
+        $pageslug = $request->pageslug;
         $catalog = "";
         $limit = 48;
         $dataCount = "";
@@ -252,8 +259,14 @@ class PageController extends Controller
             ];
             $epicwebArr = $this->hybridCurl($params);
         } else {
+            $mainslug = $request->mainslug;
             $catalog = $request->catalogid;
-            $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => $limit, 'page' => $page], 1);
+            if (isset($mainslug) && $mainslug == 'explore') {
+                $url = "pages/midpage/{$pageslug}";
+                $epicwebArr = CurlAPI($url, "GET", ['page' => $page, 'catalog_slug' => $catalog], 1);
+            } else {
+                $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => $limit, 'page' => $page], 1);
+            }
         }
         $catalogue_blade = "paginatecontent";
         if ($epicwebArr && @$epicwebArr['success'] == true) {
