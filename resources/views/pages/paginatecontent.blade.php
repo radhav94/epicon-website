@@ -1,6 +1,6 @@
 @foreach ($epicwebArr as $key => $val)
     <?php
-    $cover_img = isset($val['vertical_cover_image']) ? $val['vertical_cover_image']['medium'] : @$val['vertical_cover_image']['medium'];
+    $cover_img = isset($val['vertical_cover_image']) ? getCardImage($val, 'vertical_cover_image') : getCardImage($val, 'cover_image');
     $generes = array_column($val['genres_assign'] ?? [], 'name');
     $sub_text = [];
     

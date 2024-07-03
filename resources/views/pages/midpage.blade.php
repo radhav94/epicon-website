@@ -35,7 +35,7 @@
                 @foreach ($epicwebArr as $key => $val)
                     <?php
                     $i++;
-                    $cover_img = getCardImage($val, 'vertical_cover_image');
+                    $cover_img = isset($val['vertical_cover_image']) ? getCardImage($val, 'vertical_cover_image') : getCardImage($val, 'cover_image');
                     $generes = array_column($val['genres_assign'] ?? [], 'name');
                     $sub_text = [];
                     $getTitle = getNewTitle($val);
@@ -280,7 +280,7 @@
             var is_hybrid = $('#is_hybrid').val();
             var page = $("#pageid").val();
             var pageslug = $(this).attr('pageslug');
-            
+
             var currentUrl = window.location.href;
             var url = new URL(currentUrl);
             var pathname = url.pathname;
