@@ -38,6 +38,8 @@ class PageDetailController extends Controller
             $content = $result['content'] ?? [];
 
             if (empty($content)) {
+                \Log::channel('error_404')->debug('--------------('.$url.') Error ('.time().')----------------------');
+                \Log::channel('error_404')->debug('Error =>'.json_encode($result));
                 return response()->view('pages.error.404', [], 404);
             }
 

@@ -48,6 +48,9 @@ class PageController extends Controller
             if (in_array(strtolower($pageslug), $pageCheckArr)) {
                 return redirect('/', 301);
             } else {
+
+            \Log::channel('error_404')->debug('--------------Error ('.time().')----------------------');
+            \Log::channel('error_404')->debug('Error =>'.json_encode($result));
                 return response()->view('pages.error.404', [], 404);
             }
         } else {
@@ -101,7 +104,8 @@ class PageController extends Controller
 
             return view('pages.explore', compact('result', 'meta'));
         }
-
+        \Log::channel('error_404')->debug('--------------(pages/explorepage) Error ('.time().')----------------------');
+        \Log::channel('error_404')->debug('Error =>'.json_encode($result));
         return response()->view('pages.error.404', [], 404);
     }
 
@@ -125,6 +129,8 @@ class PageController extends Controller
             $meta = exploreGetMeta($slug);
             return view('pages.explore_details', compact('result', 'slug', 'page', 'meta', 'limit'));
         } else {
+            \Log::channel('error_404')->debug('--------------(pages/explorePage/) Error ('.time().')----------------------');
+            \Log::channel('error_404')->debug('Error =>'.json_encode($result));
             return response()->view('pages.error.404', [], 404);
         }
     }
@@ -217,6 +223,8 @@ class PageController extends Controller
             $epicwebArr = $epicwebArr['data'];
             return view('pages.midpage', compact('epicwebArr', 'pageslug', 'catalog', 'page', 'hybidData', 'perpage'));
         } else {
+            \Log::channel('error_404')->debug('--------------(pages/midpage/'.$slug.') Error ('.time().')----------------------');
+            \Log::channel('error_404')->debug('Error =>'.json_encode($epicwebArr));
             return response()->view('pages.error.404', [], 404);
         }
     }
@@ -232,6 +240,8 @@ class PageController extends Controller
             $epicwebArr = $epicwebArr['data'];
             return view('pages.chanel.channelmidpage', compact('epicwebArr', 'title', 'slug', 'page'));
         } else {
+            \Log::channel('error_404')->debug('--------------(pages/midpageData/'.$slug.') Error ('.time().')----------------------');
+            \Log::channel('error_404')->debug('Error =>'.json_encode($epicwebArr));
             return response()->view('pages.error.404', [], 404);
         }
     }

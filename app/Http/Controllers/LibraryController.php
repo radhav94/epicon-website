@@ -27,6 +27,8 @@ class LibraryController extends Controller
             $data = @$wishData['contents'];
             return view('library.library', compact('data', 'historydata'));
         } else {
+            \Log::channel('error_404')->debug('--------------('.$slug.') Error ('.time().')----------------------');
+            \Log::channel('error_404')->debug('Error =>'.json_encode($result));
             return response()->view('pages.error.404', [], 404);
         }
     }
