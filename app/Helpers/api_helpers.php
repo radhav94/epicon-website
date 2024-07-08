@@ -53,6 +53,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => $headers,
             CURLOPT_STDERR => $verboseLog,
+            CURLOPT_VERBOSE => true,
         ));
 
         if($logCommandCurl){
@@ -82,6 +83,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
             CURLOPT_POSTFIELDS =>  $req_data,
             CURLOPT_HTTPHEADER => $headers,
             CURLOPT_STDERR => $verboseLog,
+            CURLOPT_VERBOSE => true,
         ));
         if($logCommandCurl){
             $curlCommand =  generateCurlCommand('POST', $url, $headers, $req_data, []);
