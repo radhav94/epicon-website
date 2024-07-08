@@ -16,7 +16,7 @@ class PopularController extends Controller
             $Populardata = @$PopularResponse['data'];
             return view('pages.new-popular')->with('popular',$Populardata);
         }else{
-            \Log::channel('error_404')->debug('--------------(pages/getPopularContent/) Error ('.time().')----------------------');
+            \Log::channel('error_404')->debug('--------------(pages/getPopularContent/)  Error ('.date('h:i:s A').')----------------------');
             \Log::channel('error_404')->debug('Error =>'.json_encode($PopularResponse));
             return response()->view('pages.error.404', [], 404);
         }

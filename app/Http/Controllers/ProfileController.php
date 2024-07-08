@@ -36,7 +36,7 @@ class ProfileController extends Controller
 
             return $data;
         } else {
-            \Log::channel('error_404')->debug('--------------(users/viewProfile) Error ('.time().')----------------------');
+            \Log::channel('error_404')->debug('--------------(users/viewProfile)  Error ('.date('h:i:s A').')----------------------');
             \Log::channel('error_404')->debug('Error =>'.json_encode($result));
             return false;
         }

@@ -35,7 +35,7 @@ class RetroRewindController extends Controller
 
             return view('pages.retro-list', compact('result', 'displayLanguageParam', 'meta', 'slug', 'page'));
         }
-            \Log::channel('error_404')->debug('--------------(pages/retroContent) Error ('.time().')----------------------');
+            \Log::channel('error_404')->debug('--------------(pages/retroContent)  Error ('.date('h:i:s A').')----------------------');
             \Log::channel('error_404')->debug('Error =>'.json_encode($result));
         return response()->view('pages.error.404', [], 404);
     }

@@ -69,7 +69,7 @@ class SearchController extends Controller
             $trendingData = $trending['contents'] ?? [];
             return view('pages.search.search', compact('trendingData', 'searchList', 'categoryMapping'));
         } else {
-            \Log::channel('error_404')->debug('--------------(pages/trendingsearch) Error ('.time().')----------------------');
+            \Log::channel('error_404')->debug('--------------(pages/trendingsearch)  Error ('.date('h:i:s A').')----------------------');
             \Log::channel('error_404')->debug('Error =>'.json_encode($trending));
             return response()->view('pages.error.404', [], 404);
         }
