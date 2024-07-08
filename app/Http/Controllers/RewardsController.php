@@ -15,7 +15,7 @@ class RewardsController extends Controller
             $walletArr = @$walletArr['data'];
             return view('rewards.my-reward',compact('walletArr'));
         }else{
-            \Log::channel('error_404')->debug('--------------(rewards/rewardsInfo) Error ('.time().')----------------------');
+            \Log::channel('error_404')->debug('--------------(rewards/rewardsInfo)  Error ('.date('h:i:s A').')----------------------');
             \Log::channel('error_404')->debug('Error =>'.json_encode($walletArr));
             return response()->view('pages.error.404', [], 404);
         }

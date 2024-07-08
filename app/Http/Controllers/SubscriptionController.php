@@ -54,7 +54,7 @@ class SubscriptionController extends Controller
                 }
             }
         } else {
-            \Log::channel('error_404')->debug('--------------(subscriptions/plans) Error ('.time().')----------------------');
+            \Log::channel('error_404')->debug('--------------(subscriptions/plans)  Error ('.date('h:i:s A').')----------------------');
             \Log::channel('error_404')->debug('Error =>'.json_encode($result));
             return response()->view('pages.error.404', [], 404);
         }
@@ -184,7 +184,7 @@ class SubscriptionController extends Controller
         $this->payuLog( 'Payu Money Request data', $txid,[$parameters]);
 
         if(@$parameters['status'] == false){
-            \Log::channel('error_404')->debug('--------------(subscriptions/createorder) Error ('.time().')----------------------');
+            \Log::channel('error_404')->debug('--------------(subscriptions/createorder)  Error ('.date('h:i:s A').')----------------------');
             \Log::channel('error_404')->debug('Error =>'.json_encode($parameters));
             return response()->view('pages.error.404', [], 404);
         }

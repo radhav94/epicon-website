@@ -30,7 +30,7 @@ class DistroTvController extends Controller
 
             return view('pages.homepage-distro', compact('result', 'meta', 'displayLanguageParam', 'stories'));
         }
-        \Log::channel('error_404')->debug('--------------('.$slug.') Error ('.time().')----------------------');
+        \Log::channel('error_404')->debug('--------------('.$slug.')  Error ('.date('h:i:s A').')----------------------');
         \Log::channel('error_404')->debug('Error =>'.json_encode($result));
         return response()->view('pages.error.404', [], 404);
     }
@@ -118,7 +118,7 @@ class DistroTvController extends Controller
            $contentUrl = str_replace(array_keys($replaceContent), array_values($replaceContent), $content_url);
             return view('pages.detail.distro-details', compact('content','contentUrl'));
         }else{
-            \Log::channel('error_404')->debug('--------------(pages/distrotv/page/'.$request->id.') Error ('.time().')----------------------');
+            \Log::channel('error_404')->debug('--------------(pages/distrotv/page/'.$request->id.')  Error ('.date('h:i:s A').')----------------------');
             \Log::channel('error_404')->debug('Error =>'.json_encode($resultArr));
             return response()->view('pages.error.404', [], 404);
         }
