@@ -92,7 +92,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
     $response = curl_exec($curl);
     $curl_errno = curl_errno($curl);
 
-    $response_data = json_decode($response, true);
+    $response_data = json_decode($response??'', true);
     if ($response === false || $curl_errno > 0 || $curl_errno == CURLE_OPERATION_TIMEOUTED || $curl_errno == CURLE_COULDNT_CONNECT || $response_data['success'] != true) {
         $curl_error = curl_error($curl);
         $errorMessage = "cURL error ({$curl_errno}): {$curl_error}";
