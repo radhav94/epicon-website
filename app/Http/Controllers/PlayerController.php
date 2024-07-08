@@ -69,6 +69,10 @@ class PlayerController extends Controller
 
             return JSONResponse(200, 'success.', $data);
         } else {
+
+        \Log::channel('error_404')->debug('--------------(pages/play_url) Error ('.time().')----------------------');
+        \Log::channel('error_404')->debug('Error =>'.json_encode($result));
+        
             return JSONResponse(400,  $result['message'] ?? 'failed');
         }
     }
@@ -95,7 +99,8 @@ class PlayerController extends Controller
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(200, 'success.');
         }
-
+        \Log::channel('error_404')->debug('--------------(pages/setplaytracking) Error ('.time().')----------------------');
+        \Log::channel('error_404')->debug('Error =>'.json_encode($result));
         return JSONResponse(400, 'Error',$result);
         // return JSONResponse(400, 'Error');
     }
