@@ -111,6 +111,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
 
 
     curl_close($curl);
+    fclose($verboseLog);
     // dd($response);
     if ($curl_errno > 0) {
         Log::channel('api')->info('Status : Failed, Curl error : '.$curl_errno ); 
