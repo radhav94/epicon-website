@@ -79,7 +79,7 @@ class PlayerController extends Controller
 
     public function setplayTracking(Request $request)
     {
-        return false;
+        
         $param = [
             'content_id' => $request->cid,
             'duration' => ! empty($request->elapsed) ? $request->elapsed : 1,
@@ -94,9 +94,9 @@ class PlayerController extends Controller
             $param['user_id'] = '';
             $param['playtrackingid'] = generateGuestUserId();
         }
-        // dd($param);
+       
         $result = CurlAPI("pages/setplaytracking", "POST", $param, 1, true, true);
-
+        dd($result);
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(200, 'success.');
         }

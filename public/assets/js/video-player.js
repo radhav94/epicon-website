@@ -705,58 +705,50 @@ $(document).ready(function () {
         }
     }
 
-    const setplaytracking = function (player) {
-        // player duration is not zero
-        if (player.duration < 1) {
-            return;
-        }
-        // player current time and last time api current time hit is not same
-        if (
-            player.currentTime == lastPlayTrackTime &&
-            lastPlayTrackTime !== 0
-        ) {
-            return;
-        }
-        let requestData = player.config.customData;
-
-        if (!requestData) {
-            requestData = {
-                cid: cur_cid,
-                lg: 1,
-                tp: cur_ctype,
-                title: cur_title,
-            };
-        }
-
-        requestData.elapsed = player.currentTime;
-        requestData.completed = false;
-
-        if (player.duration - player.currentTime < 10 && player.duration > 0) {
-            requestData.completed = true;
-        }
-
-        lastPlayTrackTime = player.currentTime;
-
-        // Convert requestData object to query parameters
-        const queryParams = new URLSearchParams(requestData).toString();
-        const url = `${APP_URL}/setplayTracking?${queryParams}`;
-
-        sendAjaxRequest(
-            url,
-            "GET",
-            null,
-            onTrackSuccess,
-            onTrackError,
-            "application/json"
-        );
-
-        function onTrackSuccess(response) {
-            // Handle success response
-        }
-        function onTrackError(response) {
-            // Handle error response
-        }
-    };
+	const setplaytracking = function (player) {
+		// Player duration is not zero
+		if (player.duration < 1) {
+			return;
+		}
+		// Player current time and last time API current time hit is not the same
+		if (player.currentTime == lastPlayTrackTime && lastPlayTrackTime !== 0) {
+			return;
+		}
+		let requestData = player.config.customData;
+	
+		if (!requestData) {
+			requestData = {
+				cid: cur_cid,
+				lg: 1,
+				tp: cur_ctype,
+				title: cur_title,
+			};
+		}
+	
+		requestData.elapsed = player.currentTime;
+		requestData.completed = false;
+	
+		if ((player.duration - player.currentTime) < 10 && player.duration > 0) {
+			requestData.completed = true;
+		}
+	
+		lastPlayTrackTime = player.currentTime;
+	
+		// Convert requestData object to query parameters
+		const queryParams = new URLSearchParams(requestData).toString();
+		const url = `${APP_URL}/setplayTracking?${queryParams}`;
+	
+		// sendAjaxRequest(url, 'GET', null, onTrackSuccess, onTrackError);
+		sendAjaxRequest(url, 'GET', null,onTrackSuccess, onTrackError, 'application/json');
+	
+		function onTrackSuccess(response) { 
+			// Handle success response
+		}
+		function onTrackError(response) {
+			// Handle error response
+		}
+	}
+	
 
     // const setplaytracking = function (player) {
     // 	//player duration is not zero
