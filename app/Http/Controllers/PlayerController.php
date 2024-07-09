@@ -79,6 +79,7 @@ class PlayerController extends Controller
 
     public function setplayTracking(Request $request)
     {
+        return false;
         $param = [
             'content_id' => $request->cid,
             'duration' => ! empty($request->elapsed) ? $request->elapsed : 1,
