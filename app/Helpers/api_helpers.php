@@ -99,26 +99,31 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
     $response = curl_exec($curl);
     $curl_errno = curl_errno($curl);
 
-    $response_data = json_decode($response??'', true);
-    if ($response === false || $curl_errno > 0 || $curl_errno == CURLE_OPERATION_TIMEOUTED || $curl_errno == CURLE_COULDNT_CONNECT || (isset($response_data['success']) && $response_data['success'] != true)) {
-        $curl_error = curl_error($curl);
-        $errorMessage = "cURL error ({$curl_errno}): {$curl_error}";
-        \Log::channel('error_404')->debug('--------------(cUrl Hit) Error (' . date('h:i:s A') . ')----------------------');
-        \Log::channel('error_404')->debug('----------- cURL=>');
-        generateCurlCommand($checking_type, $checking_url, $headers, $checking_data, [],'error_404');
-        \Log::channel('error_404')->debug('----------- -/ End cURL ---------');
-        \Log::channel('error_404')->debug('Error Message =>' . json_encode($errorMessage ?? ''));
-        \Log::channel('error_404')->debug('Status Code =>' . json_encode($http_status ?? ''));
-        // Capture verbose output
-        rewind($verboseLog);
-        $verboseLogContent = stream_get_contents($verboseLog);
-        // Log verbose output
-        \Log::channel('error_404')->debug('Verbose Log =>' . json_encode($verboseLogContent ?? ''));
-        \Log::channel('error_404')->debug('Error =>' . json_encode($response ?? ''));
-    }
+    try {
+        $response_data = json_decode($response??'', true);
+        if ($response === false || $curl_errno > 0 || $curl_errno == CURLE_OPERATION_TIMEOUTED || $curl_errno == CURLE_COULDNT_CONNECT || (isset($response_data['success']) && $response_data['success'] != true)) {
+            $curl_error = curl_error($curl);
+            $errorMessage = "cURL error ({$curl_errno}): {$curl_error}";
+            \Log::channel('error_404')->debug('--------------(cUrl Hit) Error (' . date('h:i:s A') . ')----------------------');
+            \Log::channel('error_404')->debug('----------- cURL=>');
+            generateCurlCommand($checking_type, $checking_url, $headers, $checking_data, [],'error_404');
+            \Log::channel('error_404')->debug('----------- -/ End cURL ---------');
+            \Log::channel('error_404')->debug('Error Message =>' . json_encode($errorMessage ?? ''));
+            \Log::channel('error_404')->debug('Status Code =>' . json_encode($http_status ?? ''));
+            // Capture verbose output
+            rewind($verboseLog);
+            $verboseLogContent = stream_get_contents($verboseLog);
+            // Log verbose output
+            \Log::channel('error_404')->debug('Verbose Log =>' . json_encode($verboseLogContent ?? ''));
+            \Log::channel('error_404')->debug('Error =>' . json_encode($response ?? ''));
+        }
+        fclose($verboseLog);
+    } catch (\Throwable $th) {
+        $errorMessage = $th->getMessage();
+        \Log::channel('error_404')->debug('Catch Error Message =>' . $errorMessage ?? '');
+        }
     curl_close($curl);
 
-    fclose($verboseLog);
     // dd($response);
     if ($curl_errno > 0) {
         Log::channel('api')->info('Status : Failed, Curl error : '.$curl_errno ); 
