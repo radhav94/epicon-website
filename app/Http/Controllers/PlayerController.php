@@ -14,8 +14,7 @@ class PlayerController extends Controller
 
     public function getVideoUrl(Request $request): JsonResponse
     {   
-        $param = ['content_id' => $request->cid];
-
+        $param = ['content_id' => $request->get('cid')];
         $isIPhone = is_numeric(strpos(strtolower(@$_SERVER["HTTP_USER_AGENT"]), "iphone")); 
         $isIPad = is_numeric(strpos(strtolower(@$_SERVER["HTTP_USER_AGENT"]), "ipad")); 
 

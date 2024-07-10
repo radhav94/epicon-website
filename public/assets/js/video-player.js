@@ -56,9 +56,6 @@ $(document).ready(function () {
         let lg = $(this).data("lg");
         let duration = $(this).data("duration");
         let content_order = $(this).attr("content-order");
-        let requestData = {
-            cid: cid,
-        };
         let customData = {
             cid: cid,
             tp: ctype,
@@ -69,9 +66,9 @@ $(document).ready(function () {
         };
 
         sendAjaxRequest(
-            APP_URL + "/player",
-            "POST",
-            JSON.stringify(requestData),
+            APP_URL + "/player?cid=" + cid,
+            "GET",
+            null,
             onPlayerSuccess,
             onPlayerError,
             "application/json"
@@ -829,13 +826,10 @@ function playContentVideo(cid, c_type, element) {
         is_trailer = false;
     }
 
-    let requestData = {
-        cid: cid,
-    };
     sendAjaxRequest(
-        APP_URL + "/player",
-        "POST",
-        JSON.stringify(requestData),
+        APP_URL + "/player?cid=" + cid,
+        "GET",
+        null,
         function (response) {
             // console.log(response);
 

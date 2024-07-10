@@ -112,7 +112,7 @@
         $('#interest-suggetion').html("")
         $.ajax({
             url: "{{ route('getGenre') }}",
-            type: 'POST',
+            type: 'GET',
             dataType: 'json',
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'

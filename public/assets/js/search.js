@@ -17,7 +17,7 @@ $(document).ready(function () {
             searchEvent();
             $.ajax({
                 url: "/" + ajaxUrl,
-                type: 'POST',
+                type: 'GET',
                 data: { 'searchinput': searchtext },
                 dataType: 'json',
                 async: true,
