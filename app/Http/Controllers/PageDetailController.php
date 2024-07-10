@@ -11,6 +11,10 @@ class PageDetailController extends Controller
 {
     public function detail($pageslug, $contentslug, $season = null, $episode = null)
     {
+        if(in_array($pageslug,['assets']))
+        {
+            return false;
+        }
         $request = request();
         SilentLoginFunction();
         check_Tv_Activation_Code();

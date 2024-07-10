@@ -18,6 +18,10 @@ class PageController extends Controller
 
     public function index($slug = 'home-v2')
     {
+        if(in_array($slug,['assets']))
+        {
+            return false;
+        }
         // dd(session()->get('user_token'));
         $pageslug = strtolower($slug);
 
