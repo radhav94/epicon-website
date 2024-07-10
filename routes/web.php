@@ -164,6 +164,8 @@ Route::group(['middleware' => ['loggedin', 'checkUserAuthToken']], function () {
     //end
 });
 
+Route::get('/setplayTracking', [PlayerController::class, 'setplayTracking']);
+
 foreach ($lang as $val) {
     $prefix = $val != 'en' ? "/$val" : "";
     $prefix_name = $val != 'en' ? $val . "." : "";
@@ -282,7 +284,6 @@ foreach ($lang as $val) {
 }
 
 Route::post('/player', [PlayerController::class, 'getVideoUrl']);
-Route::get('/setplayTracking', [PlayerController::class, 'setplayTracking']);
 Route::any('/payu/transactioncallback', [SubscriptionController::class, 'payuWebhook']);
 
 
