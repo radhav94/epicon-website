@@ -35,6 +35,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
     Log::channel('api')->info('-----------------------------------------'); 
     Log::channel('api')->info('Method : '.strtoupper($method)); 
     
+    $verboseLog = fopen('php://temp', 'w+');
 
     if (strtoupper($method) == 'GET') {
         $api_url = ($data != null && !empty($data)) ? $url . "?" . http_build_query($data) : $url;
