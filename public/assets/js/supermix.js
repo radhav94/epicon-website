@@ -60,7 +60,7 @@ $(document).ready(function () {
         let requestData = {
             cid: cid
         };
-        sendAjaxRequest(APP_URL + '/player', 'POST', JSON.stringify(requestData),
+        sendAjaxRequest(APP_URL + '/player', 'GET', JSON.stringify(requestData),
             playerSuccess, playerError, 'application/json');
     }
 

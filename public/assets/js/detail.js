@@ -13,7 +13,7 @@ $(document).ready(function () {
             content_id: cont_id
         };
         console.log(requestData);
-        sendAjaxRequest(APP_URL + '/clap', 'POST', JSON.stringify(requestData), onClapSuccess,
+        sendAjaxRequest(APP_URL + '/clap', 'GET', JSON.stringify(requestData), onClapSuccess,
             onClapError, 'application/json');
 
         function onClapSuccess(response) {

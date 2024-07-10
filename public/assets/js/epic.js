@@ -111,7 +111,7 @@ $(document).on('click', '.addToList', function () {
         type: type,
     };
 
-    sendAjaxRequest(APP_URL + '/wishlist', 'POST', JSON.stringify(requestData),
+    sendAjaxRequest(APP_URL + '/wishlist', 'GET', JSON.stringify(requestData),
         onWishlistSuccess, onError, 'application/json');
 
     function onWishlistSuccess(response) {

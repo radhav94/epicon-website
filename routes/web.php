@@ -91,7 +91,7 @@ Route::any('payu/webhook',[SubscriptionController::class, 'payuWebhook']);
 Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.loadmore');
 Route::get('ajaxStoryData', [PageController::class, 'ajaxStoryData'])->name('ajaxStoryData');
 Route::get('story/{short_code}', [PageController::class, 'storyPage'])->name('storyPage');Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
-Route::post('clap', [PageDetailController::class, 'clap'])->name('clap');
+Route::get('clap', [PageDetailController::class, 'clap'])->name('clap');
 
 /*login and registration start */
 Route::post('sendotp', [LoginController::class, 'setSendOTP'])->name('sendotp');
@@ -142,7 +142,7 @@ Route::group(['middleware' => 'checkUserAuthToken'], function () {
 
 Route::group(['middleware' => ['loggedin', 'checkUserAuthToken']], function () {
     Route::any('logout', LogoutController::class)->name('logout');
-    Route::post('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
+    Route::get('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
     Route::post('verify-kidsPin', [KidsController::class, 'verifyKidsPin'])->name('verify-kidsPin');
 
     //setting controller routes start
@@ -155,7 +155,7 @@ Route::group(['middleware' => ['loggedin', 'checkUserAuthToken']], function () {
     Route::post('verifyOTP-delete-account', [SettingController::class, 'verifyOTPForDeleteAccount'])->name('verifyOTP-delete-account');
     Route::post('syncDevice-pin', [SettingController::class, 'syncDevicePin'])->name('syncDevice-pin');
     Route::get('set-language', [SettingController::class, 'setLanguage'])->name('set-language');
-    Route::post('deleteSearchHistory', [SettingController::class, 'deleteSearchHistory'])->name('deleteSearchHistory');
+    Route::get('deleteSearchHistory', [SettingController::class, 'deleteSearchHistory'])->name('deleteSearchHistory');
     //setting controller routes end
 
     //Subscription routes created by Ram
@@ -163,8 +163,6 @@ Route::group(['middleware' => ['loggedin', 'checkUserAuthToken']], function () {
     Route::post('redeemcoupon', [RewardsController::class, 'RedeemCouponCode'])->name('redeemcoupon');
     //end
 });
-
-Route::get('/setplayTracking', [PlayerController::class, 'setplayTracking']);
 
 foreach ($lang as $val) {
     $prefix = $val != 'en' ? "/$val" : "";
@@ -255,7 +253,7 @@ foreach ($lang as $val) {
         Route::get('coming-soon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
         Route::get('new-popular', [PopularController::class, 'NewsPopular'])->name('new-popular');
         Route::get('search', [SearchController::class, 'trendingsearch'])->name('search');
-        Route::post('get-search', [SearchController::class, 'search'])->name('get-search');
+        Route::get('get-search', [SearchController::class, 'search'])->name('get-search');
         // Route::get('midpage/{pageslug}/{catalog}', function ($pageslug, $catalog) {
         //     if ($pageslug != 'live-tv') {
         //         return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog]);
@@ -284,6 +282,7 @@ foreach ($lang as $val) {
 }
 
 Route::post('/player', [PlayerController::class, 'getVideoUrl']);
+Route::get('/setplayTracking', [PlayerController::class, 'setplayTracking']);
 Route::any('/payu/transactioncallback', [SubscriptionController::class, 'payuWebhook']);
 
 
