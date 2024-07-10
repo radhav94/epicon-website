@@ -96,7 +96,7 @@ class PlayerController extends Controller
         }
        
         $result = CurlAPI("pages/setplaytracking", "POST", $param, 1, true, true);
-        dd($result);
+        
         if ($result && @$result['success'] ==  true) {
             return JSONResponse(200, 'success.');
         }
