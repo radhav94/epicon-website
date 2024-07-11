@@ -99,8 +99,6 @@ class PageController extends Controller
         if ($result && @$result['success'] ==  true) {
             $pagetitle = @$result['data']['name'];
 
-            $data = $this->homepageData($slug);
-            $displayLanguageParam = $data['displayLanguageParam'];
 
             $pagetype = "CATALOG";
 
@@ -122,8 +120,7 @@ class PageController extends Controller
             'limit' => $limit,
             'page' => $page,
         ];
-        $data = $this->homepageData($slug);
-        $displayLanguageParam = $data['displayLanguageParam'];
+     
         $result = CurlAPI("pages/explorePage/" . $slug, "GET", $params, 1);
 
         if ($result && @$result['success'] ==  true) {
