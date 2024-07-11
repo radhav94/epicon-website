@@ -1229,6 +1229,7 @@ function getJsonDataFromFile($filepath)
 }
 
 function getCountryCode() {
+    /*
     try {
         if (!session()->get('countrycode')) {
             // Check for the X-Forwarded-For header
@@ -1269,6 +1270,19 @@ function getCountryCode() {
     } catch (Exception $e) {
         session()->put('countrycode', 'IN');
         // Handle any other exceptions that may occur
+        return 'IN';
+    }*/ // Old Code is Here with API Call Third Party Call
+
+    try {
+        if (!session()->get('countrycode')) {
+            $countryCode = request()?->header('x-region') ?? 'IN';
+            session()->put('countrycode', $countryCode);
+            return $countryCode;
+        } else {
+            return session()->get('countrycode');
+        }
+    } catch (Exception $e) {
+        session()->put('countrycode', 'IN');
         return 'IN';
     }
 }
