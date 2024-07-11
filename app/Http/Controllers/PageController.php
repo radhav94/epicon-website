@@ -99,8 +99,6 @@ class PageController extends Controller
         if ($result && @$result['success'] ==  true) {
             $pagetitle = @$result['data']['name'];
 
-            $data = $this->homepageData($slug);
-            $displayLanguageParam = $data['displayLanguageParam'];
 
             $pagetype = "CATALOG";
 
