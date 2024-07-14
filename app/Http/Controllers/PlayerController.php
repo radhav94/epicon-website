@@ -100,8 +100,7 @@ class PlayerController extends Controller
             return JSONResponse(200, 'success.');
         }
         \Log::channel('error_404')->debug('--------------(pages/setplaytracking)  Error ('.date('h:i:s A').')----------------------');
-        \Log::channel('error_404')->debug('Error =>'.json_encode($result));
-        return JSONResponse(400, 'Error',$result);
-        // return JSONResponse(400, 'Error');
+        \Log::channel('error_404')->debug('Error =>'.json_encode($result ?? []));
+        return JSONResponse(400, 'Error');
     }
 }
