@@ -568,7 +568,7 @@ $(document).ready(function () {
         var lastProgress = 0;
 
         player.on("timeupdate", (event) => {
-            hitPlaytrackingEvery_x_minute(player, 1);
+            hitPlaytrackingEvery_x_minute(player, 5);
             let duration = Math.round(player.duration);
             let rediduration = Math.round((duration / 100) * 98);
             let currentTime = Math.round(player.currentTime);
@@ -790,8 +790,8 @@ $(document).ready(function () {
         const timeInMinutes = Math.floor(currentTime / 60);
 
         // if (timeInMinutes % minutes === 0 && timeInMinutes !== lastTrackedMinuteTime) {
-        if (timeInMinutes !== lastTrackedMinuteTime && currentTime >= 1) {
-            lastTrackedMinuteTime = timeInMinutes;
+        if (timeInMinutes >= lastTrackedMinuteTime) {
+            lastTrackedMinuteTime = timeInMinutes + minutes;
             setplaytracking(player);
         }
     };
