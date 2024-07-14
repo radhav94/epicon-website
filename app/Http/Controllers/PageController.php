@@ -413,7 +413,7 @@ class PageController extends Controller
             $params['profile_id'] = getProfileId();
         }
 
-        $result = CurlAPI("pages/homepage", "GET", $params, 1);
+        $result = CurlAPI("pages/homepage", "GET", $params, 1, false, false, true);
         // dd($result);
         if ($result && @$result['success'] ==  true) {
             $data = $result['data'] ?? [];

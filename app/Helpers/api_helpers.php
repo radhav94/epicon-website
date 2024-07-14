@@ -100,7 +100,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
     $curl_errno = curl_errno($curl);
 
     try {
-        $response_data = json_decode($response??'', true);
+        $response_data = json_decode($response? $response : '', true);
         if ($response === false || $curl_errno > 0 || $curl_errno == CURLE_OPERATION_TIMEOUTED || $curl_errno == CURLE_COULDNT_CONNECT || (isset($response_data['success']) && $response_data['success'] != true)) {
             $curl_error = curl_error($curl);
             $errorMessage = "cURL error ({$curl_errno}): {$curl_error}";
@@ -115,7 +115,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
             $verboseLogContent = stream_get_contents($verboseLog);
             // Log verbose output
             \Log::channel('error_404')->debug('Verbose Log =>' . json_encode($verboseLogContent ?? ''));
-            \Log::channel('error_404')->debug('Error =>' . json_encode($response ?? ''));
+            \Log::channel('error_404')->debug('Error =>' . json_encode($response? $response : ''));
         }
         fclose($verboseLog);
     } catch (\Throwable $th) {
@@ -132,7 +132,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
     } else {
         Log::channel('api')->info('Status : Success'); 
 
-        $apiresponse = json_decode($response, true);
+        $apiresponse = json_decode($response? $response : '', true);
 
         return $apiresponse;
     }
