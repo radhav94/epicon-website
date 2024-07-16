@@ -2,7 +2,7 @@
     <div class="tab-pane fade {{ $active_tab == 'episode' ? 'show active' : '' }}" id="pills-episode" role="tabpanel"
         aria-labelledby="my-list">
         @foreach ($season_episode_data as $skey => $ep_season_data)
-        <ul class="season-episode-main list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4 {{ $skey == $lastSeason ? '' : 'hide' }}"  id="pills-episode-{{$skey ?? ''}}">
+        <ul class="season-episode-main list-unstyled col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 p-0 mt-4 {{ $skey == $lastSeason ? '' : 'hide' }} asc"  id="pills-episode-{{(count($seasonList) > 0) && !empty($skey ?? '') ? $skey : ''}}">
             <?php  $subplan = checkSubscription(); ?>
             @foreach ($ep_season_data as $key => $value)
                 <?php
@@ -27,8 +27,8 @@
                 
                 $cover_img = getCardImage($value, 'cover_image', 'medium');
                 ?>
-                <input type="hidden" name="content_order" class="{{$value['content_order']}}" content-order-id="{{$value['content_order']}}" url-link="{{$hreflink}}" url-img="{{$cover_img}}" epi-title="{{$card['title']}}">
                 <li class="episode-main mb-4 showmore-main">
+                <input type="hidden" name="content_order" class="{{$value['content_order']}}" content-order-id="{{$value['content_order']}}" url-link="{{$hreflink}}" url-img="{{$cover_img}}" epi-title="{{$card['title']}}">
                     @if(@$value['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($value) !!}
                     @else

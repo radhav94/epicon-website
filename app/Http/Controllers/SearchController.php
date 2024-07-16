@@ -7,44 +7,46 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public  $categoryMapping = [
-        // 'All'       => 'AllResult',
-        'Movies'    => 'MoviesResult',
-        'Shows'     => 'ShowsResult',
-        'Podcasts'  => 'PodcastsResult',
-        'Kids'      => 'KidsResult',
-        'Games'     => 'GamesResult',
-        'Documentaries'     => 'DocumentariesResult',
-    ];
+    public  $categoryMapping;
 
 
 
     public function __construct()
     {
 
-        $searchText = '';
-        $kidsMode = session()->has('kidsMode') ? session()->get('kidsMode') : false;
-        if ($kidsMode == true) {
-            $postData = [
-                'searchTerm' => $searchText,
-                'kids_content' => true
-            ];
-        } else {
-            $postData = [
-                'searchTerm' => $searchText,
-            ];
-        }
-        $searchResult = CurlAPI("pages/search", 'POST', $postData, 1);
+        $this->categoryMapping = [
+            // 'All'       => 'AllResult',
+            'Movies'    => 'MoviesResult',
+            'Shows'     => 'ShowsResult',
+            'Podcasts'  => 'PodcastsResult',
+            'Kids'      => 'KidsResult',
+            'Games'     => 'GamesResult',
+            'Documentaries'     => 'DocumentariesResult',
+        ];
 
-        $newCategoryMapping = [];
-        if ($searchResult && (@$searchResult['success'] == 'true' || @$searchResult['success'] == true)) {
-            $bla = array_column($searchResult['contents'], 'title');
-        
-            foreach ($bla as $category) {
-                $newCategoryMapping[$category] = $category . 'Result';
-            }
-            $this->categoryMapping = $newCategoryMapping;
-        }
+        // $searchText = '';
+        // $kidsMode = session()->has('kidsMode') ? session()->get('kidsMode') : false;
+        // if ($kidsMode == true) {
+        //     $postData = [
+        //         'searchTerm' => $searchText,
+        //         'kids_content' => true
+        //     ];
+        // } else {
+        //     $postData = [
+        //         'searchTerm' => $searchText,
+        //     ];
+        // }
+        // $searchResult = CurlAPI("pages/search", 'POST', $postData, 1);
+
+        // $newCategoryMapping = [];
+        // if ($searchResult && (@$searchResult['success'] == 'true' || @$searchResult['success'] == true)) {
+        //     $bla = array_column($searchResult['contents'], 'title');
+
+        //     foreach ($bla as $category) {
+        //         $newCategoryMapping[$category] = $category . 'Result';
+        //     }
+        //     $this->categoryMapping = $newCategoryMapping;
+        // }
     }
 
     public function trendingsearch(Request $request)
@@ -69,13 +71,15 @@ class SearchController extends Controller
             $trendingData = $trending['contents'] ?? [];
             return view('pages.search.search', compact('trendingData', 'searchList', 'categoryMapping'));
         } else {
-            return view('pages.error.404');
+            \Log::channel('error_404')->debug('--------------(pages/trendingsearch)  Error (' . date('h:i:s A') . ')----------------------');
+            \Log::channel('error_404')->debug('Error =>' . json_encode($trending));
+            return response()->view('pages.error.404', [], 404);
         }
     }
 
     public function search(Request $request)
     {
-        $searchText = $request->post('searchinput');
+        $searchText = $request->get('searchinput');
         $kidsMode = session()->has('kidsMode') ? session()->get('kidsMode') : false;
         if ($kidsMode == true) {
             $postData = [

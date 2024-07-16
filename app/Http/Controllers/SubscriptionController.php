@@ -33,37 +33,42 @@ class SubscriptionController extends Controller
         // $result = CurlAPI("subscriptions/plans", "GET", "", 2);
         $result = CurlAPI("subscriptions/plans", "GET", $input, 2);
         // dd($result);
-        if (empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['message'] == 'No subscriptions found') {
 
-            //$result = CurlAPI("subscriptions/plans", "GET", "", 2);
-            if ($result && @$result['success'] == true) {
-                $offerCount = count(@$result['plans'][0]['benifits']);
+        if ($result && @$result['success'] == true) {
+            $offerCount = count(@$result['plans'][0]['benifits']);
 
-                $plandata = [];
-                foreach (@$result['plans'] as $val) {
+            $plandata = [];
+            foreach (@$result['plans'] as $val) {
 
-                    if(isset($val['id'])){
-                        $plandata[$val['id']] = [
-                            'id' => $val['id'],
-                            'name' => @$val['name'],
-                            'plan' => @$val['plan'],
-                            'actual_price' => @$val['actual_price'],
-                            'currency' => @$val['currency'],
-                            'epic_price' => @$val['actual_price'],
-                            'save' => '',
+                if(isset($val['id'])){
+                    $plandata[$val['id']] = [
+                        'id' => $val['id'],
+                        'name' => @$val['name'],
+                        'plan' => @$val['plan'],
+                        'actual_price' => @$val['actual_price'],
+                        'currency' => @$val['currency'],
+                        'epic_price' => @$val['actual_price'],
+                        'save' => '',
 
-                        ];
-                    }
+                    ];
                 }
-                if (!empty($plandata)) {
-                    $request->session()->put('plandata', $plandata);
-                }
-
-                return view('subscription.subscription', compact('result', 'offerCount', 'meta'));
-            }else{
-                return view('pages.error.data-error');
             }
         } else {
+            \Log::channel('error_404')->debug('--------------(subscriptions/plans)  Error ('.date('h:i:s A').')----------------------');
+            \Log::channel('error_404')->debug('Error =>'.json_encode($result));
+            return response()->view('pages.error.404', [], 404);
+        }
+
+        if (empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['message'] == 'No subscriptions found') {
+            if (!empty($plandata)) {
+                session()->put('plandata', $plandata);
+            }
+
+            return view('subscription.subscription', compact('result', 'offerCount', 'meta'));
+            //$result = CurlAPI("subscriptions/plans", "GET", "", 2);
+        } else {
+            $offerCount = 0;
+
             if (isset($subscriptionPurchases['data'])) {
                 foreach ($subscriptionPurchases['data'] as $k => $item) {
                     if (!isset($item['plan_name'])) {
@@ -87,35 +92,20 @@ class SubscriptionController extends Controller
 
             if (empty($activePlan)) {
                 //$result = CurlAPI("subscriptions/plans", "GET", "", 2);
-                if ($result && @$result['success'] == true) {
-
-                    //$offerCount = count($result['plans'][0]['benifits']);
-                    $plandata = [];
-                    foreach (@$result['plans'] as $val) {
-
-                        if(isset($val['id'])){
-                            $plandata[$val['id']] = [
-                                'id' => $val['id'],
-                                'name' => @$val['name'],
-                                'plan' => @$val['plan'],
-                                'actual_price' => @$val['actual_price'],
-                                'currency' => @$val['currency'],
-                                'epic_price' => @$val['actual_price'],
-                                'save' => '',
-                            ];
-                        }
-                    }
-                    if (!empty($plandata)) {
-                        $request->session()->put('plandata', $plandata);
-                    }
-
+                if (!empty($plandata)) {
+                    session()->put('plandata', $plandata);
                 }
+
                 return view('subscription.subscription', compact('result', 'offerCount', 'meta'));
 
             } else {
 
                 $numOfDays = checkNumDays($activePlan['subscription_end_date']);
-                if ($numOfDays <= 3) {
+                
+                if ($numOfDays <= 4) {
+                    if (!empty($plandata)) {
+                        session()->put('plandata', $plandata);
+                    }
                     return view('subscription.subscription', compact('result', 'offerCount', 'meta'));
                 } else {
                     //return redirect()->route('my-account');
@@ -135,13 +125,13 @@ class SubscriptionController extends Controller
         }
         $data = $request->all();
         $result = [];
-        $sessionPlanData = $request->session()->get('plandata');
+        $sessionPlanData = session()->get('plandata');
         $userData = $request->session()->get('user');
         if (@$sessionPlanData[@$data['amountid']]) {
             $result = (@$sessionPlanData[@$data['amountid']]);
         }
         if(empty($result)){
-            return view('pages.error.data-error');  
+            return response()->view('pages.error.404', [], 404);  
         }
         return view('subscription.payment-method', compact('result', 'data'));
         }else{
@@ -194,7 +184,9 @@ class SubscriptionController extends Controller
         $this->payuLog( 'Payu Money Request data', $txid,[$parameters]);
 
         if(@$parameters['status'] == false){
-            return view('pages.error.data-error');
+            \Log::channel('error_404')->debug('--------------(subscriptions/createorder)  Error ('.date('h:i:s A').')----------------------');
+            \Log::channel('error_404')->debug('Error =>'.json_encode($parameters));
+            return response()->view('pages.error.404', [], 404);
         }
         else{
 

@@ -13,7 +13,7 @@ $isMoblile = isMobliDevice();
                 $img = in_array($firstSegment, ['podcast', 'games']) ? 'cover_image' : 'vertical_cover_image';
                 $banner_img = getCardImage($val, $img, 'medium');
             } else {
-                $banner_img = getCardImage($val, 'banner_image', 'large');
+                $banner_img = getCardImage($val, 'banner_image_v2', 'large');
             }
             ?>
             <div class="carousel-card">
@@ -22,7 +22,7 @@ $isMoblile = isMobliDevice();
                     <a href="{{ isset($val['game_url']) ? @$val['game_url'] : getContentUrl($val) }}"
                         onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}"
                         {{ isset($val['game_url']) ? 'target="_blank"' : '' }}>
-                        <img src="{{ $banner_img }}" alt="">
+                        <img fetchpriority="high" src="{{ $banner_img }}" alt="" class="banner-img">
                     </a>
                     <div class="carousel-items-content position-absolute">
                         <h2>{{ $card['sub_text'] }}</h2>

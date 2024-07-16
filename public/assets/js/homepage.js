@@ -1031,42 +1031,42 @@
         dots: false,
         infinite: false,
         speed: 300,
-        slidesToShow: 3.2,
+        slidesToShow: 3.7,
         slidesToScroll: 1,
         accessibility: true,
         responsive: [
             {
                 breakpoint: 1367,
                 settings: {
-                    slidesToShow: 3.2,
+                    slidesToShow: 3.6,
                     slidesToScroll: 1,
                 }
             },
             {
                 breakpoint: 1025,
                 settings: {
-                    slidesToShow: 2.2,
+                    slidesToShow: 3.1,
                     slidesToScroll: 1,
                 }
             },
             {
                 breakpoint: 769,
                 settings: {
-                    slidesToShow: 1.6,
+                    slidesToShow: 2.3,
                     slidesToScroll: 1,
                 }
             },
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 1.1,
+                    slidesToShow: 1.2,
                     slidesToScroll: 1
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1.1,
+                    slidesToShow: 1.2,
                     slidesToScroll: 1
                 }
             }
@@ -1103,37 +1103,31 @@
             {
             breakpoint: 3e3,
             settings: {
-                slidesToShow: 7.3,
+                slidesToShow: 6.3,
                 slidesToScroll: 1
             }
         }, {
             breakpoint: 1600,
             settings: {
-                slidesToShow: 6.3,
+                slidesToShow: 5.8,
                 slidesToScroll: 1
             }
         }, {
             breakpoint: 1200,
             settings: {
-                slidesToShow: 7.3,
+                slidesToShow: 4.5,
                 slidesToScroll: 1
             }
         }, {
             breakpoint: 900,
             settings: {
-                slidesToShow: 5.3,
+                slidesToShow: 4.3,
                 slidesToScroll: 1
             }
         }, {
             breakpoint: 600,
             settings: {
-                slidesToShow: 4.3,
-                slidesToScroll: 1
-            }
-        }, {
-            breakpoint: 480,
-            settings: {
-                slidesToShow: 2.2,
+                slidesToShow: 1.8,
                 slidesToScroll: 1
             }
         }]
@@ -1159,7 +1153,7 @@
         }, {
             breakpoint: 1600,
             settings: {
-                slidesToShow: 4.3,
+                slidesToShow: 3.8,
                 slidesToScroll: 1
             }
         }, {
@@ -1171,7 +1165,7 @@
         }, {
             breakpoint: 900,
             settings: {
-                slidesToShow: 3.3,
+                slidesToShow: 2.8,
                 slidesToScroll: 1
             }
         }, {
@@ -1213,6 +1207,7 @@
         getSupermixData();
         $('#supermix-banner-video').hide();
         $('#supermix-banner-img').show();
+        showmoreFunction();
     });
 
     $(document).off('click.superMixButton').on('click.superMixButton', '.superMixButton', function (e) {
@@ -1335,7 +1330,7 @@ function showmoreFunction(){
             $(".read-button-"+eid).html("<button class='bg-transparent text-white small read-more-"+eid+"' readmore-less'>Read More</button>");
             }
     
-            $(".read-more-"+eid).click(function(e) {
+            $(document).on("click", ".read-more-" + eid, function (e) {
             e.preventDefault();
             $(".read-more-"+eid).text() == "Read More" ? $(".read-more-"+eid).text("Read Less") : $(".read-more-"+eid).text("Read More")
             $('.shot-desc-'+eid+ ' .truncated-'+eid).toggle();

@@ -11,6 +11,10 @@ class PageDetailController extends Controller
 {
     public function detail($pageslug, $contentslug, $season = null, $episode = null)
     {
+        if(in_array($pageslug,['assets']))
+        {
+            return false;
+        }
         $request = request();
         SilentLoginFunction();
         check_Tv_Activation_Code();
@@ -38,7 +42,9 @@ class PageDetailController extends Controller
             $content = $result['content'] ?? [];
 
             if (empty($content)) {
-                return view('pages.error.404');
+                \Log::channel('error_404')->debug('--------------('.$url.')  Error ('.date('h:i:s A').')----------------------');
+                \Log::channel('error_404')->debug('Error =>'.json_encode($result));
+                return response()->view('pages.error.404', [], 404);
             }
 
             $trailers = [];

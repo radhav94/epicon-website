@@ -26,7 +26,9 @@ class LiveTvController extends Controller
             $meta = getMeta($routenamed);
             return view('pages.livetv.live-tv', compact('response','meta', 'displayLanguageParam'));
         }else{
-            return view('pages.error.data-error');
+            \Log::channel('error_404')->debug('--------------(contents/livetv)  Error ('.date('h:i:s A').')----------------------');
+            \Log::channel('error_404')->debug('Error =>'.json_encode($livetvArr));
+            return response()->view('pages.error.404', [], 404);
         }
     }
 

@@ -88,7 +88,7 @@ $subplan = checkSubscription();
                     
                     <img class="corner-bg" src="{{ asset('/img/corner-bg.svg') }}" alt="">
                     <p class="current-subs d-flex">{{__('Current Subscription')}}</p>
-                    <h1>{{__('Premium HD')}}</h1>
+                    <h1>{{ isset($subscriptionPurchases['plan_name']) ? $subscriptionPurchases['plan_name'] : '' }}</h1>
                     <div class="premium-plan">
 
                         <div class="past-sub w-100">{{__('PAST SUBSCRIPTION')}}</div>
@@ -107,12 +107,12 @@ $subplan = checkSubscription();
                         </div>
                         
                         <div class="pp-right">
-                            <h3>{!! getCurrency($subscriptionPurchases['currency']) !!} {{ isset($subscriptionPurchases['plan_amount']) ? $subscriptionPurchases['plan_amount'] : '' }} <span>/ {{ isset($plan_name) ? $plan_name : '' }}</span></h3>
+                            @if(@$subscriptionPurchases['plan_amount'] != '')<h3>{!! getCurrency($subscriptionPurchases['currency']) !!} {{ isset($subscriptionPurchases['plan_amount']) ? $subscriptionPurchases['plan_amount'] : '' }} <span>/ {{ isset($plan_name) ? $plan_name : '' }}</span></h3>@endif
                             <p>{{isset($substartdate) ? $substartdate : ''}} - {{ isset($subenddate) ? $subenddate : '' }}</p>
                         </div>
                     </div>
                    <?php  //echo $numOfDays; exit;?>
-                    @if($numOfDays <= 3 || $subscriptionPurchases['plan_status'] == 'past')
+                    @if($numOfDays <= 4 || $subscriptionPurchases['plan_status'] == 'past')
                     <div class="w-100 text-center">
                         @if($numOfDays <= 0)
                         @php $class = "renew-paln"; @endphp

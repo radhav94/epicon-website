@@ -1,8 +1,9 @@
 // Get the URL query parameters
 var queryParams = new URLSearchParams(window.location.search);
+var isSorted = false;
 
 $(document).ready(function () {
-    $( ".profile_date_picker" ).datepicker({
+    $(".profile_date_picker").datepicker({
         //dateFormat: 'dd-M-yy',
         dateFormat: 'dd/mm/yy',
         maxDate: '-1d',
@@ -13,36 +14,49 @@ $(document).ready(function () {
         yearRange: "-100:-1"
     });
 
+    $("#seasonSelect").trigger("change");
+
     $("#seasonSelect").change(function () {
         var slug = $(this).val();
         if (slug != "" && slug != 0) {
             $(".season-episode-main").addClass('hide');
             $("#pills-episode-" + slug).removeClass('hide');
-        }else{
+            let sortType = $("#seasonSelect").val() || "";
+            if (isSorted) {
+                isSorted = true;
+                sortingEp($(this).val(), sortType);
+            }
+        } else {
             return false;
         }
     })
+    //Sorting
+    $("#SortingEp").off("change").on("change", function () {
+        let id = $("#seasonSelect").val() || "";
+        //console.log("id: " + id)
+        sortingEp(id, $(this).val());
+    })
 
     $(document).on("click", ".copyUrl", function () {
-            // $('#linkCopy').attr("title", "Copied!").tooltip("_fixTitle")
-            // .tooltip("show").attr("title", "Copied!").tooltip("_fixTitle");
-            var shareurl = $(this).attr('data-url');
-            // alert(shareurl);
-            // var dummy = $('<input id="test">').val(shareurl);//.appendTo('body').select();
-            var dummy = document.createElement("input");
-            dummy.value = shareurl;
-            document.body.appendChild(dummy);
-            dummy.select();
-            dummy.focus();
-            document.execCommand('copy');            
-            document.body.removeChild(dummy); 
-            $(this).attr("title", "Copied!").tooltip("_fixTitle")
-           .tooltip("show").attr("title", "Copied!").tooltip("_fixTitle");       
-      });
+        // $('#linkCopy').attr("title", "Copied!").tooltip("_fixTitle")
+        // .tooltip("show").attr("title", "Copied!").tooltip("_fixTitle");
+        var shareurl = $(this).attr('data-url');
+        // alert(shareurl);
+        // var dummy = $('<input id="test">').val(shareurl);//.appendTo('body').select();
+        var dummy = document.createElement("input");
+        dummy.value = shareurl;
+        document.body.appendChild(dummy);
+        dummy.select();
+        dummy.focus();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+        $(this).attr("title", "Copied!").tooltip("_fixTitle")
+            .tooltip("show").attr("title", "Copied!").tooltip("_fixTitle");
+    });
 
     $(document).on("mouseover", ".copyUrl", function () {
-      $(this).attr("title", "Copy").tooltip("_fixTitle")
-        .tooltip("show").attr("title", "Copy").tooltip("_fixTitle");
+        $(this).attr("title", "Copy").tooltip("_fixTitle")
+            .tooltip("show").attr("title", "Copy").tooltip("_fixTitle");
     });
 
     // $('#linkCopy').click(function() {
@@ -55,7 +69,7 @@ $(document).ready(function () {
     //     tempTextarea.remove();
     //     $('#linkCopy').attr("title", "Copied!").tooltip("_fixTitle")
     //     .tooltip("show").attr("title", "Copied!").tooltip("_fixTitle");
-       
+
     //   });
 
     //focus otp input
@@ -69,69 +83,69 @@ $(document).ready(function () {
             $(this).next(".mx-1").focus();
         }
     });
-       
-      $(".childpin-input .backpress").keydown(function(event) {
+
+    $(".childpin-input .backpress").keydown(function (event) {
         if (event.keyCode == 8 && $(this).val().length == 0) {
-          if ($(this).prev('.childpin-input .backpress')) {
-            $(this).prev('.childpin-input .backpress').focus();
-          }
+            if ($(this).prev('.childpin-input .backpress')) {
+                $(this).prev('.childpin-input .backpress').focus();
+            }
         }
-      });
+    });
 
 
-      $(".login-with-subscription").click(function(){
-        window.history.pushState({},'',"?ref=subscription");
+    $(".login-with-subscription").click(function () {
+        window.history.pushState({}, '', "?ref=subscription");
         var rediUrl = window.location.href;
         localStorage.setItem("redirectURL", rediUrl);
         $('#closePlayer').trigger('click');
         $('.loginBtn.login').trigger('click');
-       
 
-      });
 
-    $(".allAccessBtn").unbind().click(function(event) {
+    });
+
+    $(".allAccessBtn").unbind().click(function (event) {
         if (!event.isTrigger) {
-            window.history.replaceState({}, document.title, "?" );
+            window.history.replaceState({}, document.title, "?");
             localStorage.setItem("redirectURL", "");
         }
         var checkstaus = $(this).is(':checked');
-        var kidsUrl= $("input#kidsUrlH").val();
+        var kidsUrl = $("input#kidsUrlH").val();
         var isLoggedIn = $(this).data('log');
-        if(checkstaus){
+        if (checkstaus) {
             $(this).prop('checked', false);
             if (parseInt(isLoggedIn) != 1) {
-                window.history.pushState({},'',"?profile=kids");
+                window.history.pushState({}, '', "?profile=kids");
                 $('.loginBtn.login').trigger('click');
                 return false;
             } else {
                 console.log('else in kids');
-                window.location.href=kidsUrl;
+                window.location.href = kidsUrl;
                 return false;
             }
-        }else{
-            $(".allAccessBtn").prop( "checked", true );
+        } else {
+            $(".allAccessBtn").prop("checked", true);
             $("#child-pin-modal").modal('show');
             return false;
         }
     })
 
-    $(".allAccessBtn-sub").click(function() {
+    $(".allAccessBtn-sub").click(function () {
         var rediUrl = window.location.href;
         localStorage.setItem("redirectURL", rediUrl);
-        window.history.pushState({},'',"?ref=subscription");
+        window.history.pushState({}, '', "?ref=subscription");
         var dispcss = $('.videoContainer').css('display');
-        if(dispcss == 'block'){
+        if (dispcss == 'block') {
             $('#closePlayer').trigger('click');
         }
         $("#child-pin-modal").modal('show');
     });
 
-    $('.goBackButton').click(function() {
+    $('.goBackButton').click(function () {
         // Go back to the previous page
         window.history.back();
     });
 
-    $(".eye-toggle").click(function() {
+    $(".eye-toggle").click(function () {
         var targetId = $(this).data("target");
         var inputField = $("#" + targetId);
         var isPasswordType = inputField.attr('type') === 'password';
@@ -152,7 +166,7 @@ $(document).ready(function () {
         localStorage.setItem("SubredirectURL", rediUrl);
         $(".loginBtn.login").trigger('click');
 
-        });
+    });
 
 })
 
@@ -164,23 +178,23 @@ $(document).on("click", ".check-content-url", function () {
     var rediUrl = window.location.href;
     localStorage.setItem("redirectURL", rediUrl);
     if (is_premium == 1 && active_subscriber != 1) {
-        if(Islogin == "allAccessBtn"){
-            window.history.pushState({},'',"?ref=subscription");
+        if (Islogin == "allAccessBtn") {
+            window.history.pushState({}, '', "?ref=subscription");
             $(".allAccessBtn").trigger('click');
             return false;
-        }else{
-            window.location.href = APP_URL+'/subscription';
-            return false; 
+        } else {
+            window.location.href = APP_URL + '/subscription';
+            return false;
         }
-        
+
         //showToaster("Please subscribe to play this game.", 2);
-       return;
+        return;
     }
     if (content_url == "") {
         showToaster("Content not found.", 2);
         return;
     }
-    window.open(content_url,'_blank');
+    window.open(content_url, '_blank');
     // window.location.href = content_url;
 });
 
@@ -212,10 +226,10 @@ $(window).on('load', function () {
     }
 })
 
-$(document).on("click", ".interest-suggetion", function(e){
+$(document).on("click", ".interest-suggetion", function (e) {
     e.preventDefault();
     var genreCount = 0;
-    $("input[name='genreInterest[]']").each(function(key, value) {
+    $("input[name='genreInterest[]']").each(function (key, value) {
         if (value.checked) {
             genreCount++;
         }
@@ -256,10 +270,10 @@ if ($('.distro-search-main').length) {
 
     $('.distro-search-input').val('');
 
-    $(".distro-search-input").on("click",function() {
+    $(".distro-search-input").on("click", function () {
         $(".distro-search-main").addClass("dsm-style");
-        if ($(".distro-back-btn").css({"display":"none"})){
-            $(".distro-back-btn").css({"display":"block"})
+        if ($(".distro-back-btn").css({ "display": "none" })) {
+            $(".distro-back-btn").css({ "display": "block" })
         }
     });
 
@@ -270,7 +284,7 @@ if ($('.distro-search-main').length) {
         $(".distro-search-select, .distro-search-show, .distro-search-clear").hide();
         $('.distro-search-show').html('');
     });
-    
+
     $(".distro-filter").on("click", function () {
         if (!this.value) {
             $(".distro-search-select").toggle();
@@ -278,8 +292,8 @@ if ($('.distro-search-main').length) {
         $(".distro-filter img").toggleClass("dis-img-toggle");
         $(".distro-search-show").hide();
         $(".distro-search-main").addClass("dsm-style");
-        if ($(".distro-back-btn").css({"display":"none"})){
-            $(".distro-back-btn").css({"display":"block"})
+        if ($(".distro-back-btn").css({ "display": "none" })) {
+            $(".distro-back-btn").css({ "display": "block" })
         }
     });
     $(".distro-search-clear").on("click", function () {
@@ -318,7 +332,7 @@ if ($('.distro-search-main').length) {
             let type = $('.distro-search-select .npq.active').data('type');
             $.ajax({
                 url: APP_URL + "/distro-tv-search",
-                type: 'POST',
+                type: 'GET',
                 data: { 'term': searchtext, 'type': type },
                 dataType: 'json',
                 async: true,
@@ -336,4 +350,29 @@ if ($('.distro-search-main').length) {
             });
         }
     });
+}
+
+function sortingEp(id, sortType) {
+    //console.log("sortType: " + sortType)
+    //console.log($("#pills-episode-" + id).hasClass(sortType));
+    if ($("#pills-episode-" + id).hasClass(sortType)) {
+        return false;
+    }
+    $("#pills-episode-" + id).removeClass(sortType == "asc" ? "desc" : "asc");
+    $("#pills-episode-" + id).addClass(sortType);
+    let ul = document.getElementById("pills-episode-" + id);
+    //console.log(ul);
+    var lis = ul.getElementsByTagName("li");
+    var vals = [];
+    for (var i = 0, l = lis.length; i < l; i++) {
+        vals.push(lis[i].innerHTML);
+    }
+    vals.reverse();
+    for (var i = 0, l = lis.length; i < l; i++) {
+        lis[i].innerHTML = vals[i];
+    }
+    var currentUrl = window.location.href;
+    if (currentUrl.includes("/podcast")) {
+        sortEpisodes(sortType);
+    }
 }

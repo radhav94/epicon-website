@@ -6,31 +6,35 @@
     if ($content['content_type'] == 'SHOW') {
         $seasons = $content['season'] ?? [];
         $tab1_title = 'Seasons';
-        foreach ($seasons as $value) {
-            $seasonList[] = [
-                'title' => $value['title'],
-                'url' => $value['slug']
-            ];
+        foreach ($seasons as $value) {            
             $temp = $value['episodes'] ?? [];
-            $lastSeason = $value['slug'];
-            $season_episode_data[$value['slug']] = $temp;
+            $temp = sortEpisodes($temp);
+            //$lastSeason = $value['slug'];
+            if ($temp != null) {
+                $seasonList[] = [
+                    'title' => $value['title'],
+                    'url' => $value['slug']
+                ];
+                $season_episode_data[$value['slug']] = $temp;
+            }
         }
         $tab1_title = 'Episodes';
         rsort($seasonList);
     } elseif ($content['content_type'] == 'SEASON') {
         $temp = $content['episodes'] ?? [];
+        $temp = sortEpisodes($temp);
         $tab1_title = 'Episodes';
-        $lastSeason = @$content['slug'];
+        //$lastSeason = @$content['slug'];
         $season_episode_data[$lastSeason] = $temp;
     }elseif ($content['content_type'] == 'EPISODE') {
         $temp = $content['season'][0]['episodes'] ?? [];
+        $temp = sortEpisodes($temp);
         $tab1_title = 'Episodes';
         $lastSeason = @$content['slug'];
         if($temp){
          $season_episode_data[$lastSeason] = $temp;
         }
     }
-
 
     $active_tab = '';
     $tabs = [];
@@ -68,22 +72,21 @@
 
 
                        <!-- filter -->
-                       <div class="episode-season" style="display:block">
-                           {{-- <!-- <div class="all-episode">
-                               <select>
-                                   <option value="0">{{__('All Episodes')}}</option>
-                                   <option value="1">1 to 50</option>
-                                   <option value="2">51 - 100</option>
-                                   <option value="3">101 - 150</option>
-                                   <option value="4">151 - 200</option>
+                       <div class="episode-season" style="display:flex">
+                       @if($content['content_type'] !="VIDEO")
+                       <div class="all-episode season">
+                               <select id="SortingEp">
+                                   <option value="asc" selected>Sort by Oldest</option>
+                                   <option value="desc">Sort by Newest</option>
                                </select>
-                           </div> --> --}}
+                        </div>
+                        @endif
                            @if (count($seasonList) > 0)
                            <div class="season">
                                <select id="seasonSelect">
                                    <!-- <option value="0">{{__('All Seasons')}}</option> -->
                                    @foreach ($seasonList as $key => $season)
-                                   <option value="{{ $season['url'] }}" <?php echo ($key == 0) ? 'checked' : ''; ?>>{{ $season['title'] }}</option>
+                                   <option value="{{ $season['url'] }}" <?php echo ($key == 0) ? 'selected="selected"' : ''; ?>>{{ $season['title'] }}</option>
                                    @endforeach
                                </select>
                            </div>

@@ -1041,7 +1041,10 @@ if (!function_exists("getAllEpisodesFromSeason")) {
             if (is_array($season['episodes'])) {
                 foreach ($season['episodes'] as $episode) {
                     if (array_key_exists('ID', $episode) && !empty($episode['ID'])) {
-                        $episode_list[] = $episode['ID'];
+                        $episode_list[] = [
+                            "ID" => $episode['ID'],
+                            "file_url_original" => $episode["file_url_original"]
+                        ];
                     } else {
                         continue;
                     }
@@ -1226,6 +1229,7 @@ function getJsonDataFromFile($filepath)
 }
 
 function getCountryCode() {
+    /*
     try {
         if (!session()->get('countrycode')) {
             // Check for the X-Forwarded-For header
@@ -1267,6 +1271,19 @@ function getCountryCode() {
         session()->put('countrycode', 'IN');
         // Handle any other exceptions that may occur
         return 'IN';
+    }*/ // Old Code is Here with API Call Third Party Call
+
+    try {
+        if (!session()->get('countrycode')) {
+            $countryCode = request()?->header('x-region') ?? 'IN';
+            session()->put('countrycode', $countryCode);
+            return $countryCode;
+        } else {
+            return session()->get('countrycode');
+        }
+    } catch (Exception $e) {
+        session()->put('countrycode', 'IN');
+        return 'IN';
     }
 }
 
@@ -1303,6 +1320,24 @@ function getCountryStateDataInHtml()
         }
     }
     return $countryisdhtml;
+}
+
+function getCountryList()
+{
+    $countrycode = getCountryCode();
+    $countrystate = getCountryStateData();
+    $countryHtml = "";
+    if( $countrystate){
+        foreach ($countrystate['countries'] as $i => $value) {
+            if ($countrycode == $value['code'] || $countrycode == $value['countryisdcode']) {
+                $selectvar = "selected";
+            } else {
+                $selectvar = "";
+            }
+            $countryHtml .= '<option value="' . $value['country'] . '" ' . $selectvar . '>' . $value['country'] . '</option>';
+        }
+    }
+    return $countryHtml;
 }
 
 if (!function_exists('assetTime')) {
@@ -1392,7 +1427,7 @@ if (!function_exists('getMeta')) {
 
         $meta['keywords'] = '';
 
-        $meta['image'] = env('APP_URL') . '/epiconlogo.png';
+        $meta['image'] = env('APP_URL') . '/img/epiconlogo.png';
 
         $meta['url'] = url()->current();
 
@@ -1456,9 +1491,9 @@ if (!function_exists('getMeta')) {
 
                 } else if ($pageslug == 'movies') {
 
-                    $meta['title'] = $lang != 'HINDI' ? 'Best OTT Platform for Movies | Watch Online Movie Now' : 'देखो टीवी शो, एपिसोड, सिनेमा ऑनलाइन | ईपीक ऑन';
+                    $meta['title'] = $lang != 'HINDI' ? 'Watch Bollywood, Hollywood and South Indian Movies Online' : 'Watch Bollywood, Hollywood and South Indian Movies Online';
 
-                    $meta['description'] = $lang != 'HINDI' ? 'Watch your favorite online movies on Epic On, India\'s best OTT platform for movies. With a wide selection of movies to choose from, including new release' : 'कॉमेडी, रोमांस, एक्शन, ड्रामा, भोजन, यात्रा और पौराणिक कथाओं की शैलियों के बीच लोकप्रिय टीवी शो, ब्लॉकबस्टर फिल्में, मूल, वृत्तचित्र, और बहुत कुछ देखें';
+                    $meta['description'] = $lang != 'HINDI' ? 'Craving Bollywood blockbusters, Hollywood hits, or South Indian sensations? Stream them all now! Huge library, all your favorite languages.' : 'Craving Bollywood blockbusters, Hollywood hits, or South Indian sensations? Stream them all now! Huge library, all your favorite languages.';
 
                     $meta['keywords'] = $lang != 'HINDI' ? 'originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries, EPIC ON,films,hollywood movies, bollywood movies, hindi movies,originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries,amazon prime movies' : 'नई फिल्में, फिल्में, मूवीज, फिल्म, ऑनलाइन वीडियो, टीवी श्रृंखला, टीवी शो, सर्वश्रेष्ठ नेटफ्लिक्स श्रृंखला, वेब श्रृंखला, शो, सर्वश्रेष्ठ वेब श्रृंखला, वृत्तचित्र';
 
@@ -1474,9 +1509,9 @@ if (!function_exists('getMeta')) {
 
             } else if ($pagetitle == 'listen' || $pagetitle == 'podcast') {
 
-                $meta['title'] = $lang != 'HINDI' ? 'Top Podcasts Platform in India | Listen Now' : 'सुनें लोकप्रिय पॉडकास्ट ऑनलाइन जो है ईपीक ऑन पर उपलब्ध';
+                $meta['title'] = $lang != 'HINDI' ? 'Listen Podcast in Hindi | Historical Stories in Hindi | Listen Now' : 'Listen Podcast in Hindi | Historical Stories in Hindi | Listen Now';
 
-                $meta['description'] = $lang != 'HINDI' ? 'Discover the top podcasts in India on Epic On, India\'s premier OTT platform. With a wide range of genres to choose from, there\'s something for everyone. Start listening today!' : 'कहीं भी, कभी भी ईपीक ऑन के साथ ऑनलाइन नवीनतम और ट्रेंडिंग पॉडकास्ट सुनें। डाउनलोड करें या असीमित उपलब्ध पॉडकास्ट ऑनलाइन सुनें';
+                $meta['description'] = $lang != 'HINDI' ? 'Immerse yourself in riveting historical stories & podcasts in Hindi. Discover our vast collection of engaging audio content exploring India\'s vibrant heritage.' : 'Immerse yourself in riveting historical stories & podcasts in Hindi. Discover our vast collection of engaging audio content exploring India\'s vibrant heritage.';
 
                 $meta['keywords'] = $lang != 'HINDI' ? 'free podcast, download podcast, free popular podcasts, free podcast downloads, free podcasts online' : 'मुफ्त पॉडकास्ट, पॉडकास्ट डाउनलोड करें, मुफ्त पॉडकास्ट, मुफ्त पॉडकास्ट डाउनलोड, मुफ्त पॉडकास्ट ऑनलाइन';
 
@@ -1646,6 +1681,53 @@ if (!function_exists('getMeta')) {
 
 }
 
+if (!function_exists('exploreGetMeta')) {
+    function exploreGetMeta($pageslug = ''){
+        $lang = setLanguageParameter();
+        if ($pageslug == 'hindi') {
+            $meta['title'] = $lang != 'HINDI' ? 'Explore Hindi Movie and Shows Online on Epic ON':'Explore Hindi Movie and Shows Online on Epic ON';
+            $meta['description'] = $lang != 'HINDI' ? 'Explore Hindi movies, shows & more on Epic ON. Enjoy a vast library of entertainment across genres. Sign up for our premium subscription & watch online now!':'Explore Hindi movies, shows & more on Epic ON. Enjoy a vast library of entertainment across genres. Sign up for our premium subscription & watch online now!';
+        } else if ($pageslug == 'mythology') {
+            $meta['title'] = $lang != 'HINDI' ? 'Explore - Mythology Shows Online in Hindi on Epic ON':'Explore - Mythology Shows Online in Hindi on Epic ON';
+            $meta['description'] = $lang != 'HINDI' ? 'Dive into Epic tales! Explore mythology shows in Hindi on Epic ON. Classics & fresh takes on Devlok, Papnashni Ganga & more. Watch Now!':'Dive into Epic tales! Explore mythology shows in Hindi on Epic ON. Classics & fresh takes on Devlok, Papnashni Ganga & more. Watch Now!';
+        } else if ($pageslug == 'history') {
+            $meta['title'] = $lang != 'HINDI' ? 'Explore - Hindi Shows Online Based on History on Epic ON':'Explore - Hindi Shows Online Based on History on Epic ON';
+            $meta['description'] = $lang != 'HINDI' ? 'Unveil India\'s past! Explore captivating historical dramas & shows in Hindi. Stream now on Epic ON for an immersive journey.':'Unveil India\'s past! Explore captivating historical dramas & shows in Hindi. Stream now on Epic ON for an immersive journey.';
+        } else if ($pageslug == 'travel') {
+            $meta['title'] = $lang != 'HINDI' ? 'Explore - Real Life Travel Show in Hindi on Epic ON':'Explore - Real Life Travel Show in Hindi on Epic ON';
+            $meta['description'] = $lang != 'HINDI' ? 'Travel the world from your couch! Explore real-life travel show in Hindi on Epic ON. Breathtaking journeys & cultural insights. Watch Now!':'Travel the world from your couch! Explore real-life travel show in Hindi on Epic ON. Breathtaking journeys & cultural insights. Watch Now!';
+        }else if ($pageslug == 'comedy') {
+            $meta['title'] = $lang != 'HINDI' ? 'Watch Comedy Shows, Movies and Series in Hindi | Explore Now':'Watch Comedy Shows, Movies and Series in Hindi | Explore Now';
+            $meta['description'] = $lang != 'HINDI' ? 'Laugh out loud with our diverse collection of Hindi comedy shows, movies, and series. Explore hilarious content across genres from standup to sitcoms.':'Laugh out loud with our diverse collection of Hindi comedy shows, movies, and series. Explore hilarious content across genres from standup to sitcoms.';
+        }
+        else if ($pageslug == 'fiction') {
+            $meta['title'] = $lang != 'HINDI' ? 'Watch Fictional Shows, Movies and Series in Hindi | Explore Now':'Watch Fictional Shows, Movies and Series in Hindi | Explore Now';
+            $meta['description'] = $lang != 'HINDI' ? 'Escape into the captivating world of Hindi fictional shows, movies, and series. Explore a vast collection spanning diverse genres like fantasy, sci-fi, and more.':'Escape into the captivating world of Hindi fictional shows, movies, and series. Explore a vast collection spanning diverse genres like fantasy, sci-fi, and more.';
+        
+        }else if ($pageslug == 'adventure') {
+            $meta['title'] = $lang != 'HINDI' ? 'Watch Adventurous Movie, Shows and Series in Hindi':'Watch Adventurous Movie, Shows and Series in Hindi';
+            $meta['description'] = $lang != 'HINDI' ? 'Crave action & thrills? Stream Hindi adventure movies, shows & series. Explore epic journeys & heart-pounding stories. Watch Now on Epic ON':'Crave action & thrills? Stream Hindi adventure movies, shows & series. Explore epic journeys & heart-pounding stories. Watch Now on Epic ON';
+        
+        }else if ($pageslug == 'romance') {
+            $meta['title'] = $lang != 'HINDI' ? 'Watch Romantic Movie, Shows and Series | Explore Now':'Watch Romantic Movie, Shows and Series | Explore Now';
+            $meta['description'] = $lang != 'HINDI' ? 'Watch our collection of romantic Hindi movies, shows, and series. Explore heartwarming tales and Drama Sign up now for unlimited romantic entertainment!':'Watch our collection of romantic Hindi movies, shows, and series. Explore heartwarming tales and Drama Sign up now for unlimited romantic entertainment!';
+        
+        }else if ($pageslug == 'mystery') {
+            $meta['title'] = $lang != 'HINDI' ? 'Watch Mystery Show, Movies and Series Online | Explore Now':'Watch Mystery Show, Movies and Series Online | Explore Now';
+            $meta['description'] = $lang != 'HINDI' ? 'Unravel the clues! Stream captivating Hindi mystery shows, movies & series. Keep you guessing till the end. Watch Now on Epic ON':'Unravel the clues! Stream captivating Hindi mystery shows, movies & series. Keep you guessing till the end. Watch Now on Epic ON';
+        
+        }else if ($pageslug == 'social-issues') {
+            $meta['title'] = $lang != 'HINDI' ? 'Watch Hindi Shows, Movies and Series Based on Social Issues':'Watch Hindi Shows, Movies and Series Based on Social Issues';
+            $meta['description'] = $lang != 'HINDI' ? 'Spark conversations! Explore Hindi shows, movies & series tackling social issues. Thought-provoking stories that matter. Watch Now on Epic ON':'Spark conversations! Explore Hindi shows, movies & series tackling social issues. Thought-provoking stories that matter. Watch Now on Epic ON';
+        
+        }else{
+            $meta = [];
+        }
+
+        return $meta;
+    }
+}
+
 function generateUUIDv4() {
     return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
         // 32 bits for "time_low"
@@ -1672,9 +1754,9 @@ function generateUUIDv4() {
 function generateDeviceId() {
     // Gather available information
     $navigatorInfo = [
-        $_SERVER['HTTP_USER_AGENT'],
-        $_SERVER['HTTP_ACCEPT_LANGUAGE'],
-        $_SERVER['REMOTE_ADDR'], // IP address
+        $_SERVER['HTTP_USER_AGENT'] ?? "",
+        $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? "",
+        $_SERVER['REMOTE_ADDR'] ?? "", // IP address
         date_default_timezone_get(), // Timezone
     ];
     // Combine and hash the information to create a unique identifier
@@ -1682,4 +1764,14 @@ function generateDeviceId() {
     $deviceId = md5($deviceId);
     setcookie('deviceId', $deviceId, time() + (10 * 365 * 24 * 60 * 60), '/'); 
     return $deviceId;
+}
+
+function sortEpisodes($temp)
+{
+    if (count($temp) > 0) {
+        usort($temp, function ($a, $b) {
+            return @$a['content_order'] - @$b['content_order'];
+        });
+        return $temp;
+    }
 }

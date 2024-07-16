@@ -250,3 +250,23 @@ function hideMiddleCharacters(input) {
   return '';
 }
 }
+
+$(document).ready(function(){
+  var sectionIds = $('a.nav-link');
+    $(document).scroll(function(){
+        sectionIds.each(function(){
+            var container = $(this).attr('href');
+            var containerOffset = $(container).offset().top;
+            var containerHeight = $(container).outerHeight();
+            var containerBottom = containerOffset + containerHeight;
+            var scrollPosition = $(document).scrollTop();
+    
+            if(scrollPosition < containerBottom - 200 && scrollPosition >= containerOffset - 200){
+                $(this).addClass('active');
+            } else{
+                $(this).removeClass('active');
+            }
+    
+        });
+    });
+});
