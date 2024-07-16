@@ -69,7 +69,7 @@ class LoginController extends Controller
             // dd($SendotpRequestData);
             $SendotpResponseData = CurlAPI("users/sendOTP", 'POST', $SendotpRequestData, 2, false, true);
 
-            $response['meassage'] = $SendotpResponseData['message'];
+            $response['meassage'] = @$SendotpResponseData['message'] != '' ? $SendotpResponseData['message'] : "Unable to send OTP, please try again!" ;
             // dd($SendotpResponseData);
             if ($SendotpResponseData && (@$SendotpResponseData['success'] == 'true' || @$SendotpResponseData['success'] == true)) {
                 $request->session()->put('mobile_number', $mobile_number);

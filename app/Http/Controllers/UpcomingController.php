@@ -21,7 +21,9 @@ class UpcomingController extends Controller
             // return view('pages.upcoming-epicon')->with('upcoming',$Upcomingdata);
             return view('pages.upcoming-epicon', compact('upcoming', 'meta'));
         }else{
-            return view('pages.error.data-error');
+            \Log::channel('error_404')->debug('--------------(pages/upcomingContent)  Error ('.date('h:i:s A').')----------------------');
+            \Log::channel('error_404')->debug('Error =>'.json_encode($UpcomingResponse));
+            return response()->view('pages.error.404', [], 404);
         }
     }
 }

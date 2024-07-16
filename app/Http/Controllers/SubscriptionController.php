@@ -53,8 +53,10 @@ class SubscriptionController extends Controller
                     ];
                 }
             }
-        } else {  
-            return view('pages.error.data-error');
+        } else {
+            \Log::channel('error_404')->debug('--------------(subscriptions/plans)  Error ('.date('h:i:s A').')----------------------');
+            \Log::channel('error_404')->debug('Error =>'.json_encode($result));
+            return response()->view('pages.error.404', [], 404);
         }
 
         if (empty(@$subscriptionPurchases['success']) && @$subscriptionPurchases['message'] == 'No subscriptions found') {
@@ -129,7 +131,7 @@ class SubscriptionController extends Controller
             $result = (@$sessionPlanData[@$data['amountid']]);
         }
         if(empty($result)){
-            return view('pages.error.data-error');  
+            return response()->view('pages.error.404', [], 404);  
         }
         return view('subscription.payment-method', compact('result', 'data'));
         }else{
@@ -182,7 +184,9 @@ class SubscriptionController extends Controller
         $this->payuLog( 'Payu Money Request data', $txid,[$parameters]);
 
         if(@$parameters['status'] == false){
-            return view('pages.error.data-error');
+            \Log::channel('error_404')->debug('--------------(subscriptions/createorder)  Error ('.date('h:i:s A').')----------------------');
+            \Log::channel('error_404')->debug('Error =>'.json_encode($parameters));
+            return response()->view('pages.error.404', [], 404);
         }
         else{
 

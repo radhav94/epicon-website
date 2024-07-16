@@ -30,6 +30,7 @@ use App\Http\Controllers\PaytmController;
 use App\Http\Controllers\PaytmQrController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TvActiveController;
+use App\Http\Controllers\SpotlightController;
 
 
 $lang = ['hi', 'en'];
@@ -89,9 +90,8 @@ Route::any('payu/webhook',[SubscriptionController::class, 'payuWebhook']);
 
 Route::get('pages/loadmore', [PageController::class, 'loadMore'])->name('page.loadmore');
 Route::get('ajaxStoryData', [PageController::class, 'ajaxStoryData'])->name('ajaxStoryData');
-Route::get('story/{id}/{slug}', [PageController::class, 'storyPage'])->name('storyPage');
-Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
-Route::post('clap', [PageDetailController::class, 'clap'])->name('clap');
+Route::get('story/{short_code}', [PageController::class, 'storyPage'])->name('storyPage');Route::post('spinner', [PageController::class, 'getSpinnerContent'])->name('spinner');
+Route::get('clap', [PageDetailController::class, 'clap'])->name('clap');
 
 /*login and registration start */
 Route::post('sendotp', [LoginController::class, 'setSendOTP'])->name('sendotp');
@@ -102,12 +102,12 @@ Route::post('sendforgototp', [LoginController::class, 'SendForgotOtp'])->name('s
 Route::post('verifyforgototp', [LoginController::class, 'setForgotOTPVerification'])->name('verifyforgototp');
 Route::post('resetpwdapi', [LoginController::class, 'ResetPasswordVerification'])->name('resetpwdapi');
 Route::post('saveGenre', [LoginController::class, 'saveGenreForUser'])->name('saveGenre');
-Route::post('getGenre', [LoginController::class, 'getGenreList'])->name('getGenre');
+Route::get('getGenre', [LoginController::class, 'getGenreList'])->name('getGenre');
 Route::get('emailverification', [LoginController::class, 'emailVerification'])->name('emailverification');
 Route::post('setResetPassword', [LoginController::class, 'setResetPassword'])->name('setResetPassword');
 /*login and registration end */
 
-Route::post('explorecontent', [PageController::class, 'explorecontent'])->name('explorecontent');
+Route::get('explorecontent', [PageController::class, 'explorecontent'])->name('explorecontent');
 //dynamic / other pages route
 Route::post('/retro-content', [RetroRewindController::class, 'retroRewindContent']);
 Route::any('/supermix', [SupermixController::class, 'superMix']);
@@ -142,7 +142,7 @@ Route::group(['middleware' => 'checkUserAuthToken'], function () {
 
 Route::group(['middleware' => ['loggedin', 'checkUserAuthToken']], function () {
     Route::any('logout', LogoutController::class)->name('logout');
-    Route::post('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
+    Route::get('wishlist', [PageController::class, 'wishlist'])->name('wishlist');
     Route::post('verify-kidsPin', [KidsController::class, 'verifyKidsPin'])->name('verify-kidsPin');
 
     //setting controller routes start
@@ -155,7 +155,7 @@ Route::group(['middleware' => ['loggedin', 'checkUserAuthToken']], function () {
     Route::post('verifyOTP-delete-account', [SettingController::class, 'verifyOTPForDeleteAccount'])->name('verifyOTP-delete-account');
     Route::post('syncDevice-pin', [SettingController::class, 'syncDevicePin'])->name('syncDevice-pin');
     Route::get('set-language', [SettingController::class, 'setLanguage'])->name('set-language');
-    Route::post('deleteSearchHistory', [SettingController::class, 'deleteSearchHistory'])->name('deleteSearchHistory');
+    Route::get('deleteSearchHistory', [SettingController::class, 'deleteSearchHistory'])->name('deleteSearchHistory');
     //setting controller routes end
 
     //Subscription routes created by Ram
@@ -163,6 +163,10 @@ Route::group(['middleware' => ['loggedin', 'checkUserAuthToken']], function () {
     Route::post('redeemcoupon', [RewardsController::class, 'RedeemCouponCode'])->name('redeemcoupon');
     //end
 });
+
+Route::get('/setplayTracking', [PlayerController::class, 'setplayTracking']);
+Route::get('/player', [PlayerController::class, 'getVideoUrl']);
+
 
 foreach ($lang as $val) {
     $prefix = $val != 'en' ? "/$val" : "";
@@ -249,10 +253,11 @@ foreach ($lang as $val) {
         Route::get('explore/{slug}', [PageController::class, 'explore_details']);
 
         Route::get('live-tv', [LiveTvController::class, 'livetv'])->name('live-tv');
+        Route::get('spotlight', [SpotlightController::class, 'index'])->name('spotlight');
         Route::get('coming-soon', [UpcomingController::class, 'UpcomingEpicon'])->name('upcoming-epicon');
         Route::get('new-popular', [PopularController::class, 'NewsPopular'])->name('new-popular');
         Route::get('search', [SearchController::class, 'trendingsearch'])->name('search');
-        Route::post('get-search', [SearchController::class, 'search'])->name('get-search');
+        Route::get('get-search', [SearchController::class, 'search'])->name('get-search');
         // Route::get('midpage/{pageslug}/{catalog}', function ($pageslug, $catalog) {
         //     if ($pageslug != 'live-tv') {
         //         return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog]);
@@ -264,6 +269,14 @@ foreach ($lang as $val) {
                 return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog]);
             }
         });
+
+        Route::any('explore/{pageslug}/{catalog?}', function ($pageslug, $catalog = null, $redirect = 'explore') {
+            if ($pageslug != 'live-tv') {
+                return App::call('\App\Http\Controllers\PageController@showmidpagedetail', ['pageslug' => $pageslug, 'catalog' => $catalog, 'redirect' => $redirect]);
+            }
+        });
+
+        
         Route::get('channels/{slug}', [PageController::class, 'channelsmidpagedetail']);
         Route::get('explore', [PageController::class, 'explore'])->name('explore');
         Route::get('retro-rewind/{slug}', [RetroRewindController::class, 'retroRewindList'])->name('retro-list');
@@ -272,8 +285,6 @@ foreach ($lang as $val) {
     });
 }
 
-Route::post('/player', [PlayerController::class, 'getVideoUrl']);
-Route::post('/setplayTracking', [PlayerController::class, 'setplayTracking']);
 Route::any('/payu/transactioncallback', [SubscriptionController::class, 'payuWebhook']);
 
 

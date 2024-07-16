@@ -7,9 +7,6 @@
                 @endphp
                 @foreach ($ep_season_data as $key => $value)
                 <?php
-                if (!isset($value['ID']) || $value['ID'] == $content['ID']) {
-                    continue;
-                }
                 $card = getItemCardData($value, $displayLanguageParam);
                 //$cover_img = isset($value['cover_image']) ? @$value['cover_image']['medium'] : $card['banner_img'];
 
@@ -53,7 +50,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="col-sm-8 col-md-10 mt-2 shot-desc-{{$key}}">{!! sanitizeData(@$value['short_description']) !!}</p>
+                            <p class="col-sm-8 col-md-10 mt-2 shot-desc-{{$key}}">{!! sanitizeData(strip_tags(@$value['short_description'])) !!}</p>
                             <span class="read-button-{{$key}} readmore-episodes"> </span>
                             <div class="pod-grey-btn-list">
 

@@ -324,7 +324,7 @@ if ($('.distro-search-main').length) {
             let type = $('.distro-search-select .npq.active').data('type');
             $.ajax({
                 url: APP_URL + "/distro-tv-search",
-                type: 'POST',
+                type: 'GET',
                 data: { 'term': searchtext, 'type': type },
                 dataType: 'json',
                 async: true,

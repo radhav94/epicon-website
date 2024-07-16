@@ -156,6 +156,12 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 60,
         ],
+        'error_404' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/error_404/error_404.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 60,
+        ],
     ],
 
 ];

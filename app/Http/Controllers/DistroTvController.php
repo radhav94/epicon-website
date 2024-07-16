@@ -29,8 +29,10 @@ class DistroTvController extends Controller
             $meta = getMeta('distro-tv');
 
             return view('pages.homepage-distro', compact('result', 'meta', 'displayLanguageParam', 'stories'));
-                    }
-        return view('pages.error.404');
+        }
+        \Log::channel('error_404')->debug('--------------('.$slug.')  Error ('.date('h:i:s A').')----------------------');
+        \Log::channel('error_404')->debug('Error =>'.json_encode($result));
+        return response()->view('pages.error.404', [], 404);
     }
 
     private function homepageData($slug = 'home-v2', $page = 1)
@@ -116,7 +118,9 @@ class DistroTvController extends Controller
            $contentUrl = str_replace(array_keys($replaceContent), array_values($replaceContent), $content_url);
             return view('pages.detail.distro-details', compact('content','contentUrl'));
         }else{
-            return view('pages.error.data-error');
+            \Log::channel('error_404')->debug('--------------(pages/distrotv/page/'.$request->id.')  Error ('.date('h:i:s A').')----------------------');
+            \Log::channel('error_404')->debug('Error =>'.json_encode($resultArr));
+            return response()->view('pages.error.404', [], 404);
         }
     }
 

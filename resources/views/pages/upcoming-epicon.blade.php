@@ -33,7 +33,7 @@ $meta['description'] = "Exciting collection of upcoming web series and movies on
     <div class="upcoming-epicon-main">
 
         <div class="upcoming-heading border-bot">
-            <h4 class="new-popularheading text-white my-4">Upcoming on Epic On</h4>
+            <h4 class="new-popularheading text-white my-4">Upcoming on EPIC ON</h4>
         </div>
         {{-- <!-- <span id="closePlayer" style="display:none"></span> --> --}}
         <?php foreach ($output as $key => $releaseDate) { ?>
