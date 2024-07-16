@@ -9251,6 +9251,10 @@ audio::-webkit-media-controls-play-button {
         @media (max-width:1024px) {
             width: 100%;
         }
+        img{
+            width: 100%;
+            height: auto;
+        }
     }
 }
 .kids-tray-img{
