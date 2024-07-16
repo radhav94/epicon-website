@@ -8,16 +8,18 @@
             $gameUrl = $value['banner_url'] ?? 'javascript:void(0);';
             $subplan = checkSubscription();
         @endphp
-        @if (@$value['slug'] == 'rumble-game' && @$subplan['status'] == 'active')
-            @php
-                $newtab = 'target=_blank';
-                $gameUrl = $value['banner_url'] ?? 'javascript:void(0);';
-            @endphp
-        @else
-            @php
-                $newtab = '';
-                $gameUrl = url('subscription');
-            @endphp
+        @if (@$value['slug'] == 'rumble-game')
+            @if (@$subplan['status'] == 'active')
+                @php
+                    $newtab = 'target=_blank';
+                    $gameUrl = $value['banner_url'] ?? 'javascript:void(0);';
+                @endphp
+            @else
+                @php
+                    $newtab = '';
+                    $gameUrl = url('subscription');
+                @endphp
+            @endif
         @endif
 
         <div class="w-100 text-white pb-0">
