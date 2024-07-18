@@ -34,6 +34,12 @@
                     @else
                     <a href="{{ $hreflink }}" class="pik {{$watchClass}} play-btn">
                     @endif
+                    @if (isset($value['newrelease_date']))
+                        @php $newReleaseStatus = checkReleaseDate($value['newrelease_date']); @endphp
+                        @if ($newReleaseStatus)
+                            <span class="new-episode-tag">New<i>EPISODE</i></span>
+                        @endif
+                    @endif
                         <img src="{{ $cover_img }}" alt="img">
 
                         <?php
