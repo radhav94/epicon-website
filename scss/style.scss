@@ -8824,7 +8824,16 @@ audio::-webkit-media-controls-play-button {
                 display: block!important;
             }
         }
+        
        
+}
+.plyr__control.caption.plyr__control--pressed{
+    svg:nth-child(2){
+        display: none!important;
+    }
+    svg:nth-child(1){
+        display: block!important;
+    }
 }
 
 .cancelepisod{
