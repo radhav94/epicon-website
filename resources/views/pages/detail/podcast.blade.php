@@ -64,7 +64,7 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
 <div class="podcast-background w-100">
     <section class="container w-100 mt-2">
         <div class="row justify-content-center">
-            <div class="col-sm-12">
+            <div class="col-sm-12 position-relative">
                 <div class="podcast-top w-100 align-items-lg-start">
                     <div class="thumb">
                         {{-- <h6 class="pod-title">EPIC ON ORIGINAL</h6> --}}
@@ -76,15 +76,18 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
                     <input type="hidden" name="subUrl" class="subUrl" id="subUrl" value="{{ getUrl('subscription') }}">
                     <input type="hidden" name="sitemode" class="sitemode" id="sitemode" value="{{ $addClass }}">
                     <div class="thumb-detail text-white">
-                        <h1>{{ @$content['title'] }}</h1>
-
-                        {{-- <p class="with-whom">with Shailja Saraswati</p> --}}
-                        <div class="drama">
+                        <div class="title-and-genere">
+                            <h1>{{ @$content['title'] }}</h1>
                             <span>
                                 @include('pages.detail.detail-components.sub-bullets', [
                                 'v_content' => $content,
                                 ])
                             </span>
+                        </div>
+
+                        {{-- <p class="with-whom">with Shailja Saraswati</p> --}}
+                        <div class="drama">
+                            
                             <div class="d-flex">
 
                                 @if (@$content['percentage_match'])
