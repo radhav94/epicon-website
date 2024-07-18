@@ -6644,17 +6644,18 @@ input {
 }
 .podcast-top{
     @include flex(row,center,center);
-    gap: 30px;
+    gap: 40px;
     @media (max-width:768px) {
         gap: 20px;
     }
     @media (max-width:700px) {
         flex-direction: column;
-        gap: 20px;
+        gap: 0px;
+        align-items: flex-start;
     }
     .thumb{
-        width: 276px;
-        height: 276px;
+        width: 300px;
+        height: 300px;
         position: relative;
         overflow: hidden;
         border-radius: 30px;
@@ -6662,10 +6663,12 @@ input {
         @media (max-width:768px) {
             width: 200px;
             height: 200px;
+            border-radius: 20px;
         }
         @media (max-width:700px) {
-            width: 300px;
-            height: 300px;
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
         }
         img{
             width: 100%;
@@ -6701,15 +6704,37 @@ input {
             position: absolute;
             top: 0;
             left: 0;
+            @media (max-width:700px) {
+                width: 24px;
+            }
         }
     }
     .thumb-detail{
-        h1{
-            font-size: 30px;
-            @media (max-width:768px) {
-                font-size: 24px;
+        & .title-and-genere{
+            @media (max-width:700px) {
+                position: absolute;
+                top: 0;
+                left: 145px;
+                width: calc(100% - 160px);
+            }
+            h1{
+                font-size: 30px;
+                @include line-clamp(2);
+                @media (max-width:768px) {
+                    font-size: 20px;
+                    margin-bottom: 2px;
+                }
+            }
+            span{
+                color: #B7B7B7;
+                font-size: 12px;
+                width: 100%;
+                display: block;
+                overflow: auto;
+                white-space: nowrap;
             }
         }
+        
         .drama{
             display: flex;
             gap: 10px;
@@ -6717,10 +6742,6 @@ input {
             @media (max-width:768px) {
                 justify-content: flex-start;
                 flex-wrap: wrap;
-            }
-            span{
-                color: #B7B7B7;
-                font-size: 14px;
             }
         }
         .with-whom{
@@ -7712,6 +7733,25 @@ input {
         flex-wrap: wrap;
         .addToList,.shareThis{
             width: 40px;
+        }
+    }
+    @media (max-width:767px) {
+        .addToList,.shareThis,.clapButton{
+            width: 40px;
+            position: absolute;
+            top: 80px;
+            left: 256px;
+        }
+        .clapButton{
+            left: 145px;
+            width: auto;
+            padding: 0px 15px 0px 15px;
+            span{
+                margin-left: 0;
+            }
+        }
+        .shareThis{
+            left: 304px;
         }
     }
     @media (max-width:767px) {
@@ -9314,7 +9354,34 @@ audio::-webkit-media-controls-play-button {
         width: 50px;
     }
 }
+.new-episode-tag{
+    width: 49px;
+    height: 33px;
+    position: absolute;
+    color: #fff;
+    background-image: url("../img/new-episode-tag.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 2px 4px;
+    right: 10px;
+    bottom: 10px;
+    font-weight: 800;
+    font-size: 12px;
+    text-align: center;
+    line-height: 15px;
+    filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.8));
+    @media (max-width:767px) {
+        bottom: 5px;
+      }
 
+    i{
+        font-size: 8px;
+        display: block;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 8px;
+    }
+}
 
 // spotlight start
 .scrollspy {

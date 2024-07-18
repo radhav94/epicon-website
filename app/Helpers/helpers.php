@@ -1775,3 +1775,15 @@ function sortEpisodes($temp)
         return $temp;
     }
 }
+function checkReleaseDate($newrelease_date)
+{
+    $currentDate = date("Y-m-d");
+    $releaseDate = date("Y-m-d", strtotime($newrelease_date));
+    $curdate = strtotime($currentDate);
+    $maindate = strtotime($releaseDate);
+    $days = ($curdate - $maindate) / (60 * 60 * 24);
+    if ($days >= 0 && $days < 4) {
+        return true;
+    }
+    return false;
+}
