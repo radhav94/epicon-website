@@ -11,7 +11,7 @@ class PayuWebhookService
     {
         $this->payuLog('payu-webhook ----- Inside processWebhookCallback function -----');
         $this->payuLog("----- Sleeping for 5 mins -----");
-        sleep(300);
+        sleep(180);
         $this->payuLog("----- Inside checkActiveSubscription -----");
 
         if (!empty($webhookResponse) && @$webhookResponse['status'] == 'success') {
