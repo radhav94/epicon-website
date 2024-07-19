@@ -23,6 +23,7 @@
                     <div class="carousel-title-n-arrow px-2">
                         <h5 class="text-white">
                             {{ isset($listVal['name']) && $listVal['name'] != '' ? $listVal['name'] : ucfirst($slug) }}</h5>
+                            <?php if(isset($listVal['show_more']) && $listVal['show_more'] == true){ ?>
                         <a href="{{ url('explore' . '/' . $slug . '/' . $listVal['catalog_slug']) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
                                 fill="none">
@@ -30,6 +31,7 @@
                                     stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
                         </a>
+                        <?php } ?>
                     </div>
                     <ul class="vertical-carousel-initilize p-0">
                         @foreach ($listVal['content'] as $key => $contentVal)
