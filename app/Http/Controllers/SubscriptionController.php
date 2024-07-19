@@ -145,8 +145,10 @@ class SubscriptionController extends Controller
         $payment_type = $formData['payment_type'] ?? '';
         $sessionPlanData = $request->session()->get('plandata');
         $userData = $request->session()->get('user');
-        if($sessionPlanData[$formData['amountid']]) {
+        if($sessionPlanData && $sessionPlanData[$formData['amountid']]) {
             $result = ($sessionPlanData[$formData['amountid']]);
+        } else {
+            return redirect('subscription');
         }
         $currency = $result['currency'] ?? '';
         $countrycode = getCountryCode();
