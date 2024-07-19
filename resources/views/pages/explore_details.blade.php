@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', 'Explore - ' . ucfirst($slug))
+@section('title', 'Explore - ' . ucfirst(str_replace('-', ' ', $slug)))
 
 @section('content')
     <?php
@@ -8,7 +8,7 @@
 
     @if (isset($bannerImage) && $bannerImage != '')
         <div class="w-100 px-2">
-            <h4 class="text-white mb-4 ps-4">{{ __(ucfirst($slug)) }}</h4>
+            <h4 class="text-white mb-4 ps-4">{{ __(strtoupper(str_replace('-', ' ', $slug))) }}</h4>
         </div>
         <section class="container-fluid">
             <img class="w-100" src="{{ $bannerImage }}" alt="">
@@ -37,6 +37,17 @@
                             $cover_image = getCardImage($contentVal, 'vertical_cover_image');
                             
                             $getTitle = getNewTitle($contentVal);
+                            $generes = array_column($contentVal['genres_assign'] ?? [], 'name');
+
+                            if ($generes) {
+                                $sub_text[] = implode(' . ', $generes);
+                            }
+                            $sub_points = '';
+                            if ($generes) {
+                                foreach ($generes as $key => $genre) {
+                                    $sub_points .= '<li>' . $genre . '</li>';
+                                }
+                            }
                             ?>
                             <li>
                                 <div class="play-card">
@@ -53,7 +64,8 @@
                                         <a href="{{ getContentUrl($contentVal) }}" tabindex="{{ $key }}">
                                             <h1>{{ $contentVal['title'] }}</h1>
                                         </a>
-                                        {{-- <ul>
+                                        <div class="marquee">
+                                        <ul>
                                             <li>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     viewBox="0 0 16 16" fill="none">
@@ -74,10 +86,9 @@
                                                         fill="#FFAC33"></path>
                                                 </svg>
                                             </li>
-                                            <li class="ps-1"></li>
-                                            <li></li>
-                                            <li></li>
-                                        </ul> --}}
+                                            <?php echo $sub_points; ?>
+                                        </ul>
+                                        </div>
                                         <div class="d-flex justify-content-between">
                                             <div
                                                 class="w-100 d-flex justify-content-between align-items-center position-relative">
