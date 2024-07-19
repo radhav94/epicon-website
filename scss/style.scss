@@ -111,6 +111,7 @@ input {
     transform: translateY(40px);
     transition: transform .3s;
     backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
     background: #000000b8;
 }
 .side-menu-main{
@@ -1701,7 +1702,6 @@ input {
         transform: scale3d(1.2, 1.1, 1) translateZ(0px) perspective(500px);
         transition: transform 0.25s cubic-bezier(0.33, 0.04, 0.63, 0.93) 0.4s;
         opacity: 1;
-        overflow: hidden;
     }
 
     ul li:first-child .play-card{
@@ -2151,6 +2151,7 @@ input {
             background: #fff;
             border-bottom-left-radius: 10px;
             border-bottom-right-radius: 10px;
+            overflow: hidden;
 
             .upper-img.play-btn{
                 border: 1px solid #211F26;
@@ -9084,6 +9085,7 @@ audio::-webkit-media-controls-play-button {
     border-radius: 0px 0px 12px 12px;
     position: absolute;
     backdrop-filter: blur(70px);
+    -webkit-backdrop-filter: blur(70px);
     top: 35px;
     padding: 20px;
     overflow: auto;
@@ -9386,14 +9388,23 @@ audio::-webkit-media-controls-play-button {
 
 // spotlight start
 .scrollspy {
-    #comingsoon {
-      @media (max-width:767px) {
-        margin-top: 15px !important;
-      }
+    // #comingsoon {
+    //   @media (max-width:767px) {
+    //     margin-top: 15px !important;
+    //   }
+    // }
+    #comingsoon,#top10movies,#top10shows,#newtrending{
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        // background-color: #03d8aa;
+        top: -120px;
     }
-  
+    #top10movies,#top10shows,#newtrending{
+        top: -120px;
+    }
     #nav-container {
-      position: fixed;
+      position: sticky;
       width: 100%;
       padding: 1em 0;
       z-index: 1;
@@ -9462,6 +9473,8 @@ audio::-webkit-media-controls-play-button {
   
     section {
       height: auto;
+      padding-top: 50px;
+      position: relative;
     }
   
     a.active[href="#commingsoon"],
@@ -9479,7 +9492,7 @@ audio::-webkit-media-controls-play-button {
       overflow: auto;
   
       & .card-ms {
-        width: 230px;
+        width: 296px;
         height: auto;
         margin-right: 10px;
         flex-shrink: 0;
@@ -9489,23 +9502,29 @@ audio::-webkit-media-controls-play-button {
         background-color: transparent;
         border: none;
         overflow: hidden;
+        @media (max-width:767px) {
+            width: 237px;
+          }
   
         & .number {
           position: absolute;
           left: 0;
           bottom: 0;
-          width: 100px;
-          height: 140px;
+          width: 80px;
+          height: 106px;
           background-size: contain;
           background-repeat: no-repeat;
           background-position: left bottom;
         }
   
         & .img {
-          width: 150px;
+          width: 240px;
           position: relative;
           overflow: hidden;
           border-radius: 10px;
+          @media (max-width:767px) {
+            width: 188px;
+          }
   
           img {
             width: 100%;
@@ -9517,7 +9536,7 @@ audio::-webkit-media-controls-play-button {
   
     & .card-ms:nth-child(1) .number {
       background-image: url(../img/1-ms.svg);
-      left: 15px;
+      left: 0px;
     }
   
     & .card-ms:nth-child(2) .number {
@@ -9556,12 +9575,14 @@ audio::-webkit-media-controls-play-button {
       background-image: url(../img/10-ms.svg);
       background-size: cover;
       background-position: left;
-      left: -3px;
-      height: 125px;
+      height: 97px;
     }
   
     & .card-ms:nth-child(10) {
-      width: 260px;
+      width: 320px;
+      @media (max-width:767px) {
+        width: 270px;
+      }
     }
   
     .carousel-title-n-arrow h5 {
