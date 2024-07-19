@@ -72,7 +72,7 @@
 
 
                        <!-- filter -->
-                       <div class="episode-season" style="display:flex">
+                       <div class="episode-season">
                        @if($content['content_type'] !="VIDEO")
                        <div class="all-episode season">
                                <select id="SortingEp">

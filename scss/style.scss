@@ -5165,10 +5165,10 @@ input {
         }
     }
 }
-.nav .nav-item:has(.ep.active){
-    ~ .episode-season{
+.nav .nav-item:has(.ep.active) ~ .episode-season {
+    // ~ .episode-season {
         display: flex;
-    }
+    // }
 }
 .season{
     padding: 0px 14px;
