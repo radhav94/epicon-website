@@ -1701,6 +1701,7 @@ input {
         transform: scale3d(1.2, 1.1, 1) translateZ(0px) perspective(500px);
         transition: transform 0.25s cubic-bezier(0.33, 0.04, 0.63, 0.93) 0.4s;
         opacity: 1;
+        overflow: hidden;
     }
 
     ul li:first-child .play-card{
