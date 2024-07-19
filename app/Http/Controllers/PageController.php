@@ -215,7 +215,7 @@ class PageController extends Controller
         } else {
             if ($redirect == 'explore') {
                 $url = "pages/midpage/{$pageslug}";
-                $epicwebArr = CurlAPI($url, "GET", ['page' => 1, 'catalog_slug' => $catalog], 1);
+                $epicwebArr = CurlAPI($url, "GET", ['page' => 1, 'catalog_slug' => $catalog,'view_all'=>'true'], 1);
             } else {
                 $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => $limit, 'page' => 1], 1);
             }
@@ -274,7 +274,7 @@ class PageController extends Controller
             $catalog = $request->catalogid;
             if (isset($mainslug) && $mainslug == 'explore') {
                 $url = "pages/midpage/{$pageslug}";
-                $epicwebArr = CurlAPI($url, "GET", ['page' => $page, 'catalog_slug' => $catalog], 1);
+                $epicwebArr = CurlAPI($url, "GET", ['page' => $page, 'catalog_slug' => $catalog,'view_all' => 'true'], 1);
             } else {
                 $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => $limit, 'page' => $page], 1);
             }

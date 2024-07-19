@@ -1,6 +1,13 @@
 @extends('layouts.default')
 @section('title', ucwords(str_replace('-', ' ', $pageslug)))
+<?php 
 
+if($catalog == 'tv-shows'){
+    $pagehead = $pageslug . ' SHOWS';
+}else{
+$pagehead = $pageslug . ' ' . $catalog; } ?>
+
+@section('title', strtoupper(str_replace('-', ' ', $pagehead)))
 <?php $meta['description'] = 'Keep your kids entertained with the best OTT platforms for kids in India, featuring a wide range of content. Subscribe and Enjoy ad-free streaming'; //dd($hybidData); ?>
 @section('content')
     <div class="container mt-4">
@@ -15,7 +22,7 @@
             @endif
 
             <div class="col-10">
-                <h1 class="text-white fs-5">{{ ucwords(str_replace('-', ' ', $pageslug)) }}</h1>
+                <h1 class="text-white fs-5">{{ strtoupper(str_replace('-', ' ', $pagehead)) }}</h1>
             </div>
             <div class="col-2 d-none">
                 <div class="episode-season" style="display:block;right:auto;">
@@ -75,17 +82,18 @@
                                     {!! topTenDiv($val) !!}
                                 @endif
                                 <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}"
-                                    data-type="{{ ucwords(str_replace('-', ' ', $pageslug)) }}"
+                                    data-type="{{ ucwords(str_replace('-', ' ', $pageslug. ' ' . $catalog)) }}"
                                     href="{{ getContentUrl($val) }}">
                                     <img src="{{ $cover_img }}" alt="">
                                 </a>
                             </div>
                             <div class="bottom-card-content">
                                 <a class="data-a" onclick="click_tile(this)" data-title ="{{ @$val['title'] }}"
-                                    data-type="{{ ucwords(str_replace('-', ' ', $pageslug)) }}"
+                                    data-type="{{ ucwords(str_replace('-', ' ', $pageslug. ' ' . $catalog)) }}"
                                     href="{{ getContentUrl($val) }}">
                                     <h1>{{ $val['title'] ?? '' }}</h1>
                                 </a>
+                                <div class="marquee">
                                 <ul><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         viewBox="0 0 16 16" fill="none">
                                         <path
@@ -110,6 +118,7 @@
                                 <li>Mind Game</li>
                                 <li>5 Seasons</li> --> --}}
                                 </ul>
+                                </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="w-100 d-flex justify-content-between align-items-center position-relative">
                                         <div class="d-flex justify-content-start">
