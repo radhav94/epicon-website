@@ -11,16 +11,26 @@
             $temp = sortEpisodes($temp);
             //$lastSeason = $value['slug'];
             if ($temp != null) {
-                $seasonList[$value['content_order']] = [
-                    'title' => $value['title'],
-                    'url' => $value['slug'],
-                    'content_order' => $value['content_order']
-                ];
+                if (isset($value['content_order'])) {
+                    $content_order = true;
+                    $seasonList[$value['content_order']] = [
+                        'title' => $value['title'],
+                        'url' => $value['slug'],
+                        'content_order' => $value['content_order']
+                    ];
+                } else {
+                    $seasonList[] = [
+                        'title' => $value['title'],
+                        'url' => $value['slug']
+                    ];
+                    $content_order = false;
+                }
+                
                 $season_episode_data[$value['slug']] = $temp;
             }
         }
         $tab1_title = 'Episodes';
-        krsort($seasonList);
+        $content_order ? krsort($seasonList) : rsort($seasonList);
     } elseif ($content['content_type'] == 'SEASON') {
         $temp = $content['episodes'] ?? [];
         $temp = sortEpisodes($temp);
