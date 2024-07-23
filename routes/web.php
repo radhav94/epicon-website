@@ -199,6 +199,7 @@ foreach ($lang as $val) {
         Route::post('verifyOtpAjax', [SubscriptionController::class, 'verifyOtpAjax']);
         Route::get('transaction-history', [UserAccountController::class, 'TransactionHistory'])->name('transaction-history');
         Route::post('cancelMembership', [SubscriptionController::class, 'cancelMembership']);
+        Route::get('upgrade-plan', [UserAccountController::class, 'upgradePlan'])->name('upgrade-plan');
         //end
 
         /*settings route*/
