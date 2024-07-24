@@ -4,6 +4,7 @@
     $tab1_title = $lastSeason = '';
 
     if ($content['content_type'] == 'SHOW') {
+        $content_order = false;
         $seasons = $content['season'] ?? [];
         $tab1_title = 'Seasons';
         foreach ($seasons as $value) {            
@@ -23,7 +24,6 @@
                         'title' => $value['title'],
                         'url' => $value['slug']
                     ];
-                    $content_order = false;
                 }
                 
                 $season_episode_data[$value['slug']] = $temp;
