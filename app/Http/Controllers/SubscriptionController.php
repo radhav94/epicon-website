@@ -517,7 +517,7 @@ class SubscriptionController extends Controller
             if (!empty($sessionData)) {
                  $storeSessionData = $request->session()->put('plandata', $sessionData);
             }
-            $listResponseData['planSessionData'] = $storeSessionData;
+            $listResponseData['planSessionData'] = $storeSessionData ?? [];
             return response()->json($listResponseData, 200)->header('Content-Type', 'application/json');
         } else {
             if ($listResponseData && @$listResponseData['success'] == false) {

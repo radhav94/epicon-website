@@ -12,7 +12,6 @@
                 "paths": [
                     "NOT /qr-pay/*",
                     "NOT /qr-promo/*",
-                    "NOT /getSubscription",
                     "NOT /subscription",
                     "NOT /subscription/*",
                     "NOT /payusuccess",
