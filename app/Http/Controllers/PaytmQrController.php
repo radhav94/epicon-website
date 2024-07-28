@@ -161,9 +161,19 @@ class PaytmQrController extends Controller{
 
 		$response = json_decode($result,true);
 
-		$return_array['STATUS'] = $response['STATUS'];
-		$return_array['TXNID'] = $response['TXNID'];
-
+		if (isset($response['STATUS']) && isset($response['TXNID'])) {
+			$return_array['STATUS'] = $response['STATUS'];
+			$return_array['TXNID'] = $response['TXNID'];
+			echo json_encode($return_array,true);
+			die;
+		}else{
+			$return_array['STATUS'] = 'false';
+			$return_array['TXNID'] = null;
+			echo json_encode($return_array,true);
+			die;
+		}
+	
+		
 		// $order_response = CurlAPI("cms/getsingleorder",'POST',array('order_id'=>$order_id));
   //   	$order_data = isset($order_response['order_data'])?$order_response['order_data']:'';
 		// if($return_array['STATUS'] == 'TXN_SUCCESS'){
@@ -171,9 +181,8 @@ class PaytmQrController extends Controller{
 		// }else if($return_array['STATUS'] == 'TXN_FAILURE'){
 		// 	$this->getSubscriptionInitiate($order_data,$currency,'Subscription payment failed');
 		// }
-
-		echo json_encode($return_array,true);
-		die;
+		
+		
 		// echo "<pre>"; print_r(json_encode($response,true)); echo "</pre>"; die('end of code');
 		// need to update subscription if payment sucessfull
 		
