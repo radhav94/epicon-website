@@ -160,8 +160,7 @@ class PaytmQrController extends Controller{
 		curl_close($curl);
 
 		$response = json_decode($result,true);
-		$response['ErrorCode'] = 'VAER-PF111';
-		$response['ErrorMsg'] = 'ORDER ID IS REQUIRED';
+
 		if (isset($response['STATUS']) && isset($response['TXNID'])) {
 			$return_array['STATUS'] = $response['STATUS'];
 			$return_array['TXNID'] = $response['TXNID'];
@@ -175,7 +174,6 @@ class PaytmQrController extends Controller{
 		}
 	
 		
-
 		// $order_response = CurlAPI("cms/getsingleorder",'POST',array('order_id'=>$order_id));
   //   	$order_data = isset($order_response['order_data'])?$order_response['order_data']:'';
 		// if($return_array['STATUS'] == 'TXN_SUCCESS'){
