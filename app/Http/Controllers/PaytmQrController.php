@@ -160,7 +160,8 @@ class PaytmQrController extends Controller{
 		curl_close($curl);
 
 		$response = json_decode($result,true);
-		
+		$response['ErrorCode'] = 'VAER-PF111';
+		$response['ErrorMsg'] = 'ORDER ID IS REQUIRED';
 		if (isset($response['STATUS']) && isset($response['TXNID'])) {
 			$return_array['STATUS'] = $response['STATUS'];
 			$return_array['TXNID'] = $response['TXNID'];
@@ -168,8 +169,9 @@ class PaytmQrController extends Controller{
 			die;
 		}else{
 			$return_array['STATUS'] = 'false';
-			$return_array['TXNID'] = 'null';
+			$return_array['TXNID'] = null;
 			echo json_encode($return_array,true);
+			die;
 		}
 	
 		
