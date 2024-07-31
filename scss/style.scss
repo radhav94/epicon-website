@@ -5490,6 +5490,7 @@ input {
         overflow: auto;
         white-space: nowrap;
         padding: 10px;
+        justify-content: center;
         @media (max-width:767px) {
             grid-template-columns: auto auto;
             white-space: inherit;
