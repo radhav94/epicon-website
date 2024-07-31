@@ -41,14 +41,18 @@ class UserAccountController extends Controller
     }
 
     public function myaccount(){
-
+ 
+        $hasFuture = false;
         $subscriptionPurchases=[];
         $subscriptionPurchasesArr = CurlAPI("users/purchases", 'POST', [] , 2, true, true);
 
         if(isset($subscriptionPurchasesArr) && @$subscriptionPurchasesArr['success'] == true){
 
             foreach(@$subscriptionPurchasesArr['data'] as $key=>$val){
-                if( @$val['plan_status'] == 'future' ||  @$val['plan_status'] == 'current' || (@$val['plan_status'] == 'past' && $key == 0 ) )
+                if (@$val['plan_status'] == 'future') {
+                    $hasFuture = true;
+                }
+                if( @$val['plan_status'] == 'current' || (@$val['plan_status'] == 'past' && $key == 0 ) )
                 {
                     $subscriptionPurchases = [
                         'user_id'=> @$val['user_id'],
@@ -76,7 +80,7 @@ class UserAccountController extends Controller
             $viewprofile = [];
         }
 
-        return view('my-account.my-account', compact('subscriptionPurchases','viewprofile'));
+        return view('my-account.my-account', compact('subscriptionPurchases','viewprofile', 'hasFuture'));
     }
 
     public function TransactionHistory(){

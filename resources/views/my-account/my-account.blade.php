@@ -75,7 +75,7 @@ $subplan = checkSubscription();
             </div>
             @if(!empty($subscriptionPurchases))
             <?php
-            if($today < $enddate){
+            if($today <= $enddate){
                 $plancss = '';
             }else{
                 $plancss = 'plan-expired';
@@ -113,8 +113,9 @@ $subplan = checkSubscription();
                     </div>
                    <?php  //echo $numOfDays; exit;?>
                     @if($numOfDays <= 4 || $subscriptionPurchases['plan_status'] == 'past')
+                    @if(@$viewprofile['subscriptions']['activeSubscription'] == false && $hasFuture == false)
                     <div class="w-100 text-center">
-                        @if($numOfDays <= 0)
+                        @if($numOfDays < 0)
                         @php $class = "renew-paln"; @endphp
                         @else
                             @php $class =" renew-paln-bottom"; @endphp
@@ -127,9 +128,10 @@ $subplan = checkSubscription();
                             </svg>
                         </button>
                     </div>
+                    @endif
                     @else
                     <div class="w-100 text-center">
-                        @if($plan_name != "year" && @$viewprofile['subscriptions']['activeSubscription'] == false)
+                        @if($plan_name != "year" && @$viewprofile['subscriptions']['activeSubscription'] == false && $hasFuture == false)
                             <button class="renew-paln-bottom" onclick="window.location.href='upgrade-plan'">
                                 {{__('Upgrade Plan')}}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
