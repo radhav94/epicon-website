@@ -131,7 +131,7 @@ $subplan = checkSubscription();
                     @endif
                     @else
                     <div class="w-100 text-center">
-                        @if($plan_name != "year" && @$viewprofile['subscriptions']['activeSubscription'] == false && $hasFuture == false)
+                        @if($plan_name != "year" && @$viewprofile['subscriptions']['activeSubscription'] == false && $hasFuture == false && in_array(strtolower($viewprofile['subscriptions']['payment_gateway'] ?? ""), ["payumoney", "payu"]))
                             <button class="renew-paln-bottom" onclick="window.location.href='upgrade-plan'">
                                 {{__('Upgrade Plan')}}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
