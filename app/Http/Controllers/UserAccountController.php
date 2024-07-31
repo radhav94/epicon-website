@@ -91,4 +91,32 @@ class UserAccountController extends Controller
 
         return view('my-account.transaction-history', compact('subscriptionPurchases'));
     }
+
+    public function upgradePlan()
+    {
+        $data = ['auth_token' => config('epicconfig.EPICAPI.API_AUTH_TOKEN')];
+        $result = CurlAPI("subscriptions/upgradePlan", 'GET', $data, 2, true, true);
+        if ($result && $result['success']) {
+            $plandata = [];
+            foreach (@$result['plans'] as $val) {
+                if(isset($val['id'])){
+                    $plandata[$val['id']] = [
+                        'id' => $val['id'],
+                        'name' => @$val['name'],
+                        'plan' => @$val['plan'],
+                        'actual_price' => @$val['actual_price'],
+                        'currency' => @$val['currency'],
+                        'epic_price' => @$val['actual_price'],
+                        'save' => '',
+                    ];
+                }
+            }
+            if (count($plandata) > 0) {
+                session()->put('plandata', $plandata);
+            }
+            return view('subscription.upgrade-plan', compact('result'));
+        } else {
+            return response()->view('pages.error.404', [], 404);
+        }
+    }
 }
