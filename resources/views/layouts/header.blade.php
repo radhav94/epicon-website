@@ -278,6 +278,7 @@ if ($request->has('type')) {
                                 $gender = @$profile['result']['user_data']['gender'] ?? 'Male';
                                 $default_img = ($gender == 'Female') ? asset('assets/img/edit-profile-pik.png') : asset('assets/img/profile-boy.png')
                             ?>
+                            @if (isset($profile['profiles']) && count($profile['profiles']) > 0)
                                 @foreach ($profile['profiles'] as $key => $value)
                                     <?php
                                         $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : $default_img;
@@ -292,6 +293,7 @@ if ($request->has('type')) {
                                         <span class="pro-name">{{ ucfirst(@$value['name']) }}</span>
                                     </a>
                                 @endforeach
+                            @endif
 
                                 @if (count($profile['profiles']) < config('global.max_profile_limit'))
                                     <a href="{{ getUrlWithPrefix('profile.add') }}">
