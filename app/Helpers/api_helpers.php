@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
 
-function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendUserToken = false, $sendAuthTokenparams = false, $logCommandCurl = false)
+function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendUserToken = false, $sendAuthTokenparams = false, $logCommandCurl = true)
 {
 
     if ($apiDomain == 3) {
