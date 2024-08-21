@@ -1396,7 +1396,7 @@
                                                 </ul>
                                         </div>
                                         <input type="hidden" name="isdcode" id="country-stdisdcode" class="country-stdisdcode-class" value="{{ $country['countryCode'] }}">
-                                        <input class="form-control" style="text-indent: 115px;" name="phone" type="text" value="{{ $mobile }}" {{ !empty($mobile) ? 'readonly' : '' }} placeholder="Enter mobile no" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Please enter a valid phone number">
+                                        <input class="form-control rounded-start-0" style="text-indent: 115px;" name="phone" type="text" value="{{ $mobile }}" {{ !empty($mobile) ? 'readonly' : '' }} placeholder="Enter mobile no" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Please enter a valid phone number">
                         </div>
                         
                     </div>
