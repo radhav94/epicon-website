@@ -287,14 +287,31 @@ function searchCountryCode(searchval) {
   filter = input.value.toUpperCase();
   ul = document.getElementById("myUL_"+searchval);
   li = ul.getElementsByTagName("li");
+  let matchFound = false;
+  $('.no-data').show();
   for (i = 0; i < li.length; i++) {
       a = li[i].getElementsByTagName("a")[0];
       txtValue = a.textContent || a.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
           li[i].style.display = "";
+          matchFound = true;
+          $('.no-data').hide();
       } else {
           li[i].style.display = "none";
+          
       }
+  }
+  const notFoundMessage = ul.querySelector('.no-data');
+  if (notFoundMessage) {
+      notFoundMessage.remove();
+  }
+  // If no match was found, append the "Data not found" message
+  if (!matchFound) {
+      const noDataLi = document.createElement('li');
+      noDataLi.className = 'no-data'; // Add a class to identify this element
+      noDataLi.textContent = 'No match found';
+      ul.appendChild(noDataLi);
+     
   }
 };
 
