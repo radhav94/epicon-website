@@ -1316,17 +1316,20 @@ function getCountryStateDataInHtml()
     $countrystate = getCountryStateData();
     $countryisdhtml = "";
 
-    if( $countrystate){
+    $selectvar = "";
+    if ($countrystate) {
         foreach ($countrystate['countries'] as $i => $value) {
-            if ($countrycode == $value['code'] || $countrycode == $value['countryisdcode']) {
-                $selectvar = "selected";
-            } else {
-                $selectvar = "";
-            }
-            $countryisdhtml .= '<option value="' . $value['countryisdcode'] . '" ' . $selectvar . '>' . $value['displayisdcode'] . '</option>';
+            if ($countrycode == $value['code']) {
+                $selectvar = '+'. $value['countryisdcode'];
+            } 
+            //$countryisdhtml .= '<option value="' . $value['countryisdcode'] . '" ' . $selectvar . '>' . $value['country'] .' (+'. $value['countryisdcode'].')'.'</option>';
+            $countryisdhtml .= '<li class="conuntry__code__list__text '.$selectvar.'"><a href="javascript:void(0)" class="conuntry__code__list__text--inner">'. $value['country'] .' (+'. $value['countryisdcode'].')'.'</a></li>';
         }
     }
-    return $countryisdhtml;
+    $result = [ 'countryisdhtml' => $countryisdhtml,
+                'countryCode' => $selectvar
+              ];
+    return $result;
 }
 
 function getCountryList()

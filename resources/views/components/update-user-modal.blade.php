@@ -36,13 +36,21 @@
 @stop
 <?php //dd(getCountryStateDataInHtml()); 
 $caption = $input = $stdisdcode = "";
+$country = getCountryStateDataInHtml();
 if(empty($userData['mobile']) && $userData['mobile']==''){
     $caption = __('Update Mobile Number');
     $placeholder = __('Please enter mobile');
-    $stdisdcode = '<div class="input-field col-sm-6 inputCenter position-relative">
-    <select class="uk-select select-control input__field stdcode" name="stdisdcode">'.getCountryStateDataInHtml().'
-    </select>';
-    $input = '<input type="text" name="mobile" class="form-control userdetail input-placeholder-text" placeholder="'.$placeholder.'" data-id="mobile" maxlength="10" id="mob-number"></div>'; 
+    $stdisdcode = '<div class="input-field col-sm-6 m-auto inputCenter position-relative">
+                     <div class="new-input-fields">
+                    <div class="country__code d-block" id="countryCode__dropdown">'.$country['countryCode'].'</div>
+                                        <div class="country__code__box">
+                                                <input type="text" class="country__code__search search_5" id="search_field" placeholder="Search" onkeyup="searchCountryCode(5)">
+                                                <ul class="new__input__field__drop__down list-unstyled text-white" id="myUL_5">'.
+                                                 $country['countryisdhtml']
+                                               .'</ul>
+                                        </div>
+                                        <input type="hidden" name="stdisdcode" id="country-stdisdcode" class="country-stdisdcode-class stdcode" value="'.$country['countryCode'].'">';
+    $input = '<input type="text" name="mobile" class="form-control userdetail input-placeholder-text rounded-start-0" placeholder="'.$placeholder.'" data-id="mobile" maxlength="10" id="mob-number"></div></div>'; 
 }else if(empty($userData['email']) && $userData['email']==''){
     $caption = __('Update Email Id');
     $placeholder = __('Please enter email id');

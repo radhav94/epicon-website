@@ -275,3 +275,59 @@ $(".s__spy").on("click",function(){
   $(".s__spy").removeClass("active");
   $(this).addClass("active");
 });
+
+$(document).on("click","#countryCode__dropdown",function(){
+  $(".country__code__box").toggleClass("active-div");
+});
+
+// search country code start
+function searchCountryCode(searchval) {
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.querySelector(".search_"+searchval);
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myUL_"+searchval);
+  li = ul.getElementsByTagName("li");
+  let matchFound = false;
+  $('.no-data').show();
+  for (i = 0; i < li.length; i++) {
+      a = li[i].getElementsByTagName("a")[0];
+      txtValue = a.textContent || a.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+          matchFound = true;
+          $('.no-data').hide();
+      } else {
+          li[i].style.display = "none";
+          
+      }
+  }
+  const notFoundMessage = ul.querySelector('.no-data');
+  if (notFoundMessage) {
+      notFoundMessage.remove();
+  }
+  // If no match was found, append the "Data not found" message
+  if (!matchFound) {
+      const noDataLi = document.createElement('li');
+      noDataLi.className = 'no-data'; // Add a class to identify this element
+      noDataLi.textContent = 'No match found';
+      ul.appendChild(noDataLi);
+     
+  }
+};
+
+const appendCountry = document.getElementById("countryCode__dropdown");
+let contr = document.querySelectorAll(".conuntry__code__list__text");
+contr.forEach(function(allCountryCode){
+  allCountryCode.addEventListener("click",function(){
+    let allCoCode = allCountryCode.textContent;
+    var countryCode = allCoCode.match(/\(\+\d+\)/)[0];
+    countryCode = countryCode.replace(/[()]/g, '');
+    // appendCountry.innerHTML= countryCode;
+    $(".country__code").text(countryCode);
+    $(".country-stdisdcode-class").val(countryCode);
+    $(contr).removeClass("active");
+    $(this).addClass("active");
+    $(".country__code__box").toggleClass("active-div");
+  })
+});
+// search country code end
