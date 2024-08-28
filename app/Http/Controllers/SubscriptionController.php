@@ -719,19 +719,19 @@ class SubscriptionController extends Controller
     {
         $ajaxData = $request->all();
         $email = $mobile = $stdcode = "";
+        $stdcodeRes = str_replace("+", "", $ajaxData['stdcode']);
         $type = $ajaxData['type'] ?? '';
         if($type == "email"){
             $email = $ajaxData['userdetail'] ?? '';
         }else{
             $mobile = $ajaxData['userdetail'] ?? '';
-            $stdcode = $ajaxData['stdcode'] ?? '';
+            $stdcode = $stdcodeRes ?? '';
         }
         $otpResponse = [];
         $postData = [
             'mobile' => $stdcode.$mobile,
             'email' => $email,
         ];
-        //dd($postData);
         $otpResponse = CurlAPI("users/contactDetailsOTP", "POST", $postData, 2, true, true);
         if ($otpResponse && @$otpResponse['success'] == true) {
             return response()->json($otpResponse, 200)->header('Content-Type', 'application/json');
@@ -744,6 +744,7 @@ class SubscriptionController extends Controller
     {
         $ajaxData = $request->all();
         $email = $mobile = $stdcode = "";
+        $stdcodeRes = str_replace("+", "", $ajaxData['stdcode']);
         $countrycode = getCountryCode();
         if($countrycode == 'IN'){
             $currency = ' Rs. ';
@@ -756,7 +757,7 @@ class SubscriptionController extends Controller
             $email = $ajaxData['userdetail'] ?? '';
         }else{
           $mobile =  $ajaxData['userdetail'] ?? '';
-          $stdcode = $ajaxData['stdcode'] ?? '';
+          $stdcode = $stdcodeRes ?? '';
         }
         $verifyResponse = [];
         $postData = [
