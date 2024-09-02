@@ -1,4 +1,5 @@
 User-agent: *
 Disallow:
 Disallow: /cgi-bin/
+Disallow: /telanganas-pride-nagoba-jathara
 Sitemap: https://www.epicon.in/sitemap.xml
