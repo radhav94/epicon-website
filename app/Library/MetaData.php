@@ -28,7 +28,7 @@ namespace App\library {
                     $meta['title'] = 'Listen to Popular Podcast Online Available on EPIC ON';
                     $meta['description'] = 'Listen to Latest and Trending Podcast online for free with EPIC ON anytime, anywhere. Download or listen to unlimited podcast available online';
                     $meta['keywords'] = 'free podcast, download podcast, free popular podcasts, free podcast downloads, free podcasts online';
-                } else if ($pageslug == 'play' || $pageslug == 'games') {
+                } else if ($pageslug == 'play' || $pageslug == 'games'|| $pageslug == 'games-all') {
                     $meta['title'] = 'Free Kids Games | Online Games for Kids | Play Multiple Online Games | Now Available on EPIC ON';
                     $meta['description'] = 'Play the Coolest Online Games for Kids, Play Action Games, Arcade and Board Games. Choose from over 100 Free Kids Games at EPIC ON!';
                     $meta['keywords'] = 'games, games free download, subway surfers, onilne games, car games, coin master free spins, games to play, play online games, gamezop, snake game, bubble shooter, onilne chess, bubble shooter, free games, new games, games, games free download, subway surfers, onilne games, car games, coin master free spins, games to play, play online games, gamezop, snake game, bubble shooter, onilne chess, bubble shooter, free games, new games,free online, kids games';
@@ -93,7 +93,7 @@ namespace App\library {
                     $meta['title'] = 'सुनें लोकप्रिय पॉडकास्ट ऑनलाइन जो है ईपीक ऑन पर उपलब्ध';
                     $meta['description'] = 'कहीं भी, कभी भी ईपीक ऑन के साथ ऑनलाइन नवीनतम और ट्रेंडिंग पॉडकास्ट सुनें। डाउनलोड करें या असीमित उपलब्ध पॉडकास्ट ऑनलाइन सुनें';
                     $meta['keywords'] = 'मुफ्त पॉडकास्ट, पॉडकास्ट डाउनलोड करें, मुफ्त पॉडकास्ट, मुफ्त पॉडकास्ट डाउनलोड, मुफ्त पॉडकास्ट ऑनलाइन';
-                } else if ($pageslug == 'play' || $pageslug == 'games') {
+                } else if ($pageslug == 'play' || $pageslug == 'games'|| $pageslug == 'games-all') {
                     $meta['title'] = 'अब खेलें कई ऑनलाइन गेम्स उपलब्ध है ईपीक ऑन पर';
                     $meta['description'] = 'अब तम्बोला, लूडो, शूटिंग गेम्स, आर्केड फ्री गेम, रेसिंग कार गेम्स सहित असीमित मुफ्त ऑनलाइन गेम खेलें, जो ईपीक ऑन पर उपलब्ध हैं';
                     $meta['keywords'] = 'खेल, खेल मुफ्त डाउनलोड, मेट्रो सर्फर्स,ऑनलाइन खेल, कार खेल, सिक्का मुक्त, खेल खेलने के लिए, ऑनलाइन खेल, साँप खेल, बुलबुला शूटर, ऑनलाइन शतरंज, बुलबुला शूटर, मुफ्त खेल, नए खेल खेलने के लिए';
