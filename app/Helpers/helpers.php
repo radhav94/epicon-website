@@ -1525,7 +1525,7 @@ if (!function_exists('getMeta')) {
 
                 $meta['keywords'] = $lang != 'HINDI' ? 'free podcast, download podcast, free popular podcasts, free podcast downloads, free podcasts online' : 'मुफ्त पॉडकास्ट, पॉडकास्ट डाउनलोड करें, मुफ्त पॉडकास्ट, मुफ्त पॉडकास्ट डाउनलोड, मुफ्त पॉडकास्ट ऑनलाइन';
 
-            } else if ($pagetitle == 'play' || $pagetitle == 'games') {
+            } else if ($pagetitle == 'play' || $pagetitle == 'games' || $pagetitle == 'games-all' || $pagetitle == 'Web games') {
 
                 if ($pageslug == 'gamepix') {
 

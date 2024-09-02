@@ -2,7 +2,7 @@
 $firstSegment   = getFirstSegmentWithKids(); 
 $isMoblile      = isMobliDevice();
 ?>
-<section class=" hero-banner w-100 {{ in_array($firstSegment, ['podcast','games']) ? 'podcast-banner' : '' }}">
+<section class=" hero-banner w-100 {{ in_array($firstSegment, ['podcast','games', 'games-all']) ? 'podcast-banner' : '' }}">
     <div class="banner-carousel">
         @foreach ($value['content'] as $key => $val)
             <?php
@@ -11,7 +11,7 @@ $isMoblile      = isMobliDevice();
             if (!$isMoblile) {
                 $banner_img = getCardImage($val, 'banner_image_v2', 'large');
             } else {
-                $img =  in_array($firstSegment, ['podcast','games'])  ? 'cover_image' : 'vertical_cover_image';
+                $img =  in_array($firstSegment, ['podcast','games', 'games-all'])  ? 'cover_image' : 'vertical_cover_image';
                 $banner_img = getCardImage($val, $img, 'medium');
             }
             ?>
