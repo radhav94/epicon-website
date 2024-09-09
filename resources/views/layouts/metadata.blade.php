@@ -13,8 +13,8 @@
 
 <meta name="theme-color" content="#9442c7">
 <meta name="description" content="{{ htmlspecialchars_decode(@$meta['description'] ?? 'Watch TV Shows, Web Series, Movies, Podcasts & Live TV Channels online at Epic On, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.') }}">
-{{--<meta name="Robots" content="INDEX, FOLLOW" >--}}
-<meta name="Robots" content="NOINDEX, NOFOLLOW" />
+<meta name="Robots" content="INDEX, FOLLOW" >
+{{--<meta name="Robots" content="NOINDEX, NOFOLLOW" />--}}
 <meta name="Author" content="Epicon, epicon.in/">
 <meta name="YahooSeeker" content="INDEX, FOLLOW" >
 <meta name="msnbot" content="INDEX, FOLLOW" >
