@@ -12,7 +12,7 @@ class PageController extends Controller
     private  $limit;
     public function  __construct()
     {
-        $this->limit = 5;
+        $this->limit = 3;
     }
 
 
