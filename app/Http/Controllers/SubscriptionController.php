@@ -719,7 +719,7 @@ class SubscriptionController extends Controller
     {
         $ajaxData = $request->all();
         $email = $mobile = $stdcode = "";
-        $stdcodeRes = str_replace("+", "", $ajaxData['stdcode']);
+        $stdcodeRes = str_replace("+", "", $ajaxData['stdcode'] ?? '');
         $type = $ajaxData['type'] ?? '';
         if($type == "email"){
             $email = $ajaxData['userdetail'] ?? '';
