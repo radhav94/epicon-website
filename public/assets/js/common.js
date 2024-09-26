@@ -213,7 +213,7 @@ $(window).on('load', function () {
         window.history.replaceState({}, document.title, "/");
     }
     // open login popup
-    if (queryParams.get('type') == "login") {
+    if (queryParams.get('type') == "login" || (queryParams.get('userUuid') != "" && queryParams.get('userUuid') != null && queryParams.get('userUuid') != "undefined") ) {
         $('.loginBtn.login').trigger('click');
     }
 })
