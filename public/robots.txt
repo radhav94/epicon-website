@@ -9,4 +9,5 @@ Disallow: /movies/saanjh
 Disallow: /movies/the-choice
 Disallow: /movies/villain-ka-monologue
 Disallow: /movies/train-crash
+Disallow: /movies/kanche
 Sitemap: https://www.epicon.in/sitemap.xml
