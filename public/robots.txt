@@ -9,5 +9,4 @@ Disallow: /saanjh
 Disallow: /the-choice
 Disallow: /villain-ka-monologue
 Disallow: /train-crash
-Disallow: /kanche
 Sitemap: https://www.epicon.in/sitemap.xml
