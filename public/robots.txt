@@ -2,12 +2,12 @@ User-agent: *
 Disallow:
 Disallow: /cgi-bin/
 Disallow: /telanganas-pride-nagoba-jathara
-Disallow: /movies/googly-gumm-hai
-Disallow: /movies/its-complicated
-Disallow: /movies/photograph
-Disallow: /movies/saanjh
-Disallow: /movies/the-choice
-Disallow: /movies/villain-ka-monologue
-Disallow: /movies/train-crash
-Disallow: /movies/kanche
+Disallow: /googly-gumm-hai
+Disallow: /its-complicated
+Disallow: /photograph
+Disallow: /saanjh
+Disallow: /the-choice
+Disallow: /villain-ka-monologue
+Disallow: /train-crash
+Disallow: /kanche
 Sitemap: https://www.epicon.in/sitemap.xml
