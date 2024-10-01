@@ -1,5 +1,15 @@
 <?php
 $environment = strtoupper(env('APP_ENV'));
+$disallowUrl = [			
+	'googly-gumm-hai',
+	'its-complicated',
+	'photograph',
+	'saanjh',
+	'the-choice',
+	'villain-ka-monologue',
+	'train-crash',
+];
+
 if($environment=='PRODUCTION'){
 	return [
 		'EPICCOIN'=>[
@@ -126,7 +136,8 @@ if($environment=='PRODUCTION'){
 			'APP_KEY'=>'oR@YoK2+vK0CyWs8Of5@sSVN',
 			'CUSTOMER_TXN_URL' => 'https://api.moengage.com/v1/customer/',
 			'EVENT_TXN_URL' => 'https://api.moengage.com/v1/event/'
-		]
+		],
+		'DISALLOW_URL' => $disallowUrl,
 	];
 } else if($environment=='STAGE' ){
 	return [
@@ -270,7 +281,8 @@ if($environment=='PRODUCTION'){
 			'APP_KEY'=>'vrzKEnzU3CQ7DEBkC2hcZETe',
 			'CUSTOMER_TXN_URL' => 'https://api.moengage.com/v1/customer/',
 			'EVENT_TXN_URL' => 'https://api.moengage.com/v1/event/'
-		]
+		],
+		'DISALLOW_URL' => [],
 	];
 } else if($environment=='DEV'){
 	return [
@@ -392,7 +404,8 @@ if($environment=='PRODUCTION'){
 		],
 		'GOOGLECRAWL'=>[
 			'podcast/aawaz-e-kalam/season-1/dushyant-kumar-ye-dhuen-ka-ghire-hai-ki-main-jisme','podcast/aawaz-e-kalam/season-1/ahmad-faraz-junun-e-musaffat-me-ghar-se-nikle-the','podcast/aawaz-e-kalam/season-1/dushyant-kumar-ghar-me-kis-tarah-saheju-man-ko','epic-shorts/international-tiger-day/season-1/e6-a-tale-of-success-12619','podcast/aawaz-e-kalam/season-1/dushyant-kumar-aaj-veeran-apna-ghar-dekha','podcast/aawaz-e-kalam/season-1/kavi-kunvar-narayan-kavita-ke-bahane','podcast/the-next-ten-years/season-1/jo-aggarwal-co-founder-ceo','podcast/aawaz-e-kalam/season-1/luv-tomar-siva-tere','podcast/aawaz-e-kalam/season-1/ahmad-faraz-kam-kam-mila-karo-usse','podcast/aawaz-e-kalam/season-1/ahmad-pharaz-khushbu-ka-safar-dekhega-kaun','podcast/aawaz-e-kalam/season-1/ahmad-faraz-zakhm-na-bharte-koi-aur','podcast/aawaz-e-kalam/season-1/harivanshrai-bachchan-aatmaparichay','podcast/aawaz-e-kalam/season-1/ahmad-faraz-saja-kyu-nahi-dete','podcast/aawaz-e-kalam/season-1/luv-tomar-aksar-tere-ishq-me','podcast/aawaz-e-kalam/season-1'
-		]
+		],
+		'DISALLOW_URL' => [],
 	];
 } else if($environment=='LOCAL'){
 	return [
@@ -505,7 +518,8 @@ if($environment=='PRODUCTION'){
 			'APP_KEY'=>'vrzKEnzU3CQ7DEBkC2hcZETe',
 			'CUSTOMER_TXN_URL' => 'https://api.moengage.com/v1/customer/',
 			'EVENT_TXN_URL' => 'https://api.moengage.com/v1/event/'
-		]
+		],
+		'DISALLOW_URL' => [],
 	];
 } else {
 	return [
@@ -593,6 +607,7 @@ if($environment=='PRODUCTION'){
 		],
 		'GOOGLECRAWL'=>[
 			'podcast/aawaz-e-kalam/season-1/dushyant-kumar-ye-dhuen-ka-ghire-hai-ki-main-jisme','podcast/aawaz-e-kalam/season-1/ahmad-faraz-junun-e-musaffat-me-ghar-se-nikle-the','podcast/aawaz-e-kalam/season-1/dushyant-kumar-ghar-me-kis-tarah-saheju-man-ko','epic-shorts/international-tiger-day/season-1/e6-a-tale-of-success-12619','podcast/aawaz-e-kalam/season-1/dushyant-kumar-aaj-veeran-apna-ghar-dekha','podcast/aawaz-e-kalam/season-1/kavi-kunvar-narayan-kavita-ke-bahane','podcast/the-next-ten-years/season-1/jo-aggarwal-co-founder-ceo','podcast/aawaz-e-kalam/season-1/luv-tomar-siva-tere','podcast/aawaz-e-kalam/season-1/ahmad-faraz-kam-kam-mila-karo-usse','podcast/aawaz-e-kalam/season-1/ahmad-pharaz-khushbu-ka-safar-dekhega-kaun','podcast/aawaz-e-kalam/season-1/ahmad-faraz-zakhm-na-bharte-koi-aur','podcast/aawaz-e-kalam/season-1/harivanshrai-bachchan-aatmaparichay','podcast/aawaz-e-kalam/season-1/ahmad-faraz-saja-kyu-nahi-dete','podcast/aawaz-e-kalam/season-1/luv-tomar-aksar-tere-ishq-me','podcast/aawaz-e-kalam/season-1'
-		]
+		],
+		'DISALLOW_URL' => [],
 	];
 }
