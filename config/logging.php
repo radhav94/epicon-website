@@ -144,6 +144,12 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 60,
         ],
+        'responseTime' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/response_time/response_time.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 5,
+        ],
         'payu_android' => [
             'driver' => 'daily',
             'path' => storage_path('logs/payu_android/payu.log'),
@@ -160,7 +166,7 @@ return [
             'driver' => 'daily',
             'path' => storage_path('logs/error_404/error_404.log'),
             'level' => env('LOG_LEVEL', 'debug'),
-            'days' => 60,
+            'days' => 10,
         ],
     ],
 

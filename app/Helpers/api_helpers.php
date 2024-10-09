@@ -63,6 +63,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
         if ($logCommandCurl) {
             $curlCommand = generateCurlCommand('GET', $api_url, $headers, $data, [], 'api');
         }
+        $url = $api_url;
     } else {
         $headers[] = 'Content-Type: application/json';
 
@@ -100,7 +101,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
     $response = curl_exec($curl);
     $curl_errno = curl_errno($curl);
 
-    $http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    $http_status = curl_getinfo($curl);
     try {
         $response_data = json_decode($response ? $response : '', true);
 
@@ -125,7 +126,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
         } else {
 
             // Check for a status code other than 200
-            if (@$http_status != 200) {
+            if (@$http_status['http_code'] != 200) {
                 $curl_error = curl_error(@$curl);
 
                 $errorMessage = "cURL error ({@$curl_errno}): {@$curl_error}";
@@ -140,7 +141,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
                 $verboseLogContent = stream_get_contents(@$verboseLog);
                 // Log verbose output
                 \Log::channel('error_404')->debug('Verbose Log =>' . json_encode(@$verboseLogContent ?? ''));
-                \Log::channel('error_404')->debug('Error => '. @$http_status . json_encode(@$response ? @$response : ''));            }
+                \Log::channel('error_404')->debug('Error => '. @$http_status['http_code'] . json_encode(@$response ? @$response : ''));            }
         }
         fclose($verboseLog);
     } catch (\Throwable $th) {
@@ -155,6 +156,10 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
 
         return ['success' => false, 'message' => 'Curl failed', 'error' => $curl_errno];
     } else {
+        $responseTime = $http_status['total_time'] ?? 0;
+        $logText = ($responseTime > 10) ? "Delay Response Time for" : "Response Time for";
+        Log::channel('responseTime')->info("$logText : " . $responseTime . " seconds\n ($url)\n");
+
         Log::channel('api')->info('Status : Success');
 
         $apiresponse = json_decode($response ? $response : '', true);
