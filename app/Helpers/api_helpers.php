@@ -157,7 +157,7 @@ function CurlAPI($context, $method = 'GET', $data = null, $apiDomain = 1, $sendU
         return ['success' => false, 'message' => 'Curl failed', 'error' => $curl_errno];
     } else {
         $responseTime = @$http_status['total_time'];
-        Log::channel('responseTime')->info("Response Time for ($url): " . $responseTime . " seconds\n");
+        Log::channel('responseTime')->info("Response Time for : " . $responseTime . " seconds\n ($url)");
 
         Log::channel('api')->info('Status : Success');
 
