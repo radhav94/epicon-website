@@ -8989,9 +8989,9 @@ audio::-webkit-media-controls-play-button {
     display:none!important;
 }
 #kidsUrl{
-    @media (max-width:767px) {
+    // @media (max-width:767px) {
         display: none;
-    }
+    // }
 }
 .more-like-this.trailer-card{
     @media (max-width:767px) {
