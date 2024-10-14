@@ -3,7 +3,7 @@ var customData;
 var contentType;
 
 $(document).ready(function () {
-    $("#supermixWatchBtn").click(function () {
+    $(document).on("click", "#supermixWatchBtn", function () {
         let cid = $("#supermixData ul li .supermixPlay").data('id');
         let title = $("#supermixData ul li .supermixPlay").data('title');
         let duration = $("#supermixData ul li .supermixPlay").data('duration');
@@ -60,7 +60,7 @@ $(document).ready(function () {
         let requestData = {
             cid: cid
         };
-        sendAjaxRequest(APP_URL + '/player', 'GET', JSON.stringify(requestData),
+        sendAjaxRequest(APP_URL + '/player?cid='+cid, 'GET', null,
             playerSuccess, playerError, 'application/json');
     }
 

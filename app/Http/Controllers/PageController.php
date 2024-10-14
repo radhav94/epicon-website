@@ -76,6 +76,7 @@ class PageController extends Controller
 
     public function loadMore(Request $request)
     {
+        $start = microtime(true);
         $slug = ($request->route == '/' || $request->route == 'hi') ? 'home-v2' : $request->route;
         $data = $this->homepageData($slug, $request->page);
         $result = $data['result'];
@@ -85,6 +86,9 @@ class PageController extends Controller
 
             $view = view('display.display-default', compact('result', 'displayLanguageParam', 'stories', 'slug'))->render();
 
+            $end = microtime(true);
+            $executionTime = $end - $start;
+            \Log::channel('responseTime')->info("Request ($slug/$request->page) took $executionTime seconds \n");
             return JSONResponse(
                 200,
                 'Success.',

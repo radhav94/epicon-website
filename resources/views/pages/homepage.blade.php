@@ -40,8 +40,8 @@
 
     <div class="content-loader d-none" style="text-align: center;"> <img style="width: 40px;" src="{{ asset('assets/img/loader.gif') }}" alt=""> </div>
 
-    @include('components.supermix-content-modal')
-    @include('components.video-player-modal')
+    {{--@include('components.supermix-content-modal')
+    @include('components.video-player-modal')--}}
     <?php if(request()->path() == '' || request()->path() == '/' || request()->path() == 'hi' || request()->path() == '/hi'){ ?>
     @include('components.page-blocker')
     <?php } ?>

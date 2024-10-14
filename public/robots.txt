@@ -2,4 +2,11 @@ User-agent: *
 Disallow:
 Disallow: /cgi-bin/
 Disallow: /telanganas-pride-nagoba-jathara
+Disallow: /googly-gumm-hai
+Disallow: /its-complicated
+Disallow: /photograph
+Disallow: /saanjh
+Disallow: /the-choice
+Disallow: /villain-ka-monologue
+Disallow: /train-crash
 Sitemap: https://www.epicon.in/sitemap.xml

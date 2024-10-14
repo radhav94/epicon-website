@@ -1,7 +1,10 @@
+@php
+$disallowUrls = config('epicconfig.DISALLOW_URL');
+$lastSegment = request()->segment(count(request()->segments()));
+@endphp
 <meta charset="utf-8">
 {{-- <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> --> --}}
 <meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport' > 
-
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @if(env('DISABLE_CSP') != 1)
@@ -13,8 +16,11 @@
 
 <meta name="theme-color" content="#9442c7">
 <meta name="description" content="{{ htmlspecialchars_decode(@$meta['description'] ?? 'Watch TV Shows, Web Series, Movies, Podcasts & Live TV Channels online at Epic On, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.') }}">
+@if(in_array($lastSegment, $disallowUrls))
+<meta name="Robots" content="NOINDEX, NOFOLLOW" />
+@else
 <meta name="Robots" content="INDEX, FOLLOW" >
-{{--<meta name="Robots" content="NOINDEX, NOFOLLOW" />--}}
+@endif
 <meta name="Author" content="Epicon, epicon.in/">
 <meta name="YahooSeeker" content="INDEX, FOLLOW" >
 <meta name="msnbot" content="INDEX, FOLLOW" >

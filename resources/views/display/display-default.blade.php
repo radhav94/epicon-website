@@ -9,6 +9,10 @@
                  $template = 'display.' . $value['display_type'];
              @endphp
 
+             @if ($value['display_type'] == 'supermix')
+                 @include('components.supermix-content-modal')
+             @endif
+
              @if (View::exists($template))
                  <?php
                  $title = getDispLangContent($value, $displayLanguageParam, 'title');
@@ -22,6 +26,7 @@
 
                 @if (isset($stories) && $value['display_type'] == "shortandsweet")
                     @include('display.epicshots', ['stories' => $stories])
+                    @include('components.video-player-modal')
                 @else
                     @include($template, [
                         'value' => $value,
