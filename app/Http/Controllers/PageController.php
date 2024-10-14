@@ -23,6 +23,12 @@ class PageController extends Controller
             return false;
         }
         // dd(session()->get('user_token'));
+
+        $request = Request();
+        if (!empty($userUuid = ($request->get('userUuid') ?? ""))) {
+            session()->put('userUuid', $userUuid);
+        }
+        
         $pageslug = strtolower($slug);
 
         SilentLoginFunction();

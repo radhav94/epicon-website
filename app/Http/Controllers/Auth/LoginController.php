@@ -148,6 +148,12 @@ class LoginController extends Controller
             'gender' => $gender,
             'user_agent' => getUserAgent(),
         );
+
+        if (!empty($userUuid = session()->get('userUuid') ?? "")) {
+            $postData["mondiaUser"] = true;
+            $postData["userUuid"] = $userUuid;
+        }
+        
         $registerResponseData = CurlAPI("users/register", 'POST', $postData, 2, false, true);
         $request->session()->put('registerResponseData', $registerResponseData);
         $response['message'] = $registerResponseData['message'];
