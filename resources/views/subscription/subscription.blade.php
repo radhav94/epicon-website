@@ -433,6 +433,48 @@ $isUserLoggedIn = isUserLoggedIn();
 
         });
 
+        $("#qwikcilverForm").submit(function(e){
+            e.preventDefault();
+            var card_no = $('input[name="qc-card-number"]').val();
+            if (card_no == '') {
+                showToaster('Please enter card number.', 2);
+                return false;
+            }
+            var pin = $('input[name="qc-pin"]').val();
+            if (pin == '') {
+                showToaster('Please enter valid pin.', 2);
+                return false;
+            }
+            var plan_id = $("#amountid").val();
+            if ($("#amountid").val() == "") {
+                showToaster('please select you plan', 2);
+            }
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var form_data = $(this).serialize();
+            $.ajax({
+                type: 'POST',
+                url: "{{ url('/qwikcilverAjax') }}",
+                data: form_data+"&plan_id="+plan_id,
+                dataType: 'json',
+                success: function(data) {
+                    if (data.success == false) {
+                        showToaster(data.message, 2);
+                    } else {
+                        $("#success-modal p").text(data.message);
+                        $("#success-modal").modal("show");
+                        setTimeout(function() {
+                            window.location.href = "{{ route('my-account') }}";
+                        }, 3000);
+                        return;
+                    }
+                }
+            });
+        })
+
     });
 </script>
 @stop
