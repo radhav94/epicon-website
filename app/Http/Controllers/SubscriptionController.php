@@ -821,6 +821,20 @@ class SubscriptionController extends Controller
         }
     }
 
+    public function redeemQwikCilver(Request $request)
+    {
+        $formData = $request->all();
+        $response = $this->qwikcilverProcess($formData);
+        if (!$response || @$response["success"] == false) {
+            $message = $response["message"] ?? "Something went wrong";
+            return response()->json([
+                'success' => false,
+                'message' => $message
+            ], 200)->header('Content-Type', 'application/json');
+        }
+        $response['message'] = $response['message'] ?? "Success";
+        return response()->json($response, 200)->header('Content-Type', 'application/json');
+    }
 
     public function payuWebhook(Request $request){
         Log::channel('payu_webhook')->info("payu webhook : ". json_encode($request->all()));
@@ -840,6 +854,44 @@ class SubscriptionController extends Controller
         }else{
             Log::channel('payu')->info($prefix.$msg );
         }
+    }
+
+    private function qwikcilverProcess($formData)
+    {
+        $cardNumber = $formData["qc-card-number"] ?? "";
+        $planId = $formData["plan_id"] ?? "";
+        $cardPin = $formData["qc-pin"] ?? "";
+        $userId = getUserId();
+        $params = [
+            "card_number" => $cardNumber,
+            "plan_id" => $planId
+        ];
+        Log::channel('qwikcilver')->info("giftcard/getbinverify Request: ". json_encode($params));
+        $getBin = CurlAPI("giftcard/getbinverify", 'POST', $params, 2, true);
+        Log::channel('qwikcilver')->info("giftcard/getbinverify Response: ". json_encode($getBin));
+        if (!$getBin || @$getBin['success'] == false) {
+            return $getBin;
+        }
+        $params = [
+            "card_number" => $cardNumber,
+            "card_pin" => $cardPin,
+            "user_id" => $userId
+        ];
+        Log::channel('qwikcilver')->info("giftcard/balance Request: ". json_encode($params));
+        $getBalance = CurlAPI("giftcard/balance", 'POST', $params, 2, true);
+        Log::channel('qwikcilver')->info("giftcard/balance Response: ". json_encode($getBalance));
+        if (!$getBalance || @$getBalance['success'] == false) {
+            return $getBalance;
+        }
+        $params = [
+            "card_number" => $cardNumber,
+            "card_pin" => $cardPin,
+            "user_id" => $userId
+        ];
+        Log::channel('qwikcilver')->info("giftcard/redeem Request: ". json_encode($params));
+        $getRedeem = CurlAPI("giftcard/redeem", 'POST', $params, 2, true);
+        Log::channel('qwikcilver')->info("giftcard/redeem Response: ". json_encode($getBalance));
+        return $getRedeem;
     }
 
 }
