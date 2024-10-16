@@ -9713,3 +9713,25 @@ audio::-webkit-media-controls-play-button {
 }
 
 //   login country code end
+.use-code{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+        .subscription-login{
+            margin-top: 0;
+        }
+}
+.qwickcilver-main .use-code p:first-child{
+    color: #fff;
+    font-weight: 600;
+}
+.use-code input{
+    width: 100%;
+    color: #fff;
+    height: 50px;
+    border-radius: 16px;
+    border: .5px solid #494949;
+    background: rgba(22, 22, 47, .8);
+    backdrop-filter: blur(5px);
+    padding: 0px 15px 0px 15px;
+}

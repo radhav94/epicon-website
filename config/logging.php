@@ -150,6 +150,12 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 5,
         ],
+        'qwikcilver' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/qwikcilver/qwikcilver.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 10,
+        ],
         'payu_android' => [
             'driver' => 'daily',
             'path' => storage_path('logs/payu_android/payu.log'),
