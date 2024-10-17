@@ -890,7 +890,7 @@ class SubscriptionController extends Controller
         ];
         Log::channel('qwikcilver')->info("giftcard/redeem Request: ". json_encode($params));
         $getRedeem = CurlAPI("giftcard/redeem", 'POST', $params, 2, true);
-        Log::channel('qwikcilver')->info("giftcard/redeem Response: ". json_encode($getBalance));
+        Log::channel('qwikcilver')->info("giftcard/redeem Response: ". json_encode($getRedeem));
         return $getRedeem;
     }
 
