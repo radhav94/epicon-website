@@ -211,7 +211,7 @@ $meta['image'] = $share_img;
                             </div>
                     </div>
                     <div class="col-12">
-                        <h3 class="titleText text-white">{{@$content['title']}}</h3>
+                        <h1 class="titleText text-white">{{@$content['title']}}</h1>
                         <p class="ua small mb-2 b7-color">
                             @include('pages.detail.detail-components.sub-bullets', [
                                 'v_content' => $content,

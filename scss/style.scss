@@ -298,6 +298,12 @@ input {
         }
     }
 }
+.titleText{
+    font-size: calc(1.3rem + 0.6vw);
+    @media (min-width: 1200px) {
+        font-size: 1.75rem;
+    }
+}
 .navbar-brand{
     height: 28px;
     padding: 0;
@@ -6868,7 +6874,7 @@ input {
         @media (max-width:768px) {
             @include flex(column,center,center);
         }
-        h1{
+        h2{
             text-align: left;
             color: $bg-white;
             font-size: 16px;

@@ -16,7 +16,7 @@ if ($request->has('type')) {
         <div class="row middle-footer">
             <div class="col-lg-3">
                 <div class="connect-with">
-                    <h1>{{__('Connect With Us')}}</h1>
+                    <h2>{{__('Connect With Us')}}</h2>
                     <div class="w-100 f-share-icons">
                         <a onclick="click_social(this)" aria-label="facebook" data-title="facebook" data-event_context="Epic on" target="_blank" href="https://www.facebook.com/theepicon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
