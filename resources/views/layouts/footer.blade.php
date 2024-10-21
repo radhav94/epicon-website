@@ -10,7 +10,7 @@ if ($request->has('type')) {
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <a onclick="click_menu(this)" data-event_context="footer" data-element_text="Home" href="{{ getUrlWithPrefix('homepage') }}"><img width="150" class="epicon-footer-logo" src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
+                <a onclick="click_menu(this)" data-event_context="footer" data-element_text="Home" href="{{ getUrlWithPrefix('homepage') }}" aria-label="Home"><img width="150" class="epicon-footer-logo" src="{{ asset('assets/img/epicon-logo.png') }}" alt="epicon logo"></a>
             </div>
         </div>
         <div class="row middle-footer">
@@ -111,27 +111,27 @@ if ($request->has('type')) {
             [   'name'=>'Home',
                 'url'=>'kids',
                 'logoimg'=>'',
-                'class'=>'home'  
+                'class'=>'home'
             ],
            [    'name'=>'Movies',
                 'url'=>'kids/movies',
                 'logoimg'=>'',
-                'class'=>'home'  
+                'class'=>'home'
             ],
             [   'name'=>'Shows',
                 'url'=>'kids/shows',
                 'logoimg'=>'',
-                'class'=>'home'  
+                'class'=>'home'
                     ],
             [   'name'=>'Podcasts',
                 'url'=>'kids/podcast',
                 'logoimg'=>'',
-                'class'=>'home'  
+                'class'=>'home'
             ],
             [   'name'=>'Games',
                 'url'=>'kids/games-all',
                 'logoimg'=>'',
-                'class'=>'home'  
+                'class'=>'home'
             ],
        ];
        $current_route = request()->path();
@@ -141,29 +141,29 @@ if ($request->has('type')) {
          [  'name'=>'Home',
             'url'=>'',
             'logoimg'=>'',
-            'class'=>'home'  
+            'class'=>'home'
          ],
          [ 'name'=>'Premium',
          'url'=>'premium',
          'logoimg'=>'',
-         'class'=>'premium'  
+         'class'=>'premium'
           ],
-        
+
          [  'name'=>'Explore',
             'url'=>'explore',
             'logoimg'=>'',
-            'class'=>'explore'  
+            'class'=>'explore'
          ],
-        
+
          [  'name'=>'Search',
             'url'=>'search',
             'logoimg'=>'',
-            'class'=>'search'  
+            'class'=>'search'
          ],
          [  'name'=>'Hot & New',
             'url'=>'spotlight',
             'logoimg'=>'',
-            'class'=>'spotlight'  
+            'class'=>'spotlight'
          ],
     ];
        $current_route = getFirstSegment();
@@ -174,12 +174,12 @@ if ($request->has('type')) {
     <div class="footer-mobile {{$kidsClass}}">
         <nav class="mob-nav">
         @foreach ($links as $key => $value)
-       
+
             <a class="footer-{{@$value['class']}} {{ $current_route == @$value['url'] ? 'active' : '' }}" href="{{getUrl(@$value['url'])}}">
                 <p></p>
                 <span>{{@$value['name']}}</span>
             </a>
-           
+
         @endforeach
         </nav>
     </div>

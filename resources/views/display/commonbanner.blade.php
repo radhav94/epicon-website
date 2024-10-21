@@ -1,5 +1,5 @@
-<?php 
-$firstSegment   = getFirstSegmentWithKids(); 
+<?php
+$firstSegment   = getFirstSegmentWithKids();
 $isMoblile      = isMobliDevice();
 ?>
 <section class=" hero-banner w-100 {{ in_array($firstSegment, ['podcast','games', 'games-all']) ? 'podcast-banner' : '' }}">
@@ -18,9 +18,9 @@ $isMoblile      = isMobliDevice();
             <div class="carousel-card">
                 {!! freePremiumDiv($val) !!}
                 <div class="carousel-items position-relative w-100">
-                <a onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}" href="{{ isset($val['game_url']) ? @$val['game_url'] : getContentUrl($val) }}" {{ isset($val['game_url']) ? 'target="_blank"' : '' }}>
+                <a onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}" href="{{ isset($val['game_url']) ? @$val['game_url'] : getContentUrl($val) }}" {{ isset($val['game_url']) ? 'target="_blank"' : '' }} aria-label="{{ @$val['title'] }}">
                     {{-- <!-- <a href="{{ getContentUrl($val) }}"> --> --}}
-                        <img src="{{ $banner_img }}" alt="">
+                        <img src="{{ $banner_img }}" alt="{{ @$val['title'] }}">
                     </a>
                     <div class="carousel-items-content position-absolute">
                         <h2>{{ $card['sub_text'] }}</h2>
