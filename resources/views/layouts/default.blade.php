@@ -9,6 +9,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/toastr.min.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery-ui.min.css') }}">
+    
+    {{-- assets/css/slick.min.css, assets/css/swiper-bundle.min.css, assets/css/toastr.min.css, jquery-ui.min.css --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/all-css.min.css') }}">
+
     {{-- End header common styles --}}
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
 
