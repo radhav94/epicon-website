@@ -145,7 +145,7 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
 
                                 @if (@$content['free_premium'] == true && !isActiveSubscription())
                                 <a href="{{ $href }}" class="subcription-btn m-0 {{$watchClass}}">
-                                    <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> Subscribe Now
+                                    <img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt="crown"> Subscribe Now
                                 </a>
                                 @endif
                             </div>

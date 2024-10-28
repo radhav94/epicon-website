@@ -69,11 +69,11 @@
     </div>
     <div class="tranding-slider-control">
         <div class="swiper-button-prev slider-arrow">
-            <img src="{{ asset('assets/img/hero-left-arrow.svg') }}" alt="arrow">
+            <img src="{{ env('AWS_S3_domain') }}epicon/assets/images/hero-left-arrow.svg" alt="arrow">
         </div>
         <div class="swiper-pagination"></div>
         <div class="swiper-button-next slider-arrow">
-            <img src="{{ asset('assets/img/hero-right-arrow.svg') }}" alt="arrow">
+            <img src="{{ env('AWS_S3_domain') }}epicon/assets/images/hero-right-arrow.svg" alt="arrow">
         </div>
     </div>
 </section>

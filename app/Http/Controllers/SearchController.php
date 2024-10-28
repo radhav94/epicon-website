@@ -130,7 +130,7 @@ class SearchController extends Controller
 
         $topResult = $result['topResult'];
 
-        $premium = (@$topResult['free_premium'] == true) ? '<img class="crown" src="' . asset('assets/img/crown.svg') . '" alt="icon">' : '';
+        $premium = (@$topResult['free_premium'] == true) ? '<img class="crown" src="' . env('AWS_S3_domain') . 'epicon/assets/images/crown.svg" alt="icon">' : '';
         $dateText = isset($topResult['release_date']) ? date('Y-m-d', strtotime($topResult['release_date'])) : '';
         $wishlist = getWishlist();
         $wishlistAction = getWishListAction($topResult, $wishlist, 2);
