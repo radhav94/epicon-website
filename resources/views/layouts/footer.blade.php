@@ -7,12 +7,8 @@ if ($request->has('type')) {
  ?>
 @if($webview !='webview')
 <div class="footer w-100">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <a onclick="click_menu(this)" data-event_context="footer" data-element_text="Home" href="{{ getUrlWithPrefix('homepage') }}"><img width="150" class="epicon-footer-logo" src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
-            </div>
-        </div>
+    <div class="container text-center">
+        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="Home" href="{{ getUrlWithPrefix('homepage') }}"><img width="150" class="epicon-footer-logo" src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
         <div class="row middle-footer">
             <div class="col-lg-3">
                 <div class="connect-with">
@@ -72,20 +68,20 @@ if ($request->has('type')) {
                 </div>
             </div>
             <div class="col-lg-6 link-pos">
-                <div class="f-link">
-                    <ul class="d-flex mb-0">
+                <div class="f-link d-flex">
+                    <!-- <ul class="d-flex mb-0"> -->
                         @if(isKidsPage())
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('About Us')}}" href="{{getUrl('kids/about-us')}}">{{__('About Us')}}</a></li>
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Terms of Use')}}" href="{{route('kids-terms-of-use')}}">{{__('Terms of Use')}}</a></li>
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Privacy Policy')}}" href="{{route('kids-privacy')}}">{{__('Privacy Policy')}}</a></li>
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Help Centre')}}" href="{{getUrl('kids/feedback')}}">{{__('Help Centre')}}</a></li>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('About Us')}}" href="{{getUrl('kids/about-us')}}">{{__('About Us')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Terms of Use')}}" href="{{route('kids-terms-of-use')}}">{{__('Terms of Use')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Privacy Policy')}}" href="{{route('kids-privacy')}}">{{__('Privacy Policy')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Help Centre')}}" href="{{getUrl('kids/feedback')}}">{{__('Help Centre')}}</a>
                         @else
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('About Us')}}" href="{{getUrl('about-us')}}">{{__('About Us')}}</a></li>
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Terms of Use')}}" href="{{route('terms-of-use')}}">{{__('Terms of Use')}}</a></li>
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Privacy Policy')}}" href="{{route('privacy')}}">{{__('Privacy Policy')}}</a></li>
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Help Centre')}}" href="{{getUrl('feedback')}}">{{__('Help Centre')}}</a></li>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('About Us')}}" href="{{getUrl('about-us')}}">{{__('About Us')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Terms of Use')}}" href="{{route('terms-of-use')}}">{{__('Terms of Use')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Privacy Policy')}}" href="{{route('privacy')}}">{{__('Privacy Policy')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Help Centre')}}" href="{{getUrl('feedback')}}">{{__('Help Centre')}}</a>
                         @endif
-                    </ul>
+                    <!-- </ul> -->
                 </div>
             </div>
             <div class="col-lg-3">
