@@ -43,7 +43,7 @@
                         <img src="{{ $cover_img }}" alt="img">
 
                         <?php
-                        echo @$value['free_premium'] == true ? '<img class="crown" src="' . asset('assets/img/crown.svg') . '" alt="">' : '';
+                        echo @$value['free_premium'] == true ? '<img class="crown" src="' . env('AWS_S3_domain') . 'epicon/assets/images/crown.svg" alt="">' : '';
                         ?>
                         {{-- <button class="play-btn" tabindex="0"> --}}
                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">

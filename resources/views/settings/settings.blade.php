@@ -54,7 +54,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">
         <div class="modal-content">
             <div class="modal-body text-center py-5">
-                <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="img">
+                <img width="100" src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="img">
                 <h4 class="text-white mt-4">{{__('Child PIN has been created successfully!')}}</h4>
                 <p class="w-75 text-white small m-auto mb-4">{{__('You can change it again any time from the settings tab.')}}</p>
                 <button class="login-btn mt-0 bg-transparent text-white btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
@@ -67,7 +67,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">
         <div class="modal-content">
             <div class="modal-body text-center py-5">
-                <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="img">
+                <img width="100" src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="img">
                 <h4 class="text-white mt-4">{{__('Child PIN has been updated successfully!')}}</h4>
                 <p class="w-75 text-white small m-auto mb-4">{{__('You can change it again any time from the settings tab.')}}</p>
                 <button class="login-btn mt-0 bg-transparent text-white btn-close" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}</button>
@@ -103,7 +103,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">
         <div class="modal-content">
             <div class="modal-body text-center py-5">
-                <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="img">
+                <img width="100" src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="img">
                 <h4 class="text-white mt-4">{{__('Your password has been changed successfully!')}}</h4>
                 <p class="w-75 text-white small m-auto mb-4">{{__('You can change it again any time from the settings tab.')}}</p>
                 <button class="login-btn mt-0" style="width: 280px;" data-bs-dismiss="modal" aria-label="Close">{{__('Done')}}
@@ -123,7 +123,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">
         <div class="modal-content">
             <div class="modal-body text-center py-5">
-                <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="img">
+                <img width="100" src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="img">
                 <h4 class="text-white mt-4">{{__('Your search history has been cleared successfully!')}}</h4>
                 <p class="w-75 text-white small m-auto mb-4">{{__('Get ready for a fresh browsing experience.')}}</p>
 

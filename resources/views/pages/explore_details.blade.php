@@ -55,7 +55,7 @@
                                 <div class="play-card">
 
                                     <div class="top-card-img">
-                                        <span class="crown position-absolute"><img src="{{ asset('img/crown.svg') }}"
+                                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg"
                                                 alt=""></span>
                                         <a href="{{ getContentUrl($contentVal) }}">
                                             <img src="{{ $cover_image }}" alt="">
@@ -132,7 +132,7 @@
                                     </div>
                                 </div>
                                 <a class="main-card" href="{{ url($contentVal['url']) }}">
-                                    <span class="crown position-absolute"><img src="{{ asset('img/crown.svg') }}"
+                                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg"
                                             alt="">
                                     </span>
 
