@@ -125,7 +125,7 @@ $meta['image'] = $share_img;
 
                                     @if (@$content['free_premium'] == true && !isActiveSubscription())
                                         <a class="subcription-btn {{$watchClass}} m-0 w-25" href="{{$href}}" style="text-decoration: none">
-                                            <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> {{__('Subscribe Now')}}
+                                            <img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt="crown"> {{__('Subscribe Now')}}
                                         </a>
                                     @endif
                               

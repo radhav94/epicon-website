@@ -38,7 +38,7 @@
                             <img src="{{ $cover_img }}" alt="img">
                             <div class="content">
                                 @if (@$v['free_premium'] == true)
-                                    <img class="crown" src="{{ asset('assets/img/crown.svg') }}" alt="">
+                                    <img class="crown" src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt="">
                                 @endif
                                 <div class="content-overlay">
 
