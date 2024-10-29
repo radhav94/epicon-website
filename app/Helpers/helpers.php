@@ -1437,7 +1437,7 @@ if (!function_exists('getMeta')) {
 
         $meta['keywords'] = '';
 
-        $meta['image'] = env('APP_URL') . '/img/epiconlogo.png';
+        $meta['image'] = env('AWS_S3_domain') . 'epicon/assets/images/epiconlogo.png';
 
         $meta['url'] = url()->current();
 

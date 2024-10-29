@@ -2,7 +2,7 @@
 @section('title','Get to Know About Upcoming OTT New Web Series and Movies')
 
 @section('style')
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}?v={{ assetTime() }}">
+<link rel="stylesheet" type="text/css" href="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.css?v={{ assetTime() }}">
 
 @stop
 
@@ -122,9 +122,9 @@
 @stop
 
 @section('script')
-<script src="{{ asset('assets/js/vendor/plyr.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/hls.min.js') }}"></script>
-<script src="{{ asset('assets/js/webvtt-subtitler.js') }}"></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.js"></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/hls.min.js"></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/webvtt-subtitler.js"></script>
 <script src="{{ asset('assets/js/video-player.js') }}?v={{ assetTime() }}"></script>
 
 <script>

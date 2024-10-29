@@ -64,7 +64,7 @@
                                 ?>
 
                                 <button class="rounded-grey-btn me-2 addToList" data-id="{{ @$value['ID'] }}" data-action="{{ $ep_wishAction }}" data-type="3">
-                                    <img class="wl_add" src="{{ asset('assets/img/add-icon.svg') }}" alt="icon" @if ($ep_wishAction=='delete' ) style="display: none" @endif>
+                                    <img class="wl_add" src="{{ env('AWS_S3_domain') }}epicon/assets/images/add-icon.svg" alt="icon" @if ($ep_wishAction=='delete' ) style="display: none" @endif>
                                     <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon" @if ($ep_wishAction=='add' ) style="display: none" @endif>
                                 </button>
 

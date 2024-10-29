@@ -4,7 +4,7 @@
             $newtab = '';
             $static_banner_img = !empty($value['web_static_banner_img']['original'] ?? '')
                 ? $value['web_static_banner_img']['original']
-                : $value['static_banner_img']['original'] ?? asset('assets/img/default-830x400.png');
+                : $value['static_banner_img']['original'] ?? env('AWS_S3_domain').'epicon/assets/images/default-830x400.png';
             $gameUrl = $value['banner_url'] ?? 'javascript:void(0);';
             $subplan = checkSubscription();
         @endphp

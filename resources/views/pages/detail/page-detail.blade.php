@@ -38,7 +38,7 @@ $meta['image'] = $share_img;
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/socialSharing.css') }}?v={{ assetTime() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
     @if ($loadPlayer)
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}?v={{ assetTime() }}">
+        <link rel="stylesheet" type="text/css" href="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.css?v={{ assetTime() }}">
     @endif
     <style>
         .hide {
@@ -174,7 +174,7 @@ $meta['image'] = $share_img;
 
                                     <button class="rounded-transparent-btn {{$addToList}}" data-id="{{ $content['ID'] }}"
                                         data-action="{{ $wishAction }}" data-type="3">
-                                        <img class="wl_add" src="{{ asset('assets/img/add-icon.svg') }}" alt="icon"
+                                        <img class="wl_add" src="{{ env('AWS_S3_domain') }}epicon/assets/images/add-icon.svg" alt="icon"
                                             @if ($wishAction == 'delete') style="display: none" @endif>
                                         <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon"
                                             @if ($wishAction == 'add') style="display: none" @endif>
@@ -244,16 +244,16 @@ $meta['image'] = $share_img;
 @stop
 
 @section('script')
-    <script src="{{ asset('assets/js/homepage.js') }}?v={{ assetTime() }}"></script>
+    <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/homepage.js?v={{ assetTime() }}"></script>
     <script src="{{ asset('assets/js/socialSharing.js') }}?v={{ assetTime() }}"></script>
 
     <script src="{{ asset('assets/js/detail.js') }}?v={{ assetTime() }}"></script>
-    <script src="{{ asset('assets/js/common.js') }}?v={{ assetTime() }}"></script>
+    <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/common.js?v={{ assetTime() }}"></script>
 
     @if ($loadPlayer)
-        <script src="{{ asset('assets/js/vendor/plyr.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/hls.min.js') }}"></script>
-        <script src="{{ asset('assets/js/webvtt-subtitler.js') }}"></script>
+        <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.js"></script>
+        <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/hls.min.js"></script>
+        <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/webvtt-subtitler.js"></script>
         <script src="{{ asset('assets/js/video-player.js') }}?v={{ assetTime() }}"></script>
     @endif
 

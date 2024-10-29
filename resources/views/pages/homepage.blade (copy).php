@@ -1584,7 +1584,7 @@
                     <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/1.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/1.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
@@ -1632,7 +1632,7 @@
                     <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/2.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/2.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
@@ -1680,7 +1680,7 @@
                     <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/3.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/3.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
@@ -1728,7 +1728,7 @@
                     <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/4.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/4.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
@@ -1776,7 +1776,7 @@
                     <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/5.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/5.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
@@ -1824,7 +1824,7 @@
                     <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/6.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/6.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
@@ -1872,7 +1872,7 @@
                     <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/7.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/7.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
@@ -1920,7 +1920,7 @@
                     <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/8.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/8.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
@@ -1968,7 +1968,7 @@
                     <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/9.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/9.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
@@ -2016,7 +2016,7 @@
                     <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/10.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/10.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
