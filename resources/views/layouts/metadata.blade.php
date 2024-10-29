@@ -10,7 +10,7 @@ $lastSegment = request()->segment(count(request()->segments()));
 @if(env('DISABLE_CSP') != 1)
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 @endif
-<link rel="icon" href="{{ asset('assets/img/favicon.png') }}">
+<link rel="icon" href="{{ env('AWS_S3_domain') }}epicon/assets/images/favicon.png">
 <title id="page_title" data-page-title="@yield('title') | {{ env('APP_NAME') }}">@yield('title') | {{ env('APP_NAME') == '' ? 'EPIC ON' : env('APP_NAME') }}</title>
 <link rel="canonical" href="{{ URL::current() }}">
 

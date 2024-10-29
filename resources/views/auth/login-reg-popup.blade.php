@@ -124,12 +124,12 @@
                                     password</button>
                                 <h6 class="mb-4 text-white text-center mt-4">For Existing User only</h6>
                                 <div class="lg-social">
-                                    <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
+                                    <a href="{{ url('/login/facebook') }}"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-fb-icon.svg"
                                             alt=""></a>
                                     <a href="{{ route('login.twitter') }}"><img
-                                            src="{{ asset('/img/lg-twitter-icon.svg') }}" alt=""></a>
+                                            src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-twitter-icon.svg" alt=""></a>
                                     <a href="{{ route('login.google') }}"><img
-                                            src="{{ asset('/img/lg-google-icon.svg') }}" alt=""></a>
+                                            src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-google-icon.svg" alt=""></a>
                                     {{-- <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
                                             alt=""></a> --> --}}
                                 </div>
@@ -376,11 +376,11 @@
                                 <h6 class="mb-4 text-white text-center mt-4 small">For Existing User only</h6>
                                 <div class="lg-social">
                                     <a href="{{ url('/login/facebook') }}"><img
-                                            src="{{ asset('/img/lg-fb-icon.svg') }}" alt=""></a>
+                                            src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-fb-icon.svg" alt=""></a>
                                     <a href="{{ route('login.twitter') }}"><img
-                                            src="{{ asset('/img/lg-twitter-icon.svg') }}" alt=""></a>
+                                            src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-twitter-icon.svg" alt=""></a>
                                     <a href="{{ route('login.google') }}"><img
-                                            src="{{ asset('/img/lg-google-icon.svg') }}" alt=""></a>
+                                            src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-google-icon.svg" alt=""></a>
                                     {{-- <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
                                             alt=""></a> --> --}}
                                 </div>
@@ -572,7 +572,7 @@
 
                     <!-- successfully and interest  start-->
                     <div class="login-popup-modal successfully-loged screen-sucess-register py-5">
-                        <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="">
+                        <img width="100" src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="">
                         <h4 class="text-center text-white mt-3">Hey <span id="username"></span>, you have
                             successfully registered with EPIC ON!</h4>
                         <p class="small text-white">Tell us what you’re interested in and we’ll do our best to give you
@@ -595,7 +595,7 @@
                     <div class="login-popup-modal successfully-loged w-100 screen-sucess-logged">
 
                         <img width="100" class="{{ @$subplan['status'] }}"
-                            src="{{ asset('/img/success-tick.png') }}" alt="">
+                            src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="">
                         <h4 class="text-center text-white mt-3">Awesome! You have successfully logged in to EPIC ON
                             {{ @$subplan_status }}
                         </h4>

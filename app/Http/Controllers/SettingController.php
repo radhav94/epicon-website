@@ -120,6 +120,21 @@ class SettingController extends Controller
         if (!$response) {
             return JSONResponse(400, "Something went wrong. Please try again!");
         }
+        if (@$response['success'] == true) {
+            $curlData = ["id" => 0];
+            $deleteDevice = CurlAPI("users/deleteDevice", "POST", $curlData, 2, true, true);
+            if (!$deleteDevice) {
+                return JSONResponse(400, "Something went wrong. Please try again!");
+            }
+            $result = CurlAPI("users/logout", "POST", [], 2, true, true);
+            $request->session()->forget('user_id');
+            $request->session()->forget('user');
+            $request->session()->forget('user_token');
+            $request->session()->forget('profile_data');
+            $request->session()->flush();
+            session_unset();
+            $request->session()->regenerate();
+        }
         $error_code = array_key_exists("errorcode", $response) ? $response['errorcode'] : '';
         return JSONResponse(200, '', ['message' => @$response['message'], 'success' => @$response['success'], 'errorcode' => $error_code]);
     }

@@ -1,11 +1,15 @@
 @import "../node_modules/bootstrap-scss/bootstrap.scss";
 @import "_base";
 @import "custom";
+
+$domain:'https://source.epicon.in/';
+
 body{
     background: #161616;
     font-weight: normal;
     font-style: normal;
-    background-image: url("../img/top-bg.svg");
+    // background-image: url("../img/top-bg.svg");
+    background-image: url(#{$domain}epicon/assets/images/top-bg.svg);
     background-repeat: no-repeat;
     background-size: 100% auto;
     font-family: 'Outfit', sans-serif;
@@ -296,6 +300,12 @@ input {
             width: 18px;
             height: 18px;
         }
+    }
+}
+.titleText{
+    font-size: calc(1.3rem + 0.6vw);
+    @media (min-width: 1200px) {
+        font-size: 1.75rem;
     }
 }
 .navbar-brand{
@@ -1188,7 +1198,8 @@ input {
             position: absolute;
             width: 80%;
             height: 300px;
-            background: url("../img/nav-bg.svg") no-repeat;
+            // background: url("../img/nav-bg.svg") no-repeat;
+            background: url(#{$domain}epicon/assets/images/nav-bg.svg) no-repeat;
             background-position: center center;
             background-size: 100% 100%;
             pointer-events: none;
@@ -1215,10 +1226,12 @@ input {
         left: unset;
     }
     & .slide-m-next::before {
-        content: url(../img/hero-right-arrow.svg);
+        // content: url(../img/hero-right-arrow.svg);
+        content: url(#{$domain}epicon/assets/images/hero-right-arrow.svg);
     }
     & .slide-m-prev::before {
-        content: url(../img/hero-left-arrow.svg);
+        // content: url(../img/hero-left-arrow.svg);
+        content: url(#{$domain}epicon/assets/images/hero-left-arrow.svg);
     }
     .slick-dotted.slick-slider{
         margin-bottom: -40px;
@@ -1535,7 +1548,7 @@ input {
             position: absolute;
             width: 80%;
             height: 300px;
-            background: url("../img/nav-bg.svg") no-repeat;
+            background: url(#{$domain}epicon/assets/images/nav-bg.svg) no-repeat;
             background-position: center center;
             background-size: 100% 100%;
             pointer-events: none;
@@ -2439,7 +2452,8 @@ input {
             position: absolute;
             width: 1000px;
             height: 300px;
-            background: url("../img/nav-bg.svg") no-repeat;
+            // background: url("../img/nav-bg.svg") no-repeat;
+            background: url(#{$domain}epicon/assets/images/nav-bg.svg) no-repeat;
             background-position: center center;
             background-size: 100% 100%;
             pointer-events: none;
@@ -3875,8 +3889,8 @@ input {
         }
 
         .left,.right{
-            -webkit-mask-image: url("../img/wildlife-left.png");
-            mask-image: url("../img/wildlife-left.png");
+            -webkit-mask-image: url(#{$domain}epicon/assets/images/wildlife-left.png);
+            mask-image: url(#{$domain}epicon/assets/images/wildlife-left.png);
             -webkit-mask-repeat: no-repeat;
             mask-repeat: no-repeat;    
             -webkit-mask-size: 100%;
@@ -3892,8 +3906,8 @@ input {
             }
         }
         .right{
-            -webkit-mask-image: url("../img/wildlife-right.png");
-            mask-image: url("../img/wildlife-right.png");
+            -webkit-mask-image: url(#{$domain}epicon/assets/images/wildlife-right.png);
+            mask-image: url(#{$domain}epicon/assets/images/wildlife-right.png);
         }
     }
 }
@@ -6850,7 +6864,7 @@ input {
 }
 
 .footer{
-    background-image: url("../img/footer-bg.png");
+    background-image: url(#{$domain}epicon/assets/images/footer-bg.png);
     background-repeat: no-repeat,no-repeat;
     background-size: cover;
     background-position: center;
@@ -6868,7 +6882,7 @@ input {
         @media (max-width:768px) {
             @include flex(column,center,center);
         }
-        h1{
+        h2{
             text-align: left;
             color: $bg-white;
             font-size: 16px;
@@ -6924,34 +6938,48 @@ input {
         }
     
     .f-link{
-        ul{
-            margin: 0 auto;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            li:first-child{
-                list-style: none;
-            }
-            li{
-                color: $bg-white;
-                padding: 0 10px;
-                list-style-position: inside;
-                @media (max-width:700px) {
-                    list-style: none;
-                    padding: 0 6px;
-                }
+        // ul{
+            // margin: 0 auto;
+            // padding: 0;
+            // display: flex;
+            // justify-content: center;
+            // li:first-child{
+            //     list-style: none;
+            // }
+            // li{
+                // color: $bg-white;
+                // padding: 0 10px;
+                // list-style-position: inside;
+                // @media (max-width:700px) {
+                //     list-style: none;
+                //     padding: 0 6px;
+                // }
                 a{
                     width: 100%;
                     color: $bg-white;
                     text-decoration: none;
                     font-size: 14px;
+                    white-space: nowrap;
+                    display: flex;
+                    align-items: center;
+                    &::after{
+                        content: "•";
+                        font-size: 25px;
+                        padding-inline: 10px;
+                        @media (max-width:767px) {
+                            padding-inline: 5px;
+                        }
+                    }
 
                     @media (max-width:700px) {
                         font-size: 12px;
                     }
                 }
-            }
-        }
+                a:last-child::after{
+                    content: unset;
+                }
+            // }
+        // }
     }
 }
     .download-store{

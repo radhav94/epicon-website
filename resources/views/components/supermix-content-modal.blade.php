@@ -29,7 +29,7 @@
                                         </button>
                                         {{-- <button class="rounded-grey-btn me-2"><img src="public/img/add-icon.svg" alt="icon"></button> --}}
                                         <button class="rounded-grey-btn me-2 shuffleContent">
-                                            <img src="{{ asset('assets/img/shuffle-icon.svg') }}" alt="icon">
+                                            <img src="{{ env('AWS_S3_domain') }}epicon/assets/images/shuffle-icon.svg" alt="icon">
                                         </button>
                                         {{-- <button class="rounded-grey-btn me-2"><img src="public/img/clap-icon.svg"  alt="icon"></button> --}}
                                         {{-- <button class="rounded-grey-btn"><img src="public/img/share-icon.svg" alt="icon"></button> --}}
