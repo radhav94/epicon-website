@@ -8,7 +8,7 @@ if ($request->has('type')) {
 @if($webview !='webview')
 <div class="footer w-100">
     <div class="container text-center">
-        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="Home" href="{{ getUrlWithPrefix('homepage') }}"><img width="150" class="epicon-footer-logo" src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
+        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="Home" href="{{ getUrlWithPrefix('homepage') }}"><img width="150" class="epicon-footer-logo" src="{{ env('AWS_S3_domain') }}epicon/assets/images/epicon-logo.png" alt=""></a>
         <div class="row middle-footer">
             <div class="col-lg-3">
                 <div class="connect-with">
