@@ -18,7 +18,7 @@
                     @if(@$value['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($value) !!}
                     @else
-                    <a onclick="click_tile(this)" data-title="{{@$value['title']}}" data-type="{{@$value['catalog_slug']}}" href="{{ getContentUrl($value) }}" class="main-card">
+                    <a aria-label="item-main" onclick="click_tile(this)" data-title="{{@$value['title']}}" data-type="{{@$value['catalog_slug']}}" href="{{ getContentUrl($value) }}" class="main-card">
                     @endif
                         {!! freePremiumDiv($value) !!}
                         {!! topTenDiv($value) !!}

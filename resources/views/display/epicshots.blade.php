@@ -1,7 +1,7 @@
 @if ($stories)
     <section class="carousel-main mt-0" id="epic-shots">
         <div class="carousel-title-n-arrow px-2 pb-2">
-            <h5 class="text-white">{{ $title }}</h5>
+            <h1 class="text-white">{{ $title }}</h1>
             {{--
         @if (@$value['show_more'])
         <a onclick="click_cta(this)" data-event_context="Epic Shots" data-element_text="SEE ALL" href="{{ getMidPageUrl($value) }}">

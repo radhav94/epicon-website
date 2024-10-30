@@ -81,14 +81,14 @@ $pagehead = $pageslug . ' ' . $catalog; } ?>
                                 @if (@$extra['hide_top10'] != 1)
                                     {!! topTenDiv($val) !!}
                                 @endif
-                                <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}"
+                                <a aria-label="item-hover" onclick="click_tile(this)" data-title ="{{ @$val['title'] }}"
                                     data-type="{{ ucwords(str_replace('-', ' ', $pageslug. ' ' . $catalog)) }}"
                                     href="{{ getContentUrl($val) }}">
                                     <img src="{{ $cover_img }}" alt="">
                                 </a>
                             </div>
                             <div class="bottom-card-content">
-                                <a class="data-a" onclick="click_tile(this)" data-title ="{{ @$val['title'] }}"
+                                <a aria-label="item-main" class="data-a" onclick="click_tile(this)" data-title ="{{ @$val['title'] }}"
                                     data-type="{{ ucwords(str_replace('-', ' ', $pageslug. ' ' . $catalog)) }}"
                                     href="{{ getContentUrl($val) }}">
                                     <h1>{{ $val['title'] ?? '' }}</h1>
@@ -216,7 +216,7 @@ $pagehead = $pageslug . ' ' . $catalog; } ?>
                         @if (@$val['asset_type'] == 'PLAY')
                             {!! getplayanchorhtml($val) !!}
                         @else
-                            <a href="{{ getContentUrl($val) }}" class="main-card seeallm">
+                            <a aria-label="item-main" href="{{ getContentUrl($val) }}" class="main-card seeallm">
                         @endif
                         {!! freePremiumDiv($val) !!}
                         {!! topTenDiv($val) !!}

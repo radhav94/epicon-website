@@ -1,7 +1,7 @@
 @if (array_search("WATCH", array_column($value['content'], "asset_type")) !== false)
 <div class="carousel-main">
     <div class="carousel-title-n-arrow px-2">
-        <h5 class="text-white">{{ $title }}</h5>
+        <h1 class="text-white">{{ $title }}</h1>
         @if (@$value['show_more'])
         <a href="{{ getMidPageUrl($value) }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -23,7 +23,7 @@
         <li>
 
             <div class="play-card">
-                <a href="{{ getContentUrl($val) }}" class="top-card-img">
+                <a aria-label="item-hover" href="{{ getContentUrl($val) }}" class="top-card-img">
                     {!! freePremiumDiv($val) !!}
                     @if (@$extra['hide_top10'] != 1)
                     {!! topTenDiv($val) !!}
@@ -31,7 +31,7 @@
                     <img src="{{ $cover_img }}" alt="">
                 </a>
                 <div class="bottom-card-content">
-                    <h1><a href="{{ getContentUrl($val) }}">{{ $card['title'] }}</a></h1>
+                    <h1><a aria-label="item-title" href="{{ getContentUrl($val) }}">{{ $card['title'] }}</a></h1>
                     <ul>
                         {!! $card['sub_points'] !!}
                     </ul>
@@ -41,7 +41,7 @@
                         @if(@$val['asset_type'] == 'PLAY')
                             {!! getplayanchorhtml($val) !!}
                         @else
-                            <a class="upper-img play-btn" href="{{ getContentUrl($val) }}">
+                            <a aria-label="item-img" class="upper-img play-btn" href="{{ getContentUrl($val) }}">
                         @endif
                                 {{-- <button class="play-btn"> --}}
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -87,7 +87,7 @@
                 </div>
             </div>
 
-            <a href="{{ getContentUrl($val) }}" class="main-card">
+            <a aria-label="item-main" href="{{ getContentUrl($val) }}" class="main-card">
                 {!! freePremiumDiv($val) !!}
                 {!! topTenDiv($val) !!}
                 <div class="main-img">

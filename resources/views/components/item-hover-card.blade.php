@@ -17,7 +17,7 @@ if (@$val['display_type'] == 'standard') {
         </a>
     </div>
     <div class="bottom-card-content">
-        <a href="{{ getContentUrl($val) }}">
+        <a aria-label="item-main" href="{{ getContentUrl($val) }}">
             <h1>{{ $card['title'] }}</h1>
         </a>
         <ul>

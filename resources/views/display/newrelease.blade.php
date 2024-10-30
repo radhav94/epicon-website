@@ -42,8 +42,8 @@
                      {!! freePremiumDiv($val) !!}
 
                      <div class="carousel-items position-relative w-100">
-                        <a onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}"  href="{{ getContentUrl($val) }}" aria-label="{{ @$val['title'] }}">
-                            <img src="{{ $banner_img }}" alt="{{ @$val['title'] }}">
+                        <a aria-label="banner" onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}"  href="{{ getContentUrl($val) }}">
+                            <img src="{{ $banner_img }}" alt="">
                         </a>
                          <div class="carousel-items-content position-absolute">
                              {{-- <!-- <h1 class="banner-movie-tittle">{{ $card['title'] }}</h1> --> --}}
