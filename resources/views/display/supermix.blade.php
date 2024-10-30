@@ -9,9 +9,9 @@
         $card = getItemCardData($value, $displayLanguageParam);
 
         if($isMoblile){
-            $tray_image = $value['supermix_tray_image_mobile'] ?? asset('assets/img/default-830x400.png');
+            $tray_image = $value['supermix_tray_image_mobile'] ?? env('AWS_S3_domain').'epicon/assets/images/default-830x400.png';
         }else{
-            $tray_image = $value['supermix_tray_image_web'] ?? asset('assets/img/default-830x400.png');
+            $tray_image = $value['supermix_tray_image_web'] ?? env('AWS_S3_domain').'epicon/assets/images/default-830x400.png';
         }
 
         ?>

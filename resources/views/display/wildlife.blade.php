@@ -28,7 +28,7 @@
                         @if(@$v['asset_type'] == 'PLAY')
                         {!! getplayanchorhtml($v) !!}
                         @else
-                        <a onclick="click_tile(this)" data-title ="{{ @$v['title'] }}" data-type="{{@$title}}" href="{{ getContentUrl($v) }}" class="{{ $k == 0 ? 'left' : 'right' }}">
+                        <a onclick="click_tile(this)" aria-label="{{ @$v['title'] }}" data-title ="{{ @$v['title'] }}" data-type="{{@$title}}" href="{{ getContentUrl($v) }}" class="{{ $k == 0 ? 'left' : 'right' }}">
                         @endif
                             <img fetchpriority="low" src="{{ $cover_img }}" alt="{{ @$v['title'] }}">
                         </a>

@@ -3,7 +3,7 @@
 
 
 @section('style')
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}?v={{ assetTime() }}">
+<link rel="stylesheet" type="text/css" href="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.css?v={{ assetTime() }}">
 <style>
     #epicShots video {
         width: 100%;
@@ -48,12 +48,12 @@
 @stop
 
 @section('script')
-<script src="{{ asset('assets/js/homepage.js') }}?v={{ assetTime() }}" defer></script>
-<script src="{{ asset('assets/js/epic-story.js') }}?v={{ assetTime() }}" defer></script>
-<script src="{{ asset('assets/js/vendor/plyr.js') }}" defer></script>
-<script src="{{ asset('assets/js/vendor/hls.min.js') }}" defer></script>
-<script src="{{ asset('assets/js/webvtt-subtitler.js') }}" defer></script>
-<script src="{{ asset('assets/js/supermix.js') }}?v={{ assetTime() }}" defer></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/homepage.js?v={{ assetTime() }}" defer></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/epic-story.js?v={{ assetTime() }}" defer></script>
+{{-- <script src="{{ asset('assets/js/vendor/plyr.js') }}" defer></script> --}}
+{{-- <script src="{{ asset('assets/js/vendor/hls.min.js') }}" defer></script> --}}
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/webvtt-subtitler.js" defer></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/supermix.js?v={{ assetTime() }}" defer></script>
 
 <script>
     var processing;

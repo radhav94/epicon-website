@@ -114,7 +114,7 @@
                                                             title="Copy" tabindex="{{ $key }}">
 
                                                             <img class="popup-share-icon"
-                                                                src="{{ asset('img/share-copy-icon.svg') }}"
+                                                                src="{{ env('AWS_S3_domain') }}epicon/assets/images/share-copy-icon.svg"
                                                                 alt="share">
 
                                                         </a>

@@ -33,7 +33,7 @@
                      {!! freePremiumDiv($val) !!}
                      <div class="main-img mt-0">
                          <img src="{{ $cover_img }}" alt="">
-                         <div class="top-10-number"><img src="public/img/{{ $key + 1 }}.svg" alt="1"></div>
+                         <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/{{ $key + 1 }}.svg" alt="1"></div>
                      </div>
                  </a>
              </li>

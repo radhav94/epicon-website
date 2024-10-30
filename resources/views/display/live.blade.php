@@ -20,7 +20,7 @@
             	 $banner_img = getCardImage($val, 'cover_image', 'medium');
             ?>
                 <div class="live-trey-content">
-                    <a onclick="click_tile(this)" data-title ="{{ @$val['content_owner'] }}" data-type="{{@$title}}" href="{{ getUrl(@$val['url']) }}">
+                    <a onclick="click_tile(this)" aria-label="{{ @$val['content_owner'] }}" data-title ="{{ @$val['content_owner'] }}" data-type="{{@$title}}" href="{{ getUrl(@$val['url']) }}">
                         <img src="{{ $banner_img }}" alt="">
                     </a>
                 </div>
