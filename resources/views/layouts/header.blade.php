@@ -26,7 +26,7 @@ if ($request->has('type')) {
                 </svg>
             </a>
             <a onclick="click_menu(this)" aria-label="Home" data-event_context="header" data-element_text="Home" class="navbar-brand me-3" href="{{ getUrlWithPrefix('homepage') }}"><img height="28"
-                    src="{{ env('AWS_S3_domain') }}epicon/assets/images/epicon-logo.png" alt=""></a>
+                    src="{{ env('AWS_S3_domain') }}epicon/assets/images/epicon-logo.png" alt="logo"></a>
                
                 @if(@$subplan['status'] != 'active')
                 <a onclick="click_menu(this)" aria-label="Subscribe" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
@@ -132,7 +132,7 @@ if ($request->has('type')) {
             @endif
             
             <a onclick="click_menu(this)" data-event_context="header" data-element_text="Home" class="navbar-brand" aria-label="Logo" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/epicon-logo.png"
-                    alt=""></a>
+                    alt="logo"></a>
                     
                 @if($kids_page && @$subplan['status'] != 'active')
                     <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn allAccessBtn-sub" aria-label="Subscribe" href="javascript:void(0);">{{__('Subscribe')}}</a>
@@ -216,7 +216,7 @@ if ($request->has('type')) {
             
                 <input type="hidden" name="kidsUrl" id="kidsUrlH" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
             <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" id="kidsUrl" class="p-2 me-0" aria-label="kidsUrl">
-            <img src="{{ env('AWS_S3_domain') }}epicon/assets/images/kidz-icon.svg" alt=""></a>
+            <img src="{{ env('AWS_S3_domain') }}epicon/assets/images/kidz-icon.svg" alt="kids"></a>
             @if (kidsMode())
             <a href="{{ getUrl('kids/search') }}" class="p-2 me-2">
             @else

@@ -33,7 +33,7 @@
                      {!! freePremiumDiv($val) !!}
                      {!! topTenDiv($val) !!}
                      <div class="main-img {{$getTitle['cls']}}">
-                         <img src="{{ $cover_img }}" alt="">
+                         <img src="{{ $cover_img }}" alt="{{ $card['title'] }}">
                          {!! $getTitle['html'] !!}
                      </div>
                      <div class="upcoming-title-play-btn play-btn">

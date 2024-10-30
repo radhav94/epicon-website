@@ -38,7 +38,7 @@
     @include('display.display-default')
 </div>
 
-    <div class="content-loader d-none" style="text-align: center;"> <img style="width: 40px;" src="{{ env('AWS_S3_domain') }}epicon/assets/images/loader.gif" alt=""> </div>
+    <div class="content-loader d-none" style="text-align: center;"> <img style="width: 40px;" src="{{ env('AWS_S3_domain') }}epicon/assets/images/loader.gif" alt="loading"> </div>
 
     {{--@include('components.supermix-content-modal')
     @include('components.video-player-modal')--}}
@@ -50,8 +50,8 @@
 @section('script')
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/homepage.js?v={{ assetTime() }}" defer></script>
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/epic-story.js?v={{ assetTime() }}" defer></script>
-<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.js" defer></script>
-<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/hls.min.js" defer></script>
+{{-- <script src="{{ asset('assets/js/vendor/plyr.js') }}" defer></script> --}}
+{{-- <script src="{{ asset('assets/js/vendor/hls.min.js') }}" defer></script> --}}
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/webvtt-subtitler.js" defer></script>
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/supermix.js?v={{ assetTime() }}" defer></script>
 

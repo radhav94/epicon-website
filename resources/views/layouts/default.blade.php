@@ -100,8 +100,8 @@
 
     {{-- Start footer common scripts --}}
     {{-- assets/js/vendor/jquery-ui.min.js, assets/js/swiper.js, assets/js/spiner.js, assets/js/slick.min.js, assets/js/vendor/bootstrap.bundle.min.js, assets/js/vendor/toastr.min.js --}}
-    {{-- <script src="{{ asset('assets/js/all-js.min.js') }}" defer></script> --}}
-    <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/all-js.min.js" defer></script>
+    <script src="{{ asset('assets/js/all-js.min.js') }}" defer></script>
+    {{-- <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/all-js.min.js" defer></script> --}}
 
     <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/ga_tag.js?v={{ assetTime() }}"></script>
     <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/custom.js?v={{ assetTime() }}" defer></script>

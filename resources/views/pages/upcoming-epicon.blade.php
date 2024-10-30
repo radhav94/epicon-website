@@ -142,7 +142,7 @@ $meta['description'] = "Exciting collection of upcoming web series and movies on
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.js"></script>
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/hls.min.js"></script>
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/webvtt-subtitler.js"></script>
-<script src="{{ asset('assets/js/video-player.js') }}?v={{ assetTime() }}"></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/video-player.js?v={{ assetTime() }}"></script>
 
 <script>
     var user_duration = 0;

@@ -141,11 +141,11 @@
                                 <h6 class="mb-4 text-white text-start mt-4">or Continue with</h6>
                                 <div class="lg-social">
                                     <a href="{{ url('/login/facebook') }}"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-fb-icon.svg"
-                                            alt=""></a>
+                                            alt="fb"></a>
                                     <a href="{{route('login.twitter')}}"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-twitter-icon.svg"
-                                            alt=""></a>
+                                            alt="twitter"></a>
                                     <a href="{{route('login.google')}}"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-google-icon.svg"
-                                            alt=""></a>
+                                            alt="google"></a>
                                     <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
                                             alt=""></a> -->
                                 </div>
@@ -542,7 +542,7 @@
 
                     <!-- successfully and interest  start-->
                     <div class="login-popup-modal successfully-loged screen-sucess-register py-5">
-                        <img width="100" src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="">
+                        <img width="100" src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="success">
                         <h4 class="text-center text-white mt-3">Hey <span id="username"></span>, you have
                             successfully registered with Epic On!</h4>
                         <p class="small text-white">Tell us what you’re interested in and we’ll do our best to give you
@@ -564,7 +564,7 @@
                     <!-- successfully logged  start-->
                     <div class="login-popup-modal successfully-loged w-100 screen-sucess-logged">
 
-                        <img width="100" class="{{@$subplan['status']}}" src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="">
+                        <img width="100" class="{{@$subplan['status']}}" src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="success">
                         <h4 class="text-center text-white mt-3">Awesome! You have successfully logged in to Epic ON {{@$subplan_status}}
                         </h4>
                         <div class="no-subscription-user">

@@ -24,8 +24,8 @@
 
         <div class="w-100 text-white pb-0">
             <a onclick="click_tile(this)" data-title ="{{ @$value['title'] }}" data-type="{{ @$title }}"
-                href="{{ $gameUrl }}" class="single-banner" {{ $newtab }}>
-                <img src="{{ $static_banner_img }}" alt="" width="1602" height="502">
+                href="{{ $gameUrl }}" class="single-banner" {{ $newtab }} aria-label="{{ @$value['title'] }}">
+                <img src="{{ $static_banner_img }}" alt="{{ @$value['title'] }}" width="1602" height="502">
             </a>
         </div>
     </div>

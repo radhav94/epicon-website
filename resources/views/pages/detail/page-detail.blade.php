@@ -251,10 +251,11 @@ $meta['image'] = $share_img;
     <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/common.js?v={{ assetTime() }}"></script>
 
     @if ($loadPlayer)
-        <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.js"></script>
-        <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/hls.min.js"></script>
+        {{-- <script src="{{ asset('assets/js/vendor/plyr.js') }}"></script> --}}
+        {{-- <script src="{{ asset('assets/js/vendor/hls.min.js') }}"></script> --}}
         <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/webvtt-subtitler.js"></script>
-        <script src="{{ asset('assets/js/video-player.js') }}?v={{ assetTime() }}"></script>
+        <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/video-player.js"></script>
+        {{-- <script src="{{ asset('assets/js/video-player.js') }}?v={{ assetTime() }}"></script> --}}
     @endif
 
 
