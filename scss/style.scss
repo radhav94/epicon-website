@@ -67,7 +67,7 @@ body{
     background: #161616;
     font-weight: normal;
     font-style: normal;
-    // background-image: url("../img/top-bg.svg");
+    // background-image: url("#{$domain}epicon/assets/images/top-bg.svg");
     background-image: url(#{$domain}epicon/assets/images/top-bg.svg);
     background-repeat: no-repeat;
     background-size: 100% auto;
@@ -123,7 +123,7 @@ body{
             width: 250px;
             height: 250px;
             position: absolute;
-            background-image: url("../img/women-want-bg.svg");
+            background-image: url("#{$domain}epicon/assets/images/women-want-bg.svg");
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 100% 100%;
@@ -164,7 +164,7 @@ body{
             width: 200px;
             height: 200px;
             position: absolute;
-            background-image: url("../img/yaaran-podcast.svg");
+            background-image: url("#{$domain}epicon/assets/images/yaaran-podcast.svg");
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 100% 100%;
@@ -204,7 +204,7 @@ body{
             width: 250px;
             height: 250px;
             position: absolute;
-            background-image: url("../img/arvr-games-bg.svg");
+            background-image: url("#{$domain}epicon/assets/images/arvr-games-bg.svg");
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 100% 100%;
@@ -262,7 +262,7 @@ body{
 
 .offer-banner {
     .insideoffer-banner {
-        background-image: url(../img/40off-component.svg);
+        background-image: url(#{$domain}epicon/assets/images/40off-component.svg);
         background-repeat: no-repeat;
         background-position: bottom right;
         background-size: auto 100%;
@@ -431,11 +431,11 @@ body{
         }
 
         .accordion-button:not(.collapsed)::after {
-            background-image: url(../img/Close.png);
+            background-image: url(#{$domain}epicon/assets/images/Close.png);
         }
 
         .accordion-button::after {
-            background-image: url(../img/round-add.png);
+            background-image: url(#{$domain}epicon/assets/images/round-add.png);
         }
     }
 
@@ -928,14 +928,14 @@ body{
         height: 30px;
         outline: none;
         border: none;
-        background-image: url("../img/distro-arrow-left.svg");
+        background-image: url("#{$domain}epicon/assets/images/distro-arrow-left.svg");
         background-repeat: no-repeat;
         background-size: 100%;
     }
     .distro-main .slider-controls .slide-m-next{
         right: 0;
         left: unset;
-        background-image: url("../img/distro-arrow-right.svg");
+        background-image: url("#{$domain}epicon/assets/images/distro-arrow-right.svg");
         background-repeat: no-repeat;
     }
     
@@ -1060,7 +1060,7 @@ body{
 
     .distrotv-slide-show button.slick-next::before,.distrotv-slide-show button.slick-prev::before ,.distro-slider button.slick-prev::before{
         content: "";
-        background: url("../img/hero-left-arrow.svg") center no-repeat;
+        background: url("#{$domain}epicon/assets/images/hero-left-arrow.svg") center no-repeat;
         width: 32px;
         height: 32px;
         float: left;
@@ -1069,7 +1069,7 @@ body{
     }
 
     .distrotv-slide-show button.slick-next::before,.distrotv-slide-show button.slick-prev::before ,.distro-slider button.slick-next::before {
-        background: url("../img/hero-right-arrow.svg") center no-repeat;
+        background: url("#{$domain}epicon/assets/images/hero-right-arrow.svg") center no-repeat;
         width: 32px;
         height: 32px;
         content: "";
@@ -1206,12 +1206,12 @@ body{
     }
 
     .add-icon {
-        background-image: url(../public/img/add-icon.svg) !important;
+        background-image: url(#{$domain}epicon/assets/images/add-icon.svg) !important;
         background-repeat: no-repeat;
     }
 
     .delete-icon {
-        background-image: url(../public/img/subs-icon.svg) !important;
+        background-image: url(#{$domain}epicon/assets/images/subs-icon.svg) !important;
         background-repeat: no-repeat;
     }
 
@@ -1315,7 +1315,7 @@ body{
     margin-top: 0!important;
 }
 #login-modal .modal-content{
-    background-image: url(../img/LoginTatlubaazBackBg.png);
+    background-image: url(#{$domain}epicon/assets/images/LoginTatlubaazBackBg.png);
     @media (max-width:767px) {
         background-image: none;
     }
@@ -1325,7 +1325,7 @@ body{
     border-radius: 16px;
     border: 0.5px solid #494949;
     background: transparent;
-    background-image: url(../img/modal-bg.png);
+    background-image: url(#{$domain}epicon/assets/images/modal-bg.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     @media (max-width:767px) {
@@ -2141,7 +2141,7 @@ input {
                     height: 108px;
                     padding: 0rem 0.5rem 0.5rem 0.5rem;
                     border-radius: 12px;
-                    background-image: url("../img/main-banner-mobile-bg.svg");
+                    background-image: url("#{$domain}epicon/assets/images/main-banner-mobile-bg.svg");
                     background-repeat: no-repeat;
                     background-position:bottom center;
                     background-size: 100% auto;
@@ -2437,7 +2437,7 @@ input {
             position: absolute;
             width: 80%;
             height: 300px;
-            // background: url("../img/nav-bg.svg") no-repeat;
+            // background: url("#{$domain}epicon/assets/images/nav-bg.svg") no-repeat;
             background: url(#{$domain}epicon/assets/images/nav-bg.svg) no-repeat;
             background-position: center center;
             background-size: 100% 100%;
@@ -2467,11 +2467,11 @@ input {
         left: unset;
     }
     & .slide-m-next::before {
-        // content: url(../img/hero-right-arrow.svg);
+        // content: url(#{$domain}epicon/assets/images/hero-right-arrow.svg);
         content: url(#{$domain}epicon/assets/images/hero-right-arrow.svg);
     }
     & .slide-m-prev::before {
-        // content: url(../img/hero-left-arrow.svg);
+        // content: url(#{$domain}epicon/assets/images/hero-left-arrow.svg);
         content: url(#{$domain}epicon/assets/images/hero-left-arrow.svg);
     }
     .slick-dotted.slick-slider{
@@ -2510,7 +2510,7 @@ input {
         justify-content: center;
         position: relative;
         width: 100%;
-        background: url("../img/ribbon-nav-bg.svg") no-repeat;
+        background: url("#{$domain}epicon/assets/images/ribbon-nav-bg.svg") no-repeat;
         background-size: 100% 64px;
         width: fit-content;
         margin: 0 auto -3px auto;
@@ -2519,7 +2519,7 @@ input {
         @media (max-width:767px) {
             padding: 0;
             margin: 0 auto -4px auto;
-            background: url("../assets/img/ribbon-nav-bg-mobile.svg") no-repeat;
+            background: url("#{$domain}epicon/assets/images/ribbon-nav-bg-mobile.svg") no-repeat;
             background-size: cover;
             height: 50px;
             width: 160px;
@@ -2546,10 +2546,10 @@ input {
         left: unset;
     }
     & .slide-m-next-new-release::before {
-        content: url(../img/hero-right-arrow.svg);
+        content: url(#{$domain}epicon/assets/images/hero-right-arrow.svg);
     }
     & .slide-m-prev-new-release::before {
-        content: url(../img/hero-left-arrow.svg);
+        content: url(#{$domain}epicon/assets/images/hero-left-arrow.svg);
     }
     .slick-dotted.slick-slider{
         margin-bottom: -41px;
@@ -2816,10 +2816,10 @@ input {
         left: unset;
     }
     & .slide-sl-next::before {
-        content: url(../img/hero-right-arrow.svg);
+        content: url(#{$domain}epicon/assets/images/hero-right-arrow.svg);
     }
     & .slide-sl-prev::before {
-        content: url(../img/hero-left-arrow.svg);
+        content: url(#{$domain}epicon/assets/images/hero-left-arrow.svg);
     }
 
     & .slide-sl-dots{
@@ -3273,7 +3273,7 @@ input {
         .top-ten{
             width: 45px;
             height: 53px;
-            background-image: url("../img/top-ten.svg");
+            background-image: url("#{$domain}epicon/assets/images/top-ten.svg");
             background-repeat: no-repeat;
             background-size: 100% 100%;
             top: 3px;
@@ -3344,7 +3344,7 @@ input {
         .top-ten{
             width: 45px;
             height: 53px;
-            background-image: url("../img/top-ten.svg");
+            background-image: url("#{$domain}epicon/assets/images/top-ten.svg");
             background-repeat: no-repeat;
             top: -7px;
             right: 2px;
@@ -3497,22 +3497,22 @@ input {
                 border-radius: 5px;
                 margin: 0!important;
                 &.add-icon{
-                    background-image: url("../public/img/add-icon.svg");
+                    background-image: url("#{$domain}epicon/assets/images/add-icon.svg");
                 }
                 &.add-icon-toggle{
-                    background-image: url("../public/img/subs-icon.svg");
+                    background-image: url("#{$domain}epicon/assets/images/subs-icon.svg");
                 }
                 &.like-icon{
-                    background-image: url("../public/img/clap-icon.svg");
+                    background-image: url("#{$domain}epicon/assets/images/clap-icon.svg");
                 }
                 &.like-icon-toggle{
-                    background-image: url("../public/img/clap-on-click.svg");
+                    background-image: url("#{$domain}epicon/assets/images/clap-on-click.svg");
                 }
                 &.share-icon{
-                    background-image: url("../public/img/share-icon.svg");
+                    background-image: url("#{$domain}epicon/assets/images/share-icon.svg");
                 }
                 &.circle-icon{
-                    background-image: url("../img/circle-minus.svg");
+                    background-image: url("#{$domain}epicon/assets/images/circle-minus.svg");
                 }
             }
             .progress-main{
@@ -3591,10 +3591,10 @@ input {
             background: linear-gradient(90deg, rgba(22,22,22,1) 0%, rgba(22,22,22,0) 100%);
         }
         .slick-prev:before {
-            content: url("../img/hero-left-arrow.svg");
+            content: url("#{$domain}epicon/assets/images/hero-left-arrow.svg");
         }
         .slick-next:before {
-            content: url("../img/hero-right-arrow.svg");
+            content: url("#{$domain}epicon/assets/images/hero-right-arrow.svg");
         }
         .slick-next:focus, .slick-next:hover{
             background: linear-gradient(270deg, rgba(22, 22, 22, 0.79) 0%, rgba(22, 22, 22, 0.00) 100%);
@@ -3694,7 +3694,7 @@ input {
             position: absolute;
             width: 1000px;
             height: 300px;
-            // background: url("../img/nav-bg.svg") no-repeat;
+            // background: url("#{$domain}epicon/assets/images/nav-bg.svg") no-repeat;
             background: url(#{$domain}epicon/assets/images/nav-bg.svg) no-repeat;
             background-position: center center;
             background-size: 100% 100%;
@@ -3968,7 +3968,7 @@ input {
         left: -50px;
         right: 0;
         position: absolute;
-        background-image: url("../img/spinner-background-bg.png");
+        background-image: url("#{$domain}epicon/assets/images/spinner-background-bg.png");
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 100% 100%;
@@ -4066,7 +4066,7 @@ input {
         width: 460px;
         height: 460px;
         position: absolute;
-        background-image: url("../img/spinner-glow.svg");
+        background-image: url("#{$domain}epicon/assets/images/spinner-glow.svg");
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 100% 100%;
@@ -4152,7 +4152,7 @@ input {
 // super mix
 .supermix-main{
     .super-mix{
-        background-image: url("../img/supermix-bg.png");
+        background-image: url("#{$domain}epicon/assets/images/supermix-bg.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100% 100%;
@@ -4160,7 +4160,7 @@ input {
         position: relative;
         @media (max-width:768px) {
             padding: 10px;
-            background-image: url("../img/supermix-bg-mobile.png");
+            background-image: url("#{$domain}epicon/assets/images/supermix-bg-mobile.png");
         }
         img{
             width: 100%;
@@ -4231,14 +4231,14 @@ input {
         height: auto;
         color: #fff;
         width: 350px;
-        // background: url("../img/gaming-galore-bg.svg")no-repeat center;
+        // background: url("#{$domain}epicon/assets/images/gaming-galore-bg.svg")no-repeat center;
 
         &::after{
             content: "";
             width: 400px;
             height: 330px;
             position: absolute;
-            background-image: url("../img/gaming-galore-bg.svg");
+            background-image: url("#{$domain}epicon/assets/images/gaming-galore-bg.svg");
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 100% 100%;
@@ -4550,8 +4550,8 @@ input {
     }
 
     &.ttl li{
-        -webkit-mask-image: url("../assets/img/travel-bg.png");
-        mask-image: url("../assets/img/travel-bg.png");
+        -webkit-mask-image: url("#{$domain}epicon/assets/images/travel-bg.png");
+        mask-image: url("#{$domain}epicon/assets/images/travel-bg.png");
         -webkit-mask-repeat: no-repeat;
         mask-repeat: no-repeat;    
         -webkit-mask-size: 100%;
@@ -4701,8 +4701,8 @@ input {
 }
 
 .nationhood-on-screen{
-    -webkit-mask-image: url("../img/nationhood-screen-bg.png");
-    mask-image: url("../img/nationhood-screen-bg.png");
+    -webkit-mask-image: url("#{$domain}epicon/assets/images/nationhood-screen-bg.png");
+    mask-image: url("#{$domain}epicon/assets/images/nationhood-screen-bg.png");
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;    
     -webkit-mask-size: 100%;
@@ -4748,7 +4748,7 @@ input {
         top: -290px;
         margin: 0 auto;
         position: absolute;
-        background: url("../img/nationhood-back-glow.png");
+        background: url("#{$domain}epicon/assets/images/nationhood-back-glow.png");
         background-size: 100% 100%;
         background-position: center center;
         z-index: -1;
@@ -4830,7 +4830,7 @@ input {
         right: 0;
         top:-100px;
         position: absolute;
-        background-image: url("../img/retro-background-bg.png");
+        background-image: url("#{$domain}epicon/assets/images/retro-background-bg.png");
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 100% 100%;
@@ -4889,8 +4889,8 @@ input {
     .imdb-cards{
         padding: 0 5px;
         .imdb-top,.imdb-bottom{
-            -webkit-mask-image: url("../img/imdb-top.png");
-            mask-image: url("../img/imdb-top.png");
+            -webkit-mask-image: url("#{$domain}epicon/assets/images/imdb-top.png");
+            mask-image: url("#{$domain}epicon/assets/images/imdb-top.png");
             -webkit-mask-repeat: no-repeat;
             mask-repeat: no-repeat;    
             -webkit-mask-size: 100%;
@@ -5030,8 +5030,8 @@ input {
             }
         }
         .imdb-bottom{
-            -webkit-mask-image: url("../img/imdb-bottom.png");
-            mask-image: url("../img/imdb-bottom.png");
+            -webkit-mask-image: url("#{$domain}epicon/assets/images/imdb-bottom.png");
+            mask-image: url("#{$domain}epicon/assets/images/imdb-bottom.png");
             margin: 0;
         }
     }
@@ -5276,12 +5276,12 @@ input {
     }
 }
 #dob{
-    background-image: url("../img/calendar.svg");
+    background-image: url("#{$domain}epicon/assets/images/calendar.svg");
     background-position: center right 7px;
     background-repeat: no-repeat;
 }
 #exampleDataList1{
-    background-image: url("../img/calendar.svg");
+    background-image: url("#{$domain}epicon/assets/images/calendar.svg");
     background-position: center right 7px;
     background-repeat: no-repeat; 
 }
@@ -5313,7 +5313,7 @@ input {
         font-size: 14px;
         height: 50px;
         padding: 10px;
-        background-image: url("../img/drop-down-arrow.svg");
+        background-image: url("#{$domain}epicon/assets/images/drop-down-arrow.svg");
         background-size: 12px;
         text-align: left;
         background-repeat: no-repeat;
@@ -5734,7 +5734,7 @@ input {
                     left: 0;
                     height: 25px;
                     width: 25px;
-                    background:url(../img/empty-heart.svg) no-repeat center center;
+                    background:url(#{$domain}epicon/assets/images/empty-heart.svg) no-repeat center center;
                     background-size: 100%;
                 }
                 
@@ -5766,7 +5766,7 @@ input {
                     left: 0;
                     height: 25px;
                     width: 25px;
-                    background:url(../img/heart.svg) no-repeat center center;
+                    background:url(#{$domain}epicon/assets/images/heart.svg) no-repeat center center;
                     background-size: 100%;
                 }
                 
@@ -5874,7 +5874,7 @@ input {
     
 }
 .my-account-main{
-    background-image: url("../img/my-account-bg.svg");
+    background-image: url("#{$domain}epicon/assets/images/my-account-bg.svg");
     background-repeat: no-repeat,no-repeat;
     background-size: cover;
     background-position: center;
@@ -6405,7 +6405,7 @@ input {
             height: 40px;
             border-radius: 50px;
             -webkit-appearance: none;
-            background-image: url("../img/drop-down-arrow.svg");
+            background-image: url("#{$domain}epicon/assets/images/drop-down-arrow.svg");
             background-position: center right;
             background-repeat: no-repeat;
             padding-right: 25px;
@@ -6518,7 +6518,7 @@ input {
             overflow: hidden;
             @include flex(row,center,space-between);
             flex-wrap: wrap;
-            background: url("../img/my-reward-1.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/my-reward-1.svg") no-repeat center center;
             background-size: cover;
             padding: 20px;
             position: relative;
@@ -6569,7 +6569,7 @@ input {
         }
         li:nth-child(2){
             width: 25%;
-            background: url("../img/my-reward-2.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/my-reward-2.svg") no-repeat center center;
             background-size: cover;
 
             @media (max-width:1024px) {
@@ -6587,7 +6587,7 @@ input {
         }
         li:nth-child(3){
             width: 25%;
-            background: url("../img/my-reward-3.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/my-reward-3.svg") no-repeat center center;
             background-size: cover;
             @media (max-width:1024px) {
                 width: 270px;
@@ -6677,7 +6677,7 @@ input {
 .redeem{
     li{
         border-radius: 0;
-        background: url("../img/redeem-card.svg") no-repeat center center!important;
+        background: url("#{$domain}epicon/assets/images/redeem-card.svg") no-repeat center center!important;
         background-size: 100% 100%;
         height: 280px;
         overflow: hidden;
@@ -6826,7 +6826,7 @@ input {
             }
             .nav-link.active{
                 border-radius: 16px;
-                background-image: url("../img/subscription-bg.png");
+                background-image: url("#{$domain}epicon/assets/images/subscription-bg.png");
                 background-color: transparent;
                 box-shadow: 0px 0px 10px #DB4CD0;
                 background-size: cover;
@@ -7308,7 +7308,7 @@ input {
         position: relative;
     }
     .nav-link.active::after{
-        content: url(../img/curver-rectangle.svg);
+        content: url(#{$domain}epicon/assets/images/curver-rectangle.svg);
         position: absolute;
         width: 109px;
         height: 31px;
@@ -7920,7 +7920,7 @@ input {
         right: 0;
         top: 0;
         z-index: -1;
-        background: url("../img/podcast-main-bg-new.png") no-repeat center top;
+        background: url("#{$domain}epicon/assets/images/podcast-main-bg-new.png") no-repeat center top;
         background-size: 100% 100%;
     }
 }
@@ -8665,34 +8665,34 @@ input {
             }
         }
         a:nth-child(1) p{
-            background: url("../img/footer-mob-home.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-home.svg") no-repeat center center;
         }
         a:nth-child(1):hover p,a:nth-child(1).active p{
-            background: url("../img/footer-mob-home-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-home-hover.svg") no-repeat center center;
         }
         a:nth-child(2) p{
-            background: url("../img/footer-mob-premium.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-premium.svg") no-repeat center center;
         }
         a:nth-child(2):hover p,a:nth-child(2).active p{
-            background: url("../img/footer-mob-premium-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-premium-hover.svg") no-repeat center center;
         }
         a:nth-child(3) p{
-            background: url("../img/footer-mob-explore.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-explore.svg") no-repeat center center;
         }
         a:nth-child(3):hover p,a:nth-child(3).active p{
-            background: url("../img/footer-mob-explore-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-explore-hover.svg") no-repeat center center;
         }
         a:nth-child(4) p{
-            background: url("../img/footer-mob-search.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-search.svg") no-repeat center center;
         }
         a:nth-child(4):hover p,a:nth-child(4).active p{
-            background: url("../img/footer-mob-search-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-search-hover.svg") no-repeat center center;
         }
         a:nth-child(5) p{
-            background: url("../img/footer-mob-spotlight.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-spotlight.svg") no-repeat center center;
         }
         a:nth-child(5):hover p,a:nth-child(5).active p{
-            background: url("../img/footer-mob-spotlight-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-spotlight-hover.svg") no-repeat center center;
         }
         .animation {
             position: absolute;
@@ -8707,7 +8707,7 @@ input {
         a:hover~.animation,a.active~.animation {
             width: 20%;
             left: 0;
-            background-image: url("../img/mob-active-img.png");
+            background-image: url("#{$domain}epicon/assets/images/mob-active-img.png");
             background-repeat: no-repeat;
             background-position: center;
         }
@@ -8767,34 +8767,34 @@ input {
             }
         }
         a:nth-child(1) p{
-            background: url("../img/footer-mob-home.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-home.svg") no-repeat center center;
         }
         a:nth-child(1):hover p,a:nth-child(1).active p{
-            background: url("../img/footer-mob-home-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-home-hover.svg") no-repeat center center;
         }
         a:nth-child(2) p{
-            background: url("../img/movies.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/movies.svg") no-repeat center center;
         }
         a:nth-child(2):hover p,a:nth-child(2).active p{
-            background: url("../img/movies-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/movies-hover.svg") no-repeat center center;
         }
         a:nth-child(3) p{
-            background: url("../img/shows.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/shows.svg") no-repeat center center;
         }
         a:nth-child(3):hover p,a:nth-child(3).active p{
-            background: url("../img/shows-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/shows-hover.svg") no-repeat center center;
         }
         a:nth-child(4) p{
-            background: url("../img/podcast.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/podcast.svg") no-repeat center center;
         }
         a:nth-child(4):hover p,a:nth-child(4).active p{
-            background: url("../img/podcast-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/podcast-hover.svg") no-repeat center center;
         }
         a:nth-child(5) p{
-            background: url("../img/games.png") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/games.png") no-repeat center center;
         }
         a:nth-child(5):hover p,a:nth-child(5).active p{
-            background: url("../img/games-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/games-hover.svg") no-repeat center center;
         }
         .animation {
             position: absolute;
@@ -8809,7 +8809,7 @@ input {
         a:hover~.animation,a.active~.animation {
             width: 20%;
             left: 0;
-            background-image: url("../img/mob-active-img.png");
+            background-image: url("#{$domain}epicon/assets/images/mob-active-img.png");
             background-repeat: no-repeat;
             background-position: center;
         }
@@ -9192,7 +9192,7 @@ input {
     overflow: visible;
 }
 .distrohead-row{
-    background-image: url("../img/distrotvbg-new-img.png");
+    background-image: url("#{$domain}epicon/assets/images/distrotvbg-new-img.png");
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -9280,7 +9280,7 @@ input {
     right: 0;
     padding: 20px;
     background: linear-gradient(0deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%);
-    // background-image: url("../img/podcast-bottom-bg.png");
+    // background-image: url("#{$domain}epicon/assets/images/podcast-bottom-bg.png");
     // background-repeat: no-repeat;
     // background-size: cover;
     z-index: 99;
@@ -9801,7 +9801,7 @@ audio::-webkit-media-controls-play-button {
         top: 50%;
         height: 50px;
         width: 50px;
-        background-image: url("../img/previous-10-seconds.svg");
+        background-image: url("#{$domain}epicon/assets/images/previous-10-seconds.svg");
         background-repeat: no-repeat;
         background-size: 90%;
         background-position: center;
@@ -9817,7 +9817,7 @@ audio::-webkit-media-controls-play-button {
         }
     }
     .plyr__controls .plyr__controls__item:nth-child(1):hover{
-        background-image: url("../img/previous-10-seconds.svg")!important;
+        background-image: url("#{$domain}epicon/assets/images/previous-10-seconds.svg")!important;
         background-size: 90%!important;
         background-position: center!important;
         background-repeat: no-repeat!important;
@@ -9860,7 +9860,7 @@ audio::-webkit-media-controls-play-button {
         top: 50%;
         height: 50px;
         width: 50px;
-        background-image: url("../img/next-10-seconds.svg");
+        background-image: url("#{$domain}epicon/assets/images/next-10-seconds.svg");
         background-repeat: no-repeat;
         background-size: 90%;
         background-position: center;
@@ -9876,7 +9876,7 @@ audio::-webkit-media-controls-play-button {
         }
     }
     .plyr__controls .plyr__controls__item:nth-child(3):hover{
-        background-image: url("../img/next-10-seconds.svg")!important;
+        background-image: url("#{$domain}epicon/assets/images/next-10-seconds.svg")!important;
         background-size: 90%!important;
         background-position: center!important;
         background-repeat: no-repeat!important;
@@ -9947,7 +9947,7 @@ audio::-webkit-media-controls-play-button {
         padding: 5px;
         transition: 0.3s;
         border-radius: 4px;
-        background-image: url("../img/podcast-previous.svg");
+        background-image: url("#{$domain}epicon/assets/images/podcast-previous.svg");
         background-size: 22px;
         background-position: left center;
         background-repeat: no-repeat;
@@ -9973,7 +9973,7 @@ audio::-webkit-media-controls-play-button {
          }
     }
     .epi-next{
-        background-image: url("../img/podcast-next.svg");
+        background-image: url("#{$domain}epicon/assets/images/podcast-next.svg");
         margin-right: 0;
         margin-left: 20px;
         background-position: right center;
@@ -10056,7 +10056,7 @@ audio::-webkit-media-controls-play-button {
     bottom: 0;
     top: 0;
     color:#fff;
-    background-image: url("../img/drop-down-arrow-select-white.svg");
+    background-image: url("#{$domain}epicon/assets/images/drop-down-arrow-select-white.svg");
     background-repeat: no-repeat;
     background-position: center right 15px;
     background-color: #161616;
@@ -10335,7 +10335,7 @@ audio::-webkit-media-controls-play-button {
         backdrop-filter: blur(5px);
         border-radius: 12px;
         border: none;
-        background-image: url("../img/distro-search-icon2.svg");
+        background-image: url("#{$domain}epicon/assets/images/distro-search-icon2.svg");
         background-repeat: no-repeat;
         background-position: left 10px center;
         padding-left: 50px;
@@ -10355,7 +10355,7 @@ audio::-webkit-media-controls-play-button {
         width: 60px;
         height: 100%;
         background-color: transparent;
-        background-image: url("../assets/img/distro-filter.svg");
+        background-image: url("#{$domain}epicon/assets/images/distro-filter.svg");
         background-repeat: no-repeat;
         border: none;
         background-position: right 10px center;
@@ -10656,7 +10656,7 @@ audio::-webkit-media-controls-play-button {
     height: 33px;
     position: absolute;
     color: #fff;
-    background-image: url("../img/new-episode-tag.svg");
+    background-image: url("#{$domain}epicon/assets/images/new-episode-tag.svg");
     background-size: cover;
     background-repeat: no-repeat;
     padding: 2px 4px;
@@ -10829,44 +10829,44 @@ audio::-webkit-media-controls-play-button {
     }
   
     & .card-ms:nth-child(1) .number {
-      background-image: url(../img/1-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/1-ms.svg);
       left: 0px;
     }
   
     & .card-ms:nth-child(2) .number {
-      background-image: url(../img/2-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/2-ms.svg);
     }
   
     & .card-ms:nth-child(3) .number {
-      background-image: url(../img/3-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/3-ms.svg);
     }
   
     & .card-ms:nth-child(4) .number {
-      background-image: url(../img/4-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/4-ms.svg);
     }
   
     & .card-ms:nth-child(5) .number {
-      background-image: url(../img/5-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/5-ms.svg);
     }
   
     & .card-ms:nth-child(6) .number {
-      background-image: url(../img/6-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/6-ms.svg);
     }
   
     & .card-ms:nth-child(7) .number {
-      background-image: url(../img/7-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/7-ms.svg);
     }
   
     & .card-ms:nth-child(8) .number {
-      background-image: url(../img/8-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/8-ms.svg);
     }
   
     & .card-ms:nth-child(9) .number {
-      background-image: url(../img/9-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/9-ms.svg);
     }
   
     & .card-ms:nth-child(10) .number {
-      background-image: url(../img/10-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/10-ms.svg);
       background-size: cover;
       background-position: left;
       height: 97px;
@@ -10956,7 +10956,7 @@ audio::-webkit-media-controls-play-button {
         text-align: start;
         @include line-clamp(1);
         display: none;
-        background-image: url(../img/drop-down-arrow-select-white.svg);
+        background-image: url(#{$domain}epicon/assets/images/drop-down-arrow-select-white.svg);
         background-repeat: no-repeat;
         background-position: center right 5px;
         @media (max-width:767px) {
