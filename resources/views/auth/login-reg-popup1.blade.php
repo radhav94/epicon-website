@@ -542,7 +542,7 @@
 
                     <!-- successfully and interest  start-->
                     <div class="login-popup-modal successfully-loged screen-sucess-register py-5">
-                        <img width="100" src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="">
+                        <img width="100" height="100" src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="">
                         <h4 class="text-center text-white mt-3">Hey <span id="username"></span>, you have
                             successfully registered with Epic On!</h4>
                         <p class="small text-white">Tell us what you’re interested in and we’ll do our best to give you
@@ -564,7 +564,7 @@
                     <!-- successfully logged  start-->
                     <div class="login-popup-modal successfully-loged w-100 screen-sucess-logged">
 
-                        <img width="100" class="{{@$subplan['status']}}" src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="">
+                        <img width="100" height="100" class="{{@$subplan['status']}}" src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="icon">
                         <h4 class="text-center text-white mt-3">Awesome! You have successfully logged in to Epic ON {{@$subplan_status}}
                         </h4>
                         <div class="no-subscription-user">

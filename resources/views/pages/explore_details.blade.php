@@ -21,8 +21,8 @@
             @if (isset($listVal['content']) && count($listVal['content']) > 0)
                 <div class="carousel-main">
                     <div class="carousel-title-n-arrow px-2">
-                        <h5 class="text-white">
-                            {{ isset($listVal['name']) && $listVal['name'] != '' ? $listVal['name'] : ucfirst($slug) }}</h5>
+                        <h1 class="text-white">
+                            {{ isset($listVal['name']) && $listVal['name'] != '' ? $listVal['name'] : ucfirst($slug) }}</h1>
                             <?php if(isset($listVal['show_more']) && $listVal['show_more'] == true){ ?>
                         <a href="{{ url('explore' . '/' . $slug . '/' . $listVal['catalog_slug']) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
@@ -57,13 +57,13 @@
                                     <div class="top-card-img">
                                         <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg"
                                                 alt=""></span>
-                                        <a href="{{ getContentUrl($contentVal) }}">
+                                        <a aria-label="item-hover" href="{{ getContentUrl($contentVal) }}">
                                             <img src="{{ $cover_image }}" alt="">
                                         </a>
                                     </div>
 
                                     <div class="bottom-card-content">
-                                        <a href="{{ getContentUrl($contentVal) }}" tabindex="{{ $key }}">
+                                        <a aria-label="item-main" href="{{ getContentUrl($contentVal) }}" tabindex="{{ $key }}">
                                             <h1>{{ $contentVal['title'] }}</h1>
                                         </a>
                                         <div class="marquee">
@@ -131,7 +131,7 @@
                                         <p class="text-white mb-0">{{ $contentVal['short_description'] }}</p>
                                     </div>
                                 </div>
-                                <a class="main-card" href="{{ url($contentVal['url']) }}">
+                                <a aria-label="item-main" class="main-card" href="{{ url($contentVal['url']) }}">
                                     <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg"
                                             alt="">
                                     </span>

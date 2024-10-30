@@ -1,6 +1,6 @@
 <div class="carousel-main">
     <div class="carousel-title-n-arrow px-2">
-        <h5 class="text-white">{{ $title }}</h5>
+        <h1 class="text-white">{{ $title }}</h1>
         @if (@$value['show_more'])
             <a href="{{ getMidPageUrl($value) }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -25,7 +25,7 @@
                 @if(@$val['asset_type'] == 'PLAY')
                     {!! getplayanchorhtml($val) !!}
                 @else
-                    <a href="{{ getContentUrl($val) }}" class="main-card">
+                    <a aria-label="item-main" href="{{ getContentUrl($val) }}" class="main-card">
                 @endif
                     {!! freePremiumDiv($val) !!}
 

@@ -25,7 +25,7 @@ if ($request->has('type')) {
                         fill="white" />
                 </svg>
             </a>
-            <a onclick="click_menu(this)" aria-label="Home" data-event_context="header" data-element_text="Home" class="navbar-brand me-3" href="{{ getUrlWithPrefix('homepage') }}"><img height="28"
+            <a onclick="click_menu(this)" aria-label="Home" data-event_context="header" data-element_text="Home" class="navbar-brand me-3" href="{{ getUrlWithPrefix('homepage') }}"><img height="28" width="97"
                     src="{{ env('AWS_S3_domain') }}epicon/assets/images/epicon-logo.png" alt=""></a>
                
                 @if(@$subplan['status'] != 'active')
@@ -131,8 +131,8 @@ if ($request->has('type')) {
             </a>
             @endif
             
-            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Home" class="navbar-brand" aria-label="Logo" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/epicon-logo.png"
-                    alt=""></a>
+            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Home" class="navbar-brand" aria-label="Logo" href="{{ getUrlWithPrefix('homepage') }}"><img height="28" width="97" src="{{ env('AWS_S3_domain') }}epicon/assets/images/epicon-logo.png"
+                    alt="logo"></a>
                     
                 @if($kids_page && @$subplan['status'] != 'active')
                     <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn allAccessBtn-sub" aria-label="Subscribe" href="javascript:void(0);">{{__('Subscribe')}}</a>

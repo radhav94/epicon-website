@@ -5,7 +5,7 @@
 <section class="carousel-main pt-3 mb-3" id="tranding">
     <div class="container-fluid">
         <div class="carousel-title-n-arrow mb-3">
-            <h5 class="text-white">{{ $title }}</h5>
+            <h1 class="text-white">{{ $title }}</h1>
             @if (@$value['show_more'])
                 <a onclick="click_cta(this)" data-event_context="{{ @$title }}" data-element_text="SEE ALL" href="{{ getMidPageUrl($value) }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"

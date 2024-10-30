@@ -10,7 +10,7 @@
 <div class="scrollspy">
     <div id="nav-container" class="d-flex align-items-center justify-content-between px-3">
         <div class="carousel-title-n-arrow">
-            <h5 class="text-white mb-0">{{__('Hot & New')}}</h5>
+            <h1 class="text-white mb-0">{{__('Hot & New')}}</h1>
         </div>
         <div id="nav">
             @foreach ($spotlightData['data']['list'] as $key => $head_item)
@@ -27,7 +27,7 @@
             <section class="{{ strtolower(str_replace(' ', '', $head_item['title'])) }}">
             <div id="{{ strtolower(str_replace(' ', '', $head_item['title'])) }}"></div>
                 <div class="carousel-title-n-arrow pb-3">
-                    <h5 class="text-white mb-0">{{ $head_item['title'] }}</h5>
+                    <h1 class="text-white mb-0">{{ $head_item['title'] }}</h1>
                 </div>
                 @php
                     $title = $head_item['title'] ?? "";

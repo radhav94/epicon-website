@@ -11,7 +11,7 @@ $card = getItemCardData($val, 'ENGLISH');
     @if(@$val['asset_type'] == 'PLAY')
         {!! getplayanchorhtml($val) !!}
     @else
-        <a href="{{ getContentUrl($val) }}" class="main-card seeallm">
+        <a aria-label="item-main" href="{{ getContentUrl($val) }}" class="main-card seeallm">
     @endif
         {!! freePremiumDiv($val) !!}
         {!! topTenDiv($val) !!}

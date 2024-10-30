@@ -44,7 +44,7 @@
                                         $cover_img = getCardImage($datalist, 'cover_image');
                                      ?>
                                     <li>
-                                        <a href="{{ url($datalist['url'] ?? '/library') }}" class="main-card">
+                                        <a aria-label="item-main" href="{{ url($datalist['url'] ?? '/library') }}" class="main-card">
                                             <div class="main-img">
                                                 <img src="{{ $cover_img }}" alt="">
 
@@ -80,7 +80,7 @@
                                         $cover_image = getCardImage($historydatalist, 'vertical_cover_image');
                                      ?>
                                     <li>
-                                        <a href="{{ url($historydatalist['url'] ?? '/library') }}" class="main-card">
+                                        <a aria-label="item-main" href="{{ url($historydatalist['url'] ?? '/library') }}" class="main-card">
                                             <div class="main-img">
                                                 <img src="{{ $cover_image }}" alt="">
 

@@ -11,13 +11,13 @@ if (@$val['display_type'] == 'standard') {
         @if (@$extra['hide_top10'] != 1)
             {!! topTenDiv($val) !!}
         @endif
-        <a href="{{ getContentUrl($val) }}" onclick="click_tile(this)" data-title ="{{ @$val['title'] }}"
+        <a aria-label="item-hover" href="{{ getContentUrl($val) }}" onclick="click_tile(this)" data-title ="{{ @$val['title'] }}"
             data-type="{{ @$title }}">
             <img src="{{ $cover_img }}" alt="">
         </a>
     </div>
     <div class="bottom-card-content">
-        <a href="{{ getContentUrl($val) }}">
+        <a aria-label="item-main" href="{{ getContentUrl($val) }}">
             <h1>{{ $card['title'] }}</h1>
         </a>
         <ul>
