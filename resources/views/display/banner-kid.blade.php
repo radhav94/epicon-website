@@ -1,7 +1,7 @@
 <div class="carousel-main home-kids-bg">
     <div class="gaming-galore-main">
             <a href="{{ url('kids') }}" class="galore-title">
-                <img class="kids-tray-img" src="{{ asset('assets/img/kids-home-img.svg') }}" alt="">
+                <img class="kids-tray-img" src="{{env('AWS_S3_domain')}}epicon/assets/images/kids-home-img.svg" alt="">
             </a>
         <div class="gaming-galore p-0 mb-0">
             @foreach ($value['content'] as $key => $val)

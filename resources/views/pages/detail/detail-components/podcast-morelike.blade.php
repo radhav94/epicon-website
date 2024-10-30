@@ -22,7 +22,7 @@
                     @endif
                         <div class="main-img eod-darlings">
                             <img src="{{ $cover_img }}" alt="">
-                            <div class="new-show-title"><img src="{{ asset('img/sound-equalizer.svg') }}"
+                            <div class="new-show-title"><img src="{{env('AWS_S3_domain')}}epicon/assets/images/sound-equalizer.svg"
                                     alt="">
                             </div>
                             @if (@$value['duration'])

@@ -39,7 +39,7 @@
                 <div class="login-register text-center">
                     <div class="left-side">
                         <div class="w-100 pe-5">
-                            <img class="w-100" src="{{ asset('/img/plot-1-2-bg.png') }}" alt="plot 1 by 2">
+                            <img class="w-100" src="{{env('AWS_S3_domain')}}epicon/assets/images/plot-1-2-bg.png" alt="plot 1 by 2">
                         </div>
                         <div class="login-carousel px-2">
                             <div>

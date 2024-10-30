@@ -27,7 +27,7 @@
                     <div class="main-img eod-darlings">
                         {!! freePremiumDiv($val) !!}
                         <img src="{{ $cover_img }}" alt="">
-                        <div class="new-show-title"><img src="{{ asset('img/sound-equalizer.svg') }}" alt="">
+                        <div class="new-show-title"><img src="{{env('AWS_S3_domain')}}epicon/assets/images/sound-equalizer.svg" alt="">
                         </div>
                         @if (@$val['duration'])
                             <div class="sound-time">{{ convertSecondsToReadable($val['duration']) }}</div>
