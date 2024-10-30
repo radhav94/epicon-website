@@ -92,7 +92,7 @@
 
 </div>
 
-    <div class="content-loader d-none" style="text-align: center;"> <img style="width: 40px;" src="{{ asset('assets/img/loader.gif') }}" alt=""> </div>
+    <div class="content-loader d-none" style="text-align: center;"> <img style="width: 40px;" src="{{ asset('assets/img/loader.gif') }}" alt="loading"> </div>
 
 @stop
 
