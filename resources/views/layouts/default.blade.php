@@ -3,7 +3,8 @@
 <head>
     @include('layouts.metadata')
     {{-- Start header common styles --}}
-    <link rel="stylesheet" href="{{ env('AWS_S3_domain') }}epicon/assets/images/style.min.css?v={{ assetTime() }}">
+    {{-- <link rel="stylesheet" href="{{ env('AWS_S3_domain') }}epicon/assets/images/style.min.css?v={{ assetTime() }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/style.min.css') }}?v={{ assetTime() }}">
 
     {{-- assets/css/slick.min.css, assets/css/swiper-bundle.min.css, assets/css/toastr.min.css, jquery-ui.min.css --}}
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/all-css.min.css') }}"> --}}
