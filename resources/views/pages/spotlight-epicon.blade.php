@@ -2,7 +2,7 @@
 @section('title','Get to Know About Upcoming OTT New Web Series and Movies')
 
 @section('style')
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}?v={{ assetTime() }}">
+<link rel="stylesheet" type="text/css" href="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.css?v={{ assetTime() }}">
 
 @stop
 
@@ -10,7 +10,7 @@
 <div class="scrollspy">
     <div id="nav-container" class="d-flex align-items-center justify-content-between px-3">
         <div class="carousel-title-n-arrow">
-            <h5 class="text-white mb-0">{{__('Hot & New')}}</h5>
+            <h1 class="text-white mb-0">{{__('Hot & New')}}</h1>
         </div>
         <div id="nav">
             @foreach ($spotlightData['data']['list'] as $key => $head_item)
@@ -27,7 +27,7 @@
             <section class="{{ strtolower(str_replace(' ', '', $head_item['title'])) }}">
             <div id="{{ strtolower(str_replace(' ', '', $head_item['title'])) }}"></div>
                 <div class="carousel-title-n-arrow pb-3">
-                    <h5 class="text-white mb-0">{{ $head_item['title'] }}</h5>
+                    <h1 class="text-white mb-0">{{ $head_item['title'] }}</h1>
                 </div>
                 @php
                     $title = $head_item['title'] ?? "";
@@ -122,9 +122,9 @@
 @stop
 
 @section('script')
-<script src="{{ asset('assets/js/vendor/plyr.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/hls.min.js') }}"></script>
-<script src="{{ asset('assets/js/webvtt-subtitler.js') }}"></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.js"></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/hls.min.js"></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/webvtt-subtitler.js"></script>
 <script src="{{ asset('assets/js/video-player.js') }}?v={{ assetTime() }}"></script>
 
 <script>

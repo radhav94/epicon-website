@@ -7,13 +7,13 @@
      <div class="chart-trigger align-items-center d-flex position-relative">
          <div class="main-chart-spinner d-flex align-items-center">
              <div id="chart"></div>
-             <div class="spin-trigger"><img src="{{ asset('assets/img/spin-trigger.svg') }}" alt=""></div>
+             <div class="spin-trigger"><img src="{{env('AWS_S3_domain')}}epicon/assets/images/spin-trigger.svg" alt=""></div>
          </div>
          <div id="question">
 
              <div class="spin-img d-flex">
                  <div class="trigger-data-img d-flex">
-                     <img src="{{ asset('assets/img/default-200x300.png') }}" alt="">
+                     <img src="{{env('AWS_S3_domain')}}epicon/assets/images/default-200x300.png" alt="">
                  </div>
              </div>
 

@@ -7,42 +7,42 @@
      </div>
 
      <?php
-     
+
      $sub_slider_html = '';
      ?>
 
      <div class="hero-banner-new-release w-100">
          <div class="banner-carousel-new-release">
-               
+
              @foreach ($value['content'] as $key => $val)
                  <?php
                  $card = getItemCardData($val, $displayLanguageParam);
-                 
+
                  $banner_img = getCardImage($val, 'banner_image', 'large', ['cover_image']);
                  $cover_img = getCardImage($val, 'vertical_cover_image', 'medium', ['cover_image', 'banner_image']);
-                 
+
                  $li = '';
                  if (@$val['duration']) {
                      $li .= '<li>' . convertSecondsToReadable($val['duration']) . '</li>';
                  }
-                 
+
                  $se_epi_text = getSeasonEpisodeNum($val);
                  $s_txt = '';
-                 
+
                  $s_txt .= isset($se_epi_text['season']) ? ' ' . $se_epi_text['season'] : '';
                  $s_txt .= isset($se_epi_text['episode']) ? '<b>' . $se_epi_text['episode'] . '</b>' : '';
-                 
+
                  if ($s_txt) {
                      $s_txt = '<li>' . $s_txt . '</li>';
                  }
-                 
+
                  $sub_slider_html .= '<div class="new-release-card"><img src="' . $cover_img . '" alt=""><div class="new-episode-time"> <ul>' . $s_txt . ' ' . $li . '</ul></div></div>';
                  ?>
                  <div class="carousel-card">
                      {!! freePremiumDiv($val) !!}
 
                      <div class="carousel-items position-relative w-100">
-                        <a onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}"  href="{{ getContentUrl($val) }}">
+                        <a aria-label="banner" onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}"  href="{{ getContentUrl($val) }}">
                             <img src="{{ $banner_img }}" alt="">
                         </a>
                          <div class="carousel-items-content position-absolute">
@@ -97,13 +97,13 @@
                              if (@$data['duration']) {
                                  $li = convertSecondsToReadable($data['duration']);
                              }
-                             
+
                              $se_epi_text = getSeasonEpisodeNum($data);
                              $s_txt = '';
-                             
+
                              $s_txt .= isset($se_epi_text['season']) ? $se_epi_text['season'] : '';
                              $s_txt .= isset($se_epi_text['episode']) ? $se_epi_text['episode'] : '';
-                             
+
                              if ($s_txt) {
                                  $s_txt = $s_txt;
                              }

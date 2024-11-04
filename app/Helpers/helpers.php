@@ -275,7 +275,7 @@ function getImage($image, $size = 'original')
 
 function freePremiumDiv($val)
 {
-    echo (@$val['free_premium'] == true) ? '<span class="crown position-absolute"><img src="' . env('AWS_S3_domain') . 'epicon/assets/images/crown.svg" alt=""></span>' : '';
+    echo (@$val['free_premium'] == true) ? '<span class="crown position-absolute"><img src="' . env('AWS_S3_domain') . 'epicon/assets/images/crown.svg" alt="premium"></span>' : '';
 }
 
 // function isPopularDiv($val)
@@ -1437,7 +1437,7 @@ if (!function_exists('getMeta')) {
 
         $meta['keywords'] = '';
 
-        $meta['image'] = env('APP_URL') . '/img/epiconlogo.png';
+        $meta['image'] = env('AWS_S3_domain') . 'epicon/assets/images/epiconlogo.png';
 
         $meta['url'] = url()->current();
 

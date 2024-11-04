@@ -7,7 +7,7 @@ namespace App\library {
         {
             $meta = [];
             $meta['keywords'] = '';
-            $meta['image'] = env('APP_URL') . '/epiconlogo.png';
+            $meta['image'] = env('AWS_S3_domain') . 'epicon/assets/images/epiconlogo.png';
             $meta['url'] = url()->current();
             $meta['title'] = "Welcome to EPIC ON - India Ka Apna Infotainment";
             $meta['description'] = "EPIC ON - India Ka Apna Infotainment | Watch TV Shows, Documentaries, Epic Shorts, Epic Specials Online at EPIC ON";
@@ -75,7 +75,7 @@ namespace App\library {
         {
             $meta = [];
             $meta['keywords'] = '';
-            $meta['image'] = env('APP_URL') . '/epiconlogo.png';
+            $meta['image'] = env('AWS_S3_domain') . 'epicon/assets/images/epiconlogo.png';
             $meta['url'] = url()->current();
             $meta['title'] = "EPIC ON - India Ka Apna Infotainment में आपका स्वागत है";
             $meta['description'] = "EPIC ON - India Ka Apna Infotainment | ईपीआईसी ऑन पर टीवी शो, वृत्तचित्र, महाकाव्य शॉर्ट्स, महाकाव्य विशेष ऑनलाइन देखें";

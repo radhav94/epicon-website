@@ -19,7 +19,7 @@
                  
                  ?>
                  <li>
-                     <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}"  href="{{ route('retro-list', $val['slug']) }}" class="main-card">
+                     <a aria-label="item-main" onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}"  href="{{ route('retro-list', $val['slug']) }}" class="main-card">
                          <div class="main-img mt-0">
                              <img src="{{ $cover_img }}" alt="retro">
                          </div>

@@ -9,7 +9,7 @@
             <a onclick="click_tile(this)" data-title ="{{ @$val['root_title'] }}" data-type="{{@$title}}" href="{{ getUrl('distro-tv') }}/{{@$val['ID']}}">
                 <img src="{{@$val['episodes_img_thumbh']}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain')}}epicon/assets/images/play-white.png" alt=""></div>
         </div>
     @endforeach
     </div>

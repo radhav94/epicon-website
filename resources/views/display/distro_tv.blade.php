@@ -30,7 +30,7 @@
                             <a href="{{ getUrl('distro-tv') }}/{{@$val['id']}}">
                             <img class="slide-img lazyload" src="{{ @$val['episodes_img_thumbh'] }}" alt=""></a>
                         </div>
-                        <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+                        <div class="play-button"><img src="{{env('AWS_S3_domain')}}epicon/assets/images/play-white.png" alt=""></div>
                     </figure>               
                 </div>
         @endforeach

@@ -1,7 +1,7 @@
   <section class="carousel-main">
       <div class="container-fluid">
           <div class="carousel-title-n-arrow mb-3">
-              <h5 class="text-white">{{ $title }}</h5>
+              <h1 class="text-white">{{ $title }}</h1>
               @if (@$value['show_more'])
                   <a onclick="click_cta(this)" data-event_context="{{ @$title }}" data-element_text="SEE ALL" href="{{ getMidPageUrl($value) }}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
@@ -34,7 +34,7 @@
                       {{ freePremiumDiv($val) }}
 
                       <div class="carousel-items position-relative w-100">
-                        <a onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}" href="{{ getContentUrl($val) }}">
+                        <a aria-label="banner" onclick="click_tile(this)" data-title ="{{ @$val['title'] }}" data-type="{{@$title}}" href="{{ getContentUrl($val) }}">
                           <img src="{{ $banner_img }}" alt="">
                         </a>
                           <div class="carousel-items-content position-absolute">

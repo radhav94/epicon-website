@@ -3,22 +3,24 @@
 <head>
     @include('layouts.metadata')
     {{-- Start header common styles --}}
-    <link rel="stylesheet" href="{{ asset('/css/style.min.css') }}?v={{ assetTime() }}">
+    {{-- <link rel="stylesheet" href="{{ env('AWS_S3_domain') }}epicon/assets/images/style.min.css?v={{ assetTime() }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/style.min.css') }}?v={{ assetTime() }}">
 
     {{-- assets/css/slick.min.css, assets/css/swiper-bundle.min.css, assets/css/toastr.min.css, jquery-ui.min.css --}}
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/all-css.min.css') }}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/all-css.min.css') }}"> --}}
+    <link rel="stylesheet" type="text/css" href="{{ env('AWS_S3_domain') }}epicon/assets/images/all-css.min.css">
 
     {{-- End header common styles --}}
-    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/jquery.js"></script>
 
     {{-- Start page specific styles --}}
     @yield('style')
     {{-- End page specific styles --}}
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> -->
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -100,9 +102,10 @@
     {{-- Start footer common scripts --}}
     {{-- assets/js/vendor/jquery-ui.min.js, assets/js/swiper.js, assets/js/spiner.js, assets/js/slick.min.js, assets/js/vendor/bootstrap.bundle.min.js, assets/js/vendor/toastr.min.js --}}
     <script src="{{ asset('assets/js/all-js.min.js') }}" defer></script>
+    {{-- <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/all-js.min.js" defer></script> --}}
 
-    <script src="{{ asset('assets/js/ga_tag.js') }}?v={{ assetTime() }}"></script>
-    <script src="{{ asset('assets/js/custom.js') }}?v={{ assetTime() }}" defer></script>
+    <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/ga_tag.js?v={{ assetTime() }}"></script>
+    <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/custom.js?v={{ assetTime() }}" defer></script>
     
     {{-- End footer common scripts --}}
 

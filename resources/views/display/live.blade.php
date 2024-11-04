@@ -1,7 +1,7 @@
 
 <section class="carousel-main mt-0">
     <div class="carousel-title-n-arrow px-2 pb-2">
-        <h5 class="text-white">{{ $title }}</h5>
+        <h1 class="text-white">{{ $title }}</h1>
 
         @if (@$value['show_more'])
             <a onclick="click_cta(this)" data-event_context="{{ @$title }}" data-element_text="SEE ALL" href="{{ getUrl('live-tv') }}">
@@ -20,7 +20,7 @@
             	 $banner_img = getCardImage($val, 'cover_image', 'medium');
             ?>
                 <div class="live-trey-content">
-                    <a onclick="click_tile(this)" data-title ="{{ @$val['content_owner'] }}" data-type="{{@$title}}" href="{{ getUrl(@$val['url']) }}">
+                    <a onclick="click_tile(this)" aria-label="{{ @$val['content_owner'] }}" data-title ="{{ @$val['content_owner'] }}" data-type="{{@$title}}" href="{{ getUrl(@$val['url']) }}">
                         <img src="{{ $banner_img }}" alt="">
                     </a>
                 </div>
