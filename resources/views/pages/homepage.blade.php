@@ -30,12 +30,12 @@
 
 @section('content')
 <input type="hidden" id="routepage" value="{{ request()->path() }}">
-<input type="hidden" id="pageval" value="1">
+<input type="hidden" id="pageval" value="0">
 
 
 <div class="loadmorecontent">
 
-    @include('display.display-default')
+    {{-- @include('display.display-default') --}}
 </div>
 
     <div class="content-loader d-none" style="text-align: center;"> <img style="width: 40px;" src="{{ env('AWS_S3_domain') }}epicon/assets/images/loader.gif" alt="loading"> </div>
@@ -60,12 +60,11 @@
     var spinnerAdded = false;
 
     $(document).ready(function() {
-        $('#pageval').val('1');
-        
+        // $('#pageval').val('1');
         if (typeof activateSpinner === 'function') {
             activateSpinner();
         }
-        initSliders();
+        // initSliders();
 
         $(document).scroll(function(e) {
             if (processing) {
@@ -131,6 +130,8 @@
                 }
             });
         }
+
+        loadMoreData();
         
         if ("{{session()->has('error')}}") {
             $('.loginBtn.login').trigger('click');
