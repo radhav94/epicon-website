@@ -27,11 +27,17 @@
                             </a>
                             {{-- <h6 class="pod-title">EPIC ON ORIGINAL</h6> --}}
                             {{-- <h5 class="pod-series">CASO.63</h5> --}}
-                            <img class="podcast-top-icon" src="{{ asset('assets/img/podcast-top-icon.svg') }}" alt="podcast icon">
+                            <img class="podcast-top-icon"
+                            @if (@$value['free_premium'] == true && !isActiveSubscription())
+                                src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" 
+                            @else
+                                src="{{ env('AWS_S3_domain') }}epicon/assets/images/podcast-top-icon.svg"
+                            @endif
+                                alt="crown">
                         </div>
                         <div class="middle">
                             <h6 class="title" data-duration="{{@$value['duration']}}">{{ $card['title'] }}</h6>
-                            <div class="d-flex align-items-center flex-wrap">
+                            <div class="d-fvo khana khane gialex align-items-center flex-wrap">
                                 <span class="me-3">
                                     @if (@$value['release_date'])
                                     {{ formatDate($value['release_date']) }}
