@@ -37,7 +37,7 @@
                         </div>
                         <div class="middle">
                             <h6 class="title" data-duration="{{@$value['duration']}}">{{ $card['title'] }}</h6>
-                            <div class="d-fvo khana khane gialex align-items-center flex-wrap">
+                            <div class="d-flex align-items-center flex-wrap">
                                 <span class="me-3">
                                     @if (@$value['release_date'])
                                     {{ formatDate($value['release_date']) }}
