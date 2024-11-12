@@ -79,7 +79,7 @@
                 @endif
 
                 <div class="col-sm-12" id="searchTab" style="display:none">
-                    <div class="w-100 library mb-0 search-main">
+                    <div class="w-100 library m-0 search-main">
                         <ul class="nav nav-pills d-flex justify-content-center pb-3" id="pills-tab" role="tablist">
                             @foreach ($categoryMapping as $key => $item)
                                 @php
@@ -87,15 +87,15 @@
                                     if ($kids_page && $item == 'KidsResult') {
                                         $show = 'ep active';
                                     }
-                                    if (!$kids_page && $item == 'MoviesResult') {
+                                    if (!$kids_page && $item == 'AllResult') {
                                         $show = 'ep active';
                                     }
                                 @endphp
-                                <li class="nav-item" role="presentation">
+                                <li class="nav-item" role="presentation" id="show_{{ $item }}">
                                     <button class="nav-link {{ $show }}" id="{{ $item }}"
                                         data-bs-toggle="pill" data-bs-target="#pills-{{ $item }}" type="button"
                                         role="tab" aria-controls="pills-{{ $item }}"
-                                        aria-selected="false">{{ __($key) }}</button>
+                                        aria-selected="false">{{ __($key) }}<span class="badge badge-primary" id="count_{{ $item }}"></span></button>
                                 </li>
                             @endforeach
                         </ul>
@@ -107,7 +107,7 @@
                                     if ($kids_page && $item == 'KidsResult') {
                                         $show = 'show active';
                                     }
-                                    if (!$kids_page && $item == 'MoviesResult') {
+                                    if (!$kids_page && $item == 'AllResult') {
                                         $show = 'show active';
                                     }
                                 @endphp
@@ -126,7 +126,7 @@
                 </div>
                 @if (!session()->has('kidsMode') || (session()->has('kidsMode') && !session()->get('kidsMode')))
                     <div class="col-sm-12">
-                        <div class="w-100 library mb-0 search-main">
+                        <div class="w-100 library m-0 search-main">
                             @include('pages.search.trending_searchlist')
                         </div>
                     </div>
