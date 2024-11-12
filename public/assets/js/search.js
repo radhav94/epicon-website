@@ -54,7 +54,7 @@ $(document).ready(function () {
                         }
 
                         var showHide = response.showHide;
-                        if (showHide && 1==3) {
+                        if (showHide) {
                             Object.keys(showHide).forEach(function (key) {
                                 const showValue = showHide[key];
                                 if (showValue == 0) {
