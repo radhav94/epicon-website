@@ -166,12 +166,12 @@
 
 <section class="payu-success payu-failler-bg">
       <div class="payu-card">
-        <img src="{{ asset('assets/img/failer-icon-payu.svg')}}" alt="icon">
+        <img src="{{ env('AWS_S3_domain').'epicon/assets/images/failer-icon-payu.svg'}}" alt="icon">
         <h1>Oh No!</h1>
         <p>Something went wrong</p>
       </div>
       <div class="epicon-logo-footer-right elfr-opacity">
-        <img src="{{ asset('assets/img/epicon-logo-footer-right.svg')}}" alt="icon">
+        <img src="{{ env('AWS_S3_domain').'epicon/assets/images/epicon-logo-footer-right.svg'}}" alt="icon">
       </div>
 </section>
 

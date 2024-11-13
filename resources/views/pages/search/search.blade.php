@@ -47,7 +47,7 @@
                         <div class="search-bar" id="searchform_id">
                             <input type="text" name="search" id="searchname"
                                 placeholder="Movies, shows, podcasts and more" autocomplete="off">
-                            <button class="search-icon"><img src="{{ asset('/img/search-icon.svg') }}"
+                            <button class="search-icon"><img src="{{ env('AWS_S3_domain').'epicon/assets/images/search-icon.svg' }}"
                                     alt="icon"></button>
                         </div>
                         <button class="remove-text p-0" style="display:none">
@@ -137,5 +137,5 @@
 @stop
 
 @section('script')
-    <script src="{{ asset('assets/js/search.js') }}?v={{ assetTime() }}"></script>
+    <script src="{{ env('AWS_S3_domain').'epicon/assets/images/search.js' }}?v={{ assetTime() }}"></script>
 @stop

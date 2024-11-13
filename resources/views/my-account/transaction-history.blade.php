@@ -71,7 +71,7 @@
                                 <td>{{$plan_name}}</td>
                                 <td>{{$sub_source}}</td>
                                 <td>{{ isset($subs_start_date) ? $subs_start_date : '' }} </td>
-                                {{--<!-- <td><img src="{{ asset('/img/visa.svg') }}" alt="icon" class="me-2">visa **** **** **** 1823</td> -->--}}
+                                {{--<!-- <td><img src="{{ env('AWS_S3_domain').'epicon/assets/images/visa.svg' }}" alt="icon" class="me-2">visa **** **** **** 1823</td> -->--}}
                                 <td>{{ isset($subs_end_date) ? $subs_end_date : '' }}</td>
                                 <td class="text-end">
                                     @if( isset($value['plan_amount']) )

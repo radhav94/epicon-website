@@ -31,7 +31,7 @@
                     </button> --}}
                 </div>
             </div>
-            <img class="mt-3 mb-2" width="150" src="{{ asset('/img/sync-yr-device.svg') }}" alt="">
+            <img class="mt-3 mb-2" width="150" src="{{ env('AWS_S3_domain').'epicon/assets/images/sync-yr-device.svg' }}" alt="">
         </div>
 
     </div>

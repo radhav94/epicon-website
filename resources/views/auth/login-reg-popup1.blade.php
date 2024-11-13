@@ -49,7 +49,7 @@
                 <div class="login-register text-center">
                     <div class="left-side">
                         <div class="w-100">
-                            <img class="w-100" src="{{ asset('/img/login-register-bg.png') }}" alt="">
+                            <img class="w-100" src="{{ env('AWS_S3_domain').'epicon/assets/images/login-register-bg.png' }}" alt="">
                         </div>
                         <div class="login-carousel px-2">
                             <div>
@@ -146,7 +146,7 @@
                                             alt="twitter"></a>
                                     <a href="{{route('login.google')}}"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-google-icon.svg"
                                             alt="google"></a>
-                                    <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
+                                    <!-- <a href=""><img src="{{ env('AWS_S3_domain').'epicon/assets/images/lg-whatsapp-icon.svg' }}"
                                             alt=""></a> -->
                                 </div>
                                 <p class="get-help mt-5 small">Having trouble signing in? <a href="{{route('feedback')}}">Get Help</a>

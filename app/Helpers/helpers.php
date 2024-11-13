@@ -280,7 +280,7 @@ function freePremiumDiv($val)
 
 // function isPopularDiv($val)
 // {
-//     echo (@$val['is_popular'] == true) ? '<span><img src="' . asset('assets/img/fire-emoji.png') . '" alt=""></span>' : '';
+//     echo (@$val['is_popular'] == true) ? '<span><img src="' . env('AWS_S3_domain').'epicon/assets/images/fire-emoji.png' . '" alt=""></span>' : '';
 // }
 
 
@@ -952,7 +952,7 @@ function getCardImage($content, $key, $size = 'medium', $fallback = [])
 
         if (empty($img_url)) {
 
-            $img_url = isset($fallback[$key]) ? asset('assets/img/' . $fallback[$key]) : asset('assets/img/default-200x200.png');
+            $img_url = isset($fallback[$key]) ? env('AWS_S3_domain').'epicon/assets/images/' . $fallback[$key] : env('AWS_S3_domain').'epicon/assets/images/default-200x200.png';
 
             /*foreach ($fallback as $k => $img_key) {
                 if (isset($content[$img_key]) && !empty($content[$img_key])) {

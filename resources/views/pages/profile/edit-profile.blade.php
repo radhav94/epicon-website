@@ -28,13 +28,13 @@
                         </div>
 
                         <?php
-                        $profile_img = @$profile['profile_img'] != '' ? @$profile['profile_img'] : (@$data['gender'] == 'Female' ? asset('assets/img/edit-profile-pik.png') : asset('assets/img/profile-boy.png'));
+                        $profile_img = @$profile['profile_img'] != '' ? @$profile['profile_img'] : (@$data['gender'] == 'Female' ? env('AWS_S3_domain').'epicon/assets/images/edit-profile-pik.png' : env('AWS_S3_domain').'epicon/assets/images/profile-boy.png');
                         ?>
 
                         <div class="add-propik" style="background-image: url({{ $profile_img }});" id="add-propik">
 
                             <a for='imgupload' href="#" onclick="$('#imgupload').trigger('click'); return false;">
-                                <img src="{{ asset('assets/img/mn-edit-icon.png') }}" alt="">
+                                <img src="{{ env('AWS_S3_domain').'epicon/assets/images/mn-edit-icon.png' }}" alt="">
                             </a>
 
                             @if (@$profile['profile_img'] != "")
@@ -138,5 +138,5 @@
 
 @section('script')
     <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/jquery.validate.min.js"></script>
-    <script src="{{ asset('assets/js/profile.js') }}?v={{ assetTime() }}"></script>
+    <script src="{{ env('AWS_S3_domain').'epicon/assets/images/profile.js' }}?v={{ assetTime() }}"></script>
 @stop

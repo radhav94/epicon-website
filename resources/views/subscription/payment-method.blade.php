@@ -52,23 +52,23 @@ if($currency_amt == 'INR'){
             <h4 class="text-white text-center mb-4">{{__('Payment Methods')}}</h4>
             <div class="col-12 payment-method">
                 <button type="button" class="button-type active" data-attr="DC">
-                    <img src="{{ asset('/img/pm-debit-card.svg') }}" alt="icon">
+                    <img src="{{ env('AWS_S3_domain').'epicon/assets/images/pm-debit-card.svg' }}" alt="icon">
                     <?php echo __('Debit Card'); ?>
                 </button>
                 <button type="button" class="button-type" data-attr="CC">
-                    <img src="{{ asset('/img/pm-credit-card.svg') }}" alt="icon">
+                    <img src="{{ env('AWS_S3_domain').'epicon/assets/images/pm-credit-card.svg' }}" alt="icon">
                     <?php echo __('Credit Card'); ?>
                 </button>
                 <button type="button" class="button-type" data-attr="NB">
-                    <img src="{{ asset('/img/pm-netbanking.svg') }}" alt="icon">
+                    <img src="{{ env('AWS_S3_domain').'epicon/assets/images/pm-netbanking.svg' }}" alt="icon">
                     <?php echo __('Net Banking'); ?>
                 </button>
                 <button type="button" class="button-type" data-attr="UPI">
-                    <img src="{{ asset('/img/pm-UPI.svg') }}" alt="icon">
+                    <img src="{{ env('AWS_S3_domain').'epicon/assets/images/pm-UPI.svg' }}" alt="icon">
                     <?php echo __('UPI'); ?>
                 </button>
                 <button type="button" class="button-type" data-attr="CASH">
-                    <img src="{{ asset('/img/pm-wallet.svg') }}" alt="icon">
+                    <img src="{{ env('AWS_S3_domain').'epicon/assets/images/pm-wallet.svg' }}" alt="icon">
                     <?php echo __('Wallet'); ?>
                 </button>
             </div>
@@ -76,8 +76,8 @@ if($currency_amt == 'INR'){
             {{--<div class="other-payment-option mt-5 pb-5">
                 <p class="text-white text-center">{{__('Other Options')}}</p>
                 <div class="opt">
-                    <button type="button"><img src="{{ asset('/img/quick-cilver.png') }}" alt="icon"></button>
-                    <button type="button"><img src="{{ asset('/img/google-play.png') }}" alt="icon"></button>
+                    <button type="button"><img src="{{ env('AWS_S3_domain').'epicon/assets/images/quick-cilver.png' }}" alt="icon"></button>
+                    <button type="button"><img src="{{ env('AWS_S3_domain').'epicon/assets/images/google-play.png' }}" alt="icon"></button>
                 </div>
             </div>--}}
           
@@ -129,7 +129,7 @@ if($currency_amt == 'INR'){
                     </div>
                     <div class="right text-white text-center">
                         <h4 class="text-center mb-5">{{__('Pay with QR code')}}</h4>
-                        <img src="{{ asset('/img/qr-img.svg') }}" alt="qr">
+                        <img src="{{ env('AWS_S3_domain').'epicon/assets/images/qr-img.svg' }}" alt="qr">
                     </div>
                 </div>
             </div>

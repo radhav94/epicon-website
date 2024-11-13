@@ -52,7 +52,7 @@
 
 <section class="distro-main-video w-100 position-relative">
     <div class="distro-banner-video">
-        <div class="distro-banner-item"><img src="{{asset('img/live-player-container.png')}}" alt=""></div>
+        <div class="distro-banner-item"><img src="{{env('AWS_S3_domain').'epicon/assets/images/live-player-container.png'}}" alt=""></div>
     </div>
 </section>
 
@@ -60,7 +60,7 @@
     <div class="container">
         <div class="header-info mt-3 mb-3 d-flex flex-wrap justify-content-between">
             <h2 class= "text-white">Mastiii - India’s No.1 Music and Youth Channel Live TV</h2>
-            <img class="mr-3" src="{{asset('img/distro_logo-white.png')}}" alt="">
+            <img class="mr-3" src="{{env('AWS_S3_domain').'epicon/assets/images/distro_logo-white.png'}}" alt="">
         </div>
         <div class="para-info">
             <h4>Catch Distro TV Channel, and Mastiii Channel Live Online on MX Player!</h4>

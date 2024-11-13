@@ -13,14 +13,14 @@
                         <?php
                         
                         $gender = @$data['result']['user_data']['gender'] ?? 'Male';
-                        $default_img = $gender == 'Female' ? asset('assets/img/edit-profile-pik.png') : asset('assets/img/profile-boy.png');
+                        $default_img = $gender == 'Female' ? env('AWS_S3_domain').'epicon/assets/images/edit-profile-pik.png' : env('AWS_S3_domain').'epicon/assets/images/profile-boy.png';
                         
                         $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : $default_img;
                         ?>
                         <li>
                             <a href="{{ getUrlWithPrefix('profile.edit', $value['id']) }}">
                                 <img src="{{ $profile_img }}" alt="img">
-                                <span><img src="{{ asset('assets/img/mn-edit-icon.png') }}" alt="icon"></span>
+                                <span><img src="{{ env('AWS_S3_domain').'epicon/assets/images/mn-edit-icon.png' }}" alt="icon"></span>
                             </a>
                             <p class="mt-2">{{ ucfirst(@$value['name']) }}</p>
                         </li>
@@ -29,7 +29,7 @@
                     @if (count($data['profiles']) < $data['profile_limit'])
                         <li>
                             <a href="{{ getUrlWithPrefix('profile.add') }}">
-                                <img src="{{ asset('assets/img/mn-add.png') }}" alt="img">
+                                <img src="{{ env('AWS_S3_domain').'epicon/assets/images/mn-add.png' }}" alt="img">
                             </a>
                             <p class="mt-2">Add</p>
                         </li>

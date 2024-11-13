@@ -35,7 +35,7 @@ $meta['image'] = $share_img;
 @section('title', @$meta['title'])
 
 @section('style')
-    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/socialSharing.css') }}?v={{ assetTime() }}">
+    <link type="text/css" rel="stylesheet" href="{{ env('AWS_S3_domain').'epicon/assets/images/socialSharing.css' }}?v={{ assetTime() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
     @if ($loadPlayer)
         <link rel="stylesheet" type="text/css" href="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.css?v={{ assetTime() }}">
@@ -66,7 +66,7 @@ $meta['image'] = $share_img;
             <img src="{{ $cover_img }}" alt="img">
         </div>
         <div class="loaderImg" style="display:none">
-            <img class=""  src="{{ asset('assets/img/Spin.gif') }}" alt="img">
+            <img class=""  src="{{ env('AWS_S3_domain').'epicon/assets/images/Spin.gif' }}" alt="img">
         </div>
         @if(!isActiveSubscription() && $trailer_id)
         <a href="javascript:playContentVideo('{{ $trailer_id }}','trailer', this)" class="TrailerLink" style="display: none;"></a>
@@ -176,7 +176,7 @@ $meta['image'] = $share_img;
                                         data-action="{{ $wishAction }}" data-type="3">
                                         <img class="wl_add" src="{{ env('AWS_S3_domain') }}epicon/assets/images/add-icon.svg" alt="icon"
                                             @if ($wishAction == 'delete') style="display: none" @endif>
-                                        <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon"
+                                        <img class="wl_remove" src="{{ env('AWS_S3_domain').'epicon/assets/images/subs-icon.svg' }}" alt="icon"
                                             @if ($wishAction == 'add') style="display: none" @endif>
                                     </button>
                                     @if(isset($content['catalog_slug']) && $content['catalog_slug'] != 'live-tv')
@@ -189,7 +189,7 @@ $meta['image'] = $share_img;
                                     @endif
                                     <button class="rounded-transparent-btn shareThis" data-url="{{ getContentUrl($content) }}"
                                         data-title="{{ $share_title }}" data-type="{{@$content['catalog_slug']}}">
-                                        <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
+                                        <img src="{{ env('AWS_S3_domain').'epicon/assets/images/share-icon.svg' }}" alt="icon">
                                     </button>
                                     @if (@$content['is_popular'])
                                         <button class="border-btn most-pop">
@@ -245,17 +245,17 @@ $meta['image'] = $share_img;
 
 @section('script')
     <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/homepage.js?v={{ assetTime() }}"></script>
-    <script src="{{ asset('assets/js/socialSharing.js') }}?v={{ assetTime() }}"></script>
+    <script src="{{ env('AWS_S3_domain').'epicon/assets/images/socialSharing.js' }}?v={{ assetTime() }}"></script>
 
-    <script src="{{ asset('assets/js/detail.js') }}?v={{ assetTime() }}"></script>
+    <script src="{{ env('AWS_S3_domain').'epicon/assets/images/detail.js' }}?v={{ assetTime() }}"></script>
     <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/common.js?v={{ assetTime() }}"></script>
 
     @if ($loadPlayer)
-        {{-- <script src="{{ asset('assets/js/vendor/plyr.js') }}"></script> --}}
-        {{-- <script src="{{ asset('assets/js/vendor/hls.min.js') }}"></script> --}}
+        {{-- <script src="{{ env('AWS_S3_domain').'epicon/assets/images/vendor/plyr.js' }}"></script> --}}
+        {{-- <script src="{{ env('AWS_S3_domain').'epicon/assets/images/vendor/hls.min.js' }}"></script> --}}
         <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/webvtt-subtitler.js"></script>
         <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/video-player.js"></script>
-        {{-- <script src="{{ asset('assets/js/video-player.js') }}?v={{ assetTime() }}"></script> --}}
+        {{-- <script src="{{ env('AWS_S3_domain').'epicon/assets/images/video-player.js' }}?v={{ assetTime() }}"></script> --}}
     @endif
 
 
