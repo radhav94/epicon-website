@@ -87,7 +87,7 @@
                                     if ($kids_page && $item == 'KidsResult') {
                                         $show = 'ep active';
                                     }
-                                    if (!$kids_page && $item == 'MoviesResult') {
+                                    if (!$kids_page && $item == 'AllResult') {
                                         $show = 'ep active';
                                     }
                                 @endphp
@@ -107,7 +107,7 @@
                                     if ($kids_page && $item == 'KidsResult') {
                                         $show = 'show active';
                                     }
-                                    if (!$kids_page && $item == 'MoviesResult') {
+                                    if (!$kids_page && $item == 'AllResult') {
                                         $show = 'show active';
                                     }
                                 @endphp

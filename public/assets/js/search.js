@@ -59,6 +59,17 @@ $(document).ready(function () {
                             $("#searchTab").hide();
                             $("#noData-error").show();
                         }
+                        // remove 'active' and 'show' classes
+                        $("#pills-tab .nav-link").removeClass("active");
+                        $("#pills-tabContent .tab-pane").removeClass("show", "active");
+                        // Add 'active' and 'show' classes to the first tab and tab pane
+                        const firstTab = document.querySelector("#pills-tab .nav-link");
+                        const firstTabPane = document.querySelector("#pills-tabContent .tab-pane");
+                        if (firstTab && firstTabPane) {
+                            firstTab.classList.add("active");
+                            firstTab.setAttribute("aria-selected", "true");
+                            firstTabPane.classList.add("show", "active");
+                        }
                     } else {
                         $("#searchTab").hide();
                         $("#noData-error").show();
