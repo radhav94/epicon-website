@@ -178,7 +178,7 @@ class DistroTvController extends Controller
         $dataArray = ['content_provider_id' => $request->content_provider_id, 'episode_id' => $request->episode_id];
         $description = $request->has('description') ? $request->description : '';
         $img_poster = $request->has('root_img_poster') ? $request->root_img_poster : '';
-        $result = CurlAPI("pages/distrotv/EPGcontent", "POST", $dataArray, 1);
+        $result = CurlAPI("pages/distrotv/EPGcontent", "GET", $dataArray, 1);
 
         /**API call end */
         /**Logic processing to filter data start */
