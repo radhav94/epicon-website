@@ -53,11 +53,34 @@ $(document).ready(function () {
                             $('.otherResult').html('');
                         }
 
+                        var showHide = response.showHide;
+                        if (showHide) {
+                            Object.keys(showHide).forEach(function (key) {
+                                const showValue = showHide[key];
+                                if (showValue == 0) {
+                                    $('#show_' + key).hide();
+                                    $('#pills-' + key).hide();
+                                }
+                                // $('#count_' + key).html(showValue);
+                            });
+                        }
+
                         if (result) {
                             $("#searchTab").show();
                         } else {
                             $("#searchTab").hide();
                             $("#noData-error").show();
+                        }
+                        // remove 'active' and 'show' classes
+                        $("#pills-tab .nav-link").removeClass("active");
+                        $("#pills-tabContent .tab-pane").removeClass("show", "active");
+                        // Add 'active' and 'show' classes to the first tab and tab pane
+                        const firstTab = document.querySelector("#pills-tab .nav-link");
+                        const firstTabPane = document.querySelector("#pills-tabContent .tab-pane");
+                        if (firstTab && firstTabPane) {
+                            firstTab.classList.add("active");
+                            firstTab.setAttribute("aria-selected", "true");
+                            firstTabPane.classList.add("show", "active");
                         }
                     } else {
                         $("#searchTab").hide();

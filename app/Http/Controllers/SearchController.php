@@ -15,7 +15,7 @@ class SearchController extends Controller
     {
 
         $this->categoryMapping = [
-            // 'All'       => 'AllResult',
+            'All'       => 'AllResult',
             'Movies'    => 'MoviesResult',
             'Shows'     => 'ShowsResult',
             'Podcasts'  => 'PodcastsResult',
@@ -92,7 +92,7 @@ class SearchController extends Controller
             ];
         }
 
-        $searchResult = CurlAPI("pages/search", 'POST', $postData, 1);
+        $searchResult = CurlAPI("pages/search", 'GET', $postData, 1);
         // dd($searchResult);
         if ($searchResult) {
             $data = [];
@@ -108,6 +108,8 @@ class SearchController extends Controller
                         $categoryKey = $this->categoryMapping[$title];
                         $data['topResult'][$categoryKey] = $this->generateCategoryResponse($val);
                     }
+
+                    $data['showHide'][$categoryKey] = count($val['content']);
 
                     if (isset($this->categoryMapping[$title])) {
                         $categoryKey = $this->categoryMapping[$title];
