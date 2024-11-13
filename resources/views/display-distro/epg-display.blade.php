@@ -26,8 +26,8 @@
                 <p>{{@$program['now'] ? 'Now' : @$program['time_start']}}</p>
             </td>
             <td style="width:80%;">
-                <h5>{!!@$program['title']['_'] !!}</h5>
-                <p>{!!@$program['desc']['_']!!}</p>
+                <h5>{!!@$program['title'] !!}</h5>
+                <p>{!!@$program['desc']!!}</p>
             </td>
         </tr>
     @endforeach
