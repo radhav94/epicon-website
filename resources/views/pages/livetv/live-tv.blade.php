@@ -61,12 +61,12 @@
               <div class="livetc-right">
               <?php
                 if ($displayLanguageParam != 'ENGLISH') {
-                  $filamchinewlogo = '/img/filamchi-logo-hindi.png';
+                  $filamchinewlogo = 'filamchi-logo-hindi.png';
                 } else {
-                  $filamchinewlogo = '/img/new_filamchi_logo.png';
+                  $filamchinewlogo = 'new_filamchi_logo.png';
                 }
                 ?>
-                <img src="{{ asset($filamchinewlogo) }}" alt="ishara tv" width="140">
+                <img src="{{ env('AWS_S3_domain').'epicon/assets/images/'.$filamchinewlogo }}" alt="ishara tv" width="140">
               </div>
               <h3><span>{{__('Bhojpuri Movie Channel')}}</span></h3>
               <div class="livetv-img-container">
