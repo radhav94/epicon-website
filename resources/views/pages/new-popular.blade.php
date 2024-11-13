@@ -44,7 +44,7 @@
                     {!! freePremiumDiv($val) !!}
                     <?php if($val['is_popular'] == true){ ?>
                     <h6 class="popular-head text-white">
-                        <span><img src="{{ asset('/img/fire-emoji.png') }}" alt=""></span>Most Popular
+                        <span><img src="{{ env('AWS_S3_domain').'epicon/assets/images/fire-emoji.png' }}" alt=""></span>Most Popular
                     </h6>
                     <?php } ?>
 
@@ -67,7 +67,7 @@
                             </ul>
                         </div>
                         {{-- <!-- <button class="addbutton"> -->
-                            <!-- <img src="{{ asset('/img/round-add.png') }}" alt=""> -->
+                            <!-- <img src="{{ env('AWS_S3_domain').'epicon/assets/images/round-add.png' }}" alt=""> -->
                             {!! getWishListAction($val, $wishlist, 2) !!}
                         <!-- </button> --> --}}
                     </div>

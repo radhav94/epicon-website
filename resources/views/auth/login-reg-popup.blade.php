@@ -130,7 +130,7 @@
                                             src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-twitter-icon.svg" alt="twitter"></a>
                                     <a href="{{ route('login.google') }}"><img
                                             src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-google-icon.svg" alt="google"></a>
-                                    {{-- <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
+                                    {{-- <!-- <a href=""><img src="{{ env('AWS_S3_domain').'epicon/assets/images/lg-whatsapp-icon.svg' }}"
                                             alt=""></a> --> --}}
                                 </div>
                                 <p class="get-help mt-5 small">Having trouble signing in? <a
@@ -381,7 +381,7 @@
                                             src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-twitter-icon.svg" alt="twitter"></a>
                                     <a href="{{ route('login.google') }}"><img
                                             src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-google-icon.svg" alt="google"></a>
-                                    {{-- <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
+                                    {{-- <!-- <a href=""><img src="{{ env('AWS_S3_domain').'epicon/assets/images/lg-whatsapp-icon.svg' }}"
                                             alt=""></a> --> --}}
                                 </div>
                                 <p class="get-help mt-4 small">Having trouble signing in? <a

@@ -1,7 +1,7 @@
  <section class="carousel-main new-release mt-0">
      <div class="container">
          <div class="ribbon mb-3">
-             <img src="{{ asset('assets/img/ribbon.svg') }}" alt="">
+             <img src="{{ env('AWS_S3_domain').'epicon/assets/images/ribbon.svg' }}" alt="">
              <h1>{{ $title }}</h1>
          </div>
      </div>

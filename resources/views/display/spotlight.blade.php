@@ -13,7 +13,7 @@
                         $banner_img = $val['airtel_feature_imageHD'];
                     }
                     else{
-                        $banner_img = asset('assets/img/default-1920x548.png');
+                        $banner_img = env('AWS_S3_domain').'epicon/assets/images/default-1920x548.png';
                     }
                 }
                 

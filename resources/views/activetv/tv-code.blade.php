@@ -4,7 +4,7 @@
 
     <section class="tv--authentication">
         <h5 class="tv--authentication__title">TV Authentication Code</h5>
-        <img class="tv--authentication__img" src="{{ asset('assets/img/tv-authentication-img.png') }}" alt="">
+        <img class="tv--authentication__img" src="{{ env('AWS_S3_domain').'epicon/assets/images/tv-authentication-img.png' }}" alt="">
         <form class="tv--authentication__form" id="authenticationForm" action="" method="get">
             <div class="tv--authentication__input">
                 <input type="text" class="tv--authentication__input--box pew-pew" maxlength="1">

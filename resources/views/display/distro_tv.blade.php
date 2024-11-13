@@ -17,7 +17,7 @@
 
         <div class=" col-4 col-md-3 pe-0 d-flex align-items-center justify-content-center">
             <div class="distro-tray w-100">
-                <a class="d-flex w-100" href="{{ Route('distro-tv') }}"><img src="{{asset('img/distrotv.png')}}" alt=""></a>
+                <a class="d-flex w-100" href="{{ Route('distro-tv') }}"><img src="{{env('AWS_S3_domain').'epicon/assets/images/distrotv.png'}}" alt=""></a>
             </div>
         </div>
       

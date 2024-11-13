@@ -91,7 +91,7 @@
     <div class="container">
         <div class="header-info mt-3 mb-3 d-flex flex-wrap justify-content-between">
             <h2 class= "text-white">{{ @$content['episodes_title'] }}</h2>
-            <img class="mr-3" src="{{asset('img/distro_logo-white.png')}}" alt="">
+            <img class="mr-3" src="{{env('AWS_S3_domain').'epicon/assets/images/distro_logo-white.png'}}" alt="">
         </div>
         <div class="para-info">
            {{--<h4>Catch Distro TV Channel, and Mastiii Channel Live Online on MX Player!</h4>--}}
@@ -107,7 +107,7 @@
 
 
 @section('script')
-<script defer src="{{ asset('assets/js/distro-tv.js') }}?v={{ assetTime() }}"></script>
+<script defer src="{{ env('AWS_S3_domain').'epicon/assets/images/distro-tv.js' }}?v={{ assetTime() }}"></script>
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.js"></script>
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/hls.min.js"></script>
 

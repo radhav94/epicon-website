@@ -37,8 +37,8 @@
         </div>
         @endforeach
 
-        {{-- <!-- <div class="distro-banner-item"><img src="{{asset('img/Desktop-Page-Blocks.png')}}" alt=""></div>
-        <div class="distro-banner-item"><img src="{{asset('img/Desktop-Page-Blocks.png')}}" alt=""></div> --> --}}
+        {{-- <!-- <div class="distro-banner-item"><img src="{{env('AWS_S3_domain').'epicon/assets/images/Desktop-Page-Blocks.png'}}" alt=""></div>
+        <div class="distro-banner-item"><img src="{{env('AWS_S3_domain').'epicon/assets/images/Desktop-Page-Blocks.png'}}" alt=""></div> --> --}}
     </div>
     <div class="slider-controls-dots d-flex justify-content-center position-absolute">
         <div class="slide-dist-dots"></div>
@@ -49,16 +49,16 @@
 {{-- Start Distro Search --}}
 <div class="distro-search-main">
     <button class="distro-back-btn" id="distBack">
-        <img class="dis-img-toggle" src="{{asset('assets/img/distro-filter-arrow.svg')}}" alt="icon">
+        <img class="dis-img-toggle" src="{{env('AWS_S3_domain').'epicon/assets/images/distro-filter-arrow.svg'}}" alt="icon">
     </button>
     <div class="dist-wrap position-relative">
         <div class="distro-search-filter">
             <input class="distro-search-input" type="text" placeholder="Search">
             <button class="distro-search-clear" style="display: none;">
-                <img src="{{asset('assets/img/distro-search-text-clear.svg')}}" alt="icon">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/distro-search-text-clear.svg'}}" alt="icon">
             </button>
             <button class="distro-filter">
-                <img class="dis-img-toggle" src="{{asset('assets/img/distro-filter-arrow.svg')}}" alt="icon">
+                <img class="dis-img-toggle" src="{{env('AWS_S3_domain').'epicon/assets/images/distro-filter-arrow.svg'}}" alt="icon">
             </button>
         </div>
         <div class="distro-search-show" style="display: none;">
