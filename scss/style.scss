@@ -1305,9 +1305,9 @@ body{
     opacity: 1;    
 }
 .modal{
-    background-color: rgba(0, 0, 0, 0.4);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.1);
+    // -webkit-backdrop-filter: blur(12px);
+    // backdrop-filter: blur(12px);
 }
 .modal-dialog {
     margin-right: auto;
@@ -1328,6 +1328,11 @@ body{
     background-image: url(#{$domain}epicon/assets/images/modal-bg.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    width: 70%;
+    margin: 0 auto;
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
     @media (max-width:767px) {
         background-size: cover;
     }
@@ -11009,4 +11014,35 @@ audio::-webkit-media-controls-play-button {
     background: rgba(22, 22, 47, .8);
     backdrop-filter: blur(5px);
     padding: 0px 15px 0px 15px;
+}
+.show-details-modal {
+    background: rgba(0,0,0,0);
+    background-image: url(../img/distro-arrow-left.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: block;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border:0;
+    outline: 0;
+    transform: rotate(270deg);
+}
+
+.para-info {
+    tr {
+        td {
+            padding: 0 10px;
+            &:first-child {
+                text-align: center;
+                background-color: #3d3d3d;
+                p {
+                   margin: 0;
+                }
+            }
+            p {
+                margin-bottom: 7px;
+            }
+        }
+    }
 }
