@@ -98,8 +98,6 @@ class SearchController extends Controller
             $data = [];
 
             // Define a mapping of category titles to response keys
-
-
             if (key_exists('contents', $searchResult)) {
                 foreach (@$searchResult['contents'] as $val) {
                     $title = @$val['title'];
@@ -107,14 +105,10 @@ class SearchController extends Controller
                     if (isset($this->categoryMapping[$title])) {
                         $categoryKey = $this->categoryMapping[$title];
                         $data['topResult'][$categoryKey] = $this->generateCategoryResponse($val);
+                        $data['otherResult'][$categoryKey] = $this->getOtherResult($val);
                     }
 
                     $data['showHide'][$categoryKey] = count($val['content']);
-
-                    if (isset($this->categoryMapping[$title])) {
-                        $categoryKey = $this->categoryMapping[$title];
-                        $data['otherResult'][$categoryKey] = $this->getOtherResult($val);
-                    }
                 }
             }
 
