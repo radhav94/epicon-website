@@ -243,6 +243,7 @@ foreach ($lang as $val) {
         Route::get('distro-tv', [DistroTvController::class, 'index'])->name('distro-tv');
         Route::get('distro-tv/{id}', [DistroTvController::class, 'distrotvvideo'])->name('distrotvvideo');
         Route::any('distro-tv-search', [DistroTvController::class, 'search'])->name('distro-tv-search');
+        Route::post('distro-tv-epg', [DistroTvController::class, 'fetchDistroEpg'])->name('distro-tv-epg');
     });
 
     Route::group(['prefix' => $prefix, 'middleware' => 'checkUserAuthToken'], function () {

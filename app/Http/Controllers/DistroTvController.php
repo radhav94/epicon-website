@@ -164,4 +164,53 @@ class DistroTvController extends Controller
             ]
         );
     }
+
+    public function fetchDistroEpg(Request $request)
+    {
+        date_default_timezone_set("Asia/Kolkata");
+        /**Validations start */
+        $validatedData = $request->validate([
+            'content_provider_id' => 'required',
+            'episode_id' => 'required',
+        ]);
+        /**Validations end */
+        /**API call start */
+        $dataArray = ['content_provider_id' => $request->content_provider_id, 'episode_id' => $request->episode_id];
+        $description = $request->has('description') ? $request->description : '';
+        $img_poster = $request->has('root_img_poster') ? $request->root_img_poster : '';
+        $result = CurlAPI("pages/distrotv/EPGcontent", "POST", $dataArray, 1);
+
+        /**API call end */
+        /**Logic processing to filter data start */
+        $response = [];
+        if ($result && @$result['success'] ==  true) {
+            $programmes = [];
+            $previousVal = [];
+            $currentTime = date("YmdHis");
+            foreach (@$result['data']['tv']['programme'] as $k => $val) {
+                $val['now'] = false;
+                if ($k > 0) {
+                    if (strtotime($previousVal['start']) < strtotime($currentTime) && strtotime($val['start']) > strtotime($currentTime)) {
+                        // $previousVal['date_time_start'] = date("Y-m-d H:i:s", strtotime($previousVal['start']));
+                        $previousVal['time_start'] = date("H:i A", strtotime($previousVal['start']));
+                        $previousVal['now'] = true;
+                        $programmes[] = $previousVal;
+                    }
+                }
+                if (date('Ymd', strtotime($val['start'])) == date('Ymd') && strtotime($currentTime) <= strtotime($val['start'])) {
+                    // $val['date_time_start'] = date("Y-m-d H:i:s", strtotime($val['start']));
+                    $val['time_start'] = date("h:i A", strtotime($val['start']));
+                    $programmes[] = $val;
+                }
+                $previousVal = $val;
+            }
+            $data = @$result['data'];
+            // Pass data to the view 
+            $view = view('display-distro.epg-display', compact('data', 'programmes', 'description', 'img_poster'))->render();
+            return response()->json(['html' => $view]);
+        } else {
+            return response()->json(['html' => "<h4 style='color:white;'>Data Not Found!!</h4>"]);
+        }
+        /**Logic processing to filter data end */
+    }
 }
