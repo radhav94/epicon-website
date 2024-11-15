@@ -125,7 +125,7 @@ if ($request->has('type')) {
                 'class'=>'home'
             ],
             [   'name'=>'Games',
-                'url'=>'kids/games-all',
+                'url'=>'kids/games',
                 'logoimg'=>'',
                 'class'=>'home'
             ],
