@@ -137,5 +137,5 @@
 @stop
 
 @section('script')
-    <script src="{{ env('AWS_S3_domain').'epicon/assets/images/search.js' }}?v={{ assetTime() }}"></script>
+    <script src="{{ asset('assets/js/search.js') }}?v={{ assetTime() }}"></script>
 @stop
