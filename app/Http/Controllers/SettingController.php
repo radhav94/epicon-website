@@ -135,7 +135,7 @@ class SettingController extends Controller
                 return JSONResponse(400, "Something went wrong. Please try again!");
             }
             $infoMsg = "\n------------deleteDevice from all device during change password(Start)--------------
-                        \n user_token: ". (Session::get('user_token') ?? ''). 
+                        \n user_token: ". ($request->session()->get('user_token') ?? ''). 
                         "\n user id: ". getUserId() . 
                         "\n ------------deleteDevice from all device during change password(End)--------------";
             Log::channel('user')->info($infoMsg);
