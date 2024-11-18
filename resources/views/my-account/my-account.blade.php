@@ -122,7 +122,7 @@ $subplan = checkSubscription();
 
                     <div class="pp-right">
                         @if(@$subscriptionPurchases['plan_amount'] != '')<h3>{!! getCurrency($subscriptionPurchases['currency']) !!} {{ isset($subscriptionPurchases['plan_amount']) ? $subscriptionPurchases['plan_amount'] : '' }} <span>/ {{ isset($plan_name) ? $plan_name : '' }}</span></h3>@endif
-                        @if(@$viewprofile['device'] == "mondia")
+                        @if(@$viewprofile['subscriptions']['device'] == "mondia")
                         <h3>{{ $viewprofile['subscriptions']['mondiaPackageDetail'] ?? "" }} </h3>
                         <p style="text-align: center;font-weight: 700;">Start Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date</p>
                         @endif
@@ -132,7 +132,7 @@ $subplan = checkSubscription();
                 <?php  //echo $numOfDays; exit;
                 ?>
                 @if($numOfDays <= 4 || $subscriptionPurchases['plan_status']=='past' )
-                    @if(@$viewprofile['subscriptions']['activeSubscription']==false && $hasFuture==false && @$viewprofile['device'] !="mondia")
+                    @if(@$viewprofile['subscriptions']['activeSubscription']==false && $hasFuture==false && @$viewprofile['subscriptions']['device'] !="mondia")
                     <div class="w-100 text-center">
                     @if($numOfDays < 0)
                         @php $class="renew-paln" ; @endphp
@@ -177,7 +177,7 @@ $subplan = checkSubscription();
                             <img src="{{ asset('/img/edit-icon.svg') }}" alt="">
                 </button> --> --}}
             </p>
-            @if(@$viewprofile['device'] == "mondia")
+            @if(@$viewprofile['subscriptions']['device'] == "mondia")
             <p>
                 Billing is manage by &nbsp;
                 <a href="{{ $viewprofile['subscriptions']['tenantUrl'] ?? '#' }}" class="current-subs d-flex" target="_blank">Click</a>
@@ -191,7 +191,7 @@ $subplan = checkSubscription();
             {{--<p class="border-bot pb-4">
                         <img src="{{ asset('/img/visa.svg') }}" alt=""> &nbsp; visa **** **** **** 1823
             </p>--}}
-            @if(@$viewprofile['device'] != "mondia")
+            @if(@$viewprofile['subscriptions']['device'] != "mondia")
             <p class="position-relative border-bot pb-4">
                 {{__('View Transaction History')}}
                 <a href="{{ getUrl('transaction-history') }}" class="edit-icon bg-transparent border-0">
