@@ -12,6 +12,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Detection\MobileDetect;
+use Illuminate\Support\Facades\Log;
 
 if (!function_exists('getUserAgent')) {
     function getUserAgent()
@@ -1074,6 +1075,12 @@ if (!function_exists("update_user_session")) {
                     session()->put('user', $user_data);
                 }
             } else {
+                $infoMsg = "\n------------viewProfile(Start)--------------
+                            \n user_token: ". (Session::get('user_token') ?? ''). 
+                            "\n user id: ". getUserId() . 
+                            "\n profile Response : " .json_encode($profile_detail).
+                            "\n ------------viewProfile(End)--------------";
+                Log::channel('user')->info($infoMsg);
                 return false;
             }
         }
