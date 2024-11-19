@@ -12,6 +12,62 @@ class PayuWebhookService
         $this->payuLog('payu-webhook ----- Inside processWebhookCallback function -----');
         $this->payuLog("----- Sleeping for 5 mins -----");
         sleep(180);
+
+        /**Recurring payment handle BEGIN */
+        if ($webhookResponse['payment_source'] == 'sirecurring') {
+            $payuAuthId = $webhookResponse['mihpayid'];
+            $this->payuLog("----- PAYU webhook sirecurring BEGIN ----- mihpayid : ". $payuAuthId, false);
+            if (!empty($payuAuthId)) {
+                $this->payuLog("----- BEGIN sirecurring check Active Subscription for : " . $payuAuthId . "-----", false);
+                $newParamRecur = ['mihpayid' => $payuAuthId]; //change the key
+                $resultRecur = CurlAPI("subscriptions/checkActiveSubscription", 'POST',  $newParamRecur, 2, false, true);
+                $this->payuLog('----- END sirecurring check Active Subscription for : ' . $payuAuthId . '-----', false, ['url' => 'subscriptions/checkActiveSubscription', 'request' => $newParamRecur, 'response' => $resultRecur]);
+                $subEndDate = null;
+                $orderData = [];
+                if (isset($resultRecur['userOrder'])) {
+                    $subEndDate = $resultRecur['userOrder']['subscription_end_date'];   //change the key
+                    $orderData = $resultRecur['userOrder'];
+                }
+                if ($resultRecur['status'] == false || strtotime($subEndDate) <= strtotime(date('Y-m-d'))) {     //if subscription is expired or is expiring today then only process
+                    $this->payuLog("----- sirecurring check passed for : " . $payuAuthId, false);
+                    $this->payuLog("----- BEGIN sirecurring calling 'subscriptions/updateOrder' for : " . $payuAuthId, false);
+                    $updateOrderData = [
+                        'plan' => $orderData['plan_id'] ?? '',
+                        'user_id' => $orderData['user_id'] ?? '',
+                        'order_id' => @$orderData['order_id'],
+                        'order_status' => 'complete',
+                        'payment_gateway' => 'payu',
+                        'bank_ref_no' => @$webhookResponse['bank_ref_num'],
+                        'transaction_id' => @$payuAuthId ?? '',
+                        'authPayuId' => @$payuAuthId ?? '',
+                        'is_recurring' => true,
+                        'ios_receipt' => '',
+                        'android_receipt' => '',
+                        'web_device' => 'web',
+                        'coupon_applied' => $orderData['coupon_applied'] ?? '',
+                        'subscriptionId' => '',
+                        'subscriptionPaymentMode' => '',
+                        'note' => '',
+                        'recurring_receipt' => '',
+                        'bank_name' => '',
+                        'payment_mode' => $webhookResponse['mode'] ?? '',
+                        'x_country' => '',
+                        'x_continent' => '',
+                    ];
+
+                    $updateOrder = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2, false, true);
+
+                    $this->payuLog("----- END sirecurring calling 'subscriptions/updateOrder' for : " . $payuAuthId, false, ['url' => 'subscriptions/updateOrder', 'request' => $updateOrderData, 'response' => $updateOrder]);
+                } else {
+                    $this->payuLog("----- sirecurring check failed for : " . $payuAuthId . "-----", false, ['status' => $resultRecur['status'], 'subscription_end_date' => $subEndDate, 'now_date' => date('Y-m-d')]);
+                }
+            } else {
+                $this->payuLog("----- PAYU webhook sirecurring EMPTY PAYU AUTH ID => " . $payuAuthId . "-----", false, $webhookResponse);
+            }
+            exit;
+        }
+        /**Recurring payment handle END */
+
         $this->payuLog("----- Inside checkActiveSubscription -----");
 
         if (!empty($webhookResponse) && @$webhookResponse['status'] == 'success') {
