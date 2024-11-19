@@ -12,7 +12,7 @@
                                 <path d="M1 11.3332V8.2382C1 7.79617 1.17559 7.37225 1.48816 7.05968C1.80072 6.74712 2.22464 6.57153 2.66667 6.57153H5.08333C5.24627 6.57149 5.40562 6.52368 5.54167 6.43403L10.5417 3.13736C10.6673 3.05463 10.813 3.00744 10.9632 3.00081C11.1135 2.99418 11.2628 3.02834 11.3952 3.09968C11.5277 3.17102 11.6383 3.27688 11.7154 3.40602C11.7926 3.53516 11.8333 3.68277 11.8333 3.8332V15.7382C11.8333 15.8886 11.7926 16.0362 11.7154 16.1654C11.6383 16.2945 11.5277 16.4004 11.3952 16.4717C11.2628 16.543 11.1135 16.5772 10.9632 16.5706C10.813 16.5639 10.6673 16.5168 10.5417 16.434L5.54167 13.1374C5.40562 13.0477 5.24627 12.9999 5.08333 12.9999H2.66667C2.22464 12.9999 1.80072 12.8243 1.48816 12.5117C1.17559 12.1991 1 11.7752 1 11.3332Z" stroke="white" stroke-width="1.5"></path>
                             </svg>
                         </button>
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <a href="#/" class="carousel-items position-relative w-100"> 
                             <img src="public/img/welcom.jpeg" alt=""> 
                             <div class="carousel-items-content position-absolute">
@@ -42,7 +42,7 @@
                                 <path d="M1 11.3332V8.2382C1 7.79617 1.17559 7.37225 1.48816 7.05968C1.80072 6.74712 2.22464 6.57153 2.66667 6.57153H5.08333C5.24627 6.57149 5.40562 6.52368 5.54167 6.43403L10.5417 3.13736C10.6673 3.05463 10.813 3.00744 10.9632 3.00081C11.1135 2.99418 11.2628 3.02834 11.3952 3.09968C11.5277 3.17102 11.6383 3.27688 11.7154 3.40602C11.7926 3.53516 11.8333 3.68277 11.8333 3.8332V15.7382C11.8333 15.8886 11.7926 16.0362 11.7154 16.1654C11.6383 16.2945 11.5277 16.4004 11.3952 16.4717C11.2628 16.543 11.1135 16.5772 10.9632 16.5706C10.813 16.5639 10.6673 16.5168 10.5417 16.434L5.54167 13.1374C5.40562 13.0477 5.24627 12.9999 5.08333 12.9999H2.66667C2.22464 12.9999 1.80072 12.8243 1.48816 12.5117C1.17559 12.1991 1 11.7752 1 11.3332Z" stroke="white" stroke-width="1.5"></path>
                             </svg>
                         </button>
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <a href="#/" class="carousel-items position-relative w-100"> 
                             <img src="public/img/welcom.jpeg" alt=""> 
                             <div class="carousel-items-content position-absolute">
@@ -72,7 +72,7 @@
                                 <path d="M1 11.3332V8.2382C1 7.79617 1.17559 7.37225 1.48816 7.05968C1.80072 6.74712 2.22464 6.57153 2.66667 6.57153H5.08333C5.24627 6.57149 5.40562 6.52368 5.54167 6.43403L10.5417 3.13736C10.6673 3.05463 10.813 3.00744 10.9632 3.00081C11.1135 2.99418 11.2628 3.02834 11.3952 3.09968C11.5277 3.17102 11.6383 3.27688 11.7154 3.40602C11.7926 3.53516 11.8333 3.68277 11.8333 3.8332V15.7382C11.8333 15.8886 11.7926 16.0362 11.7154 16.1654C11.6383 16.2945 11.5277 16.4004 11.3952 16.4717C11.2628 16.543 11.1135 16.5772 10.9632 16.5706C10.813 16.5639 10.6673 16.5168 10.5417 16.434L5.54167 13.1374C5.40562 13.0477 5.24627 12.9999 5.08333 12.9999H2.66667C2.22464 12.9999 1.80072 12.8243 1.48816 12.5117C1.17559 12.1991 1 11.7752 1 11.3332Z" stroke="white" stroke-width="1.5"></path>
                             </svg>
                         </button>
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <a href="#/" class="carousel-items position-relative w-100"> 
                             <img src="public/img/welcom.jpeg" alt=""> 
                             <div class="carousel-items-content position-absolute">
@@ -119,7 +119,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -163,7 +163,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -178,7 +178,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -222,7 +222,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -237,7 +237,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -281,7 +281,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -296,7 +296,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -340,7 +340,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -355,7 +355,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -399,7 +399,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -414,7 +414,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -458,7 +458,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -486,7 +486,7 @@
             <li> 
                 <div class="play-card">
                     <a href="#/" class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -527,7 +527,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -552,7 +552,7 @@
             <li> 
                 <div class="play-card">
                     <a href="#/" class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -593,7 +593,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -618,7 +618,7 @@
             <li> 
                 <div class="play-card">
                     <a href="#/" class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -659,7 +659,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -684,7 +684,7 @@
             <li> 
                 <div class="play-card">
                     <a href="#/" class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -725,7 +725,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -750,7 +750,7 @@
             <li> 
                 <div class="play-card">
                     <a href="#/" class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -791,7 +791,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -816,7 +816,7 @@
             <li> 
                 <div class="play-card">
                     <a href="#/" class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -857,7 +857,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -882,7 +882,7 @@
             <li> 
                 <div class="play-card">
                     <a href="#/" class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -923,7 +923,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -948,7 +948,7 @@
             <li> 
                 <div class="play-card">
                     <a href="#/" class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -989,7 +989,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -1014,7 +1014,7 @@
             <li> 
                 <div class="play-card">
                     <a href="#/" class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -1055,7 +1055,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -1084,7 +1084,7 @@
         <div class="container-fluid">
             <div class="banner-carousel-1">
                 <div class="carousel-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <a href="#/" class="carousel-items position-relative w-100"> 
                         <img src="public/img/hero-img.png" alt=""> 
                         <div class="carousel-items-content position-absolute">
@@ -1132,7 +1132,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -1176,7 +1176,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img">
                         <img src="public/img/lara.jpeg" alt="">
                     </div>
@@ -1193,7 +1193,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -1237,7 +1237,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img">
                         <img src="public/img/lara.jpeg" alt="">
                     </div>
@@ -1254,7 +1254,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -1298,7 +1298,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img">
                         <img src="public/img/lara.jpeg" alt="">
                     </div>
@@ -1315,7 +1315,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -1359,7 +1359,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img">
                         <img src="public/img/lara.jpeg" alt="">
                     </div>
@@ -1376,7 +1376,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -1420,7 +1420,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img">
                         <img src="public/img/lara.jpeg" alt="">
                     </div>
@@ -1437,7 +1437,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -1481,7 +1481,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img">
                         <img src="public/img/lara.jpeg" alt="">
                     </div>
@@ -1543,7 +1543,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <a href="#/" class="mute-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M15 11.3333L16.6667 9.66667M16.6667 9.66667L18.3333 8M16.6667 9.66667L15 8M16.6667 9.66667L18.3333 11.3333" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1581,17 +1581,17 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/1.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/1.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <a href="#/" class="mute-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M15 11.3333L16.6667 9.66667M16.6667 9.66667L18.3333 8M16.6667 9.66667L15 8M16.6667 9.66667L18.3333 11.3333" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1629,17 +1629,17 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/2.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/2.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <a href="#/" class="mute-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M15 11.3333L16.6667 9.66667M16.6667 9.66667L18.3333 8M16.6667 9.66667L15 8M16.6667 9.66667L18.3333 11.3333" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1677,17 +1677,17 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/3.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/3.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <a href="#/" class="mute-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M15 11.3333L16.6667 9.66667M16.6667 9.66667L18.3333 8M16.6667 9.66667L15 8M16.6667 9.66667L18.3333 11.3333" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1725,17 +1725,17 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/4.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/4.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <a href="#/" class="mute-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M15 11.3333L16.6667 9.66667M16.6667 9.66667L18.3333 8M16.6667 9.66667L15 8M16.6667 9.66667L18.3333 11.3333" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1773,17 +1773,17 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/5.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/5.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <a href="#/" class="mute-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M15 11.3333L16.6667 9.66667M16.6667 9.66667L18.3333 8M16.6667 9.66667L15 8M16.6667 9.66667L18.3333 11.3333" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1821,17 +1821,17 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/6.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/6.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <a href="#/" class="mute-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M15 11.3333L16.6667 9.66667M16.6667 9.66667L18.3333 8M16.6667 9.66667L15 8M16.6667 9.66667L18.3333 11.3333" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1869,17 +1869,17 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/7.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/7.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <a href="#/" class="mute-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M15 11.3333L16.6667 9.66667M16.6667 9.66667L18.3333 8M16.6667 9.66667L15 8M16.6667 9.66667L18.3333 11.3333" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1917,17 +1917,17 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/8.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/8.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <a href="#/" class="mute-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M15 11.3333L16.6667 9.66667M16.6667 9.66667L18.3333 8M16.6667 9.66667L15 8M16.6667 9.66667L18.3333 11.3333" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1965,17 +1965,17 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/9.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/9.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <a href="#/" class="mute-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M15 11.3333L16.6667 9.66667M16.6667 9.66667L18.3333 8M16.6667 9.66667L15 8M16.6667 9.66667L18.3333 11.3333" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2013,10 +2013,10 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <div class="main-img mt-0">
                         <img src="public/img/dhamal.jpeg" alt="">
-                        <div class="top-10-number"><img src="public/img/10.svg" alt="1"></div>
+                        <div class="top-10-number"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/10.svg" alt="1"></div>
                     </div>
                 </a> 
             </li>
@@ -2129,7 +2129,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -2173,7 +2173,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -2188,7 +2188,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -2232,7 +2232,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -2247,7 +2247,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -2291,7 +2291,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -2306,7 +2306,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -2350,7 +2350,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -2365,7 +2365,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -2409,7 +2409,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -2424,7 +2424,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -2468,7 +2468,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -2483,7 +2483,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -2527,7 +2527,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -2542,7 +2542,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -2586,7 +2586,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -2601,7 +2601,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -2645,7 +2645,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -2673,7 +2673,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -2717,7 +2717,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -2732,7 +2732,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -2776,7 +2776,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -2791,7 +2791,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -2835,7 +2835,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -2850,7 +2850,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -2894,7 +2894,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -2909,7 +2909,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -2953,7 +2953,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -2968,7 +2968,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -3012,7 +3012,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -3027,7 +3027,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -3071,7 +3071,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -3086,7 +3086,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -3130,7 +3130,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -3145,7 +3145,7 @@
             <li> 
                 <div class="play-card">
                     <div class="top-card-img">
-                        <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                         <span class="top-ten position-absolute">
                             <ul class="list-unstyled text-white">
                                 <li>Top</li>
@@ -3189,7 +3189,7 @@
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="main-card">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -3257,7 +3257,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -3301,7 +3301,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -3316,7 +3316,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -3360,7 +3360,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -3375,7 +3375,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -3419,7 +3419,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -3434,7 +3434,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -3478,7 +3478,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -3493,7 +3493,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -3537,7 +3537,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -3552,7 +3552,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -3596,7 +3596,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -3759,7 +3759,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -3803,7 +3803,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -3819,7 +3819,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -3863,7 +3863,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -3879,7 +3879,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -3923,7 +3923,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -3939,7 +3939,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -3983,7 +3983,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -3999,7 +3999,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -4043,7 +4043,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -4059,7 +4059,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -4103,7 +4103,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -4119,7 +4119,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -4163,7 +4163,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -4179,7 +4179,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -4223,7 +4223,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -4239,7 +4239,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -4283,7 +4283,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -4513,7 +4513,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -4557,7 +4557,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -4576,7 +4576,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -4620,7 +4620,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -4640,7 +4640,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -4684,7 +4684,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -4703,7 +4703,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -4747,7 +4747,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -4766,7 +4766,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -4810,7 +4810,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -4829,7 +4829,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -4873,7 +4873,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -4892,7 +4892,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -4936,7 +4936,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -4955,7 +4955,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -4999,7 +4999,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -5018,7 +5018,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -5062,7 +5062,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -5081,7 +5081,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -5125,7 +5125,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -5148,7 +5148,7 @@
     <div class="container-fluid">
         <div class="banner-carousel-1">
             <div class="carousel-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <a href="#/" class="carousel-items position-relative w-100"> 
                     <img src="public/img/hero-img.png" alt=""> 
                     <div class="carousel-items-content position-absolute">
@@ -5281,7 +5281,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -5325,7 +5325,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -5340,7 +5340,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -5384,7 +5384,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -5399,7 +5399,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -5443,7 +5443,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -5458,7 +5458,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -5502,7 +5502,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -5517,7 +5517,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -5561,7 +5561,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -5576,7 +5576,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -5620,7 +5620,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -5635,7 +5635,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -5679,7 +5679,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -5695,7 +5695,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -5739,7 +5739,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -5754,7 +5754,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -5798,7 +5798,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -5826,7 +5826,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -5870,7 +5870,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -5885,7 +5885,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -5929,7 +5929,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -5944,7 +5944,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -5988,7 +5988,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -6003,7 +6003,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -6047,7 +6047,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -6062,7 +6062,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -6106,7 +6106,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -6121,7 +6121,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -6165,7 +6165,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -6180,7 +6180,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -6224,7 +6224,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -6239,7 +6239,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -6283,7 +6283,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -6298,7 +6298,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -6342,7 +6342,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>
@@ -6357,7 +6357,7 @@
         <li> 
             <div class="play-card">
                 <div class="top-card-img">
-                    <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                     <span class="top-ten position-absolute">
                         <ul class="list-unstyled text-white">
                             <li>Top</li>
@@ -6401,7 +6401,7 @@
                 </div>
             </div>
             <a href="javascript:void(0);" class="main-card">
-                <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span>
+                <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt=""></span>
                 <span class="top-ten position-absolute">
                     <ul class="list-unstyled text-white">
                         <li>Top</li>

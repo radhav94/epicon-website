@@ -1,6 +1,6 @@
 <section class="carousel-main new-release mt-0">
     <div class="carousel-title-n-arrow px-2 mb-2">
-        <h5 class="text-white">{{ $title }}</h5>
+        <h1 class="text-white">{{ $title }}</h1>
 
         @if (@$value['show_more'])
             <a onclick="click_cta(this)" data-event_context="{{ $title }}" data-element_text="SEE ALL" href="{{ getMidPageUrl($value) }}">
@@ -38,7 +38,7 @@
                             <img src="{{ $cover_img }}" alt="img">
                             <div class="content">
                                 @if (@$v['free_premium'] == true)
-                                    <img class="crown" src="{{ asset('assets/img/crown.svg') }}" alt="">
+                                    <img class="crown" src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt="">
                                 @endif
                                 <div class="content-overlay">
 

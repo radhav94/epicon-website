@@ -275,7 +275,7 @@ function getImage($image, $size = 'original')
 
 function freePremiumDiv($val)
 {
-    echo (@$val['free_premium'] == true) ? '<span class="crown position-absolute"><img src="' . asset('assets/img/crown.svg') . '" alt=""></span>' : '';
+    echo (@$val['free_premium'] == true) ? '<span class="crown position-absolute"><img src="' . env('AWS_S3_domain') . 'epicon/assets/images/crown.svg" alt="premium"></span>' : '';
 }
 
 // function isPopularDiv($val)
@@ -1061,7 +1061,14 @@ if (!function_exists("update_user_session")) {
         $profile_detail = CurlAPI("users/viewProfile", "POST", [], 2, true, true);
         if (is_array($profile_detail) && array_key_exists('success', $profile_detail)) {
             if ($profile_detail['success']) {
-                if (array_key_exists('user_data', $profile_detail)) {
+                if (array_key_exists('user_data', $profile_detail)) { // Old Logic
+                // if ( // New Logic
+                //     array_key_exists('user_data', $profile_detail) &&
+                //     array_key_exists('user_id', $profile_detail['user_data']) &&
+                //     array_key_exists('profiles', $profile_detail['user_data']) &&
+                //     is_array($profile_detail['user_data']['profiles']) &&
+                //     count($profile_detail['user_data']['profiles']) > 0
+                // ) {
                     $user_data = @$profile_detail['user_data'];
                     session()->put('user', $user_data);
                 }
@@ -1309,17 +1316,20 @@ function getCountryStateDataInHtml()
     $countrystate = getCountryStateData();
     $countryisdhtml = "";
 
-    if( $countrystate){
+    $selectvar = "";
+    if ($countrystate) {
         foreach ($countrystate['countries'] as $i => $value) {
-            if ($countrycode == $value['code'] || $countrycode == $value['countryisdcode']) {
-                $selectvar = "selected";
-            } else {
-                $selectvar = "";
-            }
-            $countryisdhtml .= '<option value="' . $value['countryisdcode'] . '" ' . $selectvar . '>' . $value['displayisdcode'] . '</option>';
+            if ($countrycode == $value['code']) {
+                $selectvar = '+'. $value['countryisdcode'];
+            } 
+            //$countryisdhtml .= '<option value="' . $value['countryisdcode'] . '" ' . $selectvar . '>' . $value['country'] .' (+'. $value['countryisdcode'].')'.'</option>';
+            $countryisdhtml .= '<li class="conuntry__code__list__text '.$selectvar.'"><a href="javascript:void(0)" class="conuntry__code__list__text--inner">'. $value['country'] .' (+'. $value['countryisdcode'].')'.'</a></li>';
         }
     }
-    return $countryisdhtml;
+    $result = [ 'countryisdhtml' => $countryisdhtml,
+                'countryCode' => $selectvar
+              ];
+    return $result;
 }
 
 function getCountryList()
@@ -1427,7 +1437,7 @@ if (!function_exists('getMeta')) {
 
         $meta['keywords'] = '';
 
-        $meta['image'] = env('APP_URL') . '/img/epiconlogo.png';
+        $meta['image'] = env('AWS_S3_domain') . 'epicon/assets/images/epiconlogo.png';
 
         $meta['url'] = url()->current();
 
@@ -1515,7 +1525,7 @@ if (!function_exists('getMeta')) {
 
                 $meta['keywords'] = $lang != 'HINDI' ? 'free podcast, download podcast, free popular podcasts, free podcast downloads, free podcasts online' : 'मुफ्त पॉडकास्ट, पॉडकास्ट डाउनलोड करें, मुफ्त पॉडकास्ट, मुफ्त पॉडकास्ट डाउनलोड, मुफ्त पॉडकास्ट ऑनलाइन';
 
-            } else if ($pagetitle == 'play' || $pagetitle == 'games') {
+            } else if ($pagetitle == 'play' || $pagetitle == 'games' || $pagetitle == 'games-all' || $pagetitle == 'Web games') {
 
                 if ($pageslug == 'gamepix') {
 
@@ -1774,4 +1784,16 @@ function sortEpisodes($temp)
         });
         return $temp;
     }
+}
+function checkReleaseDate($newrelease_date)
+{
+    $currentDate = date("Y-m-d");
+    $releaseDate = date("Y-m-d", strtotime($newrelease_date));
+    $curdate = strtotime($currentDate);
+    $maindate = strtotime($releaseDate);
+    $days = ($curdate - $maindate) / (60 * 60 * 24);
+    if ($days >= 0 && $days < 4) {
+        return true;
+    }
+    return false;
 }

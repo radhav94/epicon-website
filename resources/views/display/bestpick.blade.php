@@ -1,6 +1,6 @@
 <div class="carousel-main mb-3">
     <div class="carousel-title-n-arrow px-2 mb-3">
-        <h5 class="text-white">{{ $title }}</h5>
+        <h1 class="text-white">{{ $title }}</h1>
     </div>
     <div class="captive-speaker-tab">
         <div class="captive-tab">
@@ -36,7 +36,7 @@
                 $child_cover_img = getCardImage($data, 'cover_image', 'medium', ['epic_shorts_image', 'banner_image']);
                 ?>   
                     <li>
-                        <a href="{{ getContentUrl($data) }}" class="main-card">
+                        <a aria-label="item-main" href="{{ getContentUrl($data) }}" class="main-card">
                             {{-- <!-- <span class="crown position-absolute"><img src="public/img/crown.svg" alt=""></span> --> --}}
                             <?php freePremiumDiv($data); ?>
                             <div class="main-img mt-0">

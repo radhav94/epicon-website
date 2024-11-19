@@ -64,7 +64,7 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
 <div class="podcast-background w-100">
     <section class="container w-100 mt-2">
         <div class="row justify-content-center">
-            <div class="col-sm-12">
+            <div class="col-sm-12 position-relative">
                 <div class="podcast-top w-100 align-items-lg-start">
                     <div class="thumb">
                         {{-- <h6 class="pod-title">EPIC ON ORIGINAL</h6> --}}
@@ -76,15 +76,18 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
                     <input type="hidden" name="subUrl" class="subUrl" id="subUrl" value="{{ getUrl('subscription') }}">
                     <input type="hidden" name="sitemode" class="sitemode" id="sitemode" value="{{ $addClass }}">
                     <div class="thumb-detail text-white">
-                        <h1>{{ @$content['title'] }}</h1>
-
-                        {{-- <p class="with-whom">with Shailja Saraswati</p> --}}
-                        <div class="drama">
+                        <div class="title-and-genere">
+                            <h1>{{ @$content['title'] }}</h1>
                             <span>
                                 @include('pages.detail.detail-components.sub-bullets', [
                                 'v_content' => $content,
                                 ])
                             </span>
+                        </div>
+
+                        {{-- <p class="with-whom">with Shailja Saraswati</p> --}}
+                        <div class="drama">
+                            
                             <div class="d-flex">
 
                                 @if (@$content['percentage_match'])
@@ -142,7 +145,7 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
 
                                 @if (@$content['free_premium'] == true && !isActiveSubscription())
                                 <a href="{{ $href }}" class="subcription-btn m-0 {{$watchClass}}">
-                                    <img src="{{ asset('assets/img/crown.svg') }}" alt="crown"> Subscribe Now
+                                    <img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" alt="crown"> Subscribe Now
                                 </a>
                                 @endif
                             </div>
@@ -161,7 +164,7 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
                             ?>
 
                             <button class="rounded-grey-btn m-0 addToList" data-id="{{ @$content['ID'] }}" data-action="{{ $wishAction }}" data-type="3">
-                                <img class="wl_add" src="{{ asset('assets/img/add-icon.svg') }}" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
+                                <img class="wl_add" src="{{ env('AWS_S3_domain') }}epicon/assets/images/add-icon.svg" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
                                 <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon" @if ($wishAction=='add' ) style="display: none" @endif>
                             </button>
 
@@ -283,10 +286,10 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
 @stop
 
 @section('script')
-<script src="{{ asset('assets/js/homepage.js') }}?v={{ assetTime() }}"></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/homepage.js?v={{ assetTime() }}"></script>
 <script src="{{ asset('assets/js/detail.js') }}?v={{ assetTime() }}"></script>
 <script src="{{ asset('assets/js/socialSharing.js') }}?v={{ assetTime() }}"></script>
-<script src="{{ asset('assets/js/common.js') }}?v={{ assetTime() }}"></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/common.js?v={{ assetTime() }}"></script>
 <script>
     // List of episode URLs
     var audio_title;

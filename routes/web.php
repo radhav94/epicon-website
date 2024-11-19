@@ -161,6 +161,7 @@ Route::group(['middleware' => ['loggedin', 'checkUserAuthToken']], function () {
     //Subscription routes created by Ram
     Route::post('getCouponAjax', [SubscriptionController::class, 'getCoupon'])->name('getCoupon');
     Route::post('redeemcoupon', [RewardsController::class, 'RedeemCouponCode'])->name('redeemcoupon');
+    Route::post('qwikcilverAjax', [SubscriptionController::class, 'redeemQwikCilver'])->name('redeemcoupon');
     //end
 });
 
@@ -199,6 +200,7 @@ foreach ($lang as $val) {
         Route::post('verifyOtpAjax', [SubscriptionController::class, 'verifyOtpAjax']);
         Route::get('transaction-history', [UserAccountController::class, 'TransactionHistory'])->name('transaction-history');
         Route::post('cancelMembership', [SubscriptionController::class, 'cancelMembership']);
+        Route::get('upgrade-plan', [UserAccountController::class, 'upgradePlan'])->name('upgrade-plan');
         //end
 
         /*settings route*/

@@ -12,7 +12,7 @@ class PageController extends Controller
     private  $limit;
     public function  __construct()
     {
-        $this->limit = 5;
+        $this->limit = 3;
     }
 
 
@@ -23,6 +23,12 @@ class PageController extends Controller
             return false;
         }
         // dd(session()->get('user_token'));
+
+        $request = Request();
+        if (!empty($userUuid = ($request->get('userUuid') ?? ""))) {
+            session()->put('userUuid', $userUuid);
+        }
+        
         $pageslug = strtolower($slug);
 
         SilentLoginFunction();
@@ -70,6 +76,7 @@ class PageController extends Controller
 
     public function loadMore(Request $request)
     {
+        $start = microtime(true);
         $slug = ($request->route == '/' || $request->route == 'hi') ? 'home-v2' : $request->route;
         $data = $this->homepageData($slug, $request->page);
         $result = $data['result'];
@@ -79,6 +86,9 @@ class PageController extends Controller
 
             $view = view('display.display-default', compact('result', 'displayLanguageParam', 'stories', 'slug'))->render();
 
+            $end = microtime(true);
+            $executionTime = $end - $start;
+            \Log::channel('responseTime')->info("Request ($slug/$request->page) took $executionTime seconds \n");
             return JSONResponse(
                 200,
                 'Success.',
@@ -215,7 +225,7 @@ class PageController extends Controller
         } else {
             if ($redirect == 'explore') {
                 $url = "pages/midpage/{$pageslug}";
-                $epicwebArr = CurlAPI($url, "GET", ['page' => 1, 'catalog_slug' => $catalog], 1);
+                $epicwebArr = CurlAPI($url, "GET", ['page' => 1, 'catalog_slug' => $catalog,'view_all'=>'true'], 1);
             } else {
                 $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => $limit, 'page' => 1], 1);
             }
@@ -274,7 +284,7 @@ class PageController extends Controller
             $catalog = $request->catalogid;
             if (isset($mainslug) && $mainslug == 'explore') {
                 $url = "pages/midpage/{$pageslug}";
-                $epicwebArr = CurlAPI($url, "GET", ['page' => $page, 'catalog_slug' => $catalog], 1);
+                $epicwebArr = CurlAPI($url, "GET", ['page' => $page, 'catalog_slug' => $catalog,'view_all' => 'true'], 1);
             } else {
                 $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => $limit, 'page' => $page], 1);
             }

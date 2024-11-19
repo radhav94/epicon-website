@@ -31,6 +31,7 @@
     </style>
 @stop
 <!-- login model -->
+@php $country = getCountryStateDataInHtml(); @endphp 
 <div class="modal fade" id="login-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered px-3">
         <div class="modal-content">
@@ -38,7 +39,7 @@
                 <div class="login-register text-center">
                     <div class="left-side">
                         <div class="w-100 pe-5">
-                            <img class="w-100" src="{{ asset('/img/plot-1-2-bg.png') }}" alt="">
+                            <img class="w-100" src="{{env('AWS_S3_domain')}}epicon/assets/images/plot-1-2-bg.png" alt="plot 1 by 2">
                         </div>
                         <div class="login-carousel px-2">
                             <div>
@@ -85,11 +86,21 @@
                                 @csrf
                                 <h5 class="mb-4 text-white">Login or Register</h5>
                                 <div class="input-field w-100 mb-3 position-relative">
-                                    <select class="uk-select select-control input__field stdisdcode" name="stdisdcode">
+                                    {{--<select class="uk-select select-control input__field stdisdcode" name="stdisdcode">
                                         {!! getCountryStateDataInHtml() !!}
-                                    </select>
-                                    <input class="form-control emailText" id="mobile_number" name="mobile_number"
+                                    </select>--}}
+                                    <div class="new-input-fields">
+                                        <div class="country__code stdisdcode" id="countryCode__dropdown"> {{ $country['countryCode'] }}</div>
+                                        <div class="country__code__box">
+                                                <input type="text" class="country__code__search search_1" id="search_field" placeholder="Search" onkeyup="searchCountryCode('1')">
+                                                <ul class="new__input__field__drop__down list-unstyled text-white" id="myUL_1">
+                                                {!! $country['countryisdhtml'] !!} 
+                                                </ul>
+                                        </div>
+                                        <input type="hidden" name="stdisdcode" id="country-stdisdcode" class="country-stdisdcode-class" value="{{ $country['countryCode'] }}">
+                                        <input class="form-control emailText" id="mobile_number" name="mobile_number"
                                         placeholder="Email or Mobile Number">
+                                    </div>
                                     <input type="hidden" name="signup_method" class="signup_method" value="">
                                     <span class="text-start text-white d-flex mt-1" style="font-size: 12px;">We’ll send
                                         you an OTP to verify your account</span>
@@ -113,12 +124,12 @@
                                     password</button>
                                 <h6 class="mb-4 text-white text-center mt-4">For Existing User only</h6>
                                 <div class="lg-social">
-                                    <a href="{{ url('/login/facebook') }}"><img src="{{ asset('/img/lg-fb-icon.svg') }}"
-                                            alt=""></a>
+                                    <a href="{{ url('/login/facebook') }}"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-fb-icon.svg"
+                                            alt="fb"></a>
                                     <a href="{{ route('login.twitter') }}"><img
-                                            src="{{ asset('/img/lg-twitter-icon.svg') }}" alt=""></a>
+                                            src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-twitter-icon.svg" alt="twitter"></a>
                                     <a href="{{ route('login.google') }}"><img
-                                            src="{{ asset('/img/lg-google-icon.svg') }}" alt=""></a>
+                                            src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-google-icon.svg" alt="google"></a>
                                     {{-- <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
                                             alt=""></a> --> --}}
                                 </div>
@@ -281,14 +292,24 @@
                             <form method="POST" name="login-form" id="login-form-id">
                                 <h5 class="mb-4 text-white">Login with Password</h5>
                                 <div class="input-field w-100 mb-3">
-                                    <select class="uk-select select-control input__field stdisdcode"
+                                    {{--<select class="uk-select select-control input__field stdisdcode"
                                         name="stdisdcode">
                                         {!! getCountryStateDataInHtml() !!}
-                                    </select>
-                                    <input class="form-control emailText" id="mobilenumber" name="mobilenumber"
+                                    </select>--}}
+                                    <div class="new-input-fields">
+                                        <div class="country__code stdisdcode" id="countryCode__dropdown"> {{ $country['countryCode'] }}</div>
+                                        <div class="country__code__box">
+                                                <input type="text" class="country__code__search search_2" id="search_field" placeholder="Search" onkeyup="searchCountryCode('2')">
+                                                <ul class="new__input__field__drop__down list-unstyled text-white" id="myUL_2">
+                                                {!! $country['countryisdhtml'] !!} 
+                                                </ul>
+                                        </div>
+                                        <input type="hidden" name="stdisdcode" id="country-stdisdcode" class="country-stdisdcode-class" value="{{ $country['countryCode'] }}">
+                                        <input class="form-control emailText" id="mobilenumber" name="mobilenumber"
                                         placeholder="Email or Mobile Number" value="<?php if (isset($_COOKIE['user_id'])) {
                                             echo $_COOKIE['user_id'];
                                         } ?>">
+                                    </div>
                                     <input type="hidden" name="signup_method" class="signup_method" value="">
                                     <span class="text-danger text-start d-flex mt-1 error" id="mobile-error"
                                         style="font-size: 12px;"></span>
@@ -355,11 +376,11 @@
                                 <h6 class="mb-4 text-white text-center mt-4 small">For Existing User only</h6>
                                 <div class="lg-social">
                                     <a href="{{ url('/login/facebook') }}"><img
-                                            src="{{ asset('/img/lg-fb-icon.svg') }}" alt=""></a>
+                                            src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-fb-icon.svg" alt="fb"></a>
                                     <a href="{{ route('login.twitter') }}"><img
-                                            src="{{ asset('/img/lg-twitter-icon.svg') }}" alt=""></a>
+                                            src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-twitter-icon.svg" alt="twitter"></a>
                                     <a href="{{ route('login.google') }}"><img
-                                            src="{{ asset('/img/lg-google-icon.svg') }}" alt=""></a>
+                                            src="{{ env('AWS_S3_domain') }}epicon/assets/images/lg-google-icon.svg" alt="google"></a>
                                     {{-- <!-- <a href=""><img src="{{ asset('/img/lg-whatsapp-icon.svg') }}"
                                             alt=""></a> --> --}}
                                 </div>
@@ -373,12 +394,22 @@
                             <form method="POST" name="forgot-pwd-form-id" id="forgot-pwd-form-id">
                                 <h5 class="mb-4 text-white">Forgot Password</h5>
                                 <div class="input-field w-100 mb-3">
-                                    <select class="uk-select select-control input__field stdisdcode"
+                                    {{--<select class="uk-select select-control input__field stdisdcode"
                                         name="stdisdcode">
                                         {!! getCountryStateDataInHtml() !!}
-                                    </select>
-                                    <input class="form-control emailText" id="forgot-name" name="forgot-name"
+                                    </select>--}}
+                                    <div class="new-input-fields">
+                                        <div class="country__code stdisdcode" id="countryCode__dropdown"> {{ $country['countryCode'] }}</div>
+                                        <div class="country__code__box">
+                                                <input type="text" class="country__code__search search_3" id="search_field" placeholder="Search" onkeyup="searchCountryCode('3')">
+                                                <ul class="new__input__field__drop__down list-unstyled text-white" id="myUL_3">
+                                                {!! $country['countryisdhtml'] !!} 
+                                                </ul>
+                                        </div>
+                                        <input type="hidden" name="stdisdcode" id="country-stdisdcode" class="country-stdisdcode-class" value="{{ $country['countryCode'] }}">
+                                        <input class="form-control emailText" id="forgot-name" name="forgot-name"
                                         placeholder="Email or Mobile Number">
+                                    </div>
                                     <input type="hidden" name="signin_method" id="signin_method" value="">
                                     <span class="text-start text-white d-flex mt-1" style="font-size: 12px;">We’ll
                                         send you an OTP to verify your account. You’ll then be able to create a new
@@ -541,7 +572,7 @@
 
                     <!-- successfully and interest  start-->
                     <div class="login-popup-modal successfully-loged screen-sucess-register py-5">
-                        <img width="100" src="{{ asset('/img/success-tick.png') }}" alt="">
+                        <img width="100" src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="success">
                         <h4 class="text-center text-white mt-3">Hey <span id="username"></span>, you have
                             successfully registered with EPIC ON!</h4>
                         <p class="small text-white">Tell us what you’re interested in and we’ll do our best to give you
@@ -564,7 +595,7 @@
                     <div class="login-popup-modal successfully-loged w-100 screen-sucess-logged">
 
                         <img width="100" class="{{ @$subplan['status'] }}"
-                            src="{{ asset('/img/success-tick.png') }}" alt="">
+                            src="{{ env('AWS_S3_domain') }}epicon/assets/images/success-tick.png" alt="success">
                         <h4 class="text-center text-white mt-3">Awesome! You have successfully logged in to EPIC ON
                             {{ @$subplan_status }}
                         </h4>

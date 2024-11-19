@@ -32,7 +32,7 @@ if ($request->has('type')) {
                 </svg>
             </a>
             <a onclick="click_menu(this)" aria-label="Home" data-event_context="header" data-element_text="Home" class="navbar-brand me-3" href="{{ getUrlWithPrefix('homepage') }}"><img height="28"
-                    src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
+                    src="{{ env('AWS_S3_domain') }}epicon/assets/images/epicon-logo.png" alt="logo"></a>
                
                 @if(@$subplan['status'] != 'active')
                 <a onclick="click_menu(this)" aria-label="Subscribe" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
@@ -42,7 +42,7 @@ if ($request->has('type')) {
         </div>
         <ul class="ps-3">
             <li>
-                <a onclick="click_menu(this)" data-event_context="header" data-element_text="game" href="{{ getUrl($kids_page ? '/kids/games' : 'games') }}">
+                <a onclick="click_menu(this)" data-event_context="header" data-element_text="game" href="{{ getUrl($kids_page ? '/kids/games' : 'games-all') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
@@ -137,8 +137,8 @@ if ($request->has('type')) {
             </a>
             @endif
             
-            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Home" class="navbar-brand" aria-label="Logo" href="{{ getUrlWithPrefix('homepage') }}"><img src="{{ asset('assets/img/epicon-logo.png') }}"
-                    alt=""></a>
+            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Home" class="navbar-brand" aria-label="Logo" href="{{ getUrlWithPrefix('homepage') }}"><img height="28" width="97" src="{{ env('AWS_S3_domain') }}epicon/assets/images/epicon-logo.png"
+                    alt="logo"></a>
                     
                 @if($kids_page && @$subplan['status'] != 'active')
                     <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn allAccessBtn-sub" aria-label="Subscribe" href="javascript:void(0);">{{__('Subscribe')}}</a>
@@ -181,7 +181,7 @@ if ($request->has('type')) {
                 'tv-shows' => 'Shows',
                 'podcast' => 'Podcasts',
                 'distro-tv' => 'DistroTV',
-                'games' => 'Games'
+                'games-all' => 'Games'
             ];
         }
 ?>
@@ -222,7 +222,7 @@ if ($request->has('type')) {
             
                 <input type="hidden" name="kidsUrl" id="kidsUrlH" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
             <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" id="kidsUrl" class="p-2 me-0" aria-label="kidsUrl">
-            <img src="{{ asset('assets/img/kidz-icon.svg') }}" alt=""></a>
+            <img src="{{ env('AWS_S3_domain') }}epicon/assets/images/kidz-icon.svg" alt="kids"></a>
             @if (kidsMode())
             <a href="{{ getUrl('kids/search') }}" class="p-2 me-2">
             @else
@@ -284,6 +284,7 @@ if ($request->has('type')) {
                                 $gender = @$profile['result']['user_data']['gender'] ?? 'Male';
                                 $default_img = ($gender == 'Female') ? asset('assets/img/edit-profile-pik.png') : asset('assets/img/profile-boy.png')
                             ?>
+                            @if (isset($profile['profiles']) && count($profile['profiles']) > 0)
                                 @foreach ($profile['profiles'] as $key => $value)
                                     <?php
                                         $profile_img = trim(@$value['profile_img']) != '' ? @$value['profile_img'] : $default_img;
@@ -298,6 +299,7 @@ if ($request->has('type')) {
                                         <span class="pro-name">{{ ucfirst(@$value['name']) }}</span>
                                     </a>
                                 @endforeach
+                            @endif
 
                                 @if (count($profile['profiles']) < config('global.max_profile_limit'))
                                     <a href="{{ getUrlWithPrefix('profile.add') }}">
@@ -319,7 +321,7 @@ if ($request->has('type')) {
                             <p class="m-0 small">{{__('Get access to exclusive content, with no ad breaks.')}}</p>
             
                             @if(@$subplan['status'] != 'active')
-                              <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" href="{{ getUrl('subscription') }}"><button> <img class="me-1" width="18" src="{{ asset('assets/img/crown.svg') }}"
+                              <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" href="{{ getUrl('subscription') }}"><button> <img class="me-1" width="18" src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg"
                                     alt=""> {{__('Subscribe')}}</button></a>
                             @endif
                         </li>

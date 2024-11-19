@@ -2,19 +2,19 @@
 @section('title','Get to Know About Upcoming OTT New Web Series and Movies')
 
 @section('style')
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}?v={{ assetTime() }}">
+<link rel="stylesheet" type="text/css" href="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.css?v={{ assetTime() }}">
 
 @stop
 
 @section('content')
-<div class="scrollspy pb-5">
-    <div id="nav-container" class="position-fixed d-flex align-items-center justify-content-between px-3">
+<div class="scrollspy">
+    <div id="nav-container" class="d-flex align-items-center justify-content-between px-3">
         <div class="carousel-title-n-arrow">
-            <h5 class="text-white mb-0">{{__('Hot & New')}}</h5>
+            <h1 class="text-white mb-0">{{__('Hot & New')}}</h1>
         </div>
         <div id="nav">
             @foreach ($spotlightData['data']['list'] as $key => $head_item)
-                <a href="#{{ strtolower(str_replace(' ', '', $head_item['title'])) }}" class="nav-link {{ $key == 0 ? 'active' : '' }}">
+                <a href="#{{ strtolower(str_replace(' ', '', $head_item['title'])) }}" class="s__spy nav-link {{ $key == 0 ? 'active' : '' }}">
                     <img src="{{ asset('assets/spotlight/' . strtolower(str_replace(' ', '', $head_item['title'])) . '-icon.svg') }}"
                         alt="">
                     {{ $head_item['title'] }}
@@ -22,11 +22,12 @@
             @endforeach
         </div>
     </div>
-    <div class="container-fluid pt-5 pe-0">
+    <div class="container-fluid pe-0">
         @foreach ($spotlightData['data']['list'] as $head_item)
-            <section id="{{ strtolower(str_replace(' ', '', $head_item['title'])) }}" class="mt-5">
+            <section class="{{ strtolower(str_replace(' ', '', $head_item['title'])) }}">
+            <div id="{{ strtolower(str_replace(' ', '', $head_item['title'])) }}"></div>
                 <div class="carousel-title-n-arrow pb-3">
-                    <h5 class="text-white mb-0">{{ $head_item['title'] }}</h5>
+                    <h1 class="text-white mb-0">{{ $head_item['title'] }}</h1>
                 </div>
                 @php
                     $title = $head_item['title'] ?? "";
@@ -52,7 +53,7 @@
                                 <div class="internal-card d-flex">
                                     
                                     <div class="upcomming-scroll">
-                                        <div class="card-main-body d-flex ms-3">
+                                        <div class="card-main-body d-flex me-3">
                                                 <div class="card-body">
                                                     <a onclick="click_tile(this)" class="upper-img upcomingVid"
                                                         href="javascript:void(0)" data-id="{{$item['ID'] ?? null}}" data-type="{{$item['content_type'] ?? ''}}"
@@ -121,9 +122,9 @@
 @stop
 
 @section('script')
-<script src="{{ asset('assets/js/vendor/plyr.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/hls.min.js') }}"></script>
-<script src="{{ asset('assets/js/webvtt-subtitler.js') }}"></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.js"></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/hls.min.js"></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/webvtt-subtitler.js"></script>
 <script src="{{ asset('assets/js/video-player.js') }}?v={{ assetTime() }}"></script>
 
 <script>

@@ -1,6 +1,6 @@
 <?php  $page = request()->segment(1);  ?>
 
-@if($page == 'games')
+@if($page == 'games' || $page == 'games-all' )
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",

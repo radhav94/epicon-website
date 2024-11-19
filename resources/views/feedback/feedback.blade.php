@@ -1381,12 +1381,24 @@
                         </select>
                     </div>
                 </div>
+                @php $country = getCountryStateDataInHtml(); @endphp 
                 <div class="col-sm-6 login-popup-modal mt-3">
                     <div class="input-field w-100 position-relative">
-                        <select class="uk-select select-control input__field isdcode" name="isdcode" style="display: block !important;">
+                        {{--<select class="uk-select select-control input__field isdcode" name="isdcode" style="display: block !important;">
                             {!! getCountryStateDataInHtml() !!}
-                        </select>
-                        <input class="form-control" style="text-indent: 115px;" name="phone" type="text" value="{{ $mobile }}" {{ !empty($mobile) ? 'readonly' : '' }} placeholder="Enter mobile no" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Please enter a valid phone number">
+                        </select>--}}
+                        <div class="new-input-fields">
+                                        <div class="country__code d-block" id="countryCode__dropdown"> {{ $country['countryCode'] }}</div>
+                                        <div class="country__code__box">
+                                                <input type="text" class="country__code__search search_4" id="search_field" placeholder="Search" onkeyup="searchCountryCode('4')">
+                                                <ul class="new__input__field__drop__down list-unstyled text-white" id="myUL_4">
+                                                {!! $country['countryisdhtml'] !!} 
+                                                </ul>
+                                        </div>
+                                        <input type="hidden" name="isdcode" id="country-stdisdcode" class="country-stdisdcode-class" value="{{ $country['countryCode'] }}">
+                                        <input class="form-control rounded-start-0" style="text-indent: 115px;" name="phone" type="text" value="{{ $mobile }}" {{ !empty($mobile) ? 'readonly' : '' }} placeholder="Enter mobile no" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Please enter a valid phone number">
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-sm-6 mt-3">
@@ -1435,7 +1447,7 @@
             $("#feedbackForm .success-msg, #feedbackForm .error-msg").html("");
             $("#feedbackForm .error-box").remove();
             let isValid = true;
-            var stdisdcode = $("#feedbackForm select[name='isdcode']");
+            var stdisdcode = $("#country-stdisdcode");
             if (stdisdcode.val().trim() == "") {
                 $(stdisdcode).after('<p class="error-box text-danger pt-2 col-md-6">Country is required</p>');
                 isValid = false;

@@ -4,6 +4,7 @@
     $tab1_title = $lastSeason = '';
 
     if ($content['content_type'] == 'SHOW') {
+        $content_order = false;
         $seasons = $content['season'] ?? [];
         $tab1_title = 'Seasons';
         foreach ($seasons as $value) {            
@@ -11,15 +12,25 @@
             $temp = sortEpisodes($temp);
             //$lastSeason = $value['slug'];
             if ($temp != null) {
-                $seasonList[] = [
-                    'title' => $value['title'],
-                    'url' => $value['slug']
-                ];
+                if (isset($value['content_order'])) {
+                    $content_order = true;
+                    $seasonList[$value['content_order']] = [
+                        'title' => $value['title'],
+                        'url' => $value['slug'],
+                        'content_order' => $value['content_order']
+                    ];
+                } else {
+                    $seasonList[] = [
+                        'title' => $value['title'],
+                        'url' => $value['slug']
+                    ];
+                }
+                
                 $season_episode_data[$value['slug']] = $temp;
             }
         }
         $tab1_title = 'Episodes';
-        rsort($seasonList);
+        $content_order ? krsort($seasonList) : rsort($seasonList);
     } elseif ($content['content_type'] == 'SEASON') {
         $temp = $content['episodes'] ?? [];
         $temp = sortEpisodes($temp);
@@ -72,7 +83,7 @@
 
 
                        <!-- filter -->
-                       <div class="episode-season" style="display:flex">
+                       <div class="episode-season">
                        @if($content['content_type'] !="VIDEO")
                        <div class="all-episode season">
                                <select id="SortingEp">

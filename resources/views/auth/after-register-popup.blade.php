@@ -19,11 +19,15 @@
 
 <script>
     $(document).ready(function() {
+        var isMondiaUser = "{{ session()->has('userUuid') ? 'true' : 'false' }}";
         if (queryParams.get('type') == "register") {
             getGenreList();
             $(".login-popup-modal").hide();
             $(".better-solution").show();
             $("#after-register-modal").modal('show');
+            if (isMondiaUser == 'true') {
+                $("#after-register-modal .btn-close").removeClass("redi-subs");
+            }
         }
 
         //choose genre section
@@ -86,10 +90,18 @@
                         var SubchekUrl = localStorage.getItem("SubredirectURL");
                         if (SubchekUrl != "" && SubchekUrl != null && SubchekUrl != undefined) {
                             localStorage.removeItem("SubredirectURL");
-                            window.location.href = SubchekUrl;
+                            if (isMondiaUser == 'true') {
+                                window.location.href="{{route('homepage')}}";
+                            } else {
+                                window.location.href = SubchekUrl;
+                            }
                             return false;
                         } else {
-                            window.location.href = APP_URL + '/subscription';
+                            if (isMondiaUser == 'true') {
+                                window.location.href="{{route('homepage')}}";
+                            } else {
+                                window.location.href = APP_URL+'/subscription';
+                            }
                             return false;
                         }
                     } else {

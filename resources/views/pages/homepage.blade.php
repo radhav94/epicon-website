@@ -3,7 +3,7 @@
 
 
 @section('style')
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plyr.css') }}?v={{ assetTime() }}">
+<link rel="stylesheet" type="text/css" href="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.css?v={{ assetTime() }}">
 <style>
     #epicShots video {
         width: 100%;
@@ -30,7 +30,7 @@
 
 @section('content')
 <input type="hidden" id="routepage" value="{{ request()->path() }}">
-<input type="hidden" id="pageval" value="1">
+<input type="hidden" id="pageval" value="0">
 
 
 <div class="loadmorecontent">
@@ -38,22 +38,22 @@
     @include('display.display-default')
 </div>
 
-    <div class="content-loader d-none" style="text-align: center;"> <img style="width: 40px;" src="{{ asset('assets/img/loader.gif') }}" alt=""> </div>
+    <div class="content-loader d-none" style="text-align: center;"> <img style="width: 40px;" src="{{ env('AWS_S3_domain') }}epicon/assets/images/loader.gif" alt="loading"> </div>
 
-    @include('components.supermix-content-modal')
-    @include('components.video-player-modal')
+    {{--@include('components.supermix-content-modal')
+    @include('components.video-player-modal')--}}
     <?php if(request()->path() == '' || request()->path() == '/' || request()->path() == 'hi' || request()->path() == '/hi'){ ?>
     @include('components.page-blocker')
     <?php } ?>
 @stop
 
 @section('script')
-<script src="{{ asset('assets/js/homepage.js') }}?v={{ assetTime() }}" defer></script>
-<script src="{{ asset('assets/js/epic-story.js') }}?v={{ assetTime() }}" defer></script>
-<script src="{{ asset('assets/js/vendor/plyr.js') }}" defer></script>
-<script src="{{ asset('assets/js/vendor/hls.min.js') }}" defer></script>
-<script src="{{ asset('assets/js/webvtt-subtitler.js') }}" defer></script>
-<script src="{{ asset('assets/js/supermix.js') }}?v={{ assetTime() }}" defer></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/homepage.js?v={{ assetTime() }}" defer></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/epic-story.js?v={{ assetTime() }}" defer></script>
+{{-- <script src="{{ asset('assets/js/vendor/plyr.js') }}" defer></script> --}}
+{{-- <script src="{{ asset('assets/js/vendor/hls.min.js') }}" defer></script> --}}
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/webvtt-subtitler.js" defer></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/supermix.js?v={{ assetTime() }}" defer></script>
 
 <script>
     var processing;
@@ -61,7 +61,6 @@
 
     $(document).ready(function() {
         $('#pageval').val('1');
-        
         if (typeof activateSpinner === 'function') {
             activateSpinner();
         }

@@ -1,8 +1,8 @@
-<?php 
-$firstSegment   = getFirstSegmentWithKids(); 
+<?php
+$firstSegment   = getFirstSegmentWithKids();
 $isMoblile      = isMobliDevice();
 ?>
-<section class=" hero-banner w-100 {{ in_array($firstSegment, ['podcast','games']) ? 'podcast-banner' : '' }}">
+<section class=" hero-banner w-100 {{ in_array($firstSegment, ['podcast','games', 'games-all']) ? 'podcast-banner' : '' }}">
     <div class="banner-carousel">
         @foreach ($value['content'] as $key => $val)
             <?php
@@ -11,16 +11,16 @@ $isMoblile      = isMobliDevice();
             if (!$isMoblile) {
                 $banner_img = getCardImage($val, 'banner_image_v2', 'large');
             } else {
-                $img =  in_array($firstSegment, ['podcast','games'])  ? 'cover_image' : 'vertical_cover_image';
+                $img =  in_array($firstSegment, ['podcast','games', 'games-all'])  ? 'cover_image' : 'vertical_cover_image';
                 $banner_img = getCardImage($val, $img, 'medium');
             }
             ?>
             <div class="carousel-card">
                 {!! freePremiumDiv($val) !!}
                 <div class="carousel-items position-relative w-100">
-                <a onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}" href="{{ isset($val['game_url']) ? @$val['game_url'] : getContentUrl($val) }}" {{ isset($val['game_url']) ? 'target="_blank"' : '' }}>
+                <a onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}" href="{{ isset($val['game_url']) ? @$val['game_url'] : getContentUrl($val) }}" {{ isset($val['game_url']) ? 'target="_blank"' : '' }} aria-label="{{ @$val['title'] }}">
                     {{-- <!-- <a href="{{ getContentUrl($val) }}"> --> --}}
-                        <img src="{{ $banner_img }}" alt="">
+                        <img src="{{ $banner_img }}" alt="{{ @$val['title'] }}">
                     </a>
                     <div class="carousel-items-content position-absolute">
                         <h2>{{ $card['sub_text'] }}</h2>

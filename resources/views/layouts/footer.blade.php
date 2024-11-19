@@ -10,16 +10,12 @@ if ($request->has('type')) {
  ?>
 @if($webview !='webview')
 <div class="footer w-100">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <a onclick="click_menu(this)" data-event_context="footer" data-element_text="Home" href="{{ getUrlWithPrefix('homepage') }}"><img width="150" class="epicon-footer-logo" src="{{ asset('assets/img/epicon-logo.png') }}" alt=""></a>
-            </div>
-        </div>
+    <div class="container text-center">
+        <a aria-label="logo" onclick="click_menu(this)" data-event_context="footer" data-element_text="Home" href="{{ getUrlWithPrefix('homepage') }}"><img width="150" height="44" class="epicon-footer-logo" src="{{env('AWS_S3_domain')}}epicon/assets/images/epicon-logo.png" alt=""></a>
         <div class="row middle-footer">
             <div class="col-lg-3">
                 <div class="connect-with">
-                    <h1>{{__('Connect With Us')}}</h1>
+                    <h2>{{__('Connect With Us')}}</h2>
                     <div class="w-100 f-share-icons">
                         <a onclick="click_social(this)" aria-label="facebook" data-title="facebook" data-event_context="Epic on" target="_blank" href="https://www.facebook.com/theepicon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
@@ -75,29 +71,29 @@ if ($request->has('type')) {
                 </div>
             </div>
             <div class="col-lg-6 link-pos">
-                <div class="f-link">
-                    <ul class="d-flex mb-0">
+                <div class="f-link d-flex">
+                    <!-- <ul class="d-flex mb-0"> -->
                         @if(isKidsPage())
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('About Us')}}" href="{{getUrl('kids/about-us')}}">{{__('About Us')}}</a></li>
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Terms of Use')}}" href="{{route('kids-terms-of-use')}}">{{__('Terms of Use')}}</a></li>
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Privacy Policy')}}" href="{{route('kids-privacy')}}">{{__('Privacy Policy')}}</a></li>
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Help Centre')}}" href="{{getUrl('kids/feedback')}}">{{__('Help Centre')}}</a></li>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('About Us')}}" href="{{getUrl('kids/about-us')}}">{{__('About Us')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Terms of Use')}}" href="{{route('kids-terms-of-use')}}">{{__('Terms of Use')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Privacy Policy')}}" href="{{route('kids-privacy')}}">{{__('Privacy Policy')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Help Centre')}}" href="{{getUrl('kids/feedback')}}">{{__('Help Centre')}}</a>
                         @else
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('About Us')}}" href="{{getUrl('about-us')}}">{{__('About Us')}}</a></li>
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Terms of Use')}}" href="{{route('terms-of-use')}}">{{__('Terms of Use')}}</a></li>
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Privacy Policy')}}" href="{{route('privacy')}}">{{__('Privacy Policy')}}</a></li>
-                        <li><a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Help Centre')}}" href="{{getUrl('feedback')}}">{{__('Help Centre')}}</a></li>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('About Us')}}" href="{{getUrl('about-us')}}">{{__('About Us')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Terms of Use')}}" href="{{route('terms-of-use')}}">{{__('Terms of Use')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Privacy Policy')}}" href="{{route('privacy')}}">{{__('Privacy Policy')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" data-element_text="{{__('Help Centre')}}" href="{{getUrl('feedback')}}">{{__('Help Centre')}}</a>
                         @endif
-                    </ul>
+                    <!-- </ul> -->
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="download-store">
                     <h1>{{__('Download App')}}</h1>
                     <div class="w-100 download-store-logo">
-                        <a onclick="outbound_click(this)" aria-label="app android" data-event_context="app" data-element_text="android" href="https://play.google.com/store/apps/details?id=com.epicchannel.epicon&amp;hl=en" target="_blank"><img class="me-3" src="{{ asset('img/google-store-logo-proper.svg') }}"
-                                alt=""></a>
-                        <a onclick="outbound_click(this)" aria-label="app ios" data-event_context="app" data-element_text="ios" href="https://apps.apple.com/in/app/epic-on/id1252513341" target="_blank"><img src="{{ asset('img/apple-store-logo.svg') }}" alt=""></a>
+                        <a onclick="outbound_click(this)" aria-label="app android" data-event_context="app" data-element_text="android" href="https://play.google.com/store/apps/details?id=com.epicchannel.epicon&amp;hl=en" target="_blank"><img class="me-3" src="{{ env('AWS_S3_domain') }}epicon/assets/images/google-store-logo-proper.svg"
+                                alt="google store"></a>
+                        <a onclick="outbound_click(this)" aria-label="app ios" data-event_context="app" data-element_text="ios" href="https://apps.apple.com/in/app/epic-on/id1252513341" target="_blank"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/apple-store-logo.svg" alt="app store"></a>
                     </div>
                 </div>
             </div>
@@ -154,27 +150,27 @@ if ($request->has('type')) {
             [   'name'=>'Home',
                 'url'=>'kids',
                 'logoimg'=>'',
-                'class'=>'home'  
+                'class'=>'home'
             ],
            [    'name'=>'Movies',
                 'url'=>'kids/movies',
                 'logoimg'=>'',
-                'class'=>'home'  
+                'class'=>'home'
             ],
             [   'name'=>'Shows',
                 'url'=>'kids/shows',
                 'logoimg'=>'',
-                'class'=>'home'  
+                'class'=>'home'
                     ],
             [   'name'=>'Podcasts',
                 'url'=>'kids/podcast',
                 'logoimg'=>'',
-                'class'=>'home'  
+                'class'=>'home'
             ],
             [   'name'=>'Games',
                 'url'=>'kids/games',
                 'logoimg'=>'',
-                'class'=>'home'  
+                'class'=>'home'
             ],
        ];
        $current_route = request()->path();
@@ -184,29 +180,29 @@ if ($request->has('type')) {
          [  'name'=>'Home',
             'url'=>'',
             'logoimg'=>'',
-            'class'=>'home'  
+            'class'=>'home'
          ],
          [ 'name'=>'Premium',
          'url'=>'premium',
          'logoimg'=>'',
-         'class'=>'premium'  
+         'class'=>'premium'
           ],
-        
+
          [  'name'=>'Explore',
             'url'=>'explore',
             'logoimg'=>'',
-            'class'=>'explore'  
+            'class'=>'explore'
          ],
-        
+
          [  'name'=>'Search',
             'url'=>'search',
             'logoimg'=>'',
-            'class'=>'search'  
+            'class'=>'search'
          ],
          [  'name'=>'Hot & New',
             'url'=>'spotlight',
             'logoimg'=>'',
-            'class'=>'spotlight'  
+            'class'=>'spotlight'
          ],
     ];
        $current_route = getFirstSegment();
@@ -217,12 +213,12 @@ if ($request->has('type')) {
     <div class="footer-mobile {{$kidsClass}}">
         <nav class="mob-nav">
         @foreach ($links as $key => $value)
-       
+
             <a class="footer-{{@$value['class']}} {{ $current_route == @$value['url'] ? 'active' : '' }}" href="{{getUrl(@$value['url'])}}">
                 <p></p>
                 <span>{{@$value['name']}}</span>
             </a>
-           
+
         @endforeach
         </nav>
     </div>

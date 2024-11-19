@@ -1,4 +1,4 @@
-<script src="{{ asset('assets/js/vendor/jquery.validate.min.js') }}"></script>
+<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/jquery.validate.min.js"></script>
 <script>
     var user_mob_email = '';
     var interval = "";
@@ -22,12 +22,15 @@
             t.length >= 7 && Number.isInteger(+t)
                 ? (
                     $(".stdisdcode").css({ display: "block" }),
-                    $(".emailText").css({ "text-indent": "115px" }),
+                    $("#mobile_number").addClass("input-radius"),
+                    $("#mobilenumber").addClass("input-radius"),
                     $(".signup_method").val('MOBILE')
                   )
                 : (
                     $(".stdisdcode").css({ display: "none" }),
-                    $(".emailText").css({ "text-indent": "0px" }),
+                    $("#mobile_number").removeClass("input-radius"),
+                    $("#mobilenumber").removeClass("input-radius"),
+                    $(".country__code__box").removeClass("active-div"),
                     $(".signup_method").val('EMAIL')
                 );
         }),

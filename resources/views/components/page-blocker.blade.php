@@ -43,7 +43,7 @@
     <div class="modal-content blocker-content">
     <button class="close-button page-close" onclick="closeModal()">&times;</button>
         <div class="modal-body blocker-body" data-url="{{ $pb_link }}">
-            <a href="{{ @$pb_link }}" target="_blank"><img src="{{ $pb_image }}" alt=""> </a>
+            <a href="{{ @$pb_link }}" target="_blank"><img src="{{ $pb_image }}" alt="banner"> </a>
         </div> 
     </div>
   </div>

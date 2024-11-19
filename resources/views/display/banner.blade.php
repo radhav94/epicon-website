@@ -8,9 +8,9 @@ $isMoblile = isMobliDevice();
         @foreach ($value['content'] as $key => $val)
             <?php
             $card = getItemCardData($val, $displayLanguageParam);
-            
+
             if ($isMoblile) {
-                $img = in_array($firstSegment, ['podcast', 'games']) ? 'cover_image' : 'vertical_cover_image';
+                $img = in_array($firstSegment, ['podcast', 'games', 'games-all']) ? 'cover_image' : 'vertical_cover_image';
                 $banner_img = getCardImage($val, $img, 'medium');
             } else {
                 $banner_img = getCardImage($val, 'banner_image_v2', 'large');
@@ -19,10 +19,10 @@ $isMoblile = isMobliDevice();
             <div class="carousel-card">
                 {!! freePremiumDiv($val) !!}
                 <div class="carousel-items position-relative w-100">
-                    <a href="{{ isset($val['game_url']) ? @$val['game_url'] : getContentUrl($val) }}"
+                    <a aria-label="banner" href="{{ isset($val['game_url']) ? @$val['game_url'] : getContentUrl($val) }}"
                         onclick="click_carousel(this)" data-title ="{{ @$val['title'] }}"
-                        {{ isset($val['game_url']) ? 'target="_blank"' : '' }}>
-                        <img fetchpriority="high" src="{{ $banner_img }}" alt="" class="banner-img">
+                        {{ isset($val['game_url']) ? 'target="_blank"' : '' }} aria-label="{{ @$val['title'] }}">
+                        <img fetchpriority="high" src="{{ $banner_img }}" alt="{{ @$val['title'] }}" class="banner-img">
                     </a>
                     <div class="carousel-items-content position-absolute">
                         <h2>{{ $card['sub_text'] }}</h2>

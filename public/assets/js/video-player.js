@@ -570,7 +570,7 @@ $(document).ready(function () {
         player.on("timeupdate", (event) => {
             hitPlaytrackingEvery_x_minute(player, 5);
             let duration = Math.round(player.duration);
-            let rediduration = Math.round((duration / 100) * 98);
+            let rediduration = Math.round((duration / 100) * 99.3);
             let currentTime = Math.round(player.currentTime);
             let progress = Math.round(duration - currentTime);
 

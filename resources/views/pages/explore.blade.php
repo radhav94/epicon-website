@@ -47,7 +47,7 @@
                             </div>
                         @endif
                         <div class="carousel-title-n-arrow px-2 mb-2">
-                            <h5 class="text-white">Language</h5>
+                            <h1 class="text-white">Language</h1>
                         </div>
                         @if( @$result['data']['languages'] )
                             <div class="gener-lang">

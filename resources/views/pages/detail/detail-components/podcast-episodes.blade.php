@@ -27,7 +27,13 @@
                             </a>
                             {{-- <h6 class="pod-title">EPIC ON ORIGINAL</h6> --}}
                             {{-- <h5 class="pod-series">CASO.63</h5> --}}
-                            <img class="podcast-top-icon" src="{{ asset('assets/img/podcast-top-icon.svg') }}" alt="podcast icon">
+                            <img class="podcast-top-icon"
+                            @if (@$value['free_premium'] == true && !isActiveSubscription())
+                                src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg" 
+                            @else
+                                src="{{ env('AWS_S3_domain') }}epicon/assets/images/podcast-top-icon.svg"
+                            @endif
+                                alt="crown">
                         </div>
                         <div class="middle">
                             <h6 class="title" data-duration="{{@$value['duration']}}">{{ $card['title'] }}</h6>
@@ -64,7 +70,7 @@
                                 ?>
 
                                 <button class="rounded-grey-btn me-2 addToList" data-id="{{ @$value['ID'] }}" data-action="{{ $ep_wishAction }}" data-type="3">
-                                    <img class="wl_add" src="{{ asset('assets/img/add-icon.svg') }}" alt="icon" @if ($ep_wishAction=='delete' ) style="display: none" @endif>
+                                    <img class="wl_add" src="{{ env('AWS_S3_domain') }}epicon/assets/images/add-icon.svg" alt="icon" @if ($ep_wishAction=='delete' ) style="display: none" @endif>
                                     <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon" @if ($ep_wishAction=='add' ) style="display: none" @endif>
                                 </button>
 

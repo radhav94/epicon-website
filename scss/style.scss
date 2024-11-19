@@ -1,11 +1,74 @@
 @import "../node_modules/bootstrap-scss/bootstrap.scss";
-@import "_base";
-@import "custom";
+
+$domain:'https://source.epicon.in/';
+
+@font-face {
+    font-family: 'Outfit', sans-serif;
+    // src: url('../assets/assets/fonts/Outfit-Regular.eot');
+    src: url('#{$domain}epicon/assets/images/Outfit-Regular.eot');
+    src: url('#{$domain}epicon/assets/images/Outfit-Regular.eot?#iefix') format('embedded-opentype'),
+        url('#{$domain}epicon/assets/images/Outfit-Regular.woff2') format('woff2'),
+        url('#{$domain}epicon/assets/images/Outfit-Regular.woff') format('woff'),
+        url('#{$domain}epicon/assets/images/Outfit-Regular.ttf') format('truetype'),
+        url('#{$domain}epicon/assets/images/Outfit-Regular.svg#Outfit-Regular') format('svg');
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'Outfit';
+    src: url('#{$domain}epicon/assets/images/Outfit-Medium.eot');
+    src: url('#{$domain}epicon/assets/images/Outfit-Medium.eot?#iefix') format('embedded-opentype'),
+        url('#{$domain}epicon/assets/images/Outfit-Medium.woff2') format('woff2'),
+        url('#{$domain}epicon/assets/images/Outfit-Medium.woff') format('woff'),
+        url('#{$domain}epicon/assets/images/Outfit-Medium.ttf') format('truetype'),
+        url('#{$domain}epicon/assets/images/Outfit-Medium.svg#Outfit-Medium') format('svg');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Outfit';
+    src: url('#{$domain}epicon/assets/images/Outfit-SemiBold.eot');
+    src: url('#{$domain}epicon/assets/images/Outfit-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('#{$domain}epicon/assets/images/Outfit-SemiBold.woff2') format('woff2'),
+        url('#{$domain}epicon/assets/images/Outfit-SemiBold.woff') format('woff'),
+        url('#{$domain}epicon/assets/images/Outfit-SemiBold.ttf') format('truetype'),
+        url('#{$domain}epicon/assets/images/Outfit-SemiBold.svg#Outfit-SemiBold') format('svg');
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'Outfit';
+    src: url('#{$domain}epicon/assets/images/Outfit-Bold.eot');
+    src: url('#{$domain}epicon/assets/images/Outfit-Bold.eot?#iefix') format('embedded-opentype'),
+        url('#{$domain}epicon/assets/images/Outfit-Bold.woff2') format('woff2'),
+        url('#{$domain}epicon/assets/images/Outfit-Bold.woff') format('woff'),
+        url('#{$domain}epicon/assets/images/Outfit-Bold.ttf') format('truetype'),
+        url('#{$domain}epicon/assets/images/Outfit-Bold.svg#Outfit-Bold') format('svg');
+    font-weight: bold;
+}
+
+@mixin line-clamp($clmpnumber) {
+    display: -webkit-box;
+    -webkit-line-clamp: $clmpnumber;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+  @mixin flex($fd,$ai,$jc){
+    display: flex;
+    flex-direction: $fd;
+    align-items: $ai;
+    justify-content: $jc;
+  }
+
+$bg-primary : #fff;
+$bg-secondaty: #9A43D3;
+$bg-dark-gray: #272727;
+$bg-grey:#868686;
+$bg-white:#fff;
+
 body{
     background: #161616;
     font-weight: normal;
     font-style: normal;
-    background-image: url("../img/top-bg.svg");
+    // background-image: url("#{$domain}epicon/assets/images/top-bg.svg");
+    background-image: url(#{$domain}epicon/assets/images/top-bg.svg);
     background-repeat: no-repeat;
     background-size: 100% auto;
     font-family: 'Outfit', sans-serif;
@@ -50,6 +113,1186 @@ body{
     -webkit-box-shadow: 0 0 0px 1000px #000 inset;
     transition: background-color 5000s ease-in-out 0s;
 }
+
+.gaming-galore-main.gfmpodcast {
+    .galore-title {
+        width: 250px;
+
+        &::after {
+            content: "";
+            width: 250px;
+            height: 250px;
+            position: absolute;
+            background-image: url("#{$domain}epicon/assets/images/women-want-bg.svg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100% 100%;
+            pointer-events: none;
+        }
+
+        h1 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+
+            @media (max-width:768px) {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .gaming-galore {
+        div {
+            padding: 0;
+        }
+    }
+}
+
+.gaming-galore-main.yaaran-podcast {
+    .galore-title {
+        width: 350px;
+
+        @media (max-width: 768px) {
+            width: 180px;
+        }
+
+        &::after {
+            content: "";
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            background-image: url("#{$domain}epicon/assets/images/yaaran-podcast.svg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100% 100%;
+            pointer-events: none;
+
+            @media (max-width: 768px) {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    button {
+        margin-top: 150px;
+    }
+}
+
+.genere-fiesta.tune-in {
+    .genere-fiesta-title {
+        width: 57%;
+
+        @media (max-width: 768px) {
+            width: 100%;
+        }
+    }
+
+
+}
+
+.gaming-galore-main.arvr-games {
+    .galore-title {
+        width: 350px;
+
+        &::after {
+            content: "";
+            width: 250px;
+            height: 250px;
+            position: absolute;
+            background-image: url("#{$domain}epicon/assets/images/arvr-games-bg.svg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100% 100%;
+            pointer-events: none;
+        }
+
+        img {
+            width: 264px;
+            position: absolute;
+            bottom: 56px;
+        }
+
+        h1 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+
+            @media (max-width:768px) {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+.carousel-main {
+    .cust-collection {
+        .cus-card-img {
+            img {
+                border-radius: 15px;
+            }
+        }
+
+        .cus-card-text {
+            position: absolute;
+            top: 25px;
+            padding-left: 20px;
+
+            @media (max-width:768px) {
+                font-size: 14px;
+            }
+
+            button {
+                background: none;
+                border: none;
+                color: #fff;
+                font-family: Outfit;
+                font-style: normal;
+            }
+        }
+    }
+}
+
+.offer-banner {
+    .insideoffer-banner {
+        background-image: url(#{$domain}epicon/assets/images/40off-component.svg);
+        background-repeat: no-repeat;
+        background-position: bottom right;
+        background-size: auto 100%;
+        border-radius: 38px;
+        border: 2.063px solid #545454;
+        background-color: #272727;
+        box-shadow: -12.376068115234375px 12.376068115234375px 24.75213623046875px 0px #000;
+    }
+
+    .offer-banner-text {
+        padding: 50px 20px;
+
+        .offer-ends {
+            padding: 12px 24px 10px 24px;
+            width: fit-content;
+            border-radius: 82.507px;
+            background: var(--separator, linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%));
+        }
+
+        .premium-content {
+            color: #FFF;
+            font-family: Outfit;
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 140%;
+            /* 44.8px */
+            letter-spacing: 0.64px;
+        }
+
+        .subscribenow {
+            border-radius: 50px;
+            border: 0.837px solid #474747;
+            background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%);
+            box-shadow: -1.673469305px 1.673469305px 10.0408153534px 0px rgb(0 0 0 / 50%);
+            color: #fff;
+            padding: 16px 30px;
+            width: 200px;
+            margin: 20px auto 0 auto;
+        }
+    }
+}
+
+.genresexplore {
+    .card-details {
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
+        gap: 10px;
+
+        @media (max-width:1024px) {
+            grid-template-columns: auto auto auto auto;
+        }
+
+        @media (max-width:768px) {
+            grid-template-columns: auto auto auto;
+        }
+
+        @media (max-width:700px) {
+            grid-template-columns: auto auto;
+        }
+
+        .card-body {
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+            cursor: pointer;
+
+            .action {
+                color: #FFF;
+                font-family: Outfit;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 32px;
+                margin-top: 10px;
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+.carousel-main {
+    .short-sweet-carousel {
+        li {
+            position: relative;
+
+            .short-sweet-card {
+                margin-right: 10px;
+
+
+                .ss-card-img {
+                    img {
+                        border-radius: 10px;
+                    }
+                }
+            }
+
+            .short-sweet-shots {
+                position: absolute;
+                bottom: -30px;
+                width: 80px;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+
+                a {
+                    text-decoration: none;
+                    color: #fff;
+                    width: 80px;
+                    background: linear-gradient(180deg, #B14EEE 0%, #F0B732 100%);
+                    display: block;
+                    border-radius: 28px;
+                    overflow: hidden;
+                    padding: 2px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        -o-object-fit: cover;
+                        object-fit: cover;
+                        border-radius: 26px;
+                        border: 3px solid none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.helps-feedback {
+    .search-header {
+        .inside-head {
+            width: 100%;
+            display: flex;
+            padding: 10px 16px;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            border: 1px solid var(--input-field-stroke, #494949);
+
+            input {
+                width: 100%;
+                border: none;
+                color: #fff;
+                text-indent: 12px;
+            }
+
+            ::placeholder {
+                color: var(--inactive-text, #B0B0B0);
+            }
+        }
+    }
+
+    .faq-accordian {
+        .accordion {
+            --bs-accordion-bg: transparent;
+            --bs-accordion-border-color: transparent;
+        }
+
+        .accordion-button:not(.collapsed) {
+            color: black;
+            box-shadow: none;
+            background-color: transparent;
+        }
+
+        .accordion-button:not(.collapsed)::after {
+            background-image: url(#{$domain}epicon/assets/images/Close.png);
+        }
+
+        .accordion-button::after {
+            background-image: url(#{$domain}epicon/assets/images/round-add.png);
+        }
+    }
+
+    .need-help {
+        .para-help {
+            color: var(--text-white, #FFF);
+            font-family: Outfit;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        textarea {
+            background-color: transparent;
+            border: 1px solid var(--Input-Field-Stroke, #494949);
+            border-radius: 6px;
+            border-radius: 10px;
+            color: #fff;
+
+            @media (max-width:768px) {
+                width: 100%;
+            }
+
+            @media (max-width:1024px) {
+                width: 100%;
+            }
+        }
+
+        ::placeholder {
+            color: var(--inactive-text, #B0B0B0);
+        }
+    }
+
+    .need-button {
+        padding: 14px 24px;
+        width: 300px;
+        border-radius: 38px;
+        background: #FFF;
+        border: none;
+        margin-top: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        color: #0000007a;
+
+        @media (max-width:768px) {
+            width: 366px;
+        }
+    }
+
+}
+
+.main-banner {
+    h3 {
+        color: #fff;
+        font-size: 22px;
+        margin: 20px;
+    }
+
+    .container-fluid {
+        img {
+            width: 100%
+        }
+
+        ;
+    }
+}
+
+.new-popular-main ,.explore-details {
+    position: relative;
+
+    span {
+        left: 5px;
+        top: 1px;
+        img{
+            width: 20px;
+        }
+    }
+
+    .card-details {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        gap: 12px;
+
+        @media (max-width:1024px) {
+            grid-template-columns: auto auto auto;
+        }
+
+        @media (max-width:768px) {
+            grid-template-columns: auto auto;
+        }
+
+        @media (max-width:700px) {
+            grid-template-columns: auto auto;
+        }
+
+        .card-body {
+            overflow: hidden;
+            // margin-bottom: 10px;
+            position: relative;
+
+            .popular-head {
+                border-radius: 30px;
+                border: 0.5px solid #545454;
+                background: #272727;
+                width: fit-content;
+                position: absolute;
+                bottom: 64px;
+                left: 8px;
+                padding: 6px;
+                font-size: 8px;
+                width: 95px;
+
+                @media (max-width:767px) {
+                    padding: 2px 6px;
+                    bottom: 58px;
+                    left: 5px;
+                    width: 88px;
+                }
+
+                img {
+                    margin-right: 4px;
+                }
+            }
+
+            .popular-head-star {
+                border-radius: 30px;
+                border: 0.5px solid #545454;
+                background: #272727;
+                width: fit-content;
+                position: absolute;
+                bottom: 64px;
+                left: 8px;
+                padding: 6px;
+                font-size: 10px;
+
+                @media (max-width:768px) {
+                    width: 18%;
+                }
+
+                img {
+                    margin-right: 4px;
+                    margin-left: 3px;
+                }
+            }
+
+            .upper-img {
+                img {
+                    border-radius: 10px;
+                    width: -webkit-fill-available;
+                }
+            }
+
+            .bottom-text {
+                & .left-text{
+                    width: calc(100% - 56px);
+                    @media (max-width:767px) {
+                        width: calc(100% - 47px);
+                    }
+                }
+                h4 {
+                    font-size: 16px;
+                    margin-top: 8px;
+                    @include line-clamp(1);
+                }
+
+                ul {
+                    display: flex;
+                    margin: 0;
+                    padding: 0;
+                    overflow: auto;
+
+                    li {
+                        list-style: none;
+                        color: var(--secondary-text, #B7B7B7);
+                        font-family: Outfit;
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        margin-right: 8px;
+                        white-space: nowrap;
+                    }
+                }
+
+                button {
+                    background: #272727;
+                    border: 0.5px solid #545454;
+                    border-radius: 50%;
+                    padding: 7px 7px;
+                    margin: 12px 0 auto 0;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    width: 40px;
+                    height: 40px;
+                    @media (max-width:767px) {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.upcoming-epicon-main {
+
+    span {
+        left: 7px;
+        top: 7px;
+    }
+
+    .card-details {
+        position: relative;
+
+        .date-upperline {
+            position: absolute;
+            top: 10px;
+            background-color: #201f31;
+            fill: var(--Separator-Gradient, linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%));
+            width: 100%;
+            height: 8px;
+            // border-radius: 20px;
+            // margin-left: 10px;
+
+            @media (max-width: 1400px) {
+                bottom: unset;
+                top: 10px;
+                width: 95%;
+            }
+
+            @media (max-width: 1024px) {
+                bottom: unset;
+                top: 8px;
+                width: 98%;
+            }
+
+            @media (max-width: 768px) {
+                bottom: unset;
+                top: 8px;
+            }
+        }
+
+        .date-card {
+            border-top-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            background-color: #201f31;
+            fill: var(--Separator-Gradient, linear-gradient(270deg, #342857 0%, #232342 47.92%, #201F31 100%));
+            width: 50px;
+            padding: 14px;
+            height: 100px;
+            margin-top: 10px;
+            h6{
+                @media (max-width: 767px) {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .card-main-body {
+            // overflow: auto;
+            gap: 10px;
+        }
+
+        .card-body {
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            width: 250px;
+
+            @media (max-width: 767px) {
+                width: 210px;
+            }
+
+            .upper-img {
+                img {
+                    border-radius: 10px;
+                    width: 100%;
+
+                    // @media (max-width: 1024px) {
+                    //     width: 40%;
+                    // }
+                    // @media (max-width: 769px) {
+                    //     width: 40% !important;
+                    // }
+                    // @media (max-width: 768px) {
+                    //     width: 60%;
+                    // }
+
+                }
+            }
+
+            .bottom-text {
+                h4 {
+                    font-size: 16px;
+                    margin-top: 8px;
+                }
+
+                ul {
+                    display: flex;
+                    margin: 0;
+                    padding: 0;
+
+                    li {
+                        list-style: none;
+                        color: var(--secondary-text, #B7B7B7);
+                        font-family: Outfit;
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+.upcomming-scroll{
+    display: flex;
+    overflow: auto;
+}
+.upc{
+    @include line-clamp(1);
+}
+.new-popular-main {
+    & .card-details.n-p-spotlight {
+        display: flex;
+        overflow: auto;
+        gap: 10px;
+
+        .card-body {
+            width: 250px;
+            flex-shrink: 0;
+
+            .popular-head,
+            .popular-head-star {
+                bottom: 60px;
+            }
+        }
+    }
+}
+
+.coupon-model {
+    .coupon-model-body {
+        .btn-close {
+            float: right;
+            color: #fff !important;
+        }
+
+        .coupon-code {
+            background-color: #fff;
+            width: 150px;
+            height: 70px;
+            border-radius: 10px;
+            padding-top: 10px;
+            margin: 0 auto;
+
+            .code {
+                font-size: 12px;
+                opacity: 0.7;
+            }
+        }
+    }
+}
+
+.seeall-main-page{
+    ul{
+        li{
+            position: relative;
+        }
+    }
+}
+
+.explore-details{
+    .card-details {
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        gap: 12px;
+        margin-top: 14px;
+
+        @media (max-width:1024px) {
+            grid-template-columns: auto auto auto auto;
+        }
+
+        @media (max-width:768px) {
+            grid-template-columns: auto auto auto;
+        }
+
+        @media (max-width:700px) {
+            grid-template-columns: auto auto;
+        }
+    
+    .popular-head {
+        width: fit-content;
+        border: unset !important;
+        background-color: unset !important;
+        position: absolute !important;
+        bottom: 6px !important;
+        left: 12px !important;
+        padding: 6px !important;
+        font-size: 20px !important;
+
+        @media (max-width:768px) {
+            width: unset !important;
+            bottom: -6px !important;
+        }
+    }
+}
+}
+
+.explore-details .carousel-card:not(.slick-active) .carousel-items::after {
+    background-color: unset !important;
+}
+
+.explore-details .carousel-card .carousel-items {
+    padding: unset !important;
+    height: 400px !important;
+
+    @media (max-width:1024px) {
+        height: 300px !important;
+    }
+
+    @media (max-width:767px) {
+        height: 180px !important;
+    }
+}
+
+.explore-details .carousel-card .carousel-items .carousel-items-content {
+    width: calc(100% - 0px) !important;
+
+    @media (max-width:700px) {
+        background-image: unset !important;
+    }
+}
+
+// distro tv
+.distro-slider{
+    overflow-x: clip;
+}
+
+    .distrohead-row .view-all-div{
+        text-align: end;
+        font-size: 15px;
+        color: #fff;
+        padding-bottom: 16px;
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .distrohead-row .view-all-div a{
+        text-decoration: none;
+        color: #fff;
+        width: fit-content;
+        display: flex;
+        text-align: right;
+        padding: 4px 10px 4px 10px;
+        background: rgba(0 0 0 / 20%);
+        border-radius: 5px;
+        transition: 0.3s;
+        &:hover{
+            background: rgba(0 0 0 / 50%);
+        }
+    }
+    
+    .play-button{
+        width: 35px;
+        height: 35px;
+        position: absolute;
+        background-color:black;
+        border: 1px solid #fff;
+        border-radius:50%;
+        pointer-events: none;
+        opacity: 0;
+        transition: 0.5s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .play-button img{
+        width:9px !important;
+        height: 14px !important;
+        margin: 0 auto;
+    }
+
+    .distro-main .slider-controls .slide-m-prev,.distro-main .slider-controls .slide-m-next{
+        z-index: 9;
+        left: 0;
+        background: transparent;
+        width: 30px;
+        height: 30px;
+        outline: none;
+        border: none;
+        background-image: url("#{$domain}epicon/assets/images/distro-arrow-left.svg");
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+    .distro-main .slider-controls .slide-m-next{
+        right: 0;
+        left: unset;
+        background-image: url("#{$domain}epicon/assets/images/distro-arrow-right.svg");
+        background-repeat: no-repeat;
+    }
+    
+    .distro-main .slider-controls-dots .slick-dots li {
+        position: relative;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin: 0 5px;
+        padding: 0;
+        cursor: pointer;
+    }
+    .distro-main .slider-controls-dots .slick-dots li.slick-active button {
+        width: 26px;
+        background: #ffd102;
+    }
+    .distro-main .slider-controls-dots .slick-dots li button {
+        width: 12px;
+        height: 4px;
+        padding: 0;
+        border-radius: 20px;
+        background: #272727;
+        transition: .3s all;
+    }
+    .distro-main .slider-controls-dots .slick-dots li {
+        width: fit-content;
+    }
+    .card-row .slide:hover {
+        transform: scale(1.02);
+        transform-origin: center;
+        position: relative;
+        transition: 0.3s ease-in-out;
+        z-index: 9;
+    }
+    .distrotv-slide-inner .slide{
+        margin-right: 15px;
+        transition: 0.3s ease-in-out;
+    }
+    .distrotv-slide-inner .slide:hover{
+        transform: scale(1.1, 1.1);
+        z-index: 9;
+        transition: 0.3s ease-in-out;
+    }
+    .card-row .slide:hover .play-icon {
+        transform: scale(1.2, 1.2);
+    }
+    .distrotv-slide-inner{
+        overflow-x: clip;
+    }
+    .distrotv-slide-inner .slide:hover .play-button{
+        opacity: 1;
+    }
+    .distrotv-slide-inner .slick-list{
+        overflow: visible;
+    }
+
+    .distrotv-slide-inner .slide-img-wrap img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    .distrotv-slide-inner figure{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0;
+    }
+
+    .ds-logo-text {
+        width: 300px;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        margin-top: 60px;
+    }
+
+    .ds-logo-text ul li {
+        padding: 0;
+        margin: 0 10px;
+        color: #fff;
+    }
+
+    .ds-logo-text p, .ds-logo-text span {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 24px;
+        color: #fff;
+        margin: 5px 0;
+        text-align: center;
+    }
+
+    .header-info img {
+        width: 100px;
+        height: 29px;
+    }
+
+    .header-info h2{
+        font-size: 26px;
+    }
+    .ds-logo-text a {
+        padding: 10px 16px;
+        color: #272727;
+        font-size: 14px;
+        font-weight: 600;
+        background: #fff;
+        border-radius: 100px;
+        width: 150px;
+        text-align: center;
+        text-decoration: none;
+    }
+    
+    .distrotv-slide-show button.slick-prev,.distrotv-slide-show button.slick-next,.distro-slider button.slick-next,.distro-slider button.slick-prev {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        right: 0;
+        filter: drop-shadow(2px 4px 3px black);
+    }
+
+    .distrotv-slide-show button.slick-next::before,.distrotv-slide-show button.slick-prev::before ,.distro-slider button.slick-prev::before{
+        content: "";
+        background: url("#{$domain}epicon/assets/images/hero-left-arrow.svg") center no-repeat;
+        width: 32px;
+        height: 32px;
+        float: left;
+        /* transform: rotate(180deg); */    
+        outline: 0;
+    }
+
+    .distrotv-slide-show button.slick-next::before,.distrotv-slide-show button.slick-prev::before ,.distro-slider button.slick-next::before {
+        background: url("#{$domain}epicon/assets/images/hero-right-arrow.svg") center no-repeat;
+        width: 32px;
+        height: 32px;
+        content: "";
+        float: left;
+        outline: 0;
+    } 
+    
+
+    .distrotv-slide-show button.slick-prev,.distro-slider button.slick-prev {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        box-shadow: none;
+        border: none;
+        outline: 0;
+        border-radius: 40px;
+    }
+    .distrotv-slide-show button.slick-prev::before{
+        transform: rotate(180deg);
+    }
+
+    .distro-slider .sample_img img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .distro-slider .sample_img a{
+        display: block;
+        width: 100%;
+    }
+    .distro-banner-item{
+        width: 100%;
+        height: 500px;
+        position: relative;
+    }
+    .distro-banner-item .plyr--video {
+        overflow: hidden;
+        height: 100%;
+    }
+    .distro-banner-item img{
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    .distro-title{
+        height: 40px;
+        font-size: 18px;
+        font-weight: 700;
+        color: #dfdfdf;
+        text-transform: uppercase;
+        position: relative;
+        line-height: 40px;
+        @include line-clamp(1);
+        margin-bottom: 6px;
+    }
+
+    .distro-slider .sample_img{
+        transition: 0.3s ease-in-out;
+    }
+    .distro-overlay{
+        top: 0;
+        left: 0;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(33, 33, 33, 0.00) 0%, #212121 100%);
+        /*padding: 20px;*/
+        z-index: 1;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .distro-main .slider-controls{
+        z-index: 9;
+        bottom: 0px;
+        right: 40px;
+        width: 80px;
+        top: 220px;
+    }
+
+    .distro-banner{
+        height: 300px;
+    }
+    
+    .distro-banner-item img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
+    .distro-tray{
+        padding-left: 15px;
+    }
+    .distro-tray img{
+        width: 80%;
+        margin: 0 auto;
+    }
+        
+
+    @media (max-width: 768px) {
+        // .play-button{
+        //     display: none;
+        // }
+        .distrohead-row .view-all-div a h6{
+            margin-bottom: 0;
+            padding-bottom: 0;
+            padding-top: 10px;
+        }
+    }
+    @media screen and (max-width: 767px) {
+        .distro-banner-item{
+            width: 100%;
+            height: auto;
+        }
+        .ds-logo-text {
+            margin-top: 120px;
+        }
+        .distro-main .slider-controls{
+            display: none !important;
+        }
+        .distro-title{
+            font-size: 16px;
+            // position: absolute;
+        }
+        .distro-tray {
+            margin: 0px;
+            text-align: center;
+        }
+        .distro-tray img {
+            width: 100%;
+        }
+    }
+
+    .add-icon {
+        background-image: url(#{$domain}epicon/assets/images/add-icon.svg) !important;
+        background-repeat: no-repeat;
+    }
+
+    .delete-icon {
+        background-image: url(#{$domain}epicon/assets/images/subs-icon.svg) !important;
+        background-repeat: no-repeat;
+    }
+
+    .search-main .add-icon {
+        background: center no-repeat #272727;
+        border: 0.5px solid #545454;
+        border-radius: 50%;
+        padding: 20px;
+        margin: 12px 0 auto;
+    }
+
+    .search-main .delete-icon {
+        background: center no-repeat #272727;
+        border: 0.5px solid #545454;
+        border-radius: 50%;
+        padding: 20px;
+        margin: 12px 0 auto;
+    }
+
+    .seeall-main-page .add-icon {
+        background: center no-repeat #272727;
+        border: 0.5px solid #545454;
+        border-radius: 50%;
+        padding: 20px;
+        margin: 12px 0 auto;
+    }
+
+    .socialJS a {
+        padding: 10px;
+        font-size: 31px;
+    }
+
+    .genresexplore .card-body img {
+        width: 100%;
+    }
+
+    .genere-fiesta-content img {
+        height: 30px;
+    }
+
+    a.autowidth.catalog-showmore {
+        font-size: 16px;
+        font-weight: 500;
+        color: #fff;
+        width: 200px;
+        height: 55px;
+        line-height: 52px;
+        border-radius: 32px;
+        border: solid 1px #fff;
+        background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%); 
+        text-transform: uppercase;
+        display: inline-block;
+        padding: 0 25px;
+        margin-top: 35px;
+        transition: all linear 0.4s;
+        text-decoration:none;
+    }
+
+    a.autowidth.channel-showmore {
+        font-size: 16px;
+        font-weight: 500;
+        color: #fff;
+        width: 200px;
+        height: 55px;
+        line-height: 52px;
+        border-radius: 32px;
+        border: solid 1px #fff;
+        background: linear-gradient(232deg, #B14CF0 0%, #1C181E 76.18%); 
+        text-transform: uppercase;
+        display: inline-block;
+        padding: 0 25px;
+        margin-top: 35px;
+        transition: all linear 0.4s;
+        text-decoration:none;
+    }
+
+    .successfully-loged{
+        width: 500px;
+        margin: 0 auto;
+    }
+
 .banner-carousel,.login-carousel{
     opacity: 0;
     visibility: hidden;
@@ -72,7 +1315,7 @@ body{
     margin-top: 0!important;
 }
 #login-modal .modal-content{
-    background-image: url(../img/LoginTatlubaazBackBg.png);
+    background-image: url(#{$domain}epicon/assets/images/LoginTatlubaazBackBg.png);
     @media (max-width:767px) {
         background-image: none;
     }
@@ -82,7 +1325,7 @@ body{
     border-radius: 16px;
     border: 0.5px solid #494949;
     background: transparent;
-    background-image: url(../img/modal-bg.png);
+    background-image: url(#{$domain}epicon/assets/images/modal-bg.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     @media (max-width:767px) {
@@ -111,6 +1354,7 @@ input {
     transform: translateY(40px);
     transition: transform .3s;
     backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
     background: #000000b8;
 }
 .side-menu-main{
@@ -295,6 +1539,12 @@ input {
             width: 18px;
             height: 18px;
         }
+    }
+}
+.titleText{
+    font-size: calc(1.3rem + 0.6vw);
+    @media (min-width: 1200px) {
+        font-size: 1.75rem;
     }
 }
 .navbar-brand{
@@ -891,7 +2141,7 @@ input {
                     height: 108px;
                     padding: 0rem 0.5rem 0.5rem 0.5rem;
                     border-radius: 12px;
-                    background-image: url("../img/main-banner-mobile-bg.svg");
+                    background-image: url("#{$domain}epicon/assets/images/main-banner-mobile-bg.svg");
                     background-repeat: no-repeat;
                     background-position:bottom center;
                     background-size: 100% auto;
@@ -1187,7 +2437,8 @@ input {
             position: absolute;
             width: 80%;
             height: 300px;
-            background: url("../img/nav-bg.svg") no-repeat;
+            // background: url("#{$domain}epicon/assets/images/nav-bg.svg") no-repeat;
+            background: url(#{$domain}epicon/assets/images/nav-bg.svg) no-repeat;
             background-position: center center;
             background-size: 100% 100%;
             pointer-events: none;
@@ -1202,9 +2453,11 @@ input {
         background-color: transparent;
         outline: 0;
         border: none;
-        height: 40px;
+        height: 50px;
+        width: 50px;
         font-size: 0;
         opacity: 1;
+        padding: 0;
         @media (max-width:700px) {
             margin-inline: 20px;
         }
@@ -1214,10 +2467,12 @@ input {
         left: unset;
     }
     & .slide-m-next::before {
-        content: url(../img/hero-right-arrow.svg);
+        // content: url(#{$domain}epicon/assets/images/hero-right-arrow.svg);
+        content: url(#{$domain}epicon/assets/images/hero-right-arrow.svg);
     }
     & .slide-m-prev::before {
-        content: url(../img/hero-left-arrow.svg);
+        // content: url(#{$domain}epicon/assets/images/hero-left-arrow.svg);
+        content: url(#{$domain}epicon/assets/images/hero-left-arrow.svg);
     }
     .slick-dotted.slick-slider{
         margin-bottom: -40px;
@@ -1255,7 +2510,7 @@ input {
         justify-content: center;
         position: relative;
         width: 100%;
-        background: url("../img/ribbon-nav-bg.svg") no-repeat;
+        background: url("#{$domain}epicon/assets/images/ribbon-nav-bg.svg") no-repeat;
         background-size: 100% 64px;
         width: fit-content;
         margin: 0 auto -3px auto;
@@ -1264,7 +2519,7 @@ input {
         @media (max-width:767px) {
             padding: 0;
             margin: 0 auto -4px auto;
-            background: url("../assets/img/ribbon-nav-bg-mobile.svg") no-repeat;
+            background: url("#{$domain}epicon/assets/images/ribbon-nav-bg-mobile.svg") no-repeat;
             background-size: cover;
             height: 50px;
             width: 160px;
@@ -1291,10 +2546,10 @@ input {
         left: unset;
     }
     & .slide-m-next-new-release::before {
-        content: url(../img/hero-right-arrow.svg);
+        content: url(#{$domain}epicon/assets/images/hero-right-arrow.svg);
     }
     & .slide-m-prev-new-release::before {
-        content: url(../img/hero-left-arrow.svg);
+        content: url(#{$domain}epicon/assets/images/hero-left-arrow.svg);
     }
     .slick-dotted.slick-slider{
         margin-bottom: -41px;
@@ -1534,7 +2789,7 @@ input {
             position: absolute;
             width: 80%;
             height: 300px;
-            background: url("../img/nav-bg.svg") no-repeat;
+            background: url(#{$domain}epicon/assets/images/nav-bg.svg) no-repeat;
             background-position: center center;
             background-size: 100% 100%;
             pointer-events: none;
@@ -1561,10 +2816,10 @@ input {
         left: unset;
     }
     & .slide-sl-next::before {
-        content: url(../img/hero-right-arrow.svg);
+        content: url(#{$domain}epicon/assets/images/hero-right-arrow.svg);
     }
     & .slide-sl-prev::before {
-        content: url(../img/hero-left-arrow.svg);
+        content: url(#{$domain}epicon/assets/images/hero-left-arrow.svg);
     }
 
     & .slide-sl-dots{
@@ -2018,7 +3273,7 @@ input {
         .top-ten{
             width: 45px;
             height: 53px;
-            background-image: url("../img/top-ten.svg");
+            background-image: url("#{$domain}epicon/assets/images/top-ten.svg");
             background-repeat: no-repeat;
             background-size: 100% 100%;
             top: 3px;
@@ -2089,7 +3344,7 @@ input {
         .top-ten{
             width: 45px;
             height: 53px;
-            background-image: url("../img/top-ten.svg");
+            background-image: url("#{$domain}epicon/assets/images/top-ten.svg");
             background-repeat: no-repeat;
             top: -7px;
             right: 2px;
@@ -2150,6 +3405,7 @@ input {
             background: #fff;
             border-bottom-left-radius: 10px;
             border-bottom-right-radius: 10px;
+            overflow: hidden;
 
             .upper-img.play-btn{
                 border: 1px solid #211F26;
@@ -2241,22 +3497,22 @@ input {
                 border-radius: 5px;
                 margin: 0!important;
                 &.add-icon{
-                    background-image: url("../public/img/add-icon.svg");
+                    background-image: url("#{$domain}epicon/assets/images/add-icon.svg");
                 }
                 &.add-icon-toggle{
-                    background-image: url("../public/img/subs-icon.svg");
+                    background-image: url("#{$domain}epicon/assets/images/subs-icon.svg");
                 }
                 &.like-icon{
-                    background-image: url("../public/img/clap-icon.svg");
+                    background-image: url("#{$domain}epicon/assets/images/clap-icon.svg");
                 }
                 &.like-icon-toggle{
-                    background-image: url("../public/img/clap-on-click.svg");
+                    background-image: url("#{$domain}epicon/assets/images/clap-on-click.svg");
                 }
                 &.share-icon{
-                    background-image: url("../public/img/share-icon.svg");
+                    background-image: url("#{$domain}epicon/assets/images/share-icon.svg");
                 }
                 &.circle-icon{
-                    background-image: url("../img/circle-minus.svg");
+                    background-image: url("#{$domain}epicon/assets/images/circle-minus.svg");
                 }
             }
             .progress-main{
@@ -2335,10 +3591,10 @@ input {
             background: linear-gradient(90deg, rgba(22,22,22,1) 0%, rgba(22,22,22,0) 100%);
         }
         .slick-prev:before {
-            content: url("../img/hero-left-arrow.svg");
+            content: url("#{$domain}epicon/assets/images/hero-left-arrow.svg");
         }
         .slick-next:before {
-            content: url("../img/hero-right-arrow.svg");
+            content: url("#{$domain}epicon/assets/images/hero-right-arrow.svg");
         }
         .slick-next:focus, .slick-next:hover{
             background: linear-gradient(270deg, rgba(22, 22, 22, 0.79) 0%, rgba(22, 22, 22, 0.00) 100%);
@@ -2348,6 +3604,7 @@ input {
         }
         .slick-prev.slick-disabled,.slick-next.slick-disabled{
             background: none;
+            display: none!important;
         }
         
 }
@@ -2437,7 +3694,8 @@ input {
             position: absolute;
             width: 1000px;
             height: 300px;
-            background: url("../img/nav-bg.svg") no-repeat;
+            // background: url("#{$domain}epicon/assets/images/nav-bg.svg") no-repeat;
+            background: url(#{$domain}epicon/assets/images/nav-bg.svg) no-repeat;
             background-position: center center;
             background-size: 100% 100%;
             pointer-events: none;
@@ -2710,7 +3968,7 @@ input {
         left: -50px;
         right: 0;
         position: absolute;
-        background-image: url("../img/spinner-background-bg.png");
+        background-image: url("#{$domain}epicon/assets/images/spinner-background-bg.png");
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 100% 100%;
@@ -2808,7 +4066,7 @@ input {
         width: 460px;
         height: 460px;
         position: absolute;
-        background-image: url("../img/spinner-glow.svg");
+        background-image: url("#{$domain}epicon/assets/images/spinner-glow.svg");
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 100% 100%;
@@ -2894,7 +4152,7 @@ input {
 // super mix
 .supermix-main{
     .super-mix{
-        background-image: url("../img/supermix-bg.png");
+        background-image: url("#{$domain}epicon/assets/images/supermix-bg.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100% 100%;
@@ -2902,7 +4160,7 @@ input {
         position: relative;
         @media (max-width:768px) {
             padding: 10px;
-            background-image: url("../img/supermix-bg-mobile.png");
+            background-image: url("#{$domain}epicon/assets/images/supermix-bg-mobile.png");
         }
         img{
             width: 100%;
@@ -2973,14 +4231,14 @@ input {
         height: auto;
         color: #fff;
         width: 350px;
-        // background: url("../img/gaming-galore-bg.svg")no-repeat center;
+        // background: url("#{$domain}epicon/assets/images/gaming-galore-bg.svg")no-repeat center;
 
         &::after{
             content: "";
             width: 400px;
             height: 330px;
             position: absolute;
-            background-image: url("../img/gaming-galore-bg.svg");
+            background-image: url("#{$domain}epicon/assets/images/gaming-galore-bg.svg");
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 100% 100%;
@@ -3292,8 +4550,8 @@ input {
     }
 
     &.ttl li{
-        -webkit-mask-image: url("../assets/img/travel-bg.png");
-        mask-image: url("../assets/img/travel-bg.png");
+        -webkit-mask-image: url("#{$domain}epicon/assets/images/travel-bg.png");
+        mask-image: url("#{$domain}epicon/assets/images/travel-bg.png");
         -webkit-mask-repeat: no-repeat;
         mask-repeat: no-repeat;    
         -webkit-mask-size: 100%;
@@ -3443,8 +4701,8 @@ input {
 }
 
 .nationhood-on-screen{
-    -webkit-mask-image: url("../img/nationhood-screen-bg.png");
-    mask-image: url("../img/nationhood-screen-bg.png");
+    -webkit-mask-image: url("#{$domain}epicon/assets/images/nationhood-screen-bg.png");
+    mask-image: url("#{$domain}epicon/assets/images/nationhood-screen-bg.png");
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;    
     -webkit-mask-size: 100%;
@@ -3463,6 +4721,11 @@ input {
         right: 0;
         width: 100%;
         height: 100%;
+    }
+}
+.scrollspy .carousel-title-n-arrow{
+    h1{
+        font-size: 1.5rem;
     }
 }
 .nos{
@@ -3490,7 +4753,7 @@ input {
         top: -290px;
         margin: 0 auto;
         position: absolute;
-        background: url("../img/nationhood-back-glow.png");
+        background: url("#{$domain}epicon/assets/images/nationhood-back-glow.png");
         background-size: 100% 100%;
         background-position: center center;
         z-index: -1;
@@ -3572,7 +4835,7 @@ input {
         right: 0;
         top:-100px;
         position: absolute;
-        background-image: url("../img/retro-background-bg.png");
+        background-image: url("#{$domain}epicon/assets/images/retro-background-bg.png");
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 100% 100%;
@@ -3631,8 +4894,8 @@ input {
     .imdb-cards{
         padding: 0 5px;
         .imdb-top,.imdb-bottom{
-            -webkit-mask-image: url("../img/imdb-top.png");
-            mask-image: url("../img/imdb-top.png");
+            -webkit-mask-image: url("#{$domain}epicon/assets/images/imdb-top.png");
+            mask-image: url("#{$domain}epicon/assets/images/imdb-top.png");
             -webkit-mask-repeat: no-repeat;
             mask-repeat: no-repeat;    
             -webkit-mask-size: 100%;
@@ -3772,8 +5035,8 @@ input {
             }
         }
         .imdb-bottom{
-            -webkit-mask-image: url("../img/imdb-bottom.png");
-            mask-image: url("../img/imdb-bottom.png");
+            -webkit-mask-image: url("#{$domain}epicon/assets/images/imdb-bottom.png");
+            mask-image: url("#{$domain}epicon/assets/images/imdb-bottom.png");
             margin: 0;
         }
     }
@@ -3873,8 +5136,8 @@ input {
         }
 
         .left,.right{
-            -webkit-mask-image: url("../img/wildlife-left.png");
-            mask-image: url("../img/wildlife-left.png");
+            -webkit-mask-image: url(#{$domain}epicon/assets/images/wildlife-left.png);
+            mask-image: url(#{$domain}epicon/assets/images/wildlife-left.png);
             -webkit-mask-repeat: no-repeat;
             mask-repeat: no-repeat;    
             -webkit-mask-size: 100%;
@@ -3890,8 +5153,8 @@ input {
             }
         }
         .right{
-            -webkit-mask-image: url("../img/wildlife-right.png");
-            mask-image: url("../img/wildlife-right.png");
+            -webkit-mask-image: url(#{$domain}epicon/assets/images/wildlife-right.png);
+            mask-image: url(#{$domain}epicon/assets/images/wildlife-right.png);
         }
     }
 }
@@ -4018,12 +5281,12 @@ input {
     }
 }
 #dob{
-    background-image: url("../img/calendar.svg");
+    background-image: url("#{$domain}epicon/assets/images/calendar.svg");
     background-position: center right 7px;
     background-repeat: no-repeat;
 }
 #exampleDataList1{
-    background-image: url("../img/calendar.svg");
+    background-image: url("#{$domain}epicon/assets/images/calendar.svg");
     background-position: center right 7px;
     background-repeat: no-repeat; 
 }
@@ -4055,7 +5318,7 @@ input {
         font-size: 14px;
         height: 50px;
         padding: 10px;
-        background-image: url("../img/drop-down-arrow.svg");
+        background-image: url("#{$domain}epicon/assets/images/drop-down-arrow.svg");
         background-size: 12px;
         text-align: left;
         background-repeat: no-repeat;
@@ -4476,7 +5739,7 @@ input {
                     left: 0;
                     height: 25px;
                     width: 25px;
-                    background:url(../img/empty-heart.svg) no-repeat center center;
+                    background:url(#{$domain}epicon/assets/images/empty-heart.svg) no-repeat center center;
                     background-size: 100%;
                 }
                 
@@ -4508,7 +5771,7 @@ input {
                     left: 0;
                     height: 25px;
                     width: 25px;
-                    background:url(../img/heart.svg) no-repeat center center;
+                    background:url(#{$domain}epicon/assets/images/heart.svg) no-repeat center center;
                     background-size: 100%;
                 }
                 
@@ -4616,7 +5879,7 @@ input {
     
 }
 .my-account-main{
-    background-image: url("../img/my-account-bg.svg");
+    background-image: url("#{$domain}epicon/assets/images/my-account-bg.svg");
     background-repeat: no-repeat,no-repeat;
     background-size: cover;
     background-position: center;
@@ -5147,7 +6410,7 @@ input {
             height: 40px;
             border-radius: 50px;
             -webkit-appearance: none;
-            background-image: url("../img/drop-down-arrow.svg");
+            background-image: url("#{$domain}epicon/assets/images/drop-down-arrow.svg");
             background-position: center right;
             background-repeat: no-repeat;
             padding-right: 25px;
@@ -5163,10 +6426,10 @@ input {
         }
     }
 }
-.nav .nav-item:has(.ep.active){
-    ~ .episode-season{
+.nav .nav-item:has(.ep.active) ~ .episode-season {
+    // ~ .episode-season {
         display: flex;
-    }
+    // }
 }
 .season{
     padding: 0px 14px;
@@ -5260,7 +6523,7 @@ input {
             overflow: hidden;
             @include flex(row,center,space-between);
             flex-wrap: wrap;
-            background: url("../img/my-reward-1.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/my-reward-1.svg") no-repeat center center;
             background-size: cover;
             padding: 20px;
             position: relative;
@@ -5311,7 +6574,7 @@ input {
         }
         li:nth-child(2){
             width: 25%;
-            background: url("../img/my-reward-2.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/my-reward-2.svg") no-repeat center center;
             background-size: cover;
 
             @media (max-width:1024px) {
@@ -5329,7 +6592,7 @@ input {
         }
         li:nth-child(3){
             width: 25%;
-            background: url("../img/my-reward-3.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/my-reward-3.svg") no-repeat center center;
             background-size: cover;
             @media (max-width:1024px) {
                 width: 270px;
@@ -5419,7 +6682,7 @@ input {
 .redeem{
     li{
         border-radius: 0;
-        background: url("../img/redeem-card.svg") no-repeat center center!important;
+        background: url("#{$domain}epicon/assets/images/redeem-card.svg") no-repeat center center!important;
         background-size: 100% 100%;
         height: 280px;
         overflow: hidden;
@@ -5485,9 +6748,11 @@ input {
         display: grid;
         grid-template-columns: auto auto auto auto;
         gap: 10px;
+        margin-left: 30px;
         overflow: auto;
         white-space: nowrap;
         padding: 10px;
+        justify-content: center;
         @media (max-width:767px) {
             grid-template-columns: auto auto;
             white-space: inherit;
@@ -5566,7 +6831,7 @@ input {
             }
             .nav-link.active{
                 border-radius: 16px;
-                background-image: url("../img/subscription-bg.png");
+                background-image: url("#{$domain}epicon/assets/images/subscription-bg.png");
                 background-color: transparent;
                 box-shadow: 0px 0px 10px #DB4CD0;
                 background-size: cover;
@@ -5961,6 +7226,28 @@ input {
         }
     }
 }
+.current-plan-card.ycp{
+    img{
+        width: 564px;
+        height: 268px;
+        @media (max-width: 767px) {
+            width: 100%;
+            height: 160px;
+        }
+    }
+    .detail{
+        left: 64px;
+        @media (max-width: 767px) {
+            left: 40px;
+        }
+        h1{
+            font-size: 40px;
+            @media (max-width: 767px) {
+                font-size: 26px;
+            }
+        }
+    }
+}
 .content-detail-banner{
     // & .banner-main::after{
     //     content: "";
@@ -6026,7 +7313,7 @@ input {
         position: relative;
     }
     .nav-link.active::after{
-        content: url(../img/curver-rectangle.svg);
+        content: url(#{$domain}epicon/assets/images/curver-rectangle.svg);
         position: absolute;
         width: 109px;
         height: 31px;
@@ -6638,23 +7925,24 @@ input {
         right: 0;
         top: 0;
         z-index: -1;
-        background: url("../img/podcast-main-bg-new.png") no-repeat center top;
+        background: url("#{$domain}epicon/assets/images/podcast-main-bg-new.png") no-repeat center top;
         background-size: 100% 100%;
     }
 }
 .podcast-top{
     @include flex(row,center,center);
-    gap: 30px;
+    gap: 40px;
     @media (max-width:768px) {
         gap: 20px;
     }
     @media (max-width:700px) {
         flex-direction: column;
-        gap: 20px;
+        gap: 0px;
+        align-items: flex-start;
     }
     .thumb{
-        width: 276px;
-        height: 276px;
+        width: 300px;
+        height: 300px;
         position: relative;
         overflow: hidden;
         border-radius: 30px;
@@ -6662,10 +7950,12 @@ input {
         @media (max-width:768px) {
             width: 200px;
             height: 200px;
+            border-radius: 20px;
         }
         @media (max-width:700px) {
-            width: 300px;
-            height: 300px;
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
         }
         img{
             width: 100%;
@@ -6701,15 +7991,37 @@ input {
             position: absolute;
             top: 0;
             left: 0;
+            @media (max-width:700px) {
+                width: 24px;
+            }
         }
     }
     .thumb-detail{
-        h1{
-            font-size: 30px;
-            @media (max-width:768px) {
-                font-size: 24px;
+        & .title-and-genere{
+            @media (max-width:700px) {
+                position: absolute;
+                top: 0;
+                left: 145px;
+                width: calc(100% - 160px);
+            }
+            h1{
+                font-size: 30px;
+                @include line-clamp(2);
+                @media (max-width:768px) {
+                    font-size: 20px;
+                    margin-bottom: 2px;
+                }
+            }
+            span{
+                color: #B7B7B7;
+                font-size: 12px;
+                width: 100%;
+                display: block;
+                overflow: auto;
+                white-space: nowrap;
             }
         }
+        
         .drama{
             display: flex;
             gap: 10px;
@@ -6717,10 +8029,6 @@ input {
             @media (max-width:768px) {
                 justify-content: flex-start;
                 flex-wrap: wrap;
-            }
-            span{
-                color: #B7B7B7;
-                font-size: 14px;
             }
         }
         .with-whom{
@@ -6803,7 +8111,7 @@ input {
 }
 
 .footer{
-    background-image: url("../img/footer-bg.png");
+    background-image: url(#{$domain}epicon/assets/images/footer-bg.png);
     background-repeat: no-repeat,no-repeat;
     background-size: cover;
     background-position: center;
@@ -6821,7 +8129,7 @@ input {
         @media (max-width:768px) {
             @include flex(column,center,center);
         }
-        h1{
+        h2{
             text-align: left;
             color: $bg-white;
             font-size: 16px;
@@ -6877,34 +8185,48 @@ input {
         }
     
     .f-link{
-        ul{
-            margin: 0 auto;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            li:first-child{
-                list-style: none;
-            }
-            li{
-                color: $bg-white;
-                padding: 0 10px;
-                list-style-position: inside;
-                @media (max-width:700px) {
-                    list-style: none;
-                    padding: 0 6px;
-                }
+        // ul{
+            // margin: 0 auto;
+            // padding: 0;
+            // display: flex;
+            // justify-content: center;
+            // li:first-child{
+            //     list-style: none;
+            // }
+            // li{
+                // color: $bg-white;
+                // padding: 0 10px;
+                // list-style-position: inside;
+                // @media (max-width:700px) {
+                //     list-style: none;
+                //     padding: 0 6px;
+                // }
                 a{
                     width: 100%;
                     color: $bg-white;
                     text-decoration: none;
                     font-size: 14px;
+                    white-space: nowrap;
+                    display: flex;
+                    align-items: center;
+                    &::after{
+                        content: "•";
+                        font-size: 25px;
+                        padding-inline: 10px;
+                        @media (max-width:767px) {
+                            padding-inline: 5px;
+                        }
+                    }
 
                     @media (max-width:700px) {
                         font-size: 12px;
                     }
                 }
-            }
-        }
+                a:last-child::after{
+                    content: unset;
+                }
+            // }
+        // }
     }
 }
     .download-store{
@@ -7348,34 +8670,34 @@ input {
             }
         }
         a:nth-child(1) p{
-            background: url("../img/footer-mob-home.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-home.svg") no-repeat center center;
         }
         a:nth-child(1):hover p,a:nth-child(1).active p{
-            background: url("../img/footer-mob-home-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-home-hover.svg") no-repeat center center;
         }
         a:nth-child(2) p{
-            background: url("../img/footer-mob-premium.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-premium.svg") no-repeat center center;
         }
         a:nth-child(2):hover p,a:nth-child(2).active p{
-            background: url("../img/footer-mob-premium-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-premium-hover.svg") no-repeat center center;
         }
         a:nth-child(3) p{
-            background: url("../img/footer-mob-explore.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-explore.svg") no-repeat center center;
         }
         a:nth-child(3):hover p,a:nth-child(3).active p{
-            background: url("../img/footer-mob-explore-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-explore-hover.svg") no-repeat center center;
         }
         a:nth-child(4) p{
-            background: url("../img/footer-mob-search.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-search.svg") no-repeat center center;
         }
         a:nth-child(4):hover p,a:nth-child(4).active p{
-            background: url("../img/footer-mob-search-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-search-hover.svg") no-repeat center center;
         }
         a:nth-child(5) p{
-            background: url("../img/footer-mob-spotlight.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-spotlight.svg") no-repeat center center;
         }
         a:nth-child(5):hover p,a:nth-child(5).active p{
-            background: url("../img/footer-mob-spotlight-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-spotlight-hover.svg") no-repeat center center;
         }
         .animation {
             position: absolute;
@@ -7390,7 +8712,7 @@ input {
         a:hover~.animation,a.active~.animation {
             width: 20%;
             left: 0;
-            background-image: url("../img/mob-active-img.png");
+            background-image: url("#{$domain}epicon/assets/images/mob-active-img.png");
             background-repeat: no-repeat;
             background-position: center;
         }
@@ -7450,34 +8772,34 @@ input {
             }
         }
         a:nth-child(1) p{
-            background: url("../img/footer-mob-home.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-home.svg") no-repeat center center;
         }
         a:nth-child(1):hover p,a:nth-child(1).active p{
-            background: url("../img/footer-mob-home-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/footer-mob-home-hover.svg") no-repeat center center;
         }
         a:nth-child(2) p{
-            background: url("../img/movies.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/movies.svg") no-repeat center center;
         }
         a:nth-child(2):hover p,a:nth-child(2).active p{
-            background: url("../img/movies-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/movies-hover.svg") no-repeat center center;
         }
         a:nth-child(3) p{
-            background: url("../img/shows.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/shows.svg") no-repeat center center;
         }
         a:nth-child(3):hover p,a:nth-child(3).active p{
-            background: url("../img/shows-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/shows-hover.svg") no-repeat center center;
         }
         a:nth-child(4) p{
-            background: url("../img/podcast.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/podcast.svg") no-repeat center center;
         }
         a:nth-child(4):hover p,a:nth-child(4).active p{
-            background: url("../img/podcast-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/podcast-hover.svg") no-repeat center center;
         }
         a:nth-child(5) p{
-            background: url("../img/games.png") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/games.png") no-repeat center center;
         }
         a:nth-child(5):hover p,a:nth-child(5).active p{
-            background: url("../img/games-hover.svg") no-repeat center center;
+            background: url("#{$domain}epicon/assets/images/games-hover.svg") no-repeat center center;
         }
         .animation {
             position: absolute;
@@ -7492,7 +8814,7 @@ input {
         a:hover~.animation,a.active~.animation {
             width: 20%;
             left: 0;
-            background-image: url("../img/mob-active-img.png");
+            background-image: url("#{$domain}epicon/assets/images/mob-active-img.png");
             background-repeat: no-repeat;
             background-position: center;
         }
@@ -7715,6 +9037,25 @@ input {
         }
     }
     @media (max-width:767px) {
+        .addToList,.shareThis,.clapButton{
+            width: 40px;
+            position: absolute;
+            top: 80px;
+            left: 256px;
+        }
+        .clapButton{
+            left: 145px;
+            width: auto;
+            padding: 0px 15px 0px 15px;
+            span{
+                margin-left: 0;
+            }
+        }
+        .shareThis{
+            left: 304px;
+        }
+    }
+    @media (max-width:767px) {
         justify-content: center;
         button,a{
             height: 40px;
@@ -7856,7 +9197,7 @@ input {
     overflow: visible;
 }
 .distrohead-row{
-    background-image: url("../img/distrotvbg-new-img.png");
+    background-image: url("#{$domain}epicon/assets/images/distrotvbg-new-img.png");
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -7944,7 +9285,7 @@ input {
     right: 0;
     padding: 20px;
     background: linear-gradient(0deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%);
-    // background-image: url("../img/podcast-bottom-bg.png");
+    // background-image: url("#{$domain}epicon/assets/images/podcast-bottom-bg.png");
     // background-repeat: no-repeat;
     // background-size: cover;
     z-index: 99;
@@ -8465,7 +9806,7 @@ audio::-webkit-media-controls-play-button {
         top: 50%;
         height: 50px;
         width: 50px;
-        background-image: url("../img/previous-10-seconds.svg");
+        background-image: url("#{$domain}epicon/assets/images/previous-10-seconds.svg");
         background-repeat: no-repeat;
         background-size: 90%;
         background-position: center;
@@ -8481,7 +9822,7 @@ audio::-webkit-media-controls-play-button {
         }
     }
     .plyr__controls .plyr__controls__item:nth-child(1):hover{
-        background-image: url("../img/previous-10-seconds.svg")!important;
+        background-image: url("#{$domain}epicon/assets/images/previous-10-seconds.svg")!important;
         background-size: 90%!important;
         background-position: center!important;
         background-repeat: no-repeat!important;
@@ -8524,7 +9865,7 @@ audio::-webkit-media-controls-play-button {
         top: 50%;
         height: 50px;
         width: 50px;
-        background-image: url("../img/next-10-seconds.svg");
+        background-image: url("#{$domain}epicon/assets/images/next-10-seconds.svg");
         background-repeat: no-repeat;
         background-size: 90%;
         background-position: center;
@@ -8540,7 +9881,7 @@ audio::-webkit-media-controls-play-button {
         }
     }
     .plyr__controls .plyr__controls__item:nth-child(3):hover{
-        background-image: url("../img/next-10-seconds.svg")!important;
+        background-image: url("#{$domain}epicon/assets/images/next-10-seconds.svg")!important;
         background-size: 90%!important;
         background-position: center!important;
         background-repeat: no-repeat!important;
@@ -8611,7 +9952,7 @@ audio::-webkit-media-controls-play-button {
         padding: 5px;
         transition: 0.3s;
         border-radius: 4px;
-        background-image: url("../img/podcast-previous.svg");
+        background-image: url("#{$domain}epicon/assets/images/podcast-previous.svg");
         background-size: 22px;
         background-position: left center;
         background-repeat: no-repeat;
@@ -8637,7 +9978,7 @@ audio::-webkit-media-controls-play-button {
          }
     }
     .epi-next{
-        background-image: url("../img/podcast-next.svg");
+        background-image: url("#{$domain}epicon/assets/images/podcast-next.svg");
         margin-right: 0;
         margin-left: 20px;
         background-position: right center;
@@ -8720,7 +10061,7 @@ audio::-webkit-media-controls-play-button {
     bottom: 0;
     top: 0;
     color:#fff;
-    background-image: url("../img/drop-down-arrow-select-white.svg");
+    background-image: url("#{$domain}epicon/assets/images/drop-down-arrow-select-white.svg");
     background-repeat: no-repeat;
     background-position: center right 15px;
     background-color: #161616;
@@ -8824,7 +10165,16 @@ audio::-webkit-media-controls-play-button {
                 display: block!important;
             }
         }
+        
        
+}
+.plyr__control.caption.plyr__control--pressed{
+    svg:nth-child(2){
+        display: none!important;
+    }
+    svg:nth-child(1){
+        display: block!important;
+    }
 }
 
 .cancelepisod{
@@ -8914,9 +10264,9 @@ audio::-webkit-media-controls-play-button {
     display:none!important;
 }
 #kidsUrl{
-    @media (max-width:767px) {
+    // @media (max-width:767px) {
         display: none;
-    }
+    // }
 }
 .more-like-this.trailer-card{
     @media (max-width:767px) {
@@ -8990,7 +10340,7 @@ audio::-webkit-media-controls-play-button {
         backdrop-filter: blur(5px);
         border-radius: 12px;
         border: none;
-        background-image: url("../img/distro-search-icon2.svg");
+        background-image: url("#{$domain}epicon/assets/images/distro-search-icon2.svg");
         background-repeat: no-repeat;
         background-position: left 10px center;
         padding-left: 50px;
@@ -9010,7 +10360,7 @@ audio::-webkit-media-controls-play-button {
         width: 60px;
         height: 100%;
         background-color: transparent;
-        background-image: url("../assets/img/distro-filter.svg");
+        background-image: url("#{$domain}epicon/assets/images/distro-filter.svg");
         background-repeat: no-repeat;
         border: none;
         background-position: right 10px center;
@@ -9034,6 +10384,7 @@ audio::-webkit-media-controls-play-button {
     border-radius: 0px 0px 12px 12px;
     position: absolute;
     backdrop-filter: blur(70px);
+    -webkit-backdrop-filter: blur(70px);
     top: 35px;
     padding: 20px;
     overflow: auto;
@@ -9305,25 +10656,62 @@ audio::-webkit-media-controls-play-button {
         width: 50px;
     }
 }
+.new-episode-tag{
+    width: 49px;
+    height: 33px;
+    position: absolute;
+    color: #fff;
+    background-image: url("#{$domain}epicon/assets/images/new-episode-tag.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 2px 4px;
+    right: 10px;
+    bottom: 10px;
+    font-weight: 800;
+    font-size: 12px;
+    text-align: center;
+    line-height: 15px;
+    filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.8));
+    @media (max-width:767px) {
+        bottom: 5px;
+      }
 
+    i{
+        font-size: 8px;
+        display: block;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 8px;
+    }
+}
 
 // spotlight start
 .scrollspy {
-    #comingsoon {
-      @media (max-width:767px) {
-        margin-top: 15px !important;
-      }
+    // #comingsoon {
+    //   @media (max-width:767px) {
+    //     margin-top: 15px !important;
+    //   }
+    // }
+    #comingsoon,#top10movies,#top10shows,#newtrending{
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        // background-color: #03d8aa;
+        top: -120px;
     }
-  
+    #top10movies,#top10shows,#newtrending{
+        top: -120px;
+    }
     #nav-container {
-      position: fixed;
+      position: sticky;
       width: 100%;
       padding: 1em 0;
-      z-index: 9;
+      z-index: 1;
       background-color: rgba($color: #000000, $alpha: 0.4);
       box-shadow: inset 0 0px 30px rgba(0, 0, 0, 1);
       top: 80px;
       backdrop-filter: blur(50px);
+      -webkit-backdrop-filter: blur(50px);
   
       @media (max-width:767px) {
         top: 100px;
@@ -9384,6 +10772,8 @@ audio::-webkit-media-controls-play-button {
   
     section {
       height: auto;
+      padding-top: 50px;
+      position: relative;
     }
   
     a.active[href="#commingsoon"],
@@ -9401,7 +10791,7 @@ audio::-webkit-media-controls-play-button {
       overflow: auto;
   
       & .card-ms {
-        width: 230px;
+        width: 296px;
         height: auto;
         margin-right: 10px;
         flex-shrink: 0;
@@ -9411,23 +10801,29 @@ audio::-webkit-media-controls-play-button {
         background-color: transparent;
         border: none;
         overflow: hidden;
+        @media (max-width:767px) {
+            width: 237px;
+          }
   
         & .number {
           position: absolute;
           left: 0;
           bottom: 0;
-          width: 100px;
-          height: 140px;
+          width: 80px;
+          height: 106px;
           background-size: contain;
           background-repeat: no-repeat;
           background-position: left bottom;
         }
   
         & .img {
-          width: 150px;
+          width: 240px;
           position: relative;
           overflow: hidden;
           border-radius: 10px;
+          @media (max-width:767px) {
+            width: 188px;
+          }
   
           img {
             width: 100%;
@@ -9438,52 +10834,54 @@ audio::-webkit-media-controls-play-button {
     }
   
     & .card-ms:nth-child(1) .number {
-      background-image: url(../img/1-ms.svg);
-      left: 15px;
+      background-image: url(#{$domain}epicon/assets/images/1-ms.svg);
+      left: 0px;
     }
   
     & .card-ms:nth-child(2) .number {
-      background-image: url(../img/2-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/2-ms.svg);
     }
   
     & .card-ms:nth-child(3) .number {
-      background-image: url(../img/3-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/3-ms.svg);
     }
   
     & .card-ms:nth-child(4) .number {
-      background-image: url(../img/4-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/4-ms.svg);
     }
   
     & .card-ms:nth-child(5) .number {
-      background-image: url(../img/5-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/5-ms.svg);
     }
   
     & .card-ms:nth-child(6) .number {
-      background-image: url(../img/6-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/6-ms.svg);
     }
   
     & .card-ms:nth-child(7) .number {
-      background-image: url(../img/7-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/7-ms.svg);
     }
   
     & .card-ms:nth-child(8) .number {
-      background-image: url(../img/8-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/8-ms.svg);
     }
   
     & .card-ms:nth-child(9) .number {
-      background-image: url(../img/9-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/9-ms.svg);
     }
   
     & .card-ms:nth-child(10) .number {
-      background-image: url(../img/10-ms.svg);
+      background-image: url(#{$domain}epicon/assets/images/10-ms.svg);
       background-size: cover;
       background-position: left;
-      left: -3px;
-      height: 125px;
+      height: 97px;
     }
   
     & .card-ms:nth-child(10) {
-      width: 260px;
+      width: 320px;
+      @media (max-width:767px) {
+        width: 270px;
+      }
     }
   
     .carousel-title-n-arrow h5 {
@@ -9512,3 +10910,103 @@ audio::-webkit-media-controls-play-button {
       left: -100%;
     }
   }
+
+  //   login country code start
+.new-input-fields{
+    display: flex;
+    position: relative;
+    .text-start{
+        width: 100%;
+    }
+    .country__code__box{
+        left: 0;
+        top: 52px;  
+        position: absolute;
+        background-color: #000;
+        border: 1px solid #545454;
+        border-radius: 3px;
+        display: none;
+        z-index: 9;
+        &.active-div{
+            display: block;
+        }
+        .country__code__search{
+            border: none;
+            border-radius: 0;
+            border-bottom: 1px solid #545454;
+            padding-inline: 10px;
+            width: 100%;
+        }
+        .conuntry__code__list__text--inner{
+            text-align: left;
+            text-decoration: none;
+            padding-block: 5px;
+            display: block;
+            color: #fff;
+            text-align: start;
+        }
+    }
+    .country__code{
+        height: 50px;
+        width: 80px;
+        line-height: 50px;
+        color: #fff;
+        border-radius: 10px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border: 1.249px solid #545454;
+        background: rgba(0, 0, 0, 0);
+        padding-right: 20px;
+        padding-left: 6px;
+        text-align: start;
+        @include line-clamp(1);
+        display: none;
+        background-image: url(#{$domain}epicon/assets/images/drop-down-arrow-select-white.svg);
+        background-repeat: no-repeat;
+        background-position: center right 5px;
+        @media (max-width:767px) {
+            width: 94px;
+          }
+    }
+    .emailText{
+        // width: calc(100% - 94px);
+        width: 100%;
+        // border-top-left-radius: 0px;
+        // border-bottom-left-radius: 0px;
+        border-radius: 10px;
+    }
+    .new__input__field__drop__down{
+        overflow: auto;
+        max-height: 200px;
+        padding: 10px;
+        margin-bottom: 0;
+    }
+    .input-radius{
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+}
+
+//   login country code end
+.use-code{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+        .subscription-login{
+            margin-top: 0;
+        }
+}
+.qwickcilver-main .use-code p:first-child{
+    color: #fff;
+    font-weight: 600;
+}
+.use-code input{
+    width: 100%;
+    color: #fff;
+    height: 50px;
+    border-radius: 16px;
+    border: .5px solid #494949;
+    background: rgba(22, 22, 47, .8);
+    backdrop-filter: blur(5px);
+    padding: 0px 15px 0px 15px;
+}

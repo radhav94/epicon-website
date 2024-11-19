@@ -1,7 +1,7 @@
 @if (array_search("WATCH", array_column($value['content'], "asset_type")) !== false)
 <div class="carousel-main">
     <div class="carousel-title-n-arrow px-2">
-        <h5 class="text-white">{{ $title }}</h5>
+        <h1 class="text-white">{{ $title }}</h1>
         @if (@$value['show_more'])
         <a href="{{ getMidPageUrl($value) }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -23,7 +23,7 @@
         <li>
 
             <div class="play-card">
-                <a href="{{ getContentUrl($val) }}" class="top-card-img">
+                <a aria-label="item-hover" href="{{ getContentUrl($val) }}" class="top-card-img">
                     {!! freePremiumDiv($val) !!}
                     @if (@$extra['hide_top10'] != 1)
                     {!! topTenDiv($val) !!}
@@ -31,7 +31,7 @@
                     <img src="{{ $cover_img }}" alt="">
                 </a>
                 <div class="bottom-card-content">
-                    <h1><a href="{{ getContentUrl($val) }}">{{ $card['title'] }}</a></h1>
+                    <h1><a aria-label="item-title" href="{{ getContentUrl($val) }}">{{ $card['title'] }}</a></h1>
                     <ul>
                         {!! $card['sub_points'] !!}
                     </ul>
@@ -41,7 +41,7 @@
                         @if(@$val['asset_type'] == 'PLAY')
                             {!! getplayanchorhtml($val) !!}
                         @else
-                            <a class="upper-img play-btn" href="{{ getContentUrl($val) }}">
+                            <a aria-label="item-img" class="upper-img play-btn" href="{{ getContentUrl($val) }}">
                         @endif
                                 {{-- <button class="play-btn"> --}}
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -57,7 +57,7 @@
                                     <!-- <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
                                         <path d="M13.6944 12.4523C13.0259 12.4523 12.4278 12.7033 11.9704 13.0966L5.69861 9.62435C5.74259 9.43191 5.77778 9.23948 5.77778 9.03868C5.77778 8.83787 5.74259 8.64544 5.69861 8.453L11.9 5.01424C12.375 5.43258 12.9995 5.69196 13.6944 5.69196C15.1546 5.69196 16.3333 4.5708 16.3333 3.18192C16.3333 1.79303 15.1546 0.671875 13.6944 0.671875C12.2343 0.671875 11.0556 1.79303 11.0556 3.18192C11.0556 3.38272 11.0907 3.57515 11.1347 3.76759L4.93333 7.20635C4.45833 6.78801 3.8338 6.52864 3.13889 6.52864C1.6787 6.52864 0.5 7.64979 0.5 9.03868C0.5 10.4276 1.6787 11.5487 3.13889 11.5487C3.8338 11.5487 4.45833 11.2893 4.93333 10.871L11.1963 14.3516C11.1523 14.5273 11.1259 14.7114 11.1259 14.8954C11.1259 16.2425 12.2782 17.3385 13.6944 17.3385C15.1106 17.3385 16.263 16.2425 16.263 14.8954C16.263 13.5484 15.1106 12.4523 13.6944 12.4523Z" fill="#272727"/>
                                     </svg> --> --}}
-                                    <img class="popup-share-icon" src="{{asset('img/share-copy-icon.svg')}}" alt="share">
+                                    <img class="popup-share-icon" src="{{env('AWS_S3_domain') }}epicon/assets/images/share-copy-icon.svg" alt="share">
                                 {{-- </button> --}}
                             </a>
                             {{-- <!-- <div class="share-open">
@@ -87,7 +87,7 @@
                 </div>
             </div>
 
-            <a href="{{ getContentUrl($val) }}" class="main-card">
+            <a aria-label="item-main" href="{{ getContentUrl($val) }}" class="main-card">
                 {!! freePremiumDiv($val) !!}
                 {!! topTenDiv($val) !!}
                 <div class="main-img">

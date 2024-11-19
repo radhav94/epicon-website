@@ -42,7 +42,7 @@
 <section class="distro-main w-100 position-relative">
     <div class="distro-overlay w-100 position-absolute">
         <div class="center-content ds-logo-text position-relative">
-            <img src="{{asset('img/distrotv.png')}}" alt="">
+            <img src="{{env('AWS_S3_domain')}}epicon/assets/images/distrotv.png" alt="">
             <span>ABP NEWS</span>
             <ul class="d-flex pl-0 list-unstyled">
                 <li>LIVE</li>

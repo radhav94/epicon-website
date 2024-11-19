@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', 'Explore - ' . ucfirst($slug))
+@section('title', 'Explore - ' . ucfirst(str_replace('-', ' ', $slug)))
 
 @section('content')
     <?php
@@ -8,7 +8,7 @@
 
     @if (isset($bannerImage) && $bannerImage != '')
         <div class="w-100 px-2">
-            <h4 class="text-white mb-4 ps-4">{{ __(ucfirst($slug)) }}</h4>
+            <h4 class="text-white mb-4 ps-4">{{ __(strtoupper(str_replace('-', ' ', $slug))) }}</h4>
         </div>
         <section class="container-fluid">
             <img class="w-100" src="{{ $bannerImage }}" alt="">
@@ -21,8 +21,9 @@
             @if (isset($listVal['content']) && count($listVal['content']) > 0)
                 <div class="carousel-main">
                     <div class="carousel-title-n-arrow px-2">
-                        <h5 class="text-white">
-                            {{ isset($listVal['name']) && $listVal['name'] != '' ? $listVal['name'] : ucfirst($slug) }}</h5>
+                        <h1 class="text-white">
+                            {{ isset($listVal['name']) && $listVal['name'] != '' ? $listVal['name'] : ucfirst($slug) }}</h1>
+                            <?php if(isset($listVal['show_more']) && $listVal['show_more'] == true){ ?>
                         <a href="{{ url('explore' . '/' . $slug . '/' . $listVal['catalog_slug']) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
                                 fill="none">
@@ -30,6 +31,7 @@
                                     stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
                         </a>
+                        <?php } ?>
                     </div>
                     <ul class="vertical-carousel-initilize p-0">
                         @foreach ($listVal['content'] as $key => $contentVal)
@@ -37,23 +39,35 @@
                             $cover_image = getCardImage($contentVal, 'vertical_cover_image');
                             
                             $getTitle = getNewTitle($contentVal);
+                            $generes = array_column($contentVal['genres_assign'] ?? [], 'name');
+
+                            if ($generes) {
+                                $sub_text[] = implode(' . ', $generes);
+                            }
+                            $sub_points = '';
+                            if ($generes) {
+                                foreach ($generes as $key => $genre) {
+                                    $sub_points .= '<li>' . $genre . '</li>';
+                                }
+                            }
                             ?>
                             <li>
                                 <div class="play-card">
 
                                     <div class="top-card-img">
-                                        <span class="crown position-absolute"><img src="{{ asset('img/crown.svg') }}"
+                                        <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg"
                                                 alt=""></span>
-                                        <a href="{{ getContentUrl($contentVal) }}">
+                                        <a aria-label="item-hover" href="{{ getContentUrl($contentVal) }}">
                                             <img src="{{ $cover_image }}" alt="">
                                         </a>
                                     </div>
 
                                     <div class="bottom-card-content">
-                                        <a href="{{ getContentUrl($contentVal) }}" tabindex="{{ $key }}">
+                                        <a aria-label="item-main" href="{{ getContentUrl($contentVal) }}" tabindex="{{ $key }}">
                                             <h1>{{ $contentVal['title'] }}</h1>
                                         </a>
-                                        {{-- <ul>
+                                        <div class="marquee">
+                                        <ul>
                                             <li>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     viewBox="0 0 16 16" fill="none">
@@ -74,10 +88,9 @@
                                                         fill="#FFAC33"></path>
                                                 </svg>
                                             </li>
-                                            <li class="ps-1"></li>
-                                            <li></li>
-                                            <li></li>
-                                        </ul> --}}
+                                            <?php echo $sub_points; ?>
+                                        </ul>
+                                        </div>
                                         <div class="d-flex justify-content-between">
                                             <div
                                                 class="w-100 d-flex justify-content-between align-items-center position-relative">
@@ -101,7 +114,7 @@
                                                             title="Copy" tabindex="{{ $key }}">
 
                                                             <img class="popup-share-icon"
-                                                                src="{{ asset('img/share-copy-icon.svg') }}"
+                                                                src="{{ env('AWS_S3_domain') }}epicon/assets/images/share-copy-icon.svg"
                                                                 alt="share">
 
                                                         </a>
@@ -118,8 +131,8 @@
                                         <p class="text-white mb-0">{{ $contentVal['short_description'] }}</p>
                                     </div>
                                 </div>
-                                <a class="main-card" href="{{ url($contentVal['url']) }}">
-                                    <span class="crown position-absolute"><img src="{{ asset('img/crown.svg') }}"
+                                <a aria-label="item-main" class="main-card" href="{{ url($contentVal['url']) }}">
+                                    <span class="crown position-absolute"><img src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg"
                                             alt="">
                                     </span>
 
