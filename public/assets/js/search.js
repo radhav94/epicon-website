@@ -61,6 +61,10 @@ $(document).ready(function () {
                                     $('#show_' + key).hide();
                                     $('#pills-' + key).hide();
                                 }
+                                else {
+                                    $('#show_' + key).show();
+                                    $('#pills-' + key).show();
+                                }
                                 // $('#count_' + key).html(showValue);
                             });
                         }
