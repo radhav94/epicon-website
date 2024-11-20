@@ -14,7 +14,7 @@
         margin-bottom: 5px;
     }
 </style>
-@end
+@stop
 
 @section('content')
 
