@@ -30,7 +30,7 @@
 
 @section('content')
 <input type="hidden" id="routepage" value="{{ request()->path() }}">
-<input type="hidden" id="pageval" value="1">
+<input type="hidden" id="pageval" value="0">
 
 
 <div class="loadmorecontent">
@@ -61,7 +61,6 @@
 
     $(document).ready(function() {
         $('#pageval').val('1');
-        
         if (typeof activateSpinner === 'function') {
             activateSpinner();
         }
