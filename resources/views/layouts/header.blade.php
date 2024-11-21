@@ -36,7 +36,7 @@ if ($request->has('type')) {
         </div>
         <ul class="ps-3">
             <li>
-                <a onclick="click_menu(this)" data-event_context="header" data-element_text="game" href="{{ getUrl($kids_page ? '/kids/games-all' : 'games-all') }}">
+                <a onclick="click_menu(this)" data-event_context="header" data-element_text="game" href="{{ getUrl($kids_page ? '/kids/games' : 'games-all') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"
                         fill="none">
                         <path
@@ -154,7 +154,7 @@ if ($request->has('type')) {
                 'kids/movies' => 'Movies',
                 'kids/shows' => 'Shows',
                 'kids/podcast' => 'Podcasts',
-                'kids/games-all' => 'Games'
+                'kids/games' => 'Games'
             ];
             $current_route = request()->path();
         } else {
