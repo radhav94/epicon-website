@@ -119,9 +119,9 @@ $meta['image'] = $share_img;
                                         {!! getPlayText($content) !!}
                                     @endif
                                 </button>
-                                <?php 
-                                
-                                ?>
+                                @if(($content['user_duration'] ?? 0) >= 1)
+                                <button class="fill-btn mobile-width" id="video-start-from-beginning">Play from beginning</button>
+                                @endif
 
                                     @if (@$content['free_premium'] == true && !isActiveSubscription())
                                         <a class="subcription-btn {{$watchClass}} m-0 w-25" href="{{$href}}" style="text-decoration: none">
@@ -258,6 +258,21 @@ $meta['image'] = $share_img;
         {{-- <script src="{{ asset('assets/js/video-player.js') }}?v={{ assetTime() }}"></script> --}}
     @endif
 
-
+    <script>
+        $(document).ready(function(){
+            $("#video-start-from-beginning").click(function(){
+                user_duration = 0;
+                if (player) {
+                    player.currentTime=0;
+                } else {
+                    if (!$(".videoContainer").is(":visible")) {
+                        $(".videoContainer").show();
+                        $(".loaderImg").hide();
+                    }
+                    $("#watchVideo").trigger("click");
+                }
+            })
+        })
+    </script>
 
 @stop
