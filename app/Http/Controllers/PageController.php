@@ -46,8 +46,13 @@ class PageController extends Controller
             $stories = $data['stories'];
 
             $meta = getMeta($pagetype, $pagetitle, $pageslug);
+            /* This code handles CDN cache during load more. (Start) */
+            $display_type = array_column($result['data']['list'], "display_type");
+            $continuewatching = in_array("continuewatching", $display_type) ? 'YES' : 'NO';
+            /* This code handles CDN cache during load more. (End) */
+
             // dd($meta);
-            return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta', 'slug'));
+            return view('pages.homepage', compact('result', 'displayLanguageParam', 'stories', 'meta', 'slug', 'continuewatching'));
         }
 
         $whichLogic = 2;
