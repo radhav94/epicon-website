@@ -58,7 +58,7 @@
 <script>
     var processing;
     var spinnerAdded = false;
-    var continuewatching = "{{ $continuewatching }}";
+    var continuewatching = "{{ $continuewatching ?? '' }}";
 
     $(document).ready(function() {
         $('#pageval').val('1');
