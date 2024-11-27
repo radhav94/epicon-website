@@ -174,6 +174,18 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 10,
         ],
+        'cashfree' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/cashfree/cashfree.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 60,
+        ],
+        'cashfree_webhook' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/cashfree_webhook/cashfree.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 60,
+        ],
     ],
 
 ];
