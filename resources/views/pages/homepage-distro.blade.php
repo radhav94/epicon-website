@@ -132,10 +132,10 @@
 
         });
     function fetchBannerDetails(episode_id, content_provider_id, description, root_img_poster){
-            console.log("button modal clicked", episode_id, content_provider_id);
+            // console.log("button modal clicked", episode_id, content_provider_id);
             // URL endpoint where data will be sent
             const url = `{{route('distro-tv-epg')}}`;
-            console.log(url);
+            // console.log(url);
             // Data you want to send
             const data = {
                 episode_id: episode_id,
@@ -143,9 +143,9 @@
                 description: description,
                 root_img_poster: root_img_poster
             };
-
+            $('#epg-data').html(`<div class="content-loader" style="text-align: center;height:80px;align-content:center;"> <img style="width: 40px;" src="{{ asset('assets/img/loader.gif') }}" alt="loading"> </div>`);
+            $('#epg-modal').modal('show');
             // Using fetch with a POST request
-            document.body.style.cursor = 'wait';
             fetch(url, {
                 method: 'POST', // Specify POST method
                 headers: {
@@ -155,7 +155,6 @@
                 body: JSON.stringify(data) // Convert data to JSON format for sending
             })
             .then(response => {
-                document.body.style.cursor = 'default';
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -164,7 +163,7 @@
             .then(data => {
                 // console.log('Success:', data.html); // Handle response data 
                 $('#epg-data').html(data.html);
-                $('#epg-modal').modal('show');
+                // $('#epg-modal').modal('show');
             })
             .catch(error => {
                 console.error('Error:', error); // Handle errors
