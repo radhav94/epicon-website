@@ -19,122 +19,108 @@ class CashfreeWebhookService
                 'order_id' => @$webhookResponse['data']['order']["order_id"]
             ];
 
-            $this->cashfreeLog('Request Update Order Data --begin--', false, [ 'endpoint' => 'subscriptions/updateOrderData', 'request' => $getOrderDataParams]);
+            $this->cashfreeLog('Request Update Order Data --begin--', false, ['endpoint' => 'subscriptions/updateOrderData', 'request' => $getOrderDataParams]);
             $orderData = CurlAPI("subscriptions/updateOrderData", 'POST', $getOrderDataParams, 2, false, true);
-            $this->cashfreeLog('Request Update Order Data --end--', false, [ 'endpoint' => 'subscriptions/updateOrderData', 'response' => $orderData ]);
+            $this->cashfreeLog('Request Update Order Data --end--', false, ['endpoint' => 'subscriptions/updateOrderData', 'response' => $orderData]);
 
             $mismatchFlag = false; //if order_id is missmatched
 
-            if(empty(@$orderData['data'] )){
+            if (empty(@$orderData['data'])) {
                 //new api
-                if(isset($webhookResponse['data']['customer_details']['customer_email']) && !empty($webhookResponse['data']['customer_details']['customer_email'])){
+                if (isset($webhookResponse['data']['customer_details']['customer_email']) && !empty(@$webhookResponse['data']['customer_details']['customer_email'])) {
 
                     $newParam = ['email' => $webhookResponse['data']['customer_details']['customer_email']];
 
-                    $this->cashfreeLog('Request check active subscription --begin--', false, [ 'endpoint' => 'subscriptions/checkActiveSubscription', 'request' => $newParam]);
+                    $this->cashfreeLog('Request check active subscription --begin--', false, ['endpoint' => 'subscriptions/checkActiveSubscription', 'request' => $newParam]);
                     $result = CurlAPI("subscriptions/checkActiveSubscription", 'POST', $newParam, 2, false, true);
-                    $this->cashfreeLog('Request check active subscription --end--', false, [ 'endpoint' => 'subscriptions/checkActiveSubscription', 'response' => $result]);
+                    $this->cashfreeLog('Request check active subscription --end--', false, ['endpoint' => 'subscriptions/checkActiveSubscription', 'response' => $result]);
 
-                    if($result['status'] == false && isset($result['userOrder'])){
+                    if ($result['status'] == false && isset($result['userOrder'])) {
                         $mismatchFlag = true;
-    
+
                         $orderData = [];
                         $orderData['success'] = true;
                         $orderData['data'] = $result['userOrder'];
-                        $this->cashfreeLog('cashfree-webhook -- missmatch found', false, [ 'order_id' => @$result['userOrder']['order_id']]);
+                        $this->cashfreeLog('cashfree-webhook -- missmatch found', false, ['order_id' => @$result['userOrder']['order_id']]);
                     }
                 }
-                
-            }else {
+            } else {
                 $newParam = ['email' => @$webhookResponse['data']['customer_details']['customer_email']];
 
-                $this->cashfreeLog('Request check active subscription --begin--', false, [ 'endpoint' => 'subscriptions/checkActiveSubscription', 'request' => $newParam]);
+                $this->cashfreeLog('Request check active subscription --begin--', false, ['endpoint' => 'subscriptions/checkActiveSubscription', 'request' => $newParam]);
                 $result = CurlAPI("subscriptions/checkActiveSubscription", 'POST', $newParam, 2, false, true);
-                $this->cashfreeLog('Request check active subscription --end--', false, [ 'endpoint' => 'subscriptions/checkActiveSubscription', 'response' => $result]);
+                $this->cashfreeLog('Request check active subscription --end--', false, ['endpoint' => 'subscriptions/checkActiveSubscription', 'response' => $result]);
 
-                if(@$result['status'] == true && @$result['userOrder']['order_status'] == 'complete') {
+                if (@$result['status'] == true && @$result['userOrder']['order_status'] == 'complete') {
                     exit();
                 }
             }
 
             if ($orderData && @$orderData['success'] == true && @$orderData['data']['order_status'] == 'initiated') {
                 $orderData = $orderData['data'];
-                $verifyPayment = $this->verifyPaymentStatus(@$webhookResponse['data']['order']["order_id"]);
+                // $verifyPayment = $this->verifyPaymentStatus(@$webhookResponse['data']['order']["order_id"]);
 
-                if ($verifyPayment) {
+                // if ($verifyPayment) {
 
-                    if($mismatchFlag){
-                        $txnId = $orderData['order_id'];
-                    }else{
-                        $txnId = $webhookResponse["txnid"];
-                    }
-
-                    $input = [
-                        "key" => $webhookResponse["key"],
-                        "hash" => $webhookResponse["hash"],
-                        "txnid" => $txnId,
-                        "amount" => $webhookResponse["amount"],
-                        "firstname" => $webhookResponse["firstname"],
-                        "email" => $webhookResponse["email"],
-                        "phone" => $webhookResponse["phone"],
-                        "productinfo" => $webhookResponse["productinfo"],
-                        "surl" => $webhookResponse["surl"],
-                        "furl" => $webhookResponse["furl"],
-                        "api_version" => 12,
-                        "lastname" => $webhookResponse["lastname"] ?? null,
-                        "pg" => @$webhookResponse["pg"] != '' ? $webhookResponse["pg"] : null,
-                        "order_id" => $txnId,
-                        "payu_status" => $webhookResponse["status"]
-                    ];
-                    
-                    $updatePayment = CurlAPI("subscriptions/updateOrderData", 'POST', $input, 2, false, true);
-
-                    $this->cashfreeLog('payu-webhook -- updateOrderData', false, [ 'url' => 'subscriptions/updateOrderData', 'request' => $input, 'response' => $updatePayment]);
-
-                    $updateOrderData = [
-                        'plan' => $orderData['plan_id'] ?? '',
-                        'user_id' => $orderData['user_id'] ?? '',
-                        'order_id' => $txnId,
-                        'order_status' => 'complete',
-                        'payment_gateway' => 'payu',
-                        'bank_ref_no' => @$webhookResponse['bank_ref_num'],
-                        'transaction_id' => @$webhookResponse['mihpayid'] ?? '',
-                        'authPayuId' => @$webhookResponse['mihpayid'] ?? '',
-                        'is_recurring' => (@$webhookResponse['payment_source'] == 'sist') ? true : false,
-                        'ios_receipt' => '',
-                        'android_receipt' => '',
-                        'web_device' => 'web',
-                        'coupon_applied' => $orderData['coupon_applied'] ?? '',
-                        'subscriptionId' => '',
-                        'subscriptionPaymentMode' => '',
-                        'note' => '',
-                        'recurring_receipt' => '',
-                        'bank_name' => '',
-                        'payment_mode' => $webhookResponse['mode'] ?? '',
-                        'x_country' => '',
-                        'x_continent' => '',
-                    ];
-
-                    $updateOrder = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2, false, true);
-
-                    $this->cashfreeLog('payu-webhook -- updateOrder', false, [ 'url' => 'subscriptions/updateOrder', 'request' => $updateOrderData, 'response' => $updateOrder]);
-
-
-                    // $amount = $webhookResponse['amount'] ?? 0;
-                    // $this->preDebit($webhookResponse, $orderData);
-                    // $this->recurringPayment($webhookResponse, $amount);
-                    // $this->EventPushData($webhookResponse);
+                if ($mismatchFlag) {
+                    $txnId = $orderData['order_id'];
                 } else {
-
-                    $this->cashfreeLog('payu-webhook -- Verify Payment Status Failed', false, [  'txnid' =>  $webhookResponse['txnid'] ]);
-                    
+                    $txnId = $webhookResponse["order_id"];
                 }
+
+                //following data must be updated according to cashfree | api changes required
+                $input = [
+                    "key" => $webhookResponse["key"],
+                    "hash" => $webhookResponse["hash"],
+                    "txnid" => $txnId,
+                    "amount" => $webhookResponse["amount"],
+                    "firstname" => $webhookResponse["firstname"],
+                    "email" => $webhookResponse["email"],
+                    "phone" => $webhookResponse["phone"],
+                    "productinfo" => $webhookResponse["productinfo"],
+                    "surl" => $webhookResponse["surl"],
+                    "furl" => $webhookResponse["furl"],
+                    "api_version" => 12,
+                    "lastname" => $webhookResponse["lastname"] ?? null,
+                    "pg" => @$webhookResponse["pg"] != '' ? $webhookResponse["pg"] : null,
+                    "order_id" => $txnId,
+                    "payu_status" => $webhookResponse["status"]
+                ];
+
+                $this->cashfreeLog('Request Update Order Data --begin--', false, ['endpoint' => 'subscriptions/updateOrderData', 'request' => $getOrderDataParams]);
+                $updatePayment = CurlAPI("subscriptions/updateOrderData", 'POST', $input, 2, false, true);
+                $this->cashfreeLog('Request Update Order Data --end--', false, ['endpoint' => 'subscriptions/updateOrderData', 'response' => $orderData]);
+
+                $updateOrderData = [
+                    'plan' => $orderData['plan_id'] ?? '',
+                    'user_id' => $orderData['user_id'] ?? '',
+                    'order_id' => $txnId ?? '',
+                    'order_status' => 'complete',
+                    'payment_gateway' => 'cashfree',
+                    'coupon_applied' => $orderData['coupon_applied'] ?? '',
+                    'payment_mode' => $orderData['pg'] ?? '',      //optional parameter | not required for cashfree
+                    'authPayuId' => $orderData['order_id'] ?? '',       //optional parameter | not required for cashfree
+                    'is_recurring' => false,        //optional parameter | not required for cashfree
+                ];
+
+                $this->cashfreeLog('Request Update Order --begin--', $txnId, ['endpoint' => 'subscriptions/updateOrder', 'request' => $updateOrderData]);
+                $updateOrder = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2, false, true);
+                $this->cashfreeLog('Request Update Order --end--', $txnId, ['endpoint' => 'subscriptions/updateOrder', 'response' => $updatePayment]);
+
+                // $amount = $webhookResponse['amount'] ?? 0;
+                // $this->preDebit($webhookResponse, $orderData);
+                // $this->recurringPayment($webhookResponse, $amount);
+                // $this->EventPushData($webhookResponse);
+                // } else {
+
+                //     $this->cashfreeLog('payu-webhook -- Verify Payment Status Failed', false, [  'txnid' =>  $webhookResponse['txnid'] ]);
+
+                // }
             } else {
-                $this->cashfreeLog('payu-webhook -- Get User Order Else Loop', false, [ 'url' => 'subscriptions/updateOrderData', 'request' => $getOrderDataParams]);
+                $this->cashfreeLog('cashfree-webhook -- subscriptions/updateOrderData else Loop', false, ['url' => 'subscriptions/updateOrderData', 'request' => $getOrderDataParams]);
             }
         } else {
-
-            $this->cashfreeLog("payu-webhook ------- Received " . @$webhookResponse['status'] . " Status -----");
+            $this->cashfreeLog("cashfree-webhook -- payment status else loop " . @$webhookResponse['data']['payment']['payment_status'] . " Status -----");
         }
     }
 
@@ -151,14 +137,14 @@ class CashfreeWebhookService
 
         $verifyPayment = si_transaction($url, $data);
 
-        $this->cashfreeLog('payu-webhook -- Verify Payment Status', false, [ 'url' => $url, 'request' => $data, 'response' => $verifyPayment]);
+        $this->cashfreeLog('payu-webhook -- Verify Payment Status', false, ['url' => $url, 'request' => $data, 'response' => $verifyPayment]);
 
         $verifyDetails = json_decode($verifyPayment);
 
         return $verifyDetails->status;
     }
 
-    public function preDebit(array $webhookResponse = [], array $orderData = []) 
+    public function preDebit(array $webhookResponse = [], array $orderData = [])
     {
         $getOnlyDate = date('Y-m-d', strtotime(@$orderData['subscription_end_date']));
         $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
@@ -179,10 +165,10 @@ class CashfreeWebhookService
         $url = config('epicconfig.PAYUMONEY.API_URL');
         $pre_debit = si_transaction($url, $data);
 
-        $this->cashfreeLog('payu-webhook -- Pre Debit', false, [ 'url' =>$url, 'request' => $data, 'response' => $pre_debit]);
+        $this->cashfreeLog('payu-webhook -- Pre Debit', false, ['url' => $url, 'request' => $data, 'response' => $pre_debit]);
     }
 
-    public function recurringPayment(array $webhookResponse = [], $amount = 0) 
+    public function recurringPayment(array $webhookResponse = [], $amount = 0)
     {
         $parameters['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
         $parameters['command'] = 'si_transaction';
@@ -202,11 +188,11 @@ class CashfreeWebhookService
         $url = config('epicconfig.PAYUMONEY.API_URL');
         $recurringPayment = si_transaction($url, $data);
 
-        $this->cashfreeLog('payu-webhook -- Recuring Payment', false, [ 'url' =>$url, 'request' => $data, 'response' => $recurringPayment]);
+        $this->cashfreeLog('payu-webhook -- Recuring Payment', false, ['url' => $url, 'request' => $data, 'response' => $recurringPayment]);
     }
 
     public function EventPushData($order)
-    {   
+    {
         if ($order['status'] == "success") {
             $data['Mobile'] = @$order['phone'];
             EventPush($order['user_id'], 'Subscribe', $data, true, false);
