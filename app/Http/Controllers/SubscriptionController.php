@@ -996,7 +996,8 @@ class SubscriptionController extends Controller
             $final_result = ['message' => 'You have successfully purchased a subscription plan.'];
             return view('subscription.thankyou', compact('final_result', 'orderData'));
         } else {
-            $message = @$updatePayment['message'];
+            // $message = @$updatePayment['message'];
+            $message = "The transaction has been declined.";
             return view('subscription.subscription-fail', compact('message'));
         }
     }
