@@ -782,21 +782,5 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
             $(".copyBtn").show();
         }, 2000);
     }
-
-    function checkPin(selector, length)
-    {
-        let value = selector.map(function () {
-            if ($(this).val().trim() == "") {
-                $(this).css({"border": "1px solid red"});
-            } else {
-                $(this).css({"border": "1px solid #494949"});
-            }
-            return $(this).val().trim();
-        }).get();
-        if (value.length !== length || value.some(pin => pin === "")) {
-            return false;
-        }
-        return true;
-    }
 </script>
 @stop
