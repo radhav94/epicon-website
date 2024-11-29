@@ -14,7 +14,7 @@
     </div>
     <script>
         const cashfree = Cashfree({
-            mode: "sandbox", //change it to prod when going live
+            mode: "{{ $parameters['cashfree_env'] }}",
         });
         document.getElementById("renderBtn").addEventListener("click", () => {
             let checkoutOptions = {

@@ -954,6 +954,7 @@ class SubscriptionController extends Controller
 
         $parameters = [
             'payment_session_id' => $payment_session_id,
+            'cashfree_env' => config('epicconfig.CASHFREE.environment'),
         ];
         $this->cashfreeLog('Cashfree Checkout Redirect -- begin --', $txid, [$parameters]);
         return view('subscription.cashfree', compact('parameters'));
