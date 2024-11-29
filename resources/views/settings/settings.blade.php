@@ -303,6 +303,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
 <script>
     var userId = "{{ $userId }}";
     var deviceId = "{{ getDeviceId() }}";
+    var isChangeKidPin = "{{ $kidSection }}";
     $(document).ready(function() {
         var checkpin = $("#ispin").val();
         if (checkpin == "ispin") {
@@ -416,6 +417,22 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
         $("#childPinForm #setChildPin").click(function() {
             $("#childPinForm #error-msg").html("");
             var formData = $('#childPinForm').serialize();
+            if (isChangeKidPin) {
+                var oldKidsPin = $('input[name="oldKidsPin[]"]');
+                if (!checkPin(oldKidsPin, 4)) {
+                    return false;
+                }
+                var newKidsPin = $('input[name="newKidsPin[]"]');
+                if (!checkPin(newKidsPin, 4)) {
+                    return false;
+                }
+            } else {
+                var kidsPin = $('input[name="kidsPin[]"]');
+                if (!checkPin(kidsPin, 4)) {
+                    return false;
+                }
+            }
+            return false;
             var command = $('#childPinForm input[name="command"]').val();
             $.ajax({
                 url: "{{ route('set-kidsPin') }}",
@@ -764,6 +781,22 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
             $(".copiedBtn").hide();
             $(".copyBtn").show();
         }, 2000);
+    }
+
+    function checkPin(selector, length)
+    {
+        let value = selector.map(function () {
+            if ($(this).val().trim() == "") {
+                $(this).css({"border": "1px solid red"});
+            } else {
+                $(this).css({"border": "1px solid #494949"});
+            }
+            return $(this).val().trim();
+        }).get();
+        if (value.length !== length || value.some(pin => pin === "")) {
+            return false;
+        }
+        return true;
     }
 </script>
 @stop
