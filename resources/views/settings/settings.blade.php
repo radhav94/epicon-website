@@ -432,7 +432,6 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
                     return false;
                 }
             }
-            return false;
             var command = $('#childPinForm input[name="command"]').val();
             $.ajax({
                 url: "{{ route('set-kidsPin') }}",
