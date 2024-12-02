@@ -107,7 +107,6 @@ class SearchController extends Controller
                         $data['topResult'][$categoryKey] = $this->generateCategoryResponse($val);
                         $data['otherResult'][$categoryKey] = $this->getOtherResult($val);
                     }
-
                     $data['showHide'][$categoryKey] = count($val['content']);
                 }
             }

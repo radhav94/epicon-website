@@ -58,7 +58,7 @@
 <script>
     var processing;
     var spinnerAdded = false;
-    var isLoggedIn = "{{ isUserLoggedIn() ? 'TRUE' : 'FALSE' }}";
+    var continuewatching = "{{ $continuewatching ?? '' }}";
 
     $(document).ready(function() {
         $('#pageval').val('1');
@@ -94,7 +94,7 @@
                 data: {
                     page: paging,
                     route: routepage,
-                    user: isLoggedIn
+                    continuewatching: continuewatching
                 },
                 dataType: 'json',
                 beforeSend: function() {
