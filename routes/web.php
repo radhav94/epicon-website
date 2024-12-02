@@ -161,7 +161,7 @@ Route::group(['middleware' => ['loggedin', 'checkUserAuthToken']], function () {
     //Subscription routes created by Ram
     Route::post('getCouponAjax', [SubscriptionController::class, 'getCoupon'])->name('getCoupon');
     Route::post('redeemcoupon', [RewardsController::class, 'RedeemCouponCode'])->name('redeemcoupon');
-    Route::post('qwikcilverAjax', [SubscriptionController::class, 'redeemQwikCilver'])->name('redeemcoupon');
+    Route::post('qwikcilverAjax', [SubscriptionController::class, 'redeemQwikCilver'])->name('qwikcilverAjax');
     //end
 });
 
