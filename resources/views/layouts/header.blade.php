@@ -317,14 +317,15 @@ if ($request->has('type')) {
                             @endif
 
                         </li>
+
+                        @if(@$subplan['status'] != 'active')
                         <li class="exclusive-subc w-100">
                             <p class="m-0 small">{{__('Get access to exclusive content, with no ad breaks.')}}</p>
-            
-                            @if(@$subplan['status'] != 'active')
-                              <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" href="{{ getUrl('subscription') }}"><button> <img class="me-1" width="18" src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg"
+                            <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" href="{{ getUrl('subscription') }}"><button> <img class="me-1" width="18" src="{{ env('AWS_S3_domain') }}epicon/assets/images/crown.svg"
                                     alt=""> {{__('Subscribe')}}</button></a>
-                            @endif
                         </li>
+                        @endif
+
                         <li class="subc-text"><a href="{{ getUrlWithPrefix('profile.index') }}">{{__('Manage Profiles')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('library') }}">{{__('Library')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('my-account') }}">{{__('My Account')}}</a></li>
