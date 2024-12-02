@@ -14,12 +14,12 @@ class PayuWebhookService
         sleep(180);
 
         /**Recurring payment handle BEGIN */
-        if ($webhookResponse['payment_source'] == 'sirecurring') {
-            $payuAuthId = $webhookResponse['mihpayid'];
+        if (isset($webhookResponse['payment_source']) && strtolower(@$webhookResponse['payment_source']) == 'sirecurring') {
+            $payuAuthId = @$webhookResponse['mihpayid'];
             $this->payuLog("----- PAYU webhook sirecurring BEGIN ----- mihpayid : ". $payuAuthId, false);
             if (!empty($payuAuthId)) {
                 $this->payuLog("----- BEGIN sirecurring check Active Subscription for : " . $payuAuthId . "-----", false);
-                $newParamRecur = ['mihpayid' => $payuAuthId]; //change the key
+                $newParamRecur = ['authPayuId' => $payuAuthId]; //change the key
                 $resultRecur = CurlAPI("subscriptions/checkActiveSubscription", 'POST',  $newParamRecur, 2, false, true);
                 $this->payuLog('----- END sirecurring check Active Subscription for : ' . $payuAuthId . '-----', false, ['url' => 'subscriptions/checkActiveSubscription', 'request' => $newParamRecur, 'response' => $resultRecur]);
                 $subEndDate = null;
@@ -44,13 +44,13 @@ class PayuWebhookService
                         'ios_receipt' => '',
                         'android_receipt' => '',
                         'web_device' => 'web',
-                        'coupon_applied' => $orderData['coupon_applied'] ?? '',
+                        'coupon_applied' => @$orderData['coupon_applied'] ?? '',
                         'subscriptionId' => '',
                         'subscriptionPaymentMode' => '',
                         'note' => '',
                         'recurring_receipt' => '',
                         'bank_name' => '',
-                        'payment_mode' => $webhookResponse['mode'] ?? '',
+                        'payment_mode' => @$webhookResponse['mode'] ?? '',
                         'x_country' => '',
                         'x_continent' => '',
                     ];

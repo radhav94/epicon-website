@@ -105,7 +105,7 @@
     {{-- <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/all-js.min.js" defer></script> --}}
 
     <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/ga_tag.js?v={{ assetTime() }}"></script>
-    <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/custom.js?v={{ assetTime() }}" defer></script>
+    <script src="{{ asset('assets/js/custom.js') }}?v={{ assetTime() }}" defer></script>
     
     {{-- End footer common scripts --}}
 

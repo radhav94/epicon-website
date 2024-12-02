@@ -915,3 +915,18 @@ function sortingEp(id, sortType) {
         sortEpisodes(sortType);
     }
 }
+
+function checkPin(selector, length)
+{
+  selector.css({"border": "1px solid #494949"});
+  let value = selector.map(function () {
+    if ($(this).val().trim() == "") {
+        $(this).css({"border": "1px solid red"});
+    }
+    return $(this).val().trim();
+  }).get();
+  if (value.length !== length || value.some(pin => pin === "")) {
+    return false;
+  }
+  return true;
+}

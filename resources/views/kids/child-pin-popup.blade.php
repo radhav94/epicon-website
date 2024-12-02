@@ -62,6 +62,10 @@
             var queryParams = new URLSearchParams(window.location.search);
             $("#childPinForm #error-msg").html("");
             var formData = $('#childPinForm').serialize();
+            var kidsPin = $('input[name="kidsPin[]"]');
+            if (!checkPin(kidsPin, 4)) {
+                return false;
+            }
             $.ajax({
                 url: "{{ route('verify-kidsPin') }}",
                 type: 'POST',
