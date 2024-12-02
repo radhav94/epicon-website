@@ -15,8 +15,11 @@ class CashfreeWebhookService
         $this->cashfreeLog("----- webhook payload -----", '', $webhookResponse);
 
         if (!empty($webhookResponse) && strtolower(@$webhookResponse['data']['payment']['payment_status']) == 'success') {
+            $webhookOrderData = @$webhookResponse['data']['order'];
+            $webhookPaymentData = @$webhookResponse['data']['payment'];
+            $webhookCustomerData = @$webhookResponse['data']['customer_details'];
             $getOrderDataParams = [
-                'order_id' => @$webhookResponse['data']['order']["order_id"]
+                'order_id' => @$webhookOrderData["order_id"]
             ];
 
             $this->cashfreeLog('Request Update Order Data --begin--', false, ['endpoint' => 'subscriptions/updateOrderData', 'request' => $getOrderDataParams]);
@@ -27,9 +30,9 @@ class CashfreeWebhookService
 
             if (empty(@$orderData['data'])) {
                 //new api
-                if (isset($webhookResponse['data']['customer_details']['customer_email']) && !empty(@$webhookResponse['data']['customer_details']['customer_email'])) {
+                if (isset($webhookCustomerData['customer_email']) && !empty(@$webhookCustomerData['customer_email'])) {
 
-                    $newParam = ['email' => $webhookResponse['data']['customer_details']['customer_email']];
+                    $newParam = ['email' => $webhookCustomerData['customer_email']];
 
                     $this->cashfreeLog('Request check active subscription --begin--', false, ['endpoint' => 'subscriptions/checkActiveSubscription', 'request' => $newParam]);
                     $result = CurlAPI("subscriptions/checkActiveSubscription", 'POST', $newParam, 2, false, true);
@@ -45,7 +48,7 @@ class CashfreeWebhookService
                     }
                 }
             } else {
-                $newParam = ['email' => @$webhookResponse['data']['customer_details']['customer_email']];
+                $newParam = ['email' => @$webhookCustomerData['customer_email']];
 
                 $this->cashfreeLog('Request check active subscription --begin--', false, ['endpoint' => 'subscriptions/checkActiveSubscription', 'request' => $newParam]);
                 $result = CurlAPI("subscriptions/checkActiveSubscription", 'POST', $newParam, 2, false, true);
@@ -58,14 +61,14 @@ class CashfreeWebhookService
 
             if ($orderData && @$orderData['success'] == true && @$orderData['data']['order_status'] == 'initiated') {
                 $orderData = $orderData['data'];
-                // $verifyPayment = $this->verifyPaymentStatus(@$webhookResponse['data']['order']["order_id"]);
+                // $verifyPayment = $this->verifyPaymentStatus(@$webhookData["order_id"]);
 
                 // if ($verifyPayment) {
 
                 if ($mismatchFlag) {
                     $txnId = $orderData['order_id'];
                 } else {
-                    $txnId = $webhookResponse["order_id"];
+                    $txnId = $webhookOrderData["order_id"];
                 }
 
                 //following data must be updated according to cashfree | api changes required
@@ -73,15 +76,15 @@ class CashfreeWebhookService
                     "key" => $webhookResponse["key"],
                     "hash" => $webhookResponse["hash"],
                     "txnid" => $txnId,
-                    "amount" => $webhookResponse["amount"],
-                    "firstname" => $webhookResponse["firstname"],
-                    "email" => $webhookResponse["email"],
-                    "phone" => $webhookResponse["phone"],
+                    "amount" => $webhookPaymentData["payment_amount"],
+                    "firstname" => $webhookCustomerData["customer_name"],
+                    "email" => $webhookCustomerData["customer_email"],
+                    "phone" => $webhookCustomerData["customer_phone"],
                     "productinfo" => $webhookResponse["productinfo"],
                     "surl" => $webhookResponse["surl"],
                     "furl" => $webhookResponse["furl"],
                     "api_version" => 12,
-                    "lastname" => $webhookResponse["lastname"] ?? null,
+                    "lastname" => null,
                     "pg" => @$webhookResponse["pg"] != '' ? $webhookResponse["pg"] : null,
                     "order_id" => $txnId,
                     "payu_status" => $webhookResponse["status"]
