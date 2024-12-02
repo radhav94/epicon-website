@@ -58,6 +58,7 @@
 <script>
     var processing;
     var spinnerAdded = false;
+    var continuewatching = "{{ $continuewatching ?? '' }}";
 
     $(document).ready(function() {
         $('#pageval').val('1');
@@ -92,7 +93,8 @@
                 url: '{{ route('page.loadmore') }}',
                 data: {
                     page: paging,
-                    route: routepage
+                    route: routepage,
+                    continuewatching: continuewatching
                 },
                 dataType: 'json',
                 beforeSend: function() {
