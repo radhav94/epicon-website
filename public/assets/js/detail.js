@@ -20,6 +20,8 @@ $(document).ready(function () {
             // showToaster(response?.message, 1);
             let claps = response.payload.claps;
 
+            $('#claps_num_' + cont_id).parent().css('width', '10%');
+            $('#claps_num_' + cont_id).text(claps);
             if (cardType != 'list') {
                 $('.claps_num').text(claps);
             }
