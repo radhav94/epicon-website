@@ -307,7 +307,7 @@
             <p>You're in! Enjoy the show.</p>
         </div>
         <div class="epicon-logo-footer-right">
-            <img src="{{ asset('assets/img/epicon-logo-footer-right.svg') }}" alt="icon">
+            <img src="{{ env('AWS_S3_domain').'epicon/assets/images/epicon-logo-footer-right.svg' }}" alt="icon">
         </div>
     </section>
 

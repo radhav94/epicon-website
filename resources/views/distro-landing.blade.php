@@ -65,9 +65,9 @@
     <div class="distro-banner">
 
     
-        <div class="distro-banner-item"><img src="{{asset('img/Desktop-Page-Blocks.png')}}" alt=""></div>
-        <div class="distro-banner-item"><img src="{{asset('img/Desktop-Page-Blocks.png')}}" alt=""></div>
-        <div class="distro-banner-item"><img src="{{asset('img/Desktop-Page-Blocks.png')}}" alt=""></div>
+        <div class="distro-banner-item"><img src="{{env('AWS_S3_domain').'epicon/assets/images/Desktop-Page-Blocks.png'}}" alt=""></div>
+        <div class="distro-banner-item"><img src="{{env('AWS_S3_domain').'epicon/assets/images/Desktop-Page-Blocks.png'}}" alt=""></div>
+        <div class="distro-banner-item"><img src="{{env('AWS_S3_domain').'epicon/assets/images/Desktop-Page-Blocks.png'}}" alt=""></div>
     </div>
     <div class="slider-controls-dots d-flex justify-content-center position-absolute">
         <div class="slide-dist-dots"></div>
@@ -81,155 +81,75 @@
     <div class="distro-slider mb-4">
         <div class="sample_img position-relative me-3">
             <a href="{{ url('distro-video') }}">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
-        </div>
-    </div>
-</section>
-
-<section class="container-fluid top-slider addarrow pe-0 me-0 ps-4">
-    <div class="row me-0 my-2">
-        <div class="distro-title heading ps-0">Distro Tv</div>
-    </div>
-    <div class="distro-slider">
-        <div class="sample_img position-relative me-3">
-            <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
-            </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
-        </div>
-        <div class="sample_img position-relative me-3">
-            <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
-            </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
-        </div>
-        <div class="sample_img position-relative me-3">
-            <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
-            </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
-        </div>
-        <div class="sample_img position-relative me-3">
-            <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
-            </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
-        </div>
-        <div class="sample_img position-relative me-3">
-            <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
-            </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
-        </div>
-        <div class="sample_img position-relative me-3">
-            <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
-            </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
-        </div>
-        <div class="sample_img position-relative me-3">
-            <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
-            </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
-        </div>
-        <div class="sample_img position-relative me-3">
-            <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
-            </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
-        </div>
-        <div class="sample_img position-relative me-3">
-            <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
-            </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
-        </div>
-        <div class="sample_img position-relative me-3">
-            <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
-            </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
-        </div>
-        <div class="sample_img position-relative me-3">
-            <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
-            </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
-        </div>
-        <div class="sample_img position-relative me-3">
-            <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
-            </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
     </div>
 </section>
@@ -241,75 +161,155 @@
     <div class="distro-slider">
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
         <div class="sample_img position-relative me-3">
             <a href="">
-                <img src="{{asset('img/sampleimg.png')}}" alt="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
             </a>
-            <div class="play-button"><img src="{{asset('img/play-white.png')}}" alt=""></div>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
+        </div>
+    </div>
+</section>
+
+<section class="container-fluid top-slider addarrow pe-0 me-0 ps-4">
+    <div class="row me-0 my-2">
+        <div class="distro-title heading ps-0">Distro Tv</div>
+    </div>
+    <div class="distro-slider">
+        <div class="sample_img position-relative me-3">
+            <a href="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
+            </a>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
+        </div>
+        <div class="sample_img position-relative me-3">
+            <a href="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
+            </a>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
+        </div>
+        <div class="sample_img position-relative me-3">
+            <a href="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
+            </a>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
+        </div>
+        <div class="sample_img position-relative me-3">
+            <a href="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
+            </a>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
+        </div>
+        <div class="sample_img position-relative me-3">
+            <a href="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
+            </a>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
+        </div>
+        <div class="sample_img position-relative me-3">
+            <a href="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
+            </a>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
+        </div>
+        <div class="sample_img position-relative me-3">
+            <a href="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
+            </a>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
+        </div>
+        <div class="sample_img position-relative me-3">
+            <a href="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
+            </a>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
+        </div>
+        <div class="sample_img position-relative me-3">
+            <a href="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
+            </a>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
+        </div>
+        <div class="sample_img position-relative me-3">
+            <a href="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
+            </a>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
+        </div>
+        <div class="sample_img position-relative me-3">
+            <a href="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
+            </a>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
+        </div>
+        <div class="sample_img position-relative me-3">
+            <a href="">
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/sampleimg.png'}}" alt="">
+            </a>
+            <div class="play-button"><img src="{{env('AWS_S3_domain').'epicon/assets/images/play-white.png'}}" alt=""></div>
         </div>
     </div>
 </section>

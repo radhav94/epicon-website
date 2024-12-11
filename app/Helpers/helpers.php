@@ -12,6 +12,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Detection\MobileDetect;
+use Illuminate\Support\Facades\Log;
 
 if (!function_exists('getUserAgent')) {
     function getUserAgent()
@@ -280,7 +281,7 @@ function freePremiumDiv($val)
 
 // function isPopularDiv($val)
 // {
-//     echo (@$val['is_popular'] == true) ? '<span><img src="' . asset('assets/img/fire-emoji.png') . '" alt=""></span>' : '';
+//     echo (@$val['is_popular'] == true) ? '<span><img src="' . env('AWS_S3_domain').'epicon/assets/images/fire-emoji.png' . '" alt=""></span>' : '';
 // }
 
 
@@ -952,7 +953,7 @@ function getCardImage($content, $key, $size = 'medium', $fallback = [])
 
         if (empty($img_url)) {
 
-            $img_url = isset($fallback[$key]) ? asset('assets/img/' . $fallback[$key]) : asset('assets/img/default-200x200.png');
+            $img_url = isset($fallback[$key]) ? env('AWS_S3_domain').'epicon/assets/images/' . $fallback[$key] : env('AWS_S3_domain').'epicon/assets/images/default-200x200.png';
 
             /*foreach ($fallback as $k => $img_key) {
                 if (isset($content[$img_key]) && !empty($content[$img_key])) {
@@ -1073,6 +1074,12 @@ if (!function_exists("update_user_session")) {
                     session()->put('user', $user_data);
                 }
             } else {
+                $infoMsg = "\n------------viewProfile(Start)--------------
+                            \n user_token: ". (Session::get('user_token') ?? ''). 
+                            "\n user id: ". getUserId() . 
+                            "\n profile Response : " .json_encode($profile_detail).
+                            "\n ------------viewProfile(End)--------------";
+                Log::channel('user')->info($infoMsg);
                 return false;
             }
         }

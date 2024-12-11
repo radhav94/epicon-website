@@ -216,6 +216,14 @@ $(window).on('load', function () {
     if (queryParams.get('type') == "login" || (queryParams.get('userUuid') != "" && queryParams.get('userUuid') != null && queryParams.get('userUuid') != "undefined") ) {
         $('.loginBtn.login').trigger('click');
     }
+    // open login popup after success
+    if (queryParams.get('tp') == "ln") {
+        $('#successfully-loged').modal('show');
+        setTimeout(function(){
+            $('#successfully-loged').modal('hide');
+            window.history.replaceState({}, document.title, "/");
+        },3000);
+    }
 })
 
 $(document).on("click", ".interest-suggetion", function (e) {

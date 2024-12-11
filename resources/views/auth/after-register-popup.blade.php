@@ -75,6 +75,10 @@
 
         $("#after-register-modal #setChildPin").click(function() {
             $("#childPinForm #error-msg").html("");
+            var kidsPin = $('input[name="kidsPin[]"]');
+            if (!checkPin(kidsPin, 4)) {
+                return false;
+            }
             var formData = $('#childPinForm').serialize();
             var command = $('#childPinForm input[name="command"]').val();
             $.ajax({

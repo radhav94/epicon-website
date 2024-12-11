@@ -12,7 +12,7 @@
                         <button class="fill-btn logout mt-0 my-0">{{__('Log Out')}}</button>
                     </div>
                 </div>
-                <img class="mb-4" width="150" src="{{ asset('/img/delete-account-icon.svg') }}" alt="icon">
+                <img class="mb-4" width="150" src="{{ env('AWS_S3_domain').'epicon/assets/images/delete-account-icon.svg' }}" alt="icon">
             </div>
 
         </div>

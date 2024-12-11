@@ -100,7 +100,7 @@ $subplan = checkSubscription();
 
                 <div class="plan-ex">{{__('Plan Expired')}}</div>
 
-                <img class="corner-bg" src="{{ asset('/img/corner-bg.svg') }}" alt="">
+                <img class="corner-bg" src="{{ env('AWS_S3_domain').'epicon/assets/images/corner-bg.svg' }}" alt="">
                 <p class="current-subs d-flex">{{__('Current Subscription')}}</p>
                 <h1>{{ isset($subscriptionPurchases['plan_name']) ? $subscriptionPurchases['plan_name'] : '' }}</h1>
                 <div class="premium-plan">
@@ -122,7 +122,7 @@ $subplan = checkSubscription();
 
                     <div class="pp-right">
                         @if(@$subscriptionPurchases['plan_amount'] != '')<h3>{!! getCurrency($subscriptionPurchases['currency']) !!} {{ isset($subscriptionPurchases['plan_amount']) ? $subscriptionPurchases['plan_amount'] : '' }} <span>/ {{ isset($plan_name) ? $plan_name : '' }}</span></h3>@endif
-                        @if(@$viewprofile['device'] == "mondia")
+                        @if(@$viewprofile['subscriptions']['device'] == "mondia")
                         <h3>{{ $viewprofile['subscriptions']['mondiaPackageDetail'] ?? "" }} </h3>
                         <p style="text-align: center;font-weight: 700;">Start Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date</p>
                         @endif
@@ -132,7 +132,7 @@ $subplan = checkSubscription();
                 <?php  //echo $numOfDays; exit;
                 ?>
                 @if($numOfDays <= 4 || $subscriptionPurchases['plan_status']=='past' )
-                    @if(@$viewprofile['subscriptions']['activeSubscription']==false && $hasFuture==false && @$viewprofile['device'] !="mondia")
+                    @if(@$viewprofile['subscriptions']['activeSubscription']==false && $hasFuture==false && @$viewprofile['subscriptions']['device'] !="mondia")
                     <div class="w-100 text-center">
                     @if($numOfDays < 0)
                         @php $class="renew-paln" ; @endphp
@@ -170,14 +170,14 @@ $subplan = checkSubscription();
             <h4>{{__('Billing Details')}}</h4>
             <p class="position-relative">
                 @if(!empty(@$viewprofile['email']))
-                <img src="{{ asset('/img/email.svg') }}" alt="">
+                <img src="{{ env('AWS_S3_domain').'epicon/assets/images/email.svg' }}" alt="">
                 {{ $viewprofile['email'] }} &nbsp;
                 @endif
                 {{-- <!-- <button class="edit-icon bg-transparent border-0">
-                            <img src="{{ asset('/img/edit-icon.svg') }}" alt="">
+                            <img src="{{ env('AWS_S3_domain').'epicon/assets/images/edit-icon.svg' }}" alt="">
                 </button> --> --}}
             </p>
-            @if(@$viewprofile['device'] == "mondia")
+            @if(@$viewprofile['subscriptions']['device'] == "mondia")
             <p>
                 Billing is manage by &nbsp;
                 <a href="{{ $viewprofile['subscriptions']['tenantUrl'] ?? '#' }}" class="current-subs d-flex" target="_blank">Click</a>
@@ -185,13 +185,13 @@ $subplan = checkSubscription();
             @endif
             <p>
                 @if(!empty(@$viewprofile['mobile']))
-                <img src="{{ asset('/img/mobile.svg') }}" alt="">&nbsp; {{ $viewprofile['mobile'] }}
+                <img src="{{ env('AWS_S3_domain').'epicon/assets/images/mobile.svg' }}" alt="">&nbsp; {{ $viewprofile['mobile'] }}
                 @endif
             </p>
             {{--<p class="border-bot pb-4">
-                        <img src="{{ asset('/img/visa.svg') }}" alt=""> &nbsp; visa **** **** **** 1823
+                        <img src="{{ env('AWS_S3_domain').'epicon/assets/images/visa.svg' }}" alt=""> &nbsp; visa **** **** **** 1823
             </p>--}}
-            @if(@$viewprofile['device'] != "mondia")
+            @if(@$viewprofile['subscriptions']['device'] != "mondia")
             <p class="position-relative border-bot pb-4">
                 {{__('View Transaction History')}}
                 <a href="{{ getUrl('transaction-history') }}" class="edit-icon bg-transparent border-0">
@@ -216,7 +216,7 @@ $subplan = checkSubscription();
     @endif
     @else
     <div class="col-12 text-center mt-5">
-        <img class="not-subscribe" src="{{ asset('/img/not-subscribe.svg') }}" alt="img" style="margin-bottom: -50px;">
+        <img class="not-subscribe" src="{{ env('AWS_S3_domain').'epicon/assets/images/not-subscribe.svg' }}" alt="img" style="margin-bottom: -50px;">
         <p class="small text-white">{{__('You have not subscribed to Epic On yet!')}}</p>
         <a href="{{ getUrl('subscription') }}" class="login-btn mt-4" style="width: 280px;">
             {{__('Subscribe Now')}}
@@ -228,7 +228,7 @@ $subplan = checkSubscription();
     </div>
     @endif
     {{-- <!-- <div class="col-12 text-center mt-5">
-                <img src="{{ asset('/img/not-subscribe.svg') }}" alt="img" style="margin-bottom: -50px;">
+                <img src="{{ env('AWS_S3_domain').'epicon/assets/images/not-subscribe.svg' }}" alt="img" style="margin-bottom: -50px;">
     <p class="small text-white">You have not subscribed to Epic On yet!</p>
     <button class="login-btn mt-4" style="width: 280px;">
         Subscribe Now

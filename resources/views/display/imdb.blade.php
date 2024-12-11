@@ -46,7 +46,7 @@
                                         <div class="imdb-rating">
                                             <ul>
                                                 <li>8.5</li>
-                                                <li><img src="{{ asset('assets/img/imdb-icon.png') }}" alt="img"></li>
+                                                <li><img src="{{ env('AWS_S3_domain').'epicon/assets/images/imdb-icon.png' }}" alt="img"></li>
                                             </ul>
                                         </div>
                                     --> --}}
