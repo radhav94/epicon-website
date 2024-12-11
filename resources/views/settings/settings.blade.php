@@ -330,7 +330,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
         $("#clearSearchBtn").click(function() {
             $.ajax({
                 url: "{{ route('deleteSearchHistory') }}",
-                type: 'POST',
+                type: 'GET',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
