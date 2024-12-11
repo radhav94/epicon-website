@@ -137,7 +137,7 @@ if($content['content_type'] == "VIDEO"){
         @if(!isUserLoggedIn() || @$subplan['status'] != 'active')
         <div class="w-100 d-flex justify-content-center">
             <a class="subcription-btn trailer-subscription {{$watchClass}}" href="javascript:void(0);" style="text-decoration: none">
-                <img src="{{asset('img/crown.svg')}}" alt="crown"> Subscribe & Watch
+                <img src="{{env('AWS_S3_domain').'epicon/assets/images/crown.svg'}}" alt="crown"> Subscribe & Watch
             </a>
     
         </div>

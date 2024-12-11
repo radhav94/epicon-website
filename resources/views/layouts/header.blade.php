@@ -249,7 +249,7 @@ if ($request->has('type')) {
                         
                     </ul>
                     <div class="no-notification">
-                        <img src="{{ asset('assets/img/no-notification.svg') }}" alt="">
+                        <img src="{{ env('AWS_S3_domain').'epicon/assets/images/no-notification.svg' }}" alt="">
                         <span class="small text-white">{{__('You do not have any notifications')}}</span>
                         <button>{{__('Explore Now')}}</button>
                     </div>
@@ -276,7 +276,7 @@ if ($request->has('type')) {
                             @if (isset($profile) && $profile)
                             <?php 
                                 $gender = @$profile['result']['user_data']['gender'] ?? 'Male';
-                                $default_img = ($gender == 'Female') ? asset('assets/img/edit-profile-pik.png') : asset('assets/img/profile-boy.png')
+                                $default_img = ($gender == 'Female') ? env('AWS_S3_domain').'epicon/assets/images/edit-profile-pik.png' : env('AWS_S3_domain').'epicon/assets/images/profile-boy.png'
                             ?>
                             @if (isset($profile['profiles']) && count($profile['profiles']) > 0)
                                 @foreach ($profile['profiles'] as $key => $value)

@@ -37,23 +37,23 @@
                         <li>
                             <div class="coin-balance">
                                 <p>{{__('EpicOn Coin Balance')}}</p>
-                                <h1>{{isset($walletArr['epicoinData']['epicoins']) ? $walletArr['epicoinData']['epicoins'] : '' }}<img src="{{ asset('/img/coin.svg') }}" alt="coin"></h1>
+                                <h1>{{isset($walletArr['epicoinData']['epicoins']) ? $walletArr['epicoinData']['epicoins'] : '' }}<img src="{{ env('AWS_S3_domain').'epicon/assets/images/coin.svg' }}" alt="coin"></h1>
                             </div>
-                            <img class="my-reward-gift" src="{{ asset('/img/my-reward-gift.svg') }}" alt="">
+                            <img class="my-reward-gift" src="{{ env('AWS_S3_domain').'epicon/assets/images/my-reward-gift.svg' }}" alt="">
                         </li>
                         <li>
                             <div class="coin-balance">
                                 <p class="small">{{__('Total EpicOn')}}<br>{{__('Coins Claimed')}}</p>
                                 <h1>{{ isset($walletArr['epicoinData']['debited']) ? $walletArr['epicoinData']['debited'] : '' }}</h1>
                             </div>
-                            <img class="my-reward-gift" src="{{ asset('/img/my-reward-coin.svg') }}" alt="">
+                            <img class="my-reward-gift" src="{{ env('AWS_S3_domain').'epicon/assets/images/my-reward-coin.svg' }}" alt="">
                         </li>
                         <li>
                             <div class="coin-balance">
                                 <p class="small">{{__('Total EpicOn')}}<br>{{__('Coins Earned')}}</p>
                                 <h1>{{ isset($walletArr['epicoinData']['credited']) ? $walletArr['epicoinData']['credited'] : '' }}</h1>
                             </div>
-                            <img class="my-reward-gift" src="{{ asset('/img/my-reward-coin.svg') }}" alt="">
+                            <img class="my-reward-gift" src="{{ env('AWS_S3_domain').'epicon/assets/images/my-reward-coin.svg' }}" alt="">
                         </li>
                     </ul>
                 </div>
@@ -76,42 +76,42 @@
                         <div class="tab-pane fade show active" id="pills-earn" role="tabpanel" aria-labelledby="my-list">
                             <ul class="earn list-unstyled p-0 mb-0 mt-4">
                                 <li>
-                                    <img class="mt-5" src="{{ asset('/img/coin.svg') }}" alt="coin">
+                                    <img class="mt-5" src="{{ env('AWS_S3_domain').'epicon/assets/images/coin.svg' }}" alt="coin">
                                     <h5 class="my-4 text-white">1 EpicOn Coins</h5>
                                     <span class="earn-bottom">
                                         {{__('text.coins-condition1')}} <br>for 20 mins
                                     </span>
                                 </li>
                                 <li>
-                                    <img class="mt-5" src="{{ asset('/img/coin-10.svg') }}" alt="coin">
+                                    <img class="mt-5" src="{{ env('AWS_S3_domain').'epicon/assets/images/coin-10.svg' }}" alt="coin">
                                     <h5 class="my-4 text-white">10 EpicOn Coins</h5>
                                     <span class="earn-bottom">
                                         {{__('text.coins-condition2')}}
                                     </span>
                                 </li>
                                 <li>
-                                    <img class="mt-5" src="{{ asset('/img/coin-50.svg') }}" alt="coin">
+                                    <img class="mt-5" src="{{ env('AWS_S3_domain').'epicon/assets/images/coin-50.svg' }}" alt="coin">
                                     <h5 class="my-4 text-white">50 EpicOn Coins</h5>
                                     <span class="earn-bottom">
                                         {{__('text.coins-condition4')}}
                                     </span>
                                 </li>
                                 <li>
-                                    <img class="mt-5" src="{{ asset('/img/coin-150.svg') }}" alt="coin">
+                                    <img class="mt-5" src="{{ env('AWS_S3_domain').'epicon/assets/images/coin-150.svg' }}" alt="coin">
                                     <h5 class="my-4 text-white">150 EpicOn Coins</h5>
                                     <span class="earn-bottom">
                                         {{__('text.coins-condition5')}}
                                     </span>
                                 </li>
                                 <li>
-                                    <img class="mt-5" src="{{ asset('/img/coin-300.svg') }}" alt="coin">
+                                    <img class="mt-5" src="{{ env('AWS_S3_domain').'epicon/assets/images/coin-300.svg' }}" alt="coin">
                                     <h5 class="my-4 text-white">300 EpicOn Coins</h5>
                                     <span class="earn-bottom">
                                         {{__('text.coins-condition6')}}
                                     </span>
                                 </li>
                                 <li>
-                                    <img class="mt-5" src="{{ asset('/img/coin-600.svg') }}" alt="coin">
+                                    <img class="mt-5" src="{{ env('AWS_S3_domain').'epicon/assets/images/coin-600.svg' }}" alt="coin">
                                     <h5 class="my-4 text-white">600 EpicOn Coins</h5>
                                     <span class="earn-bottom">
                                         {{__('text.coins-condition7')}}
@@ -137,7 +137,7 @@
                                         <input type="hidden" name="redeem_coupon" id="redeem_coupon" data-coupon="{{$offercontent['coupon_code']}}" value="{{$offercontent['coupon_code']}}">
                                         <div class="logo-coin">
                                             <img src="{{ $offer_image }}" alt="logo">
-                                            <h4><img src="{{ asset('/img/coin.svg') }}" alt="">{{ isset($offercontent['epicoins']) ? $offercontent['epicoins'] : '' }}</h4>
+                                            <h4><img src="{{ env('AWS_S3_domain').'epicon/assets/images/coin.svg' }}" alt="">{{ isset($offercontent['epicoins']) ? $offercontent['epicoins'] : '' }}</h4>
                                         </div>
                                         <p class="mt-4">{{ isset($offercontent['offer_title']) ? $offercontent['offer_title'] : '' }}</p>
                                     </div>
@@ -149,8 +149,8 @@
                                {{-- <!--  <li>
                                     <div class="redeem-top">
                                         <div class="logo-coin">
-                                            <img src="{{ asset('/img/McD.svg') }}" alt="logo">
-                                            <h4><img src="{{ asset('/img/coin.svg') }}" alt="">350</h4>
+                                            <img src="{{ env('AWS_S3_domain').'epicon/assets/images/McD.svg' }}" alt="logo">
+                                            <h4><img src="{{ env('AWS_S3_domain').'epicon/assets/images/coin.svg' }}" alt="">350</h4>
                                         </div>
                                         <p class="mt-4">Buy 1 Get 1 Free on Happy Meal on MacD</p>
                                     </div>
@@ -161,8 +161,8 @@
                                 <!-- <li>
                                     <div class="redeem-top">
                                         <div class="logo-coin">
-                                            <img src="{{ asset('/img/McD.svg') }}" alt="logo">
-                                            <h4><img src="{{ asset('/img/coin.svg') }}" alt="">350</h4>
+                                            <img src="{{ env('AWS_S3_domain').'epicon/assets/images/McD.svg' }}" alt="logo">
+                                            <h4><img src="{{ env('AWS_S3_domain').'epicon/assets/images/coin.svg' }}" alt="">350</h4>
                                         </div>
                                         <p class="mt-4">Buy 1 Get 1 Free on Happy Meal on MacD</p>
                                     </div>
@@ -173,8 +173,8 @@
                                 <!-- <li>
                                     <div class="redeem-top">
                                         <div class="logo-coin">
-                                            <img src="{{ asset('/img/McD.svg') }}" alt="logo">
-                                            <h4><img src="{{ asset('/img/coin.svg') }}" alt="">350</h4>
+                                            <img src="{{ env('AWS_S3_domain').'epicon/assets/images/McD.svg' }}" alt="logo">
+                                            <h4><img src="{{ env('AWS_S3_domain').'epicon/assets/images/coin.svg' }}" alt="">350</h4>
                                         </div>
                                         <p class="mt-4">Buy 1 Get 1 Free on Happy Meal on MacD</p>
                                     </div>
@@ -185,8 +185,8 @@
                                 <li>
                                     <div class="redeem-top">
                                         <div class="logo-coin">
-                                            <img src="{{ asset('/img/McD.svg') }}" alt="logo">
-                                            <h4><img src="{{ asset('/img/coin.svg') }}" alt="">350</h4>
+                                            <img src="{{ env('AWS_S3_domain').'epicon/assets/images/McD.svg' }}" alt="logo">
+                                            <h4><img src="{{ env('AWS_S3_domain').'epicon/assets/images/coin.svg' }}" alt="">350</h4>
                                         </div>
                                         <p class="mt-4">Buy 1 Get 1 Free on Happy Meal on MacD</p>
                                     </div>
@@ -197,8 +197,8 @@
                                 <li>
                                     <div class="redeem-top">
                                         <div class="logo-coin">
-                                            <img src="{{ asset('/img/McD.svg') }}" alt="logo">
-                                            <h4><img src="{{ asset('/img/coin.svg') }}" alt="">350</h4>
+                                            <img src="{{ env('AWS_S3_domain').'epicon/assets/images/McD.svg' }}" alt="logo">
+                                            <h4><img src="{{ env('AWS_S3_domain').'epicon/assets/images/coin.svg' }}" alt="">350</h4>
                                         </div>
                                         <p class="mt-4">Buy 1 Get 1 Free on Happy Meal on MacD</p>
                                     </div>
@@ -224,23 +224,23 @@
                                         <tr>
                                             <td><img class="summary-img" src="{{ $offer_image }}" alt="logo">{{isset($offersummary['offer_title']) ? $offersummary['offer_title'] : '' }}</td>
                                             <td style="color:#B7B7B7">Claimed on {{ isset($redeemOn) ? $redeemOn : '' }}</td>
-                                            <td class="text-end"><img width="15" src="{{ asset('/img/coin.svg') }}" alt="">&nbsp; {{ isset($offersummary['epicoins']) ? $offersummary['epicoins'] : '' }}</td>
+                                            <td class="text-end"><img width="15" src="{{ env('AWS_S3_domain').'epicon/assets/images/coin.svg' }}" alt="">&nbsp; {{ isset($offersummary['epicoins']) ? $offersummary['epicoins'] : '' }}</td>
                                         </tr>
                                         <?php } ?>
                                     {{-- <!-- <tr>
-                                        <td><img class="summary-img" src="{{ asset('/img/macd-img.png') }}" alt="logo">Buy 1 Get 1 Free on Happy Meal on MacD</td>
+                                        <td><img class="summary-img" src="{{ env('AWS_S3_domain').'epicon/assets/images/macd-img.png' }}" alt="logo">Buy 1 Get 1 Free on Happy Meal on MacD</td>
                                         <td style="color:#B7B7B7">Claimed on 03/08/2023</td>
-                                        <td class="text-end"><img width="15" src="{{ asset('/img/coin.svg') }}" alt="">&nbsp; 499</td>
+                                        <td class="text-end"><img width="15" src="{{ env('AWS_S3_domain').'epicon/assets/images/coin.svg' }}" alt="">&nbsp; 499</td>
                                     </tr>
                                     <tr>
-                                        <td><img class="summary-img" src="{{ asset('/img/macd-img.png') }}" alt="logo">Free Starbucks Caramel Frappucino Large</td>
+                                        <td><img class="summary-img" src="{{ env('AWS_S3_domain').'epicon/assets/images/macd-img.png' }}" alt="logo">Free Starbucks Caramel Frappucino Large</td>
                                         <td style="color:#B7B7B7">Claimed on 03/08/2023</td>
-                                        <td class="text-end"><img width="15" src="{{ asset('/img/coin.svg') }}" alt="">&nbsp; 499</td>
+                                        <td class="text-end"><img width="15" src="{{ env('AWS_S3_domain').'epicon/assets/images/coin.svg' }}" alt="">&nbsp; 499</td>
                                     </tr>
                                     <tr>
-                                        <td><img class="summary-img" src="{{ asset('/img/macd-img.png') }}" alt="logo">Audible Subscription for 3 months</td>
+                                        <td><img class="summary-img" src="{{ env('AWS_S3_domain').'epicon/assets/images/macd-img.png' }}" alt="logo">Audible Subscription for 3 months</td>
                                         <td style="color:#B7B7B7">Claimed on 03/08/2023</td>
-                                        <td class="text-end"><img width="15" src="{{ asset('/img/coin.svg') }}" alt="">&nbsp; 499</td>
+                                        <td class="text-end"><img width="15" src="{{ env('AWS_S3_domain').'epicon/assets/images/coin.svg' }}" alt="">&nbsp; 499</td>
                                     </tr> --> --}}
                                 <?php }else{ ?>
                                     <h6 class="mt-4" style="color:white;">No summary to show</h6>

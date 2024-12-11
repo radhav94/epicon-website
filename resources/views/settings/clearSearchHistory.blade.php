@@ -11,10 +11,10 @@
                         {{__('Yes')}}
                     </button>
                 </div>
-                <img class="mb-4" width="150" src="{{ asset('/img/clear-icon.svg') }}" alt="icon">
+                <img class="mb-4" width="150" src="{{ env('AWS_S3_domain').'epicon/assets/images/clear-icon.svg' }}" alt="icon">
             </div>
             <div id="browseHistoryDiv" class="w-100 text-center mt-4">
-                <img width="300" src="{{ asset('/img/clear-history-bg.svg') }}" alt="img">
+                <img width="300" src="{{ env('AWS_S3_domain').'epicon/assets/images/clear-history-bg.svg' }}" alt="img">
                 <p>{{__('You do not have any recent search history.')}}</p>
                 <button class="login-btn mt-4" style="width: 250px;" id="searchBrowseBtn">
                     {{__('Browse Now')}}

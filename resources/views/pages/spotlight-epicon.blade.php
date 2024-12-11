@@ -15,7 +15,7 @@
         <div id="nav">
             @foreach ($spotlightData['data']['list'] as $key => $head_item)
                 <a href="#{{ strtolower(str_replace(' ', '', $head_item['title'])) }}" class="s__spy nav-link {{ $key == 0 ? 'active' : '' }}">
-                    <img src="{{ asset('assets/spotlight/' . strtolower(str_replace(' ', '', $head_item['title'])) . '-icon.svg') }}"
+                    <img src="{{ env('AWS_S3_domain').'epicon/assets/images/' . strtolower(str_replace(' ', '', $head_item['title'])) . '-icon.svg' }}"
                         alt="">
                     {{ $head_item['title'] }}
                 </a>
@@ -59,7 +59,7 @@
                                                         href="javascript:void(0)" data-id="{{$item['ID'] ?? null}}" data-type="{{$item['content_type'] ?? ''}}"
                                                         data-title="{{ $item['title'] ?? '' }}"
                                                         data-promo="{{ $item['promo_url'] ?? '' }}">
-                                                        <img src="{{ $item['cover_image']['original']??asset('assets/img/top-ten-movies.png') }}"
+                                                        <img src="{{ $item['cover_image']['original']??env('AWS_S3_domain').'epicon/assets/images/top-ten-movies.png' }}"
                                                             alt="">
                                                     </a>
                                                   
@@ -125,7 +125,7 @@
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/plyr.js"></script>
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/hls.min.js"></script>
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/webvtt-subtitler.js"></script>
-<script src="{{ asset('assets/js/video-player.js') }}?v={{ assetTime() }}"></script>
+<script src="{{ env('AWS_S3_domain').'epicon/assets/images/video-player.js' }}?v={{ assetTime() }}"></script>
 
 <script>
     var user_duration = 0;

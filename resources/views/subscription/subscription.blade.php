@@ -117,7 +117,7 @@ $isUserLoggedIn = isUserLoggedIn();
                                     <li>
                                         <div class="subsciption-coupon-card">
                                             <a href="javascript:void(0)">
-                                                <img src="{{asset('img/coupon.svg')}}" alt="">
+                                                <img src="{{env('AWS_S3_domain').'epicon/assets/images/coupon.svg'}}" alt="">
                                                 <div class="ac-content">
                                                     <div class="left">
                                                         <div class="circle-logo">
@@ -137,7 +137,7 @@ $isUserLoggedIn = isUserLoggedIn();
                                     <li>
                                         <div class="subsciption-coupon-card">
                                             <a href="javascript:void(0)">
-                                                <img src="{{asset('img/coupon.svg')}}" alt="">
+                                                <img src="{{env('AWS_S3_domain').'epicon/assets/images/coupon.svg'}}" alt="">
                                                 <div class="ac-content">
                                                     <div class="left">
                                                         <div class="circle-logo">

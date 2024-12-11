@@ -59,7 +59,7 @@
                             }else{ ?>
                                 <div class="carousel-main text-center">
                                 <!-- <h4 style="color:white">{{__('No data found')}}</h4> -->
-                                <img class="not-subscribe" src="{{asset('assets/img/no-data-found-library.svg')}}" alt="no data img">
+                                <img class="not-subscribe" src="{{env('AWS_S3_domain').'epicon/assets/images/no-data-found-library.svg'}}" alt="no data img">
                                 <p class="small text-white">You have not added anything to My List yet!</p>
                                 <a href="{{ getUrlWithPrefix('homepage') }}" class="login-btn mt-4" style="width: 280px;">
                                     Explores Now
@@ -102,7 +102,7 @@
                             <?php }else{ ?>
                                 <div class="carousel-main text-center">
                                     <!-- <h4 style="color:white">{{__('No History Found')}}</h4> -->
-                                    <img class="not-subscribe" src="{{asset('assets/img/no-data-found-history-library.svg')}}" alt="no data img">
+                                    <img class="not-subscribe" src="{{env('AWS_S3_domain').'epicon/assets/images/no-data-found-history-library.svg'}}" alt="no data img">
                                     <p class="small text-white">You do not have any recent content history.</p>
                                     <a href="{{ getUrlWithPrefix('homepage') }}" class="login-btn mt-4" style="width: 280px;">
                                         Explores Now
@@ -124,7 +124,7 @@
 
 @section('script')
 
-    <script src="{{ asset('assets/js/library.js') }}?v={{ assetTime() }}"></script>
+    <script src="{{ env('AWS_S3_domain').'epicon/assets/images/library.js' }}?v={{ assetTime() }}"></script>
     <script>
         $("#history,#my-list").on('click', function() {
             $('.vertical-carousel-initilize').slick('slickGoTo', 0);

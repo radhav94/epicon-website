@@ -82,7 +82,7 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
     <div class="modal-dialog modal-lg modal-dialog-centered px-3">
         <div class="modal-content">
             <div class="modal-body text-center py-5">
-                <img width="100" src="{{ asset('/img/warning-fill.png') }}" alt="img">
+                <img width="100" src="{{ env('AWS_S3_domain').'epicon/assets/images/warning-fill.png' }}" alt="img">
                 <h4 class="text-white mt-4">{{__('Are you sure? You want to change the Password.')}}</h4>
                 <p class="w-75 text-white small m-auto mb-4">{{__('You will be Logged Out from all the Devices.')}}</p>
                 <button class="login-btn mt-0" id="confirm-change-pass" style="width: 280px;">

@@ -39,7 +39,7 @@ $plan_id = $subscription['plan_id'] ?? "";
             <h4 class="text-white text-center mb-4">{{__('Your Current Plan')}}</h4>
             <div class="col-sm-8 d-flex justify-content-center">
                 <div class="current-plan-card ycp position-relative">
-                    <img src="{{ asset('assets/img/current-plan-card.png') }}" alt="img">
+                    <img src="{{ env('AWS_S3_domain').'epicon/assets/images/current-plan-card.png' }}" alt="img">
                     <div class="detail text-white">
                         <div class="active mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">

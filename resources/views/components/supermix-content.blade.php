@@ -32,7 +32,7 @@
                 <span class="read-button-{{$key}} readmore-episodes"> </span>
             </div>
             <button class="reorder-icon handle">
-                <img src="{{ asset('assets/img/reorder-icon.svg') }}" alt="icon">
+                <img src="{{ env('AWS_S3_domain').'epicon/assets/images/reorder-icon.svg' }}" alt="icon">
             </button>
         </li>
         @endforeach

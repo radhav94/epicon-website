@@ -2,7 +2,7 @@
      <div class="punjab">
          <div class="punjab-da-swaad align-items-center" style="background: none;">
              <div class="punjab-title">
-                 <img class="w-100 mb-4" src="{{ asset('assets/img/retro-rewind.svg') }}" alt="">
+                 <img class="w-100 mb-4" src="{{ env('AWS_S3_domain').'epicon/assets/images/retro-rewind.svg' }}" alt="">
                  @if (@$value['show_more'])
                      <a onclick="click_cta(this)" data-event_context="Retro Rewind" data-element_text="Explore More" href="{{ getMidPageUrl($value) }}">
                          <button>Explore More</button>

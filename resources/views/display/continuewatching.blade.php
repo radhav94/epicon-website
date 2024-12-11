@@ -62,13 +62,13 @@
                             </a>
                             {{-- <!-- <div class="share-open">
                                     <a href="">
-                                        <img src="{{asset('img/share-facebook-icon.svg')}}" alt="share">
+                                        <img src="{{env('AWS_S3_domain').'epicon/assets/images/share-facebook-icon.svg'}}" alt="share">
                                     </a>
                                     <a href="">
-                                        <img src="{{asset('img/share-tweeter-icon.svg')}}" alt="share">
+                                        <img src="{{env('AWS_S3_domain').'epicon/assets/images/share-tweeter-icon.svg'}}" alt="share">
                                     </a>
                                     <a href="">
-                                        <img src="{{asset('img/share-copy-icon.svg')}}" alt="share">
+                                        <img src="{{env('AWS_S3_domain').'epicon/assets/images/share-copy-icon.svg'}}" alt="share">
                                     </a>
                             </div> --> --}}
                     </div>

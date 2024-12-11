@@ -2,7 +2,7 @@
 @section('title', $meta['title'] ?? getDefaultMetaTitle() )
 
 @section('style')
-<link type="text/css" rel="stylesheet" href="{{ asset('assets/css/socialSharing.css') }}?v={{ assetTime() }}">
+<link type="text/css" rel="stylesheet" href="{{ env('AWS_S3_domain').'epicon/assets/images/socialSharing.css' }}?v={{ assetTime() }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
     li.pod-main.episode-active {
@@ -71,7 +71,7 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
                         {{-- <h5 class="pod-series">CASO.63</h5> --}}
                         {{-- <img src="{{ @$content['cover_image']['large'] }}" alt="thumb"> --}}
                         <img src="{{ $cover_img }}" alt="thumb">
-                        <img class="podcast-top-icon" src="{{ asset('assets/img/podcast-top-icon.svg') }}" alt="podcast icon">
+                        <img class="podcast-top-icon" src="{{ env('AWS_S3_domain').'epicon/assets/images/podcast-top-icon.svg' }}" alt="podcast icon">
                     </div>
                     <input type="hidden" name="subUrl" class="subUrl" id="subUrl" value="{{ getUrl('subscription') }}">
                     <input type="hidden" name="sitemode" class="sitemode" id="sitemode" value="{{ $addClass }}">
@@ -165,7 +165,7 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
 
                             <button class="rounded-grey-btn m-0 addToList" data-id="{{ @$content['ID'] }}" data-action="{{ $wishAction }}" data-type="3">
                                 <img class="wl_add" src="{{ env('AWS_S3_domain') }}epicon/assets/images/add-icon.svg" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
-                                <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon" @if ($wishAction=='add' ) style="display: none" @endif>
+                                <img class="wl_remove" src="{{ env('AWS_S3_domain').'epicon/assets/images/subs-icon.svg' }}" alt="icon" @if ($wishAction=='add' ) style="display: none" @endif>
                             </button>
 
                             <button class="rounded-grey-btn m-0 clapButton" data-id="{{ @$content['ID'] }}">
@@ -175,7 +175,7 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
                                 <span class="claps_num">{{ countConvert(@$content['claps']) }}</span>
                             </button>
                             <button class="rounded-grey-btn shareThis" data-url="{{ getContentUrl($content) }}" data-title="{{ @$share_title }}">
-                                <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
+                                <img src="{{ env('AWS_S3_domain').'epicon/assets/images/share-icon.svg' }}" alt="icon">
                             </button>
                         </div>
                     </div>
@@ -198,7 +198,7 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
                         <a href="javascript:void(0)" class="pik-img">
                             <img class="play-converimg" src="{{ $cover_img }}" alt="img">
                         </a>
-                        <img class="podcast-top-icon" src="{{asset('assets/img/podcast-top-icon.svg')}}" alt="podcast icon">
+                        <img class="podcast-top-icon" src="{{env('AWS_S3_domain').'epicon/assets/images/podcast-top-icon.svg'}}" alt="podcast icon">
                     </div>
                 </div>
                 <div class="pod-pik-detals d-flex align-items-center w-100">
@@ -255,27 +255,27 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
                 <input type="hidden" id="play-id" name="" value="{{@$content['ID']}}">
                 <div class="controll-inner">
                     <button class="tenx-prev">
-                        <img src="{{asset('img/podcast-previous.svg')}}" alt="icons">
+                        <img src="{{env('AWS_S3_domain').'epicon/assets/images/podcast-previous.svg'}}" alt="icons">
                     </button>
                     <button class="podcast-play" style="display:none">
-                        <img src="{{asset('img/podcast-play.svg')}}" alt="icons">
+                        <img src="{{env('AWS_S3_domain').'epicon/assets/images/podcast-play.svg'}}" alt="icons">
                     </button>
                     <button class="podcast-pause">
-                        <img src="{{asset('img/podcast-pause.svg')}}" alt="icons">
+                        <img src="{{env('AWS_S3_domain').'epicon/assets/images/podcast-pause.svg'}}" alt="icons">
                     </button>
                     <button class="tenx-next">
-                        <img src="{{asset('img/podcast-next.svg')}}" alt="icons">
+                        <img src="{{env('AWS_S3_domain').'epicon/assets/images/podcast-next.svg'}}" alt="icons">
                     </button>
                     {{-- <!--  <button class="wl_add">
-                        <img src="{{asset('img/podcast-add.svg')}}" alt="icons">
+                        <img src="{{env('AWS_S3_domain').'epicon/assets/images/podcast-add.svg'}}" alt="icons">
                     </button> --> --}}
                     <button class="rounded-grey-btn m-0 addToList" data-id="{{ @$content['ID'] }}" data-action="{{ @$wishAction }}" data-type="3">
-                        <img class="wl_add" src="{{ asset('assets/img/add-icon-podcast.svg') }}" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
-                        <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon" @if ($wishAction=='add' ) style="display: none" @endif>
+                        <img class="wl_add" src="{{ env('AWS_S3_domain').'epicon/assets/images/add-icon-podcast.svg' }}" alt="icon" @if ($wishAction=='delete' ) style="display: none" @endif>
+                        <img class="wl_remove" src="{{ env('AWS_S3_domain').'epicon/assets/images/subs-icon.svg' }}" alt="icon" @if ($wishAction=='add' ) style="display: none" @endif>
                     </button>
                 </div>
                 <button class="podcast-close">
-                    <img src="{{asset('img/podcast-close.svg')}}" alt="icons">
+                    <img src="{{env('AWS_S3_domain').'epicon/assets/images/podcast-close.svg'}}" alt="icons">
                 </button>
             </div>
         </div>
@@ -287,8 +287,8 @@ $playBtn = $watchClass == "" ? "playBtn" : "";
 
 @section('script')
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/homepage.js?v={{ assetTime() }}"></script>
-<script src="{{ asset('assets/js/detail.js') }}?v={{ assetTime() }}"></script>
-<script src="{{ asset('assets/js/socialSharing.js') }}?v={{ assetTime() }}"></script>
+<script src="{{ env('AWS_S3_domain').'epicon/assets/images/detail.js' }}?v={{ assetTime() }}"></script>
+<script src="{{ env('AWS_S3_domain').'epicon/assets/images/socialSharing.js' }}?v={{ assetTime() }}"></script>
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/common.js?v={{ assetTime() }}"></script>
 <script>
     // List of episode URLs
