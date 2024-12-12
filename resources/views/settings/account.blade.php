@@ -9,11 +9,11 @@
                 <p class="small text-start w-100">{{__('Update your interests')}} ({{__('choose 5')}})</p>
                 <div class="choose">
                     <div class="three">
-                        <span><img src="{{ asset('/img/welcom.jpeg') }}" alt=""></span>
-                        <span><img src="{{ asset('/img/dhamal.jpeg') }}" alt=""></span>
-                        <span><img src="{{ asset('/img/welcom.jpeg') }}" alt=""></span>
-                        <span><img src="{{ asset('/img/dhamal.jpeg') }}" alt=""></span>
-                        <span><img src="{{ asset('/img/welcom.jpeg') }}" alt=""></span>
+                        <span><img src="{{ env('AWS_S3_domain').'epicon/assets/images/welcom.jpeg' }}" alt=""></span>
+                        <span><img src="{{ env('AWS_S3_domain').'epicon/assets/images/dhamal.jpeg' }}" alt=""></span>
+                        <span><img src="{{ env('AWS_S3_domain').'epicon/assets/images/welcom.jpeg' }}" alt=""></span>
+                        <span><img src="{{ env('AWS_S3_domain').'epicon/assets/images/dhamal.jpeg' }}" alt=""></span>
+                        <span><img src="{{ env('AWS_S3_domain').'epicon/assets/images/welcom.jpeg' }}" alt=""></span>
                         <span class="span-text-5 genre-select-count">{{ $interestsCount }} of 5</span>
                     </div>
                     <button type="button" id="updatePreference">{{('Next')}}

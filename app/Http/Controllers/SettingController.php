@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Redirect;
+use Illuminate\Support\Facades\Log;
 
 class SettingController extends Controller
 {
@@ -68,6 +69,13 @@ class SettingController extends Controller
         $response = CurlAPI("users/deleteDevice", "POST", $curlData, 2, true, true);
         $activeDeviceArr = CurlAPI("users/getDevice", 'POST', [], 2, true, true);
 
+        $infoMsg = "\n------------deleteDevice(Start)--------------
+                    \n user_token: ". ($request->session()->get('user_token') ?? ''). 
+                    "\n user id: ". getUserId() . 
+                    "\n deleted deviceId: ". $deviceId.
+                    "\n ------------deleteDevice(End)--------------";
+        Log::channel('user')->info($infoMsg);
+
         $activeDevices = @$activeDeviceArr['success'] && array_key_exists('data', $activeDeviceArr) ? $activeDeviceArr['data'] : [];
 
         $url = $request->session()->get('silentUrl');
@@ -126,6 +134,12 @@ class SettingController extends Controller
             if (!$deleteDevice) {
                 return JSONResponse(400, "Something went wrong. Please try again!");
             }
+            $infoMsg = "\n------------deleteDevice from all device during change password(Start)--------------
+                        \n user_token: ". ($request->session()->get('user_token') ?? ''). 
+                        "\n user id: ". getUserId() . 
+                        "\n ------------deleteDevice from all device during change password(End)--------------";
+            Log::channel('user')->info($infoMsg);
+
             $result = CurlAPI("users/logout", "POST", [], 2, true, true);
             $request->session()->forget('user_id');
             $request->session()->forget('user');

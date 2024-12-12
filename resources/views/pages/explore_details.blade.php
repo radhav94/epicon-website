@@ -153,5 +153,5 @@
 @stop
 @section('script')
 
-    <script src="{{ asset('assets/js/library.js') }}?v={{ assetTime() }}"></script>
+    <script src="{{ env('AWS_S3_domain').'epicon/assets/images/library.js' }}?v={{ assetTime() }}"></script>
 @stop

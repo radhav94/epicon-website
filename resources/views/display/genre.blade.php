@@ -38,7 +38,7 @@
                     <a class="unique-slug" onclick="click_tile(this)" data-title="{{ @$val['title'] }}"
                         data-type="{{ @$title }}" href="{{ url('explore/' . @$val['slug']) }}">
                         {{-- <button> --}}
-                        <img src="{{ $val['fiesta_image'] ?? asset('genre_img/' . $default) }}" alt="{{ $default }}">
+                        <img src="{{ $val['fiesta_image'] ?? env('AWS_S3_domain').'epicon/assets/images/' . $default }}" alt="{{ $default }}">
                         {{ $val['name'] }}
                         {{-- </button> --}}
                     </a>

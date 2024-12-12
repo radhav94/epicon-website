@@ -92,13 +92,13 @@
 
 </div>
 
-    <div class="content-loader d-none" style="text-align: center;"> <img style="width: 40px;" src="{{ asset('assets/img/loader.gif') }}" alt="loading"> </div>
+    <div class="content-loader d-none" style="text-align: center;"> <img style="width: 40px;" src="{{ env('AWS_S3_domain').'epicon/assets/images/loader.gif' }}" alt="loading"> </div>
 
 @stop
 
 @section('script')
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/homepage.js?v={{ assetTime() }}"></script>
-<script defer src="{{ asset('assets/js/distro-tv.js') }}?v={{ assetTime() }}"></script>
+<script defer src="{{ env('AWS_S3_domain').'epicon/assets/images/distro-tv.js' }}?v={{ assetTime() }}"></script>
 <script>
     window.onload = function() {
         eventAfterDistroLoad();

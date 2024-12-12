@@ -71,21 +71,21 @@
 
                                 <button class="rounded-grey-btn me-2 addToList" data-id="{{ @$value['ID'] }}" data-action="{{ $ep_wishAction }}" data-type="3">
                                     <img class="wl_add" src="{{ env('AWS_S3_domain') }}epicon/assets/images/add-icon.svg" alt="icon" @if ($ep_wishAction=='delete' ) style="display: none" @endif>
-                                    <img class="wl_remove" src="{{ asset('assets/img/subs-icon.svg') }}" alt="icon" @if ($ep_wishAction=='add' ) style="display: none" @endif>
+                                    <img class="wl_remove" src="{{ env('AWS_S3_domain').'epicon/assets/images/subs-icon.svg' }}" alt="icon" @if ($ep_wishAction=='add' ) style="display: none" @endif>
                                 </button>
 
                                 <button class="rounded-grey-btn me-2 clapButton" data-cardtype="list" data-id="{{ @$value['ID'] }}">
-                                    <img src="{{ asset('assets/img/clap-icon.svg') }}" alt="icon">
+                                    <img src="{{ env('AWS_S3_domain').'epicon/assets/images/clap-icon.svg' }}" alt="icon">
                                     <span id="claps_num_{{ @$value['ID'] }}">{{ countConvert(@$value['claps']) }}</span>
                                 </button>
                                 <button class="rounded-grey-btn shareThis" data-url="{{ getContentUrl($value) }}" data-title="{{ $share_title }}">
-                                    <img src="{{ asset('assets/img/share-icon.svg') }}" alt="icon">
+                                    <img src="{{ env('AWS_S3_domain').'epicon/assets/images/share-icon.svg' }}" alt="icon">
                                 </button>
                             </div>
                         </div>
-                        <button class="pod-play {{$playBtn}} {{$watchClass}}" id="pod-play-{{ @$value['ID'] }}" data-id="{{ @$value['ID'] }}" data-url="{{ getContentUrl($value) }}"><img src="{{ asset('assets/img/play-icon.svg') }}" alt=""></button>
+                        <button class="pod-play {{$playBtn}} {{$watchClass}}" id="pod-play-{{ @$value['ID'] }}" data-id="{{ @$value['ID'] }}" data-url="{{ getContentUrl($value) }}"><img src="{{ env('AWS_S3_domain').'epicon/assets/images/play-icon.svg' }}" alt=""></button>
                        <button class="pod-pause" id="pod-pause-{{ @$value['ID'] }}" data-id="{{ @$value['ID'] }}" style="display:none">
-                        <img src="{{asset('img/podcast-play.svg')}}" alt="icons">
+                        <img src="{{env('AWS_S3_domain').'epicon/assets/images/podcast-play.svg'}}" alt="icons">
                        </button>
 
                             </a>

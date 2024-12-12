@@ -21,7 +21,7 @@
             <div class="w-100 mb-5 mt-4">
                 <div class="search-header">
                     <div class="inside-head">
-                        <img src="{{ asset('/img/search-white.png') }}" alt="">
+                        <img src="{{ env('AWS_S3_domain').'epicon/assets/images/search-white.png' }}" alt="">
                         <input type="text" id="search-feedback" name="search-feedback" placeholder="{{__('How can we help you today?')}}">
                     </div>
                 </div>
