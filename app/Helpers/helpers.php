@@ -1070,8 +1070,14 @@ if (!function_exists("update_user_session")) {
                 //     is_array($profile_detail['user_data']['profiles']) &&
                 //     count($profile_detail['user_data']['profiles']) > 0
                 // ) {
+               
                     $user_data = @$profile_detail['user_data'];
                     session()->put('user', $user_data);
+                    $token = [Session::get('user_token')];
+                    if (!Cookie::has('StreamKey')) {
+                        $userToken = Session::get('user_token');
+                        setcookie("StreamKey", $userToken, time() + (30 * 24 * 60 * 60), '/');
+                    }
                 }
             } else {
                 $infoMsg = "\n------------viewProfile(Start)--------------
@@ -1803,4 +1809,21 @@ function checkReleaseDate($newrelease_date)
         return true;
     }
     return false;
+}
+
+if (!function_exists('setToken')){
+    function setToken ($token)
+    {
+        setcookie("StreamKey", $token, time() + (10 * 365 * 24 * 60 * 60), '/');
+    }
+}
+
+if (!function_exists('clearCookie')) {
+    function clearCookie()
+    {
+        setcookie("StreamKey", "", time() - 3600, '/');
+        setcookie("KidsMode", "", time() - 3600, '/');
+        setcookie("active_profile", "", time() - 3600, '/');
+        setcookie("deviceId", "", time() - 3600, '/');
+    }
 }

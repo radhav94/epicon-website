@@ -112,7 +112,7 @@ if ($request->has('type')) {
                 <div class="text-center">
                     <div class="successfully-loged w-100">
                         <img width="100" class="{{ @$subplan['status'] }}"
-                            src="{{ asset('/img/success-tick.png') }}" alt="">
+                            src="{{env('AWS_S3_domain')}}epicon/assets/images/success-tick.png" alt="">
                         <h4 class="text-center text-white mt-3">Awesome! You have successfully logged in to EPIC ON
                             {{ @$subplan_status }}
                         </h4>
