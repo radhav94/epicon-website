@@ -6,7 +6,7 @@
 
             <div class="sync-device-main pb-4 w-100">
                 <div>
-                    <p class="delete-text my-3">{{__('Deleting your account will delete all your saved content. You will also lose any subscription linked to your account. You can chose to log out instead. This will allow you to come back any time you wish.')}}</p>
+                    <p class="delete-text my-3">{{__('Deleting your account will delete all your saved content. You will also lose any subscription linked to your account. You can choose to log out instead. This will allow you to come back any time you wish.')}}</p>
                     <div class="d-flex mt-4">
                         <button class="border-btn my-0" id="delete_user_account">{{__('Delete Acc')}}</button>
                         <button class="fill-btn logout mt-0 my-0">{{__('Log Out')}}</button>
