@@ -254,8 +254,7 @@ $meta['image'] = $share_img;
         {{-- <script src="{{ env('AWS_S3_domain').'epicon/assets/images/vendor/plyr.js' }}"></script> --}}
         {{-- <script src="{{ env('AWS_S3_domain').'epicon/assets/images/vendor/hls.min.js' }}"></script> --}}
         <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/webvtt-subtitler.js"></script>
-        <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/video-player.js"></script>
-        {{-- <script src="{{ env('AWS_S3_domain').'epicon/assets/images/video-player.js' }}?v={{ assetTime() }}"></script> --}}
+        <script src="{{ asset('assets/js/video-player.js') }}?v={{ assetTime() }}"></script>
     @endif
 
     <script>
@@ -263,12 +262,18 @@ $meta['image'] = $share_img;
             $("#video-start-from-beginning").click(function(){
                 user_duration = 0;
                 if (player) {
+                    if (!$(".videoContainer").is(":visible")) {
+                        $(".videoContainer").show();
+                        $(".hide-vid-element").hide();
+                    }
+                    
                     player.currentTime=0;
+                    player.play();
                 } else {
                     if (!$(".videoContainer").is(":visible")) {
                         $(".videoContainer").show();
-                        $(".loaderImg").hide();
                     }
+                    $(".loaderImg").hide();
                     $("#watchVideo").trigger("click");
                 }
             })

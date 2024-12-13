@@ -92,11 +92,11 @@ class PaytmQrController extends Controller{
 		// echo "<pre>"; print_r($response); echo "</pre>"; die('end of response');
 		$response_array = json_decode($response,true);
 		// echo "<pre>"; print_r($response_array['body']); echo "</pre>"; die('end of code');
-		$result["resultStatus"] = $response_array['body']['resultInfo']['resultStatus'];
-		$result["resultMsg"] = $response_array['body']['resultInfo']['resultMsg'];
-		$result["qrCodeId"] = $response_array['body']['qrCodeId'];
-		$result["qrData"] = $response_array['body']['qrData'];
-		$result["image"] = $response_array['body']['image'];
+		$result["resultStatus"] = @$response_array['body']['resultInfo']['resultStatus'];
+		$result["resultMsg"] = @$response_array['body']['resultInfo']['resultMsg'];
+		$result["qrCodeId"] = @$response_array['body']['qrCodeId'];
+		$result["qrData"] = @$response_array['body']['qrData'];
+		$result["image"] = @$response_array['body']['image'];
 		Log::info("-----Paytm-QR-result");	
 		Log::debug($response);
 		Log::info("-----Paytm-QR-result End <=========================>");	
