@@ -76,6 +76,7 @@
 
                                 <button class="rounded-grey-btn me-2 clapButton" data-cardtype="list" data-id="{{ @$value['ID'] }}">
                                     <img src="{{ env('AWS_S3_domain').'epicon/assets/images/clap-icon.svg' }}" alt="icon">
+                                    <span id="claps_num_{{ @$value['ID'] }}">{{ countConvert(@$value['claps']) }}</span>
                                 </button>
                                 <button class="rounded-grey-btn shareThis" data-url="{{ getContentUrl($value) }}" data-title="{{ $share_title }}">
                                     <img src="{{ env('AWS_S3_domain').'epicon/assets/images/share-icon.svg' }}" alt="icon">
