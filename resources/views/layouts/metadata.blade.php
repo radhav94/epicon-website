@@ -4,7 +4,7 @@ $lastSegment = request()->segment(count(request()->segments()));
 @endphp
 <meta charset="utf-8">
 {{-- <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> --> --}}
-<meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport' > 
+<meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport' >
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @if(env('DISABLE_CSP') != 1)
@@ -15,7 +15,7 @@ $lastSegment = request()->segment(count(request()->segments()));
 <link rel="canonical" href="{{ URL::current() }}">
 
 <meta name="theme-color" content="#9442c7">
-<meta name="description" content="{{ htmlspecialchars_decode(@$meta['description'] ?? 'Watch TV Shows, Web Series, Movies, Podcasts & Live TV Channels online at Epic On, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.') }}">
+<meta name="description" content="{{ htmlspecialchars_decode(@$meta['description'] ?? 'Watch TV Shows, Web Series, Movies, Podcasts & Live TV Channels online at EPIC ON, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.') }}">
 @if(in_array($lastSegment, $disallowUrls))
 <meta name="Robots" content="NOINDEX, NOFOLLOW" />
 @else
@@ -32,17 +32,17 @@ $lastSegment = request()->segment(count(request()->segments()));
 
 <!-- HTML Meta Tags -->
 <meta property="og:title" content="{{ $meta['title'] ?? getDefaultMetaTitle() }}">
-<meta property="og:site_name" content="Epic On">
+<meta property="og:site_name" content="EPIC ON">
 <meta property="og:url" content="{{ URL::current() }}">
 <meta property="og:description"
-    content="{{ htmlspecialchars_decode(@$meta['description'] ?? 'Watch Indian and Hollywood movies & TV shows online at Epic On, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.') }}">
+    content="{{ htmlspecialchars_decode(@$meta['description'] ?? 'Watch Indian and Hollywood movies & TV shows online at EPIC ON, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.') }}">
 <meta property="og:type" content="website">
 <meta property="og:image" content="{{ $meta['image'] ?? env('AWS_S3_domain') }}epicon/assets/images/epiconlogo.png' }}">
 
 <!-- Facebook Meta Tags -->
 <meta property="og:title" content="{{ $meta['title'] ?? getDefaultMetaTitle() }}">
 <meta property="og:description"
-    content="{{ $meta['description'] ?? 'Watch TV Shows, Web Series, Movies, Podcasts & Live TV Channels online at Epic On, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.' }}">
+    content="{{ $meta['description'] ?? 'Watch TV Shows, Web Series, Movies, Podcasts & Live TV Channels online at EPIC ON, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.' }}">
 <meta property="og:url" content="{{ URL::current() }}">
 <meta property="og:image" content="{{ $meta['image'] ?? env('AWS_S3_domain') }}epicon/assets/images/epiconlogo.png' }}">
 
@@ -53,7 +53,7 @@ $lastSegment = request()->segment(count(request()->segments()));
 
 <!-- Twitter Meta Tags -->
 <meta name="twitter:title" content="{{ $meta['title'] ?? getDefaultMetaTitle() }}">
-<meta name="twitter:description" content="{{ $meta['description'] ?? 'Watch TV Shows, Web Series, Movies, Podcasts & Live TV Channels online at Epic On, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.' }}">
+<meta name="twitter:description" content="{{ $meta['description'] ?? 'Watch TV Shows, Web Series, Movies, Podcasts & Live TV Channels online at EPIC ON, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.' }}">
 <meta name="twitter:image" content="{{ $meta['image'] ?? env('AWS_S3_domain') }}epicon/assets/images/epiconlogo.png' }}">
 <meta name="twitter:image:src" content="{{ $meta['image'] ?? env('AWS_S3_domain') }}epicon/assets/images/epiconlogo.png' }}">
 <meta name="twitter:card" content="summary">
