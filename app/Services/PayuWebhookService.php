@@ -25,15 +25,17 @@ class PayuWebhookService
                 $subEndDate = null;
                 $orderData = [];
                 if (isset($resultRecur['userOrder'])) {
-                    $subEndDate = $resultRecur['userOrder']['subscription_end_date'];   //change the key
-                    $orderData = $resultRecur['userOrder'];
+                    // $subEndDate = $resultRecur['userOrder']['subscription_end_date'];   //change the key
+                    $subEndDate = new \DateTime(@$resultRecur['userOrder']['subscription_end_date']);   //change the key
+                    $subEndDate = $subEndDate->format('Y-m-d');
+                    $orderData = @$resultRecur['userOrder'];
                 }
-                if ($resultRecur['status'] == false || strtotime($subEndDate) <= strtotime(date('Y-m-d'))) {     //if subscription is expired or is expiring today then only process
+                if (@$resultRecur['status'] == false || strtotime($subEndDate) <= strtotime(date('Y-m-d'))) {     //if subscription is expired or is expiring today then only process
                     $this->payuLog("----- sirecurring check passed for : " . $payuAuthId, false);
                     $this->payuLog("----- BEGIN sirecurring calling 'subscriptions/updateOrder' for : " . $payuAuthId, false);
                     $updateOrderData = [
-                        'plan' => $orderData['plan_id'] ?? '',
-                        'user_id' => $orderData['user_id'] ?? '',
+                        'plan' => @$orderData['plan_id'] ?? '',
+                        'user_id' => @$orderData['user_id'] ?? '',
                         'order_id' => @$orderData['order_id'],
                         'order_status' => 'complete',
                         'payment_gateway' => 'payu',
@@ -59,7 +61,7 @@ class PayuWebhookService
 
                     $this->payuLog("----- END sirecurring calling 'subscriptions/updateOrder' for : " . $payuAuthId, false, ['url' => 'subscriptions/updateOrder', 'request' => $updateOrderData, 'response' => $updateOrder]);
                 } else {
-                    $this->payuLog("----- sirecurring check failed for : " . $payuAuthId . "-----", false, ['status' => $resultRecur['status'], 'subscription_end_date' => $subEndDate, 'now_date' => date('Y-m-d')]);
+                    $this->payuLog("----- sirecurring check failed for : " . $payuAuthId . "-----", false, ['status' => @$resultRecur['status'], 'subscription_end_date' => $subEndDate, 'now_date' => date('Y-m-d')]);
                 }
             } else {
                 $this->payuLog("----- PAYU webhook sirecurring EMPTY PAYU AUTH ID => " . $payuAuthId . "-----", false, $webhookResponse);
