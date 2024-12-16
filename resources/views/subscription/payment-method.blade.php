@@ -45,7 +45,7 @@ if($currency_amt == 'INR'){
         </div>
     </section>
     <section class="container pb-5">
-        <form name="checkoutsubscriptionform" method="post" id="checkoutsubscriptionid" action="{{route('saveSubscription')}}">
+        <form name="checkoutsubscriptionform" method="post" id="checkoutsubscriptionid" action="@if ($result['id'] == 'epic_in_pl_1') {{route('saveSubscriptionCashfree')}} @else {{route('saveSubscription')}} @endif">
         @csrf
         <div class="row justify-content-center">
         <input type="hidden" name="payment_type" value="DC" class="card_type" id="card_type">
