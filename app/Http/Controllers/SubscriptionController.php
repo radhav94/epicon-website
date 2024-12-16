@@ -540,7 +540,7 @@ class SubscriptionController extends Controller
 
         $this->payuLog( 'Inside Payu success function', @$paymentresponse['txnid'], [$paymentresponse]);
 
-        $paymtentStatus = strtolower($paymentresponse['status']);
+        $paymtentStatus = strtolower(@$paymentresponse['status']);
         $final_result = ['message' => 'The transaction has been declined.'];
         //$getOnlyDate = date('Y-m-d', strtotime(@$orderdata['subscription_end_date']));
         if (@$paymentresponse['status'] == 'success') {
@@ -555,9 +555,9 @@ class SubscriptionController extends Controller
                 'order_id' => $orderData['order_id'] ?? '',
                 'order_status' => 'complete',
                 'payment_gateway' => $orderValue['payment_gateway'] ?? '',
-                'bank_ref_no' => $paymentresponse['bank_ref_num'] ?? '',
-                'transaction_id' => $paymentresponse['mihpayid'] ?? '',
-                'authPayuId' => $paymentresponse['mihpayid'] ?? '',
+                'bank_ref_no' => @$paymentresponse['bank_ref_num'] ?? '',
+                'transaction_id' => @$paymentresponse['mihpayid'] ?? '',
+                'authPayuId' => @$paymentresponse['mihpayid'] ?? '',
                 'is_recurring' => env('PAYU_SI'),
                 'ios_receipt' => '',
                 'android_receipt' => '',
@@ -568,7 +568,7 @@ class SubscriptionController extends Controller
                 'note' => '',
                 'recurring_receipt' => '',
                 'bank_name' => '',
-                'payment_mode' => $paymentresponse['mode'] ?? '',
+                'payment_mode' => @$paymentresponse['mode'] ?? '',
                 'x_country' => @$countrycode,
                 'x_continent' => @$countrycode,
 
@@ -579,7 +579,7 @@ class SubscriptionController extends Controller
 
             $parameters_verify_payment['key'] = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY');
             $parameters_verify_payment['command'] = 'verify_payment';
-            $parameters_verify_payment['var1'] = $paymentresponse['txnid'];
+            $parameters_verify_payment['var1'] = @$paymentresponse['txnid'];
             $HASH = config('epicconfig.PAYUMONEY.PAYUMONEY_MERCHANT_KEY') . '|' . $parameters_verify_payment['command'] . '|' . $parameters_verify_payment['var1'] . '|' . config('epicconfig.PAYUMONEY.PAYUMONEY_SALT');
             $calculated_hash = strtolower(hash("sha512", $HASH));
             $parameters_verify_payment['hash'] = $calculated_hash;
