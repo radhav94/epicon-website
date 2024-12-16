@@ -234,7 +234,7 @@ foreach ($lang as $val) {
 
         /**cashfree routes */
         Route::post('saveSubscriptionCashfree', [SubscriptionController::class, 'saveSubscriptionCashfree'])->name('saveSubscriptionCashfree');
-        Route::get('cashfree-response', [SubscriptionController::class, 'cashfreeResponse'])->name('cashfreeResponse');
+        Route::get('cashfree-success', [SubscriptionController::class, 'cashfreeResponse'])->name('cashfreeResponse');
         /**cashfree routes */
     });
     Route::get('subscription', [SubscriptionController::class, 'subscription'])->name('subscription');
