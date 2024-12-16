@@ -25,7 +25,9 @@ class PayuWebhookService
                 $subEndDate = null;
                 $orderData = [];
                 if (isset($resultRecur['userOrder'])) {
-                    $subEndDate = $resultRecur['userOrder']['subscription_end_date'];   //change the key
+                    // $subEndDate = $resultRecur['userOrder']['subscription_end_date'];   //change the key
+                    $subEndDate = new \DateTime($resultRecur['userOrder']['subscription_end_date']);   //change the key
+                    $subEndDate = $subEndDate->format('Y-m-d');
                     $orderData = $resultRecur['userOrder'];
                 }
                 if ($resultRecur['status'] == false || strtotime($subEndDate) <= strtotime(date('Y-m-d'))) {     //if subscription is expired or is expiring today then only process
