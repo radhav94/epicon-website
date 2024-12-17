@@ -95,7 +95,7 @@
 {
 "@context": "https://schema.org",
 "@type": "WebSite",
-"name": "Epic On",
+"name": "EPIC ON",
 "url": "https://www.epicon.in/",
 "potentialAction": {
 "@type": "ViewAction",
