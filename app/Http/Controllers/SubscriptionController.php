@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\PayuWebhookCancelRecur;
 use App\Services\PayuWebhookService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -892,6 +893,16 @@ class SubscriptionController extends Controller
         $getRedeem = CurlAPI("giftcard/redeem", 'POST', $params, 2, true);
         Log::channel('qwikcilver')->info("giftcard/redeem Response: ". json_encode($getRedeem));
         return $getRedeem;
+    }
+
+    public function payuCancelRecur(Request $request){
+        Log::channel('payu_webhook')->info("payu recur cancel webhook : ". json_encode($request->all(), 1));
+
+        $payuResponse = $request->all();
+        $payuWebhookService = new PayuWebhookCancelRecur();
+        $payuWebhookService->processWebhookCallback($payuResponse);
+
+        return response()->json('success', 200);
     }
 
 }
