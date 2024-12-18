@@ -921,6 +921,15 @@ class SubscriptionController extends Controller
         $payuWebhookService->processFailedTransaction($payuResponse);
 
         return response()->json('success', 200);
+    }    
+    public function payuTransactioDisputeWebhook(Request $request){
+        Log::channel('payu_webhook')->info("payu transaction dispute webhook : ".PHP_EOL. json_encode($request->all()));
+
+        $payuResponse = $request->all();
+        $payuWebhookService = new PayuWebhookService();
+        $payuWebhookService->processDisputeTransaction($payuResponse);
+
+        return response()->json('success', 200);
     }
 
 }

@@ -346,4 +346,23 @@ class PayuWebhookService
             exit;
         }
     }
+    public function processDisputeTransaction($webhookResponse = [])
+    {
+        return 1;
+        $this->payuLog("=== payu dispute transaction BEGIN");
+        if (@$webhookResponse['status'] == 'failure') {
+            /**BEGIN call api to store logs */
+            $data = [
+                'authpayuid'   => @$webhookResponse['authPayuId']
+            ];
+            $this->payuLog("Begin Calling store logs API (subscriptions/storelogs)", '', $data);
+            $response = CurlAPI("subscriptions/storelogs", 'POST',  $data, 2, false, true);
+            $this->payuLog("End Calling store logs API (subscriptions/storelogs)", '', $response);
+            exit;
+            /**END call api to store logs */
+        } else {
+            $this->payuLog("payu dispute transaction else END" . @$webhookResponse['authPayuId']);
+            exit;
+        }
+    }
 }
