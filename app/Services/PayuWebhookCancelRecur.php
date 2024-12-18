@@ -9,6 +9,7 @@ class PayuWebhookCancelRecur
 
     public function processWebhookCallback(array $webhookResponse = [])
     {
+        return 1;
         $this->payuLog("=== payu recur cancel BEGIN (inside processWebhookCallback | ".@$webhookResponse['authPayuId'].") ===");
         if(@$webhookResponse['status'] != 'active'){
             /**BEGIN call api to set is_recurring to false */
@@ -16,9 +17,9 @@ class PayuWebhookCancelRecur
                 'is_recurring' => false,
                 'authpayuid'   => @$webhookResponse['authPayuId']
             ];
-            $this->payuLog("Begin Calling cancel Recur API (subscriptions/cancelSiRecur)",'', $data);
+            $this->payuLog("Begin Calling Recur cancel API (subscriptions/cancelSiRecur)",'', $data);
             $response = CurlAPI("subscriptions/cancelSiRecur", 'POST',  $data, 2, false, true);
-            $this->payuLog("End Calling cancel Recur API (subscriptions/cancelSiRecur)",'', $response);
+            $this->payuLog("End Calling Recur cancel API (subscriptions/cancelSiRecur)",'', $response);
             exit;
             /**END call api to set is_recurring to false */
         }else{

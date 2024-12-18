@@ -896,7 +896,7 @@ class SubscriptionController extends Controller
     }
 
     public function payuCancelRecur(Request $request){
-        Log::channel('payu_webhook')->info("payu recur cancel webhook : ". json_encode($request->all(), 1));
+        Log::channel('payu_webhook')->info("payu recur cancel webhook : ".PHP_EOL. json_encode($request->all(), 1));
 
         $payuResponse = $request->all();
         $payuWebhookService = new PayuWebhookCancelRecur();

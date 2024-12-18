@@ -289,7 +289,7 @@ foreach ($lang as $val) {
 }
 
 Route::any('/payu/transactioncallback', [SubscriptionController::class, 'payuWebhook']);
-Route::any('/payu/cancel-si-recur', [SubscriptionController::class, 'payuCancelRecur']);
+Route::any('/payu/cancel-si-transaction', [SubscriptionController::class, 'payuCancelRecur']);
 
 
 
