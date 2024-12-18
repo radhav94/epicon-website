@@ -289,4 +289,83 @@ class PayuWebhookService
             Log::channel('payu_webhook')->info($prefix.$msg );
         }
     }
+
+    public function processCancelRecur(array $webhookResponse = [])
+    {
+        return 1;
+        $this->payuLog("=== payu recur cancel BEGIN (inside processWebhookCallback | " . @$webhookResponse['authPayuId'] . ") ===");
+        if (@$webhookResponse['status'] != 'active') {
+            /**BEGIN call api to set is_recurring to false */
+            $data = [
+                'is_recurring' => false,
+                'authpayuid'   => @$webhookResponse['authPayuId']
+            ];
+            $this->payuLog("Begin Calling Recur cancel API (subscriptions/cancelSiRecur)", '', $data);
+            $response = CurlAPI("subscriptions/cancelSiRecur", 'POST',  $data, 2, false, true);
+            $this->payuLog("End Calling Recur cancel API (subscriptions/cancelSiRecur)", '', $response);
+            exit;
+            /**END call api to set is_recurring to false */
+        } else {
+            $this->payuLog("=== payu recur cancel END (status active received | authpayuid : " . @$webhookResponse['authPayuId'] . " , status : " . @$webhookResponse['status'] . ") ");
+            exit;
+        }
+    }
+    public function processFailedTransaction($webhookResponse = [])
+    {
+        return 1;
+        $this->payuLog("=== payu failed transaction BEGIN");
+        if (@$webhookResponse['status'] == 'failure') {
+            /**BEGIN call api to store logs */
+            $data = [
+                'authpayuid'   => @$webhookResponse['authPayuId']
+            ];
+            $this->payuLog("Begin Calling store logs API (subscriptions/storelogs)", '', $data);
+            $response = CurlAPI("subscriptions/storelogs", 'POST',  $data, 2, false, true);
+            $this->payuLog("End Calling store logs API (subscriptions/storelogs)", '', $response);
+            exit;
+            /**END call api to store logs */
+        } else {
+            $this->payuLog("payu failed transaction else END" . @$webhookResponse['authPayuId']);
+            exit;
+        }
+    }
+
+    public function processRefundTransaction($webhookResponse = [])
+    {
+        return 1;
+        $this->payuLog("=== payu refund transaction BEGIN");
+        if (@$webhookResponse['status'] == 'failure') {
+            /**BEGIN call api to store logs */
+            $data = [
+                'authpayuid'   => @$webhookResponse['authPayuId']
+            ];
+            $this->payuLog("Begin Calling store logs API (subscriptions/storelogs)", '', $data);
+            $response = CurlAPI("subscriptions/storelogs", 'POST',  $data, 2, false, true);
+            $this->payuLog("End Calling store logs API (subscriptions/storelogs)", '', $response);
+            exit;
+            /**END call api to store logs */
+        } else {
+            $this->payuLog("payu refund transaction else END" . @$webhookResponse['authPayuId']);
+            exit;
+        }
+    }
+    public function processDisputeTransaction($webhookResponse = [])
+    {
+        return 1;
+        $this->payuLog("=== payu dispute transaction BEGIN");
+        if (@$webhookResponse['status'] == 'failure') {
+            /**BEGIN call api to store logs */
+            $data = [
+                'authpayuid'   => @$webhookResponse['authPayuId']
+            ];
+            $this->payuLog("Begin Calling store logs API (subscriptions/storelogs)", '', $data);
+            $response = CurlAPI("subscriptions/storelogs", 'POST',  $data, 2, false, true);
+            $this->payuLog("End Calling store logs API (subscriptions/storelogs)", '', $response);
+            exit;
+            /**END call api to store logs */
+        } else {
+            $this->payuLog("payu dispute transaction else END" . @$webhookResponse['authPayuId']);
+            exit;
+        }
+    }
 }
