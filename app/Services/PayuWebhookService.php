@@ -29,7 +29,7 @@ class PayuWebhookService
                     $subEndDate = new \DateTime(@$resultRecur['userOrder']['subscription_end_date']);   //change the key
                     $subEndDate = $subEndDate->format('Y-m-d');
                     $orderData = @$resultRecur['userOrder'];
-                }
+                // }
                 if (@$resultRecur['status'] == false || strtotime($subEndDate) <= strtotime(date('Y-m-d'))) {     //if subscription is expired or is expiring today then only process
                     $this->payuLog("----- sirecurring check passed for : " . $payuAuthId, false);
                     $this->payuLog("----- BEGIN sirecurring calling 'subscriptions/updateOrder' for : " . $payuAuthId, false);
@@ -52,7 +52,7 @@ class PayuWebhookService
                         'note' => '',
                         'recurring_receipt' => '',
                         'bank_name' => '',
-                        'payment_mode' => @$webhookResponse['mode'] ?? '',
+                        'payment_mode' => @$orderData['payment_mode'] ?? '',
                         'x_country' => '',
                         'x_continent' => '',
                     ];
@@ -62,6 +62,9 @@ class PayuWebhookService
                     $this->payuLog("----- END sirecurring calling 'subscriptions/updateOrder' for : " . $payuAuthId, false, ['url' => 'subscriptions/updateOrder', 'request' => $updateOrderData, 'response' => $updateOrder]);
                 } else {
                     $this->payuLog("----- sirecurring check failed for : " . $payuAuthId . "-----", false, ['status' => @$resultRecur['status'], 'subscription_end_date' => $subEndDate, 'now_date' => date('Y-m-d')]);
+                }
+                }else{
+                    $this->payuLog("----- sirecurring check failed userOrder data not found : " . $payuAuthId . "-----", false, ['status' => @$resultRecur['status'], 'subscription_end_date' => $subEndDate, 'now_date' => date('Y-m-d')]);
                 }
             } else {
                 $this->payuLog("----- PAYU webhook sirecurring EMPTY PAYU AUTH ID => " . $payuAuthId . "-----", false, $webhookResponse);
