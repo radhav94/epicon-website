@@ -1021,4 +1021,42 @@ class SubscriptionController extends Controller
 
         // return response()->json('success', 200);
     }
+    public function payuCancelRecur(Request $request){
+        Log::channel('payu_webhook')->info("payu recur cancel webhook : ".PHP_EOL. json_encode($request->all(), 1));
+
+        $payuResponse = $request->all();
+        $payuWebhookService = new PayuWebhookService();
+        $payuWebhookService->processCancelRecur($payuResponse);
+
+        return response()->json('success', 200);
+    }
+
+    public function payuTransactioFailedWebhook(Request $request){
+        Log::channel('payu_webhook')->info("payu transaction failed webhook : ".PHP_EOL. json_encode($request->all()));
+
+        $payuResponse = $request->all();
+        $payuWebhookService = new PayuWebhookService();
+        $payuWebhookService->processFailedTransaction($payuResponse);
+
+        return response()->json('success', 200);
+    }  
+    public function payuTransactioRefundWebhook(Request $request){
+        Log::channel('payu_webhook')->info("payu transaction refund webhook : ".PHP_EOL. json_encode($request->all()));
+
+        $payuResponse = $request->all();
+        $payuWebhookService = new PayuWebhookService();
+        $payuWebhookService->processFailedTransaction($payuResponse);
+
+        return response()->json('success', 200);
+    }    
+    public function payuTransactioDisputeWebhook(Request $request){
+        Log::channel('payu_webhook')->info("payu transaction dispute webhook : ".PHP_EOL. json_encode($request->all()));
+
+        $payuResponse = $request->all();
+        $payuWebhookService = new PayuWebhookService();
+        $payuWebhookService->processDisputeTransaction($payuResponse);
+
+        return response()->json('success', 200);
+    }
+
 }
