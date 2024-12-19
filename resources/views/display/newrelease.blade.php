@@ -14,7 +14,7 @@
      <div class="hero-banner-new-release w-100">
          <div class="banner-carousel-new-release">
 
-             @foreach ($value['content'] as $key => $val)
+             @foreach ($value['content'] ?? [] as $key => $val)
                  <?php
                  $card = getItemCardData($val, $displayLanguageParam);
 
@@ -87,9 +87,9 @@
          <div class="container">
              <div class="new-release-bottom w-100">
 
-                 @foreach ($value['content'] as $key => $val)
+                 @foreach ($value['content'] ?? [] as $key => $val)
                      <div class="episode-wrapper-nr-{{ $key }} episode-wrapper-nr {{ ($key ==0) ? 'active' : '' }}">
-                         @foreach ($val['episodes'] as $epickey => $data)
+                         @foreach ($val['episodes'] ?? [] as $epickey => $data)
                              <?php $li = '';
                              if (!isset($data['url']) || (isset($data['status']) && $data['status'] != 1)) {
                                 continue;
