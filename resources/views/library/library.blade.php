@@ -73,10 +73,10 @@
                         </div>
                         
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="history">
-                            <?php if(!empty($uniqueHistoryData)){ ?>
+                            <?php if(!empty($historydata)){ ?>
                             <div class="carousel-main">
                                 <ul class="more-like-this px-0">
-                                    <?php foreach($uniqueHistoryData as $historydatalist){ 
+                                    <?php foreach($historydata as $historydatalist){ 
                                         $cover_image = getCardImage($historydatalist, 'vertical_cover_image');
                                      ?>
                                     <li>

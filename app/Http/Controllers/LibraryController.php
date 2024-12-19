@@ -13,7 +13,6 @@ class LibraryController extends Controller
         $profile_id = session()->get('active_profile');
         $data = [];
         $historydata = [];
-        $uniqueHistoryData = [];
         $action = array(
             'action' => 'view',
             'profile_id' => $profile_id
@@ -23,17 +22,10 @@ class LibraryController extends Controller
         $histData = CurlAPI("pages/user/watch_history", 'GET', $param, 1, true);
         if (@$histData['success'] == true) {
             $historydata = @$histData['data'];
-            if (!empty($historydata) && is_array($historydata)) {
-                foreach ($historydata as $item) {
-                    if (isset($item['slug'])) {
-                        $uniqueHistoryData[$item['slug']] = $item;
-                    }
-                }
-            }
         } 
         if (@$wishData && @$wishData['success'] == true || @$histData && @$histData['success'] == true) {            
             $data = @$wishData['contents'];
-            return view('library.library', compact('data', 'uniqueHistoryData'));
+            return view('library.library', compact('data', 'historydata'));
         } else {
             \Log::channel('error_404')->debug('--------------('.$slug.')  Error ('.date('h:i:s A').')----------------------');
             \Log::channel('error_404')->debug('Error =>'.json_encode($result));

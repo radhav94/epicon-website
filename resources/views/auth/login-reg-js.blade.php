@@ -792,40 +792,6 @@
             window.location.href = APP_URL+'/subscription';
             return false;
          });
-
-         $('#name').on('input',function(){
-            if($(this).val().trim() != ""){
-                $('#name-error').text('');
-            }else{
-                $('#name-error').text('Name is required');
-            }
-         });
-         $('#password').on('input',function(){
-            if($(this).val().trim() != ""){
-                $('#password-error').text('');
-            }else{
-                $('#password-error').text('Password is required');
-            }
-         });
-         $('#confirm-password').on('input',function(){
-            let password = $('#password').val().trim();
-            console.log(password, $(this).val());
-            if($(this).val().trim() == ""){
-                $('#confirm-password-error').text('Confirm password is required');
-            }else if ($(this).val().trim() !== password) {
-                $('#confirm-password-error').text('Passwords do not match');
-            }else{
-                $('#confirm-password-error').text('');
-            }
-         });
-
-         $('#gender').on('input',function(){
-            if($(this).val().trim() != ""){
-                $('#gender-error').text('');
-            }else{
-                $('#gender-error').text('Gender is required');
-            }
-         });
-        });
+    });
     
 </script>
