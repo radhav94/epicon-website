@@ -933,6 +933,7 @@ function getCardImage($content, $key, $size = 'medium', $fallback = [])
     // if (empty($fallback)) {
     $fallback = [
         'banner_image'                  => 'default-830x400.png',
+        'banner_image_v2'               => 'default-830x400.png',        
         'cover_image'                   => 'default-830x400.png',
         'cover_image_special'           => 'default-200x200.png',
         'spotlight_epic_shorts_image'   => 'default-200x200.png',

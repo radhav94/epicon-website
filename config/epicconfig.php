@@ -138,6 +138,9 @@ if($environment=='PRODUCTION'){
 			'EVENT_TXN_URL' => 'https://api.moengage.com/v1/event/'
 		],
 		'DISALLOW_URL' => $disallowUrl,
+		'CASHFREE' => [
+			'environment' => 'production'
+		]
 	];
 } else if($environment=='STAGE' ){
 	return [
@@ -283,6 +286,9 @@ if($environment=='PRODUCTION'){
 			'EVENT_TXN_URL' => 'https://api.moengage.com/v1/event/'
 		],
 		'DISALLOW_URL' => [],
+		'CASHFREE' => [
+			'environment' => 'sandbox'
+		]
 	];
 } else if($environment=='DEV'){
 	return [
@@ -384,17 +390,17 @@ if($environment=='PRODUCTION'){
 		],
 		'SERVICES'=>[
 			'google' => [
-				'redirect'=>'https://dev.epicon.in/login/google/callback',
+				'redirect'=>'https://devepicon-v3.epicon.in/login/google/callback',
 				'GOOGLE_CLIENT_ID'=>'812942192248-c95nfhscgbqrp1lkbpab1841gk1issah.apps.googleusercontent.com',
 				'GOOGLE_CLIENT_SECRET'=>'IklyRUQgnQCSSiBoivzhoY3q'
 			],
 			'facebook' => [
-				'redirect'=>'https://dev.epicon.in/login/facebook/callback',
+				'redirect'=>'https://devepicon-v3.epicon.in/login/facebook/callback',
 				'FACEBOOK_CLIENT_ID'=>'1534199926602841',
 				'FACEBOOK_CLIENT_SECRET'=>'72fc40fffd7c00b412d143e6e0a7b3e7'
 			],
 			'twitter' => [
-				'redirect'=>'https://dev.epicon.in/login/twitter/callback',
+				'redirect'=>'https://devepicon-v3.epicon.in/login/twitter/callback',
 				'TWITTER_CLIENT_ID'=>'nwKbID9Lq9Pzbkg5YCE3Dd8Z7',
 				'TWITTER_CLIENT_SECRET'=>'h3hZYGKk8qEbAns5q6YnfRZYMR2vIGDxjEQZffRT9hyIanF9Lx'
 			],
@@ -406,6 +412,9 @@ if($environment=='PRODUCTION'){
 			'podcast/aawaz-e-kalam/season-1/dushyant-kumar-ye-dhuen-ka-ghire-hai-ki-main-jisme','podcast/aawaz-e-kalam/season-1/ahmad-faraz-junun-e-musaffat-me-ghar-se-nikle-the','podcast/aawaz-e-kalam/season-1/dushyant-kumar-ghar-me-kis-tarah-saheju-man-ko','epic-shorts/international-tiger-day/season-1/e6-a-tale-of-success-12619','podcast/aawaz-e-kalam/season-1/dushyant-kumar-aaj-veeran-apna-ghar-dekha','podcast/aawaz-e-kalam/season-1/kavi-kunvar-narayan-kavita-ke-bahane','podcast/the-next-ten-years/season-1/jo-aggarwal-co-founder-ceo','podcast/aawaz-e-kalam/season-1/luv-tomar-siva-tere','podcast/aawaz-e-kalam/season-1/ahmad-faraz-kam-kam-mila-karo-usse','podcast/aawaz-e-kalam/season-1/ahmad-pharaz-khushbu-ka-safar-dekhega-kaun','podcast/aawaz-e-kalam/season-1/ahmad-faraz-zakhm-na-bharte-koi-aur','podcast/aawaz-e-kalam/season-1/harivanshrai-bachchan-aatmaparichay','podcast/aawaz-e-kalam/season-1/ahmad-faraz-saja-kyu-nahi-dete','podcast/aawaz-e-kalam/season-1/luv-tomar-aksar-tere-ishq-me','podcast/aawaz-e-kalam/season-1'
 		],
 		'DISALLOW_URL' => [],
+		'CASHFREE' => [
+			'environment' => 'sandbox'
+		]
 	];
 } else if($environment=='LOCAL'){
 	return [
@@ -520,6 +529,9 @@ if($environment=='PRODUCTION'){
 			'EVENT_TXN_URL' => 'https://api.moengage.com/v1/event/'
 		],
 		'DISALLOW_URL' => [],
+		'CASHFREE' => [
+			'environment' => 'sandbox'
+		]
 	];
 } else {
 	return [
@@ -609,5 +621,8 @@ if($environment=='PRODUCTION'){
 			'podcast/aawaz-e-kalam/season-1/dushyant-kumar-ye-dhuen-ka-ghire-hai-ki-main-jisme','podcast/aawaz-e-kalam/season-1/ahmad-faraz-junun-e-musaffat-me-ghar-se-nikle-the','podcast/aawaz-e-kalam/season-1/dushyant-kumar-ghar-me-kis-tarah-saheju-man-ko','epic-shorts/international-tiger-day/season-1/e6-a-tale-of-success-12619','podcast/aawaz-e-kalam/season-1/dushyant-kumar-aaj-veeran-apna-ghar-dekha','podcast/aawaz-e-kalam/season-1/kavi-kunvar-narayan-kavita-ke-bahane','podcast/the-next-ten-years/season-1/jo-aggarwal-co-founder-ceo','podcast/aawaz-e-kalam/season-1/luv-tomar-siva-tere','podcast/aawaz-e-kalam/season-1/ahmad-faraz-kam-kam-mila-karo-usse','podcast/aawaz-e-kalam/season-1/ahmad-pharaz-khushbu-ka-safar-dekhega-kaun','podcast/aawaz-e-kalam/season-1/ahmad-faraz-zakhm-na-bharte-koi-aur','podcast/aawaz-e-kalam/season-1/harivanshrai-bachchan-aatmaparichay','podcast/aawaz-e-kalam/season-1/ahmad-faraz-saja-kyu-nahi-dete','podcast/aawaz-e-kalam/season-1/luv-tomar-aksar-tere-ishq-me','podcast/aawaz-e-kalam/season-1'
 		],
 		'DISALLOW_URL' => [],
+		'CASHFREE' => [
+			'environment' => 'sandbox'
+		]
 	];
 }

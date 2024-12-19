@@ -1,32 +1,16 @@
 {
-    "activitycontinuation": {
-        "apps": [
-            "LUM7EKQ8XM.com.epicon.iosapp"
-        ]
-    },
-    "applinks": {
-        "apps": [],
-        "details": [
-            {
-                "appID": "LUM7EKQ8XM.com.epicon.iosapp",
-                "paths": [
-                    "NOT /qr-pay/*",
-                    "NOT /qr-promo/*",
-                    "NOT /subscription",
-                    "NOT /subscription/*",
-                    "NOT /payusuccess",
-                    "NOT /payufail",
-                    "NOT /paymentMethod",
-                    "NOT /payusuccess/*",
-                    "NOT /payufail/*",
-                    "NOT /paymentMethod/*",
-		"NOT /feedback",
-		"NOT /about-us",
-		    "NOT /privacy",
-		    "NOT /terms-of-use",
-                    "/*"
-                ]
-            }
-        ]
-    }
+"activitycontinuation": {
+"apps": [
+"LUM7EKQ8XM.com.epicon.iosapp"
+]
+},
+"applinks": {
+"apps": [],
+"details": [
+{
+"appID": "LUM7EKQ8XM.com.epicon.iosapp",
+"paths": ["NOT /qr-pay/*","NOT /qr-promo/*","NOT /getSubscription", "NOT /subscription", "NOT /subscription/*", "NOT /payusuccess", "NOT /payufail", "NOT /paymentMethod", "NOT /payusuccess/*", "NOT /payufail/*", "NOT /paymentMethod/*","/*"]
+}
+]
+}
 }

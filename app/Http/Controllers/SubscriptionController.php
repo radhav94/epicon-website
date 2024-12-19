@@ -894,6 +894,133 @@ class SubscriptionController extends Controller
         return $getRedeem;
     }
 
+    public function saveSubscriptionCashfree(Request $request)
+    {
+        $formData = $request->all();
+        $payment_type = $formData['payment_type'] ?? '';
+        $sessionPlanData = session('plandata');
+        $userData = session('user');
+        if ($sessionPlanData[$formData['amountid']]) {
+            $result = ($sessionPlanData[$formData['amountid']]);
+        }
+        $currency = $result['currency'] ?? '';
+        // $countrycode = getCountryCode();
+        // dd($formData);
+        $postData = [
+            'user_id' => $userData['user_id'],
+            'plan_id' => $result['id'],
+            'order_value' => $result['actual_price'],
+            'mobile' => $userData['mobile'],
+            'payment_gateway' => 'cashfree',
+            // 'x_country' => @$countrycode,
+        ];
+        $this->cashfreeLog('Request Create Order -- begin --', false, ['endpoint' => 'subscriptions/createorder', 'request' => $postData]);
+        $resultData = CurlAPI("subscriptions/createorder", 'POST', $postData, 2, false, true);
+        $this->cashfreeLog('Request Create Order -- end --', false, ['endpoint' => 'subscriptions/createorder', 'response' => $resultData]);
+        $txid = "";
+        $payment_session_id = "";
+        $parameters = [];
+        if (@$resultData['success'] == true && !empty(@$resultData['order_data'])) {
+            $resorder = @$resultData['order_data'];
+            $orderPostData = [
+                "plan_id" => @$resorder['plan_id'],
+                "user_id" => @$resorder['user_id'],
+                "payment_gateway" => "cashfree",
+                "web_device" => @$resorder['device'],
+                "coupon_applied" => $formData['coupanstatus'] ?? '',
+                "amount" => @$resorder['order_value'],
+                "epic_price" => $result['epic_price'],
+                "order_expiry_time" => @$resorder['order_expiry_time'],
+                "payment_session_id" => @$resorder['payment_session_id'],
+            ];
+            session(['create_order' => $orderPostData]);
+            $txid = $resorder['order_id'];
+            $payment_session_id = @$resorder['payment_session_id'];
+            // $parameters = ['tid' => time(), 'txnid' => $resorder['order_id'], 'amount' => $resorder['order_value'], 'firstname' => @$userData['name'], 'email' => @$userData['email'], 'phone' => @$userData['mobile'], 'productinfo' => 'epicon ' . $resorder['plan_id'],];
+        }
+        if (in_array($payment_type, ['CC', 'DC', 'NB', 'CASH', 'UPI'])) {
+            // $parameters['pg'] = $payment_type;
+            $resorder['pg'] = $payment_type;
+        }
+        $request->session()->forget('orderdata');
+        $request->session()->put('orderdata', $resorder);
+        // $request->session()->forget('cashfreeParams');
+        // $request->session()->put('cashfreeParams', $parameters);
+
+        $amount = $result['actual_price'];
+        $productinfo = $result['id'];
+        $firstname = $userData['name'];
+        $email = $userData['email'];
+
+        $parameters = [
+            'payment_session_id' => $payment_session_id,
+            'cashfree_env' => config('epicconfig.CASHFREE.environment'),
+        ];
+        $this->cashfreeLog('Cashfree Checkout Redirect -- begin --', $txid, [$parameters]);
+        return view('subscription.cashfree', compact('parameters'));
+    }
+
+    public function cashfreeResponse(Request $request)
+    {
+        // $paymentresponse = $request->all();
+        $orderData = session('orderdata');
+        // $cashfreeParams = session('cashfreeParams');
+        $this->cashfreeLog('Cashfree Checkout Response --begin--', @$orderData['order_id'], []);
+
+        $final_result = ['message' => 'The transaction has been declined.'];
+
+        $orderValue = session('create_order');
+        $getOnlyDate = date('Y-m-d', strtotime(@$orderData['subscription_end_date']));
+
+        $updateOrderData = [
+            'plan' => $orderValue['plan_id'] ?? '',
+            'user_id' => $orderValue['user_id'] ?? '',
+            'order_id' => $orderData['order_id'] ?? '',
+            'order_status' => 'complete',
+            'payment_gateway' => $orderValue['payment_gateway'] ?? '',
+            'coupon_applied' => $orderValue['coupon_applied'] ?? '',
+            'payment_mode' => $orderData['pg'] ?? '',      //optional parameter | not required for cashfree
+            'authPayuId' => $orderData['order_id'] ?? '',       //optional parameter | not required for cashfree
+            'is_recurring' => false,        //optional parameter | not required for cashfree
+        ];
+
+        ///------***Update order with payment details BEGIN***--------///
+        $this->cashfreeLog('Request Update Order --begin--', @$orderData['order_id'], ['endpoint' => 'subscriptions/updateOrder', 'request' => $updateOrderData]);
+        $updatePayment = CurlAPI("subscriptions/updateOrder", 'POST', $updateOrderData, 2, false, true);
+        $this->cashfreeLog('Request Update Order --end--', @$orderData['order_id'], ['endpoint' => 'subscriptions/updateOrder', 'response' => $updatePayment]);
+        ///------***Update order with payment details END***--------///
+
+        if (@$updatePayment['success']) {
+            $paymtentStatus = "success";
+            $this->EventPushData($paymtentStatus);
+            $final_result = ['message' => 'You have successfully purchased a subscription plan.'];
+            return view('subscription.thankyou', compact('final_result', 'orderData'));
+        } else {
+            // $message = @$updatePayment['message'];
+            $message = "The transaction has been declined.";
+            return view('subscription.subscription-fail', compact('message'));
+        }
+    }
+    private function cashfreeLog($msg, $uid = '', $data = [])
+    {
+        $prefix = ($uid != '') ? '--TxId-' . $uid . '-- ' : '';
+        if ($data) {
+            Log::channel('cashfree')->info($prefix . '' . $msg . PHP_EOL . json_encode($data));
+        } else {
+            Log::channel('cashfree')->info($prefix . $msg);
+        }
+    }
+
+    public function cashfreeWebhook(Request $request)
+    {
+        // Log::channel('cashfree_webhook')->info("cashfree webhook : " . json_encode($request->all()));
+
+        // $cashfreeResponse = $request->all();
+        // $cashfreeWebhookService = new CashfreeWebhookService();
+        // return $cashfreeWebhookService->processWebhookCallback($cashfreeResponse);
+
+        // return response()->json('success', 200);
+    }
     public function payuCancelRecur(Request $request){
         Log::channel('payu_webhook')->info("payu recur cancel webhook : ".PHP_EOL. json_encode($request->all(), 1));
 

@@ -231,6 +231,11 @@ foreach ($lang as $val) {
         Route::get('/kids/midpage/{pageslug}/{catalog}', [PageController::class, 'showmidpagedetail']);
         Route::get('/kids/{pageslug}/{contentslug}/{season?}/{episode?}', [PageDetailController::class, 'detail']);
         /* Kids section end */
+
+        /**cashfree routes */
+        Route::post('saveSubscriptionCashfree', [SubscriptionController::class, 'saveSubscriptionCashfree'])->name('saveSubscriptionCashfree');
+        Route::get('cashfree-success', [SubscriptionController::class, 'cashfreeResponse'])->name('cashfreeResponse');
+        /**cashfree routes */
     });
     Route::get('subscription', [SubscriptionController::class, 'subscription'])->name('subscription');
     Route::group(['prefix' => $prefix, 'as' => $prefix_name, 'middleware' => 'checkUserAuthToken'], function () {
@@ -289,6 +294,7 @@ foreach ($lang as $val) {
 }
 
 Route::any('/payu/transactioncallback', [SubscriptionController::class, 'payuWebhook']);
+Route::post('/cashfree/transactioncallback', [SubscriptionController::class, 'cashfreeWebhook']);
 Route::any('/payu/cancel-si-transaction', [SubscriptionController::class, 'payuCancelRecur']);
 Route::any('/payu/trasaction-failed', [SubscriptionController::class, 'payuTransactioFailedWebhook']);
 Route::any('/payu/trasaction-refund', [SubscriptionController::class, 'payuTransactioRefundWebhook']);
