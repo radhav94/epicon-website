@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 
 class MoveLaravelLogsInS3 extends Command
 {
-    protected $signature = 'logs:movetos3';
+    protected $signature = 'logs:movetos3 {date? : The date for which logs will be moved}';
     protected $description = 'Move Laravel log files to S3';
 
     public function __construct()
@@ -35,7 +35,7 @@ class MoveLaravelLogsInS3 extends Command
 
         // Get all log channels from the configuration
         $logChannels = config('logging.channels');
-        $todayDate = Carbon::today()->format('Y-m-d');
+        $todayDate = $this->argument('date') ?? Carbon::yesterday()->format('Y-m-d');
 
         foreach ($logChannels as $channel => $settings) {
             // Check if the log channel has a 'path' setting
