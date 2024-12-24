@@ -97,8 +97,100 @@ if ($request->has('type')) {
                     </div>
                 </div>
             </div>
+            <div class="col-12">
+                <ul class="footer__menu">
+                    <li>
+                        <a href=""><h3>Popular Tv Show</h3></a>
+                        <a href="">Dahej Dasi</a>
+                        <a href="">Dharmakshetra</a>
+                        <a href="">Dhartiputra Nandini</a>
+                        <a href="">Laal Banarasi</a>
+                        <a href="">Papnashni Ganga</a>
+                        <a href="">Crime Files</a>
+                        <a href="">Laal Banarasi</a>
+                        <a href="">Bhabhi Ke Pyare Pritam Hamare</a>
+                        <a href="">Do Chutki Sindoor</a>
+                        <a href="">Beti Hamari Anmol</a>
+                        <a href="">Janani</a>
+                        <a href="">Hum Kadam</a>
+                        <a href="">Faraar Kab Tak</a>
+                        <a href="">Agni Vayu</a>
+                    </li>
+                    <li>
+                        <a href=""><h3>Premium Movies</h3></a>
+                        <a href="">Phir Hera Pheri</a>
+                        <a href="">Jab we met</a>
+                        <a href="">Queen</a>
+                        <a href="">Piku</a>
+                        <a href="">Gandhi</a>
+                        <a href="">Guest In London</a>
+                        <a href="">Aakrosh</a>
+                        <a href="">Aarakshan</a>
+                        <a href="">Chameli</a>
+                        <a href="">Firangi</a>
+                        <a href="">Bhagam Bagh</a>
+                        <a href="">Awara Pagal Deewana</a>
+                        <a href="">Dhamaal</a>
+                        <a href="">Gangs Of Wasseypur 1</a>
+                        <a href="">Fida</a>
+                        <a href="">Jaan-E-Mann </a>
+                    </li>
+                    <li>
+                        <a href=""><h3>Top LIVE Channels</h3></a>
+                        <a href="">Ishara</a>
+                        <a href="">Nazara</a>
+                        <a href="">Filamchi</a>
+                        <a href="">Show Box</a>
+                        <a href="">Epic</a>
+                        <a href="">Gubbare</a>
+                        <a href="">Dishtro</a>
+                    </li>
+                    <li>
+                        <a href=""><h3>Popular Originals</h3></a>
+                        <a href="">Tatlubaaz</a>
+                        <a href="">Video Cam Scam</a>
+                        <a href="">Family Table</a>
+                        <a href="">Plot 1 by 2</a>
+                        <a href="">Bluetick</a>
+                    </li>
+                    <li>
+                        <a href=""><h3>Top Bollywood Picks</h3></a>
+                        <a href="">Gangs Of Wasseypur 1</a>
+                        <a href="">Khatta Meetha</a>
+                        <a href="">Alone</a>
+                        <a href="">Shabd</a>
+                        <a href="">Gangs Of Wasseypur 2</a>
+                        <a href="">Piku</a>
+                        <a href="">Queen</a>
+                        <a href="">Phir Hera Pheri</a>
+                        <a href="">Akaash Vani</a>
+                        <a href="">Guest In London</a>
+                        <a href="">Welcome</a>
+                        <a href="">Dhol</a>
+                        <a href="">Golmaal - Fun Unlimited</a>
+                        <a href="">Golmaal Returns</a>
+                    </li>
+                    <li>
+                        <a href=""><h3>Dishtro Tv</h3></a>
+                        <a href="">India News</a>
+                        <a href="">ABP News</a>
+                        <a href="">News Nation</a>
+                        <a href="">Sudarshan News</a>
+                    </li>
+                    <li>
+                        <a href=""><h3>Live Sports</h3></a>
+                        <a href="">Sports TV plus</a>
+                        <a href="">Adventure Sports</a>
+                        <a href="">Skate surf snow</a>
+                        <a href="">MMA Junkie</a>
+                        <a href="">Sports grid</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="w-100 text-center small text-white pt-3 pb-4 copy-right">Copyright © {{ date('Y') }} IN10 Media
+        <div class="w-100 text-center small text-white pt-3 pb-4 copy-right">
+            Best viewed on Google Chrome 80+, Microsoft Edge 81+, Mozilla Firefox 75+, Safari 5.1.5+<br>
+            Copyright © {{ date('Y') }} IN10 Media
             Private
             Limited. All Rights Reserved.</div>
     </div>

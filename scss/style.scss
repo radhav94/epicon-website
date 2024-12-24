@@ -11046,3 +11046,51 @@ audio::-webkit-media-controls-play-button {
         }
     }
 }
+.footer__menu{
+    display: grid;
+    grid-template-columns: repeat(7 , 1fr);
+    padding-left: 0;
+    gap: 10px;
+    margin-top: 3rem;
+    @media (max-width:1180px) {
+        grid-template-columns: repeat(4 , 1fr);
+      }
+      @media (max-width:767px) {
+        grid-template-columns: repeat(2 , 1fr);
+      }
+    li{
+        width: 100%;
+        a{
+            text-decoration: none;
+            text-align: start;
+            padding-block: 5px;
+            width: fit-content;
+        }
+        a:not(:first-child){
+            color: $bg-primary;
+            text-decoration: none;
+            font-size: 0.8rem;
+            opacity: 0.6;
+            display: block;
+            &::after{
+                content: "";
+                width: 0;
+                height: 1px;
+                background: #fff;
+                display: block;
+                transition: width 0.4s ease-in;
+            }
+            &:hover::after{
+                opacity: 1;
+                width: 100%;
+            }
+        }
+    }
+    li a h3{
+        font-size: 1rem;
+        color: #fff;
+        text-decoration: none;
+        letter-spacing: 0.8px;
+    }
+    
+}
