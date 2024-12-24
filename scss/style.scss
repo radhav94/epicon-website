@@ -6305,15 +6305,15 @@ input {
         // padding: 4px 5px;
         font-size: 12px;
         font-weight: 600;
-        margin-block:10px;
+        // margin-block:10px;
         height: 41px;
     }
 }
 .fill-btn{
     color: $bg-dark-gray;
     background: $bg-white;
-    margin-left: 10px;
-    margin-top: 20px;
+    // margin-left: 10px;
+    // margin-top: 20px;
     transition:all 0.4s;
 
     @media (max-width:768px) {
