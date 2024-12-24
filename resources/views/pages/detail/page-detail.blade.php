@@ -20,7 +20,11 @@ if($isMoblile){
         $cover_img = getCardImage($content, 'trending_movie_buzz_image', 'large');
     }
     else if(@$content['content_type'] == 'EPISODE'){
-        $cover_img = getCardImage($content, 'cover_image', 'large');
+        if (!empty($content['season'][0]['airtel_feature_imageHD'] ?? '')) {
+            $cover_img = $content['season'][0]['airtel_feature_imageHD'];
+        } else {
+            $cover_img = getCardImage($content, 'cover_image', 'large');
+        }
     }
     else{
         $cover_img = getCardImage($content, 'banner_image', 'large');
