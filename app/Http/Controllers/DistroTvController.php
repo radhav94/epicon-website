@@ -183,6 +183,13 @@ class DistroTvController extends Controller
         /**API call end */
         /**Logic processing to filter data start */
         $response = [];
+        if($request->has('page') && $request->page == 'details-epg-display'){
+            $html = 'display-distro.details-epg-display';       //for inner page only need table data
+            $nfMsg = '';
+        }else{
+            $html = 'display-distro.epg-display';
+            $nfMsg = "<h5 style='color:white;text-align:center;'>Schedule Not Found</h5>";
+        }
         if ($result && @$result['success'] ==  true) {
             $programmes = [];
             $previousVal = [];
@@ -206,10 +213,10 @@ class DistroTvController extends Controller
             }
             $data = @$result['data'];
             // Pass data to the view 
-            $view = view('display-distro.epg-display', compact('data', 'programmes', 'description', 'img_poster'))->render();
+            $view = view($html, compact('data', 'programmes', 'description', 'img_poster'))->render();
             return response()->json(['html' => $view]);
         } else {
-            return response()->json(['html' => "<h4 style='color:white;'>Data Not Found!!</h4>"]);
+            return response()->json(['html' => $nfMsg]);
         }
         /**Logic processing to filter data end */
     }
