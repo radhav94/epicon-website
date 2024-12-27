@@ -41,7 +41,7 @@ class PayuWebhookService
                         'payment_gateway' => 'payu',
                         'bank_ref_no' => @$webhookResponse['bank_ref_num'],
                         'transaction_id' => @$payuAuthId ?? '',
-                        'authPayuId' => @$payuAuthId ?? '',
+                        // 'authPayuId' => @$payuAuthId ?? '',              //removed as per requirement | dec23
                         'is_recurring' => true,
                         'ios_receipt' => '',
                         'android_receipt' => '',
