@@ -1305,17 +1305,18 @@ body{
     opacity: 1;    
 }
 .modal{
-    background-color: rgba(0, 0, 0, 0.1);
-    // -webkit-backdrop-filter: blur(12px);
-    // backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, .1);
+    backdrop-filter: blur(40px);
 }
 .modal-dialog {
     margin-right: auto;
     margin-left: auto!important;
     margin-top: 0!important;
+    height: 100%;
 }
 #login-modal .modal-content{
     background-image: url(#{$domain}epicon/assets/images/LoginTatlubaazBackBg.png);
+    width: 100%;
     @media (max-width:767px) {
         background-image: none;
     }
@@ -5419,17 +5420,17 @@ input {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        @media (max-width:1024px) {
+        @media (max-width:1200px) {
             width: 50%;
         }
         img{
             height: 400px;
             object-fit: contain;
-            @media (max-width:768px) {
+            @media (max-width:900px) {
                 display: none;
             }
         }
-        @media (max-width:768px) {
+        @media (max-width:900px) {
             width: 100%;
         }
     }
@@ -5440,7 +5441,7 @@ input {
         padding: 30px;
         border-radius: 15px;
         box-shadow: 0px 0px 30px rgba(176, 76, 241, 0.56);
-        @media (max-width:1024px) {
+        @media (max-width:1200px) {
             width: 50%;
         }
 
@@ -5458,10 +5459,10 @@ input {
             color: #BBBBBB;
           }
 
-        @media (max-width:768px) {
+        @media (max-width:900px) {
             width: 100%;
         }
-        @media (max-width:767px) {
+        @media (max-width:900px) {
             padding: 15px;
         }
     }
