@@ -288,6 +288,7 @@ class PageController extends Controller
             $mainslug = $request->mainslug;
             $catalog = $request->catalogid;
             if (isset($mainslug) && $mainslug == 'explore') {
+                $limit = 20;
                 $url = "pages/midpage/{$pageslug}";
                 $epicwebArr = CurlAPI($url, "GET", ['page' => $page, 'catalog_slug' => $catalog,'view_all' => 'true'], 1);
             } else {
