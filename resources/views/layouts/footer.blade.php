@@ -112,7 +112,7 @@ if ($request->has('type')) {
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/do-chutki-sindoor') }}" data-element_text="{{__('Do Chutki Sindoor') }}">{{__('Do Chutki Sindoor') }}</a>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/beti-hamari-anmol') }}" data-element_text="{{__('Beti Hamari Anmol') }}">{{__('Beti Hamari Anmol') }}</a>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/janani') }}" data-element_text="{{__('Janani') }}">{{__('Janani') }}</a>
-                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/hum-kadam') }}" data-element_text="{{__('Hum Kadam') }}">{{__('Hum Kadam') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/humkadam') }}" data-element_text="{{__('Hum Kadam') }}">{{__('Hum Kadam') }}</a>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/faraar-kab-tak') }}" data-element_text="{{__('Faraar Kab Tak') }}">{{__('Faraar Kab Tak') }}</a>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/agni-vayu') }}" data-element_text="{{__('Agni Vayu') }}">{{__('Agni Vayu') }}</a>
                     </li>
@@ -141,7 +141,7 @@ if ($request->has('type')) {
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('live-tv/nazara-live-tv') }}" data-element_text="{{__('Nazara')}}">{{__('Nazara')}}</a>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('live-tv/filamchi-live-tv') }}" data-element_text="{{__('Filamchi')}}">{{__('Filamchi')}}</a>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('live-tv/showbox-live-tv') }}" data-element_text="{{__('Show Box')}}">{{__('Show Box')}}</a>
-                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('live-tv/epic-on-live-tv') }}" data-element_text="{{__('Epic')}}">{{__('Epic')}}"</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('live-tv/epic-on-live-tv') }}" data-element_text="{{__('Epic')}}">{{__('Epic')}}</a>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('live-tv/gubbare-live-tv') }}" data-element_text="{{__('Gubbare')}}">{{__('Gubbare')}}</a>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('distro-tv') }}" data-element_text="{{__('Dishtro')}}">{{__('Dishtro')}}</a>
                     </li>
