@@ -28,10 +28,12 @@ class KidsController extends Controller
                 profileActive($kid_profile);
             }
             
+            $displang = Session::has('displayLanguage') ? Session::get('displayLanguage') : 'en';
+            
             $params = [
                 'slug' => 'kids-' . $slug,
                 'list_language' => 'ALL',
-                'display_language' => 'ENGLISH',
+                'display_language' => checkLang($displang),
                 'page' => 1,
                 'limit' => $this->limit,
             ];
