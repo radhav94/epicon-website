@@ -59,6 +59,7 @@
     var processing;
     var spinnerAdded = false;
     var continuewatching = "{{ $continuewatching ?? '' }}";
+    var isMobileView = "{{ isMobliDevice() }}";
 
     $(document).ready(function() {
         $('#pageval').val('1');
@@ -94,7 +95,8 @@
                 data: {
                     page: paging,
                     route: routepage,
-                    continuewatching: continuewatching
+                    continuewatching: continuewatching,
+                    isMobileView: isMobileView
                 },
                 dataType: 'json',
                 beforeSend: function() {
