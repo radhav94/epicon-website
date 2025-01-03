@@ -1074,9 +1074,12 @@ if (!function_exists("update_user_session")) {
                     $user_data = @$profile_detail['user_data'];
                     session()->put('user', $user_data);
                     $token = [Session::get('user_token')];
+                    setcookie("StreamKey", "", time() - 3600, '/');
                     if (!Cookie::has('StreamKey')) {
                         $userToken = Session::get('user_token');
-                        setcookie("StreamKey", $userToken, time() + (30 * 24 * 60 * 60), '/');
+                        Cookie::queue(Cookie::make('StreamKey', '', -1));
+                        Cookie::queue(Cookie::make("StreamKey", $userToken, (10 * 365 * 24 * 60)));
+                        // setcookie("StreamKey", $userToken, time() + (30 * 24 * 60 * 60), '/');
                     }
                 }
             } else {
