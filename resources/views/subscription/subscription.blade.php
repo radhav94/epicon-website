@@ -383,9 +383,9 @@ $isUserLoggedIn = isUserLoggedIn();
                                 } else {
                                     $('.oldprice-' + t.id).text('$ ' + t.actual_price);
                                 }
-
+                                var discount_percent = t.discount_percentage_value;
                                 $('.save-' + t.id).removeClass('d-none');
-                                $('.save-' + t.id).text('Save 20%');
+                                $('.save-' + t.id).text("Save "+discount_percent+"%");
                                 if (t.currency == 'INR' || t.currency == 'inr') {
                                     $('.current-' + t.id).html('₹ ' + t.discounted_price + '<span class="ms-1 small"> / ' + t.plan + '</span>');
                                 } else {
