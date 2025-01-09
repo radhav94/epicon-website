@@ -186,7 +186,7 @@ $(document).ready(function () {
     function loadSupermixVideo(source, subtitles, customData = false) {
         stopPlayer();
 
-        const video = document.querySelector('video');
+        const video = document.querySelector('#supermix-banner-video video');
         const watchVideo = document.getElementById('watchVideo');
 
         const defaultOptions = {
