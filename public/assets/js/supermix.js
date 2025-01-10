@@ -41,7 +41,6 @@ $(document).ready(function () {
     // Add a handler for the modal close event
     $('#supermixModal').on('hidden.bs.modal', function () {
         if (typeof videoPayer !== "undefined") {
-
             videoPayer.stop();
         }
         $('video').attr('src', '');
@@ -52,6 +51,9 @@ $(document).ready(function () {
         // Check if the clicked element is not inside the modal
         if (!$(event.target).closest('#supermixModal').length) {
             $('#supermixModal').modal('hide');
+            if (typeof videoPayer !== "undefined") {
+                videoPayer.stop();
+            }
         }
     });
 
