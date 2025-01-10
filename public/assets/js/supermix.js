@@ -39,7 +39,7 @@ $(document).ready(function () {
     })
 
     // Add a handler for the modal close event
-    $('#supermixModal').on('hidden.bs.modal', function () {
+    $(document).on('hidden.bs.modal', '#supermixModal', function () {
         if (typeof videoPayer !== "undefined") {
             videoPayer.stop();
         }
