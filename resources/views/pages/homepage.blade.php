@@ -53,7 +53,8 @@
 {{-- <script src="{{ env('AWS_S3_domain').'epicon/assets/images/vendor/plyr.js' }}" defer></script> --}}
 {{-- <script src="{{ env('AWS_S3_domain').'epicon/assets/images/vendor/hls.min.js' }}" defer></script> --}}
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/webvtt-subtitler.js" defer></script>
-<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/supermix.js?v={{ assetTime() }}" defer></script>
+{{--<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/supermix.js?v={{ assetTime() }}" defer></script>--}}
+<script src="{{ asset('/assets/js/supermix.js') }}?v={{ assetTime() }}" async></script>
 
 <script>
     var processing;
