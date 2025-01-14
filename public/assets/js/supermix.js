@@ -39,9 +39,8 @@ $(document).ready(function () {
     })
 
     // Add a handler for the modal close event
-    $('#supermixModal').on('hidden.bs.modal', function () {
+    $(document).on('hidden.bs.modal', '#supermixModal', function () {
         if (typeof videoPayer !== "undefined") {
-
             videoPayer.stop();
         }
         $('video').attr('src', '');
@@ -52,6 +51,9 @@ $(document).ready(function () {
         // Check if the clicked element is not inside the modal
         if (!$(event.target).closest('#supermixModal').length) {
             $('#supermixModal').modal('hide');
+            if (typeof videoPayer !== "undefined") {
+                videoPayer.stop();
+            }
         }
     });
 
@@ -186,7 +188,7 @@ $(document).ready(function () {
     function loadSupermixVideo(source, subtitles, customData = false) {
         stopPlayer();
 
-        const video = document.querySelector('video');
+        const video = document.querySelector('#supermix-banner-video video');
         const watchVideo = document.getElementById('watchVideo');
 
         const defaultOptions = {

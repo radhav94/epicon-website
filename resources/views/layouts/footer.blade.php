@@ -97,8 +97,100 @@ if ($request->has('type')) {
                     </div>
                 </div>
             </div>
+            <div class="col-12">
+                <ul class="footer__menu">
+                    <li>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows') }}" data-element_text="{{__('Popular Tv Show')}}"><h3>{{__('Popular Tv Show')}}</h3></a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/dahej-dasi') }}" data-element_text="{{__('Dahej Dasi') }}">{{__('Dahej Dasi') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/dharmakshetra') }}" data-element_text="{{__('Dharmakshetra') }}">{{__('Dharmakshetra') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/dhartiputra-nandini') }}" data-element_text="{{__('Dhartiputra Nandini') }}">{{__('Dhartiputra Nandini') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/laal-banarasi') }}" data-element_text="{{__('Laal Banarasi') }}">{{__('Laal Banarasi') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/paapnaashini-ganga') }}" data-element_text="{{__('Papnashni Ganga') }}">{{__('Papnashni Ganga') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/crime-files') }}" data-element_text="{{__('Crime Files') }}">{{__('Crime Files') }}</a>
+                        {{-- <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/laal-banarasi') }}" data-element_text="{{__('Laal Banarasi') }}">{{__('Laal Banarasi') }}</a> --}}
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/bhabhi-ke-pyare-pritam-hamare') }}" data-element_text="{{__('Bhabhi Ke Pyare Pritam Hamare') }}">{{__('Bhabhi Ke Pyare Pritam Hamare') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/do-chutki-sindoor') }}" data-element_text="{{__('Do Chutki Sindoor') }}">{{__('Do Chutki Sindoor') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/beti-hamari-anmol') }}" data-element_text="{{__('Beti Hamari Anmol') }}">{{__('Beti Hamari Anmol') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/janani') }}" data-element_text="{{__('Janani') }}">{{__('Janani') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/humkadam') }}" data-element_text="{{__('Hum Kadam') }}">{{__('Hum Kadam') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/faraar-kab-tak') }}" data-element_text="{{__('Faraar Kab Tak') }}">{{__('Faraar Kab Tak') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/agni-vayu') }}" data-element_text="{{__('Agni Vayu') }}">{{__('Agni Vayu') }}</a>
+                    </li>
+                    <li>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies') }}" data-element_text="{{__('Premium Movies')}}"><h3>{{__('Premium Movies')}}</h3></a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/phir-hera-pheri') }}" data-element_text="{{__('Phir Hera Pheri')}}">{{__('Phir Hera Pheri')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/jab-we-met') }}" data-element_text="{{__('Jab we met') }}">{{__('Jab we met') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/queen') }}" data-element_text="{{__('Queen') }}">{{__('Queen') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/piku') }}" data-element_text="{{__('Piku') }}">{{__('Piku') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/gandhi') }}" data-element_text="{{__('Gandhi') }}">{{__('Gandhi') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/guest-in-london') }}" data-element_text="{{__('Guest In London') }}">{{__('Guest In London') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/aakrosh') }}" data-element_text="{{__('Aakrosh') }}">{{__('Aakrosh') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/aarakshan') }}" data-element_text="{{__('Aarakshan') }}">{{__('Aarakshan') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/chameli') }}" data-element_text="{{__('Chameli') }}">{{__('Chameli') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/firangi') }}" data-element_text="{{__('Firangi') }}">{{__('Firangi') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/bhagam-bhag') }}" data-element_text="{{__('Bhagam Bagh') }}">{{__('Bhagam Bagh') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/awara-paagal-deewana') }}" data-element_text="{{__('Awara Pagal Deewana') }}">{{__('Awara Pagal Deewana') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/dhamaal') }}" data-element_text="{{__('Dhamaal') }}">{{__('Dhamaal') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/gangs-of-wasseypur-1') }}" data-element_text="{{__('Gangs Of Wasseypur 1') }}">{{__('Gangs Of Wasseypur 1') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/fida') }}" data-element_text="{{__('Fida') }}">{{__('Fida') }}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer"  href="{{ getUrl('movies/jaan-e-mann') }}" data-element_text="{{__('Jaan-E-Mann') }}">{{__('Jaan-E-Mann') }}</a>
+                    </li>
+                    <li>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('live-tv') }}" data-element_text="{{__('Top LIVE Channels')}}"><h3>{{__('Top LIVE Channels')}}</h3></a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('live-tv/ishara-live-tv') }}" data-element_text="{{__('Ishara')}}">{{__('Ishara')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('live-tv/nazara-live-tv') }}" data-element_text="{{__('Nazara')}}">{{__('Nazara')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('live-tv/filamchi-live-tv') }}" data-element_text="{{__('Filamchi')}}">{{__('Filamchi')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('live-tv/showbox-live-tv') }}" data-element_text="{{__('Show Box')}}">{{__('Show Box')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('live-tv/epic-on-live-tv') }}" data-element_text="{{__('Epic')}}">{{__('Epic')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('live-tv/gubbare-live-tv') }}" data-element_text="{{__('Gubbare')}}">{{__('Gubbare')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('distro-tv') }}" data-element_text="{{__('Dishtro')}}">{{__('Dishtro')}}</a>
+                    </li>
+                    <li>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('/') }}" data-element_text="{{__('Popular Originals')}}"><h3>{{__('Popular Originals')}}</h3></a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/tatlubaaz') }}" data-element_text="{{__('Tatlubaaz')}}">{{__('Tatlubaaz')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/video-cam-scam') }}" data-element_text="{{__('Video Cam Scam')}}">{{__('Video Cam Scam')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/family-table') }}" data-element_text="{{__('Family Table')}}">{{__('Family Table')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/plot-1-by-2') }}" data-element_text="{{__('Plot 1 by 2')}}">{{__('Plot 1 by 2')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/bluetick') }}" data-element_text="{{__('Bluetick')}}">{{__('Bluetick')}}</a>
+                    </li>
+                    <li>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('movies') }}" data-element_text="{{__('Top Bollywood Picks')}}"><h3>{{__('Top Bollywood Picks')}}</h3></a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('movies/gangs-of-wasseypur-1') }}" data-element_text="{{__('Gangs Of Wasseypur 1')}}">{{__('Gangs Of Wasseypur 1')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('movies/khatta-meetha') }}" data-element_text="{{__('Khatta Meetha')}}">{{__('Khatta Meetha')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('movies/alone') }}" data-element_text="{{__('Alone')}}">{{__('Alone')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('movies/shabd') }}" data-element_text="{{__('Shabd')}}">{{__('Shabd')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('movies/gangs-of-wasseypur-2') }}" data-element_text="{{__('Gangs Of Wasseypur 2')}}">{{__('Gangs Of Wasseypur 2')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('movies/piku') }}" data-element_text="{{__('Piku')}}">{{__('Piku')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('movies/queen') }}" data-element_text="{{__('Queen')}}">{{__('Queen')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('movies/phir-hera-pheri') }}" data-element_text="{{__('Phir Hera Pheri')}}">{{__('Phir Hera Pheri')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('movies/akaash-vani') }}" data-element_text="{{__('Akaash Vani')}}">{{__('Akaash Vani')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('movies/guest-in-london') }}" data-element_text="{{__('Guest In London')}}">{{__('Guest In London')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('movies/welcome') }}" data-element_text="{{__('Welcome')}}">{{__('Welcome')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('movies/dhol') }}" data-element_text="{{__('Dhol')}}">{{__('Dhol')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('movies/golmaal-fun-unlimited') }}" data-element_text="{{__('Golmaal - Fun Unlimited')}}">{{__('Golmaal - Fun Unlimited')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('movies/golmaal-returns') }}" data-element_text="{{__('Golmaal Returns')}}">{{__('Golmaal Returns')}}</a>
+                    </li>
+                    <li>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('distro-tv') }}" data-element_text="{{__('Dishtro Tv')}}"><h3>{{__('Dishtro Tv')}}</h3></a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('distro-tv/5202') }}" data-element_text="{{__('India News')}}">{{__('India News')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('distro-tv/2889') }}" data-element_text="{{__('ABP News')}}">{{__('ABP News')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('distro-tv/5199') }}" data-element_text="{{__('News Nation')}}">{{__('News Nation')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('distro-tv/5256') }}" data-element_text="{{__('Sudarshan News')}}">{{__('Sudarshan News')}}</a>
+                    </li>
+                    <li>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('distro-tv') }}" data-element_text="{{__('Live Sports')}}"><h3>{{__('Live Sports')}}</h3></a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('distro-tv/5246') }}" data-element_text="{{__('Sports TV plus')}}">{{__('Sports TV plus')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('distro-tv/1186') }}" data-element_text="{{__('Adventure Sports')}}">{{__('Adventure Sports')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('distro-tv/3166') }}" data-element_text="{{__('Skate surf snow')}}">{{__('Skate surf snow')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('distro-tv/661') }}" data-element_text="{{__('MMA Junkie')}}">{{__('MMA Junkie')}}</a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('distro-tv/1239') }}" data-element_text="{{__('Sports grid')}}">{{__('Sports grid')}}</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="w-100 text-center small text-white pt-3 pb-4 copy-right">Copyright © {{ date('Y') }} IN10 Media
+        <div class="w-100 text-center small text-white pt-3 pb-4 copy-right">
+            Best viewed on Google Chrome 80+, Microsoft Edge 81+, Mozilla Firefox 75+, Safari 5.1.5+<br>
+            Copyright © {{ date('Y') }} IN10 Media
             Private
             Limited. All Rights Reserved.</div>
     </div>
