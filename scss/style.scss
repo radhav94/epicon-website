@@ -11102,3 +11102,8 @@ audio::-webkit-media-controls-play-button {
     }
     
 }
+#epg-modal .modal-content{
+    @media (max-width:1180px) {
+        width: 100%;
+      }
+}
