@@ -94,7 +94,7 @@
 
     <div class="content-loader d-none" style="text-align: center;"> <img style="width: 40px;" src="{{ env('AWS_S3_domain').'epicon/assets/images/loader.gif' }}" alt="loading"> </div>
 <div class="modal fade" id="epg-modal" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered px-3">
+    <div class="modal-dialog modal-xl px-3 pt-4">
         <div class="modal-content">
             <button class="x-btn text-white closebtn position-absolute btn-close redi-subs" data-bs-dismiss="modal" aria-label="Close">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 31 32" fill="none">

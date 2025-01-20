@@ -147,6 +147,7 @@ if ($request->has('type')) {
                     </li>
                     <li>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('/') }}" data-element_text="{{__('Popular Originals')}}"><h3>{{__('Popular Originals')}}</h3></a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/griha-laxmi') }}" data-element_text="{{__('Griha Laxmi')}}">{{__('Griha Laxmi')}}</a>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/tatlubaaz') }}" data-element_text="{{__('Tatlubaaz')}}">{{__('Tatlubaaz')}}</a>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/video-cam-scam') }}" data-element_text="{{__('Video Cam Scam')}}">{{__('Video Cam Scam')}}</a>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/family-table') }}" data-element_text="{{__('Family Table')}}">{{__('Family Table')}}</a>
