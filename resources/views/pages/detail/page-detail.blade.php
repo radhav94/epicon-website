@@ -123,8 +123,8 @@ $meta['image'] = $share_img;
                                         {!! getPlayText($content) !!}
                                     @endif
                                 </button>
-                                @if(($content['user_duration'] ?? 0) >= 1)
-                                <button class="fill-btn mobile-width" id="video-start-from-beginning">Play from beginning</button>
+                                @if(($content['user_duration'] ?? 0) >= 1 && $pageslug != 'live-tv')
+                                <button class="fill-btn mobile-width {{$watchClass}}" id="{{ !empty($watchid) ? 'video-start-from-beginning' : '' }}">Play from beginning</button>
                                 @endif
 
                                     @if (@$content['free_premium'] == true && !isActiveSubscription())
