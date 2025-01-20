@@ -66,7 +66,7 @@ $meta['image'] = $share_img;
     @endif
 
     <section class="content-detail-banner position-relative">
-        <div class="banner-main position-relative hide-vid-element">
+        <div class="banner-main container position-relative hide-vid-element px-0">
             <img src="{{ $cover_img }}" alt="img">
         </div>
         <div class="loaderImg" style="display:none">
