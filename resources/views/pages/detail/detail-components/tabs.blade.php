@@ -77,7 +77,7 @@
                         }
                         ?>
                        <li class="nav-item" role="presentation">
-                           <button class="nav-link {{ $key == 0 ? 'ep active' : '' }}" id="{{ $value['key'] }}" data-bs-toggle="pill" data-bs-target="#pills-{{ $value['key'] }}" type="button" role="tab" aria-controls="pills-{{ $value['key'] }}" aria-selected="{{ $key == 0 ? 'true' : 'false' }}">{{ __($value['title']) }}</button>
+                           <h2 class="nav-link {{ $key == 0 ? 'ep active' : '' }}" id="{{ $value['key'] }}" data-bs-toggle="pill" data-bs-target="#pills-{{ $value['key'] }}" type="button" role="tab" aria-controls="pills-{{ $value['key'] }}" aria-selected="{{ $key == 0 ? 'true' : 'false' }}">{{ __($value['title']) }}</h2>
                        </li>
                        @endforeach
 
