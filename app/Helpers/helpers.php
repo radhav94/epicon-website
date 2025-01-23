@@ -1481,9 +1481,9 @@ if (!function_exists('getMeta')) {
 
         if ($pagetype == 'HOME') {
 
-            $meta['title'] = $lang != 'HINDI' ? 'Watch TV Shows, Web Series, Movies, Podcasts, & Live TV Channels' : 'टीवी शो, वेब सीरीज, फिल्में, पॉडकास्ट और लाइव टीवी चैनल देखें';
+            $meta['title'] = $lang != 'HINDI' ? 'Stream Movies, TV Shows, Web Series, Podcasts, and Live TV Channels' : 'टीवी शो, वेब सीरीज, फिल्में, पॉडकास्ट और लाइव टीवी चैनल देखें';
 
-            $meta['description'] = $lang != 'HINDI' ? 'Watch TV Shows, Web Series, Movies, Podcasts, Live TV Channels online at Epic On, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies' : 'मूवी, टीवी शो, ई-बुक्स, पॉडकास्ट, गेम्स, रिवार्ड्स और अधिक एक से एक मनोरंजन ईपीक ऑन पर';
+            $meta['description'] = $lang != 'HINDI' ? "Epicon, India's largest streaming platform, offers movies, TV shows, web series, podcasts, live channels, and news in HD. Explore genres like Thriller, Action, Comedy, and Drama. Watch now!" : 'मूवी, टीवी शो, ई-बुक्स, पॉडकास्ट, गेम्स, रिवार्ड्स और अधिक एक से एक मनोरंजन ईपीक ऑन पर';
 
             $meta['keywords'] = $lang != 'HINDI' ? 'movies, film, online videos, tv series, games, ebooks, podcast, tv shows, recipe shows, travel shows, historic places, mythology, festivals of India, best tv shows, best tv series, history of India' : 'फिल्में, फिल्म, ऑनलाइन वीडियो, टीवी श्रृंखला, खेल, ईबुक, पॉडकास्ट, टीवी शो, रेसिपी शो, यात्रा शो, ऐतिहासिक स्थान, पौराणिक कथाएं, भारत के त्योहार, सर्वश्रेष्ठ टीवी शो, सर्वश्रेष्ठ टीवी श्रृंखला, भारत का इतिहास';
 
@@ -1501,9 +1501,9 @@ if (!function_exists('getMeta')) {
 
                 if ($pageslug == 'tv-shows') {
 
-                    $meta['title'] = $lang != 'HINDI' ? 'Watch Indian TV Shows and Web Series Online at Epic On' : 'देखो टीवी शो, एपिसोड, सिनेमा ऑनलाइन | ईपीक ऑन';
+                    $meta['title'] = $lang != 'HINDI' ? 'Watch Top Episodes TV Shows & Serials Online in HD At Epic On' : 'देखो टीवी शो, एपिसोड, सिनेमा ऑनलाइन | ईपीक ऑन';
 
-                    $meta['description'] = $lang != 'HINDI' ? 'Watch TV shows and Web Series online at Epic On. Best OTT Platforms for TV shows and Web Series in Hindi and English. Subscribe to our platform today!' : 'कॉमेडी, रोमांस, एक्शन, ड्रामा, भोजन, यात्रा और पौराणिक कथाओं की शैलियों के बीच लोकप्रिय टीवी शो, ब्लॉकबस्टर फिल्में, मूल, वृत्तचित्र, और बहुत कुछ देखें';
+                    $meta['description'] = $lang != 'HINDI' ? "Binge-watch the best Indian TV shows on EPIC ON. There's something for everyone from drama and history to lifestyle and adventure. Start your journey into amazing stories today!" : 'कॉमेडी, रोमांस, एक्शन, ड्रामा, भोजन, यात्रा और पौराणिक कथाओं की शैलियों के बीच लोकप्रिय टीवी शो, ब्लॉकबस्टर फिल्में, मूल, वृत्तचित्र, और बहुत कुछ देखें';
 
                     $meta['keywords'] = $lang != 'HINDI' ? 'originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries, EPIC ON,films,hollywood movies, bollywood movies, hindi movies,originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries,amazon prime movies' : 'नई फिल्में, फिल्में, मूवीज, फिल्म, ऑनलाइन वीडियो, टीवी श्रृंखला, टीवी शो, सर्वश्रेष्ठ नेटफ्लिक्स श्रृंखला, वेब श्रृंखला, शो, सर्वश्रेष्ठ वेब श्रृंखला, वृत्तचित्र';
 
@@ -1517,9 +1517,9 @@ if (!function_exists('getMeta')) {
 
                 } else if ($pageslug == 'movies') {
 
-                    $meta['title'] = $lang != 'HINDI' ? 'Watch Bollywood, Hollywood and South Indian Movies Online' : 'Watch Bollywood, Hollywood and South Indian Movies Online';
+                    $meta['title'] = $lang != 'HINDI' ? 'Watch Movies Online in HD - Bollywood, Tamil, Telugu & More on Epic ON' : 'Watch Bollywood, Hollywood and South Indian Movies Online';
 
-                    $meta['description'] = $lang != 'HINDI' ? 'Craving Bollywood blockbusters, Hollywood hits, or South Indian sensations? Stream them all now! Huge library, all your favorite languages.' : 'Craving Bollywood blockbusters, Hollywood hits, or South Indian sensations? Stream them all now! Huge library, all your favorite languages.';
+                    $meta['description'] = $lang != 'HINDI' ? 'Explore an extensive library of Indian movies across genres on EPIC ON. Enjoy captivating films, from timeless classics to new releases, anytime and anywhere. Start streaming today!' : 'Explore an extensive library of Indian movies across genres on EPIC ON. Enjoy captivating films, from timeless classics to new releases, anytime and anywhere. Start streaming today!';
 
                     $meta['keywords'] = $lang != 'HINDI' ? 'originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries, EPIC ON,films,hollywood movies, bollywood movies, hindi movies,originals, new movies, mp4moviez, movies, moviezwap, film, online videos, tv series, tv shows, best netflix series, web series, shows, best web series, documentaries,amazon prime movies' : 'नई फिल्में, फिल्में, मूवीज, फिल्म, ऑनलाइन वीडियो, टीवी श्रृंखला, टीवी शो, सर्वश्रेष्ठ नेटफ्लिक्स श्रृंखला, वेब श्रृंखला, शो, सर्वश्रेष्ठ वेब श्रृंखला, वृत्तचित्र';
 
