@@ -782,4 +782,15 @@ $hasSearchHistory = count($profileSearchHistory) > 0 ? true : false;
         }, 2000);
     }
 </script>
+<script>
+    window.addEventListener('load', function() {
+      // Check if the flag exists in localStorage
+      if (localStorage.getItem('activateDeviceTab') === 'true') {
+        // Trigger the click event on the nav-link
+        document.getElementById('v-pills-active-device-tab').click();
+        // Optionally clear the flag
+        localStorage.removeItem('activateDeviceTab');
+      }
+    });
+  </script>
 @stop

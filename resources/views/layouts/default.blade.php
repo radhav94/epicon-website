@@ -75,7 +75,7 @@
             'platform_type': 'web',
             'environment': 'develop',
         });
-    </script> 
+    </script>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -85,7 +85,7 @@
     <!-- Schema Code Start -->
     @include('layouts.schema')
     <!-- Schema Code END -->
-    
+
 </head>
 
 <body>
@@ -106,7 +106,7 @@
 
     <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/ga_tag.js?v={{ assetTime() }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}?v={{ assetTime() }}" defer></script>
-    
+
     {{-- End footer common scripts --}}
 
     @if(request()->get('type') == 'register')
@@ -155,6 +155,12 @@
 
           return deviceId;
         }
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('activeDeviceTriggerLink').addEventListener('click', function() {
+                localStorage.setItem('activateDeviceTab', 'true');
+            });
+        });
+
     </script>
 </body>
 </html>
