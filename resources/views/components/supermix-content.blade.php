@@ -26,10 +26,10 @@
                     'v_content' => $value,
                     ])
                 </span>
-                <p class="col-sm-8 col-md-10 mt-2 shot-desc-{{$key}}">
+                <p class="col-sm-8 col-md-10 mt-2 shot-desc">
                     {!! sanitizeData(@$value['short_description']) !!}
                 </p>
-                <span class="read-button-{{$key}} readmore-episodes"> </span>
+                <span class="readmore-episodes"> </span>
             </div>
             <button class="reorder-icon handle">
                 <img src="{{ env('AWS_S3_domain').'epicon/assets/images/reorder-icon.svg' }}" alt="icon">
