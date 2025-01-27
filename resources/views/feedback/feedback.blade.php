@@ -1396,7 +1396,7 @@
                                                 </ul>
                                         </div>
                                         <input type="hidden" name="isdcode" id="country-stdisdcode" class="country-stdisdcode-class" value="{{ $country['countryCode'] }}">
-                                        <input class="form-control rounded-start-0" style="text-indent: 115px;" name="phone" type="text" value="{{ $mobile }}" {{ !empty($mobile) ? 'readonly' : '' }} placeholder="Enter mobile no" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Please enter a valid phone number">
+                                        <input class="form-control rounded-start-0" style="text-indent: 1px;" name="phone" type="text" value="{{ $mobile }}" {{ !empty($mobile) ? 'readonly' : '' }} placeholder="Enter mobile number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Please enter a valid mobile number">
                         </div>
                         
                     </div>
@@ -1452,6 +1452,16 @@
                 $(stdisdcode).after('<p class="error-box text-danger pt-2 col-md-6">Country is required</p>');
                 isValid = false;
             }
+
+            var phone = $("#feedbackForm input[name='phone']");
+            if (phone.val().trim() == "") {
+                $(phone).after('<p class="error-box text-danger pt-2">Mobile number is required</p>');
+                isValid = false;
+            } else if (!isValidMobileNumber(phone.val())) {
+                $(phone).parent().after('<p class="error-box text-danger pt-2">Mobile number must contain only digits</p>');
+                isValid = false;
+            }
+
             var email = $("#feedbackForm input[name='email']");
             if (email.val().trim() == "") {
                 $(email).after('<p class="error-box text-danger pt-2 col-md-6">Email is required</p>');
@@ -1502,6 +1512,11 @@
         })
 
     });
+
+    function isValidMobileNumber(number) {
+        const regex = /^\+?[0-9]+$/;
+        return regex.test(number);
+    }
 
     $("#search-feedback").on('keyup', function() {
             var value = $(this).val().toLowerCase();

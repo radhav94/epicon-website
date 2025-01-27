@@ -1,4 +1,5 @@
-<?php  $page = request()->segment(1);  ?>
+<?php  $page = request()->segment(1);
+$default_img = env('AWS_S3_domain').'epicon/assets/images/epicon-logo.png'; ?>
 
 @if($page == 'games' || $page == 'games-all' )
 <script type="application/ld+json">
@@ -83,12 +84,52 @@
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "description":"Watch your favorite TV show online at Epic On. Best OTT Platforms for TV shows in Hindi and English. Subscribe to our platform today!",
-    "url":"https://www.epicon.in/tv-shows",
-    "@type": "TVSeries",
-    "datePublished": "2023-11-30",
-    "name": "Watch Indian TV Shows Online at Epic On | Streaming Now | EPIC ON"
+    "@type": "VideoObject",
+    "name": "{{ $content['title']?? 'EpicOn'}}",
+    "description": "{{ $content['short_description']??'EpicOn'}}",
+    "thumbnailUrl": "{{ $content['cover_image_v2']['large']??$default_img}}",
+    "contentUrl": "{{ url()->current() }}",
+    "embedUrl": "{{ url()->current() }}",
+    "uploadDate": "{{ date('Y-m-d',strtotime($content['newrelease_date']??now())) }}",
+    "publisher": {
+      "@type": "Organization",
+      "name": "EPIC ON",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ $default_img }}"
       }
+    }@if (isset($content['content_type']) && strtolower($content['content_type']) == 'show'),
+    @php
+        $actors = [];
+        $director = null;
+  
+        if (isset($content['cast']) && is_array($content['cast'])) {
+            foreach ($content['cast'] as $key => $value) {
+                if (stripos($key, 'cast') !== false) {
+                    $actors = array_map(function($name) {
+                        return [
+                            "@type" => "Person",
+                            "name" => trim($name)
+                        ];
+                    }, explode(',', $value));
+                } elseif (stripos($key, 'director') !== false) {
+                    $director = [
+                        "@type" => "Person",
+                        "name" => $value
+                    ];
+                }
+            }
+        }
+  
+        $structuredData = [
+            "actor" => $actors,
+            "director" => $director
+        ];
+    @endphp
+    {!! json_encode($structuredData, JSON_PRETTY_PRINT) !!}
+  @endif
+  
+  }
 </script>
 @elseif($page == '')
 <script type="application/ld+json">
