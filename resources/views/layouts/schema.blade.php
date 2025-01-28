@@ -1,5 +1,7 @@
-<?php  $page = request()->segment(1);
-$default_img = env('AWS_S3_domain').'epicon/assets/images/epicon-logo.png'; ?>
+<?php  $page = getFirstSegment();
+$segment2 = getFirstSegment(2);
+$default_img = env('AWS_S3_domain').'epicon/assets/images/epicon-logo.png';
+?>
 
 @if($page == 'games' || $page == 'games-all' )
 <script type="application/ld+json">
@@ -114,7 +116,57 @@ $default_img = env('AWS_S3_domain').'epicon/assets/images/epicon-logo.png'; ?>
   }
 </script>
 @elseif($page == 'tv-shows')
+@if(!empty($segment2))
 <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "{{ $content['title']?? 'EpicOn'}}",
+    "description": "{{ $content['short_description']??'EpicOn'}}",
+    "thumbnailUrl": "{{ $content['cover_image_v2']['large']??$default_img}}",
+    "contentUrl": "{{ url()->current() }}",
+    "embedUrl": "{{ url()->current() }}",
+    "uploadDate": "{{ date('Y-m-d',strtotime($content['newrelease_date']??now())) }}",
+    "publisher": {
+      "@type": "Organization",
+      "name": "EPIC ON",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ $default_img }}"
+      }
+    }
+    
+    @php
+        $actors = [];
+        $director = null;
+        if (isset($content['cast']) && is_array($content['cast'])) {
+            foreach ($content['cast'] as $key => $value) {
+                if (stripos($key, 'cast') !== false) {
+                    $actors = array_map(function($name) {
+                        return [
+                            "@type" => "Person",
+                            "name" => trim($name)
+                        ];
+                    }, explode(',', $value));
+                }
+                if (stripos($key, 'director') !== false) {
+                    $director = [
+                        "@type" => "Person",
+                        "name" => $value
+                    ];
+                }
+            }
+        }
+  
+        $structuredData = [
+            "actor" => $actors,
+            "director" => $director
+        ];
+    @endphp
+    {!! json_encode($structuredData, JSON_PRETTY_PRINT) !!}
+  }
+</script>
+@else
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -159,6 +211,7 @@ $default_img = env('AWS_S3_domain').'epicon/assets/images/epicon-logo.png'; ?>
     }
   }
 </script>
+@endif
 @elseif($page == '')
 <script type="application/ld+json">
   {

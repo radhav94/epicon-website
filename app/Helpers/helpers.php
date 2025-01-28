@@ -1206,13 +1206,14 @@ if (!function_exists('isKidsProfile')) {
     }
 }
 
-function getFirstSegment()
+function getFirstSegment($segmt = 1)
 {
 
     if (session()->has('displayLanguage') && session('displayLanguage') != 'en') {
-        $segment = request()->segment(2);
+        $segmt += 1;
+        $segment = request()->segment($segmt);
     } else {
-        $segment = request()->segment(1);
+        $segment = request()->segment($segmt);
     }
     return $segment;
 }
