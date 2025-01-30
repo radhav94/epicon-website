@@ -5,7 +5,7 @@
     }
     .img-poster{
         width: 100%;
-        height: 300px;
+        height: auto;
     }
     .para-info p, .para-info h5 {
     color: #fff;

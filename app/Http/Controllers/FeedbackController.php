@@ -58,8 +58,11 @@ class FeedbackController extends Controller
     private function getUserMobile($mobile, $countrycode)
     {
         $countrystate = getCountryStateData();
-        $key = array_search($countrycode, array_column($countrystate['countries'], "code"));
-        $countryisdcode = $countrystate['countries'][$key]['countryisdcode'];
+        $countryisdcode = '';
+        if (!empty($countrystate)) {
+            $key = array_search($countrycode, array_column($countrystate['countries'], "code"));
+            $countryisdcode = $countrystate['countries'][$key]['countryisdcode'];
+        }
         return substr($mobile, strlen($countryisdcode));
     }
 }

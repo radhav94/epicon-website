@@ -20,7 +20,11 @@ if($isMoblile){
         $cover_img = getCardImage($content, 'trending_movie_buzz_image', 'large');
     }
     else if(@$content['content_type'] == 'EPISODE'){
-        $cover_img = getCardImage($content, 'cover_image', 'large');
+        if (!empty($content['season'][0]['airtel_feature_imageHD'] ?? '')) {
+            $cover_img = $content['season'][0]['airtel_feature_imageHD'];
+        } else {
+            $cover_img = getCardImage($content, 'cover_image', 'large');
+        }
     }
     else{
         $cover_img = getCardImage($content, 'banner_image', 'large');
@@ -62,7 +66,7 @@ $meta['image'] = $share_img;
     @endif
 
     <section class="content-detail-banner position-relative">
-        <div class="banner-main position-relative hide-vid-element">
+        <div class="banner-main container position-relative hide-vid-element px-0">
             <img src="{{ $cover_img }}" alt="img">
         </div>
         <div class="loaderImg" style="display:none">
@@ -119,8 +123,8 @@ $meta['image'] = $share_img;
                                         {!! getPlayText($content) !!}
                                     @endif
                                 </button>
-                                @if(($content['user_duration'] ?? 0) >= 1)
-                                <button class="fill-btn mobile-width" id="video-start-from-beginning">Play from beginning</button>
+                                @if(($content['user_duration'] ?? 0) >= 1 && $pageslug != 'live-tv')
+                                <button class="fill-btn mobile-width {{$watchClass}}" id="{{ !empty($watchid) ? 'video-start-from-beginning' : '' }}">Play from beginning</button>
                                 @endif
 
                                     @if (@$content['free_premium'] == true && !isActiveSubscription())

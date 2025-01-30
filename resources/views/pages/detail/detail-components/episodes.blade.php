@@ -52,7 +52,7 @@
                          {{-- </button> --}}
                     </a>
                     <div class="episode-text-details">
-                        <h6>{{ $card['title'] }}</h6>
+                        <h3>{{ $card['title'] }}</h3>
                         <span>
                             @if (@$value['newrelease_date'])
                                 {{ formatDate($value['newrelease_date']) }}

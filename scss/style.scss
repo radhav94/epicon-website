@@ -1305,17 +1305,18 @@ body{
     opacity: 1;    
 }
 .modal{
-    background-color: rgba(0, 0, 0, 0.1);
-    // -webkit-backdrop-filter: blur(12px);
-    // backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, .1);
+    backdrop-filter: blur(40px);
 }
 .modal-dialog {
     margin-right: auto;
     margin-left: auto!important;
     margin-top: 0!important;
+    height: 100%;
 }
 #login-modal .modal-content{
     background-image: url(#{$domain}epicon/assets/images/LoginTatlubaazBackBg.png);
+    width: 100%;
     @media (max-width:767px) {
         background-image: none;
     }
@@ -5419,17 +5420,17 @@ input {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        @media (max-width:1024px) {
+        @media (max-width:1200px) {
             width: 50%;
         }
         img{
             height: 400px;
             object-fit: contain;
-            @media (max-width:768px) {
+            @media (max-width:900px) {
                 display: none;
             }
         }
-        @media (max-width:768px) {
+        @media (max-width:900px) {
             width: 100%;
         }
     }
@@ -5440,7 +5441,7 @@ input {
         padding: 30px;
         border-radius: 15px;
         box-shadow: 0px 0px 30px rgba(176, 76, 241, 0.56);
-        @media (max-width:1024px) {
+        @media (max-width:1200px) {
             width: 50%;
         }
 
@@ -5458,10 +5459,10 @@ input {
             color: #BBBBBB;
           }
 
-        @media (max-width:768px) {
+        @media (max-width:900px) {
             width: 100%;
         }
-        @media (max-width:767px) {
+        @media (max-width:900px) {
             padding: 15px;
         }
     }
@@ -6305,15 +6306,15 @@ input {
         // padding: 4px 5px;
         font-size: 12px;
         font-weight: 600;
-        margin-block:10px;
+        // margin-block:10px;
         height: 41px;
     }
 }
 .fill-btn{
     color: $bg-dark-gray;
     background: $bg-white;
-    margin-left: 10px;
-    margin-top: 20px;
+    // margin-left: 10px;
+    // margin-top: 20px;
     transition:all 0.4s;
 
     @media (max-width:768px) {
@@ -7667,8 +7668,9 @@ input {
         @media (max-width:700px) {
             padding-top: 0px;
         }
-        h6{
+        h3{
             @include line-clamp(2);
+            font-size: 1rem;
             @media (max-width:700px) {
                 font-size: 14px;
                 @include line-clamp(1);
@@ -8237,7 +8239,7 @@ input {
     .download-store{
         @include flex(column,center,flex-end);
         
-        h1{
+        h2{
             color: $bg-white;
             font-size: 16px;
             font-weight: 600;
@@ -8282,6 +8284,7 @@ input {
         & .modal-content{
             border-radius: 0;
             height: 100vh;
+            width: 100%;
             background-image: none;
             .progressBar{
                 display: flex;
@@ -9592,11 +9595,12 @@ audio::-webkit-media-controls-play-button {
 }
 .player-bg-wrap{
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     width: 100%;
     height: 500px;
     background-color: #000;
+    border-radius: 20px;
     @media (max-width:768px) {
         width: 100%;
         height: auto;
@@ -9664,6 +9668,7 @@ audio::-webkit-media-controls-play-button {
 #upcomingModal .modal-content{
     background-color: #000;
     background-image: none;
+    width: 100%;
 }
 #upcomingModal .plyr video{
     height: auto!important;
@@ -11045,4 +11050,61 @@ audio::-webkit-media-controls-play-button {
             }
         }
     }
+}
+#supermixModal .modal-dialog{
+    height: auto;
+    margin-top: 20px!important;
+}
+.footer__menu{
+    display: grid;
+    grid-template-columns: repeat(7 , 1fr);
+    padding-left: 0;
+    gap: 10px;
+    margin-top: 3rem;
+    @media (max-width:1180px) {
+        grid-template-columns: repeat(4 , 1fr);
+      }
+      @media (max-width:767px) {
+        grid-template-columns: repeat(2 , 1fr);
+      }
+    li{
+        width: 100%;
+        a{
+            text-decoration: none;
+            text-align: start;
+            padding-block: 5px;
+            width: fit-content;
+        }
+        a:not(:first-child){
+            color: $bg-primary;
+            text-decoration: none;
+            font-size: 0.8rem;
+            opacity: 0.6;
+            display: block;
+            &::after{
+                content: "";
+                width: 0;
+                height: 1px;
+                background: #fff;
+                display: block;
+                transition: width 0.4s ease-in;
+            }
+            &:hover::after{
+                opacity: 1;
+                width: 100%;
+            }
+        }
+    }
+    li a h3{
+        font-size: 1rem;
+        color: #fff;
+        text-decoration: none;
+        letter-spacing: 0.8px;
+    }
+    
+}
+#epg-modal .modal-content{
+    @media (max-width:1180px) {
+        width: 100%;
+      }
 }

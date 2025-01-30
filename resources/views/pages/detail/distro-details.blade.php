@@ -98,6 +98,9 @@
             <p>{!! sanitizeData(@$content['episodes_description']) !!}</p>
         </div>
 
+        <div class="schedule-info">
+            <div class="content-loader" style="text-align:center;height:80px;align-content:center;"><img style="width: 40px;" src="{{ asset('assets/img/loader.gif') }}" alt="loading"></div>
+        </div>
     </div>
 </section>
 
@@ -163,6 +166,53 @@
         // Expose player so it can be used from the console
         window.player = player;
     });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchBannerDetails({{$content['episodes_id']}}, {{$content['root_content_provider']}}, '', '');
+    });
+
+    function fetchBannerDetails(episode_id, content_provider_id, description, root_img_poster){
+            console.log("button modal clicked", episode_id, content_provider_id);
+            // URL endpoint where data will be sent
+            // $('.schedule-info').html(``);
+            const url = `{{route('distro-tv-epg')}}`;
+            console.log(url);
+            // Data you want to send
+            const data = {
+                episode_id: episode_id,
+                content_provider_id: content_provider_id,
+                description: description,
+                root_img_poster: root_img_poster,
+                page: 'details-epg-display'
+            };
+            // $('#epg-data').html(`<div class="content-loader" style="text-align: center;height:80px;align-content:center;"> <img style="width: 40px;" src="{{ asset('assets/img/loader.gif') }}" alt="loading"> </div>`);
+            // $('#epg-modal').modal('show');
+            // Using fetch with a POST request
+            fetch(url, {
+                method: 'POST', // Specify POST method
+                headers: {
+                    'Content-Type': 'application/json', // Specify content type
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // Optional, for Laravel CSRF tokens
+                },
+                body: JSON.stringify(data) // Convert data to JSON format for sending
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Parse JSON response
+            })
+            .then(data => {
+                console.log('Success:', data.html); // Handle response data 
+                $(`.schedule-info`).html(data.html);
+                // $('#epg-data').html(data.html);
+                // $('#epg-modal').modal('show');
+            })
+            .catch(error => {
+                console.error('Error:', error); // Handle errors
+            });
+
+    }
 </script>
 <script>
 // Define the base URL

@@ -167,7 +167,7 @@ if ($request->has('type')) {
             $links = [
                 '' => 'Home',
                 'movies' => 'Movies',
-                'tv-shows' => 'Shows',
+                'tv-shows' => 'TV Shows',
                 'podcast' => 'Podcasts',
                 'explore' => 'Explore',
                 'premium' => 'Premium',
