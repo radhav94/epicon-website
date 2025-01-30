@@ -11,7 +11,7 @@ $lastSegment = request()->segment(count(request()->segments()));
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 @endif
 <link rel="icon" href="{{ env('AWS_S3_domain') }}epicon/assets/images/favicon.png">
-<title id="page_title" data-page-title="@yield('title') | {{ env('APP_NAME') }}">@yield('title') | {{ env('APP_NAME') == '' ? 'EPIC ON' : env('APP_NAME') }}</title>
+<title id="page_title" data-page-title="@yield('title')">@yield('title')</title>
 <link rel="canonical" href="{{ URL::current() }}">
 
 <meta name="theme-color" content="#9442c7">
