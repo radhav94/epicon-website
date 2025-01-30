@@ -330,7 +330,7 @@ if ($request->has('type')) {
                         <li class="subc-text"><a href="{{ getUrl('library') }}">{{__('Library')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('my-account') }}">{{__('My Account')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('my-rewards') }}">{{__('My Rewards')}}</a></li>
-                        <li class="subc-text"><a href="{{ getUrl('settings') }}" id="activeDeviceTriggerLink">{{__('Active Devices')}}</a></li>
+                        <li class="subc-text"><a href="{{ getUrl('settings').'?type=activeDevice' }}">{{__('My Device Limits')}}</a></li>
                         @if(!kidsMode())
                         {{--<li class="subc-text"><a href="{{url('/my-rewards')}}">{{__('Reward Store')}}</a></li>--}}
                         @endif
