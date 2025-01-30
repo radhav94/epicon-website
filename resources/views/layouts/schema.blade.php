@@ -1,5 +1,7 @@
-<?php  $page = request()->segment(1);
-$default_img = env('AWS_S3_domain').'epicon/assets/images/epicon-logo.png'; ?>
+<?php  $page = getFirstSegment();
+$segment2 = getFirstSegment(2);
+$default_img = env('AWS_S3_domain').'epicon/assets/images/epicon-logo.png';
+?>
 
 @if($page == 'games' || $page == 'games-all' )
 <script type="application/ld+json">
@@ -30,11 +32,44 @@ $default_img = env('AWS_S3_domain').'epicon/assets/images/epicon-logo.png'; ?>
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Movie",
-    "name": "Best OTT Platform for Movies | Watch Online Movie Now | EPIC ON",
-    "potentialAction" : {
-      "@type": "WatchAction",
-      "target" : "https://www.epicon.in/movies"
+    "@type": "WebPage",
+    "url": "https://www.epicon.in/movies",
+    "name": "Movies",
+    "description": "Explore an extensive library of Indian movies across genres on EPIC ON. Enjoy captivating films, from timeless classics to new releases, anytime and anywhere. Start streaming today!",
+    "publisher": {
+      "@type": "Organization",
+      "name": "EPIC ON",
+      "url": "https://www.epicon.in",
+      "logo": {
+          "@type": "ImageObject",
+        "url": "{{ $default_img }}"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.epicon.in/movies"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://www.epicon.in/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.epicon.in"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Movies",
+          "item": "https://www.epicon.in/movies"
+        }
+      ]
     }
   }
 </script>
@@ -81,6 +116,7 @@ $default_img = env('AWS_S3_domain').'epicon/assets/images/epicon-logo.png'; ?>
   }
 </script>
 @elseif($page == 'tv-shows')
+@if(!empty($segment2))
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -98,11 +134,11 @@ $default_img = env('AWS_S3_domain').'epicon/assets/images/epicon-logo.png'; ?>
         "@type": "ImageObject",
         "url": "{{ $default_img }}"
       }
-    }@if (isset($content['content_type']) && strtolower($content['content_type']) == 'show'),
+    }
+    
     @php
         $actors = [];
         $director = null;
-  
         if (isset($content['cast']) && is_array($content['cast'])) {
             foreach ($content['cast'] as $key => $value) {
                 if (stripos($key, 'cast') !== false) {
@@ -112,7 +148,8 @@ $default_img = env('AWS_S3_domain').'epicon/assets/images/epicon-logo.png'; ?>
                             "name" => trim($name)
                         ];
                     }, explode(',', $value));
-                } elseif (stripos($key, 'director') !== false) {
+                }
+                if (stripos($key, 'director') !== false) {
                     $director = [
                         "@type" => "Person",
                         "name" => $value
@@ -127,22 +164,151 @@ $default_img = env('AWS_S3_domain').'epicon/assets/images/epicon-logo.png'; ?>
         ];
     @endphp
     {!! json_encode($structuredData, JSON_PRETTY_PRINT) !!}
-  @endif
-  
   }
 </script>
+@else
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://www.epicon.in/tv-shows",
+    "name": "Tv Shows",
+    "description": "Binge-watch the best Indian TV shows on EPIC ON. There's something for everyone from drama and history to lifestyle and adventure. Start your journey into amazing stories today!",
+    "publisher": {
+    "@type": "Organization",
+    "name": "EPIC ON",
+    "url": "https://www.epicon.in",
+    "logo": {
+        "@type": "ImageObject",
+      "url": "{{ $default_img }}"
+    }
+    },
+    "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.epicon.in/tv-shows"
+    },
+    "potentialAction": {
+    "@type": "SearchAction",
+      "target": "https://www.epicon.in/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    },
+    "breadcrumb": {
+    "@type": "BreadcrumbList",
+      "itemListElement": [
+      {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.epicon.in"
+      },
+      {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tv shows",
+          "item": "https://www.epicon.in/tv-shows"
+      }
+    ]
+    }
+  }
+</script>
+@endif
 @elseif($page == '')
 <script type="application/ld+json">
-{
-"@context": "https://schema.org",
-"@type": "WebSite",
-"name": "EPIC ON",
-"url": "https://www.epicon.in/",
-"potentialAction": {
-"@type": "ViewAction",
-"target": "https://www.epicon.in/"
-}
-}
+  {
+    "@context": "http://schema.org/",
+    "@type": "Organization",
+    "image": "{{ $default_img }}",
+    "url": "https://www.epicon.in",
+    "email": "support@epicon.in",
+    "name": "EPIC ON",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ $default_img }}"
+    },
+    "sameAs": [
+      " https://www.facebook.com/theepicon",
+      " https://x.com/theepicon ",
+      " https://www.instagram.com/theepicon/ ",
+      "https://play.google.com/store/apps/details?id=com.epicchannel.epicon&hl=en",
+      "https://apps.apple.com/in/app/epic-on-originals-movies/id1252513341"
+    ]
+  },
+  {
+    "@context": "http://schema.org/",
+    "@type": "WebSite",
+    "url": "https://www.epicon.in/",
+    "name": "EPIC ON",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://www.epicon.in/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "http://schema.org/",
+    "@graph": [
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.epicon.in/#table-of-contents",
+        "name": "Home",
+        "url": "https://www.epicon.in"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.epicon.in/#table-of-contents",
+        "name": "TV Shows",
+        "url": "https://www.epicon.in/tv-shows"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.epicon.in/#table-of-contents",
+        "name": "Movies",
+        "url": "https://www.epicon.in/movies"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.epicon.in/#table-of-contents",
+        "name": " PODCASTS ",
+        "url": " https://www.epicon.in/podcast "
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.epicon.in/#table-of-contents",
+        "name": " live tv ",
+        "url": " https://www.epicon.in/live-tv "
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.epicon.in/#table-of-contents",
+        "name": "Kids",
+        "url": "https://www.epicon.in/kids"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.epicon.in/#table-of-contents",
+        "name": " DISTRO TV ",
+        "url": " https://www.epicon.in/distro-tv "
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.epicon.in/#table-of-contents",
+        "name": " Premium ",
+        "url": " https://www.epicon.in/premium "
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.epicon.in/#table-of-contents",
+        "name": " Explore ",
+        "url": " https://www.epicon.in/explore "
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.epicon.in/#table-of-contents",
+        "name": "About Us",
+        "url": "https://www.epicon.in/about"
+      }
+    ]
+  }
 </script>
 @elseif($page == 'search')
 <script type="application/ld+json">
