@@ -1482,7 +1482,7 @@ if (!function_exists('getMeta')) {
 
         if ($pagetype == 'HOME') {
 
-            $meta['title'] = $lang != 'HINDI' ? 'Stream Movies, TV Shows, Web Series, Podcasts, and Live TV Channels' : 'टीवी शो, वेब सीरीज, फिल्में, पॉडकास्ट और लाइव टीवी चैनल देखें';
+            $meta['title'] = $lang != 'HINDI' ? 'Stream Movies, TV Shows, Web Series, Podcasts, and Live TV Channels | EPIC ON' : 'टीवी शो, वेब सीरीज, फिल्में, पॉडकास्ट और लाइव टीवी चैनल देखें';
 
             $meta['description'] = $lang != 'HINDI' ? "Epicon, India's largest streaming platform, offers movies, TV shows, web series, podcasts, live channels, and news in HD. Explore genres like Thriller, Action, Comedy, and Drama. Watch now!" : 'मूवी, टीवी शो, ई-बुक्स, पॉडकास्ट, गेम्स, रिवार्ड्स और अधिक एक से एक मनोरंजन ईपीक ऑन पर';
 
