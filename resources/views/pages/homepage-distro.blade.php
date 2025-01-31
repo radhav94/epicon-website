@@ -113,7 +113,7 @@
 @stop
 
 @section('script')
-<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/homepage.js?v={{ assetTime() }}"></script>
+<script src="{{ asset('assets/js/homepage.js').'?v='.assetTime() }}" defer></script>
 <script defer src="{{ env('AWS_S3_domain').'epicon/assets/images/distro-tv.js' }}?v={{ assetTime() }}"></script>
 <script>
     window.onload = function() {

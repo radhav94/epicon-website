@@ -1316,27 +1316,34 @@ jQuery(function($) {
 
   showmoreFunction();
 
-function showmoreFunction(){
-        var show_char = 300;
-        var ellipses = "... ";
-        items = document.querySelectorAll(".showmore-main");
-        items.forEach(function(item,eid) {
-            var content = $(".shot-desc-"+eid).text();
-            if (content.length > show_char) {
+function showmoreFunction() {
+    var show_char = 300;
+    var ellipses = "... ";
+    items = document.querySelectorAll(".showmore-main");
+    items.forEach(function (item, eid) {
+        var content = $(item).find(".shot-desc").text();
+        if (content.length > show_char) {
             var a = content.substr(0, show_char);
             var b = content.substr(show_char - content.length);
-            var html = a + "<span class='truncated-"+eid+"'>" + ellipses + "</span><span class='truncated-"+eid+"' style='display:none'>" + b + "</span>";
-            $(".shot-desc-"+eid).html(html);
-            $(".read-button-"+eid).html("<button class='bg-transparent text-white small read-more-"+eid+"' readmore-less'>Read More</button>");
-            }
-    
-            $(document).on("click", ".read-more-" + eid, function (e) {
-            e.preventDefault();
-            $(".read-more-"+eid).text() == "Read More" ? $(".read-more-"+eid).text("Read Less") : $(".read-more-"+eid).text("Read More")
-            $('.shot-desc-'+eid+ ' .truncated-'+eid).toggle();
-            });
-    
-        });
-        
-    
+            var html =
+                a +
+                "<span class='truncated'>" +
+                ellipses +
+                "</span><span class='truncated' style='display:none'>" +
+                b +
+                "</span>";
+            $(item).find(".shot-desc").html(html);
+            $(item).find(".readmore-episodes").html(
+                "<button class='bg-transparent text-white small readmore-less'>Read More</button>"
+            );
+        }
+    });
+
+    $(document).off("click", ".readmore-episodes").on("click", ".readmore-episodes", function (e) {
+        e.preventDefault();
+        $(this).find('.readmore-less').text() == "Read More"
+            ? $(this).find('.readmore-less').text("Read Less")
+            : $(this).find('.readmore-less').text("Read More");
+        $(this).parent().find(".shot-desc .truncated").toggle();
+    });
 }
