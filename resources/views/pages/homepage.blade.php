@@ -73,10 +73,14 @@
             if (processing) {
                 return false;
             }
-            if ($(window).scrollTop() >= ($(document).height() - $(window).height()) * 0.4) {
-                processing = true;
-
-                loadMoreData();
+            if ($(window).width() < 768) {
+                    processing = true;
+                    loadMoreData();
+            } else {
+                if ($(window).scrollTop() >= ($(document).height() - $(window).height()) * 0.4) {
+                    processing = true;
+                    loadMoreData();
+                }
             }
         });
 
