@@ -26,7 +26,7 @@
                     $("#mobilenumber").addClass("input-radius"),
                     $(".signup_method").val('MOBILE'),
                     (
-                        $("#countryCode__dropdown").text() != "+93" 
+                        $("#countryCode__dropdown").text() != "+91" 
                         ? 
                         $(".country-wise-msg").html("New users outside India are requested to register via email IDs and not mobile OTP.")
                         :
@@ -55,7 +55,7 @@
                             $(".emailText").css({ "text-indent": "115px" }),
                             $(".signup_method").val('MOBILE'),
                             (
-                                $("#countryCode__dropdown").text() != "+93" 
+                                $("#countryCode__dropdown").text() != "+91" 
                                 ? 
                                 $(".country-wise-msg").html("New users outside India are requested to register via email IDs and not mobile OTP.")
                                 :
