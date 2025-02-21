@@ -24,14 +24,22 @@
                     $(".stdisdcode").css({ display: "block" }),
                     $("#mobile_number").addClass("input-radius"),
                     $("#mobilenumber").addClass("input-radius"),
-                    $(".signup_method").val('MOBILE')
+                    $(".signup_method").val('MOBILE'),
+                    (
+                        $("#countryCode__dropdown").text() != "+93" 
+                        ? 
+                        $(".country-wise-msg").html("New users outside India are requested to register via email IDs and not mobile OTP.")
+                        :
+                        $(".country-wise-msg").html("We’ll send you an OTP to verify your account")
+                    )
                   )
                 : (
                     $(".stdisdcode").css({ display: "none" }),
                     $("#mobile_number").removeClass("input-radius"),
                     $("#mobilenumber").removeClass("input-radius"),
                     $(".country__code__box").removeClass("active-div"),
-                    $(".signup_method").val('EMAIL')
+                    $(".signup_method").val('EMAIL'),
+                    $(".country-wise-msg").html("We’ll send you an OTP to verify your account")
                 );
         }),
 
@@ -45,12 +53,20 @@
                         ? (
                             $(".stdisdcode").css({ display: "block" }),
                             $(".emailText").css({ "text-indent": "115px" }),
-                            $(".signup_method").val('MOBILE')
+                            $(".signup_method").val('MOBILE'),
+                            (
+                                $("#countryCode__dropdown").text() != "+93" 
+                                ? 
+                                $(".country-wise-msg").html("New users outside India are requested to register via email IDs and not mobile OTP.")
+                                :
+                                $(".country-wise-msg").html("We’ll send you an OTP to verify your account")
+                            )
                         )
                         : (
                             $(".stdisdcode").css({ display: "none" }),
                             $(".emailText").css({ "text-indent": "0px" }),
-                            $(".signup_method").val('EMAIL')
+                            $(".signup_method").val('EMAIL'),
+                            $(".country-wise-msg").html("We’ll send you an OTP to verify your account")
                         );
 
                 }, 1000);
