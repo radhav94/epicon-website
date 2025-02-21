@@ -26,7 +26,7 @@
                     $("#mobilenumber").addClass("input-radius"),
                     $(".signup_method").val('MOBILE'),
                     (
-                        $("#countryCode__dropdown").text() != "+91" 
+                        trim($("#countryCode__dropdown").text()) != "+91" 
                         ? 
                         $(".country-wise-msg").html("New users outside India are requested to register via email IDs and not mobile OTP.")
                         :
