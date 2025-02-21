@@ -324,7 +324,7 @@ contr.forEach(function(allCountryCode){
     countryCode = countryCode.replace(/[()]/g, '');
     // appendCountry.innerHTML= countryCode;
     $(".country__code").text(countryCode);
-    if (trim(countryCode) != "+91") {
+    if (countryCode.trim() != "+91") {
       $(".country-wise-msg").html("New users outside India are requested to register via email IDs and not mobile OTP.")
     } else {
       $(".country-wise-msg").html("We’ll send you an OTP to verify your account");
