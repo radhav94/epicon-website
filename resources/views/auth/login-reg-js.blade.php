@@ -128,6 +128,12 @@
             e.preventDefault();
             var isInput = $("#mobile_number").val();
             user_mob_email = isInput;
+            var country_code = $("#mobile-number-form-id #country-stdisdcode").val();
+            if (country_code.trim() != +91) {
+                var msg = "New users outside India are requested to register via email IDs and not mobile OTP.";
+                showToaster(msg, 2);
+                return false;
+            }
 
             if (isValidContact(isInput) == true) {
 
@@ -154,7 +160,7 @@
                         // var response = JSON.parse(response);
                         // $('#dynamic-content').html(response.content);
                         }else{
-                            showToaster(response.payload.response.meassage, 2);
+                            showToaster(response.payload.meassage, 2);
                         }
                     },
                     error: function(xhr, status, error) {

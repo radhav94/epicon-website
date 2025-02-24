@@ -55,6 +55,11 @@ class LoginController extends Controller
         $mobile_number = $request->post('mobile_number');
         $signup_method = $request->post('signup_method');
         if ($signup_method == 'MOBILE' && !empty($request->post('stdisdcode'))) {
+            $stdisdcode = $request->post('stdisdcode');
+            if (trim($stdisdcode) != "+91") {
+                $message = "New users outside India are requested to register via email IDs and not mobile OTP.";
+                return JSONResponse(200, 'OTP sent failed.', ['meassage' => $message, 'success' => false]);
+            }
             $mobile_number = str_replace("+", "", $request->post('stdisdcode')) . $mobile_number;
         }
         if (!empty($mobile_number)) {
