@@ -1,4 +1,4 @@
-<div class="tab-pane text-white fade" id="v-pills-active-device" role="tabpanel" aria-labelledby="v-pills-active-device-tab">
+<div class="tab-pane text-white fade {{ $type == 'activeDevice' ? 'show active' : '' }}" id="v-pills-active-device" role="tabpanel" aria-labelledby="v-pills-active-device-tab">
     <div class="language-setting">
         <h4 class="pb-4 border-bot">{{__('Manage the active devices')}}</h4>
 

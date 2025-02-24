@@ -1,4 +1,4 @@
-<div class="tab-pane text-white fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+<div class="tab-pane text-white fade {{ $type == '' ? 'show active' : '' }}" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
     <!-- choose 5 suggetion start -->
     <div class="better-solution">
         <form id="updateInterestForm" class="better-solution">

@@ -14,11 +14,6 @@ class SettingController extends Controller
     {
         $request = Request();
         /*genre section*/
-        $profile_data = CurlAPI("users/viewProfile", 'POST', [], 2, true, true);
-        if (!$profile_data) {
-            return view('pages.404');
-        }
-
         $user_data = session()->get('user') ?? [];
 
         $genrelist = CurlAPI("v2profilecontent/genrelist", 'GET', [], 1);

@@ -24,7 +24,7 @@ if ($request->has('type')) {
 <div class="side-menu-main" id="side-menu">
     <div class="side-menu">
         <div class="main-header-left d-flex ps-3 pt-4">
-            <a href="#" class="menu-close me-3" aria-label="logo">    
+            <a href="#" class="menu-close me-3" aria-label="logo">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M25.1334 8.60204C25.2474 8.48816 25.3379 8.35293 25.3997 8.20408C25.4614 8.05524 25.4933 7.89568 25.4934 7.73453C25.4935 7.57338 25.4618 7.41378 25.4003 7.26486C25.3387 7.11593 25.2484 6.9806 25.1345 6.86657C25.0206 6.75255 24.8854 6.66208 24.7365 6.60031C24.5877 6.53855 24.4281 6.50671 24.267 6.50661C24.1058 6.50651 23.9462 6.53816 23.7973 6.59974C23.6484 6.66132 23.513 6.75162 23.399 6.86551L15.9985 14.266L8.60009 6.86551C8.36981 6.63523 8.05748 6.50586 7.73182 6.50586C7.40616 6.50586 7.09383 6.63523 6.86355 6.86551C6.63328 7.09579 6.50391 7.40811 6.50391 7.73377C6.50391 8.05944 6.63328 8.37176 6.86355 8.60204L14.2641 16.0004L6.86355 23.3988C6.74953 23.5129 6.65908 23.6482 6.59738 23.7972C6.53567 23.9462 6.50391 24.1059 6.50391 24.2671C6.50391 24.4284 6.53567 24.588 6.59738 24.737C6.65908 24.886 6.74953 25.0213 6.86355 25.1354C7.09383 25.3657 7.40616 25.495 7.73182 25.495C7.89307 25.495 8.05275 25.4633 8.20172 25.4015C8.3507 25.3398 8.48607 25.2494 8.60009 25.1354L15.9985 17.7348L23.399 25.1354C23.6293 25.3654 23.9415 25.4945 24.267 25.4943C24.5924 25.4941 24.9045 25.3646 25.1345 25.1343C25.3645 24.904 25.4936 24.5918 25.4934 24.2664C25.4932 23.9409 25.3637 23.6288 25.1334 23.3988L17.7329 16.0004L25.1334 8.60204Z"
@@ -33,12 +33,12 @@ if ($request->has('type')) {
             </a>
             <a onclick="click_menu(this)" aria-label="Home" data-event_context="header" data-element_text="Home" class="navbar-brand me-3" href="{{ getUrlWithPrefix('homepage') }}"><img height="28"
                     src="{{ env('AWS_S3_domain') }}epicon/assets/images/epicon-logo.png" alt="logo"></a>
-               
+
                 @if(@$subplan['status'] != 'active')
                 <a onclick="click_menu(this)" aria-label="Subscribe" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn" href="{{ getUrl('subscription') }}">{{__('Subscribe')}}</a>
                 @endif
-            
-           
+
+
         </div>
         <ul class="ps-3">
             <li>
@@ -136,10 +136,10 @@ if ($request->has('type')) {
                 </svg>
             </a>
             @endif
-            
+
             <a onclick="click_menu(this)" data-event_context="header" data-element_text="Home" class="navbar-brand" aria-label="Logo" href="{{ getUrlWithPrefix('homepage') }}"><img height="28" width="97" src="{{ env('AWS_S3_domain') }}epicon/assets/images/epicon-logo.png"
                     alt="logo"></a>
-                    
+
                 @if($kids_page && @$subplan['status'] != 'active')
                     <a onclick="click_menu(this)" data-event_context="header" data-element_text="Subscribe" class="subscribe-btn allAccessBtn-sub" aria-label="Subscribe" href="javascript:void(0);">{{__('Subscribe')}}</a>
                 @endif
@@ -186,8 +186,8 @@ if ($request->has('type')) {
         }
 ?>
 
-   
-       @if($kids_page == true && isMobliDevice()==false || $kids_page == false)  
+
+       @if($kids_page == true && isMobliDevice()==false || $kids_page == false)
         <ul class="menu-item list-unstyled d-flex mb-0">
             @if(isMobliDevice()==false)
             @foreach ($links as $key => $value)
@@ -203,7 +203,7 @@ if ($request->has('type')) {
 
         </ul>
         @endif
-      
+
                 <div class="main-header-right d-flex align-items-center">
             @php $isactive = ""; @endphp
             @if (kidsMode())
@@ -219,7 +219,7 @@ if ($request->has('type')) {
             {{-- <!-- <div class="form-check form-switch mb-0">
             <input class="form-check-input" name ="kidscheckbox" data-log="{{ isUserLoggedIn() }}" id="allAccessBtn" type="checkbox" role="switch" {{$isactive}}>
             </div> --> --}}
-            
+
                 <input type="hidden" name="kidsUrl" id="kidsUrlH" value="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}">
             <a href="{{ $kids_page ? getUrlWithPrefix('homepage') : getUrlWithPrefix('kidsIndex') }}" id="kidsUrl" class="p-2 me-0" aria-label="kidsUrl">
             <img src="{{ env('AWS_S3_domain') }}epicon/assets/images/kidz-icon.svg" alt="kids"></a>
@@ -252,7 +252,7 @@ if ($request->has('type')) {
                         <!-- <a href="#/">{{__('Clear All')}}</a> -->
                     </div>
                     <ul class="list-unstyled notification-list">
-                        
+
                     </ul>
                     <div class="no-notification">
                         <img src="{{ env('AWS_S3_domain').'epicon/assets/images/no-notification.svg' }}" alt="">
@@ -264,7 +264,7 @@ if ($request->has('type')) {
             --}}
             @endloggedin
             <div class="profile p-2">
-           
+
 
                 @loggedin
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -280,7 +280,7 @@ if ($request->has('type')) {
 
                         <li class="profile-main p-3">
                             @if (isset($profile) && $profile)
-                            <?php 
+                            <?php
                                 $gender = @$profile['result']['user_data']['gender'] ?? 'Male';
                                 $default_img = ($gender == 'Female') ? env('AWS_S3_domain').'epicon/assets/images/edit-profile-pik.png' : env('AWS_S3_domain').'epicon/assets/images/profile-boy.png'
                             ?>
@@ -330,6 +330,7 @@ if ($request->has('type')) {
                         <li class="subc-text"><a href="{{ getUrl('library') }}">{{__('Library')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('my-account') }}">{{__('My Account')}}</a></li>
                         <li class="subc-text"><a href="{{ getUrl('my-rewards') }}">{{__('My Rewards')}}</a></li>
+                        <li class="subc-text"><a href="{{ getUrl('settings').'?type=activeDevice' }}">{{__('My Device Limits')}}</a></li>
                         @if(!kidsMode())
                         {{--<li class="subc-text"><a href="{{url('/my-rewards')}}">{{__('Reward Store')}}</a></li>--}}
                         @endif
@@ -341,7 +342,7 @@ if ($request->has('type')) {
                             <a href="{{ route('terms-of-use') }}">{{__('Terms of Use')}}</a>
                             <a href="{{ route('privacy') }}">{{__('Privacy Policy')}}</a>
                         </li>
-                    
+
                 </ul>
                 @elseloggedin
                 <a href="javascript:void(0)" class="login loginBtn" aria-label="login button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -361,4 +362,4 @@ if ($request->has('type')) {
 
     </nav>
 </div>
-@endif 
+@endif
