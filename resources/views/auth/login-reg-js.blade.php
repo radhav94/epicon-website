@@ -24,14 +24,22 @@
                     $(".stdisdcode").css({ display: "block" }),
                     $("#mobile_number").addClass("input-radius"),
                     $("#mobilenumber").addClass("input-radius"),
-                    $(".signup_method").val('MOBILE')
+                    $(".signup_method").val('MOBILE'),
+                    (
+                        $("#countryCode__dropdown").text().trim() != "+91" 
+                        ? 
+                        $(".country-wise-msg").html("New users outside India are requested to register via email IDs and not mobile OTP.")
+                        :
+                        $(".country-wise-msg").html("We’ll send you an OTP to verify your account")
+                    )
                   )
                 : (
                     $(".stdisdcode").css({ display: "none" }),
                     $("#mobile_number").removeClass("input-radius"),
                     $("#mobilenumber").removeClass("input-radius"),
                     $(".country__code__box").removeClass("active-div"),
-                    $(".signup_method").val('EMAIL')
+                    $(".signup_method").val('EMAIL'),
+                    $(".country-wise-msg").html("We’ll send you an OTP to verify your account")
                 );
         }),
 
@@ -45,12 +53,20 @@
                         ? (
                             $(".stdisdcode").css({ display: "block" }),
                             $(".emailText").css({ "text-indent": "115px" }),
-                            $(".signup_method").val('MOBILE')
+                            $(".signup_method").val('MOBILE'),
+                            (
+                                $("#countryCode__dropdown").text().trim() != "+91" 
+                                ? 
+                                $(".country-wise-msg").html("New users outside India are requested to register via email IDs and not mobile OTP.")
+                                :
+                                $(".country-wise-msg").html("We’ll send you an OTP to verify your account")
+                            )
                         )
                         : (
                             $(".stdisdcode").css({ display: "none" }),
                             $(".emailText").css({ "text-indent": "0px" }),
-                            $(".signup_method").val('EMAIL')
+                            $(".signup_method").val('EMAIL'),
+                            $(".country-wise-msg").html("We’ll send you an OTP to verify your account")
                         );
 
                 }, 1000);
@@ -112,6 +128,12 @@
             e.preventDefault();
             var isInput = $("#mobile_number").val();
             user_mob_email = isInput;
+            var country_code = $("#mobile-number-form-id #country-stdisdcode").val();
+            if (country_code.trim() != +91) {
+                var msg = "New users outside India are requested to register via email IDs and not mobile OTP.";
+                showToaster(msg, 2);
+                return false;
+            }
 
             if (isValidContact(isInput) == true) {
 
@@ -138,7 +160,7 @@
                         // var response = JSON.parse(response);
                         // $('#dynamic-content').html(response.content);
                         }else{
-                            showToaster(response.payload.response.meassage, 2);
+                            showToaster(response.payload.meassage, 2);
                         }
                     },
                     error: function(xhr, status, error) {
