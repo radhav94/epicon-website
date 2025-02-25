@@ -139,5 +139,5 @@
 @section('script')
     <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/jquery.validate.min.js"></script>
     {{-- <script src="{{ env('AWS_S3_domain').'epicon/assets/images/profile.js' }}?v={{ assetTime() }}"></script> --}}
-    <script src="{{ asset('assets/js/profile.js') }}?v={{ assetTime() }}" defer></script>
+    <script src="{{ asset('assets/js/profile.js') }}?v={{ assetTime() }}"></script>
 @stop
