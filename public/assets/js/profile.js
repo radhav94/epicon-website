@@ -12,7 +12,7 @@ $(document).ready(function () {
             },
             dob: {
                 required: true,
-                date: true
+                // date: true
             },
         },
         errorPlacement: function (error, element) {
