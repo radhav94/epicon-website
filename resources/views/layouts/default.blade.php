@@ -84,8 +84,20 @@
     </script>
     <!-- Schema Code Start -->
     @include('layouts.schema')
+    @php $page = getFirstSegment(); @endphp
+    @if($page == 'movies')
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Movie",
+      "name": "{{ $meta['title'] ?? getDefaultMetaTitle() }}",
+      "image": "{{ $meta['image'] ?? env('AWS_S3_domain').'epicon/assets/images/epiconlogo.png' }}",
+      "description": "{{ $meta['description'] ?? 'Watch TV Shows, Web Series, Movies, Podcasts & Live TV Channels online at EPIC ON, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.' }}",
+      "url": "{{ URL::current() }}"
+    }
+    </script>
+    @endif
     <!-- Schema Code END -->
-
 </head>
 
 <body>
