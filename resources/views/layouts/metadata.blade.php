@@ -11,7 +11,7 @@ $lastSegment = request()->segment(count(request()->segments()));
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 @endif
 <link rel="icon" href="{{ env('AWS_S3_domain') }}epicon/assets/images/favicon.png">
-<title id="page_title" data-page-title="@yield('title') | {{ env('APP_NAME') }}">@yield('title') | {{ env('APP_NAME') == '' ? 'EPIC ON' : env('APP_NAME') }}</title>
+<title id="page_title" data-page-title="@yield('title')">@yield('title')</title>
 <link rel="canonical" href="{{ URL::current() }}">
 
 <meta name="theme-color" content="#9442c7">
@@ -37,14 +37,18 @@ $lastSegment = request()->segment(count(request()->segments()));
 <meta property="og:description"
     content="{{ htmlspecialchars_decode(@$meta['description'] ?? 'Watch Indian and Hollywood movies & TV shows online at EPIC ON, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.') }}">
 <meta property="og:type" content="website">
-<meta property="og:image" content="{{ $meta['image'] ?? env('AWS_S3_domain') }}epicon/assets/images/epiconlogo.png' }}">
+<meta property="og:image" content="{{ $meta['image'] ?? env('AWS_S3_domain').'epicon/assets/images/epiconlogo.png' }}">
+
+<!-- Standard HTML Meta Tags for Images -->
+<meta itemprop="image" content="{{ $meta['image'] ?? env('AWS_S3_domain').'epicon/assets/images/epiconlogo.png' }}">
+<meta name="image" content="{{ $meta['image'] ?? env('AWS_S3_domain').'epicon/assets/images/epiconlogo.png' }}">
 
 <!-- Facebook Meta Tags -->
 <meta property="og:title" content="{{ $meta['title'] ?? getDefaultMetaTitle() }}">
 <meta property="og:description"
     content="{{ $meta['description'] ?? 'Watch TV Shows, Web Series, Movies, Podcasts & Live TV Channels online at EPIC ON, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.' }}">
 <meta property="og:url" content="{{ URL::current() }}">
-<meta property="og:image" content="{{ $meta['image'] ?? env('AWS_S3_domain') }}epicon/assets/images/epiconlogo.png' }}">
+{{-- <meta property="og:image" content="{{ $meta['image'] ?? env('AWS_S3_domain').'epicon/assets/images/epiconlogo.png' }}"> --}}
 
 <meta property="og:image:alt" content="Epicon" >
 <meta property="og:type" content="website">
@@ -54,8 +58,8 @@ $lastSegment = request()->segment(count(request()->segments()));
 <!-- Twitter Meta Tags -->
 <meta name="twitter:title" content="{{ $meta['title'] ?? getDefaultMetaTitle() }}">
 <meta name="twitter:description" content="{{ $meta['description'] ?? 'Watch TV Shows, Web Series, Movies, Podcasts & Live TV Channels online at EPIC ON, India\'s premier OTT platform in India. With a wide selection of new and classic shows and Movies.' }}">
-<meta name="twitter:image" content="{{ $meta['image'] ?? env('AWS_S3_domain') }}epicon/assets/images/epiconlogo.png' }}">
-<meta name="twitter:image:src" content="{{ $meta['image'] ?? env('AWS_S3_domain') }}epicon/assets/images/epiconlogo.png' }}">
+<meta name="twitter:image" content="{{ $meta['image'] ?? env('AWS_S3_domain').'epicon/assets/images/epiconlogo.png' }}">
+<meta name="twitter:image:src" content="{{ $meta['image'] ?? env('AWS_S3_domain').'epicon/assets/images/epiconlogo.png' }}">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site_name" content="@Epicon">
 <meta name="twitter:creator" content="@Epicon">

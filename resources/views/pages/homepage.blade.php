@@ -48,7 +48,7 @@
 @stop
 
 @section('script')
-<script src="{{ env('AWS_S3_domain') }}epicon/assets/images/homepage.js?v={{ assetTime() }}" defer></script>
+<script src="{{ asset('assets/js/homepage.js').'?v='.assetTime() }}"></script>
 <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/epic-story.js?v={{ assetTime() }}" defer></script>
 {{-- <script src="{{ env('AWS_S3_domain').'epicon/assets/images/vendor/plyr.js' }}" defer></script> --}}
 {{-- <script src="{{ env('AWS_S3_domain').'epicon/assets/images/vendor/hls.min.js' }}" defer></script> --}}
@@ -72,12 +72,19 @@
         $(document).scroll(function(e) {
             if (processing) {
                 return false;
-            }
-            if ($(window).scrollTop() >= ($(document).height() - $(window).height()) * 0.4) {
+            } else {
                 processing = true;
-
                 loadMoreData();
             }
+            // if ($(window).width() < 768) {
+            //         processing = true;
+            //         loadMoreData();
+            // } else {
+            //     if ($(window).scrollTop() >= ($(document).height() - $(window).height()) * 0.4) {
+            //         processing = true;
+            //         loadMoreData();
+            //     }
+            // }
         });
 
 

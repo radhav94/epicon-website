@@ -89,7 +89,7 @@ if ($request->has('type')) {
             </div>
             <div class="col-lg-3">
                 <div class="download-store">
-                    <h1>{{__('Download App')}}</h1>
+                    <h2>{{__('Download App')}}</h2>
                     <div class="w-100 download-store-logo">
                         <a onclick="outbound_click(this)" aria-label="app android" data-event_context="app" data-element_text="android" href="https://play.google.com/store/apps/details?id=com.epicchannel.epicon&amp;hl=en" target="_blank"><img class="me-3" src="{{ env('AWS_S3_domain') }}epicon/assets/images/google-store-logo-proper.svg"
                                 alt="google store"></a>
@@ -147,6 +147,7 @@ if ($request->has('type')) {
                     </li>
                     <li>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('/') }}" data-element_text="{{__('Popular Originals')}}"><h3>{{__('Popular Originals')}}</h3></a>
+                        <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/griha-laxmi') }}" data-element_text="{{__('Griha Laxmi')}}">{{__('Griha Laxmi')}}</a>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/tatlubaaz') }}" data-element_text="{{__('Tatlubaaz')}}">{{__('Tatlubaaz')}}</a>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/video-cam-scam') }}" data-element_text="{{__('Video Cam Scam')}}">{{__('Video Cam Scam')}}</a>
                         <a onclick="click_menu(this)" data-event_context="footer" href="{{ getUrl('tv-shows/family-table') }}" data-element_text="{{__('Family Table')}}">{{__('Family Table')}}</a>

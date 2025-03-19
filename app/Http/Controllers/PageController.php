@@ -232,7 +232,7 @@ class PageController extends Controller
                 $url = "pages/midpage/{$pageslug}";
                 $epicwebArr = CurlAPI($url, "GET", ['page' => 1, 'catalog_slug' => $catalog,'view_all'=>'true'], 1);
             } else {
-                $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => $limit, 'page' => 1], 1);
+                $epicwebArr = CurlAPI("pages/midpageData", "GET", ['catalogId' => $catalog, 'limit' => $limit, 'page' => 1], 1);
             }
         }
         if (isset($epicwebArr) && @$epicwebArr['success'] == true) {
@@ -250,7 +250,7 @@ class PageController extends Controller
         $title = $slug;
         $slug = "live|" . $slug;
         $page = 1;
-        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['slug' => $slug, 'page' => 1, 'limit' => 48], 1);
+        $epicwebArr = CurlAPI("pages/midpageData", "GET", ['slug' => $slug, 'page' => 1, 'limit' => 48], 1);
 
         if (isset($epicwebArr) && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
@@ -292,7 +292,7 @@ class PageController extends Controller
                 $url = "pages/midpage/{$pageslug}";
                 $epicwebArr = CurlAPI($url, "GET", ['page' => $page, 'catalog_slug' => $catalog,'view_all' => 'true'], 1);
             } else {
-                $epicwebArr = CurlAPI("pages/midpageData", "POST", ['catalogId' => $catalog, 'limit' => $limit, 'page' => $page], 1);
+                $epicwebArr = CurlAPI("pages/midpageData", "GET", ['catalogId' => $catalog, 'limit' => $limit, 'page' => $page], 1);
             }
         }
         $catalogue_blade = "paginatecontent";
@@ -312,7 +312,7 @@ class PageController extends Controller
         $page = $request->page;
         $limit = 48;
         $slug = $request->slug;
-        $epicwebArr = CurlAPI("pages/midpageData", "POST", ['slug' => $slug, 'limit' => $limit, 'page' => $page], 1);
+        $epicwebArr = CurlAPI("pages/midpageData", "GET", ['slug' => $slug, 'limit' => $limit, 'page' => $page], 1);
         $catalogue_blade = "chanel.channelpaginatecontent";
         if ($epicwebArr && @$epicwebArr['success'] == true) {
             $epicwebArr = $epicwebArr['data'];
@@ -502,15 +502,14 @@ class PageController extends Controller
         $data = http_build_query($param);
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => config('epicconfig.EPICAPI.API_DOMAIN_1') . '/pages/midpageData',
+            CURLOPT_URL => config('epicconfig.EPICAPI.API_DOMAIN_1') . '/pages/midpageData?'.$data,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 0,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => $data,
+            CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
                 'x-access-auth-token: szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH',
                 'Content-Type: application/x-www-form-urlencoded'

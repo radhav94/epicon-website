@@ -8,28 +8,29 @@ if (@$content['content_type'] == 'SHOW' || $content['content_type'] == 'SEASON')
 }
 $loadPlayer = true;
 $share_img = getCardImage($content, 'cover_image', 'medium');
+
 if($isMoblile){
-    $cover_img = getCardImage($content, 'banner_image', 'medium');
-}else{
+    $size = 'medium';
+} else {
+    $size = 'large';
+}
 
-    if(isset($content['airtel_feature_imageHD']) && !empty($content['airtel_feature_imageHD'])){
-        $cover_img = $content['airtel_feature_imageHD'];
-    }
-    else if(isset($content['trending_movie_buzz_image']) && !empty($content['trending_movie_buzz_image'])){
+if(isset($content['airtel_feature_imageHD']) && !empty($content['airtel_feature_imageHD']) && !$isMoblile){
+    $cover_img = $content['airtel_feature_imageHD'];
+}
+else if(isset($content['trending_movie_buzz_image']) && !empty($content['trending_movie_buzz_image']) && !$isMoblile){
 
-        $cover_img = getCardImage($content, 'trending_movie_buzz_image', 'large');
+    $cover_img = getCardImage($content, 'trending_movie_buzz_image', $size);
+}
+else if(@$content['content_type'] == 'EPISODE'){
+    if (!empty($content['season'][0]['airtel_feature_imageHD'] ?? '') && !$isMoblile) {
+        $cover_img = $content['season'][0]['airtel_feature_imageHD'];
+    } else {
+        $cover_img = getCardImage($content, 'cover_image', $size);
     }
-    else if(@$content['content_type'] == 'EPISODE'){
-        if (!empty($content['season'][0]['airtel_feature_imageHD'] ?? '')) {
-            $cover_img = $content['season'][0]['airtel_feature_imageHD'];
-        } else {
-            $cover_img = getCardImage($content, 'cover_image', 'large');
-        }
-    }
-    else{
-        $cover_img = getCardImage($content, 'banner_image', 'large');
-    }
-    // dd($content);
+}
+else{
+    $cover_img = getCardImage($content, 'banner_image', $size);
 }
 
 $meta['image'] = $share_img;
@@ -66,7 +67,7 @@ $meta['image'] = $share_img;
     @endif
 
     <section class="content-detail-banner position-relative">
-        <div class="banner-main position-relative hide-vid-element">
+        <div class="banner-main container position-relative hide-vid-element px-0">
             <img src="{{ $cover_img }}" alt="img">
         </div>
         <div class="loaderImg" style="display:none">
@@ -123,8 +124,8 @@ $meta['image'] = $share_img;
                                         {!! getPlayText($content) !!}
                                     @endif
                                 </button>
-                                @if(($content['user_duration'] ?? 0) >= 1)
-                                <button class="fill-btn mobile-width" id="video-start-from-beginning">Play from beginning</button>
+                                @if(($content['user_duration'] ?? 0) >= 1 && $pageslug != 'live-tv')
+                                <button class="fill-btn mobile-width {{$watchClass}}" id="{{ !empty($watchid) ? 'video-start-from-beginning' : '' }}">Play from beginning</button>
                                 @endif
 
                                     @if (@$content['free_premium'] == true && !isActiveSubscription())
@@ -248,7 +249,7 @@ $meta['image'] = $share_img;
 @stop
 
 @section('script')
-    <script src="{{ env('AWS_S3_domain') }}epicon/assets/images/homepage.js?v={{ assetTime() }}"></script>
+    <script src="{{ asset('assets/js/homepage.js').'?v='.assetTime() }}" defer></script>
     <script src="{{ env('AWS_S3_domain').'epicon/assets/images/socialSharing.js' }}?v={{ assetTime() }}"></script>
 
     <script src="{{ env('AWS_S3_domain').'epicon/assets/images/detail.js' }}?v={{ assetTime() }}"></script>

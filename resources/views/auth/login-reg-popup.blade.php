@@ -102,7 +102,7 @@
                                         placeholder="Email or Mobile Number">
                                     </div>
                                     <input type="hidden" name="signup_method" class="signup_method" value="">
-                                    <span class="text-start text-white d-flex mt-1" style="font-size: 12px;">We’ll send
+                                    <span class="text-start text-white d-flex mt-1 country-wise-msg" style="font-size: 12px;">We’ll send
                                         you an OTP to verify your account</span>
                                     <span class="text-danger text-start d-flex mt-1 get-otp-message"
                                         style="font-size: 12px;"></span>

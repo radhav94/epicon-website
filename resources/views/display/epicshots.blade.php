@@ -18,7 +18,7 @@
                     <div>
                         <a onclick="click_tile(this)" aria-label="{{ @$story['title'] }}" data-title="{{ @$story['title'] }}" data-type="Epic Shots"
                             href="javascript:void(0)" class="storyBtn"
-                            data-id="{{ @$story['short_code'] == '' ? $story['short_code'] : @$story['id'] }}">
+                            data-id="{{ @$story['short_code'] != '' ? $story['short_code'] : @$story['id'] }}">
                             <img src="{{ $story['img_url'] }}" alt="shots">
                         </a>
                     </div>

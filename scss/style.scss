@@ -7668,8 +7668,9 @@ input {
         @media (max-width:700px) {
             padding-top: 0px;
         }
-        h6{
+        h3{
             @include line-clamp(2);
+            font-size: 1rem;
             @media (max-width:700px) {
                 font-size: 14px;
                 @include line-clamp(1);
@@ -8238,7 +8239,7 @@ input {
     .download-store{
         @include flex(column,center,flex-end);
         
-        h1{
+        h2{
             color: $bg-white;
             font-size: 16px;
             font-weight: 600;
@@ -9594,11 +9595,12 @@ audio::-webkit-media-controls-play-button {
 }
 .player-bg-wrap{
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     width: 100%;
     height: 500px;
     background-color: #000;
+    border-radius: 20px;
     @media (max-width:768px) {
         width: 100%;
         height: auto;
@@ -9666,6 +9668,7 @@ audio::-webkit-media-controls-play-button {
 #upcomingModal .modal-content{
     background-color: #000;
     background-image: none;
+    width: 100%;
 }
 #upcomingModal .plyr video{
     height: auto!important;
@@ -11099,4 +11102,9 @@ audio::-webkit-media-controls-play-button {
         letter-spacing: 0.8px;
     }
     
+}
+#epg-modal .modal-content{
+    @media (max-width:1180px) {
+        width: 100%;
+      }
 }
