@@ -1,0 +1,364 @@
+# Razorpay "Buy Subscription" - Visual API Flow
+
+## ╔═══════════════════════════════════════════════════════════════════════════╗
+## ║                        COMPLETE VISUAL FLOW                              ║
+## ╚═══════════════════════════════════════════════════════════════════════════╝
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  USER ACTION 1: VISIT /subscription PAGE                                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    Frontend: GET /subscription
+           │
+           ├─→ Route: /subscription
+           │
+           ├─→ Controller: SubscriptionController@subscription()
+           │
+           ├─→ API CALL 1: GET /subscriptions/plans
+           │   ├─ auth_token: API_AUTH_TOKEN
+           │   ├─ x_country: IN
+           │   └─ x_continent: AS
+           │
+           ├─→ Response: {
+           │     "plans": [
+           │       {
+           │         "id": "epic_in_pl_1",
+           │         "name": "STARTER",
+           │         "actual_price": 199,
+           │         "currency": "INR"
+           │       }
+           │     ]
+           │   }
+           │
+           ├─→ Display: resources/views/subscription/subscription.blade.php
+           │
+           └─→ UI Shows:
+               ├─ Plan 1: STARTER - ₹199/Month
+               ├─ Plan 2: GOLD - ₹499/Month
+               ├─ Plan 3: PREMIUM - ₹999/Month
+               └─ [BUY SUBSCRIPTION] Button  ← USER CLICKS HERE
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  USER ACTION 2: CLICK "BUY SUBSCRIPTION" BUTTON ← ANSWER TO YOUR QUESTION   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    Frontend: onclick="click_subscription()" in ga_tag.js
+           │
+           ├─→ Log GA Event (no API call)
+           │
+           ├─→ Submit Form: POST /paymentMethod
+           │   ├─ amountid: epic_in_pl_1
+           │   ├─ currency: INR
+           │   ├─ coupanstatus: No
+           │   ├─ promocode: ""
+           │   └─ paymentGateway: razorpay
+           │
+           ├─→ Route: POST /paymentMethod
+           │
+           ├─→ Controller: SubscriptionController@setSubscription()
+           │
+           ├─→ API CALL 2: GET /subscriptions/plans
+           │   └─ (Same as Step 1 - verify pricing)
+           │
+           ├─→ API CALL 3: GET /subscriptions/plans/payment-gateways
+           │   ├─ plan_name: epic_in_pl_1
+           │   └─ auth_token: API_AUTH_TOKEN
+           │
+           ├─→ Response: {
+           │     "data": {
+           │       "PaymentModes": [
+           │         { "type": "DC", "device": ["web"] },
+           │         { "type": "CC", "device": ["web"] },
+           │         { "type": "UPI", "device": ["web"] },
+           │         { "type": "NETBANKING", "device": ["web"] }
+           │       ]
+           │     }
+           │   }
+           │
+           ├─→ Display: resources/views/subscription/payment-method.blade.php
+           │
+           └─→ UI Shows:
+               ├─ Selected Plan: STARTER - ₹199
+               ├─ [DEBIT CARD] Button
+               ├─ [CREDIT CARD] Button
+               ├─ [NET BANKING] Button
+               ├─ [UPI] Button
+               ├─ [WALLET] Button
+               └─ [CONTINUE PAY ₹199] Button
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  USER ACTION 3: SELECT PAYMENT METHOD & CLICK "CONTINUE PAY"                │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    Frontend: User selects payment method (e.g., DEBIT CARD)
+           │
+           ├─→ Update hidden fields:
+           │   ├─ payment_type: DC
+           │   ├─ payment_mode: DC
+           │   └─ subscription_payment_mode: card
+           │
+           ├─→ Submit Form: POST /saveSubscriptionRazorpay
+           │   ├─ amount: 199
+           │   ├─ amountid: epic_in_pl_1
+           │   ├─ payment_type: DC
+           │   ├─ payment_mode: DC
+           │   └─ subscription_payment_mode: card
+           │
+           ├─→ Route: POST /saveSubscriptionRazorpay
+           │
+           ├─→ Controller: RazorpayController@saveSubscriptionRazorpay()
+           │
+           ├─→ API CALL 4: GET /subscriptions/plans
+           │   └─ (Third pricing verification)
+           │
+           ├─→ API CALL 5: POST /subscriptions/razorpay-mandate/createRequest
+           │   ├─ planCode: epic_in_pl_1
+           │   ├─ authType: netbanking
+           │   ├─ device: web
+           │   └─ source: subscription_screen
+           │   └─ ⚠️ DEPRECATED - Backend doesn't support this anymore
+           │
+           ├─→ API CALL 6: POST /subscriptions/createorder
+           │   ├─ user_id: user@example.com
+           │   ├─ plan_id: epic_in_pl_1
+           │   ├─ order_value: 199
+           │   ├─ payment_gateway: razorpay
+           │   ├─ mobile: 9999999999
+           │   └─ email: user@example.com
+           │
+           ├─→ Response: {
+           │     "order_data": {
+           │       "order_id": "ORD12345678",
+           │       "subscription_id": "sub_xxxxx",
+           │       "plan_id": "epic_in_pl_1",
+           │       "order_value": 199
+           │     }
+           │   }
+           │
+           ├─→ API CALL 7: POST https://api.razorpay.com/v1/orders
+           │   └─ ❌ FORBIDDEN - Direct Razorpay API call (not allowed)
+           │
+           ├─→ Display: resources/views/subscription/razorpay.blade.php
+           │
+           └─→ JavaScript Opens:
+               └─ Razorpay Checkout Modal
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  USER ACTION 4: COMPLETE PAYMENT IN RAZORPAY MODAL                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    Razorpay Checkout Modal: User authorizes payment
+           │
+           ├─→ User enters payment details
+           ├─→ User confirms transaction
+           ├─→ Bank processes payment
+           ├─→ Razorpay generates:
+           │   ├─ razorpay_payment_id: pay_xxxxx
+           │   ├─ razorpay_subscription_id: sub_xxxxx
+           │   └─ razorpay_signature: xxxxx
+           │
+           ├─→ Handler function receives response
+           │
+           ├─→ Auto Submit Form: POST /razorpay/callback
+           │   ├─ razorpay_payment_id: pay_xxxxx
+           │   ├─ razorpay_order_id: ORD12345678
+           │   ├─ razorpay_signature: xxxxx
+           │   ├─ mandate_id: mandate_xxxxx (from cookies)
+           │   └─ (other order data from cookies)
+           │
+           ├─→ Route: POST /razorpay/callback
+           │
+           ├─→ Controller: RazorpayController@razorpayCallback()
+           │
+           ├─→ Verify signature
+           │   └─ Compare HMAC-SHA256 signature with razorpay_secret
+           │
+           ├─→ API CALL 8: POST /subscriptions/updateOrder
+           │   ├─ user_id: user@example.com
+           │   ├─ order_id: ORD12345678
+           │   ├─ order_status: complete
+           │   ├─ payment_gateway: razorpay
+           │   ├─ transaction_id: pay_xxxxx
+           │   ├─ bank_ref_no: pay_xxxxx
+           │   ├─ mandate_id: mandate_xxxxx
+           │   ├─ is_recurring: false  ⚠️ SHOULD BE: true
+           │   └─ payment_mode: razorpay
+           │
+           ├─→ Response: {
+           │     "success": true,
+           │     "message": "Order updated successfully"
+           │   }
+           │
+           ├─→ Display Success Page:
+           │   ├─ resources/views/subscription/thankyou.blade.php (Success)
+           │   └─ OR resources/views/subscription/subscription-fail.blade.php (Fail)
+           │
+           └─→ UI Shows:
+               └─ "You have successfully purchased a subscription plan."
+
+
+## ╔═══════════════════════════════════════════════════════════════════════════╗
+## ║                      API CALLS SUMMARY TABLE                              ║
+## ╚═══════════════════════════════════════════════════════════════════════════╝
+
+Step │ API Endpoint                              │ Method │ Status │ Purpose
+─────┼───────────────────────────────────────────┼────────┼────────┼──────────────────
+  1  │ /subscriptions/plans                      │  GET   │   ✅   │ Load plans
+  2  │ /subscriptions/plans                      │  GET   │   ✅   │ Verify pricing
+  3  │ /subscriptions/plans/payment-gateways     │  GET   │   ✅   │ Get payment methods
+  4  │ /subscriptions/plans                      │  GET   │   ✅   │ Verify pricing again
+  5  │ /subscriptions/razorpay-mandate/...       │ POST   │  ❌   │ Create mandate (DEPRECATED)
+  6  │ /subscriptions/createorder                │ POST   │   ✅   │ Create order
+  7  │ https://api.razorpay.com/v1/orders        │ POST   │  ❌   │ Create Razorpay order (FORBIDDEN)
+  8  │ /subscriptions/updateOrder                │ POST   │   ✅   │ Update subscription
+
+
+## ╔═══════════════════════════════════════════════════════════════════════════╗
+## ║          ANSWER TO: "Which API is calling on buy subscription page?"      ║
+## ╚═══════════════════════════════════════════════════════════════════════════╝
+
+WHEN USER CLICKS "BUY SUBSCRIPTION" BUTTON:
+
+┌──────────────────────────────────────┐
+│  Frontend Form Submission             │
+│  ========================             │
+│  POST /paymentMethod                  │
+│                                       │
+│  Calls Controller:                    │
+│  SubscriptionController@setSubscription()
+│                                       │
+│  Which then calls:                    │
+│  • API 2: GET /subscriptions/plans    │
+│  • API 3: GET /subscriptions/plans/   │
+│           payment-gateways            │
+│                                       │
+│  Returns:                             │
+│  payment-method.blade.php view        │
+└──────────────────────────────────────┘
+
+
+## ╔═══════════════════════════════════════════════════════════════════════════╗
+## ║                        FILES INVOLVED                                     ║
+## ╚═══════════════════════════════════════════════════════════════════════════╝
+
+FRONTEND FILES:
+┌─ resources/views/subscription/subscription.blade.php
+│  └─ Line 440: <button onclick="click_subscription()">Buy subscription</button>
+│  └─ Line 201: <form action="{{getUrl('paymentMethod')}}" method="post">
+│
+├─ public/assets/js/ga_tag.js
+│  └─ Line 28: function click_subscription() { ... form.submit(); }
+│
+├─ resources/views/subscription/payment-method.blade.php
+│  └─ Shows payment method selection after /paymentMethod
+│
+└─ resources/views/subscription/razorpay.blade.php
+   └─ Shows Razorpay checkout after /saveSubscriptionRazorpay
+
+BACKEND FILES:
+┌─ routes/web.php
+│  └─ Line 242: Route::any('paymentMethod', [SubscriptionController@setSubscription])
+│  └─ Line 316: Route::post('saveSubscriptionRazorpay', [RazorpayController@saveSubscriptionRazorpay])
+│
+├─ app/Http/Controllers/SubscriptionController.php
+│  └─ Line 116: public function setSubscription(Request $request)
+│
+└─ app/Http/Controllers/RazorpayController.php
+   └─ Line 14: public function saveSubscriptionRazorpay(Request $request)
+
+
+## ╔═══════════════════════════════════════════════════════════════════════════╗
+## ║                        KEY INFORMATION                                    ║
+## ╚═══════════════════════════════════════════════════════════════════════════╝
+
+RAZORPAY_ENABLED in .env:
+  ├─ true  → Uses Razorpay (current setup) ✅
+  ├─ false → Uses PayU (fallback)
+  └─ Affects: Which controller method is called after /paymentMethod
+
+PAYMENT METHODS SUPPORTED:
+  ├─ DC (Debit Card)
+  ├─ CC (Credit Card)
+  ├─ UPI (UPI Autopay)
+  ├─ NB (Netbanking Mandate)
+  └─ CASH (Wallet)
+
+FLOW SUMMARY:
+  /subscription (Load plans)
+    ↓
+  [User clicks "Buy subscription"]
+    ↓
+  POST /paymentMethod (Get payment methods)
+    ↓
+  [User selects payment method]
+    ↓
+  POST /saveSubscriptionRazorpay (Create order & show checkout)
+    ↓
+  [User authorizes in Razorpay]
+    ↓
+  POST /razorpay/callback (Process payment result)
+    ↓
+  Success/Failure page
+
+
+## ╔═══════════════════════════════════════════════════════════════════════════╗
+## ║                    ISSUES FOUND (PER BACKEND CONTRACT)                    ║
+## ╚═══════════════════════════════════════════════════════════════════════════╝
+
+❌ API CALL 5: /subscriptions/razorpay-mandate/createRequest (DEPRECATED)
+   └─ Status: NO LONGER SUPPORTED BY BACKEND
+   └─ Fix: REMOVE THIS API CALL ENTIRELY
+   └─ Backend now handles mandates internally
+
+❌ API CALL 7: Direct Razorpay API (https://api.razorpay.com/v1/orders)
+   └─ Status: FORBIDDEN PER BACKEND CONTRACT
+   └─ Fix: REMOVE THIS METHOD (/createRazorpayOrder)
+   └─ Backend creates orders and returns subscription_id
+
+⚠️ MISSING: Free-trial support
+   └─ Backend returns: free_trial: true, discounted_price: 1, validity_days: 2
+   └─ Frontend needs to display this
+
+⚠️ MISSING: Payment mode tracking
+   └─ Backend expects: subscriptionPaymentMode (upi/card/netbanking/emandate)
+   └─ Frontend needs to send this in updateOrder request
+
+See documentation for complete implementation guide.
+
+
+## ╔═══════════════════════════════════════════════════════════════════════════╗
+## ║                   DOCUMENTATION FILES CREATED                             ║
+## ╚═══════════════════════════════════════════════════════════════════════════╝
+
+📄 ANSWER_WHICH_API_IS_CALLED.md
+   └─ Direct answer to this question with code traces
+
+📄 API_CALLS_QUICK_REFERENCE.md
+   └─ Quick lookup table of all APIs
+
+📄 BUY_SUBSCRIPTION_API_FLOW.md
+   └─ Detailed step-by-step with request/response examples
+
+📄 RAZORPAY_BACKEND_CONTRACT_COMPLIANCE_REPORT.md
+   └─ Gap analysis and issues found
+
+📄 RAZORPAY_QUICK_FIX_GUIDE.md
+   └─ Exact code changes needed (copy-paste ready)
+
+📄 RAZORPAY_INTEGRATION_SUMMARY.md
+   └─ Executive overview and roadmap
+
+📄 README_RAZORPAY_DOCS.md
+   └─ Index and navigation guide
+
+└─ VISUAL_API_FLOW_DIAGRAM.txt (this file)
+   └─ Visual representation of complete flow
+
+
+══════════════════════════════════════════════════════════════════════════════════════
+                                END OF DIAGRAM
+══════════════════════════════════════════════════════════════════════════════════════

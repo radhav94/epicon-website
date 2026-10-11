@@ -1,0 +1,182 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║             HOMEPAGE API - CONTINUE WATCHING TRAY TESTING GUIDE             ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+QUICK START
+═══════════════════════════════════════════════════════════════════════════
+
+1. Login to get user token
+2. Call homepage API with user_id and profile_id
+3. Check for "continuewatching" display_type in response
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ONE-LINER TEST (Copy & Paste)
+═══════════════════════════════════════════════════════════════════════════
+
+curl -s 'https://contentapistg-njsapi.epicon.in/index/pages/homepage?slug=home-v2&list_language=all&display_language=en&page=1&limit=3&user_id=919867447773&profile_id=16413556' \
+  -H 'x-access-auth-token: szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH' \
+  -H 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjkxOTg2NzQ0Nzc3M30sImlhdCI6MTc4NzgyNTIwMSwiZXhwIjoxNzg3OTExNjAxfQ.QWNwwZAmp3Y1cazeLO_Wxfl4ZX5AMZ55dQkQr21nmQ0' | jq '.data.list[] | select(.display_type=="continuewatching")'
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUIRED HEADERS
+═══════════════════════════════════════════════════════════════════════════
+
+Header Name:        x-access-auth-token
+Value:              szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH
+Purpose:            API Authentication
+
+Header Name:        Authorization
+Value:              <User JWT Token>
+Purpose:            User Authentication (for continue watching)
+Note:               Get this token by logging in
+
+Header Name:        Content-Type
+Value:              application/json
+Purpose:            Request format
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUIRED PARAMETERS
+═══════════════════════════════════════════════════════════════════════════
+
+Parameter:          slug
+Value:              home-v2
+Purpose:            Page identifier (always home-v2 for homepage)
+
+Parameter:          list_language
+Value:              all
+Purpose:            Content language filter
+
+Parameter:          display_language
+Value:              en | hi | ta | ma | te
+Purpose:            Display language
+
+Parameter:          page
+Value:              1
+Purpose:            Page number for pagination
+
+Parameter:          limit
+Value:              3
+Purpose:            Number of items per tray
+
+Parameter:          user_id
+Value:              <Your User ID>
+Purpose:            User identification (for personalization)
+Required for:       Continue watching to appear
+
+Parameter:          profile_id
+Value:              <Your Profile ID>
+Purpose:            Profile identification
+Required for:       Continue watching to appear
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ENDPOINT
+═══════════════════════════════════════════════════════════════════════════
+
+URL:                https://contentapistg-njsapi.epicon.in/index/pages/homepage
+Method:             GET
+Content-Type:       application/json
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+GETTING A USER TOKEN
+═══════════════════════════════════════════════════════════════════════════
+
+curl -X POST 'https://contentapistg-njsapi.epicon.in/index/users/login' \
+  -H 'x-access-auth-token: szQDOyDaxsS0E4qeV1rMfpYBKnSWVESH' \
+  -H 'Content-Type: application/json' \
+  --data '{"phone_number": "+919876543210", "password": "your_password"}' | jq .
+
+Response will contain:
+- token: Use this in Authorization header
+- user_id: Use in homepage API call
+- profile_id: Use in homepage API call
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+EXPECTED RESPONSE (With Continue Watching)
+═══════════════════════════════════════════════════════════════════════════
+
+{
+  "success": true,
+  "data": {
+    "list": [
+      {
+        "display_type": "banner",
+        ...
+      },
+      {
+        "display_type": "continuewatching",
+        "title": "Continue Watching",
+        "content": [
+          {
+            "ID": 1782723687,
+            "title": "Drama Title - Episode 1",
+            "duration": 3600,
+            "user_duration": 1200,
+            "cover_image": {...},
+            "url": "shows/..."
+          }
+        ]
+      },
+      ...
+    ]
+  }
+}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+EXTRACT CONTINUE WATCHING
+═══════════════════════════════════════════════════════════════════════════
+
+# Show only continue watching tray
+jq '.data.list[] | select(.display_type=="continuewatching")'
+
+# Show continue watching items with progress
+jq '.data.list[] | select(.display_type=="continuewatching") | .content[] | {
+  title,
+  progress: ((.user_duration / .duration * 100) | floor)
+}'
+
+# Count continue watching items
+jq '.data.list[] | select(.display_type=="continuewatching") | .content | length'
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════════
+
+Issue:              Continue watching not appearing
+Cause 1:            User not logged in
+Solution:           Add Authorization header with valid token
+
+Cause 2:            Missing user_id and profile_id parameters
+Solution:           Add both parameters to query string
+
+Cause 3:            Invalid token
+Solution:           Get fresh token by logging in again
+
+Cause 4:            User has no watched content
+Solution:           Watch some content first, then check again
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ADDITIONAL RESOURCES
+═══════════════════════════════════════════════════════════════════════════
+
+For detailed examples:
+  → HOMEPAGE_API_CURL_EXAMPLES.md
+
+For user-specific testing:
+  → HOMEPAGE_API_USER_TEMPLATE.md
+
+For bash script testing:
+  → HOMEPAGE_API_QUICK_TEST.sh
+
+For integration details:
+  → CONTINUE_WATCHING_API_INTEGRATION.md
+
+═══════════════════════════════════════════════════════════════════════════
